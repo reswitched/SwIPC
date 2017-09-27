@@ -1,719 +1,738 @@
 <!doctype html><html>
 	<head>
-	<meta http-equiv="Content-Language" content="en">
+		<meta http-equiv="Content-Language" content="en">
 		<title>SwIPC</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/bootstrap-toc.min.css" />
+		<link rel="stylesheet" href="css/main.css" />
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap-toc.min.js"></script>
 	</head>
-	<body>
-		<h1>SwIPC</h1>
-		<h2>Services</h2>
-		<ul>
-			<li><a href="ifaces.html#nn::account::IBaasAccessTokenAccessor">acc:aa</a></li>
-			<li><a href="ifaces.html#nn::account::IAccountServiceForAdministrator">acc:su</a></li>
-			<li><a href="ifaces.html#nn::account::IAccountServiceForApplication">acc:u0</a></li>
-			<li><a href="ifaces.html#nn::account::IAccountServiceForSystemService">acc:u1</a></li>
-			<li><a href="ifaces.html#nn::ahid::IServerSession">ahid:cd</a></li>
-			<li><a href="ifaces.html#nn::ahid::hdr::ISession">ahid:hdr</a></li>
-			<li><a href="ifaces.html#nn::aocsrv::detail::IAddOnContentManager">aoc:u</a></li>
-			<li><a href="ifaces.html#nn::apm::IManager">apm</a></li>
-			<li><a href="ifaces.html#nn::apm::IManagerPrivileged">apm:p</a></li>
-			<li><a href="ifaces.html#nn::apm::ISystemManager">apm:sys</a></li>
-			<li><a href="ifaces.html#nn::am::service::IAllSystemAppletProxiesService">appletAE</a></li>
-			<li><a href="ifaces.html#nn::am::service::IApplicationProxyService">appletOE</a></li>
-			<li><a href="ifaces.html#nn::arp::detail::IReader">arp:r</a></li>
-			<li><a href="ifaces.html#nn::arp::detail::IWriter">arp:w</a></li>
-			<li><a href="ifaces.html#nn::audioctrl::detail::IAudioController">audctl</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IAudioInManagerForApplet">audin:a</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IAudioInManager">audin:d</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IAudioInManagerForDebugger">audin:u</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IAudioOutManagerForApplet">audout:a</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IAudioOutManagerForDebugger">audout:d</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IAudioOutManager">audout:u</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IFinalOutputRecorderManagerForApplet">audrec:a</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IFinalOutputRecorderManagerForDebugger">audrec:d</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IAudioRendererManager">audrec:u</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IAudioRendererManagerForApplet">audren:a</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IAudioRendererManagerForDebugger">audren:d</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IFinalOutputRecorderManager">audren:u</a></li>
-			<li><a href="ifaces.html#nn::bcat::detail::ipc::IServiceCreator">bcat:a</a></li>
-			<li><a href="ifaces.html#nn::bcat::detail::ipc::IServiceCreator">bcat:m</a></li>
-			<li><a href="ifaces.html#nn::bcat::detail::ipc::IServiceCreator">bcat:s</a></li>
-			<li><a href="ifaces.html#nn::bcat::detail::ipc::IServiceCreator">bcat:u</a></li>
-			<li><a href="ifaces.html#nn::bgtc::IStateControlService">bgtc:sc</a></li>
-			<li><a href="ifaces.html#nn::bgtc::ITaskService">bgtc:t</a></li>
-			<li><a href="ifaces.html#nn::bpc::IBoardPowerControlManager">bpc</a></li>
-			<li><a href="ifaces.html#nn::bpc::IRtcManager">bpc:r</a></li>
-			<li><a href="ifaces.html#nn::socket::sf::IClient">bsd:s</a></li>
-			<li><a href="ifaces.html#nn::socket::sf::IClient">bsd:u</a></li>
-			<li><a href="ifaces.html#nn::bsdsocket::cfg::ServerInterface">bsdcfg</a></li>
-			<li><a href="ifaces.html#nn::bluetooth::IBluetoothDriver">btdrv</a></li>
-			<li><a href="ifaces.html#nn::btm::IBtm">btm</a></li>
-			<li><a href="ifaces.html#nn::btm::IBtmDebug">btm:dbg</a></li>
-			<li><a href="ifaces.html#nn::btm::IBtmSystem">btm:sys</a></li>
-			<li><a href="ifaces.html#nn::capsrv::sf::IAlbumAccessorService">caps:a</a></li>
-			<li><a href="ifaces.html#nn::capsrv::sf::IAlbumControlService">caps:c</a></li>
-			<li><a href="ifaces.html#nn::capsrv::sf::IScreenShotControlService">caps:sc</a></li>
-			<li><a href="ifaces.html#nn::capsrv::sf::IScreenShotService">caps:ss</a></li>
-			<li><a href="ifaces.html#nn::capsrv::sf::IScreenShotApplicationService">caps:su</a></li>
-			<li><a href="ifaces.html#nn::erpt::sf::IContext">erpt:c</a></li>
-			<li><a href="ifaces.html#nn::erpt::sf::ISession">erpt:r</a></li>
-			<li><a href="ifaces.html#nn::es::IETicketService">es</a></li>
-			<li><a href="ifaces.html#nn::eth::sf::IEthInterfaceGroup">ethc:c</a></li>
-			<li><a href="ifaces.html#nn::eth::sf::IEthInterfaceGroup">ethc:i</a></li>
-			<li><a href="ifaces.html#nn::eupld::sf::IControl">eupld:c</a></li>
-			<li><a href="ifaces.html#nn::eupld::sf::IRequest">eupld:r</a></li>
-			<li><a href="ifaces.html#nn::fan::detail::IManager">fan</a></li>
-			<li><a href="ifaces.html#nn::fatalsrv::IPrivateService">fatal:p</a></li>
-			<li><a href="ifaces.html#nn::fatalsrv::IService">fatal:u</a></li>
-			<li><a href="ifaces.html#nn::fgm::sf::ISession">fgm</a></li>
-			<li><a href="ifaces.html#nn::fgm::sf::ISession">fgm:0</a></li>
-			<li><a href="ifaces.html#nn::fgm::sf::ISession">fgm:9</a></li>
-			<li><a href="ifaces.html#nn::friends::detail::ipc::IServiceCreator">friend:a</a></li>
-			<li><a href="ifaces.html#nn::friends::detail::ipc::IServiceCreator">friend:m</a></li>
-			<li><a href="ifaces.html#nn::friends::detail::ipc::IServiceCreator">friend:s</a></li>
-			<li><a href="ifaces.html#nn::friends::detail::ipc::IServiceCreator">friend:u</a></li>
-			<li><a href="ifaces.html#nn::friends::detail::ipc::IServiceCreator">friend:v</a></li>
-			<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy">fsp-srv</a></li>
-			<li><a href="ifaces.html#nn::gpio::IManager">gpio</a></li>
-			<li><a href="ifaces.html#nn::hid::IHidServer">hid</a></li>
-			<li><a href="ifaces.html#nn::hid::IHidDebugServer">hid:dbg</a></li>
-			<li><a href="ifaces.html#nn::hid::IHidSystemServer">hid:sys</a></li>
-			<li><a href="ifaces.html#nn::hid::IHidTemporaryServer">hid:tmp</a></li>
-			<li><a href="ifaces.html#nn::codec::detail::IHardwareOpusDecoderManager">hwopus</a></li>
-			<li><a href="ifaces.html#nn::i2c::IManager">i2c</a></li>
-			<li><a href="ifaces.html#nn::i2c::IManager">i2c:pcv</a></li>
-			<li><a href="ifaces.html#nn::idle::detail::IPolicyManagerSystem">idle:sys</a></li>
-			<li><a href="ifaces.html#nn::irsensor::IIrSensorServer">irs</a></li>
-			<li><a href="ifaces.html#nn::irsensor::IIrSensorSystemServer">irs:sys</a></li>
-			<li><a href="ifaces.html#nn::lbl::detail::ILblController">lbl</a></li>
-			<li><a href="ifaces.html#nn::ldn::detail::IMonitorServiceCreator">ldn:m</a></li>
-			<li><a href="ifaces.html#nn::ldn::detail::ISystemServiceCreator">ldn:s</a></li>
-			<li><a href="ifaces.html#nn::ldn::detail::IUserServiceCreator">ldn:u</a></li>
-			<li><a href="ifaces.html#nn::ro::detail::IRoInterface">ldr:ro</a></li>
-			<li><a href="ifaces.html#nn::ro::detail::ILdrShellInterface">ldr:shel</a></li>
-			<li><a href="ifaces.html#nn::lm::ILogService">lm</a></li>
-			<li><a href="ifaces.html#nn::ncm::detail::LocationResolverInterface">lr</a></li>
-			<li><a href="ifaces.html#nn::mii::detail::IStaticService">mii:e</a></li>
-			<li><a href="ifaces.html#nn::mii::detail::IStaticService">mii:u</a></li>
-			<li><a href="ifaces.html#nn::mmnv::IRequest">mm:u</a></li>
-			<li><a href="ifaces.html#nn::ncm::detail::INcmInterface">ncm</a></li>
-			<li><a href="ifaces.html#nn::news::detail::ipc::IServiceCreator">news:a</a></li>
-			<li><a href="ifaces.html#nn::news::detail::ipc::IServiceCreator">news:c</a></li>
-			<li><a href="ifaces.html#nn::news::detail::ipc::IServiceCreator">news:m</a></li>
-			<li><a href="ifaces.html#nn::news::detail::ipc::IServiceCreator">news:p</a></li>
-			<li><a href="ifaces.html#nn::news::detail::ipc::IServiceCreator">news:v</a></li>
-			<li><a href="ifaces.html#nn::nfc::am::detail::IAmManager">nfc:am</a></li>
-			<li><a href="ifaces.html#nn::nfc::mifare::detail::IUserManager">nfc:mf:u</a></li>
-			<li><a href="ifaces.html#nn::nfc::detail::ISystemManager">nfc:sys</a></li>
-			<li><a href="ifaces.html#nn::nfc::detail::IUserManager">nfc:user</a></li>
-			<li><a href="ifaces.html#nn::nfp::detail::IDebugManager">nfp:dbg</a></li>
-			<li><a href="ifaces.html#nn::nfp::detail::ISystemManager">nfp:sys</a></li>
-			<li><a href="ifaces.html#nn::nfp::detail::IUserManager">nfp:user</a></li>
-			<li><a href="ifaces.html#nn::nifm::detail::IStaticService">nifm:a</a></li>
-			<li><a href="ifaces.html#nn::nifm::detail::IStaticService">nifm:s</a></li>
-			<li><a href="ifaces.html#nn::nifm::detail::IStaticService">nifm:u</a></li>
-			<li><a href="ifaces.html#nn::nim::detail::INetworkInstallManager">nim</a></li>
-			<li><a href="ifaces.html#nn::nim::detail::IShopServiceManager">nim:shp</a></li>
-			<li><a href="ifaces.html#nn::npns::INpnsSystem">npns:s</a></li>
-			<li><a href="ifaces.html#nn::npns::INpnsUser">npns:u</a></li>
-			<li><a href="ifaces.html#nn::ns::detail::IServiceGetterInterface">ns:am2</a></li>
-			<li><a href="ifaces.html#nn::ns::detail::IDevelopInterface">ns:dev</a></li>
-			<li><a href="ifaces.html#nn::ns::detail::IServiceGetterInterface">ns:ec</a></li>
-			<li><a href="ifaces.html#nn::ns::detail::IServiceGetterInterface">ns:rid</a></li>
-			<li><a href="ifaces.html#nn::ns::detail::IServiceGetterInterface">ns:rt</a></li>
-			<li><a href="ifaces.html#nn::ns::detail::ISystemUpdateInterface">ns:su</a></li>
-			<li><a href="ifaces.html#nn::ns::detail::IVulnerabilityManagerInterface">ns:vm</a></li>
-			<li><a href="ifaces.html#nn::ns::detail::IServiceGetterInterface">ns:web</a></li>
-			<li><a href="ifaces.html#nn::nsd::detail::IManager">nsd:a</a></li>
-			<li><a href="ifaces.html#nn::nsd::detail::IManager">nsd:u</a></li>
-			<li><a href="ifaces.html#nn::ntc::detail::service::IStaticService">ntc</a></li>
-			<li><a href="ifaces.html#nns::nvdrv::INvDrvServices">nvdrv</a></li>
-			<li><a href="ifaces.html#nns::nvdrv::INvDrvServices">nvdrv:a</a></li>
-			<li><a href="ifaces.html#nns::nvdrv::INvDrvServices">nvdrv:s</a></li>
-			<li><a href="ifaces.html#nns::nvdrv::INvDrvServices">nvdrv:t</a></li>
-			<li><a href="ifaces.html#nns::nvdrv::INvDrvDebugFSServices">nvdrvdbg</a></li>
-			<li><a href="ifaces.html#nv::gemcontrol::INvGemControl">nvgem:c</a></li>
-			<li><a href="ifaces.html#nv::gemcoredump::INvGemCoreDump">nvgem:cd</a></li>
-			<li><a href="ifaces.html#nn::omm::detail::IOperationModeManager">omm</a></li>
-			<li><a href="ifaces.html#nn::ovln::IReceiverService">ovln:rcv</a></li>
-			<li><a href="ifaces.html#nn::ovln::ISenderService">ovln:snd</a></li>
-			<li><a href="ifaces.html#nn::pcie::detail::IManager">pcie</a></li>
-			<li><a href="ifaces.html#nn::pctl::detail::ipc::IParentalControlServiceFactory">pctl</a></li>
-			<li><a href="ifaces.html#nn::pctl::detail::ipc::IParentalControlServiceFactory">pctl:a</a></li>
-			<li><a href="ifaces.html#nn::pctl::detail::ipc::IParentalControlServiceFactory">pctl:r</a></li>
-			<li><a href="ifaces.html#nn::pctl::detail::ipc::IParentalControlServiceFactory">pctl:s</a></li>
-			<li><a href="ifaces.html#nn::pcv::detail::IPcvService">pcv</a></li>
-			<li><a href="ifaces.html#nn::pcv::IArbitrationManager">pcv:arb</a></li>
-			<li><a href="ifaces.html#nn::pcv::IImmediateManager">pcv:imm</a></li>
-			<li><a href="ifaces.html#nn::pdm::detail::INotifyService">pdm:ntfy</a></li>
-			<li><a href="ifaces.html#nn::pdm::detail::IQueryService">pdm:qry</a></li>
-			<li><a href="ifaces.html#nn::pinmux::IManager">pinmux</a></li>
-			<li><a href="ifaces.html#nn::pl::detail::ISharedFontManager">pl:u</a></li>
-			<li><a href="ifaces.html#Pm::Bm">pm:bm</a></li>
-			<li><a href="ifaces.html#Pm::Shell">pm:shell</a></li>
-			<li><a href="ifaces.html#nn::prepo::detail::ipc::IPrepoService">prepo:a</a></li>
-			<li><a href="ifaces.html#nn::prepo::detail::ipc::IPrepoService">prepo:m</a></li>
-			<li><a href="ifaces.html#nn::prepo::detail::ipc::IPrepoService">prepo:s</a></li>
-			<li><a href="ifaces.html#nn::prepo::detail::ipc::IPrepoService">prepo:u</a></li>
-			<li><a href="ifaces.html#nn::psc::sf::IPmControl">psc:c</a></li>
-			<li><a href="ifaces.html#nn::psc::sf::IPmService">psc:m</a></li>
-			<li><a href="ifaces.html#nn::psm::IPsmServer">psm</a></li>
-			<li><a href="ifaces.html#nn::pwm::IManager">pwm</a></li>
-			<li><a href="ifaces.html#nn::ro::detail::IDebugMonitorInterface">ro:dmnt</a></li>
-			<li><a href="ifaces.html#nn::sasbus::IManager">sasbus</a></li>
-			<li><a href="ifaces.html#nn::settings::ISettingsServer">set</a></li>
-			<li><a href="ifaces.html#nn::settings::IFactorySettingsServer">set:cal</a></li>
-			<li><a href="ifaces.html#nn::settings::IFirmwareDebugSettingsServer">set:fd</a></li>
-			<li><a href="ifaces.html#nn::settings::ISystemSettingsServer">set:sys</a></li>
-			<li><a href="ifaces.html#nn::socket::resolver::IResolver">sfdnsres</a></li>
-			<li><a href="ifaces.html#nn::spsm::detail::IPowerStateInterface">spsm</a></li>
-			<li><a href="ifaces.html#nn::ssl::sf::ISslService">ssl</a></li>
-			<li><a href="ifaces.html#nn::tc::IManager">tc</a></li>
-			<li><a href="ifaces.html#nn::timesrv::detail::service::IStaticService">time:a</a></li>
-			<li><a href="ifaces.html#nn::timesrv::detail::service::IStaticService">time:r</a></li>
-			<li><a href="ifaces.html#nn::timesrv::detail::service::IStaticService">time:s</a></li>
-			<li><a href="ifaces.html#nn::timesrv::detail::service::IStaticService">time:u</a></li>
-			<li><a href="ifaces.html#nn::ts::server::IMeasurementServer">ts</a></li>
-			<li><a href="ifaces.html#nn::uart::IManager">uart</a></li>
-			<li><a href="ifaces.html#nn::usb::ds::IDsService">usb:ds</a></li>
-			<li><a href="ifaces.html#nn::usb::hs::IClientRootSession">usb:hs</a></li>
-			<li><a href="ifaces.html#nn::usb::pd::detail::IPdManager">usb:pd</a></li>
-			<li><a href="ifaces.html#nn::usb::pd::detail::IPdCradleManager">usb:pd:c</a></li>
-			<li><a href="ifaces.html#nn::usb::pm::IPmService">usb:pm</a></li>
-			<li><a href="ifaces.html#nn::visrv::sf::IManagerRootService">vi:m</a></li>
-			<li><a href="ifaces.html#nn::visrv::sf::ISystemRootService">vi:s</a></li>
-			<li><a href="ifaces.html#nn::visrv::sf::IApplicationRootService">vi:u</a></li>
-			<li><a href="ifaces.html#nn::wlan::detail::IInfraManager">wlan:inf</a></li>
-			<li><a href="ifaces.html#nn::wlan::detail::ILocalManager">wlan:lcl</a></li>
-			<li><a href="ifaces.html#nn::wlan::detail::ILocalGetFrame">wlan:lg</a></li>
-			<li><a href="ifaces.html#nn::wlan::detail::ILocalGetActionFrame">wlan:lga</a></li>
-			<li><a href="ifaces.html#nn::wlan::detail::ISocketGetFrame">wlan:sg</a></li>
-			<li><a href="ifaces.html#nn::wlan::detail::ISocketManager">wlan:soc</a></li>
-			<li><a href="ifaces.html#nn::xcd::detail::ISystemServer">xcd:sys</a></li>
-		</ul>
-		<h1>Interfaces</h1>
-		<ul>
-			<li><a href="ifaces.html#Pm::Bm">Pm::Bm</a></li>
-			<li><a href="ifaces.html#Pm::Shell">Pm::Shell</a></li>
-			<li><a href="ifaces.html#SmService">SmService</a></li>
-			<li><a href="ifaces.html#nn::account::IAccountServiceForAdministrator">nn::account::IAccountServiceForAdministrator</a></li>
-			<li><a href="ifaces.html#nn::account::IAccountServiceForApplication">nn::account::IAccountServiceForApplication</a></li>
-			<li><a href="ifaces.html#nn::account::IAccountServiceForSystemService">nn::account::IAccountServiceForSystemService</a></li>
-			<li><a href="ifaces.html#nn::account::IBaasAccessTokenAccessor">nn::account::IBaasAccessTokenAccessor</a></li>
-			<li><a href="ifaces.html#nn::account::baas::IAdministrator">nn::account::baas::IAdministrator</a></li>
-			<li><a href="ifaces.html#nn::account::baas::IFloatingRegistrationRequest">nn::account::baas::IFloatingRegistrationRequest</a></li>
-			<li><a href="ifaces.html#nn::account::baas::IGuestLoginRequest">nn::account::baas::IGuestLoginRequest</a></li>
-			<li><a href="ifaces.html#nn::account::baas::IManagerForApplication">nn::account::baas::IManagerForApplication</a></li>
-			<li><a href="ifaces.html#nn::account::baas::IManagerForSystemService">nn::account::baas::IManagerForSystemService</a></li>
-			<li><a href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a></li>
-			<li><a href="ifaces.html#nn::account::detail::INotifier">nn::account::detail::INotifier</a></li>
-			<li><a href="ifaces.html#nn::account::detail::ISessionObject">nn::account::detail::ISessionObject</a></li>
-			<li><a href="ifaces.html#nn::account::http::IOAuthProcedure">nn::account::http::IOAuthProcedure</a></li>
-			<li><a href="ifaces.html#nn::account::nas::IAuthorizationRequest">nn::account::nas::IAuthorizationRequest</a></li>
-			<li><a href="ifaces.html#nn::account::nas::IOAuthProcedureForExternalNsa">nn::account::nas::IOAuthProcedureForExternalNsa</a></li>
-			<li><a href="ifaces.html#nn::account::nas::IOAuthProcedureForNintendoAccountLinkage">nn::account::nas::IOAuthProcedureForNintendoAccountLinkage</a></li>
-			<li><a href="ifaces.html#nn::account::profile::IProfile">nn::account::profile::IProfile</a></li>
-			<li><a href="ifaces.html#nn::account::profile::IProfileEditor">nn::account::profile::IProfileEditor</a></li>
-			<li><a href="ifaces.html#nn::ahid::ICtrlSession">nn::ahid::ICtrlSession</a></li>
-			<li><a href="ifaces.html#nn::ahid::IReadSession">nn::ahid::IReadSession</a></li>
-			<li><a href="ifaces.html#nn::ahid::IServerSession">nn::ahid::IServerSession</a></li>
-			<li><a href="ifaces.html#nn::ahid::hdr::ISession">nn::ahid::hdr::ISession</a></li>
-			<li><a href="ifaces.html#nn::am::service::IAllSystemAppletProxiesService">nn::am::service::IAllSystemAppletProxiesService</a></li>
-			<li><a href="ifaces.html#nn::am::service::IAppletAccessor">nn::am::service::IAppletAccessor</a></li>
-			<li><a href="ifaces.html#nn::am::service::IApplicationAccessor">nn::am::service::IApplicationAccessor</a></li>
-			<li><a href="ifaces.html#nn::am::service::IApplicationCreator">nn::am::service::IApplicationCreator</a></li>
-			<li><a href="ifaces.html#nn::am::service::IApplicationFunctions">nn::am::service::IApplicationFunctions</a></li>
-			<li><a href="ifaces.html#nn::am::service::IApplicationProxy">nn::am::service::IApplicationProxy</a></li>
-			<li><a href="ifaces.html#nn::am::service::IApplicationProxyService">nn::am::service::IApplicationProxyService</a></li>
-			<li><a href="ifaces.html#nn::am::service::IAudioController">nn::am::service::IAudioController</a></li>
-			<li><a href="ifaces.html#nn::am::service::ICommonStateGetter">nn::am::service::ICommonStateGetter</a></li>
-			<li><a href="ifaces.html#nn::am::service::IDebugFunctions">nn::am::service::IDebugFunctions</a></li>
-			<li><a href="ifaces.html#nn::am::service::IDisplayController">nn::am::service::IDisplayController</a></li>
-			<li><a href="ifaces.html#nn::am::service::IGlobalStateController">nn::am::service::IGlobalStateController</a></li>
-			<li><a href="ifaces.html#nn::am::service::IHomeMenuFunctions">nn::am::service::IHomeMenuFunctions</a></li>
-			<li><a href="ifaces.html#nn::am::service::ILibraryAppletAccessor">nn::am::service::ILibraryAppletAccessor</a></li>
-			<li><a href="ifaces.html#nn::am::service::ILibraryAppletCreator">nn::am::service::ILibraryAppletCreator</a></li>
-			<li><a href="ifaces.html#nn::am::service::ILibraryAppletProxy">nn::am::service::ILibraryAppletProxy</a></li>
-			<li><a href="ifaces.html#nn::am::service::ILibraryAppletSelfAccessor">nn::am::service::ILibraryAppletSelfAccessor</a></li>
-			<li><a href="ifaces.html#nn::am::service::ILockAccessor">nn::am::service::ILockAccessor</a></li>
-			<li><a href="ifaces.html#nn::am::service::IOverlayAppletProxy">nn::am::service::IOverlayAppletProxy</a></li>
-			<li><a href="ifaces.html#nn::am::service::IOverlayFunctions">nn::am::service::IOverlayFunctions</a></li>
-			<li><a href="ifaces.html#nn::am::service::IProcessWindingController">nn::am::service::IProcessWindingController</a></li>
-			<li><a href="ifaces.html#nn::am::service::ISelfController">nn::am::service::ISelfController</a></li>
-			<li><a href="ifaces.html#nn::am::service::IStorage">nn::am::service::IStorage</a></li>
-			<li><a href="ifaces.html#nn::am::service::IStorageAccessor">nn::am::service::IStorageAccessor</a></li>
-			<li><a href="ifaces.html#nn::am::service::ISystemAppletProxy">nn::am::service::ISystemAppletProxy</a></li>
-			<li><a href="ifaces.html#nn::am::service::ITransferStorageAccessor">nn::am::service::ITransferStorageAccessor</a></li>
-			<li><a href="ifaces.html#nn::am::service::IWindow">nn::am::service::IWindow</a></li>
-			<li><a href="ifaces.html#nn::am::service::IWindowController">nn::am::service::IWindowController</a></li>
-			<li><a href="ifaces.html#nn::aocsrv::detail::IAddOnContentManager">nn::aocsrv::detail::IAddOnContentManager</a></li>
-			<li><a href="ifaces.html#nn::apm::IManager">nn::apm::IManager</a></li>
-			<li><a href="ifaces.html#nn::apm::IManagerPrivileged">nn::apm::IManagerPrivileged</a></li>
-			<li><a href="ifaces.html#nn::apm::ISession">nn::apm::ISession</a></li>
-			<li><a href="ifaces.html#nn::apm::ISystemManager">nn::apm::ISystemManager</a></li>
-			<li><a href="ifaces.html#nn::arp::detail::IReader">nn::arp::detail::IReader</a></li>
-			<li><a href="ifaces.html#nn::arp::detail::IRegistrar">nn::arp::detail::IRegistrar</a></li>
-			<li><a href="ifaces.html#nn::arp::detail::IWriter">nn::arp::detail::IWriter</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IAudioDebugManager">nn::audio::detail::IAudioDebugManager</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IAudioDevice">nn::audio::detail::IAudioDevice</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IAudioIn">nn::audio::detail::IAudioIn</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IAudioInManager">nn::audio::detail::IAudioInManager</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IAudioInManagerForApplet">nn::audio::detail::IAudioInManagerForApplet</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IAudioInManagerForDebugger">nn::audio::detail::IAudioInManagerForDebugger</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IAudioOut">nn::audio::detail::IAudioOut</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IAudioOutManager">nn::audio::detail::IAudioOutManager</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IAudioOutManagerForApplet">nn::audio::detail::IAudioOutManagerForApplet</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IAudioOutManagerForDebugger">nn::audio::detail::IAudioOutManagerForDebugger</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IAudioRenderer">nn::audio::detail::IAudioRenderer</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IAudioRendererManager">nn::audio::detail::IAudioRendererManager</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IAudioRendererManagerForApplet">nn::audio::detail::IAudioRendererManagerForApplet</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IAudioRendererManagerForDebugger">nn::audio::detail::IAudioRendererManagerForDebugger</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IFinalOutputRecorder">nn::audio::detail::IFinalOutputRecorder</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IFinalOutputRecorderManager">nn::audio::detail::IFinalOutputRecorderManager</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IFinalOutputRecorderManagerForApplet">nn::audio::detail::IFinalOutputRecorderManagerForApplet</a></li>
-			<li><a href="ifaces.html#nn::audio::detail::IFinalOutputRecorderManagerForDebugger">nn::audio::detail::IFinalOutputRecorderManagerForDebugger</a></li>
-			<li><a href="ifaces.html#nn::audioctrl::detail::IAudioController">nn::audioctrl::detail::IAudioController</a></li>
-			<li><a href="ifaces.html#nn::bcat::detail::ipc::IBcatService">nn::bcat::detail::ipc::IBcatService</a></li>
-			<li><a href="ifaces.html#nn::bcat::detail::ipc::IDeliveryCacheDirectoryService">nn::bcat::detail::ipc::IDeliveryCacheDirectoryService</a></li>
-			<li><a href="ifaces.html#nn::bcat::detail::ipc::IDeliveryCacheFileService">nn::bcat::detail::ipc::IDeliveryCacheFileService</a></li>
-			<li><a href="ifaces.html#nn::bcat::detail::ipc::IDeliveryCacheProgressService">nn::bcat::detail::ipc::IDeliveryCacheProgressService</a></li>
-			<li><a href="ifaces.html#nn::bcat::detail::ipc::IDeliveryCacheStorageService">nn::bcat::detail::ipc::IDeliveryCacheStorageService</a></li>
-			<li><a href="ifaces.html#nn::bcat::detail::ipc::IServiceCreator">nn::bcat::detail::ipc::IServiceCreator</a></li>
-			<li><a href="ifaces.html#nn::bgtc::IStateControlService">nn::bgtc::IStateControlService</a></li>
-			<li><a href="ifaces.html#nn::bgtc::ITaskService">nn::bgtc::ITaskService</a></li>
-			<li><a href="ifaces.html#nn::bluetooth::IBluetoothDriver">nn::bluetooth::IBluetoothDriver</a></li>
-			<li><a href="ifaces.html#nn::bpc::IBoardPowerControlManager">nn::bpc::IBoardPowerControlManager</a></li>
-			<li><a href="ifaces.html#nn::bpc::IRtcManager">nn::bpc::IRtcManager</a></li>
-			<li><a href="ifaces.html#nn::bsdsocket::cfg::ServerInterface">nn::bsdsocket::cfg::ServerInterface</a></li>
-			<li><a href="ifaces.html#nn::btm::IBtm">nn::btm::IBtm</a></li>
-			<li><a href="ifaces.html#nn::btm::IBtmDebug">nn::btm::IBtmDebug</a></li>
-			<li><a href="ifaces.html#nn::btm::IBtmSystem">nn::btm::IBtmSystem</a></li>
-			<li><a href="ifaces.html#nn::btm::IBtmSystemCore">nn::btm::IBtmSystemCore</a></li>
-			<li><a href="ifaces.html#nn::capsrv::sf::IAlbumAccessorService">nn::capsrv::sf::IAlbumAccessorService</a></li>
-			<li><a href="ifaces.html#nn::capsrv::sf::IAlbumControlService">nn::capsrv::sf::IAlbumControlService</a></li>
-			<li><a href="ifaces.html#nn::capsrv::sf::IScreenShotApplicationService">nn::capsrv::sf::IScreenShotApplicationService</a></li>
-			<li><a href="ifaces.html#nn::capsrv::sf::IScreenShotControlService">nn::capsrv::sf::IScreenShotControlService</a></li>
-			<li><a href="ifaces.html#nn::capsrv::sf::IScreenShotService">nn::capsrv::sf::IScreenShotService</a></li>
-			<li><a href="ifaces.html#nn::cec::ICecManager">nn::cec::ICecManager</a></li>
-			<li><a href="ifaces.html#nn::codec::detail::IHardwareOpusDecoder">nn::codec::detail::IHardwareOpusDecoder</a></li>
-			<li><a href="ifaces.html#nn::codec::detail::IHardwareOpusDecoderManager">nn::codec::detail::IHardwareOpusDecoderManager</a></li>
-			<li><a href="ifaces.html#nn::erpt::sf::IContext">nn::erpt::sf::IContext</a></li>
-			<li><a href="ifaces.html#nn::erpt::sf::IManager">nn::erpt::sf::IManager</a></li>
-			<li><a href="ifaces.html#nn::erpt::sf::IReport">nn::erpt::sf::IReport</a></li>
-			<li><a href="ifaces.html#nn::erpt::sf::ISession">nn::erpt::sf::ISession</a></li>
-			<li><a href="ifaces.html#nn::es::IETicketService">nn::es::IETicketService</a></li>
-			<li><a href="ifaces.html#nn::eth::sf::IEthInterface">nn::eth::sf::IEthInterface</a></li>
-			<li><a href="ifaces.html#nn::eth::sf::IEthInterfaceGroup">nn::eth::sf::IEthInterfaceGroup</a></li>
-			<li><a href="ifaces.html#nn::eupld::sf::IControl">nn::eupld::sf::IControl</a></li>
-			<li><a href="ifaces.html#nn::eupld::sf::IRequest">nn::eupld::sf::IRequest</a></li>
-			<li><a href="ifaces.html#nn::fan::detail::IController">nn::fan::detail::IController</a></li>
-			<li><a href="ifaces.html#nn::fan::detail::IManager">nn::fan::detail::IManager</a></li>
-			<li><a href="ifaces.html#nn::fatalsrv::IPrivateService">nn::fatalsrv::IPrivateService</a></li>
-			<li><a href="ifaces.html#nn::fatalsrv::IService">nn::fatalsrv::IService</a></li>
-			<li><a href="ifaces.html#nn::fgm::sf::IDebugger">nn::fgm::sf::IDebugger</a></li>
-			<li><a href="ifaces.html#nn::fgm::sf::IRequest">nn::fgm::sf::IRequest</a></li>
-			<li><a href="ifaces.html#nn::fgm::sf::ISession">nn::fgm::sf::ISession</a></li>
-			<li><a href="ifaces.html#nn::friends::detail::ipc::IFriendService">nn::friends::detail::ipc::IFriendService</a></li>
-			<li><a href="ifaces.html#nn::friends::detail::ipc::INotificationService">nn::friends::detail::ipc::INotificationService</a></li>
-			<li><a href="ifaces.html#nn::friends::detail::ipc::IServiceCreator">nn::friends::detail::ipc::IServiceCreator</a></li>
-			<li><a href="ifaces.html#nn::fssrv::sf::IDeviceOperator">nn::fssrv::sf::IDeviceOperator</a></li>
-			<li><a href="ifaces.html#nn::fssrv::sf::IDirectory">nn::fssrv::sf::IDirectory</a></li>
-			<li><a href="ifaces.html#nn::fssrv::sf::IEventNotifier">nn::fssrv::sf::IEventNotifier</a></li>
-			<li><a href="ifaces.html#nn::fssrv::sf::IFile">nn::fssrv::sf::IFile</a></li>
-			<li><a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a></li>
-			<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy">nn::fssrv::sf::IFileSystemProxy</a></li>
-			<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxyForLoader">nn::fssrv::sf::IFileSystemProxyForLoader</a></li>
-			<li><a href="ifaces.html#nn::fssrv::sf::IProgramRegistry">nn::fssrv::sf::IProgramRegistry</a></li>
-			<li><a href="ifaces.html#nn::fssrv::sf::ISaveDataInfoReader">nn::fssrv::sf::ISaveDataInfoReader</a></li>
-			<li><a href="ifaces.html#nn::fssrv::sf::IStorage">nn::fssrv::sf::IStorage</a></li>
-			<li><a href="ifaces.html#nn::gpio::IManager">nn::gpio::IManager</a></li>
-			<li><a href="ifaces.html#nn::gpio::IPadSession">nn::gpio::IPadSession</a></li>
-			<li><a href="ifaces.html#nn::hid::IActiveVibrationDeviceList">nn::hid::IActiveVibrationDeviceList</a></li>
-			<li><a href="ifaces.html#nn::hid::IAppletResource">nn::hid::IAppletResource</a></li>
-			<li><a href="ifaces.html#nn::hid::IHidDebugServer">nn::hid::IHidDebugServer</a></li>
-			<li><a href="ifaces.html#nn::hid::IHidServer">nn::hid::IHidServer</a></li>
-			<li><a href="ifaces.html#nn::hid::IHidSystemServer">nn::hid::IHidSystemServer</a></li>
-			<li><a href="ifaces.html#nn::hid::IHidTemporaryServer">nn::hid::IHidTemporaryServer</a></li>
-			<li><a href="ifaces.html#nn::htc::tenv::IService">nn::htc::tenv::IService</a></li>
-			<li><a href="ifaces.html#nn::htc::tenv::IServiceManager">nn::htc::tenv::IServiceManager</a></li>
-			<li><a href="ifaces.html#nn::i2c::IManager">nn::i2c::IManager</a></li>
-			<li><a href="ifaces.html#nn::i2c::ISession">nn::i2c::ISession</a></li>
-			<li><a href="ifaces.html#nn::idle::detail::IPolicyManagerSystem">nn::idle::detail::IPolicyManagerSystem</a></li>
-			<li><a href="ifaces.html#nn::irsensor::IIrSensorServer">nn::irsensor::IIrSensorServer</a></li>
-			<li><a href="ifaces.html#nn::irsensor::IIrSensorSystemServer">nn::irsensor::IIrSensorSystemServer</a></li>
-			<li><a href="ifaces.html#nn::lbl::detail::ILblController">nn::lbl::detail::ILblController</a></li>
-			<li><a href="ifaces.html#nn::ldn::detail::IMonitorService">nn::ldn::detail::IMonitorService</a></li>
-			<li><a href="ifaces.html#nn::ldn::detail::IMonitorServiceCreator">nn::ldn::detail::IMonitorServiceCreator</a></li>
-			<li><a href="ifaces.html#nn::ldn::detail::ISystemLocalCommunicationService">nn::ldn::detail::ISystemLocalCommunicationService</a></li>
-			<li><a href="ifaces.html#nn::ldn::detail::ISystemServiceCreator">nn::ldn::detail::ISystemServiceCreator</a></li>
-			<li><a href="ifaces.html#nn::ldn::detail::IUserLocalCommunicationService">nn::ldn::detail::IUserLocalCommunicationService</a></li>
-			<li><a href="ifaces.html#nn::ldn::detail::IUserServiceCreator">nn::ldn::detail::IUserServiceCreator</a></li>
-			<li><a href="ifaces.html#nn::lm::ILogService">nn::lm::ILogService</a></li>
-			<li><a href="ifaces.html#nn::lm::ILogger">nn::lm::ILogger</a></li>
-			<li><a href="ifaces.html#nn::mii::detail::IDatabaseService">nn::mii::detail::IDatabaseService</a></li>
-			<li><a href="ifaces.html#nn::mii::detail::IStaticService">nn::mii::detail::IStaticService</a></li>
-			<li><a href="ifaces.html#nn::mmnv::IRequest">nn::mmnv::IRequest</a></li>
-			<li><a href="ifaces.html#nn::ncm::detail::INcmInterface">nn::ncm::detail::INcmInterface</a></li>
-			<li><a href="ifaces.html#nn::ncm::detail::INcmInterface4Unknown">nn::ncm::detail::INcmInterface4Unknown</a></li>
-			<li><a href="ifaces.html#nn::ncm::detail::INcmInterface5Unknown">nn::ncm::detail::INcmInterface5Unknown</a></li>
-			<li><a href="ifaces.html#nn::ncm::detail::LocationResolverInterface">nn::ncm::detail::LocationResolverInterface</a></li>
-			<li><a href="ifaces.html#nn::news::detail::ipc::INewlyArrivedEventHolder">nn::news::detail::ipc::INewlyArrivedEventHolder</a></li>
-			<li><a href="ifaces.html#nn::news::detail::ipc::INewsDataService">nn::news::detail::ipc::INewsDataService</a></li>
-			<li><a href="ifaces.html#nn::news::detail::ipc::INewsDatabaseService">nn::news::detail::ipc::INewsDatabaseService</a></li>
-			<li><a href="ifaces.html#nn::news::detail::ipc::INewsService">nn::news::detail::ipc::INewsService</a></li>
-			<li><a href="ifaces.html#nn::news::detail::ipc::IOverwriteEventHolder">nn::news::detail::ipc::IOverwriteEventHolder</a></li>
-			<li><a href="ifaces.html#nn::news::detail::ipc::IServiceCreator">nn::news::detail::ipc::IServiceCreator</a></li>
-			<li><a href="ifaces.html#nn::nfc::am::detail::IAm">nn::nfc::am::detail::IAm</a></li>
-			<li><a href="ifaces.html#nn::nfc::am::detail::IAmManager">nn::nfc::am::detail::IAmManager</a></li>
-			<li><a href="ifaces.html#nn::nfc::detail::ISystem">nn::nfc::detail::ISystem</a></li>
-			<li><a href="ifaces.html#nn::nfc::detail::ISystemManager">nn::nfc::detail::ISystemManager</a></li>
-			<li><a href="ifaces.html#nn::nfc::detail::IUser">nn::nfc::detail::IUser</a></li>
-			<li><a href="ifaces.html#nn::nfc::detail::IUserManager">nn::nfc::detail::IUserManager</a></li>
-			<li><a href="ifaces.html#nn::nfc::mifare::detail::IUser">nn::nfc::mifare::detail::IUser</a></li>
-			<li><a href="ifaces.html#nn::nfc::mifare::detail::IUserManager">nn::nfc::mifare::detail::IUserManager</a></li>
-			<li><a href="ifaces.html#nn::nfp::detail::IDebug">nn::nfp::detail::IDebug</a></li>
-			<li><a href="ifaces.html#nn::nfp::detail::IDebugManager">nn::nfp::detail::IDebugManager</a></li>
-			<li><a href="ifaces.html#nn::nfp::detail::ISystem">nn::nfp::detail::ISystem</a></li>
-			<li><a href="ifaces.html#nn::nfp::detail::ISystemManager">nn::nfp::detail::ISystemManager</a></li>
-			<li><a href="ifaces.html#nn::nfp::detail::IUser">nn::nfp::detail::IUser</a></li>
-			<li><a href="ifaces.html#nn::nfp::detail::IUserManager">nn::nfp::detail::IUserManager</a></li>
-			<li><a href="ifaces.html#nn::nifm::detail::IGeneralService">nn::nifm::detail::IGeneralService</a></li>
-			<li><a href="ifaces.html#nn::nifm::detail::INetworkProfile">nn::nifm::detail::INetworkProfile</a></li>
-			<li><a href="ifaces.html#nn::nifm::detail::IRequest">nn::nifm::detail::IRequest</a></li>
-			<li><a href="ifaces.html#nn::nifm::detail::IScanRequest">nn::nifm::detail::IScanRequest</a></li>
-			<li><a href="ifaces.html#nn::nifm::detail::IStaticService">nn::nifm::detail::IStaticService</a></li>
-			<li><a href="ifaces.html#nn::nim::detail::IAsyncData">nn::nim::detail::IAsyncData</a></li>
-			<li><a href="ifaces.html#nn::nim::detail::IAsyncProgressResult">nn::nim::detail::IAsyncProgressResult</a></li>
-			<li><a href="ifaces.html#nn::nim::detail::IAsyncResult">nn::nim::detail::IAsyncResult</a></li>
-			<li><a href="ifaces.html#nn::nim::detail::IAsyncValue">nn::nim::detail::IAsyncValue</a></li>
-			<li><a href="ifaces.html#nn::nim::detail::INetworkInstallManager">nn::nim::detail::INetworkInstallManager</a></li>
-			<li><a href="ifaces.html#nn::nim::detail::IShopServiceManager">nn::nim::detail::IShopServiceManager</a></li>
-			<li><a href="ifaces.html#nn::npns::INpnsSystem">nn::npns::INpnsSystem</a></li>
-			<li><a href="ifaces.html#nn::npns::INpnsUser">nn::npns::INpnsUser</a></li>
-			<li><a href="ifaces.html#nn::npns::Weird">nn::npns::Weird</a></li>
-			<li><a href="ifaces.html#nn::ns::detail::IAccountProxyInterface">nn::ns::detail::IAccountProxyInterface</a></li>
-			<li><a href="ifaces.html#nn::ns::detail::IApplicationManagerInterface">nn::ns::detail::IApplicationManagerInterface</a></li>
-			<li><a href="ifaces.html#nn::ns::detail::IAsyncResult">nn::ns::detail::IAsyncResult</a></li>
-			<li><a href="ifaces.html#nn::ns::detail::IAsyncValue">nn::ns::detail::IAsyncValue</a></li>
-			<li><a href="ifaces.html#nn::ns::detail::IContentManagementInterface">nn::ns::detail::IContentManagementInterface</a></li>
-			<li><a href="ifaces.html#nn::ns::detail::IDevelopInterface">nn::ns::detail::IDevelopInterface</a></li>
-			<li><a href="ifaces.html#nn::ns::detail::IDocumentInterface">nn::ns::detail::IDocumentInterface</a></li>
-			<li><a href="ifaces.html#nn::ns::detail::IDownloadTaskInterface">nn::ns::detail::IDownloadTaskInterface</a></li>
-			<li><a href="ifaces.html#nn::ns::detail::IFactoryResetInterface">nn::ns::detail::IFactoryResetInterface</a></li>
-			<li><a href="ifaces.html#nn::ns::detail::IGameCardStopper">nn::ns::detail::IGameCardStopper</a></li>
-			<li><a href="ifaces.html#nn::ns::detail::IProgressAsyncResult">nn::ns::detail::IProgressAsyncResult</a></li>
-			<li><a href="ifaces.html#nn::ns::detail::IProgressMonitorForDeleteUserSaveDataAll">nn::ns::detail::IProgressMonitorForDeleteUserSaveDataAll</a></li>
-			<li><a href="ifaces.html#nn::ns::detail::IRequestServerStopper">nn::ns::detail::IRequestServerStopper</a></li>
-			<li><a href="ifaces.html#nn::ns::detail::IServiceGetterInterface">nn::ns::detail::IServiceGetterInterface</a></li>
-			<li><a href="ifaces.html#nn::ns::detail::ISystemUpdateControl">nn::ns::detail::ISystemUpdateControl</a></li>
-			<li><a href="ifaces.html#nn::ns::detail::ISystemUpdateInterface">nn::ns::detail::ISystemUpdateInterface</a></li>
-			<li><a href="ifaces.html#nn::ns::detail::IVulnerabilityManagerInterface">nn::ns::detail::IVulnerabilityManagerInterface</a></li>
-			<li><a href="ifaces.html#nn::nsd::detail::IManager">nn::nsd::detail::IManager</a></li>
-			<li><a href="ifaces.html#nn::ntc::detail::service::IEnsureNetworkClockAvailabilityService">nn::ntc::detail::service::IEnsureNetworkClockAvailabilityService</a></li>
-			<li><a href="ifaces.html#nn::ntc::detail::service::IStaticService">nn::ntc::detail::service::IStaticService</a></li>
-			<li><a href="ifaces.html#nn::omm::detail::IOperationModeManager">nn::omm::detail::IOperationModeManager</a></li>
-			<li><a href="ifaces.html#nn::ovln::IReceiver">nn::ovln::IReceiver</a></li>
-			<li><a href="ifaces.html#nn::ovln::IReceiverService">nn::ovln::IReceiverService</a></li>
-			<li><a href="ifaces.html#nn::ovln::ISender">nn::ovln::ISender</a></li>
-			<li><a href="ifaces.html#nn::ovln::ISenderService">nn::ovln::ISenderService</a></li>
-			<li><a href="ifaces.html#nn::pcie::detail::IManager">nn::pcie::detail::IManager</a></li>
-			<li><a href="ifaces.html#nn::pcie::detail::ISession">nn::pcie::detail::ISession</a></li>
-			<li><a href="ifaces.html#nn::pctl::detail::ipc::IParentalControlService">nn::pctl::detail::ipc::IParentalControlService</a></li>
-			<li><a href="ifaces.html#nn::pctl::detail::ipc::IParentalControlServiceFactory">nn::pctl::detail::ipc::IParentalControlServiceFactory</a></li>
-			<li><a href="ifaces.html#nn::pcv::IArbitrationManager">nn::pcv::IArbitrationManager</a></li>
-			<li><a href="ifaces.html#nn::pcv::IImmediateManager">nn::pcv::IImmediateManager</a></li>
-			<li><a href="ifaces.html#nn::pcv::detail::IPcvService">nn::pcv::detail::IPcvService</a></li>
-			<li><a href="ifaces.html#nn::pdm::detail::INotifyService">nn::pdm::detail::INotifyService</a></li>
-			<li><a href="ifaces.html#nn::pdm::detail::IQueryService">nn::pdm::detail::IQueryService</a></li>
-			<li><a href="ifaces.html#nn::pinmux::IManager">nn::pinmux::IManager</a></li>
-			<li><a href="ifaces.html#nn::pinmux::ISession">nn::pinmux::ISession</a></li>
-			<li><a href="ifaces.html#nn::pl::detail::ISharedFontManager">nn::pl::detail::ISharedFontManager</a></li>
-			<li><a href="ifaces.html#nn::prepo::detail::ipc::IPrepoService">nn::prepo::detail::ipc::IPrepoService</a></li>
-			<li><a href="ifaces.html#nn::psc::sf::IPmControl">nn::psc::sf::IPmControl</a></li>
-			<li><a href="ifaces.html#nn::psc::sf::IPmModule">nn::psc::sf::IPmModule</a></li>
-			<li><a href="ifaces.html#nn::psc::sf::IPmService">nn::psc::sf::IPmService</a></li>
-			<li><a href="ifaces.html#nn::psm::IPsmServer">nn::psm::IPsmServer</a></li>
-			<li><a href="ifaces.html#nn::psm::IPsmSession">nn::psm::IPsmSession</a></li>
-			<li><a href="ifaces.html#nn::pwm::IChannelSession">nn::pwm::IChannelSession</a></li>
-			<li><a href="ifaces.html#nn::pwm::IManager">nn::pwm::IManager</a></li>
-			<li><a href="ifaces.html#nn::ro::detail::IDebugMonitorInterface">nn::ro::detail::IDebugMonitorInterface</a></li>
-			<li><a href="ifaces.html#nn::ro::detail::ILdrShellInterface">nn::ro::detail::ILdrShellInterface</a></li>
-			<li><a href="ifaces.html#nn::ro::detail::IRoInterface">nn::ro::detail::IRoInterface</a></li>
-			<li><a href="ifaces.html#nn::sasbus::IManager">nn::sasbus::IManager</a></li>
-			<li><a href="ifaces.html#nn::sasbus::ISession">nn::sasbus::ISession</a></li>
-			<li><a href="ifaces.html#nn::settings::IFactorySettingsServer">nn::settings::IFactorySettingsServer</a></li>
-			<li><a href="ifaces.html#nn::settings::IFirmwareDebugSettingsServer">nn::settings::IFirmwareDebugSettingsServer</a></li>
-			<li><a href="ifaces.html#nn::settings::ISettingsItemKeyIterator">nn::settings::ISettingsItemKeyIterator</a></li>
-			<li><a href="ifaces.html#nn::settings::ISettingsServer">nn::settings::ISettingsServer</a></li>
-			<li><a href="ifaces.html#nn::settings::ISystemSettingsServer">nn::settings::ISystemSettingsServer</a></li>
-			<li><a href="ifaces.html#nn::sm::detail::IManagerInterface">nn::sm::detail::IManagerInterface</a></li>
-			<li><a href="ifaces.html#nn::sm::detail::IUserInterface">nn::sm::detail::IUserInterface</a></li>
-			<li><a href="ifaces.html#nn::socket::resolver::IResolver">nn::socket::resolver::IResolver</a></li>
-			<li><a href="ifaces.html#nn::socket::sf::IClient">nn::socket::sf::IClient</a></li>
-			<li><a href="ifaces.html#nn::spl::detail::IRandomInterface">nn::spl::detail::IRandomInterface</a></li>
-			<li><a href="ifaces.html#nn::spsm::detail::IPowerStateInterface">nn::spsm::detail::IPowerStateInterface</a></li>
-			<li><a href="ifaces.html#nn::ssl::sf::ISslConnection">nn::ssl::sf::ISslConnection</a></li>
-			<li><a href="ifaces.html#nn::ssl::sf::ISslContext">nn::ssl::sf::ISslContext</a></li>
-			<li><a href="ifaces.html#nn::ssl::sf::ISslService">nn::ssl::sf::ISslService</a></li>
-			<li><a href="ifaces.html#nn::tc::IManager">nn::tc::IManager</a></li>
-			<li><a href="ifaces.html#nn::timesrv::detail::service::IStaticService">nn::timesrv::detail::service::IStaticService</a></li>
-			<li><a href="ifaces.html#nn::timesrv::detail::service::ISteadyClock">nn::timesrv::detail::service::ISteadyClock</a></li>
-			<li><a href="ifaces.html#nn::timesrv::detail::service::ISystemClock">nn::timesrv::detail::service::ISystemClock</a></li>
-			<li><a href="ifaces.html#nn::timesrv::detail::service::ITimeZoneService">nn::timesrv::detail::service::ITimeZoneService</a></li>
-			<li><a href="ifaces.html#nn::tma::IHtcManager">nn::tma::IHtcManager</a></li>
-			<li><a href="ifaces.html#nn::tma::IHtcsManager">nn::tma::IHtcsManager</a></li>
-			<li><a href="ifaces.html#nn::tma::ISocket">nn::tma::ISocket</a></li>
-			<li><a href="ifaces.html#nn::ts::server::IMeasurementServer">nn::ts::server::IMeasurementServer</a></li>
-			<li><a href="ifaces.html#nn::uart::IManager">nn::uart::IManager</a></li>
-			<li><a href="ifaces.html#nn::uart::IPortSession">nn::uart::IPortSession</a></li>
-			<li><a href="ifaces.html#nn::usb::ds::IDsEndpoint">nn::usb::ds::IDsEndpoint</a></li>
-			<li><a href="ifaces.html#nn::usb::ds::IDsInterface">nn::usb::ds::IDsInterface</a></li>
-			<li><a href="ifaces.html#nn::usb::ds::IDsService">nn::usb::ds::IDsService</a></li>
-			<li><a href="ifaces.html#nn::usb::hs::IClientEpSession">nn::usb::hs::IClientEpSession</a></li>
-			<li><a href="ifaces.html#nn::usb::hs::IClientIfSession">nn::usb::hs::IClientIfSession</a></li>
-			<li><a href="ifaces.html#nn::usb::hs::IClientRootSession">nn::usb::hs::IClientRootSession</a></li>
-			<li><a href="ifaces.html#nn::usb::pd::detail::IPdCradleManager">nn::usb::pd::detail::IPdCradleManager</a></li>
-			<li><a href="ifaces.html#nn::usb::pd::detail::IPdCradleSession">nn::usb::pd::detail::IPdCradleSession</a></li>
-			<li><a href="ifaces.html#nn::usb::pd::detail::IPdManager">nn::usb::pd::detail::IPdManager</a></li>
-			<li><a href="ifaces.html#nn::usb::pd::detail::IPdSession">nn::usb::pd::detail::IPdSession</a></li>
-			<li><a href="ifaces.html#nn::usb::pm::IPmService">nn::usb::pm::IPmService</a></li>
-			<li><a href="ifaces.html#nn::visrv::sf::IApplicationDisplayService">nn::visrv::sf::IApplicationDisplayService</a></li>
-			<li><a href="ifaces.html#nn::visrv::sf::IApplicationRootService">nn::visrv::sf::IApplicationRootService</a></li>
-			<li><a href="ifaces.html#nn::visrv::sf::IManagerDisplayService">nn::visrv::sf::IManagerDisplayService</a></li>
-			<li><a href="ifaces.html#nn::visrv::sf::IManagerRootService">nn::visrv::sf::IManagerRootService</a></li>
-			<li><a href="ifaces.html#nn::visrv::sf::ISystemDisplayService">nn::visrv::sf::ISystemDisplayService</a></li>
-			<li><a href="ifaces.html#nn::visrv::sf::ISystemRootService">nn::visrv::sf::ISystemRootService</a></li>
-			<li><a href="ifaces.html#nn::wlan::detail::IInfraManager">nn::wlan::detail::IInfraManager</a></li>
-			<li><a href="ifaces.html#nn::wlan::detail::ILocalGetActionFrame">nn::wlan::detail::ILocalGetActionFrame</a></li>
-			<li><a href="ifaces.html#nn::wlan::detail::ILocalGetFrame">nn::wlan::detail::ILocalGetFrame</a></li>
-			<li><a href="ifaces.html#nn::wlan::detail::ILocalManager">nn::wlan::detail::ILocalManager</a></li>
-			<li><a href="ifaces.html#nn::wlan::detail::ISocketGetFrame">nn::wlan::detail::ISocketGetFrame</a></li>
-			<li><a href="ifaces.html#nn::wlan::detail::ISocketManager">nn::wlan::detail::ISocketManager</a></li>
-			<li><a href="ifaces.html#nn::xcd::detail::ISystemServer">nn::xcd::detail::ISystemServer</a></li>
-			<li><a href="ifaces.html#nns::hosbinder::IHOSBinderDriver">nns::hosbinder::IHOSBinderDriver</a></li>
-			<li><a href="ifaces.html#nns::nvdrv::INvDrvDebugFSServices">nns::nvdrv::INvDrvDebugFSServices</a></li>
-			<li><a href="ifaces.html#nns::nvdrv::INvDrvServices">nns::nvdrv::INvDrvServices</a></li>
-			<li><a href="ifaces.html#nv::gemcontrol::INvGemControl">nv::gemcontrol::INvGemControl</a></li>
-			<li><a href="ifaces.html#nv::gemcoredump::INvGemCoreDump">nv::gemcoredump::INvGemCoreDump</a></li>
-		</ul>
-		<h2>Types</h2>
-		<ul>
-			<li><a href="types.html#nn::settings::system::EulaVersion">nn::settings::system::EulaVersion</a></li>
-			<li><a href="types.html#nn::pctl::SafetyLevelSettings">nn::pctl::SafetyLevelSettings</a></li>
-			<li><a href="types.html#nn::nifm::Requirement">nn::nifm::Requirement</a></li>
-			<li><a href="types.html#nn::nifm::SsidListVersion">nn::nifm::SsidListVersion</a></li>
-			<li><a href="types.html#nn::mii::CreateId">nn::mii::CreateId</a></li>
-			<li><a href="types.html#nn::bcat::DirectoryName">nn::bcat::DirectoryName</a></li>
-			<li><a href="types.html#nn::settings::factory::Rsa2048DeviceCertificate">nn::settings::factory::Rsa2048DeviceCertificate</a></li>
-			<li><a href="types.html#nn::friends::ExternalApplicationCatalogId">nn::friends::ExternalApplicationCatalogId</a></li>
-			<li><a href="types.html#nn::nifm::IpSettingData">nn::nifm::IpSettingData</a></li>
-			<li><a href="types.html#nn::settings::system::FatalDirtyFlag">nn::settings::system::FatalDirtyFlag</a></li>
-			<li><a href="types.html#nn::friends::detail::ipc::SizedFriendFilter">nn::friends::detail::ipc::SizedFriendFilter</a></li>
-			<li><a href="types.html#nn::hid::system::UniquePadId">nn::hid::system::UniquePadId</a></li>
-			<li><a href="types.html#nn::settings::system::FirmwareVersion">nn::settings::system::FirmwareVersion</a></li>
-			<li><a href="types.html#nn::pcv::ModuleState">nn::pcv::ModuleState</a></li>
-			<li><a href="types.html#nn::ncm::StorageId">nn::ncm::StorageId</a></li>
-			<li><a href="types.html#nn::pcv::PowerControlTarget">nn::pcv::PowerControlTarget</a></li>
-			<li><a href="types.html#nn::am::service::AppletIdentityInfo">nn::am::service::AppletIdentityInfo</a></li>
-			<li><a href="types.html#nn::pcv::TemperatureThreshold">nn::pcv::TemperatureThreshold</a></li>
-			<li><a href="types.html#nn::account::nas::NasUserBase">nn::account::nas::NasUserBase</a></li>
-			<li><a href="types.html#nn::time::SystemClockContext">nn::time::SystemClockContext</a></li>
-			<li><a href="types.html#nn::nifm::detail::sf::AccessPointData">nn::nifm::detail::sf::AccessPointData</a></li>
-			<li><a href="types.html#nn::account::nas::NasUserBaseForApplication">nn::account::nas::NasUserBaseForApplication</a></li>
-			<li><a href="types.html#nn::pcv::PowerDomainState">nn::pcv::PowerDomainState</a></li>
-			<li><a href="types.html#nn::settings::factory::AccelerometerOffset">nn::settings::factory::AccelerometerOffset</a></li>
-			<li><a href="types.html#nn::npns::NotificationToken">nn::npns::NotificationToken</a></li>
-			<li><a href="types.html#nn::friends::detail::ProfileImpl">nn::friends::detail::ProfileImpl</a></li>
-			<li><a href="types.html#nn::irsensor::PackedMcuVersion">nn::irsensor::PackedMcuVersion</a></li>
-			<li><a href="types.html#nn::am::service::AppletProcessLaunchReason">nn::am::service::AppletProcessLaunchReason</a></li>
-			<li><a href="types.html#nn::nifm::IpAddressSetting">nn::nifm::IpAddressSetting</a></li>
-			<li><a href="types.html#nn::account::profile::UserData">nn::account::profile::UserData</a></li>
-			<li><a href="types.html#nn::ssl::sf::InternalPki">nn::ssl::sf::InternalPki</a></li>
-			<li><a href="types.html#nn::settings::system::BluetoothDevicesSettings">nn::settings::system::BluetoothDevicesSettings</a></li>
-			<li><a href="types.html#nn::time::CalendarTime">nn::time::CalendarTime</a></li>
-			<li><a href="types.html#nn::settings::system::TvSettings">nn::settings::system::TvSettings</a></li>
-			<li><a href="types.html#nn::hid::BasicXpadId">nn::hid::BasicXpadId</a></li>
-			<li><a href="types.html#nn::settings::factory::EccB233DeviceKey">nn::settings::factory::EccB233DeviceKey</a></li>
-			<li><a href="types.html#nn::hid::system::UniqueSixAxisSensorHandle">nn::hid::system::UniqueSixAxisSensorHandle</a></li>
-			<li><a href="types.html#nn::apm::PerformanceMode">nn::apm::PerformanceMode</a></li>
-			<li><a href="types.html#nn::account::NintendoAccountAuthorizationRequestParameters">nn::account::NintendoAccountAuthorizationRequestParameters</a></li>
-			<li><a href="types.html#nn::settings::LanguageCode">nn::settings::LanguageCode</a></li>
-			<li><a href="types.html#nn::nifm::detail::sf::NetworkInterfaceInfo">nn::nifm::detail::sf::NetworkInterfaceInfo</a></li>
-			<li><a href="types.html#nn::account::RequestUrl">nn::account::RequestUrl</a></li>
-			<li><a href="types.html#nn::hid::JoyXpadId">nn::hid::JoyXpadId</a></li>
-			<li><a href="types.html#nn::settings::factory::GameCardCertificate">nn::settings::factory::GameCardCertificate</a></li>
-			<li><a href="types.html#nn::settings::system::BacklightSettings">nn::settings::system::BacklightSettings</a></li>
-			<li><a href="types.html#nn::TimeSpan">nn::TimeSpan</a></li>
-			<li><a href="types.html#nn::hid::VibrationValue">nn::hid::VibrationValue</a></li>
-			<li><a href="types.html#nn::account::nas::State">nn::account::nas::State</a></li>
-			<li><a href="types.html#nn::settings::factory::MacAddress">nn::settings::factory::MacAddress</a></li>
-			<li><a href="types.html#nn::fssrv::sf::SaveStruct">nn::fssrv::sf::SaveStruct</a></li>
-			<li><a href="types.html#nn::ApplicationId">nn::ApplicationId</a></li>
-			<li><a href="types.html#nn::vi::DisplayName">nn::vi::DisplayName</a></li>
-			<li><a href="types.html#nn::account::detail::Uuid">nn::account::detail::Uuid</a></li>
-			<li><a href="types.html#nn::ssl::sf::SessionCacheMode">nn::ssl::sf::SessionCacheMode</a></li>
-			<li><a href="types.html#nn::nifm::detail::sf::NetworkProfileBasicInfo">nn::nifm::detail::sf::NetworkProfileBasicInfo</a></li>
-			<li><a href="types.html#nn::bcat::DeliveryCacheDirectoryEntry">nn::bcat::DeliveryCacheDirectoryEntry</a></li>
-			<li><a href="types.html#nn::hid::system::KeyboardLockKeyEvent">nn::hid::system::KeyboardLockKeyEvent</a></li>
-			<li><a href="types.html#nn::settings::system::AudioVolume">nn::settings::system::AudioVolume</a></li>
-			<li><a href="types.html#nn::irsensor::ImageTransferProcessorState">nn::irsensor::ImageTransferProcessorState</a></li>
-			<li><a href="types.html#nn::settings::factory::GameCardKey">nn::settings::factory::GameCardKey</a></li>
-			<li><a href="types.html#nn::ssl::sf::VerifyOption">nn::ssl::sf::VerifyOption</a></li>
-			<li><a href="types.html#nn::friends::ExternalApplicationCatalog">nn::friends::ExternalApplicationCatalog</a></li>
-			<li><a href="types.html#nn::friends::InAppScreenName">nn::friends::InAppScreenName</a></li>
-			<li><a href="types.html#nn::hid::debug::HomeButtonAutoPilotState">nn::hid::debug::HomeButtonAutoPilotState</a></li>
-			<li><a href="types.html#nn::settings::system::AccountSettings">nn::settings::system::AccountSettings</a></li>
-			<li><a href="types.html#nn::apm::EventTarget">nn::apm::EventTarget</a></li>
-			<li><a href="types.html#nn::irsensor::IrCameraHandle">nn::irsensor::IrCameraHandle</a></li>
-			<li><a href="types.html#nn::bcat::Digest">nn::bcat::Digest</a></li>
-			<li><a href="types.html#nn::bcat::FileName">nn::bcat::FileName</a></li>
-			<li><a href="types.html#nn::settings::system::InitialLaunchSettings">nn::settings::system::InitialLaunchSettings</a></li>
-			<li><a href="types.html#nn::hid::SixAxisSensorHandle">nn::hid::SixAxisSensorHandle</a></li>
-			<li><a href="types.html#nn::hid::system::FirmwareUpdateState">nn::hid::system::FirmwareUpdateState</a></li>
-			<li><a href="types.html#nn::hid::debug::BasicXpadAutoPilotState">nn::hid::debug::BasicXpadAutoPilotState</a></li>
-			<li><a href="types.html#nn::ssl::sf::RenegotiationMode">nn::ssl::sf::RenegotiationMode</a></li>
-			<li><a href="types.html#nn::vi::ProxyName">nn::vi::ProxyName</a></li>
-			<li><a href="types.html#nn::settings::factory::ConfigurationId1">nn::settings::factory::ConfigurationId1</a></li>
-			<li><a href="types.html#nn::hid::tmp::ConsoleSixAxisSensorCalibrationValues">nn::hid::tmp::ConsoleSixAxisSensorCalibrationValues</a></li>
-			<li><a href="types.html#nn::friends::detail::FriendCandidateImpl">nn::friends::detail::FriendCandidateImpl</a></li>
-			<li><a href="types.html#nn::hid::debug::CaptureButtonAutoPilotState">nn::hid::debug::CaptureButtonAutoPilotState</a></li>
-			<li><a href="types.html#nn::friends::MiiName">nn::friends::MiiName</a></li>
-			<li><a href="types.html#nn::capsrv::ApplicationAlbumEntry">nn::capsrv::ApplicationAlbumEntry</a></li>
-			<li><a href="types.html#nn::settings::factory::EccB233DeviceCertificate">nn::settings::factory::EccB233DeviceCertificate</a></li>
-			<li><a href="types.html#nn::friends::detail::PlayHistoryImpl">nn::friends::detail::PlayHistoryImpl</a></li>
-			<li><a href="types.html#nn::ncm::ApplicationId">nn::ncm::ApplicationId</a></li>
-			<li><a href="types.html#nn::bluetooth::Address">nn::bluetooth::Address</a></li>
-			<li><a href="types.html#nn::settings::system::PtmFuelGaugeParameter">nn::settings::system::PtmFuelGaugeParameter</a></li>
-			<li><a href="types.html#nn::settings::factory::BdAddress">nn::settings::factory::BdAddress</a></li>
-			<li><a href="types.html#nn::friends::FriendCode">nn::friends::FriendCode</a></li>
-			<li><a href="types.html#nn::settings::system::DeviceNickName">nn::settings::system::DeviceNickName</a></li>
-			<li><a href="types.html#nn::settings::factory::SerialNumber">nn::settings::factory::SerialNumber</a></li>
-			<li><a href="types.html#nn::account::Nickname">nn::account::Nickname</a></li>
-			<li><a href="types.html#nn::settings::factory::GyroscopeOffset">nn::settings::factory::GyroscopeOffset</a></li>
-			<li><a href="types.html#nn::am::service::LibraryAppletInfo">nn::am::service::LibraryAppletInfo</a></li>
-			<li><a href="types.html#nn::friends::detail::FriendRequestImpl">nn::friends::detail::FriendRequestImpl</a></li>
-			<li><a href="types.html#nn::pctl::detail::PairingInfoBase">nn::pctl::detail::PairingInfoBase</a></li>
-			<li><a href="types.html#nn::friends::detail::ProfileExtraImpl">nn::friends::detail::ProfileExtraImpl</a></li>
-			<li><a href="types.html#nn::irsensor::PackedMomentProcessorConfig">nn::irsensor::PackedMomentProcessorConfig</a></li>
-			<li><a href="types.html#ServiceName">ServiceName</a></li>
-			<li><a href="types.html#nn::hid::VibrationDeviceHandle">nn::hid::VibrationDeviceHandle</a></li>
-			<li><a href="types.html#nn::bcat::PushNotificationLog">nn::bcat::PushNotificationLog</a></li>
-			<li><a href="types.html#nn::settings::factory::SpeakerParameter">nn::settings::factory::SpeakerParameter</a></li>
-			<li><a href="types.html#nn::settings::system::NotificationSettings">nn::settings::system::NotificationSettings</a></li>
-			<li><a href="types.html#nn::friends::detail::ipc::SizedNotificationInfo">nn::friends::detail::ipc::SizedNotificationInfo</a></li>
-			<li><a href="types.html#nn::ncm::ProgramId">nn::ncm::ProgramId</a></li>
-			<li><a href="types.html#nn::settings::system::AccountNotificationSettings">nn::settings::system::AccountNotificationSettings</a></li>
-			<li><a href="types.html#nn::vi::DisplayModeInfo">nn::vi::DisplayModeInfo</a></li>
-			<li><a href="types.html#nn::mii::StoreDataElement">nn::mii::StoreDataElement</a></li>
-			<li><a href="types.html#nn::settings::factory::AccelerometerScale">nn::settings::factory::AccelerometerScale</a></li>
-			<li><a href="types.html#nn::hid::system::PlayReportControllerUsage">nn::hid::system::PlayReportControllerUsage</a></li>
-			<li><a href="types.html#nn::nifm::AdditionalInfo">nn::nifm::AdditionalInfo</a></li>
-			<li><a href="types.html#nn::settings::system::NetworkSettings">nn::settings::system::NetworkSettings</a></li>
-			<li><a href="types.html#nn::am::service::WindowCreationOption">nn::am::service::WindowCreationOption</a></li>
-			<li><a href="types.html#nn::ns::ApplicationControlProperty">nn::ns::ApplicationControlProperty</a></li>
-			<li><a href="types.html#nn::ssl::sf::PollEvent">nn::ssl::sf::PollEvent</a></li>
-			<li><a href="types.html#nn::settings::SettingsName">nn::settings::SettingsName</a></li>
-			<li><a href="types.html#nn::friends::NintendoNetworkIdUserInfo">nn::friends::NintendoNetworkIdUserInfo</a></li>
-			<li><a href="types.html#nn::hid::debug::KeyboardAutoPilotState">nn::hid::debug::KeyboardAutoPilotState</a></li>
-			<li><a href="types.html#nn::oe::DisplayVersion">nn::oe::DisplayVersion</a></li>
-			<li><a href="types.html#nn::friends::detail::UserSettingImpl">nn::friends::detail::UserSettingImpl</a></li>
-			<li><a href="types.html#nn::friends::detail::FriendSettingImpl">nn::friends::detail::FriendSettingImpl</a></li>
-			<li><a href="types.html#nn::fgm::Module">nn::fgm::Module</a></li>
-			<li><a href="types.html#nn::hid::debug::MouseAutoPilotState">nn::hid::debug::MouseAutoPilotState</a></li>
-			<li><a href="types.html#nn::friends::PlayHistoryStatistics">nn::friends::PlayHistoryStatistics</a></li>
-			<li><a href="types.html#nn::hid::system::RegisteredDevice">nn::hid::system::RegisteredDevice</a></li>
-			<li><a href="types.html#nn::time::TimeZoneRuleVersion">nn::time::TimeZoneRuleVersion</a></li>
-			<li><a href="types.html#nn::account::nas::NasClientInfo">nn::account::nas::NasClientInfo</a></li>
-			<li><a href="types.html#nn::time::PosixTime">nn::time::PosixTime</a></li>
-			<li><a href="types.html#nn::irsensor::PackedImageTransferProcessorConfig">nn::irsensor::PackedImageTransferProcessorConfig</a></li>
-			<li><a href="types.html#nn::ssl::sf::OptionType">nn::ssl::sf::OptionType</a></li>
-			<li><a href="types.html#nn::nifm::TelemetryInfo">nn::nifm::TelemetryInfo</a></li>
-			<li><a href="types.html#nn::friends::detail::BlockedUserImpl">nn::friends::detail::BlockedUserImpl</a></li>
-			<li><a href="types.html#nn::friends::Url">nn::friends::Url</a></li>
-			<li><a href="types.html#nn::hid::system::InputSourceId">nn::hid::system::InputSourceId</a></li>
-			<li><a href="types.html#nn::ssl::sf::IoMode">nn::ssl::sf::IoMode</a></li>
-			<li><a href="types.html#nn::capsrv::detail::ScreenShotAttributeEx0">nn::capsrv::detail::ScreenShotAttributeEx0</a></li>
-			<li><a href="types.html#nn::hid::debug::SleepButtonAutoPilotState">nn::hid::debug::SleepButtonAutoPilotState</a></li>
-			<li><a href="types.html#nn::am::AppletAttribute">nn::am::AppletAttribute</a></li>
-			<li><a href="types.html#nn::settings::factory::GyroscopeScale">nn::settings::factory::GyroscopeScale</a></li>
-			<li><a href="types.html#nn::account::SystemProgramIdentification">nn::account::SystemProgramIdentification</a></li>
-			<li><a href="types.html#nn::nifm::detail::sf::NetworkProfileData">nn::nifm::detail::sf::NetworkProfileData</a></li>
-			<li><a href="types.html#nn::nifm::IpV4Address">nn::nifm::IpV4Address</a></li>
-			<li><a href="types.html#nn::time::sf::CalendarAdditionalInfo">nn::time::sf::CalendarAdditionalInfo</a></li>
-			<li><a href="types.html#nn::bcat::TaskInfo">nn::bcat::TaskInfo</a></li>
-			<li><a href="types.html#nn::account::Uid">nn::account::Uid</a></li>
-			<li><a href="types.html#nn::account::ProfileDigest">nn::account::ProfileDigest</a></li>
-			<li><a href="types.html#nn::account::NetworkServiceAccountId">nn::account::NetworkServiceAccountId</a></li>
-			<li><a href="types.html#nn::err::ErrorCode">nn::err::ErrorCode</a></li>
-			<li><a href="types.html#nn::pctl::InquiryCode">nn::pctl::InquiryCode</a></li>
-			<li><a href="types.html#nn::apm::PerformanceConfiguration">nn::apm::PerformanceConfiguration</a></li>
-			<li><a href="types.html#nn::nifm::ClientId">nn::nifm::ClientId</a></li>
-			<li><a href="types.html#nn::hid::system::FirmwareUpdateDeviceHandle">nn::hid::system::FirmwareUpdateDeviceHandle</a></li>
-			<li><a href="types.html#nn::apm::ThrottlingState">nn::apm::ThrottlingState</a></li>
-			<li><a href="types.html#nn::friends::detail::FriendImpl">nn::friends::detail::FriendImpl</a></li>
-			<li><a href="types.html#nn::ssl::sf::ContextOption">nn::ssl::sf::ContextOption</a></li>
-			<li><a href="types.html#nn::friends::Relationship">nn::friends::Relationship</a></li>
-			<li><a href="types.html#nn::friends::detail::NintendoNetworkIdFriendImpl">nn::friends::detail::NintendoNetworkIdFriendImpl</a></li>
-			<li><a href="types.html#nn::account::CallbackUri">nn::account::CallbackUri</a></li>
-			<li><a href="types.html#nn::time::LocationName">nn::time::LocationName</a></li>
-			<li><a href="types.html#nn::hid::NpadStyleTag">nn::hid::NpadStyleTag</a></li>
-			<li><a href="types.html#nn::vi::DisplayInfo">nn::vi::DisplayInfo</a></li>
-			<li><a href="types.html#nn::settings::system::SleepSettings">nn::settings::system::SleepSettings</a></li>
-			<li><a href="types.html#nn::irsensor::PackedClusteringProcessorConfig">nn::irsensor::PackedClusteringProcessorConfig</a></li>
-			<li><a href="types.html#nn::account::profile::ProfileBase">nn::account::profile::ProfileBase</a></li>
-			<li><a href="types.html#nn::settings::factory::BatteryLot">nn::settings::factory::BatteryLot</a></li>
-			<li><a href="types.html#nn::hid::system::DeviceType">nn::hid::system::DeviceType</a></li>
-			<li><a href="types.html#nn::hid::ConsoleSixAxisSensorHandle">nn::hid::ConsoleSixAxisSensorHandle</a></li>
-			<li><a href="types.html#nn::settings::system::DataDeletionSettings">nn::settings::system::DataDeletionSettings</a></li>
-			<li><a href="types.html#nn::irsensor::PackedTeraPluginProcessorConfig">nn::irsensor::PackedTeraPluginProcessorConfig</a></li>
-			<li><a href="types.html#nn::nifm::detail::sf::InternetConnectionStatus">nn::nifm::detail::sf::InternetConnectionStatus</a></li>
-			<li><a href="types.html#nn::pctl::FreeCommunicationApplicationInfo">nn::pctl::FreeCommunicationApplicationInfo</a></li>
-			<li><a href="types.html#nn::friends::FacedFriendRequestRegistrationKey">nn::friends::FacedFriendRequestRegistrationKey</a></li>
-			<li><a href="types.html#nn::util::Uuid">nn::util::Uuid</a></li>
-			<li><a href="types.html#nn::am::service::AppletKind">nn::am::service::AppletKind</a></li>
-			<li><a href="types.html#nn::friends::detail::UserPresenceImpl">nn::friends::detail::UserPresenceImpl</a></li>
-			<li><a href="types.html#nn::friends::RequestId">nn::friends::RequestId</a></li>
-			<li><a href="types.html#nn::fssrv::sf::SaveCreateStruct">nn::fssrv::sf::SaveCreateStruct</a></li>
-			<li><a href="types.html#nn::time::TimeZoneRule">nn::time::TimeZoneRule</a></li>
-			<li><a href="types.html#nn::settings::system::BacklightSettingsEx">nn::settings::system::BacklightSettingsEx</a></li>
-			<li><a href="types.html#nn::mii::CharInfo">nn::mii::CharInfo</a></li>
-			<li><a href="types.html#nn::account::NintendoAccountId">nn::account::NintendoAccountId</a></li>
-			<li><a href="types.html#nn::ncm::SystemApplicationId">nn::ncm::SystemApplicationId</a></li>
-			<li><a href="types.html#nn::util::Unorm8x4">nn::util::Unorm8x4</a></li>
-			<li><a href="types.html#nn::am::service::EmulatedButtonEvent">nn::am::service::EmulatedButtonEvent</a></li>
-			<li><a href="types.html#nn::time::SteadyClockTimePoint">nn::time::SteadyClockTimePoint</a></li>
-			<li><a href="types.html#nn::settings::SettingsItemKey">nn::settings::SettingsItemKey</a></li>
-			<li><a href="types.html#nn::mii::StoreData">nn::mii::StoreData</a></li>
-			<li><a href="types.html#nn::settings::system::SerialNumber">nn::settings::system::SerialNumber</a></li>
-			<li><a href="types.html#nn::friends::detail::FriendDetailedInfoImpl">nn::friends::detail::FriendDetailedInfoImpl</a></li>
-			<li><a href="types.html#nn::friends::detail::UserPresenceViewImpl">nn::friends::detail::UserPresenceViewImpl</a></li>
-			<li><a href="types.html#nn::bcat::detail::DeliveryCacheProgressImpl">nn::bcat::detail::DeliveryCacheProgressImpl</a></li>
-			<li><a href="types.html#nn::hid::VibrationDeviceInfoForIpc">nn::hid::VibrationDeviceInfoForIpc</a></li>
-			<li><a href="types.html#nn::TimeSpanType">nn::TimeSpanType</a></li>
-			<li><a href="types.html#nn::hid::TouchState">nn::hid::TouchState</a></li>
-			<li><a href="types.html#nn::ssl::sf::CertificateFormat">nn::ssl::sf::CertificateFormat</a></li>
-			<li><a href="types.html#nn::settings::system::NxControllerSettings">nn::settings::system::NxControllerSettings</a></li>
-			<li><a href="types.html#nn::settings::factory::SslCertificate">nn::settings::factory::SslCertificate</a></li>
-			<li><a href="types.html#nn::am::AppletMessage">nn::am::AppletMessage</a></li>
-			<li><a href="types.html#nn::pctl::PlayTimerSettings">nn::pctl::PlayTimerSettings</a></li>
-			<li><a href="types.html#nn::mii::CharInfoElement">nn::mii::CharInfoElement</a></li>
-			<li><a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a></li>
-			<li><a href="types.html#nn::irsensor::PackedDpdProcessorConfig">nn::irsensor::PackedDpdProcessorConfig</a></li>
-			<li><a href="types.html#nn::settings::factory::CountryCode">nn::settings::factory::CountryCode</a></li>
-			<li><a href="types.html#nn::hid::debug::DebugPadAutoPilotState">nn::hid::debug::DebugPadAutoPilotState</a></li>
-			<li><a href="types.html#nn::friends::MiiImageUrlParam">nn::friends::MiiImageUrlParam</a></li>
-			<li><a href="types.html#nn::settings::factory::Rsa2048DeviceKey">nn::settings::factory::Rsa2048DeviceKey</a></li>
-			<li><a href="types.html#nn::settings::system::BatteryLot">nn::settings::system::BatteryLot</a></li>
-			<li><a href="types.html#nn::pctl::detail::AsyncData">nn::pctl::detail::AsyncData</a></li>
-			<li><a href="types.html#nn::pctl::detail::PairingAccountInfoBase">nn::pctl::detail::PairingAccountInfoBase</a></li>
-			<li><a href="types.html#nn::settings::system::TelemetryDirtyFlag">nn::settings::system::TelemetryDirtyFlag</a></li>
-			<li><a href="types.html#nn::settings::system::Edid">nn::settings::system::Edid</a></li>
-			<li><a href="types.html#nn::nifm::DnsSetting">nn::nifm::DnsSetting</a></li>
-			<li><a href="types.html#nn::ssl::sf::SslVersion">nn::ssl::sf::SslVersion</a></li>
-			<li><a href="types.html#nn::hid::system::FirmwareVersion">nn::hid::system::FirmwareVersion</a></li>
-			<li><a href="types.html#nn::fssrv::sf::Partition">nn::fssrv::sf::Partition</a></li>
-			<li><a href="types.html#nn::friends::PlayHistoryRegistrationKey">nn::friends::PlayHistoryRegistrationKey</a></li>
-			<li><a href="types.html#nn::settings::factory::SslKey">nn::settings::factory::SslKey</a></li>
-			<li><a href="types.html#nn::friends::ApplicationInfo">nn::friends::ApplicationInfo</a></li>
-		</ul>
+	<body data-spy="scroll" data-target="#toc">
+		<div class="container">
+		<div class="row">
+			<div class="col-11">
+				<div class="jumbotron">
+					<h1 class="display-3">SwIPC</h1>
+					<p class="lead">Your one-stop-shop for Nintendo Switch IPC definitions.</p>
+				</div>
+				<h2 id="services">Services</h2>
+				<div class="list-group">
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::account::IBaasAccessTokenAccessor">acc:aa</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::account::IAccountServiceForAdministrator">acc:su</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::account::IAccountServiceForApplication">acc:u0</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::account::IAccountServiceForSystemService">acc:u1</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ahid::IServerSession">ahid:cd</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ahid::hdr::ISession">ahid:hdr</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::aocsrv::detail::IAddOnContentManager">aoc:u</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::apm::IManager">apm</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::apm::IManagerPrivileged">apm:p</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::apm::ISystemManager">apm:sys</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::IAllSystemAppletProxiesService">appletAE</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::IApplicationProxyService">appletOE</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::arp::detail::IReader">arp:r</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::arp::detail::IWriter">arp:w</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audioctrl::detail::IAudioController">audctl</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IAudioInManagerForApplet">audin:a</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IAudioInManager">audin:d</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IAudioInManagerForDebugger">audin:u</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IAudioOutManagerForApplet">audout:a</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IAudioOutManagerForDebugger">audout:d</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IAudioOutManager">audout:u</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IFinalOutputRecorderManagerForApplet">audrec:a</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IFinalOutputRecorderManagerForDebugger">audrec:d</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IAudioRendererManager">audrec:u</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IAudioRendererManagerForApplet">audren:a</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IAudioRendererManagerForDebugger">audren:d</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IFinalOutputRecorderManager">audren:u</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::bcat::detail::ipc::IServiceCreator">bcat:a</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::bcat::detail::ipc::IServiceCreator">bcat:m</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::bcat::detail::ipc::IServiceCreator">bcat:s</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::bcat::detail::ipc::IServiceCreator">bcat:u</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::bgtc::IStateControlService">bgtc:sc</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::bgtc::ITaskService">bgtc:t</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::bpc::IBoardPowerControlManager">bpc</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::bpc::IRtcManager">bpc:r</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::socket::sf::IClient">bsd:s</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::socket::sf::IClient">bsd:u</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::bsdsocket::cfg::ServerInterface">bsdcfg</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::bluetooth::IBluetoothDriver">btdrv</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::btm::IBtm">btm</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::btm::IBtmDebug">btm:dbg</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::btm::IBtmSystem">btm:sys</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::capsrv::sf::IAlbumAccessorService">caps:a</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::capsrv::sf::IAlbumControlService">caps:c</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::capsrv::sf::IScreenShotControlService">caps:sc</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::capsrv::sf::IScreenShotService">caps:ss</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::capsrv::sf::IScreenShotApplicationService">caps:su</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::erpt::sf::IContext">erpt:c</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::erpt::sf::ISession">erpt:r</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::es::IETicketService">es</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::eth::sf::IEthInterfaceGroup">ethc:c</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::eth::sf::IEthInterfaceGroup">ethc:i</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::eupld::sf::IControl">eupld:c</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::eupld::sf::IRequest">eupld:r</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::fan::detail::IManager">fan</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::fatalsrv::IPrivateService">fatal:p</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::fatalsrv::IService">fatal:u</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::fgm::sf::ISession">fgm</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::fgm::sf::ISession">fgm:0</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::fgm::sf::ISession">fgm:9</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::friends::detail::ipc::IServiceCreator">friend:a</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::friends::detail::ipc::IServiceCreator">friend:m</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::friends::detail::ipc::IServiceCreator">friend:s</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::friends::detail::ipc::IServiceCreator">friend:u</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::friends::detail::ipc::IServiceCreator">friend:v</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::fssrv::sf::IFileSystemProxy">fsp-srv</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::gpio::IManager">gpio</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::hid::IHidServer">hid</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::hid::IHidDebugServer">hid:dbg</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::hid::IHidSystemServer">hid:sys</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::hid::IHidTemporaryServer">hid:tmp</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::codec::detail::IHardwareOpusDecoderManager">hwopus</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::i2c::IManager">i2c</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::i2c::IManager">i2c:pcv</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::idle::detail::IPolicyManagerSystem">idle:sys</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::irsensor::IIrSensorServer">irs</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::irsensor::IIrSensorSystemServer">irs:sys</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::lbl::detail::ILblController">lbl</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ldn::detail::IMonitorServiceCreator">ldn:m</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ldn::detail::ISystemServiceCreator">ldn:s</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ldn::detail::IUserServiceCreator">ldn:u</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ro::detail::IRoInterface">ldr:ro</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ro::detail::ILdrShellInterface">ldr:shel</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::lm::ILogService">lm</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ncm::detail::LocationResolverInterface">lr</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::mii::detail::IStaticService">mii:e</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::mii::detail::IStaticService">mii:u</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::mmnv::IRequest">mm:u</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ncm::detail::INcmInterface">ncm</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::news::detail::ipc::IServiceCreator">news:a</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::news::detail::ipc::IServiceCreator">news:c</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::news::detail::ipc::IServiceCreator">news:m</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::news::detail::ipc::IServiceCreator">news:p</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::news::detail::ipc::IServiceCreator">news:v</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nfc::am::detail::IAmManager">nfc:am</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nfc::mifare::detail::IUserManager">nfc:mf:u</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nfc::detail::ISystemManager">nfc:sys</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nfc::detail::IUserManager">nfc:user</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nfp::detail::IDebugManager">nfp:dbg</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nfp::detail::ISystemManager">nfp:sys</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nfp::detail::IUserManager">nfp:user</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nifm::detail::IStaticService">nifm:a</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nifm::detail::IStaticService">nifm:s</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nifm::detail::IStaticService">nifm:u</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nim::detail::INetworkInstallManager">nim</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nim::detail::IShopServiceManager">nim:shp</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::npns::INpnsSystem">npns:s</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::npns::INpnsUser">npns:u</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ns::detail::IServiceGetterInterface">ns:am2</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ns::detail::IDevelopInterface">ns:dev</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ns::detail::IServiceGetterInterface">ns:ec</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ns::detail::IServiceGetterInterface">ns:rid</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ns::detail::IServiceGetterInterface">ns:rt</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ns::detail::ISystemUpdateInterface">ns:su</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ns::detail::IVulnerabilityManagerInterface">ns:vm</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ns::detail::IServiceGetterInterface">ns:web</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nsd::detail::IManager">nsd:a</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nsd::detail::IManager">nsd:u</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ntc::detail::service::IStaticService">ntc</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nns::nvdrv::INvDrvServices">nvdrv</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nns::nvdrv::INvDrvServices">nvdrv:a</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nns::nvdrv::INvDrvServices">nvdrv:s</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nns::nvdrv::INvDrvServices">nvdrv:t</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nns::nvdrv::INvDrvDebugFSServices">nvdrvdbg</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nv::gemcontrol::INvGemControl">nvgem:c</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nv::gemcoredump::INvGemCoreDump">nvgem:cd</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::omm::detail::IOperationModeManager">omm</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ovln::IReceiverService">ovln:rcv</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ovln::ISenderService">ovln:snd</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::pcie::detail::IManager">pcie</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::pctl::detail::ipc::IParentalControlServiceFactory">pctl</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::pctl::detail::ipc::IParentalControlServiceFactory">pctl:a</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::pctl::detail::ipc::IParentalControlServiceFactory">pctl:r</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::pctl::detail::ipc::IParentalControlServiceFactory">pctl:s</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::pcv::detail::IPcvService">pcv</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::pcv::IArbitrationManager">pcv:arb</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::pcv::IImmediateManager">pcv:imm</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::pdm::detail::INotifyService">pdm:ntfy</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::pdm::detail::IQueryService">pdm:qry</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::pinmux::IManager">pinmux</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::pl::detail::ISharedFontManager">pl:u</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#Pm::Bm">pm:bm</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#Pm::Shell">pm:shell</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::prepo::detail::ipc::IPrepoService">prepo:a</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::prepo::detail::ipc::IPrepoService">prepo:m</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::prepo::detail::ipc::IPrepoService">prepo:s</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::prepo::detail::ipc::IPrepoService">prepo:u</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::psc::sf::IPmControl">psc:c</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::psc::sf::IPmService">psc:m</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::psm::IPsmServer">psm</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::pwm::IManager">pwm</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ro::detail::IDebugMonitorInterface">ro:dmnt</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::sasbus::IManager">sasbus</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::settings::ISettingsServer">set</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::settings::IFactorySettingsServer">set:cal</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::settings::IFirmwareDebugSettingsServer">set:fd</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::settings::ISystemSettingsServer">set:sys</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::socket::resolver::IResolver">sfdnsres</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::spsm::detail::IPowerStateInterface">spsm</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ssl::sf::ISslService">ssl</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::tc::IManager">tc</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::timesrv::detail::service::IStaticService">time:a</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::timesrv::detail::service::IStaticService">time:r</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::timesrv::detail::service::IStaticService">time:s</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::timesrv::detail::service::IStaticService">time:u</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ts::server::IMeasurementServer">ts</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::uart::IManager">uart</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::usb::ds::IDsService">usb:ds</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::usb::hs::IClientRootSession">usb:hs</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::usb::pd::detail::IPdManager">usb:pd</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::usb::pd::detail::IPdCradleManager">usb:pd:c</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::usb::pm::IPmService">usb:pm</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::visrv::sf::IManagerRootService">vi:m</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::visrv::sf::ISystemRootService">vi:s</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::visrv::sf::IApplicationRootService">vi:u</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::wlan::detail::IInfraManager">wlan:inf</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::wlan::detail::ILocalManager">wlan:lcl</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::wlan::detail::ILocalGetFrame">wlan:lg</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::wlan::detail::ILocalGetActionFrame">wlan:lga</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::wlan::detail::ISocketGetFrame">wlan:sg</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::wlan::detail::ISocketManager">wlan:soc</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::xcd::detail::ISystemServer">xcd:sys</a>
+				</div>
+				<br />
+				<h2 id="interfaces">Interfaces</h2>
+				<div class="list-group">
+					<a class="list-group-item list-group-item-action" href="ifaces.html#Pm::Bm">Pm::Bm</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#Pm::Shell">Pm::Shell</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#SmService">SmService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::account::IAccountServiceForAdministrator">nn::account::IAccountServiceForAdministrator</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::account::IAccountServiceForApplication">nn::account::IAccountServiceForApplication</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::account::IAccountServiceForSystemService">nn::account::IAccountServiceForSystemService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::account::IBaasAccessTokenAccessor">nn::account::IBaasAccessTokenAccessor</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::account::baas::IAdministrator">nn::account::baas::IAdministrator</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::account::baas::IFloatingRegistrationRequest">nn::account::baas::IFloatingRegistrationRequest</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::account::baas::IGuestLoginRequest">nn::account::baas::IGuestLoginRequest</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::account::baas::IManagerForApplication">nn::account::baas::IManagerForApplication</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::account::baas::IManagerForSystemService">nn::account::baas::IManagerForSystemService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::account::detail::INotifier">nn::account::detail::INotifier</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::account::detail::ISessionObject">nn::account::detail::ISessionObject</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::account::http::IOAuthProcedure">nn::account::http::IOAuthProcedure</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::account::nas::IAuthorizationRequest">nn::account::nas::IAuthorizationRequest</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::account::nas::IOAuthProcedureForExternalNsa">nn::account::nas::IOAuthProcedureForExternalNsa</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::account::nas::IOAuthProcedureForNintendoAccountLinkage">nn::account::nas::IOAuthProcedureForNintendoAccountLinkage</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::account::profile::IProfile">nn::account::profile::IProfile</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::account::profile::IProfileEditor">nn::account::profile::IProfileEditor</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ahid::ICtrlSession">nn::ahid::ICtrlSession</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ahid::IReadSession">nn::ahid::IReadSession</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ahid::IServerSession">nn::ahid::IServerSession</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ahid::hdr::ISession">nn::ahid::hdr::ISession</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::IAllSystemAppletProxiesService">nn::am::service::IAllSystemAppletProxiesService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::IAppletAccessor">nn::am::service::IAppletAccessor</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::IApplicationAccessor">nn::am::service::IApplicationAccessor</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::IApplicationCreator">nn::am::service::IApplicationCreator</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::IApplicationFunctions">nn::am::service::IApplicationFunctions</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::IApplicationProxy">nn::am::service::IApplicationProxy</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::IApplicationProxyService">nn::am::service::IApplicationProxyService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::IAudioController">nn::am::service::IAudioController</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::ICommonStateGetter">nn::am::service::ICommonStateGetter</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::IDebugFunctions">nn::am::service::IDebugFunctions</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::IDisplayController">nn::am::service::IDisplayController</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::IGlobalStateController">nn::am::service::IGlobalStateController</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::IHomeMenuFunctions">nn::am::service::IHomeMenuFunctions</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::ILibraryAppletAccessor">nn::am::service::ILibraryAppletAccessor</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::ILibraryAppletCreator">nn::am::service::ILibraryAppletCreator</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::ILibraryAppletProxy">nn::am::service::ILibraryAppletProxy</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::ILibraryAppletSelfAccessor">nn::am::service::ILibraryAppletSelfAccessor</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::ILockAccessor">nn::am::service::ILockAccessor</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::IOverlayAppletProxy">nn::am::service::IOverlayAppletProxy</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::IOverlayFunctions">nn::am::service::IOverlayFunctions</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::IProcessWindingController">nn::am::service::IProcessWindingController</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::ISelfController">nn::am::service::ISelfController</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::IStorage">nn::am::service::IStorage</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::IStorageAccessor">nn::am::service::IStorageAccessor</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::ISystemAppletProxy">nn::am::service::ISystemAppletProxy</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::ITransferStorageAccessor">nn::am::service::ITransferStorageAccessor</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::IWindow">nn::am::service::IWindow</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::am::service::IWindowController">nn::am::service::IWindowController</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::aocsrv::detail::IAddOnContentManager">nn::aocsrv::detail::IAddOnContentManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::apm::IManager">nn::apm::IManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::apm::IManagerPrivileged">nn::apm::IManagerPrivileged</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::apm::ISession">nn::apm::ISession</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::apm::ISystemManager">nn::apm::ISystemManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::arp::detail::IReader">nn::arp::detail::IReader</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::arp::detail::IRegistrar">nn::arp::detail::IRegistrar</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::arp::detail::IWriter">nn::arp::detail::IWriter</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IAudioDebugManager">nn::audio::detail::IAudioDebugManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IAudioDevice">nn::audio::detail::IAudioDevice</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IAudioIn">nn::audio::detail::IAudioIn</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IAudioInManager">nn::audio::detail::IAudioInManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IAudioInManagerForApplet">nn::audio::detail::IAudioInManagerForApplet</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IAudioInManagerForDebugger">nn::audio::detail::IAudioInManagerForDebugger</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IAudioOut">nn::audio::detail::IAudioOut</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IAudioOutManager">nn::audio::detail::IAudioOutManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IAudioOutManagerForApplet">nn::audio::detail::IAudioOutManagerForApplet</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IAudioOutManagerForDebugger">nn::audio::detail::IAudioOutManagerForDebugger</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IAudioRenderer">nn::audio::detail::IAudioRenderer</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IAudioRendererManager">nn::audio::detail::IAudioRendererManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IAudioRendererManagerForApplet">nn::audio::detail::IAudioRendererManagerForApplet</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IAudioRendererManagerForDebugger">nn::audio::detail::IAudioRendererManagerForDebugger</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IFinalOutputRecorder">nn::audio::detail::IFinalOutputRecorder</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IFinalOutputRecorderManager">nn::audio::detail::IFinalOutputRecorderManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IFinalOutputRecorderManagerForApplet">nn::audio::detail::IFinalOutputRecorderManagerForApplet</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audio::detail::IFinalOutputRecorderManagerForDebugger">nn::audio::detail::IFinalOutputRecorderManagerForDebugger</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::audioctrl::detail::IAudioController">nn::audioctrl::detail::IAudioController</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::bcat::detail::ipc::IBcatService">nn::bcat::detail::ipc::IBcatService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::bcat::detail::ipc::IDeliveryCacheDirectoryService">nn::bcat::detail::ipc::IDeliveryCacheDirectoryService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::bcat::detail::ipc::IDeliveryCacheFileService">nn::bcat::detail::ipc::IDeliveryCacheFileService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::bcat::detail::ipc::IDeliveryCacheProgressService">nn::bcat::detail::ipc::IDeliveryCacheProgressService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::bcat::detail::ipc::IDeliveryCacheStorageService">nn::bcat::detail::ipc::IDeliveryCacheStorageService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::bcat::detail::ipc::IServiceCreator">nn::bcat::detail::ipc::IServiceCreator</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::bgtc::IStateControlService">nn::bgtc::IStateControlService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::bgtc::ITaskService">nn::bgtc::ITaskService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::bluetooth::IBluetoothDriver">nn::bluetooth::IBluetoothDriver</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::bpc::IBoardPowerControlManager">nn::bpc::IBoardPowerControlManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::bpc::IRtcManager">nn::bpc::IRtcManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::bsdsocket::cfg::ServerInterface">nn::bsdsocket::cfg::ServerInterface</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::btm::IBtm">nn::btm::IBtm</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::btm::IBtmDebug">nn::btm::IBtmDebug</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::btm::IBtmSystem">nn::btm::IBtmSystem</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::btm::IBtmSystemCore">nn::btm::IBtmSystemCore</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::capsrv::sf::IAlbumAccessorService">nn::capsrv::sf::IAlbumAccessorService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::capsrv::sf::IAlbumControlService">nn::capsrv::sf::IAlbumControlService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::capsrv::sf::IScreenShotApplicationService">nn::capsrv::sf::IScreenShotApplicationService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::capsrv::sf::IScreenShotControlService">nn::capsrv::sf::IScreenShotControlService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::capsrv::sf::IScreenShotService">nn::capsrv::sf::IScreenShotService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::cec::ICecManager">nn::cec::ICecManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::codec::detail::IHardwareOpusDecoder">nn::codec::detail::IHardwareOpusDecoder</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::codec::detail::IHardwareOpusDecoderManager">nn::codec::detail::IHardwareOpusDecoderManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::erpt::sf::IContext">nn::erpt::sf::IContext</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::erpt::sf::IManager">nn::erpt::sf::IManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::erpt::sf::IReport">nn::erpt::sf::IReport</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::erpt::sf::ISession">nn::erpt::sf::ISession</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::es::IETicketService">nn::es::IETicketService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::eth::sf::IEthInterface">nn::eth::sf::IEthInterface</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::eth::sf::IEthInterfaceGroup">nn::eth::sf::IEthInterfaceGroup</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::eupld::sf::IControl">nn::eupld::sf::IControl</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::eupld::sf::IRequest">nn::eupld::sf::IRequest</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::fan::detail::IController">nn::fan::detail::IController</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::fan::detail::IManager">nn::fan::detail::IManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::fatalsrv::IPrivateService">nn::fatalsrv::IPrivateService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::fatalsrv::IService">nn::fatalsrv::IService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::fgm::sf::IDebugger">nn::fgm::sf::IDebugger</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::fgm::sf::IRequest">nn::fgm::sf::IRequest</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::fgm::sf::ISession">nn::fgm::sf::ISession</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::friends::detail::ipc::IFriendService">nn::friends::detail::ipc::IFriendService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::friends::detail::ipc::INotificationService">nn::friends::detail::ipc::INotificationService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::friends::detail::ipc::IServiceCreator">nn::friends::detail::ipc::IServiceCreator</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::fssrv::sf::IDeviceOperator">nn::fssrv::sf::IDeviceOperator</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::fssrv::sf::IDirectory">nn::fssrv::sf::IDirectory</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::fssrv::sf::IEventNotifier">nn::fssrv::sf::IEventNotifier</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::fssrv::sf::IFile">nn::fssrv::sf::IFile</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::fssrv::sf::IFileSystemProxy">nn::fssrv::sf::IFileSystemProxy</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::fssrv::sf::IFileSystemProxyForLoader">nn::fssrv::sf::IFileSystemProxyForLoader</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::fssrv::sf::IProgramRegistry">nn::fssrv::sf::IProgramRegistry</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::fssrv::sf::ISaveDataInfoReader">nn::fssrv::sf::ISaveDataInfoReader</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::fssrv::sf::IStorage">nn::fssrv::sf::IStorage</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::gpio::IManager">nn::gpio::IManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::gpio::IPadSession">nn::gpio::IPadSession</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::hid::IActiveVibrationDeviceList">nn::hid::IActiveVibrationDeviceList</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::hid::IAppletResource">nn::hid::IAppletResource</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::hid::IHidDebugServer">nn::hid::IHidDebugServer</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::hid::IHidServer">nn::hid::IHidServer</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::hid::IHidSystemServer">nn::hid::IHidSystemServer</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::hid::IHidTemporaryServer">nn::hid::IHidTemporaryServer</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::htc::tenv::IService">nn::htc::tenv::IService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::htc::tenv::IServiceManager">nn::htc::tenv::IServiceManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::i2c::IManager">nn::i2c::IManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::i2c::ISession">nn::i2c::ISession</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::idle::detail::IPolicyManagerSystem">nn::idle::detail::IPolicyManagerSystem</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::irsensor::IIrSensorServer">nn::irsensor::IIrSensorServer</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::irsensor::IIrSensorSystemServer">nn::irsensor::IIrSensorSystemServer</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::lbl::detail::ILblController">nn::lbl::detail::ILblController</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ldn::detail::IMonitorService">nn::ldn::detail::IMonitorService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ldn::detail::IMonitorServiceCreator">nn::ldn::detail::IMonitorServiceCreator</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ldn::detail::ISystemLocalCommunicationService">nn::ldn::detail::ISystemLocalCommunicationService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ldn::detail::ISystemServiceCreator">nn::ldn::detail::ISystemServiceCreator</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ldn::detail::IUserLocalCommunicationService">nn::ldn::detail::IUserLocalCommunicationService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ldn::detail::IUserServiceCreator">nn::ldn::detail::IUserServiceCreator</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::lm::ILogService">nn::lm::ILogService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::lm::ILogger">nn::lm::ILogger</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::mii::detail::IDatabaseService">nn::mii::detail::IDatabaseService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::mii::detail::IStaticService">nn::mii::detail::IStaticService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::mmnv::IRequest">nn::mmnv::IRequest</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ncm::detail::INcmInterface">nn::ncm::detail::INcmInterface</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ncm::detail::INcmInterface4Unknown">nn::ncm::detail::INcmInterface4Unknown</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ncm::detail::INcmInterface5Unknown">nn::ncm::detail::INcmInterface5Unknown</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ncm::detail::LocationResolverInterface">nn::ncm::detail::LocationResolverInterface</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::news::detail::ipc::INewlyArrivedEventHolder">nn::news::detail::ipc::INewlyArrivedEventHolder</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::news::detail::ipc::INewsDataService">nn::news::detail::ipc::INewsDataService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::news::detail::ipc::INewsDatabaseService">nn::news::detail::ipc::INewsDatabaseService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::news::detail::ipc::INewsService">nn::news::detail::ipc::INewsService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::news::detail::ipc::IOverwriteEventHolder">nn::news::detail::ipc::IOverwriteEventHolder</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::news::detail::ipc::IServiceCreator">nn::news::detail::ipc::IServiceCreator</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nfc::am::detail::IAm">nn::nfc::am::detail::IAm</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nfc::am::detail::IAmManager">nn::nfc::am::detail::IAmManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nfc::detail::ISystem">nn::nfc::detail::ISystem</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nfc::detail::ISystemManager">nn::nfc::detail::ISystemManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nfc::detail::IUser">nn::nfc::detail::IUser</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nfc::detail::IUserManager">nn::nfc::detail::IUserManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nfc::mifare::detail::IUser">nn::nfc::mifare::detail::IUser</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nfc::mifare::detail::IUserManager">nn::nfc::mifare::detail::IUserManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nfp::detail::IDebug">nn::nfp::detail::IDebug</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nfp::detail::IDebugManager">nn::nfp::detail::IDebugManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nfp::detail::ISystem">nn::nfp::detail::ISystem</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nfp::detail::ISystemManager">nn::nfp::detail::ISystemManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nfp::detail::IUser">nn::nfp::detail::IUser</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nfp::detail::IUserManager">nn::nfp::detail::IUserManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nifm::detail::IGeneralService">nn::nifm::detail::IGeneralService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nifm::detail::INetworkProfile">nn::nifm::detail::INetworkProfile</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nifm::detail::IRequest">nn::nifm::detail::IRequest</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nifm::detail::IScanRequest">nn::nifm::detail::IScanRequest</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nifm::detail::IStaticService">nn::nifm::detail::IStaticService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nim::detail::IAsyncData">nn::nim::detail::IAsyncData</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nim::detail::IAsyncProgressResult">nn::nim::detail::IAsyncProgressResult</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nim::detail::IAsyncResult">nn::nim::detail::IAsyncResult</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nim::detail::IAsyncValue">nn::nim::detail::IAsyncValue</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nim::detail::INetworkInstallManager">nn::nim::detail::INetworkInstallManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nim::detail::IShopServiceManager">nn::nim::detail::IShopServiceManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::npns::INpnsSystem">nn::npns::INpnsSystem</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::npns::INpnsUser">nn::npns::INpnsUser</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::npns::Weird">nn::npns::Weird</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ns::detail::IAccountProxyInterface">nn::ns::detail::IAccountProxyInterface</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ns::detail::IApplicationManagerInterface">nn::ns::detail::IApplicationManagerInterface</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ns::detail::IAsyncResult">nn::ns::detail::IAsyncResult</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ns::detail::IAsyncValue">nn::ns::detail::IAsyncValue</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ns::detail::IContentManagementInterface">nn::ns::detail::IContentManagementInterface</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ns::detail::IDevelopInterface">nn::ns::detail::IDevelopInterface</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ns::detail::IDocumentInterface">nn::ns::detail::IDocumentInterface</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ns::detail::IDownloadTaskInterface">nn::ns::detail::IDownloadTaskInterface</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ns::detail::IFactoryResetInterface">nn::ns::detail::IFactoryResetInterface</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ns::detail::IGameCardStopper">nn::ns::detail::IGameCardStopper</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ns::detail::IProgressAsyncResult">nn::ns::detail::IProgressAsyncResult</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ns::detail::IProgressMonitorForDeleteUserSaveDataAll">nn::ns::detail::IProgressMonitorForDeleteUserSaveDataAll</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ns::detail::IRequestServerStopper">nn::ns::detail::IRequestServerStopper</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ns::detail::IServiceGetterInterface">nn::ns::detail::IServiceGetterInterface</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ns::detail::ISystemUpdateControl">nn::ns::detail::ISystemUpdateControl</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ns::detail::ISystemUpdateInterface">nn::ns::detail::ISystemUpdateInterface</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ns::detail::IVulnerabilityManagerInterface">nn::ns::detail::IVulnerabilityManagerInterface</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::nsd::detail::IManager">nn::nsd::detail::IManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ntc::detail::service::IEnsureNetworkClockAvailabilityService">nn::ntc::detail::service::IEnsureNetworkClockAvailabilityService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ntc::detail::service::IStaticService">nn::ntc::detail::service::IStaticService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::omm::detail::IOperationModeManager">nn::omm::detail::IOperationModeManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ovln::IReceiver">nn::ovln::IReceiver</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ovln::IReceiverService">nn::ovln::IReceiverService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ovln::ISender">nn::ovln::ISender</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ovln::ISenderService">nn::ovln::ISenderService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::pcie::detail::IManager">nn::pcie::detail::IManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::pcie::detail::ISession">nn::pcie::detail::ISession</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::pctl::detail::ipc::IParentalControlService">nn::pctl::detail::ipc::IParentalControlService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::pctl::detail::ipc::IParentalControlServiceFactory">nn::pctl::detail::ipc::IParentalControlServiceFactory</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::pcv::IArbitrationManager">nn::pcv::IArbitrationManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::pcv::IImmediateManager">nn::pcv::IImmediateManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::pcv::detail::IPcvService">nn::pcv::detail::IPcvService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::pdm::detail::INotifyService">nn::pdm::detail::INotifyService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::pdm::detail::IQueryService">nn::pdm::detail::IQueryService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::pinmux::IManager">nn::pinmux::IManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::pinmux::ISession">nn::pinmux::ISession</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::pl::detail::ISharedFontManager">nn::pl::detail::ISharedFontManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::prepo::detail::ipc::IPrepoService">nn::prepo::detail::ipc::IPrepoService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::psc::sf::IPmControl">nn::psc::sf::IPmControl</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::psc::sf::IPmModule">nn::psc::sf::IPmModule</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::psc::sf::IPmService">nn::psc::sf::IPmService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::psm::IPsmServer">nn::psm::IPsmServer</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::psm::IPsmSession">nn::psm::IPsmSession</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::pwm::IChannelSession">nn::pwm::IChannelSession</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::pwm::IManager">nn::pwm::IManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ro::detail::IDebugMonitorInterface">nn::ro::detail::IDebugMonitorInterface</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ro::detail::ILdrShellInterface">nn::ro::detail::ILdrShellInterface</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ro::detail::IRoInterface">nn::ro::detail::IRoInterface</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::sasbus::IManager">nn::sasbus::IManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::sasbus::ISession">nn::sasbus::ISession</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::settings::IFactorySettingsServer">nn::settings::IFactorySettingsServer</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::settings::IFirmwareDebugSettingsServer">nn::settings::IFirmwareDebugSettingsServer</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::settings::ISettingsItemKeyIterator">nn::settings::ISettingsItemKeyIterator</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::settings::ISettingsServer">nn::settings::ISettingsServer</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::settings::ISystemSettingsServer">nn::settings::ISystemSettingsServer</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::sm::detail::IManagerInterface">nn::sm::detail::IManagerInterface</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::sm::detail::IUserInterface">nn::sm::detail::IUserInterface</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::socket::resolver::IResolver">nn::socket::resolver::IResolver</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::socket::sf::IClient">nn::socket::sf::IClient</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::spl::detail::IRandomInterface">nn::spl::detail::IRandomInterface</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::spsm::detail::IPowerStateInterface">nn::spsm::detail::IPowerStateInterface</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ssl::sf::ISslConnection">nn::ssl::sf::ISslConnection</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ssl::sf::ISslContext">nn::ssl::sf::ISslContext</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ssl::sf::ISslService">nn::ssl::sf::ISslService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::tc::IManager">nn::tc::IManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::timesrv::detail::service::IStaticService">nn::timesrv::detail::service::IStaticService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::timesrv::detail::service::ISteadyClock">nn::timesrv::detail::service::ISteadyClock</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::timesrv::detail::service::ISystemClock">nn::timesrv::detail::service::ISystemClock</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::timesrv::detail::service::ITimeZoneService">nn::timesrv::detail::service::ITimeZoneService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::tma::IHtcManager">nn::tma::IHtcManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::tma::IHtcsManager">nn::tma::IHtcsManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::tma::ISocket">nn::tma::ISocket</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::ts::server::IMeasurementServer">nn::ts::server::IMeasurementServer</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::uart::IManager">nn::uart::IManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::uart::IPortSession">nn::uart::IPortSession</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::usb::ds::IDsEndpoint">nn::usb::ds::IDsEndpoint</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::usb::ds::IDsInterface">nn::usb::ds::IDsInterface</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::usb::ds::IDsService">nn::usb::ds::IDsService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::usb::hs::IClientEpSession">nn::usb::hs::IClientEpSession</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::usb::hs::IClientIfSession">nn::usb::hs::IClientIfSession</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::usb::hs::IClientRootSession">nn::usb::hs::IClientRootSession</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::usb::pd::detail::IPdCradleManager">nn::usb::pd::detail::IPdCradleManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::usb::pd::detail::IPdCradleSession">nn::usb::pd::detail::IPdCradleSession</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::usb::pd::detail::IPdManager">nn::usb::pd::detail::IPdManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::usb::pd::detail::IPdSession">nn::usb::pd::detail::IPdSession</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::usb::pm::IPmService">nn::usb::pm::IPmService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::visrv::sf::IApplicationDisplayService">nn::visrv::sf::IApplicationDisplayService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::visrv::sf::IApplicationRootService">nn::visrv::sf::IApplicationRootService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::visrv::sf::IManagerDisplayService">nn::visrv::sf::IManagerDisplayService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::visrv::sf::IManagerRootService">nn::visrv::sf::IManagerRootService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::visrv::sf::ISystemDisplayService">nn::visrv::sf::ISystemDisplayService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::visrv::sf::ISystemRootService">nn::visrv::sf::ISystemRootService</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::wlan::detail::IInfraManager">nn::wlan::detail::IInfraManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::wlan::detail::ILocalGetActionFrame">nn::wlan::detail::ILocalGetActionFrame</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::wlan::detail::ILocalGetFrame">nn::wlan::detail::ILocalGetFrame</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::wlan::detail::ILocalManager">nn::wlan::detail::ILocalManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::wlan::detail::ISocketGetFrame">nn::wlan::detail::ISocketGetFrame</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::wlan::detail::ISocketManager">nn::wlan::detail::ISocketManager</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nn::xcd::detail::ISystemServer">nn::xcd::detail::ISystemServer</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nns::hosbinder::IHOSBinderDriver">nns::hosbinder::IHOSBinderDriver</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nns::nvdrv::INvDrvDebugFSServices">nns::nvdrv::INvDrvDebugFSServices</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nns::nvdrv::INvDrvServices">nns::nvdrv::INvDrvServices</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nv::gemcontrol::INvGemControl">nv::gemcontrol::INvGemControl</a>
+					<a class="list-group-item list-group-item-action" href="ifaces.html#nv::gemcoredump::INvGemCoreDump">nv::gemcoredump::INvGemCoreDump</a>
+				</div>
+				<h2 id="types">Types</h2>
+				<div class="list-group">
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::system::EulaVersion">nn::settings::system::EulaVersion</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::pctl::SafetyLevelSettings">nn::pctl::SafetyLevelSettings</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::nifm::Requirement">nn::nifm::Requirement</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::nifm::SsidListVersion">nn::nifm::SsidListVersion</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::mii::CreateId">nn::mii::CreateId</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::bcat::DirectoryName">nn::bcat::DirectoryName</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::factory::Rsa2048DeviceCertificate">nn::settings::factory::Rsa2048DeviceCertificate</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::ExternalApplicationCatalogId">nn::friends::ExternalApplicationCatalogId</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::nifm::IpSettingData">nn::nifm::IpSettingData</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::system::FatalDirtyFlag">nn::settings::system::FatalDirtyFlag</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::detail::ipc::SizedFriendFilter">nn::friends::detail::ipc::SizedFriendFilter</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::hid::system::UniquePadId">nn::hid::system::UniquePadId</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::system::FirmwareVersion">nn::settings::system::FirmwareVersion</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::pcv::ModuleState">nn::pcv::ModuleState</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::ncm::StorageId">nn::ncm::StorageId</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::pcv::PowerControlTarget">nn::pcv::PowerControlTarget</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::am::service::AppletIdentityInfo">nn::am::service::AppletIdentityInfo</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::pcv::TemperatureThreshold">nn::pcv::TemperatureThreshold</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::account::nas::NasUserBase">nn::account::nas::NasUserBase</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::time::SystemClockContext">nn::time::SystemClockContext</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::nifm::detail::sf::AccessPointData">nn::nifm::detail::sf::AccessPointData</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::account::nas::NasUserBaseForApplication">nn::account::nas::NasUserBaseForApplication</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::pcv::PowerDomainState">nn::pcv::PowerDomainState</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::factory::AccelerometerOffset">nn::settings::factory::AccelerometerOffset</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::npns::NotificationToken">nn::npns::NotificationToken</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::detail::ProfileImpl">nn::friends::detail::ProfileImpl</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::irsensor::PackedMcuVersion">nn::irsensor::PackedMcuVersion</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::am::service::AppletProcessLaunchReason">nn::am::service::AppletProcessLaunchReason</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::nifm::IpAddressSetting">nn::nifm::IpAddressSetting</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::account::profile::UserData">nn::account::profile::UserData</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::ssl::sf::InternalPki">nn::ssl::sf::InternalPki</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::system::BluetoothDevicesSettings">nn::settings::system::BluetoothDevicesSettings</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::time::CalendarTime">nn::time::CalendarTime</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::system::TvSettings">nn::settings::system::TvSettings</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::hid::BasicXpadId">nn::hid::BasicXpadId</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::factory::EccB233DeviceKey">nn::settings::factory::EccB233DeviceKey</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::hid::system::UniqueSixAxisSensorHandle">nn::hid::system::UniqueSixAxisSensorHandle</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::apm::PerformanceMode">nn::apm::PerformanceMode</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::account::NintendoAccountAuthorizationRequestParameters">nn::account::NintendoAccountAuthorizationRequestParameters</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::LanguageCode">nn::settings::LanguageCode</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::nifm::detail::sf::NetworkInterfaceInfo">nn::nifm::detail::sf::NetworkInterfaceInfo</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::account::RequestUrl">nn::account::RequestUrl</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::hid::JoyXpadId">nn::hid::JoyXpadId</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::factory::GameCardCertificate">nn::settings::factory::GameCardCertificate</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::system::BacklightSettings">nn::settings::system::BacklightSettings</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::TimeSpan">nn::TimeSpan</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::hid::VibrationValue">nn::hid::VibrationValue</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::account::nas::State">nn::account::nas::State</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::factory::MacAddress">nn::settings::factory::MacAddress</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::fssrv::sf::SaveStruct">nn::fssrv::sf::SaveStruct</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::ApplicationId">nn::ApplicationId</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::vi::DisplayName">nn::vi::DisplayName</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::account::detail::Uuid">nn::account::detail::Uuid</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::ssl::sf::SessionCacheMode">nn::ssl::sf::SessionCacheMode</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::nifm::detail::sf::NetworkProfileBasicInfo">nn::nifm::detail::sf::NetworkProfileBasicInfo</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::bcat::DeliveryCacheDirectoryEntry">nn::bcat::DeliveryCacheDirectoryEntry</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::hid::system::KeyboardLockKeyEvent">nn::hid::system::KeyboardLockKeyEvent</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::system::AudioVolume">nn::settings::system::AudioVolume</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::irsensor::ImageTransferProcessorState">nn::irsensor::ImageTransferProcessorState</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::factory::GameCardKey">nn::settings::factory::GameCardKey</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::ssl::sf::VerifyOption">nn::ssl::sf::VerifyOption</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::ExternalApplicationCatalog">nn::friends::ExternalApplicationCatalog</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::InAppScreenName">nn::friends::InAppScreenName</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::hid::debug::HomeButtonAutoPilotState">nn::hid::debug::HomeButtonAutoPilotState</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::system::AccountSettings">nn::settings::system::AccountSettings</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::apm::EventTarget">nn::apm::EventTarget</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::irsensor::IrCameraHandle">nn::irsensor::IrCameraHandle</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::bcat::Digest">nn::bcat::Digest</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::bcat::FileName">nn::bcat::FileName</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::system::InitialLaunchSettings">nn::settings::system::InitialLaunchSettings</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::hid::SixAxisSensorHandle">nn::hid::SixAxisSensorHandle</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::hid::system::FirmwareUpdateState">nn::hid::system::FirmwareUpdateState</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::hid::debug::BasicXpadAutoPilotState">nn::hid::debug::BasicXpadAutoPilotState</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::ssl::sf::RenegotiationMode">nn::ssl::sf::RenegotiationMode</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::vi::ProxyName">nn::vi::ProxyName</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::factory::ConfigurationId1">nn::settings::factory::ConfigurationId1</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::hid::tmp::ConsoleSixAxisSensorCalibrationValues">nn::hid::tmp::ConsoleSixAxisSensorCalibrationValues</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::detail::FriendCandidateImpl">nn::friends::detail::FriendCandidateImpl</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::hid::debug::CaptureButtonAutoPilotState">nn::hid::debug::CaptureButtonAutoPilotState</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::MiiName">nn::friends::MiiName</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::capsrv::ApplicationAlbumEntry">nn::capsrv::ApplicationAlbumEntry</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::factory::EccB233DeviceCertificate">nn::settings::factory::EccB233DeviceCertificate</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::detail::PlayHistoryImpl">nn::friends::detail::PlayHistoryImpl</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::ncm::ApplicationId">nn::ncm::ApplicationId</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::bluetooth::Address">nn::bluetooth::Address</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::system::PtmFuelGaugeParameter">nn::settings::system::PtmFuelGaugeParameter</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::factory::BdAddress">nn::settings::factory::BdAddress</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::FriendCode">nn::friends::FriendCode</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::system::DeviceNickName">nn::settings::system::DeviceNickName</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::factory::SerialNumber">nn::settings::factory::SerialNumber</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::account::Nickname">nn::account::Nickname</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::factory::GyroscopeOffset">nn::settings::factory::GyroscopeOffset</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::am::service::LibraryAppletInfo">nn::am::service::LibraryAppletInfo</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::detail::FriendRequestImpl">nn::friends::detail::FriendRequestImpl</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::pctl::detail::PairingInfoBase">nn::pctl::detail::PairingInfoBase</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::detail::ProfileExtraImpl">nn::friends::detail::ProfileExtraImpl</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::irsensor::PackedMomentProcessorConfig">nn::irsensor::PackedMomentProcessorConfig</a>
+					<a class="list-group-item list-group-item-action" href="types.html#ServiceName">ServiceName</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::hid::VibrationDeviceHandle">nn::hid::VibrationDeviceHandle</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::bcat::PushNotificationLog">nn::bcat::PushNotificationLog</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::factory::SpeakerParameter">nn::settings::factory::SpeakerParameter</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::system::NotificationSettings">nn::settings::system::NotificationSettings</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::detail::ipc::SizedNotificationInfo">nn::friends::detail::ipc::SizedNotificationInfo</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::ncm::ProgramId">nn::ncm::ProgramId</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::system::AccountNotificationSettings">nn::settings::system::AccountNotificationSettings</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::vi::DisplayModeInfo">nn::vi::DisplayModeInfo</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::mii::StoreDataElement">nn::mii::StoreDataElement</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::factory::AccelerometerScale">nn::settings::factory::AccelerometerScale</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::hid::system::PlayReportControllerUsage">nn::hid::system::PlayReportControllerUsage</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::nifm::AdditionalInfo">nn::nifm::AdditionalInfo</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::system::NetworkSettings">nn::settings::system::NetworkSettings</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::am::service::WindowCreationOption">nn::am::service::WindowCreationOption</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::ns::ApplicationControlProperty">nn::ns::ApplicationControlProperty</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::ssl::sf::PollEvent">nn::ssl::sf::PollEvent</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::SettingsName">nn::settings::SettingsName</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::NintendoNetworkIdUserInfo">nn::friends::NintendoNetworkIdUserInfo</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::hid::debug::KeyboardAutoPilotState">nn::hid::debug::KeyboardAutoPilotState</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::oe::DisplayVersion">nn::oe::DisplayVersion</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::detail::UserSettingImpl">nn::friends::detail::UserSettingImpl</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::detail::FriendSettingImpl">nn::friends::detail::FriendSettingImpl</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::fgm::Module">nn::fgm::Module</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::hid::debug::MouseAutoPilotState">nn::hid::debug::MouseAutoPilotState</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::PlayHistoryStatistics">nn::friends::PlayHistoryStatistics</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::hid::system::RegisteredDevice">nn::hid::system::RegisteredDevice</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::time::TimeZoneRuleVersion">nn::time::TimeZoneRuleVersion</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::account::nas::NasClientInfo">nn::account::nas::NasClientInfo</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::time::PosixTime">nn::time::PosixTime</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::irsensor::PackedImageTransferProcessorConfig">nn::irsensor::PackedImageTransferProcessorConfig</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::ssl::sf::OptionType">nn::ssl::sf::OptionType</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::nifm::TelemetryInfo">nn::nifm::TelemetryInfo</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::detail::BlockedUserImpl">nn::friends::detail::BlockedUserImpl</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::Url">nn::friends::Url</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::hid::system::InputSourceId">nn::hid::system::InputSourceId</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::ssl::sf::IoMode">nn::ssl::sf::IoMode</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::capsrv::detail::ScreenShotAttributeEx0">nn::capsrv::detail::ScreenShotAttributeEx0</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::hid::debug::SleepButtonAutoPilotState">nn::hid::debug::SleepButtonAutoPilotState</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::am::AppletAttribute">nn::am::AppletAttribute</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::factory::GyroscopeScale">nn::settings::factory::GyroscopeScale</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::account::SystemProgramIdentification">nn::account::SystemProgramIdentification</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::nifm::detail::sf::NetworkProfileData">nn::nifm::detail::sf::NetworkProfileData</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::nifm::IpV4Address">nn::nifm::IpV4Address</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::time::sf::CalendarAdditionalInfo">nn::time::sf::CalendarAdditionalInfo</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::bcat::TaskInfo">nn::bcat::TaskInfo</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::account::Uid">nn::account::Uid</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::account::ProfileDigest">nn::account::ProfileDigest</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::account::NetworkServiceAccountId">nn::account::NetworkServiceAccountId</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::err::ErrorCode">nn::err::ErrorCode</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::pctl::InquiryCode">nn::pctl::InquiryCode</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::apm::PerformanceConfiguration">nn::apm::PerformanceConfiguration</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::nifm::ClientId">nn::nifm::ClientId</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::hid::system::FirmwareUpdateDeviceHandle">nn::hid::system::FirmwareUpdateDeviceHandle</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::apm::ThrottlingState">nn::apm::ThrottlingState</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::detail::FriendImpl">nn::friends::detail::FriendImpl</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::ssl::sf::ContextOption">nn::ssl::sf::ContextOption</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::Relationship">nn::friends::Relationship</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::detail::NintendoNetworkIdFriendImpl">nn::friends::detail::NintendoNetworkIdFriendImpl</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::account::CallbackUri">nn::account::CallbackUri</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::time::LocationName">nn::time::LocationName</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::hid::NpadStyleTag">nn::hid::NpadStyleTag</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::vi::DisplayInfo">nn::vi::DisplayInfo</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::system::SleepSettings">nn::settings::system::SleepSettings</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::irsensor::PackedClusteringProcessorConfig">nn::irsensor::PackedClusteringProcessorConfig</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::account::profile::ProfileBase">nn::account::profile::ProfileBase</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::factory::BatteryLot">nn::settings::factory::BatteryLot</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::hid::system::DeviceType">nn::hid::system::DeviceType</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::hid::ConsoleSixAxisSensorHandle">nn::hid::ConsoleSixAxisSensorHandle</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::system::DataDeletionSettings">nn::settings::system::DataDeletionSettings</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::irsensor::PackedTeraPluginProcessorConfig">nn::irsensor::PackedTeraPluginProcessorConfig</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::nifm::detail::sf::InternetConnectionStatus">nn::nifm::detail::sf::InternetConnectionStatus</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::pctl::FreeCommunicationApplicationInfo">nn::pctl::FreeCommunicationApplicationInfo</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::FacedFriendRequestRegistrationKey">nn::friends::FacedFriendRequestRegistrationKey</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::util::Uuid">nn::util::Uuid</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::am::service::AppletKind">nn::am::service::AppletKind</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::detail::UserPresenceImpl">nn::friends::detail::UserPresenceImpl</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::RequestId">nn::friends::RequestId</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::fssrv::sf::SaveCreateStruct">nn::fssrv::sf::SaveCreateStruct</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::time::TimeZoneRule">nn::time::TimeZoneRule</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::system::BacklightSettingsEx">nn::settings::system::BacklightSettingsEx</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::mii::CharInfo">nn::mii::CharInfo</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::account::NintendoAccountId">nn::account::NintendoAccountId</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::ncm::SystemApplicationId">nn::ncm::SystemApplicationId</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::util::Unorm8x4">nn::util::Unorm8x4</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::am::service::EmulatedButtonEvent">nn::am::service::EmulatedButtonEvent</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::time::SteadyClockTimePoint">nn::time::SteadyClockTimePoint</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::SettingsItemKey">nn::settings::SettingsItemKey</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::mii::StoreData">nn::mii::StoreData</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::system::SerialNumber">nn::settings::system::SerialNumber</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::detail::FriendDetailedInfoImpl">nn::friends::detail::FriendDetailedInfoImpl</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::detail::UserPresenceViewImpl">nn::friends::detail::UserPresenceViewImpl</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::bcat::detail::DeliveryCacheProgressImpl">nn::bcat::detail::DeliveryCacheProgressImpl</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::hid::VibrationDeviceInfoForIpc">nn::hid::VibrationDeviceInfoForIpc</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::TimeSpanType">nn::TimeSpanType</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::hid::TouchState">nn::hid::TouchState</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::ssl::sf::CertificateFormat">nn::ssl::sf::CertificateFormat</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::system::NxControllerSettings">nn::settings::system::NxControllerSettings</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::factory::SslCertificate">nn::settings::factory::SslCertificate</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::am::AppletMessage">nn::am::AppletMessage</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::pctl::PlayTimerSettings">nn::pctl::PlayTimerSettings</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::mii::CharInfoElement">nn::mii::CharInfoElement</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::irsensor::PackedDpdProcessorConfig">nn::irsensor::PackedDpdProcessorConfig</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::factory::CountryCode">nn::settings::factory::CountryCode</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::hid::debug::DebugPadAutoPilotState">nn::hid::debug::DebugPadAutoPilotState</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::MiiImageUrlParam">nn::friends::MiiImageUrlParam</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::factory::Rsa2048DeviceKey">nn::settings::factory::Rsa2048DeviceKey</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::system::BatteryLot">nn::settings::system::BatteryLot</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::pctl::detail::AsyncData">nn::pctl::detail::AsyncData</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::pctl::detail::PairingAccountInfoBase">nn::pctl::detail::PairingAccountInfoBase</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::system::TelemetryDirtyFlag">nn::settings::system::TelemetryDirtyFlag</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::system::Edid">nn::settings::system::Edid</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::nifm::DnsSetting">nn::nifm::DnsSetting</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::ssl::sf::SslVersion">nn::ssl::sf::SslVersion</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::hid::system::FirmwareVersion">nn::hid::system::FirmwareVersion</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::fssrv::sf::Partition">nn::fssrv::sf::Partition</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::PlayHistoryRegistrationKey">nn::friends::PlayHistoryRegistrationKey</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::settings::factory::SslKey">nn::settings::factory::SslKey</a>
+					<a class="list-group-item list-group-item-action" href="types.html#nn::friends::ApplicationInfo">nn::friends::ApplicationInfo</a>
+				</div>
+			</div>
+			<div class="col-1">
+				<nav id="toc" data-toggle="toc"></nav>
+			</div>
+		</div>
+		</div>
 	</body>
 </html>

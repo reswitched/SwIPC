@@ -117,84 +117,132 @@ afp = Multifile(ifp, tfp, nfp)
 
 print >>afp, '<!doctype html><html>'
 print >>afp, '\t<head>'
-print >>afp, '\t<meta http-equiv="Content-Language" content="en">'
+print >>afp, '\t\t<meta http-equiv="Content-Language" content="en">'
 print >>afp, '\t\t<title>SwIPC</title>'
+print >>afp, '\t\t<link rel="stylesheet" href="css/bootstrap.min.css" />'
+print >>ifp, '\t\t<link rel="stylesheet" href="css/bootstrap-toc.min.css" />'
+print >>afp, '\t\t<link rel="stylesheet" href="css/main.css" />'
+print >>ifp, '\t\t<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>'
+print >>ifp, '\t\t<script type="text/javascript" src="js/bootstrap.min.js"></script>'
+print >>ifp, '\t\t<script type="text/javascript" src="js/bootstrap-toc.min.js"></script>'
 print >>afp, '\t</head>'
-print >>afp, '\t<body>'
+print >>ifp, '\t<body data-spy="scroll" data-target="#toc">'
+print >>tfp, '\t<body>'
+print >>nfp, '\t<body>'
+print >>afp, '\t\t<div class="container">'
 afp += 2
 
-print >>ifp, '<h1>SwIPC</h1>'
+print >>ifp, '<div class="row">'
+print >>ifp, '\t<div class="col-11">'
+print >>ifp, '\t\t<div class="jumbotron">'
+print >>ifp, '\t\t\t<h1 class="display-3">SwIPC</h1>'
+print >>ifp, '\t\t\t<p class="lead">Your one-stop-shop for Nintendo Switch IPC definitions.</p>'
+print >>ifp, '\t\t</div>'
+ifp += 2
 
-print >>ifp, '<h2>Services</h2>'
-print >>ifp, '<ul>'
+print >>ifp, '<h2 id="services">Services</h2>'
+print >>ifp, '<div class="list-group">'
 ifp += 1
 for service, iface in sorted(invServices.items(), key=lambda x: x[0]):
-	print >>ifp, '<li><a href="ifaces.html#%s">%s</a></li>' % (iface, service)
+	print >>ifp, '<a class="list-group-item list-group-item-action" href="ifaces.html#%s">%s</a>' % (iface, service)
 ifp -= 1
-print >>ifp, '</ul>'
+print >>ifp, '</div>'
+print >>ifp, '<br />'
 
-print >>ifp, '<h1>Interfaces</h1>'
-print >>ifp, '<ul>'
+print >>ifp, '<h2 id="interfaces">Interfaces</h2>'
+print >>ifp, '<div class="list-group">'
 ifp += 1
 for iface in sorted(ifaces.keys()):
-	print >>ifp, '<li><a href="ifaces.html#%s">%s</a></li>' % (iface, iface)
+	print >>ifp, '<a class="list-group-item list-group-item-action" href="ifaces.html#%s">%s</a>' % (iface, iface)
 ifp -= 1
-print >>ifp, '</ul>'
+print >>ifp, '</div>'
 
-print >>ifp, '<h2>Types</h2>'
-print >>ifp, '<ul>'
+print >>ifp, '<h2 id="types">Types</h2>'
+print >>ifp, '<div class="list-group">'
 ifp += 1
 for elem in types:
-	print >>ifp, '<li><a href="types.html#%s">%s</a></li>' % (elem, elem)
+	print >>ifp, '<a class="list-group-item list-group-item-action" href="types.html#%s">%s</a>' % (elem, elem)
 ifp -= 1
-print >>ifp, '</ul>'
+print >>ifp, '</div>'
+ifp -= 1
+print >>ifp, '</div>'
 
-print >>nfp, '<h1>SwIPC Interfaces</h1>'
+print >>ifp, '<div class="col-1">'
+print >>ifp, '\t<nav id="toc" data-toggle="toc"></nav>'
+print >>ifp, '</div>'
+ifp -= 1
+print >>ifp, '</div>'
+
+print >>nfp, '<h1 class="display-3">SwIPC Interfaces</h1>'
+print >>nfp, '<br />'
 for name, cmds in ifaces.items():
-	print >>nfp, '<a name="%s"><h2>%s</h2></a>' % (name, name)
+	print >>nfp, '<div class="card">'
+	nfp += 1
+
+	print >>nfp, '<div class="card-header">'
+	print >>nfp, '\t<h2 id="%s">%s</h2>' % (name, name)
+	print >>nfp, '</div>'
+	print >>nfp, '<ul class="list-group list-group-flush">'
+	nfp += 1
+
 	if name in services:
-		print >>nfp, '<h3>Provides:</h3>'
-		print >>nfp, '<ul>'
-		nfp += 1
+		print >>nfp, '<li class="list-group-item">'
+		print >>nfp, '\t<h3>Provides:</h3>'
+		print >>nfp, '\t<ul>'
+		nfp += 2
 		for x in sorted(services[name]):
 			print >>nfp, '<li>%s</li>' % x
-		nfp -= 1
-		print >>nfp, '</ul>'
+		nfp -= 2
+		print >>nfp, '\t</ul>'
+		print >>nfp, '</li>'
 	if name in returnedBy:
-		print >>nfp, '<h3>Returned by:</h3>'
-		print >>nfp, '<ul>'
-		nfp += 1
+		print >>nfp, '<li class="list-group-item">'
+		print >>nfp, '\t<h3>Returned by:</h3>'
+		print >>nfp, '\t<ul>'
+		nfp += 2
 		for x in sorted(returnedBy[name]):
 			print >>nfp, '<li><a href="ifaces.html#%s(%i)">%s</a></li>' % (x[0], x[1], '%s::%s [%i]' % (x[0], findCmd(x[0], x[1])[0], x[1]))
-		nfp -= 1
-		print >>nfp, '</ul>'
+		nfp -= 2
+		print >>nfp, '\t</ul>'
+		print >>nfp, '</li>'
 	if name in takenBy:
-		print >>nfp, '<h3>Taken by:</h3>'
-		print >>nfp, '<ul>'
-		nfp += 1
+		print >>nfp, '<li class="list-group-item">'
+		print >>nfp, '\t<h3>Taken by:</h3>'
+		print >>nfp, '\t<ul>'
+		nfp += 2
 		for x in sorted(takenBy[name]):
 			print >>nfp, '<li><a href="ifaces.html#%s(%i)">%s</a></li>' % (x[0], x[1], '%s::%s [%i]' % (x[0], findCmd(x[0], x[1])[0], x[1]))
 		nfp -= 1
-		print >>nfp, '</ul>'
+		print >>nfp, '\t</ul>'
+		print >>nfp, '</li>'
 
 	if len(cmds):
-		print >>nfp, '<h3>Commands:</h3>'
-		print >>nfp, '<ol>'
-		nfp += 1
+		print >>nfp, '<li class="list-group-item">'
+		print >>nfp, '\t<h3>Commands:</h3>'
+		print >>nfp, '\t<ol>'
+		nfp += 2
 		for cname, cmd in sorted(cmds.items(), key=lambda x: x[1]['cmdId']):
 			cdef = '%s(%s)%s' % (cname, format(cmd['inputs']), ' -&gt; %s' % format(cmd['outputs'], output=True) if len(cmd['outputs']) != 0 else '')
-			print >>nfp, '<li value="%i"><a name="%s">%s</a></li>' % (cmd['cmdId'], '%s(%i)' % (name, cmd['cmdId']), cdef)
-		nfp -= 1
-		print >>nfp, '</ol>'
+			print >>nfp, '<li value="%i" id="%s">%s</li>' % (cmd['cmdId'], '%s(%i)' % (name, cmd['cmdId']), cdef)
+		nfp -= 2
+		print >>nfp, '\t</ol>'
+		print >>nfp, '</li>'
 
-print >>tfp, '<h1>SwIPC Types</h1>'
-print >>tfp, '<ul>'
+	nfp -= 2
+	print >>nfp, '\t</ul>'
+	print >>nfp, '</div>'
+	print >>nfp, '<br />'
+
+print >>tfp, '<h1 class="display-3">SwIPC Types</h1>'
+print >>tfp, '<br />'
+print >>tfp, '<ul class="list-group">'
 tfp += 1
 for name, type in types.items():
-	print >>tfp, '<li><a name="%s">%s = %s</a></li>' % (name, name, format([(None, type)]))
+	print >>tfp, '<li class="list-group-item" id="%s">%s <small class="text-muted">%s</small></li>' % (name, name, format([(None, type)]))
 tfp -= 1
 print >>tfp, '</ul>'
 
 afp -= 2
+print >>afp, '\t\t</div>'
 print >>afp, '\t</body>'
 print >>afp, '</html>'
