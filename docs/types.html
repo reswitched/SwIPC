@@ -1,228 +1,233 @@
 <!doctype html><html>
 	<head>
-	<meta http-equiv="Content-Language" content="en">
+		<meta http-equiv="Content-Language" content="en">
 		<title>SwIPC</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/main.css" />
 	</head>
 	<body>
-		<h1>SwIPC Types</h1>
-		<ul>
-			<li><a name="ServiceName">ServiceName = bytes&lt;8&gt;</a></li>
-			<li><a name="nn::ApplicationId">nn::ApplicationId = u64</a></li>
-			<li><a name="nn::TimeSpan">nn::TimeSpan = u64</a></li>
-			<li><a name="nn::TimeSpanType">nn::TimeSpanType = u64</a></li>
-			<li><a name="nn::account::CallbackUri">nn::account::CallbackUri = unknown</a></li>
-			<li><a name="nn::account::NetworkServiceAccountId">nn::account::NetworkServiceAccountId = u64</a></li>
-			<li><a name="nn::account::Nickname">nn::account::Nickname = bytes&lt;0x21&gt;</a></li>
-			<li><a name="nn::account::NintendoAccountAuthorizationRequestParameters">nn::account::NintendoAccountAuthorizationRequestParameters = unknown</a></li>
-			<li><a name="nn::account::NintendoAccountId">nn::account::NintendoAccountId = u64</a></li>
-			<li><a name="nn::account::ProfileDigest">nn::account::ProfileDigest = u128</a></li>
-			<li><a name="nn::account::RequestUrl">nn::account::RequestUrl = unknown</a></li>
-			<li><a name="nn::account::SystemProgramIdentification">nn::account::SystemProgramIdentification = unknown</a></li>
-			<li><a name="nn::account::Uid">nn::account::Uid = u128</a></li>
-			<li><a name="nn::account::detail::Uuid">nn::account::detail::Uuid = u128</a></li>
-			<li><a name="nn::account::nas::NasClientInfo">nn::account::nas::NasClientInfo = unknown</a></li>
-			<li><a name="nn::account::nas::NasUserBase">nn::account::nas::NasUserBase = unknown</a></li>
-			<li><a name="nn::account::nas::NasUserBaseForApplication">nn::account::nas::NasUserBaseForApplication = unknown</a></li>
-			<li><a name="nn::account::nas::State">nn::account::nas::State = unknown</a></li>
-			<li><a name="nn::account::profile::ProfileBase">nn::account::profile::ProfileBase = bytes&lt;0x38&gt;</a></li>
-			<li><a name="nn::account::profile::UserData">nn::account::profile::UserData = unknown</a></li>
-			<li><a name="nn::am::AppletAttribute">nn::am::AppletAttribute = unknown</a></li>
-			<li><a name="nn::am::AppletMessage">nn::am::AppletMessage = u32</a></li>
-			<li><a name="nn::am::service::AppletIdentityInfo">nn::am::service::AppletIdentityInfo = u128</a></li>
-			<li><a name="nn::am::service::AppletKind">nn::am::service::AppletKind = u64</a></li>
-			<li><a name="nn::am::service::AppletProcessLaunchReason">nn::am::service::AppletProcessLaunchReason = u32</a></li>
-			<li><a name="nn::am::service::EmulatedButtonEvent">nn::am::service::EmulatedButtonEvent = u32</a></li>
-			<li><a name="nn::am::service::LibraryAppletInfo">nn::am::service::LibraryAppletInfo = u64</a></li>
-			<li><a name="nn::am::service::WindowCreationOption">nn::am::service::WindowCreationOption = u32</a></li>
-			<li><a name="nn::apm::EventTarget">nn::apm::EventTarget = u32</a></li>
-			<li><a name="nn::apm::PerformanceConfiguration">nn::apm::PerformanceConfiguration = u32</a></li>
-			<li><a name="nn::apm::PerformanceMode">nn::apm::PerformanceMode = u32</a></li>
-			<li><a name="nn::apm::ThrottlingState">nn::apm::ThrottlingState = bytes&lt;0x28&gt;</a></li>
-			<li><a name="nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId = u64</a></li>
-			<li><a name="nn::bcat::DeliveryCacheDirectoryEntry">nn::bcat::DeliveryCacheDirectoryEntry = unknown</a></li>
-			<li><a name="nn::bcat::Digest">nn::bcat::Digest = u128</a></li>
-			<li><a name="nn::bcat::DirectoryName">nn::bcat::DirectoryName = bytes&lt;0x20&gt;</a></li>
-			<li><a name="nn::bcat::FileName">nn::bcat::FileName = bytes&lt;0x20&gt;</a></li>
-			<li><a name="nn::bcat::PushNotificationLog">nn::bcat::PushNotificationLog = unknown</a></li>
-			<li><a name="nn::bcat::TaskInfo">nn::bcat::TaskInfo = unknown</a></li>
-			<li><a name="nn::bcat::detail::DeliveryCacheProgressImpl">nn::bcat::detail::DeliveryCacheProgressImpl = unknown</a></li>
-			<li><a name="nn::bluetooth::Address">nn::bluetooth::Address = bytes&lt;6&gt;</a></li>
-			<li><a name="nn::capsrv::ApplicationAlbumEntry">nn::capsrv::ApplicationAlbumEntry = bytes&lt;0x20&gt;</a></li>
-			<li><a name="nn::capsrv::detail::ScreenShotAttributeEx0">nn::capsrv::detail::ScreenShotAttributeEx0 = bytes&lt;0x40&gt;</a></li>
-			<li><a name="nn::err::ErrorCode">nn::err::ErrorCode = u64</a></li>
-			<li><a name="nn::fgm::Module">nn::fgm::Module = u32</a></li>
-			<li><a name="nn::friends::ApplicationInfo">nn::friends::ApplicationInfo = u128</a></li>
-			<li><a name="nn::friends::ExternalApplicationCatalog">nn::friends::ExternalApplicationCatalog = unknown</a></li>
-			<li><a name="nn::friends::ExternalApplicationCatalogId">nn::friends::ExternalApplicationCatalogId = u128</a></li>
-			<li><a name="nn::friends::FacedFriendRequestRegistrationKey">nn::friends::FacedFriendRequestRegistrationKey = bytes&lt;0x40&gt;</a></li>
-			<li><a name="nn::friends::FriendCode">nn::friends::FriendCode = bytes&lt;0x20&gt;</a></li>
-			<li><a name="nn::friends::InAppScreenName">nn::friends::InAppScreenName = unknown</a></li>
-			<li><a name="nn::friends::MiiImageUrlParam">nn::friends::MiiImageUrlParam = u128</a></li>
-			<li><a name="nn::friends::MiiName">nn::friends::MiiName = bytes&lt;0x20&gt;</a></li>
-			<li><a name="nn::friends::NintendoNetworkIdUserInfo">nn::friends::NintendoNetworkIdUserInfo = unknown</a></li>
-			<li><a name="nn::friends::PlayHistoryRegistrationKey">nn::friends::PlayHistoryRegistrationKey = unknown</a></li>
-			<li><a name="nn::friends::PlayHistoryStatistics">nn::friends::PlayHistoryStatistics = u128</a></li>
-			<li><a name="nn::friends::Relationship">nn::friends::Relationship = u64</a></li>
-			<li><a name="nn::friends::RequestId">nn::friends::RequestId = u64</a></li>
-			<li><a name="nn::friends::Url">nn::friends::Url = bytes&lt;0xa0&gt;</a></li>
-			<li><a name="nn::friends::detail::BlockedUserImpl">nn::friends::detail::BlockedUserImpl = unknown</a></li>
-			<li><a name="nn::friends::detail::FriendCandidateImpl">nn::friends::detail::FriendCandidateImpl = unknown</a></li>
-			<li><a name="nn::friends::detail::FriendDetailedInfoImpl">nn::friends::detail::FriendDetailedInfoImpl = unknown</a></li>
-			<li><a name="nn::friends::detail::FriendImpl">nn::friends::detail::FriendImpl = unknown</a></li>
-			<li><a name="nn::friends::detail::FriendRequestImpl">nn::friends::detail::FriendRequestImpl = unknown</a></li>
-			<li><a name="nn::friends::detail::FriendSettingImpl">nn::friends::detail::FriendSettingImpl = unknown</a></li>
-			<li><a name="nn::friends::detail::NintendoNetworkIdFriendImpl">nn::friends::detail::NintendoNetworkIdFriendImpl = unknown</a></li>
-			<li><a name="nn::friends::detail::PlayHistoryImpl">nn::friends::detail::PlayHistoryImpl = unknown</a></li>
-			<li><a name="nn::friends::detail::ProfileExtraImpl">nn::friends::detail::ProfileExtraImpl = unknown</a></li>
-			<li><a name="nn::friends::detail::ProfileImpl">nn::friends::detail::ProfileImpl = unknown</a></li>
-			<li><a name="nn::friends::detail::UserPresenceImpl">nn::friends::detail::UserPresenceImpl = unknown</a></li>
-			<li><a name="nn::friends::detail::UserPresenceViewImpl">nn::friends::detail::UserPresenceViewImpl = unknown</a></li>
-			<li><a name="nn::friends::detail::UserSettingImpl">nn::friends::detail::UserSettingImpl = unknown</a></li>
-			<li><a name="nn::friends::detail::ipc::SizedFriendFilter">nn::friends::detail::ipc::SizedFriendFilter = u128</a></li>
-			<li><a name="nn::friends::detail::ipc::SizedNotificationInfo">nn::friends::detail::ipc::SizedNotificationInfo = u128</a></li>
-			<li><a name="nn::fssrv::sf::Partition">nn::fssrv::sf::Partition = u32</a></li>
-			<li><a name="nn::fssrv::sf::SaveCreateStruct">nn::fssrv::sf::SaveCreateStruct = bytes&lt;0x40&gt;</a></li>
-			<li><a name="nn::fssrv::sf::SaveStruct">nn::fssrv::sf::SaveStruct = bytes&lt;0x40&gt;</a></li>
-			<li><a name="nn::hid::BasicXpadId">nn::hid::BasicXpadId = u32</a></li>
-			<li><a name="nn::hid::ConsoleSixAxisSensorHandle">nn::hid::ConsoleSixAxisSensorHandle = u32</a></li>
-			<li><a name="nn::hid::JoyXpadId">nn::hid::JoyXpadId = u32</a></li>
-			<li><a name="nn::hid::NpadStyleTag">nn::hid::NpadStyleTag = u32</a></li>
-			<li><a name="nn::hid::SixAxisSensorHandle">nn::hid::SixAxisSensorHandle = u32</a></li>
-			<li><a name="nn::hid::TouchState">nn::hid::TouchState = unknown</a></li>
-			<li><a name="nn::hid::VibrationDeviceHandle">nn::hid::VibrationDeviceHandle = u32</a></li>
-			<li><a name="nn::hid::VibrationDeviceInfoForIpc">nn::hid::VibrationDeviceInfoForIpc = u64</a></li>
-			<li><a name="nn::hid::VibrationValue">nn::hid::VibrationValue = u128</a></li>
-			<li><a name="nn::hid::debug::BasicXpadAutoPilotState">nn::hid::debug::BasicXpadAutoPilotState = bytes&lt;0x1c&gt;</a></li>
-			<li><a name="nn::hid::debug::CaptureButtonAutoPilotState">nn::hid::debug::CaptureButtonAutoPilotState = u64</a></li>
-			<li><a name="nn::hid::debug::DebugPadAutoPilotState">nn::hid::debug::DebugPadAutoPilotState = bytes&lt;0x18&gt;</a></li>
-			<li><a name="nn::hid::debug::HomeButtonAutoPilotState">nn::hid::debug::HomeButtonAutoPilotState = u64</a></li>
-			<li><a name="nn::hid::debug::KeyboardAutoPilotState">nn::hid::debug::KeyboardAutoPilotState = bytes&lt;0x28&gt;</a></li>
-			<li><a name="nn::hid::debug::MouseAutoPilotState">nn::hid::debug::MouseAutoPilotState = bytes&lt;0x1c&gt;</a></li>
-			<li><a name="nn::hid::debug::SleepButtonAutoPilotState">nn::hid::debug::SleepButtonAutoPilotState = u64</a></li>
-			<li><a name="nn::hid::system::DeviceType">nn::hid::system::DeviceType = u32</a></li>
-			<li><a name="nn::hid::system::FirmwareUpdateDeviceHandle">nn::hid::system::FirmwareUpdateDeviceHandle = u64</a></li>
-			<li><a name="nn::hid::system::FirmwareUpdateState">nn::hid::system::FirmwareUpdateState = u32</a></li>
-			<li><a name="nn::hid::system::FirmwareVersion">nn::hid::system::FirmwareVersion = u128</a></li>
-			<li><a name="nn::hid::system::InputSourceId">nn::hid::system::InputSourceId = u32</a></li>
-			<li><a name="nn::hid::system::KeyboardLockKeyEvent">nn::hid::system::KeyboardLockKeyEvent = u32</a></li>
-			<li><a name="nn::hid::system::PlayReportControllerUsage">nn::hid::system::PlayReportControllerUsage = unknown</a></li>
-			<li><a name="nn::hid::system::RegisteredDevice">nn::hid::system::RegisteredDevice = unknown</a></li>
-			<li><a name="nn::hid::system::UniquePadId">nn::hid::system::UniquePadId = u64</a></li>
-			<li><a name="nn::hid::system::UniqueSixAxisSensorHandle">nn::hid::system::UniqueSixAxisSensorHandle = u32</a></li>
-			<li><a name="nn::hid::tmp::ConsoleSixAxisSensorCalibrationValues">nn::hid::tmp::ConsoleSixAxisSensorCalibrationValues = bytes&lt;0x18&gt;</a></li>
-			<li><a name="nn::irsensor::ImageTransferProcessorState">nn::irsensor::ImageTransferProcessorState = u128</a></li>
-			<li><a name="nn::irsensor::IrCameraHandle">nn::irsensor::IrCameraHandle = u32</a></li>
-			<li><a name="nn::irsensor::PackedClusteringProcessorConfig">nn::irsensor::PackedClusteringProcessorConfig = bytes&lt;0x28&gt;</a></li>
-			<li><a name="nn::irsensor::PackedDpdProcessorConfig">nn::irsensor::PackedDpdProcessorConfig = bytes&lt;0xc&gt;</a></li>
-			<li><a name="nn::irsensor::PackedImageTransferProcessorConfig">nn::irsensor::PackedImageTransferProcessorConfig = bytes&lt;0x18&gt;</a></li>
-			<li><a name="nn::irsensor::PackedMcuVersion">nn::irsensor::PackedMcuVersion = u32</a></li>
-			<li><a name="nn::irsensor::PackedMomentProcessorConfig">nn::irsensor::PackedMomentProcessorConfig = bytes&lt;0x20&gt;</a></li>
-			<li><a name="nn::irsensor::PackedTeraPluginProcessorConfig">nn::irsensor::PackedTeraPluginProcessorConfig = u64</a></li>
-			<li><a name="nn::mii::CharInfo">nn::mii::CharInfo = bytes&lt;0x58&gt;</a></li>
-			<li><a name="nn::mii::CharInfoElement">nn::mii::CharInfoElement = unknown</a></li>
-			<li><a name="nn::mii::CreateId">nn::mii::CreateId = u128</a></li>
-			<li><a name="nn::mii::StoreData">nn::mii::StoreData = bytes&lt;0x44&gt;</a></li>
-			<li><a name="nn::mii::StoreDataElement">nn::mii::StoreDataElement = unknown</a></li>
-			<li><a name="nn::ncm::ApplicationId">nn::ncm::ApplicationId = u64</a></li>
-			<li><a name="nn::ncm::ProgramId">nn::ncm::ProgramId = u64</a></li>
-			<li><a name="nn::ncm::StorageId">nn::ncm::StorageId = u8</a></li>
-			<li><a name="nn::ncm::SystemApplicationId">nn::ncm::SystemApplicationId = u64</a></li>
-			<li><a name="nn::nifm::AdditionalInfo">nn::nifm::AdditionalInfo = unknown</a></li>
-			<li><a name="nn::nifm::ClientId">nn::nifm::ClientId = unknown</a></li>
-			<li><a name="nn::nifm::DnsSetting">nn::nifm::DnsSetting = bytes&lt;9&gt;</a></li>
-			<li><a name="nn::nifm::IpAddressSetting">nn::nifm::IpAddressSetting = bytes&lt;0xd&gt;</a></li>
-			<li><a name="nn::nifm::IpSettingData">nn::nifm::IpSettingData = unknown</a></li>
-			<li><a name="nn::nifm::IpV4Address">nn::nifm::IpV4Address = u32</a></li>
-			<li><a name="nn::nifm::Requirement">nn::nifm::Requirement = bytes&lt;0x24&gt;</a></li>
-			<li><a name="nn::nifm::SsidListVersion">nn::nifm::SsidListVersion = u128</a></li>
-			<li><a name="nn::nifm::TelemetryInfo">nn::nifm::TelemetryInfo = unknown</a></li>
-			<li><a name="nn::nifm::detail::sf::AccessPointData">nn::nifm::detail::sf::AccessPointData = unknown</a></li>
-			<li><a name="nn::nifm::detail::sf::InternetConnectionStatus">nn::nifm::detail::sf::InternetConnectionStatus = bytes&lt;3&gt;</a></li>
-			<li><a name="nn::nifm::detail::sf::NetworkInterfaceInfo">nn::nifm::detail::sf::NetworkInterfaceInfo = unknown</a></li>
-			<li><a name="nn::nifm::detail::sf::NetworkProfileBasicInfo">nn::nifm::detail::sf::NetworkProfileBasicInfo = unknown</a></li>
-			<li><a name="nn::nifm::detail::sf::NetworkProfileData">nn::nifm::detail::sf::NetworkProfileData = unknown</a></li>
-			<li><a name="nn::npns::NotificationToken">nn::npns::NotificationToken = bytes&lt;0x28&gt;</a></li>
-			<li><a name="nn::ns::ApplicationControlProperty">nn::ns::ApplicationControlProperty = unknown</a></li>
-			<li><a name="nn::oe::DisplayVersion">nn::oe::DisplayVersion = u128</a></li>
-			<li><a name="nn::pctl::FreeCommunicationApplicationInfo">nn::pctl::FreeCommunicationApplicationInfo = unknown</a></li>
-			<li><a name="nn::pctl::InquiryCode">nn::pctl::InquiryCode = bytes&lt;0x20&gt;</a></li>
-			<li><a name="nn::pctl::PlayTimerSettings">nn::pctl::PlayTimerSettings = bytes&lt;0x34&gt;</a></li>
-			<li><a name="nn::pctl::SafetyLevelSettings">nn::pctl::SafetyLevelSettings = bytes&lt;3&gt;</a></li>
-			<li><a name="nn::pctl::detail::AsyncData">nn::pctl::detail::AsyncData = u64</a></li>
-			<li><a name="nn::pctl::detail::PairingAccountInfoBase">nn::pctl::detail::PairingAccountInfoBase = u128</a></li>
-			<li><a name="nn::pctl::detail::PairingInfoBase">nn::pctl::detail::PairingInfoBase = u128</a></li>
-			<li><a name="nn::pcv::ModuleState">nn::pcv::ModuleState = bytes&lt;0xc&gt;</a></li>
-			<li><a name="nn::pcv::PowerControlTarget">nn::pcv::PowerControlTarget = u32</a></li>
-			<li><a name="nn::pcv::PowerDomainState">nn::pcv::PowerDomainState = unknown</a></li>
-			<li><a name="nn::pcv::TemperatureThreshold">nn::pcv::TemperatureThreshold = unknown</a></li>
-			<li><a name="nn::settings::LanguageCode">nn::settings::LanguageCode = u64</a></li>
-			<li><a name="nn::settings::SettingsItemKey">nn::settings::SettingsItemKey = unknown</a></li>
-			<li><a name="nn::settings::SettingsName">nn::settings::SettingsName = unknown</a></li>
-			<li><a name="nn::settings::factory::AccelerometerOffset">nn::settings::factory::AccelerometerOffset = bytes&lt;6&gt;</a></li>
-			<li><a name="nn::settings::factory::AccelerometerScale">nn::settings::factory::AccelerometerScale = bytes&lt;6&gt;</a></li>
-			<li><a name="nn::settings::factory::BatteryLot">nn::settings::factory::BatteryLot = bytes&lt;0x18&gt;</a></li>
-			<li><a name="nn::settings::factory::BdAddress">nn::settings::factory::BdAddress = bytes&lt;6&gt;</a></li>
-			<li><a name="nn::settings::factory::ConfigurationId1">nn::settings::factory::ConfigurationId1 = bytes&lt;0x1e&gt;</a></li>
-			<li><a name="nn::settings::factory::CountryCode">nn::settings::factory::CountryCode = unknown</a></li>
-			<li><a name="nn::settings::factory::EccB233DeviceCertificate">nn::settings::factory::EccB233DeviceCertificate = unknown</a></li>
-			<li><a name="nn::settings::factory::EccB233DeviceKey">nn::settings::factory::EccB233DeviceKey = bytes&lt;0x54&gt;</a></li>
-			<li><a name="nn::settings::factory::GameCardCertificate">nn::settings::factory::GameCardCertificate = unknown</a></li>
-			<li><a name="nn::settings::factory::GameCardKey">nn::settings::factory::GameCardKey = unknown</a></li>
-			<li><a name="nn::settings::factory::GyroscopeOffset">nn::settings::factory::GyroscopeOffset = bytes&lt;6&gt;</a></li>
-			<li><a name="nn::settings::factory::GyroscopeScale">nn::settings::factory::GyroscopeScale = bytes&lt;6&gt;</a></li>
-			<li><a name="nn::settings::factory::MacAddress">nn::settings::factory::MacAddress = bytes&lt;6&gt;</a></li>
-			<li><a name="nn::settings::factory::Rsa2048DeviceCertificate">nn::settings::factory::Rsa2048DeviceCertificate = unknown</a></li>
-			<li><a name="nn::settings::factory::Rsa2048DeviceKey">nn::settings::factory::Rsa2048DeviceKey = unknown</a></li>
-			<li><a name="nn::settings::factory::SerialNumber">nn::settings::factory::SerialNumber = bytes&lt;0x18&gt;</a></li>
-			<li><a name="nn::settings::factory::SpeakerParameter">nn::settings::factory::SpeakerParameter = bytes&lt;0x5a&gt;</a></li>
-			<li><a name="nn::settings::factory::SslCertificate">nn::settings::factory::SslCertificate = unknown</a></li>
-			<li><a name="nn::settings::factory::SslKey">nn::settings::factory::SslKey = unknown</a></li>
-			<li><a name="nn::settings::system::AccountNotificationSettings">nn::settings::system::AccountNotificationSettings = unknown</a></li>
-			<li><a name="nn::settings::system::AccountSettings">nn::settings::system::AccountSettings = u32</a></li>
-			<li><a name="nn::settings::system::AudioVolume">nn::settings::system::AudioVolume = u64</a></li>
-			<li><a name="nn::settings::system::BacklightSettings">nn::settings::system::BacklightSettings = bytes&lt;0x28&gt;</a></li>
-			<li><a name="nn::settings::system::BacklightSettingsEx">nn::settings::system::BacklightSettingsEx = bytes&lt;0x2c&gt;</a></li>
-			<li><a name="nn::settings::system::BatteryLot">nn::settings::system::BatteryLot = bytes&lt;0x18&gt;</a></li>
-			<li><a name="nn::settings::system::BluetoothDevicesSettings">nn::settings::system::BluetoothDevicesSettings = unknown</a></li>
-			<li><a name="nn::settings::system::DataDeletionSettings">nn::settings::system::DataDeletionSettings = u64</a></li>
-			<li><a name="nn::settings::system::DeviceNickName">nn::settings::system::DeviceNickName = unknown</a></li>
-			<li><a name="nn::settings::system::Edid">nn::settings::system::Edid = unknown</a></li>
-			<li><a name="nn::settings::system::EulaVersion">nn::settings::system::EulaVersion = unknown</a></li>
-			<li><a name="nn::settings::system::FatalDirtyFlag">nn::settings::system::FatalDirtyFlag = u128</a></li>
-			<li><a name="nn::settings::system::FirmwareVersion">nn::settings::system::FirmwareVersion = unknown</a></li>
-			<li><a name="nn::settings::system::InitialLaunchSettings">nn::settings::system::InitialLaunchSettings = bytes&lt;0x20&gt;</a></li>
-			<li><a name="nn::settings::system::NetworkSettings">nn::settings::system::NetworkSettings = unknown</a></li>
-			<li><a name="nn::settings::system::NotificationSettings">nn::settings::system::NotificationSettings = bytes&lt;0x18&gt;</a></li>
-			<li><a name="nn::settings::system::NxControllerSettings">nn::settings::system::NxControllerSettings = unknown</a></li>
-			<li><a name="nn::settings::system::PtmFuelGaugeParameter">nn::settings::system::PtmFuelGaugeParameter = bytes&lt;0x18&gt;</a></li>
-			<li><a name="nn::settings::system::SerialNumber">nn::settings::system::SerialNumber = bytes&lt;0x18&gt;</a></li>
-			<li><a name="nn::settings::system::SleepSettings">nn::settings::system::SleepSettings = bytes&lt;0xc&gt;</a></li>
-			<li><a name="nn::settings::system::TelemetryDirtyFlag">nn::settings::system::TelemetryDirtyFlag = u128</a></li>
-			<li><a name="nn::settings::system::TvSettings">nn::settings::system::TvSettings = bytes&lt;0x20&gt;</a></li>
-			<li><a name="nn::ssl::sf::CertificateFormat">nn::ssl::sf::CertificateFormat = u32</a></li>
-			<li><a name="nn::ssl::sf::ContextOption">nn::ssl::sf::ContextOption = u32</a></li>
-			<li><a name="nn::ssl::sf::InternalPki">nn::ssl::sf::InternalPki = u32</a></li>
-			<li><a name="nn::ssl::sf::IoMode">nn::ssl::sf::IoMode = u32</a></li>
-			<li><a name="nn::ssl::sf::OptionType">nn::ssl::sf::OptionType = u32</a></li>
-			<li><a name="nn::ssl::sf::PollEvent">nn::ssl::sf::PollEvent = u32</a></li>
-			<li><a name="nn::ssl::sf::RenegotiationMode">nn::ssl::sf::RenegotiationMode = u32</a></li>
-			<li><a name="nn::ssl::sf::SessionCacheMode">nn::ssl::sf::SessionCacheMode = u32</a></li>
-			<li><a name="nn::ssl::sf::SslVersion">nn::ssl::sf::SslVersion = u32</a></li>
-			<li><a name="nn::ssl::sf::VerifyOption">nn::ssl::sf::VerifyOption = u32</a></li>
-			<li><a name="nn::time::CalendarTime">nn::time::CalendarTime = u64</a></li>
-			<li><a name="nn::time::LocationName">nn::time::LocationName = bytes&lt;0x24&gt;</a></li>
-			<li><a name="nn::time::PosixTime">nn::time::PosixTime = u64</a></li>
-			<li><a name="nn::time::SteadyClockTimePoint">nn::time::SteadyClockTimePoint = bytes&lt;0x18&gt;</a></li>
-			<li><a name="nn::time::SystemClockContext">nn::time::SystemClockContext = bytes&lt;0x20&gt;</a></li>
-			<li><a name="nn::time::TimeZoneRule">nn::time::TimeZoneRule = unknown</a></li>
-			<li><a name="nn::time::TimeZoneRuleVersion">nn::time::TimeZoneRuleVersion = u128</a></li>
-			<li><a name="nn::time::sf::CalendarAdditionalInfo">nn::time::sf::CalendarAdditionalInfo = bytes&lt;0x18&gt;</a></li>
-			<li><a name="nn::util::Unorm8x4">nn::util::Unorm8x4 = u32</a></li>
-			<li><a name="nn::util::Uuid">nn::util::Uuid = u128</a></li>
-			<li><a name="nn::vi::DisplayInfo">nn::vi::DisplayInfo = unknown</a></li>
-			<li><a name="nn::vi::DisplayModeInfo">nn::vi::DisplayModeInfo = u128</a></li>
-			<li><a name="nn::vi::DisplayName">nn::vi::DisplayName = bytes&lt;0x40&gt;</a></li>
-			<li><a name="nn::vi::ProxyName">nn::vi::ProxyName = u64</a></li>
+		<div class="container">
+		<h1 class="display-3">SwIPC Types</h1>
+		<br />
+		<ul class="list-group">
+			<li class="list-group-item" id="nn::settings::system::EulaVersion">nn::settings::system::EulaVersion <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::pctl::SafetyLevelSettings">nn::pctl::SafetyLevelSettings <small class="text-muted">bytes&lt;3&gt;</small></li>
+			<li class="list-group-item" id="nn::nifm::Requirement">nn::nifm::Requirement <small class="text-muted">bytes&lt;0x24&gt;</small></li>
+			<li class="list-group-item" id="nn::nifm::SsidListVersion">nn::nifm::SsidListVersion <small class="text-muted">u128</small></li>
+			<li class="list-group-item" id="nn::mii::CreateId">nn::mii::CreateId <small class="text-muted">u128</small></li>
+			<li class="list-group-item" id="nn::bcat::DirectoryName">nn::bcat::DirectoryName <small class="text-muted">bytes&lt;0x20&gt;</small></li>
+			<li class="list-group-item" id="nn::settings::factory::Rsa2048DeviceCertificate">nn::settings::factory::Rsa2048DeviceCertificate <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::friends::ExternalApplicationCatalogId">nn::friends::ExternalApplicationCatalogId <small class="text-muted">u128</small></li>
+			<li class="list-group-item" id="nn::nifm::IpSettingData">nn::nifm::IpSettingData <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::settings::system::FatalDirtyFlag">nn::settings::system::FatalDirtyFlag <small class="text-muted">u128</small></li>
+			<li class="list-group-item" id="nn::friends::detail::ipc::SizedFriendFilter">nn::friends::detail::ipc::SizedFriendFilter <small class="text-muted">u128</small></li>
+			<li class="list-group-item" id="nn::hid::system::UniquePadId">nn::hid::system::UniquePadId <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::settings::system::FirmwareVersion">nn::settings::system::FirmwareVersion <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::pcv::ModuleState">nn::pcv::ModuleState <small class="text-muted">bytes&lt;0xc&gt;</small></li>
+			<li class="list-group-item" id="nn::ncm::StorageId">nn::ncm::StorageId <small class="text-muted">u8</small></li>
+			<li class="list-group-item" id="nn::pcv::PowerControlTarget">nn::pcv::PowerControlTarget <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::am::service::AppletIdentityInfo">nn::am::service::AppletIdentityInfo <small class="text-muted">u128</small></li>
+			<li class="list-group-item" id="nn::pcv::TemperatureThreshold">nn::pcv::TemperatureThreshold <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::account::nas::NasUserBase">nn::account::nas::NasUserBase <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::time::SystemClockContext">nn::time::SystemClockContext <small class="text-muted">bytes&lt;0x20&gt;</small></li>
+			<li class="list-group-item" id="nn::nifm::detail::sf::AccessPointData">nn::nifm::detail::sf::AccessPointData <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::account::nas::NasUserBaseForApplication">nn::account::nas::NasUserBaseForApplication <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::pcv::PowerDomainState">nn::pcv::PowerDomainState <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::settings::factory::AccelerometerOffset">nn::settings::factory::AccelerometerOffset <small class="text-muted">bytes&lt;6&gt;</small></li>
+			<li class="list-group-item" id="nn::npns::NotificationToken">nn::npns::NotificationToken <small class="text-muted">bytes&lt;0x28&gt;</small></li>
+			<li class="list-group-item" id="nn::friends::detail::ProfileImpl">nn::friends::detail::ProfileImpl <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::irsensor::PackedMcuVersion">nn::irsensor::PackedMcuVersion <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::am::service::AppletProcessLaunchReason">nn::am::service::AppletProcessLaunchReason <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::nifm::IpAddressSetting">nn::nifm::IpAddressSetting <small class="text-muted">bytes&lt;0xd&gt;</small></li>
+			<li class="list-group-item" id="nn::account::profile::UserData">nn::account::profile::UserData <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::ssl::sf::InternalPki">nn::ssl::sf::InternalPki <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::settings::system::BluetoothDevicesSettings">nn::settings::system::BluetoothDevicesSettings <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::time::CalendarTime">nn::time::CalendarTime <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::settings::system::TvSettings">nn::settings::system::TvSettings <small class="text-muted">bytes&lt;0x20&gt;</small></li>
+			<li class="list-group-item" id="nn::hid::BasicXpadId">nn::hid::BasicXpadId <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::settings::factory::EccB233DeviceKey">nn::settings::factory::EccB233DeviceKey <small class="text-muted">bytes&lt;0x54&gt;</small></li>
+			<li class="list-group-item" id="nn::hid::system::UniqueSixAxisSensorHandle">nn::hid::system::UniqueSixAxisSensorHandle <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::apm::PerformanceMode">nn::apm::PerformanceMode <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::account::NintendoAccountAuthorizationRequestParameters">nn::account::NintendoAccountAuthorizationRequestParameters <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::settings::LanguageCode">nn::settings::LanguageCode <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::nifm::detail::sf::NetworkInterfaceInfo">nn::nifm::detail::sf::NetworkInterfaceInfo <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::account::RequestUrl">nn::account::RequestUrl <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::hid::JoyXpadId">nn::hid::JoyXpadId <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::settings::factory::GameCardCertificate">nn::settings::factory::GameCardCertificate <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::settings::system::BacklightSettings">nn::settings::system::BacklightSettings <small class="text-muted">bytes&lt;0x28&gt;</small></li>
+			<li class="list-group-item" id="nn::TimeSpan">nn::TimeSpan <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::hid::VibrationValue">nn::hid::VibrationValue <small class="text-muted">u128</small></li>
+			<li class="list-group-item" id="nn::account::nas::State">nn::account::nas::State <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::settings::factory::MacAddress">nn::settings::factory::MacAddress <small class="text-muted">bytes&lt;6&gt;</small></li>
+			<li class="list-group-item" id="nn::fssrv::sf::SaveStruct">nn::fssrv::sf::SaveStruct <small class="text-muted">bytes&lt;0x40&gt;</small></li>
+			<li class="list-group-item" id="nn::ApplicationId">nn::ApplicationId <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::vi::DisplayName">nn::vi::DisplayName <small class="text-muted">bytes&lt;0x40&gt;</small></li>
+			<li class="list-group-item" id="nn::account::detail::Uuid">nn::account::detail::Uuid <small class="text-muted">u128</small></li>
+			<li class="list-group-item" id="nn::ssl::sf::SessionCacheMode">nn::ssl::sf::SessionCacheMode <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::nifm::detail::sf::NetworkProfileBasicInfo">nn::nifm::detail::sf::NetworkProfileBasicInfo <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::bcat::DeliveryCacheDirectoryEntry">nn::bcat::DeliveryCacheDirectoryEntry <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::hid::system::KeyboardLockKeyEvent">nn::hid::system::KeyboardLockKeyEvent <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::settings::system::AudioVolume">nn::settings::system::AudioVolume <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::irsensor::ImageTransferProcessorState">nn::irsensor::ImageTransferProcessorState <small class="text-muted">u128</small></li>
+			<li class="list-group-item" id="nn::settings::factory::GameCardKey">nn::settings::factory::GameCardKey <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::ssl::sf::VerifyOption">nn::ssl::sf::VerifyOption <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::friends::ExternalApplicationCatalog">nn::friends::ExternalApplicationCatalog <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::friends::InAppScreenName">nn::friends::InAppScreenName <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::hid::debug::HomeButtonAutoPilotState">nn::hid::debug::HomeButtonAutoPilotState <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::settings::system::AccountSettings">nn::settings::system::AccountSettings <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::apm::EventTarget">nn::apm::EventTarget <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::irsensor::IrCameraHandle">nn::irsensor::IrCameraHandle <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::bcat::Digest">nn::bcat::Digest <small class="text-muted">u128</small></li>
+			<li class="list-group-item" id="nn::bcat::FileName">nn::bcat::FileName <small class="text-muted">bytes&lt;0x20&gt;</small></li>
+			<li class="list-group-item" id="nn::settings::system::InitialLaunchSettings">nn::settings::system::InitialLaunchSettings <small class="text-muted">bytes&lt;0x20&gt;</small></li>
+			<li class="list-group-item" id="nn::hid::SixAxisSensorHandle">nn::hid::SixAxisSensorHandle <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::hid::system::FirmwareUpdateState">nn::hid::system::FirmwareUpdateState <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::hid::debug::BasicXpadAutoPilotState">nn::hid::debug::BasicXpadAutoPilotState <small class="text-muted">bytes&lt;0x1c&gt;</small></li>
+			<li class="list-group-item" id="nn::ssl::sf::RenegotiationMode">nn::ssl::sf::RenegotiationMode <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::vi::ProxyName">nn::vi::ProxyName <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::settings::factory::ConfigurationId1">nn::settings::factory::ConfigurationId1 <small class="text-muted">bytes&lt;0x1e&gt;</small></li>
+			<li class="list-group-item" id="nn::hid::tmp::ConsoleSixAxisSensorCalibrationValues">nn::hid::tmp::ConsoleSixAxisSensorCalibrationValues <small class="text-muted">bytes&lt;0x18&gt;</small></li>
+			<li class="list-group-item" id="nn::friends::detail::FriendCandidateImpl">nn::friends::detail::FriendCandidateImpl <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::hid::debug::CaptureButtonAutoPilotState">nn::hid::debug::CaptureButtonAutoPilotState <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::friends::MiiName">nn::friends::MiiName <small class="text-muted">bytes&lt;0x20&gt;</small></li>
+			<li class="list-group-item" id="nn::capsrv::ApplicationAlbumEntry">nn::capsrv::ApplicationAlbumEntry <small class="text-muted">bytes&lt;0x20&gt;</small></li>
+			<li class="list-group-item" id="nn::settings::factory::EccB233DeviceCertificate">nn::settings::factory::EccB233DeviceCertificate <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::friends::detail::PlayHistoryImpl">nn::friends::detail::PlayHistoryImpl <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::ncm::ApplicationId">nn::ncm::ApplicationId <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::bluetooth::Address">nn::bluetooth::Address <small class="text-muted">bytes&lt;6&gt;</small></li>
+			<li class="list-group-item" id="nn::settings::system::PtmFuelGaugeParameter">nn::settings::system::PtmFuelGaugeParameter <small class="text-muted">bytes&lt;0x18&gt;</small></li>
+			<li class="list-group-item" id="nn::settings::factory::BdAddress">nn::settings::factory::BdAddress <small class="text-muted">bytes&lt;6&gt;</small></li>
+			<li class="list-group-item" id="nn::friends::FriendCode">nn::friends::FriendCode <small class="text-muted">bytes&lt;0x20&gt;</small></li>
+			<li class="list-group-item" id="nn::settings::system::DeviceNickName">nn::settings::system::DeviceNickName <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::settings::factory::SerialNumber">nn::settings::factory::SerialNumber <small class="text-muted">bytes&lt;0x18&gt;</small></li>
+			<li class="list-group-item" id="nn::account::Nickname">nn::account::Nickname <small class="text-muted">bytes&lt;0x21&gt;</small></li>
+			<li class="list-group-item" id="nn::settings::factory::GyroscopeOffset">nn::settings::factory::GyroscopeOffset <small class="text-muted">bytes&lt;6&gt;</small></li>
+			<li class="list-group-item" id="nn::am::service::LibraryAppletInfo">nn::am::service::LibraryAppletInfo <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::friends::detail::FriendRequestImpl">nn::friends::detail::FriendRequestImpl <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::pctl::detail::PairingInfoBase">nn::pctl::detail::PairingInfoBase <small class="text-muted">u128</small></li>
+			<li class="list-group-item" id="nn::friends::detail::ProfileExtraImpl">nn::friends::detail::ProfileExtraImpl <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::irsensor::PackedMomentProcessorConfig">nn::irsensor::PackedMomentProcessorConfig <small class="text-muted">bytes&lt;0x20&gt;</small></li>
+			<li class="list-group-item" id="ServiceName">ServiceName <small class="text-muted">bytes&lt;8&gt;</small></li>
+			<li class="list-group-item" id="nn::hid::VibrationDeviceHandle">nn::hid::VibrationDeviceHandle <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::bcat::PushNotificationLog">nn::bcat::PushNotificationLog <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::settings::factory::SpeakerParameter">nn::settings::factory::SpeakerParameter <small class="text-muted">bytes&lt;0x5a&gt;</small></li>
+			<li class="list-group-item" id="nn::settings::system::NotificationSettings">nn::settings::system::NotificationSettings <small class="text-muted">bytes&lt;0x18&gt;</small></li>
+			<li class="list-group-item" id="nn::friends::detail::ipc::SizedNotificationInfo">nn::friends::detail::ipc::SizedNotificationInfo <small class="text-muted">u128</small></li>
+			<li class="list-group-item" id="nn::ncm::ProgramId">nn::ncm::ProgramId <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::settings::system::AccountNotificationSettings">nn::settings::system::AccountNotificationSettings <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::vi::DisplayModeInfo">nn::vi::DisplayModeInfo <small class="text-muted">u128</small></li>
+			<li class="list-group-item" id="nn::mii::StoreDataElement">nn::mii::StoreDataElement <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::settings::factory::AccelerometerScale">nn::settings::factory::AccelerometerScale <small class="text-muted">bytes&lt;6&gt;</small></li>
+			<li class="list-group-item" id="nn::hid::system::PlayReportControllerUsage">nn::hid::system::PlayReportControllerUsage <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::nifm::AdditionalInfo">nn::nifm::AdditionalInfo <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::settings::system::NetworkSettings">nn::settings::system::NetworkSettings <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::am::service::WindowCreationOption">nn::am::service::WindowCreationOption <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::ns::ApplicationControlProperty">nn::ns::ApplicationControlProperty <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::ssl::sf::PollEvent">nn::ssl::sf::PollEvent <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::settings::SettingsName">nn::settings::SettingsName <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::friends::NintendoNetworkIdUserInfo">nn::friends::NintendoNetworkIdUserInfo <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::hid::debug::KeyboardAutoPilotState">nn::hid::debug::KeyboardAutoPilotState <small class="text-muted">bytes&lt;0x28&gt;</small></li>
+			<li class="list-group-item" id="nn::oe::DisplayVersion">nn::oe::DisplayVersion <small class="text-muted">u128</small></li>
+			<li class="list-group-item" id="nn::friends::detail::UserSettingImpl">nn::friends::detail::UserSettingImpl <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::friends::detail::FriendSettingImpl">nn::friends::detail::FriendSettingImpl <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::fgm::Module">nn::fgm::Module <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::hid::debug::MouseAutoPilotState">nn::hid::debug::MouseAutoPilotState <small class="text-muted">bytes&lt;0x1c&gt;</small></li>
+			<li class="list-group-item" id="nn::friends::PlayHistoryStatistics">nn::friends::PlayHistoryStatistics <small class="text-muted">u128</small></li>
+			<li class="list-group-item" id="nn::hid::system::RegisteredDevice">nn::hid::system::RegisteredDevice <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::time::TimeZoneRuleVersion">nn::time::TimeZoneRuleVersion <small class="text-muted">u128</small></li>
+			<li class="list-group-item" id="nn::account::nas::NasClientInfo">nn::account::nas::NasClientInfo <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::time::PosixTime">nn::time::PosixTime <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::irsensor::PackedImageTransferProcessorConfig">nn::irsensor::PackedImageTransferProcessorConfig <small class="text-muted">bytes&lt;0x18&gt;</small></li>
+			<li class="list-group-item" id="nn::ssl::sf::OptionType">nn::ssl::sf::OptionType <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::nifm::TelemetryInfo">nn::nifm::TelemetryInfo <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::friends::detail::BlockedUserImpl">nn::friends::detail::BlockedUserImpl <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::friends::Url">nn::friends::Url <small class="text-muted">bytes&lt;0xa0&gt;</small></li>
+			<li class="list-group-item" id="nn::hid::system::InputSourceId">nn::hid::system::InputSourceId <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::ssl::sf::IoMode">nn::ssl::sf::IoMode <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::capsrv::detail::ScreenShotAttributeEx0">nn::capsrv::detail::ScreenShotAttributeEx0 <small class="text-muted">bytes&lt;0x40&gt;</small></li>
+			<li class="list-group-item" id="nn::hid::debug::SleepButtonAutoPilotState">nn::hid::debug::SleepButtonAutoPilotState <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::am::AppletAttribute">nn::am::AppletAttribute <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::settings::factory::GyroscopeScale">nn::settings::factory::GyroscopeScale <small class="text-muted">bytes&lt;6&gt;</small></li>
+			<li class="list-group-item" id="nn::account::SystemProgramIdentification">nn::account::SystemProgramIdentification <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::nifm::detail::sf::NetworkProfileData">nn::nifm::detail::sf::NetworkProfileData <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::nifm::IpV4Address">nn::nifm::IpV4Address <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::time::sf::CalendarAdditionalInfo">nn::time::sf::CalendarAdditionalInfo <small class="text-muted">bytes&lt;0x18&gt;</small></li>
+			<li class="list-group-item" id="nn::bcat::TaskInfo">nn::bcat::TaskInfo <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::account::Uid">nn::account::Uid <small class="text-muted">u128</small></li>
+			<li class="list-group-item" id="nn::account::ProfileDigest">nn::account::ProfileDigest <small class="text-muted">u128</small></li>
+			<li class="list-group-item" id="nn::account::NetworkServiceAccountId">nn::account::NetworkServiceAccountId <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::err::ErrorCode">nn::err::ErrorCode <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::pctl::InquiryCode">nn::pctl::InquiryCode <small class="text-muted">bytes&lt;0x20&gt;</small></li>
+			<li class="list-group-item" id="nn::apm::PerformanceConfiguration">nn::apm::PerformanceConfiguration <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::nifm::ClientId">nn::nifm::ClientId <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::hid::system::FirmwareUpdateDeviceHandle">nn::hid::system::FirmwareUpdateDeviceHandle <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::apm::ThrottlingState">nn::apm::ThrottlingState <small class="text-muted">bytes&lt;0x28&gt;</small></li>
+			<li class="list-group-item" id="nn::friends::detail::FriendImpl">nn::friends::detail::FriendImpl <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::ssl::sf::ContextOption">nn::ssl::sf::ContextOption <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::friends::Relationship">nn::friends::Relationship <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::friends::detail::NintendoNetworkIdFriendImpl">nn::friends::detail::NintendoNetworkIdFriendImpl <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::account::CallbackUri">nn::account::CallbackUri <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::time::LocationName">nn::time::LocationName <small class="text-muted">bytes&lt;0x24&gt;</small></li>
+			<li class="list-group-item" id="nn::hid::NpadStyleTag">nn::hid::NpadStyleTag <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::vi::DisplayInfo">nn::vi::DisplayInfo <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::settings::system::SleepSettings">nn::settings::system::SleepSettings <small class="text-muted">bytes&lt;0xc&gt;</small></li>
+			<li class="list-group-item" id="nn::irsensor::PackedClusteringProcessorConfig">nn::irsensor::PackedClusteringProcessorConfig <small class="text-muted">bytes&lt;0x28&gt;</small></li>
+			<li class="list-group-item" id="nn::account::profile::ProfileBase">nn::account::profile::ProfileBase <small class="text-muted">bytes&lt;0x38&gt;</small></li>
+			<li class="list-group-item" id="nn::settings::factory::BatteryLot">nn::settings::factory::BatteryLot <small class="text-muted">bytes&lt;0x18&gt;</small></li>
+			<li class="list-group-item" id="nn::hid::system::DeviceType">nn::hid::system::DeviceType <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::hid::ConsoleSixAxisSensorHandle">nn::hid::ConsoleSixAxisSensorHandle <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::settings::system::DataDeletionSettings">nn::settings::system::DataDeletionSettings <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::irsensor::PackedTeraPluginProcessorConfig">nn::irsensor::PackedTeraPluginProcessorConfig <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::nifm::detail::sf::InternetConnectionStatus">nn::nifm::detail::sf::InternetConnectionStatus <small class="text-muted">bytes&lt;3&gt;</small></li>
+			<li class="list-group-item" id="nn::pctl::FreeCommunicationApplicationInfo">nn::pctl::FreeCommunicationApplicationInfo <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::friends::FacedFriendRequestRegistrationKey">nn::friends::FacedFriendRequestRegistrationKey <small class="text-muted">bytes&lt;0x40&gt;</small></li>
+			<li class="list-group-item" id="nn::util::Uuid">nn::util::Uuid <small class="text-muted">u128</small></li>
+			<li class="list-group-item" id="nn::am::service::AppletKind">nn::am::service::AppletKind <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::friends::detail::UserPresenceImpl">nn::friends::detail::UserPresenceImpl <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::friends::RequestId">nn::friends::RequestId <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::fssrv::sf::SaveCreateStruct">nn::fssrv::sf::SaveCreateStruct <small class="text-muted">bytes&lt;0x40&gt;</small></li>
+			<li class="list-group-item" id="nn::time::TimeZoneRule">nn::time::TimeZoneRule <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::settings::system::BacklightSettingsEx">nn::settings::system::BacklightSettingsEx <small class="text-muted">bytes&lt;0x2c&gt;</small></li>
+			<li class="list-group-item" id="nn::mii::CharInfo">nn::mii::CharInfo <small class="text-muted">bytes&lt;0x58&gt;</small></li>
+			<li class="list-group-item" id="nn::account::NintendoAccountId">nn::account::NintendoAccountId <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::ncm::SystemApplicationId">nn::ncm::SystemApplicationId <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::util::Unorm8x4">nn::util::Unorm8x4 <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::am::service::EmulatedButtonEvent">nn::am::service::EmulatedButtonEvent <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::time::SteadyClockTimePoint">nn::time::SteadyClockTimePoint <small class="text-muted">bytes&lt;0x18&gt;</small></li>
+			<li class="list-group-item" id="nn::settings::SettingsItemKey">nn::settings::SettingsItemKey <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::mii::StoreData">nn::mii::StoreData <small class="text-muted">bytes&lt;0x44&gt;</small></li>
+			<li class="list-group-item" id="nn::settings::system::SerialNumber">nn::settings::system::SerialNumber <small class="text-muted">bytes&lt;0x18&gt;</small></li>
+			<li class="list-group-item" id="nn::friends::detail::FriendDetailedInfoImpl">nn::friends::detail::FriendDetailedInfoImpl <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::friends::detail::UserPresenceViewImpl">nn::friends::detail::UserPresenceViewImpl <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::bcat::detail::DeliveryCacheProgressImpl">nn::bcat::detail::DeliveryCacheProgressImpl <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::hid::VibrationDeviceInfoForIpc">nn::hid::VibrationDeviceInfoForIpc <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::TimeSpanType">nn::TimeSpanType <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::hid::TouchState">nn::hid::TouchState <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::ssl::sf::CertificateFormat">nn::ssl::sf::CertificateFormat <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::settings::system::NxControllerSettings">nn::settings::system::NxControllerSettings <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::settings::factory::SslCertificate">nn::settings::factory::SslCertificate <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::am::AppletMessage">nn::am::AppletMessage <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::pctl::PlayTimerSettings">nn::pctl::PlayTimerSettings <small class="text-muted">bytes&lt;0x34&gt;</small></li>
+			<li class="list-group-item" id="nn::mii::CharInfoElement">nn::mii::CharInfoElement <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::irsensor::PackedDpdProcessorConfig">nn::irsensor::PackedDpdProcessorConfig <small class="text-muted">bytes&lt;0xc&gt;</small></li>
+			<li class="list-group-item" id="nn::settings::factory::CountryCode">nn::settings::factory::CountryCode <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::hid::debug::DebugPadAutoPilotState">nn::hid::debug::DebugPadAutoPilotState <small class="text-muted">bytes&lt;0x18&gt;</small></li>
+			<li class="list-group-item" id="nn::friends::MiiImageUrlParam">nn::friends::MiiImageUrlParam <small class="text-muted">u128</small></li>
+			<li class="list-group-item" id="nn::settings::factory::Rsa2048DeviceKey">nn::settings::factory::Rsa2048DeviceKey <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::settings::system::BatteryLot">nn::settings::system::BatteryLot <small class="text-muted">bytes&lt;0x18&gt;</small></li>
+			<li class="list-group-item" id="nn::pctl::detail::AsyncData">nn::pctl::detail::AsyncData <small class="text-muted">u64</small></li>
+			<li class="list-group-item" id="nn::pctl::detail::PairingAccountInfoBase">nn::pctl::detail::PairingAccountInfoBase <small class="text-muted">u128</small></li>
+			<li class="list-group-item" id="nn::settings::system::TelemetryDirtyFlag">nn::settings::system::TelemetryDirtyFlag <small class="text-muted">u128</small></li>
+			<li class="list-group-item" id="nn::settings::system::Edid">nn::settings::system::Edid <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::nifm::DnsSetting">nn::nifm::DnsSetting <small class="text-muted">bytes&lt;9&gt;</small></li>
+			<li class="list-group-item" id="nn::ssl::sf::SslVersion">nn::ssl::sf::SslVersion <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::hid::system::FirmwareVersion">nn::hid::system::FirmwareVersion <small class="text-muted">u128</small></li>
+			<li class="list-group-item" id="nn::fssrv::sf::Partition">nn::fssrv::sf::Partition <small class="text-muted">u32</small></li>
+			<li class="list-group-item" id="nn::friends::PlayHistoryRegistrationKey">nn::friends::PlayHistoryRegistrationKey <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::settings::factory::SslKey">nn::settings::factory::SslKey <small class="text-muted">unknown</small></li>
+			<li class="list-group-item" id="nn::friends::ApplicationInfo">nn::friends::ApplicationInfo <small class="text-muted">u128</small></li>
 		</ul>
+		</div>
 	</body>
 </html>

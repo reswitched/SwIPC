@@ -1,0 +1,48 @@
+h1, li {
+  color: #657B83;
+}
+p, h2, h3 {
+  color: #586E75;
+}
+
+
+body {
+  padding: 5vh;
+  background-color: #FDF6E3;
+}
+.jumbotron, .card-header {
+  background-color: #EEE8D5 !important;
+}
+
+.col-1>nav {
+  position: sticky; top: 5vh;
+}
+nav[data-toggle=toc] .nav>li>a:focus, nav[data-toggle=toc] .nav>li>a:hover {
+  color: #268BD2;
+  border-left: 1px solid #268BD2;
+}
+
+.list-group-item {
+  background-color: #FDF6E3;
+}
+.list-group-item-action {
+  color: #268BD2;
+}
+.list-group-item-action:active, .list-group-item-action:hover, .list-group-item-action:focus {
+  background-color: #EEE8D5;
+  color: #268BD2;
+}
+.card-header {
+  border-bottom: 0;
+}
+ul ul {
+  list-style-type: disc;
+}
+
+.text-muted {
+  color: #839496 !important;
+}
+
+a {
+  color: #268BD2;
+}
