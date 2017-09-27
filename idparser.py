@@ -101,7 +101,7 @@ def getAll():
 	if os.path.exists('ipcdefs/cache') and all(os.path.getmtime('ipcdefs/cache') > os.path.getmtime(x) for x in fns):
 		res = json.load(file('ipcdefs/cache'))
 	else:
-		res = idparser.parse('\n'.join(file(fn).read() for fn in fns))
+		res = parse('\n'.join(file(fn).read() for fn in fns))
 		with file('ipcdefs/cache', 'w') as fp:
 			json.dump(res, fp)
 	return res
