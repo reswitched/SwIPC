@@ -160,7 +160,7 @@ print >>ifp, '</div>'
 print >>ifp, '<h2 id="types">Types</h2>'
 print >>ifp, '<div class="list-group">'
 ifp += 1
-for elem in types:
+for elem in sorted(types.keys()):
 	print >>ifp, '<a class="list-group-item list-group-item-action" href="types.html#%s">%s</a>' % (elem, elem)
 ifp -= 1
 print >>ifp, '</div>'
@@ -237,7 +237,7 @@ print >>tfp, '<h1 class="display-3">SwIPC Types</h1>'
 print >>tfp, '<br />'
 print >>tfp, '<ul class="list-group">'
 tfp += 1
-for name, type in types.items():
+for name, type in sorted(types.items(), key=lambda x: x[0]):
 	print >>tfp, '<li class="list-group-item" id="%s">%s <small class="text-muted">%s</small></li>' % (name, name, format([(None, type)]))
 tfp -= 1
 print >>tfp, '</ul>'
