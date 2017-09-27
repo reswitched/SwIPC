@@ -1,4 +1,5 @@
 import sys, tatsu
+import glob, json, os.path
 
 grammar = '''
 start = { def }+ $ ;
@@ -93,3 +94,14 @@ def parse(data):
 				fdef['outputs'] = [(name, parseType(type)) for type, name in func['outputs']]
 
 	return types, ifaces, services
+
+def getAll():
+	fns = ['ipcdefs/auto.id'] + [x for x in glob.glob('ipcdefs/*.id') if x != 'ipcdefs/auto.id']
+
+	if os.path.exists('ipcdefs/cache') and all(os.path.getmtime('ipcdefs/cache') > os.path.getmtime(x) for x in fns):
+		res = json.load(file('ipcdefs/cache'))
+	else:
+		res = idparser.parse('\n'.join(file(fn).read() for fn in fns))
+		with file('ipcdefs/cache', 'w') as fp:
+			json.dump(res, fp)
+	return res
