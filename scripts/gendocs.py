@@ -144,7 +144,7 @@ print >>ifp, '</ul>'
 print >>ifp, '<h2>Types</h2>'
 print >>ifp, '<ul>'
 ifp += 1
-for elem in types:
+for elem in sorted(types.keys()):
 	print >>ifp, '<li><a href="types.html#%s">%s</a></li>' % (elem, elem)
 ifp -= 1
 print >>ifp, '</ul>'
@@ -190,7 +190,7 @@ for name, cmds in ifaces.items():
 print >>tfp, '<h1>SwIPC Types</h1>'
 print >>tfp, '<ul>'
 tfp += 1
-for name, type in types.items():
+for name, type in sorted(types.items(), key=lambda x: x[0]):
 	print >>tfp, '<li><a name="%s">%s = %s</a></li>' % (name, name, format([(None, type)]))
 tfp -= 1
 print >>tfp, '</ul>'
