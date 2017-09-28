@@ -208,7 +208,7 @@ print >>ifp, '</div>'
 
 print >>nfp, '<h1 class="display-3">SwIPC Interfaces</h1>'
 print >>nfp, '<br />'
-for name, cmds in ifaces.items():
+for name, cmds in sorted(ifaces.items(), key=lambda x: x[0]):
 	print >>nfp, '<div class="card">'
 	nfp += 1
 
