@@ -46,3 +46,11 @@ ul ul {
 a {
   color: #268BD2;
 }
+
+ol {
+   list-style-type: none;
+}
+ol > li:before {
+  content: "[" attr(value) "] ";
+  margin-left: -20px;
+}
