@@ -1,17 +1,17 @@
 h1, li {
-  color: #657B83;
+  color: #eeeeec;
 }
 p, h2, h3 {
-  color: #586E75;
+  color: #eeeeec;
 }
 
 
 body {
   padding: 5vh;
-  background-color: #FDF6E3;
+  background-color: #303036;
 }
 .jumbotron, .card-header {
-  background-color: #EEE8D5 !important;
+  background-color: #47474e !important;
 }
 
 .col-1>nav {
@@ -23,7 +23,7 @@ nav[data-toggle=toc] .nav>li>a:focus, nav[data-toggle=toc] .nav>li>a:hover {
 }
 
 .list-group-item {
-  background-color: #FDF6E3;
+  background-color: #515159;
 }
 .list-group-item-action {
   color: #268BD2;
@@ -44,7 +44,7 @@ ul ul {
 }
 
 a {
-  color: #268BD2;
+  color: #19cf9b;
 }
 
 ol {
