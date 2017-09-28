@@ -1,6 +1,6 @@
 type ServiceName = bytes<8>;
 
-interface SmService {
+interface SmService is sm: {
 	[0] Initialize();
 	[1] GetService(ServiceName name) -> object<IPipe>;
 	[2] RegisterService(ServiceName name) -> object<NPort>;
