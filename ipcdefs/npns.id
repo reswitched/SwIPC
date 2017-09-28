@@ -1,8 +1,31 @@
-interface nn::npns::Weird {
-	
-}
 interface nn::npns::INpnsSystem is npns:s {
+	[1] Unknown1();
+	[2] Unknown2(u64);
+	[3] Unknown3();
+	[4] Unknown4();
 	[5] SetInterfaceVersion() -> KObject;
+	[6] Unknown6();
 	[7] Unknown7() -> KObject;
-	[103] Unknown103() -> KObject;
+	[11] Unknown11();
+	[12] Unknown12();
+	[13] Unknown13();
+	[21] Unknown21();
+	[22] Unknown22();
+	[23] Unknown23();
+	[24] Unknown24();
+	[25] Unknown25();
+	[31] Unknown31();
+	[32] Unknown32();
+	[101] Unknown101();
+	[102] Unknown102();
+	[103] Unknown103() -> u32;
+	[104] Unknown104() -> buffer<unknown, 6, 0>;
+	[105] Unknown105() -> KObject;
+	[111] Unknown111();
+	[112] Unknown112();
+	[113] Unknown113();
+	[114] Unknown114();
+	[115] Unknown115();
+	[201] Unknown201();
+	[202] Unknown202(u32);
 }

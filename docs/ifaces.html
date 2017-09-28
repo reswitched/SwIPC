@@ -11,54 +11,6 @@
 			<br />
 			<div class="card">
 				<div class="card-header">
-					<h2 id="Pm::Bm">Pm::Bm</h2>
-				</div>
-				<ul class="list-group list-group-flush">
-					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div></div>
-					</li>
-					<li class="list-group-item">
-						<h3>Provides:</h3>
-						<ul>
-							<li>pm:bm</li>
-						</ul>
-					</li>
-					<li class="list-group-item">
-						<h3>Commands:</h3>
-						<ol>
-							<li value="0" id="Pm::Bm(0)">Init() -&gt; u64</li>
-							<li value="1" id="Pm::Bm(1)">EnableMaintenanceMode()</li>
-						</ol>
-					</li>
-				</ul>
-			</div>
-			<br />
-			<div class="card">
-				<div class="card-header">
-					<h2 id="Pm::Shell">Pm::Shell</h2>
-				</div>
-				<ul class="list-group list-group-flush">
-					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div></div>
-					</li>
-					<li class="list-group-item">
-						<h3>Provides:</h3>
-						<ul>
-							<li>pm:shell</li>
-						</ul>
-					</li>
-					<li class="list-group-item">
-						<h3>Commands:</h3>
-						<ol>
-							<li value="0" id="Pm::Shell(0)">LaunchTitle(u64, <a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid)</li>
-							<li value="3" id="Pm::Shell(3)">GetProcessEventWaiter() -&gt; KObject</li>
-						</ol>
-					</li>
-				</ul>
-			</div>
-			<br />
-			<div class="card">
-				<div class="card-header">
 					<h2 id="SmService">SmService</h2>
 				</div>
 				<ul class="list-group list-group-flush">
@@ -76,7 +28,7 @@
 						<ol>
 							<li value="0" id="SmService(0)">Initialize()</li>
 							<li value="1" id="SmService(1)">GetService(<a href="types.html#ServiceName">ServiceName</a> name) -&gt; IPipe</li>
-							<li value="2" id="SmService(2)">RegisterService(<a href="types.html#ServiceName">ServiceName</a> name) -&gt; NPort</li>
+							<li value="2" id="SmService(2)">RegisterService(<a href="types.html#ServiceName">ServiceName</a> name, u8, u32 maxHandles) -&gt; NPort</li>
 							<li value="3" id="SmService(3)">UnregisterService(<a href="types.html#ServiceName">ServiceName</a> name)</li>
 						</ol>
 					</li>
@@ -2614,13 +2566,23 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="width: 55%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
 						<ul>
 							<li>bgtc:sc</li>
 						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="1" id="nn::bgtc::IStateControlService(1)">Unknown1() -&gt; u32</li>
+							<li value="2" id="nn::bgtc::IStateControlService(2)">Unknown2() -&gt; KObject</li>
+							<li value="3" id="nn::bgtc::IStateControlService(3)">Unknown3()</li>
+							<li value="4" id="nn::bgtc::IStateControlService(4)">Unknown4()</li>
+							<li value="5" id="nn::bgtc::IStateControlService(5)">Unknown5(u8)</li>
+						</ol>
 					</li>
 				</ul>
 			</div>
@@ -2631,7 +2593,7 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100" style="width: 64%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
@@ -2642,9 +2604,20 @@
 					<li class="list-group-item">
 						<h3>Commands:</h3>
 						<ol>
+							<li value="1" id="nn::bgtc::ITaskService(1)">Unknown1()</li>
+							<li value="2" id="nn::bgtc::ITaskService(2)">Unknown2()</li>
 							<li value="3" id="nn::bgtc::ITaskService(3)">Unknown3() -&gt; KObject</li>
+							<li value="4" id="nn::bgtc::ITaskService(4)">Unknown4() -&gt; u8</li>
 							<li value="5" id="nn::bgtc::ITaskService(5)">Unknown5(buffer&lt;unknown, 9, 0&gt;)</li>
+							<li value="6" id="nn::bgtc::ITaskService(6)">Unknown6() -&gt; u8</li>
+							<li value="11" id="nn::bgtc::ITaskService(11)">Unknown11(u32)</li>
+							<li value="12" id="nn::bgtc::ITaskService(12)">Unknown12() -&gt; u32</li>
+							<li value="13" id="nn::bgtc::ITaskService(13)">Unknown13()</li>
 							<li value="14" id="nn::bgtc::ITaskService(14)">Unknown14() -&gt; KObject</li>
+							<li value="15" id="nn::bgtc::ITaskService(15)">Unknown15(u32, u32)</li>
+							<li value="101" id="nn::bgtc::ITaskService(101)">Unknown101() -&gt; u32</li>
+							<li value="102" id="nn::bgtc::ITaskService(102)">Unknown102() -&gt; u8</li>
+							<li value="103" id="nn::bgtc::ITaskService(103)">Unknown103() -&gt; u8</li>
 						</ol>
 					</li>
 				</ul>
@@ -2942,13 +2915,44 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100" style="width: 34%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
 						<ul>
 							<li>caps:a</li>
 						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::capsrv::sf::IAlbumAccessorService(0)">Unknown0()</li>
+							<li value="1" id="nn::capsrv::sf::IAlbumAccessorService(1)">Unknown1()</li>
+							<li value="2" id="nn::capsrv::sf::IAlbumAccessorService(2)">Unknown2()</li>
+							<li value="3" id="nn::capsrv::sf::IAlbumAccessorService(3)">Unknown3()</li>
+							<li value="4" id="nn::capsrv::sf::IAlbumAccessorService(4)">Unknown4()</li>
+							<li value="5" id="nn::capsrv::sf::IAlbumAccessorService(5)">Unknown5()</li>
+							<li value="6" id="nn::capsrv::sf::IAlbumAccessorService(6)">Unknown6()</li>
+							<li value="7" id="nn::capsrv::sf::IAlbumAccessorService(7)">Unknown7()</li>
+							<li value="8" id="nn::capsrv::sf::IAlbumAccessorService(8)">Unknown8()</li>
+							<li value="9" id="nn::capsrv::sf::IAlbumAccessorService(9)">Unknown9()</li>
+							<li value="10" id="nn::capsrv::sf::IAlbumAccessorService(10)">Unknown10()</li>
+							<li value="11" id="nn::capsrv::sf::IAlbumAccessorService(11)">Unknown11()</li>
+							<li value="12" id="nn::capsrv::sf::IAlbumAccessorService(12)">Unknown12()</li>
+							<li value="13" id="nn::capsrv::sf::IAlbumAccessorService(13)">Unknown13()</li>
+							<li value="14" id="nn::capsrv::sf::IAlbumAccessorService(14)">Unknown14()</li>
+							<li value="301" id="nn::capsrv::sf::IAlbumAccessorService(301)">Unknown301()</li>
+							<li value="401" id="nn::capsrv::sf::IAlbumAccessorService(401)">Unknown401() -&gt; u8</li>
+							<li value="501" id="nn::capsrv::sf::IAlbumAccessorService(501)">Unknown501()</li>
+							<li value="1001" id="nn::capsrv::sf::IAlbumAccessorService(1001)">Unknown1001()</li>
+							<li value="1002" id="nn::capsrv::sf::IAlbumAccessorService(1002)">Unknown1002()</li>
+							<li value="8001" id="nn::capsrv::sf::IAlbumAccessorService(8001)">Unknown8001(u8)</li>
+							<li value="8002" id="nn::capsrv::sf::IAlbumAccessorService(8002)">Unknown8002(u8)</li>
+							<li value="8011" id="nn::capsrv::sf::IAlbumAccessorService(8011)">Unknown8011(u8)</li>
+							<li value="8012" id="nn::capsrv::sf::IAlbumAccessorService(8012)">Unknown8012()</li>
+							<li value="8021" id="nn::capsrv::sf::IAlbumAccessorService(8021)">Unknown8021()</li>
+							<li value="10011" id="nn::capsrv::sf::IAlbumAccessorService(10011)">Unknown10011(u8)</li>
+						</ol>
 					</li>
 				</ul>
 			</div>
@@ -2959,13 +2963,28 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="width: 55%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
 						<ul>
 							<li>caps:c</li>
 						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="2001" id="nn::capsrv::sf::IAlbumControlService(2001)">Unknown2001(u8)</li>
+							<li value="2002" id="nn::capsrv::sf::IAlbumControlService(2002)">Unknown2002(u8)</li>
+							<li value="2011" id="nn::capsrv::sf::IAlbumControlService(2011)">Unknown2011(u64, u64)</li>
+							<li value="2012" id="nn::capsrv::sf::IAlbumControlService(2012)">Unknown2012(u64, u64)</li>
+							<li value="2013" id="nn::capsrv::sf::IAlbumControlService(2013)">Unknown2013(u64) -&gt; u64</li>
+							<li value="2014" id="nn::capsrv::sf::IAlbumControlService(2014)">Unknown2014(u64)</li>
+							<li value="2101" id="nn::capsrv::sf::IAlbumControlService(2101)">Unknown2101()</li>
+							<li value="2102" id="nn::capsrv::sf::IAlbumControlService(2102)">Unknown2102()</li>
+							<li value="2201" id="nn::capsrv::sf::IAlbumControlService(2201)">Unknown2201()</li>
+							<li value="2301" id="nn::capsrv::sf::IAlbumControlService(2301)">Unknown2301()</li>
+						</ol>
 					</li>
 				</ul>
 			</div>
@@ -3219,13 +3238,39 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="44" aria-valuemin="0" aria-valuemax="100" style="width: 44%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
 						<ul>
 							<li>es</li>
 						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="1" id="nn::es::IETicketService(1)">Unknown1()</li>
+							<li value="2" id="nn::es::IETicketService(2)">Unknown2(buffer&lt;unknown, 5, 0&gt;)</li>
+							<li value="3" id="nn::es::IETicketService(3)">Unknown3(buffer&lt;unknown, 5, 0&gt;)</li>
+							<li value="4" id="nn::es::IETicketService(4)">Unknown4(u32)</li>
+							<li value="5" id="nn::es::IETicketService(5)">Unknown5()</li>
+							<li value="6" id="nn::es::IETicketService(6)">Unknown6()</li>
+							<li value="7" id="nn::es::IETicketService(7)">Unknown7(buffer&lt;unknown, 5, 0&gt;)</li>
+							<li value="8" id="nn::es::IETicketService(8)">Unknown8()</li>
+							<li value="9" id="nn::es::IETicketService(9)">Unknown9() -&gt; u32</li>
+							<li value="10" id="nn::es::IETicketService(10)">Unknown10() -&gt; u32</li>
+							<li value="11" id="nn::es::IETicketService(11)">Unknown11() -&gt; (u32, buffer&lt;unknown, 6, 0&gt;)</li>
+							<li value="12" id="nn::es::IETicketService(12)">Unknown12() -&gt; (u32, buffer&lt;unknown, 6, 0&gt;)</li>
+							<li value="13" id="nn::es::IETicketService(13)">Unknown13()</li>
+							<li value="14" id="nn::es::IETicketService(14)">Unknown14()</li>
+							<li value="15" id="nn::es::IETicketService(15)">Unknown15()</li>
+							<li value="16" id="nn::es::IETicketService(16)">Unknown16()</li>
+							<li value="17" id="nn::es::IETicketService(17)">Unknown17()</li>
+							<li value="18" id="nn::es::IETicketService(18)">Unknown18()</li>
+							<li value="19" id="nn::es::IETicketService(19)">Unknown19()</li>
+							<li value="20" id="nn::es::IETicketService(20)">Unknown20()</li>
+							<li value="21" id="nn::es::IETicketService(21)">Unknown21()</li>
+						</ol>
 					</li>
 				</ul>
 			</div>
@@ -4019,7 +4064,7 @@
 							<li value="2" id="nn::gpio::IManager(2)">Unknown2(u32) -&gt; IUnknown</li>
 							<li value="3" id="nn::gpio::IManager(3)">Unknown3(u32) -&gt; u8</li>
 							<li value="4" id="nn::gpio::IManager(4)">Unknown4() -&gt; u128</li>
-							<li value="5" id="nn::gpio::IManager(5)">Unknown5(u32, u8)</li>
+							<li value="5" id="nn::gpio::IManager(5)">Unknown5(u8, u32)</li>
 							<li value="6" id="nn::gpio::IManager(6)">Unknown6(u8)</li>
 						</ol>
 					</li>
@@ -6040,7 +6085,7 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="38" aria-valuemin="0" aria-valuemax="100" style="width: 38%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
@@ -6051,9 +6096,52 @@
 					<li class="list-group-item">
 						<h3>Commands:</h3>
 						<ol>
-							<li value="2" id="nn::nim::detail::INetworkInstallManager(2)">Unknown2(buffer&lt;unknown, 6, 0x200&gt;) -&gt; (u64, u64)</li>
-							<li value="8" id="nn::nim::detail::INetworkInstallManager(8)">Unknown8() -&gt; (u64, u64)</li>
-							<li value="40" id="nn::nim::detail::INetworkInstallManager(40)">Unknown40(buffer&lt;unknown, 6, 0x200&gt;) -&gt; (u64, u64)</li>
+							<li value="0" id="nn::nim::detail::INetworkInstallManager(0)">Unknown0()</li>
+							<li value="1" id="nn::nim::detail::INetworkInstallManager(1)">Unknown1(u128)</li>
+							<li value="2" id="nn::nim::detail::INetworkInstallManager(2)">Unknown2() -&gt; (u32, buffer&lt;unknown, 6, 0&gt;)</li>
+							<li value="3" id="nn::nim::detail::INetworkInstallManager(3)">Unknown3()</li>
+							<li value="4" id="nn::nim::detail::INetworkInstallManager(4)">Unknown4()</li>
+							<li value="5" id="nn::nim::detail::INetworkInstallManager(5)">Unknown5(u128)</li>
+							<li value="6" id="nn::nim::detail::INetworkInstallManager(6)">Unknown6()</li>
+							<li value="7" id="nn::nim::detail::INetworkInstallManager(7)">Unknown7(u128)</li>
+							<li value="8" id="nn::nim::detail::INetworkInstallManager(8)">Unknown8() -&gt; (u32, buffer&lt;unknown, 6, 0&gt;)</li>
+							<li value="9" id="nn::nim::detail::INetworkInstallManager(9)">Unknown9()</li>
+							<li value="10" id="nn::nim::detail::INetworkInstallManager(10)">Unknown10()</li>
+							<li value="11" id="nn::nim::detail::INetworkInstallManager(11)">Unknown11(u128)</li>
+							<li value="12" id="nn::nim::detail::INetworkInstallManager(12)">Unknown12()</li>
+							<li value="14" id="nn::nim::detail::INetworkInstallManager(14)">Unknown14()</li>
+							<li value="15" id="nn::nim::detail::INetworkInstallManager(15)">Unknown15()</li>
+							<li value="16" id="nn::nim::detail::INetworkInstallManager(16)">Unknown16()</li>
+							<li value="17" id="nn::nim::detail::INetworkInstallManager(17)">Unknown17()</li>
+							<li value="18" id="nn::nim::detail::INetworkInstallManager(18)">Unknown18()</li>
+							<li value="19" id="nn::nim::detail::INetworkInstallManager(19)">Unknown19()</li>
+							<li value="20" id="nn::nim::detail::INetworkInstallManager(20)">Unknown20()</li>
+							<li value="21" id="nn::nim::detail::INetworkInstallManager(21)">Unknown21()</li>
+							<li value="22" id="nn::nim::detail::INetworkInstallManager(22)">Unknown22() -&gt; u128</li>
+							<li value="23" id="nn::nim::detail::INetworkInstallManager(23)">Unknown23()</li>
+							<li value="24" id="nn::nim::detail::INetworkInstallManager(24)">Unknown24()</li>
+							<li value="25" id="nn::nim::detail::INetworkInstallManager(25)">Unknown25()</li>
+							<li value="26" id="nn::nim::detail::INetworkInstallManager(26)">Unknown26()</li>
+							<li value="27" id="nn::nim::detail::INetworkInstallManager(27)">Unknown27()</li>
+							<li value="28" id="nn::nim::detail::INetworkInstallManager(28)">Unknown28()</li>
+							<li value="29" id="nn::nim::detail::INetworkInstallManager(29)">Unknown29()</li>
+							<li value="30" id="nn::nim::detail::INetworkInstallManager(30)">Unknown30()</li>
+							<li value="31" id="nn::nim::detail::INetworkInstallManager(31)">Unknown31()</li>
+							<li value="32" id="nn::nim::detail::INetworkInstallManager(32)">Unknown32(u128)</li>
+							<li value="33" id="nn::nim::detail::INetworkInstallManager(33)">Unknown33()</li>
+							<li value="34" id="nn::nim::detail::INetworkInstallManager(34)">Unknown34()</li>
+							<li value="35" id="nn::nim::detail::INetworkInstallManager(35)">Unknown35()</li>
+							<li value="36" id="nn::nim::detail::INetworkInstallManager(36)">Unknown36()</li>
+							<li value="37" id="nn::nim::detail::INetworkInstallManager(37)">Unknown37(u128)</li>
+							<li value="38" id="nn::nim::detail::INetworkInstallManager(38)">Unknown38()</li>
+							<li value="39" id="nn::nim::detail::INetworkInstallManager(39)">Unknown39()</li>
+							<li value="40" id="nn::nim::detail::INetworkInstallManager(40)">Unknown40() -&gt; (u32, buffer&lt;unknown, 6, 0&gt;)</li>
+							<li value="41" id="nn::nim::detail::INetworkInstallManager(41)">Unknown41(u128)</li>
+							<li value="42" id="nn::nim::detail::INetworkInstallManager(42)">Unknown42()</li>
+							<li value="43" id="nn::nim::detail::INetworkInstallManager(43)">Unknown43() -&gt; u128</li>
+							<li value="44" id="nn::nim::detail::INetworkInstallManager(44)">Unknown44()</li>
+							<li value="45" id="nn::nim::detail::INetworkInstallManager(45)">Unknown45()</li>
+							<li value="46" id="nn::nim::detail::INetworkInstallManager(46)">Unknown46()</li>
 						</ol>
 					</li>
 				</ul>
@@ -6065,13 +6153,36 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
 						<ul>
 							<li>nim:shp</li>
 						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::nim::detail::IShopServiceManager(0)">Unknown0()</li>
+							<li value="1" id="nn::nim::detail::IShopServiceManager(1)">Unknown1()</li>
+							<li value="100" id="nn::nim::detail::IShopServiceManager(100)">Unknown100()</li>
+							<li value="101" id="nn::nim::detail::IShopServiceManager(101)">Unknown101()</li>
+							<li value="102" id="nn::nim::detail::IShopServiceManager(102)">Unknown102()</li>
+							<li value="103" id="nn::nim::detail::IShopServiceManager(103)">Unknown103() -&gt; bytes&lt;0x20&gt;</li>
+							<li value="104" id="nn::nim::detail::IShopServiceManager(104)">Unknown104()</li>
+							<li value="105" id="nn::nim::detail::IShopServiceManager(105)">Unknown105()</li>
+							<li value="106" id="nn::nim::detail::IShopServiceManager(106)">Unknown106()</li>
+							<li value="107" id="nn::nim::detail::IShopServiceManager(107)">Unknown107(u64) -&gt; u8</li>
+							<li value="200" id="nn::nim::detail::IShopServiceManager(200)">Unknown200()</li>
+							<li value="300" id="nn::nim::detail::IShopServiceManager(300)">Unknown300()</li>
+							<li value="301" id="nn::nim::detail::IShopServiceManager(301)">Unknown301()</li>
+							<li value="302" id="nn::nim::detail::IShopServiceManager(302)">Unknown302()</li>
+							<li value="303" id="nn::nim::detail::IShopServiceManager(303)">Unknown303()</li>
+							<li value="400" id="nn::nim::detail::IShopServiceManager(400)">Unknown400()</li>
+							<li value="500" id="nn::nim::detail::IShopServiceManager(500)">Unknown500()</li>
+							<li value="501" id="nn::nim::detail::IShopServiceManager(501)">Unknown501()</li>
+						</ol>
 					</li>
 				</ul>
 			</div>
@@ -6082,7 +6193,7 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="83" aria-valuemin="0" aria-valuemax="100" style="width: 83%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="37" aria-valuemin="0" aria-valuemax="100" style="width: 37%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
@@ -6093,9 +6204,35 @@
 					<li class="list-group-item">
 						<h3>Commands:</h3>
 						<ol>
+							<li value="1" id="nn::npns::INpnsSystem(1)">Unknown1()</li>
+							<li value="2" id="nn::npns::INpnsSystem(2)">Unknown2(u64)</li>
+							<li value="3" id="nn::npns::INpnsSystem(3)">Unknown3()</li>
+							<li value="4" id="nn::npns::INpnsSystem(4)">Unknown4()</li>
 							<li value="5" id="nn::npns::INpnsSystem(5)">SetInterfaceVersion() -&gt; KObject</li>
+							<li value="6" id="nn::npns::INpnsSystem(6)">Unknown6()</li>
 							<li value="7" id="nn::npns::INpnsSystem(7)">Unknown7() -&gt; KObject</li>
-							<li value="103" id="nn::npns::INpnsSystem(103)">Unknown103() -&gt; KObject</li>
+							<li value="11" id="nn::npns::INpnsSystem(11)">Unknown11()</li>
+							<li value="12" id="nn::npns::INpnsSystem(12)">Unknown12()</li>
+							<li value="13" id="nn::npns::INpnsSystem(13)">Unknown13()</li>
+							<li value="21" id="nn::npns::INpnsSystem(21)">Unknown21()</li>
+							<li value="22" id="nn::npns::INpnsSystem(22)">Unknown22()</li>
+							<li value="23" id="nn::npns::INpnsSystem(23)">Unknown23()</li>
+							<li value="24" id="nn::npns::INpnsSystem(24)">Unknown24()</li>
+							<li value="25" id="nn::npns::INpnsSystem(25)">Unknown25()</li>
+							<li value="31" id="nn::npns::INpnsSystem(31)">Unknown31()</li>
+							<li value="32" id="nn::npns::INpnsSystem(32)">Unknown32()</li>
+							<li value="101" id="nn::npns::INpnsSystem(101)">Unknown101()</li>
+							<li value="102" id="nn::npns::INpnsSystem(102)">Unknown102()</li>
+							<li value="103" id="nn::npns::INpnsSystem(103)">Unknown103() -&gt; u32</li>
+							<li value="104" id="nn::npns::INpnsSystem(104)">Unknown104() -&gt; buffer&lt;unknown, 6, 0&gt;</li>
+							<li value="105" id="nn::npns::INpnsSystem(105)">Unknown105() -&gt; KObject</li>
+							<li value="111" id="nn::npns::INpnsSystem(111)">Unknown111()</li>
+							<li value="112" id="nn::npns::INpnsSystem(112)">Unknown112()</li>
+							<li value="113" id="nn::npns::INpnsSystem(113)">Unknown113()</li>
+							<li value="114" id="nn::npns::INpnsSystem(114)">Unknown114()</li>
+							<li value="115" id="nn::npns::INpnsSystem(115)">Unknown115()</li>
+							<li value="201" id="nn::npns::INpnsSystem(201)">Unknown201()</li>
+							<li value="202" id="nn::npns::INpnsSystem(202)">Unknown202(u32)</li>
 						</ol>
 					</li>
 				</ul>
@@ -6133,17 +6270,6 @@
 							<li value="104" id="nn::npns::INpnsUser(104)">Unknown104() -&gt; buffer&lt;unknown, 6, 0&gt;</li>
 							<li value="111" id="nn::npns::INpnsUser(111)">Unknown111()</li>
 						</ol>
-					</li>
-				</ul>
-			</div>
-			<br />
-			<div class="card">
-				<div class="card-header">
-					<h2 id="nn::npns::Weird">nn::npns::Weird</h2>
-				</div>
-				<ul class="list-group list-group-flush">
-					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div></div>
 					</li>
 				</ul>
 			</div>
@@ -7261,13 +7387,19 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div></div>
+					</li>
+					<li class="list-group-item">
+						<h3>Provides:</h3>
+						<ul>
+							<li>pm:bm</li>
+						</ul>
 					</li>
 					<li class="list-group-item">
 						<h3>Commands:</h3>
 						<ol>
-							<li value="0" id="nn::pm::detail::IBootModeInterface(0)">Unknown0() -&gt; u32</li>
-							<li value="1" id="nn::pm::detail::IBootModeInterface(1)">Unknown1()</li>
+							<li value="0" id="nn::pm::detail::IBootModeInterface(0)">Init() -&gt; u64</li>
+							<li value="1" id="nn::pm::detail::IBootModeInterface(1)">EnableMaintenanceMode()</li>
 						</ol>
 					</li>
 				</ul>
@@ -7296,15 +7428,21 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="63" aria-valuemin="0" aria-valuemax="100" style="width: 63%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div></div>
+					</li>
+					<li class="list-group-item">
+						<h3>Provides:</h3>
+						<ul>
+							<li>pm:shell</li>
+						</ul>
 					</li>
 					<li class="list-group-item">
 						<h3>Commands:</h3>
 						<ol>
-							<li value="0" id="nn::pm::detail::IShellInterface(0)">Unknown0()</li>
+							<li value="0" id="nn::pm::detail::IShellInterface(0)">LaunchTitle(u64, <a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid)</li>
 							<li value="1" id="nn::pm::detail::IShellInterface(1)">Unknown1(u64)</li>
 							<li value="2" id="nn::pm::detail::IShellInterface(2)">Unknown2(u64)</li>
-							<li value="3" id="nn::pm::detail::IShellInterface(3)">Unknown3() -&gt; KObject</li>
+							<li value="3" id="nn::pm::detail::IShellInterface(3)">GetProcessEventWaiter() -&gt; KObject</li>
 							<li value="4" id="nn::pm::detail::IShellInterface(4)">Unknown4() -&gt; u128</li>
 							<li value="5" id="nn::pm::detail::IShellInterface(5)">Unknown5(u64)</li>
 							<li value="6" id="nn::pm::detail::IShellInterface(6)">Unknown6(u64)</li>
@@ -7356,13 +7494,25 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="46" aria-valuemin="0" aria-valuemax="100" style="width: 46%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
 						<ul>
 							<li>psc:c</li>
 						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::psc::sf::IPmControl(0)">Unknown0() -&gt; KObject</li>
+							<li value="1" id="nn::psc::sf::IPmControl(1)">Unknown1(u32, u32, u32)</li>
+							<li value="2" id="nn::psc::sf::IPmControl(2)">Unknown2()</li>
+							<li value="3" id="nn::psc::sf::IPmControl(3)">Unknown3() -&gt; u32</li>
+							<li value="4" id="nn::psc::sf::IPmControl(4)">Unknown4()</li>
+							<li value="5" id="nn::psc::sf::IPmControl(5)">Unknown5()</li>
+							<li value="6" id="nn::psc::sf::IPmControl(6)">Unknown6()</li>
+						</ol>
 					</li>
 				</ul>
 			</div>
