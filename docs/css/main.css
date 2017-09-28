@@ -56,3 +56,9 @@ ol > li:before {
   content: "[" attr(value) "] ";
   margin-left: -20px;
 }
+
+.progress {
+  background-color: #080f08;
+  display: inline-block;
+  margin-right: 10px;
+}

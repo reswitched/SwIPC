@@ -110,6 +110,35 @@ for name, cmds in ifaces.items():
 					returnedBy[c] = []
 				returnedBy[c].append((name, cmd['cmdId']))
 
+ifaceCompleteness = dict(IUnknown=0, IPipe=100, NPort=100)
+for name, cmds in ifaces.items():
+	complete = 0
+	count = 0
+	for cname, cmd in cmds.items():
+		if not cname.startswith('Unknown'):
+			count += 4
+			complete += 4
+		elif len(cmd['inputs']) or len(cmd['outputs']):
+			count += 4
+			complete += 3
+		else:
+			count += 4
+			complete += 1
+	if count == 0:
+		count = 1
+
+	ifaceCompleteness[name] = int(complete * 100. / count)
+
+ifaceTotalCompleteness = {}
+for name, cmds in ifaces.items():
+	cmds = ifaces[name]
+	deps = set([name])
+	for cmd in cmds.values():
+		for _, elem in cmd['outputs']:
+			if elem[0] == 'object':
+				deps.add(elem[1][0])
+	ifaceTotalCompleteness[name] = int(sum(ifaceCompleteness[dep] for dep in deps) / float(len(deps)))
+
 ifp = Indentable(file('docs/index.html', 'w'))
 tfp = Indentable(file('docs/types.html', 'w'))
 nfp = Indentable(file('docs/ifaces.html', 'w'))
@@ -144,7 +173,9 @@ print >>ifp, '<h2 id="services">Services</h2>'
 print >>ifp, '<div class="list-group">'
 ifp += 1
 for service, iface in sorted(invServices.items(), key=lambda x: x[0]):
-	print >>ifp, '<a class="list-group-item list-group-item-action" href="ifaces.html#%s">%s</a>' % (iface, service)
+	print >>ifp, '<a class="list-group-item list-group-item-action" href="ifaces.html#%s">' % iface
+	print >>ifp, '<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="%i" aria-valuemin="0" aria-valuemax="100" style="width: %i%%"></div></div>' % (ifaceTotalCompleteness[iface], ifaceTotalCompleteness[iface])
+	print >>ifp, '%s</a>' % service
 ifp -= 1
 print >>ifp, '</div>'
 print >>ifp, '<br />'
@@ -153,7 +184,9 @@ print >>ifp, '<h2 id="interfaces">Interfaces</h2>'
 print >>ifp, '<div class="list-group">'
 ifp += 1
 for iface in sorted(ifaces.keys()):
-	print >>ifp, '<a class="list-group-item list-group-item-action" href="ifaces.html#%s">%s</a>' % (iface, iface)
+	print >>ifp, '<a class="list-group-item list-group-item-action" href="ifaces.html#%s">' % iface
+	print >>ifp, '<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="%i" aria-valuemin="0" aria-valuemax="100" style="width: %i%%"></div></div>' % (ifaceCompleteness[iface], ifaceCompleteness[iface])
+	print >>ifp, '%s</a>' % iface
 ifp -= 1
 print >>ifp, '</div>'
 
@@ -184,6 +217,10 @@ for name, cmds in ifaces.items():
 	print >>nfp, '</div>'
 	print >>nfp, '<ul class="list-group list-group-flush">'
 	nfp += 1
+
+	print >>nfp, '<li class="list-group-item">'
+	print >>nfp, '\t<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="%i" aria-valuemin="0" aria-valuemax="100" style="width: %i%%"></div></div>' % (ifaceTotalCompleteness[name], ifaceTotalCompleteness[name])
+	print >>nfp, '</li>'
 
 	if name in services:
 		print >>nfp, '<li class="list-group-item">'
