@@ -900,11 +900,16 @@ interface nn::apm::ISystemManager is apm:sys {
 }
 
 interface nn::arp::detail::IReader is arp:r {
+	[0] Unknown0();
+	[1] Unknown1();
+	[2] Unknown2();
+	[3] Unknown3();
 }
 
 interface nn::arp::detail::IRegistrar {
 	[0] Unknown0(u64);
 	[1] Unknown1(u128);
+	[2] Unknown2();
 }
 
 interface nn::arp::detail::IWriter is arp:w {
@@ -1067,7 +1072,10 @@ interface nn::audioctrl::detail::IAudioController is audctl {
 	[1] Unknown1(u32, u32);
 	[2] Unknown2() -> u32;
 	[3] Unknown3() -> u32;
+	[4] Unknown4();
 	[5] Unknown5(u8, u32);
+	[6] Unknown6();
+	[7] Unknown7();
 	[8] Unknown8() -> u32;
 	[9] Unknown9(u32) -> u32;
 	[10] Unknown10(u32, u32);
@@ -1142,6 +1150,7 @@ interface nn::bgtc::ITaskService is bgtc:t {
 	[2] Unknown2();
 	[3] Unknown3() -> KObject;
 	[4] Unknown4() -> u8;
+	[5] Unknown5();
 	[6] Unknown6() -> u8;
 	[11] Unknown11(u32);
 	[12] Unknown12() -> u32;
@@ -1159,23 +1168,42 @@ interface nn::bluetooth::IBluetoothDriver is btdrv {
 	[2] Unknown2();
 	[3] Unknown3();
 	[4] Unknown4();
+	[5] Unknown5();
+	[6] Unknown6();
+	[7] Unknown7();
 	[8] Unknown8();
 	[9] Unknown9();
+	[10] Unknown10();
 	[11] Unknown11(bytes<6>);
 	[12] Unknown12(bytes<6>);
+	[13] Unknown13();
+	[14] Unknown14();
 	[15] Unknown15() -> (u32, buffer<unknown, 0xa, 0>);
+	[16] Unknown16();
 	[17] Unknown17(bytes<6>);
 	[18] Unknown18(bytes<6>);
+	[19] Unknown19();
+	[20] Unknown20();
+	[21] Unknown21();
+	[22] Unknown22();
 	[23] Unknown23(bytes<6>);
+	[24] Unknown24();
+	[25] Unknown25();
 	[26] Unknown26();
 	[27] Unknown27() -> (u32, buffer<unknown, 0xa, 0>);
+	[28] Unknown28();
+	[29] Unknown29();
+	[30] Unknown30();
 	[31] Unknown31(u8);
 	[32] Unknown32();
 	[33] Unknown33();
 	[34] Unknown34(u8);
+	[35] Unknown35();
 	[36] Unknown36() -> KObject;
 	[37] Unknown37() -> (u32, buffer<unknown, 0xa, 0>);
+	[38] Unknown38();
 	[39] Unknown39();
+	[40] Unknown40();
 	[41] Unknown41(u8);
 	[42] Unknown42() -> u8;
 	[43] Unknown43(u8);
@@ -1193,6 +1221,8 @@ interface nn::bpc::IBoardPowerControlManager is bpc {
 	[7] Unknown7(u32) -> KObject;
 	[8] Unknown8(u64) -> u32;
 	[9] Unknown9(u32);
+	[10] Unknown10();
+	[11] Unknown11();
 	[12] Unknown12() -> u32;
 	[13] Unknown13(u32);
 }
@@ -1206,10 +1236,16 @@ interface nn::bpc::IRtcManager is bpc:r {
 }
 
 interface nn::bsdsocket::cfg::ServerInterface is bsdcfg {
+	[0] Unknown0();
+	[1] Unknown1();
 	[2] Unknown2(buffer<unknown, 5, 0>);
 	[3] Unknown3(u32, buffer<unknown, 5, 0>);
+	[4] Unknown4();
 	[5] Unknown5(buffer<unknown, 5, 0>);
+	[6] Unknown6();
 	[7] Unknown7(u32);
+	[8] Unknown8();
+	[9] Unknown9();
 	[10] Unknown10();
 	[11] Unknown11(buffer<unknown, 5, 0>);
 	[12] Unknown12();
@@ -1217,14 +1253,24 @@ interface nn::bsdsocket::cfg::ServerInterface is bsdcfg {
 
 interface nn::btm::IBtm is btm {
 	[0] Unknown0() -> u32;
+	[1] Unknown1();
+	[2] Unknown2();
+	[3] Unknown3();
+	[4] Unknown4();
+	[5] Unknown5();
 	[6] Unknown6(u32);
 	[7] Unknown7(u32);
+	[8] Unknown8();
+	[9] Unknown9();
+	[10] Unknown10();
 	[11] Unknown11(bytes<6>);
 	[12] Unknown12(bytes<6>);
 	[13] Unknown13(bytes<6>);
 	[14] Unknown14();
 	[15] Unknown15();
 	[16] Unknown16(bytes<6>);
+	[17] Unknown17();
+	[18] Unknown18();
 }
 
 interface nn::btm::IBtmDebug is btm:dbg {
@@ -1251,14 +1297,37 @@ interface nn::btm::IBtmSystemCore {
 	[4] Unknown4();
 	[5] Unknown5();
 	[6] Unknown6() -> u8;
+	[7] Unknown7();
+	[8] Unknown8();
 	[9] Unknown9() -> u8;
 }
 
 interface nn::capsrv::sf::IAlbumAccessorService is caps:a {
+	[0] Unknown0();
+	[1] Unknown1();
+	[2] Unknown2();
+	[3] Unknown3();
+	[4] Unknown4();
+	[5] Unknown5();
+	[6] Unknown6();
+	[7] Unknown7();
+	[8] Unknown8();
+	[9] Unknown9();
+	[10] Unknown10();
+	[11] Unknown11();
+	[12] Unknown12();
+	[13] Unknown13();
+	[14] Unknown14();
+	[301] Unknown301();
 	[401] Unknown401() -> u8;
+	[501] Unknown501();
+	[1001] Unknown1001();
+	[1002] Unknown1002();
 	[8001] Unknown8001(u8);
 	[8002] Unknown8002(u8);
 	[8011] Unknown8011(u8);
+	[8012] Unknown8012();
+	[8021] Unknown8021();
 	[10011] Unknown10011(u8);
 }
 
@@ -1269,6 +1338,10 @@ interface nn::capsrv::sf::IAlbumControlService is caps:c {
 	[2012] Unknown2012(u64, u64);
 	[2013] Unknown2013(u64) -> u64;
 	[2014] Unknown2014(u64);
+	[2101] Unknown2101();
+	[2102] Unknown2102();
+	[2201] Unknown2201();
+	[2301] Unknown2301();
 }
 
 interface nn::capsrv::sf::IScreenShotApplicationService is caps:su {
@@ -1277,20 +1350,33 @@ interface nn::capsrv::sf::IScreenShotApplicationService is caps:su {
 }
 
 interface nn::capsrv::sf::IScreenShotControlService is caps:sc {
+	[1] Unknown1();
+	[2] Unknown2();
 	[1001] Unknown1001(u64, u64);
 	[1002] Unknown1002(u64, u64, u64);
+	[1003] Unknown1003();
 	[1011] Unknown1011(u64);
 	[1012] Unknown1012(u64);
+	[1201] Unknown1201();
 	[1202] Unknown1202();
 	[1203] Unknown1203(u64) -> (u64, buffer<unknown, 6, 0>);
 }
 
 interface nn::capsrv::sf::IScreenShotService is caps:ss {
+	[201] Unknown201();
+	[202] Unknown202();
+	[203] Unknown203();
+	[204] Unknown204();
 }
 
 interface nn::cec::ICecManager {
+	[0] Unknown0();
 	[1] Unknown1(u32) -> u32;
 	[2] Unknown2(u32);
+	[3] Unknown3();
+	[4] Unknown4();
+	[5] Unknown5();
+	[6] Unknown6();
 }
 
 interface nn::codec::detail::IHardwareOpusDecoder {
@@ -1308,16 +1394,21 @@ interface nn::codec::detail::IHardwareOpusDecoderManager is hwopus {
 }
 
 interface nn::erpt::sf::IContext is erpt:c {
+	[0] Unknown0();
+	[1] Unknown1();
+	[2] Unknown2();
 	[3] Unknown3();
 	[4] Unknown4();
 	[5] Unknown5();
 }
 
 interface nn::erpt::sf::IManager {
+	[0] Unknown0();
 	[1] Unknown1() -> KObject;
 }
 
 interface nn::erpt::sf::IReport {
+	[0] Unknown0();
 	[1] Unknown1() -> (u32, buffer<unknown, 6, 0>);
 	[2] Unknown2(u32);
 	[3] Unknown3() -> u32;
@@ -1331,34 +1422,51 @@ interface nn::erpt::sf::ISession is erpt:r {
 }
 
 interface nn::es::IETicketService is es {
+	[1] Unknown1();
 	[2] Unknown2(buffer<unknown, 5, 0>);
 	[3] Unknown3(buffer<unknown, 5, 0>);
 	[4] Unknown4(u32);
 	[5] Unknown5();
 	[6] Unknown6();
 	[7] Unknown7(buffer<unknown, 5, 0>);
+	[8] Unknown8();
 	[9] Unknown9() -> u32;
 	[10] Unknown10() -> u32;
 	[11] Unknown11() -> (u32, buffer<unknown, 6, 0>);
 	[12] Unknown12() -> (u32, buffer<unknown, 6, 0>);
+	[13] Unknown13();
+	[14] Unknown14();
+	[15] Unknown15();
+	[16] Unknown16();
+	[17] Unknown17();
+	[18] Unknown18();
+	[19] Unknown19();
+	[20] Unknown20();
+	[21] Unknown21();
 }
 
 interface nn::eth::sf::IEthInterface {
+	[0] Unknown0();
 	[1] Unknown1();
 	[2] Unknown2();
+	[3] Unknown3();
 	[4] Unknown4(u32);
+	[5] Unknown5();
 }
 
 interface nn::eth::sf::IEthInterfaceGroup is ethc:c, ethc:i {
 	[0] Unknown0() -> KObject;
 	[1] Unknown1();
 	[2] Unknown2();
+	[3] Unknown3();
 	[4] Unknown4() -> u32;
 }
 
 interface nn::eupld::sf::IControl is eupld:c {
 	[0] Unknown0(buffer<unknown, 5, 0>);
 	[1] Unknown1(buffer<unknown, 5, 0>);
+	[2] Unknown2();
+	[3] Unknown3();
 }
 
 interface nn::eupld::sf::IRequest is eupld:r {
@@ -1390,6 +1498,9 @@ interface nn::fatalsrv::IPrivateService is fatal:p {
 }
 
 interface nn::fatalsrv::IService is fatal:u {
+	[0] Unknown0();
+	[1] Unknown1();
+	[2] Unknown2();
 }
 
 interface nn::fgm::sf::IDebugger {
@@ -1913,6 +2024,7 @@ interface nn::idle::detail::IPolicyManagerSystem is idle:sys {
 	[0] Unknown0() -> KObject;
 	[1] Unknown1();
 	[2] Unknown2();
+	[3] Unknown3();
 	[4] Unknown4();
 	[5] Unknown5();
 }
@@ -2056,6 +2168,7 @@ interface nn::ldn::detail::IUserServiceCreator is ldn:u {
 }
 
 interface nn::ldr::detail::IShellInterface {
+	[0] Unknown0();
 	[1] Unknown1();
 }
 
@@ -2069,21 +2182,38 @@ interface nn::lm::ILogger {
 }
 
 interface nn::lr::ILocationResolverManager {
+	[0] Unknown0();
 	[1] Unknown1() -> object<IUnknown>;
 	[2] Unknown2(u8);
 	[3] Unknown3() -> object<IUnknown>;
 }
 
 interface nn::lr::ILocationResolverManager_0 {
+	[0] Unknown0();
+	[1] Unknown1();
+	[2] Unknown2();
+	[3] Unknown3();
+	[4] Unknown4();
+	[5] Unknown5();
+	[6] Unknown6();
+	[7] Unknown7();
+	[8] Unknown8();
 	[9] Unknown9();
 }
 
 interface nn::lr::ILocationResolverManager_1 {
+	[0] Unknown0();
+	[1] Unknown1();
 	[2] Unknown2(u64);
+	[3] Unknown3();
+	[4] Unknown4();
+	[5] Unknown5();
 	[6] Unknown6(u64);
+	[7] Unknown7();
 }
 
 interface nn::lr::ILocationResolverManager_3 {
+	[0] Unknown0();
 	[1] Unknown1(u8, u64);
 	[2] Unknown2();
 }
@@ -2122,6 +2252,7 @@ interface nn::mmnv::IRequest is mm:u {
 	[1] Unknown1(u32);
 	[2] Unknown2(u32, u32, u32);
 	[3] Unknown3(u32) -> u32;
+	[4] Unknown4();
 	[5] Unknown5(u32);
 	[6] Unknown6(u32, u32, u32);
 	[7] Unknown7(u32) -> u32;
@@ -2132,6 +2263,8 @@ interface nn::ncm::IContentManager {
 	[1] Unknown1(u8);
 	[2] Unknown2(u8);
 	[3] Unknown3(u8);
+	[4] Unknown4();
+	[5] Unknown5();
 	[8] Unknown8(u8);
 	[9] Unknown9(u8);
 	[10] Unknown10(u8);
@@ -2140,18 +2273,51 @@ interface nn::ncm::IContentManager {
 }
 
 interface nn::ncm::IContentMetaDatabase {
+	[0] Unknown0();
+	[1] Unknown1();
+	[2] Unknown2();
+	[3] Unknown3();
+	[4] Unknown4();
+	[5] Unknown5();
+	[6] Unknown6();
+	[7] Unknown7();
+	[8] Unknown8();
+	[9] Unknown9();
+	[10] Unknown10();
+	[11] Unknown11();
+	[12] Unknown12();
 	[13] Unknown13();
+	[14] Unknown14();
 	[15] Unknown15();
+	[16] Unknown16();
+	[17] Unknown17();
+	[18] Unknown18();
+	[19] Unknown19();
 }
 
 interface nn::ncm::IContentStorage {
 	[0] Unknown0() -> u128;
+	[1] Unknown1();
 	[2] Unknown2(u128);
+	[3] Unknown3();
+	[4] Unknown4();
+	[5] Unknown5();
 	[6] Unknown6(u128);
+	[7] Unknown7();
+	[8] Unknown8();
+	[9] Unknown9();
 	[10] Unknown10();
 	[11] Unknown11() -> (u32, buffer<unknown, 6, 0>);
 	[12] Unknown12() -> u32;
+	[13] Unknown13();
+	[14] Unknown14();
 	[15] Unknown15();
+	[16] Unknown16();
+	[17] Unknown17();
+	[18] Unknown18();
+	[19] Unknown19();
+	[20] Unknown20();
+	[21] Unknown21();
 	[22] Unknown22() -> u64;
 	[23] Unknown23() -> u64;
 	[24] Unknown24();
@@ -2163,19 +2329,29 @@ interface nn::news::detail::ipc::INewlyArrivedEventHolder {
 
 interface nn::news::detail::ipc::INewsDataService {
 	[0] Unknown0(buffer<unknown, 9, 0>);
+	[1] Unknown1();
 	[2] Unknown2(u64) -> (u64, buffer<unknown, 6, 0>);
 	[3] Unknown3() -> u64;
 }
 
 interface nn::news::detail::ipc::INewsDatabaseService {
+	[0] Unknown0();
+	[1] Unknown1();
+	[2] Unknown2();
+	[3] Unknown3();
+	[4] Unknown4();
+	[5] Unknown5();
 }
 
 interface nn::news::detail::ipc::INewsService {
 	[10100] Unknown10100(buffer<unknown, 5, 0>);
 	[20100] Unknown20100(u64, buffer<unknown, 9, 0>);
+	[30100] Unknown30100();
 	[30101] Unknown30101(u32) -> (u32, buffer<unknown, 6, 0>);
 	[30200] Unknown30200() -> u8;
 	[30300] Unknown30300(buffer<unknown, 9, 0>);
+	[30400] Unknown30400();
+	[40100] Unknown40100();
 	[40101] Unknown40101(u64);
 	[40200] Unknown40200();
 	[40201] Unknown40201();
@@ -2459,6 +2635,8 @@ interface nn::nim::detail::IAsyncData {
 	[0] Unknown0();
 	[1] Unknown1();
 	[2] Unknown2() -> u64;
+	[3] Unknown3();
+	[4] Unknown4();
 }
 
 interface nn::nim::detail::IAsyncProgressResult {
@@ -2479,69 +2657,150 @@ interface nn::nim::detail::IAsyncValue {
 }
 
 interface nn::nim::detail::INetworkInstallManager is nim {
+	[0] Unknown0();
 	[1] Unknown1(u128);
 	[2] Unknown2() -> (u32, buffer<unknown, 6, 0>);
+	[3] Unknown3();
+	[4] Unknown4();
 	[5] Unknown5(u128);
+	[6] Unknown6();
 	[7] Unknown7(u128);
 	[8] Unknown8() -> (u32, buffer<unknown, 6, 0>);
+	[9] Unknown9();
+	[10] Unknown10();
 	[11] Unknown11(u128);
+	[12] Unknown12();
+	[14] Unknown14();
+	[15] Unknown15();
+	[16] Unknown16();
+	[17] Unknown17();
+	[18] Unknown18();
+	[19] Unknown19();
+	[20] Unknown20();
+	[21] Unknown21();
 	[22] Unknown22() -> u128;
+	[23] Unknown23();
+	[24] Unknown24();
+	[25] Unknown25();
+	[26] Unknown26();
+	[27] Unknown27();
+	[28] Unknown28();
+	[29] Unknown29();
+	[30] Unknown30();
+	[31] Unknown31();
 	[32] Unknown32(u128);
+	[33] Unknown33();
+	[34] Unknown34();
+	[35] Unknown35();
+	[36] Unknown36();
 	[37] Unknown37(u128);
+	[38] Unknown38();
 	[39] Unknown39();
 	[40] Unknown40() -> (u32, buffer<unknown, 6, 0>);
 	[41] Unknown41(u128);
+	[42] Unknown42();
 	[43] Unknown43() -> u128;
+	[44] Unknown44();
+	[45] Unknown45();
 	[46] Unknown46();
 }
 
 interface nn::nim::detail::IShopServiceManager is nim:shp {
+	[0] Unknown0();
+	[1] Unknown1();
+	[100] Unknown100();
+	[101] Unknown101();
+	[102] Unknown102();
 	[103] Unknown103() -> bytes<0x20>;
+	[104] Unknown104();
+	[105] Unknown105();
+	[106] Unknown106();
 	[107] Unknown107(u64) -> u8;
+	[200] Unknown200();
+	[300] Unknown300();
+	[301] Unknown301();
+	[302] Unknown302();
+	[303] Unknown303();
+	[400] Unknown400();
+	[500] Unknown500();
+	[501] Unknown501();
 }
 
 interface nn::npns::INpnsSystem is npns:s {
 	[1] Unknown1();
 	[2] Unknown2(u64);
+	[3] Unknown3();
+	[4] Unknown4();
 	[5] Unknown5() -> KObject;
 	[6] Unknown6();
 	[7] Unknown7() -> KObject;
+	[11] Unknown11();
+	[12] Unknown12();
+	[13] Unknown13();
+	[21] Unknown21();
+	[22] Unknown22();
+	[23] Unknown23();
+	[24] Unknown24();
+	[25] Unknown25();
+	[31] Unknown31();
+	[32] Unknown32();
 	[101] Unknown101();
 	[102] Unknown102();
 	[103] Unknown103() -> u32;
 	[104] Unknown104() -> buffer<unknown, 6, 0>;
 	[105] Unknown105() -> KObject;
+	[111] Unknown111();
 	[112] Unknown112();
 	[113] Unknown113();
+	[114] Unknown114();
+	[115] Unknown115();
+	[201] Unknown201();
 	[202] Unknown202(u32);
 }
 
 interface nn::npns::INpnsUser is npns:u {
 	[1] Unknown1();
 	[2] Unknown2(u64);
+	[3] Unknown3();
+	[4] Unknown4();
 	[5] Unknown5() -> KObject;
 	[7] Unknown7() -> KObject;
+	[21] Unknown21();
+	[23] Unknown23();
+	[25] Unknown25();
 	[101] Unknown101();
 	[102] Unknown102();
 	[103] Unknown103() -> u32;
 	[104] Unknown104() -> buffer<unknown, 6, 0>;
+	[111] Unknown111();
 }
 
 interface nn::ns::detail::IAccountProxyInterface {
+	[0] Unknown0();
 }
 
 interface nn::ns::detail::IApplicationManagerInterface {
+	[0] Unknown0();
 	[1] Unknown1() -> u64;
 	[2] Unknown2() -> KObject;
+	[3] Unknown3();
 	[4] Unknown4(u64);
 	[5] Unknown5(u64);
 	[6] Unknown6() -> u8;
 	[7] Unknown7();
+	[8] Unknown8();
 	[9] Unknown9(u8, u64);
+	[11] Unknown11();
+	[16] Unknown16();
+	[17] Unknown17();
 	[19] Unknown19(u64) -> u64;
+	[21] Unknown21();
 	[22] Unknown22(u64);
 	[23] Unknown23(u8, u64);
+	[26] Unknown26();
 	[27] Unknown27(u64);
+	[30] Unknown30();
+	[31] Unknown31();
 	[32] Unknown32(u64);
 	[33] Unknown33(u64);
 	[35] Unknown35(buffer<unknown, 5, 0>);
@@ -2549,11 +2808,15 @@ interface nn::ns::detail::IApplicationManagerInterface {
 	[37] Unknown37() -> (u32, buffer<unknown, 6, 0>);
 	[38] Unknown38(u64);
 	[39] Unknown39(u64);
+	[40] Unknown40();
+	[41] Unknown41();
 	[42] Unknown42();
 	[43] Unknown43();
 	[44] Unknown44() -> KObject;
 	[45] Unknown45() -> KObject;
 	[46] Unknown46() -> u128;
+	[47] Unknown47();
+	[48] Unknown48();
 	[49] Unknown49() -> KObject;
 	[52] Unknown52() -> KObject;
 	[53] Unknown53(u64);
@@ -2562,6 +2825,8 @@ interface nn::ns::detail::IApplicationManagerInterface {
 	[56] Unknown56(u32, u64);
 	[57] Unknown57(u64);
 	[58] Unknown58();
+	[59] Unknown59();
+	[60] Unknown60();
 	[61] Unknown61() -> u128;
 	[62] Unknown62() -> object<IUnknown>;
 	[63] Unknown63(u64) -> u8;
@@ -2570,10 +2835,19 @@ interface nn::ns::detail::IApplicationManagerInterface {
 	[66] Unknown66() -> u128;
 	[67] Unknown67(u64);
 	[68] Unknown68(u64);
+	[69] Unknown69();
 	[70] Unknown70();
+	[71] Unknown71();
+	[80] Unknown80();
+	[81] Unknown81();
+	[82] Unknown82();
 	[100] Unknown100();
 	[101] Unknown101();
 	[102] Unknown102();
+	[200] Unknown200();
+	[201] Unknown201();
+	[210] Unknown210();
+	[220] Unknown220();
 	[300] Unknown300() -> KObject;
 	[301] Unknown301() -> (u32, buffer<unknown, 6, 0>);
 	[302] Unknown302(u64) -> u64;
@@ -2582,32 +2856,54 @@ interface nn::ns::detail::IApplicationManagerInterface {
 	[305] Unknown305(u64);
 	[306] Unknown306() -> u64;
 	[307] Unknown307(u64);
+	[400] Unknown400();
 	[401] Unknown401();
+	[402] Unknown402();
 	[403] Unknown403() -> u32;
 	[404] Unknown404(u64);
 	[405] Unknown405() -> (u32, buffer<unknown, 6, 0>);
+	[502] Unknown502();
+	[503] Unknown503();
+	[504] Unknown504();
 	[505] Unknown505() -> KObject;
 	[506] Unknown506() -> u8;
 	[507] Unknown507();
 	[508] Unknown508();
 	[600] Unknown600(u64) -> u32;
+	[601] Unknown601();
+	[602] Unknown602();
+	[603] Unknown603();
 	[604] Unknown604(u64, u64);
+	[605] Unknown605();
+	[606] Unknown606();
 	[700] Unknown700(buffer<unknown, 5, 0>);
 	[701] Unknown701();
 	[702] Unknown702();
+	[703] Unknown703();
 	[704] Unknown704() -> (u32, buffer<unknown, 6, 0>);
+	[705] Unknown705();
 	[800] Unknown800();
 	[801] Unknown801() -> (u32, buffer<unknown, 6, 0>);
+	[802] Unknown802();
+	[900] Unknown900();
+	[901] Unknown901();
 	[902] Unknown902(u64);
 	[903] Unknown903(u64);
 	[904] Unknown904(u64);
 	[905] Unknown905(u32, u64);
+	[906] Unknown906();
 	[907] Unknown907(u64);
+	[908] Unknown908();
 	[909] Unknown909(u64);
+	[1000] Unknown1000();
+	[1001] Unknown1001();
+	[1002] Unknown1002();
 	[1200] Unknown1200() -> u8;
 	[1300] Unknown1300(u64) -> u8;
+	[1301] Unknown1301();
 	[1302] Unknown1302(u64);
 	[1303] Unknown1303(u64);
+	[1304] Unknown1304();
 	[1400] Unknown1400();
 	[1500] Unknown1500();
 	[1501] Unknown1501() -> u8;
@@ -2616,6 +2912,8 @@ interface nn::ns::detail::IApplicationManagerInterface {
 	[1505] Unknown1505();
 	[1600] Unknown1600() -> bytes<0x20>;
 	[1601] Unknown1601();
+	[1700] Unknown1700();
+	[1701] Unknown1701();
 	[1702] Unknown1702(u64) -> u8;
 	[1800] Unknown1800() -> u8;
 	[1801] Unknown1801() -> u64;
@@ -2636,23 +2934,39 @@ interface nn::ns::detail::IAsyncValue {
 }
 
 interface nn::ns::detail::IContentManagementInterface {
+	[11] Unknown11();
 	[43] Unknown43();
+	[47] Unknown47();
+	[48] Unknown48();
 	[600] Unknown600(u64) -> u32;
+	[601] Unknown601();
+	[605] Unknown605();
 	[607] Unknown607() -> u8;
 }
 
 interface nn::ns::detail::IDevelopInterface is ns:dev {
+	[0] Unknown0();
+	[1] Unknown1();
+	[2] Unknown2();
+	[4] Unknown4();
+	[5] Unknown5();
 	[6] Unknown6();
+	[7] Unknown7();
+	[8] Unknown8();
+	[9] Unknown9();
 }
 
 interface nn::ns::detail::IDocumentInterface {
+	[21] Unknown21();
 	[23] Unknown23(u8, u64);
 }
 
 interface nn::ns::detail::IDownloadTaskInterface {
 	[701] Unknown701();
 	[702] Unknown702();
+	[703] Unknown703();
 	[704] Unknown704() -> (u32, buffer<unknown, 6, 0>);
+	[705] Unknown705();
 }
 
 interface nn::ns::detail::IFactoryResetInterface {
@@ -2686,11 +3000,19 @@ interface nn::ns::detail::IServiceGetterInterface is ns:rid, ns:web, ns:ec, ns:a
 
 interface nn::ns::detail::ISystemUpdateControl {
 	[0] Unknown0() -> u8;
+	[1] Unknown1();
+	[2] Unknown2();
 	[3] Unknown3() -> u128;
 	[4] Unknown4();
+	[5] Unknown5();
 	[6] Unknown6() -> u128;
 	[7] Unknown7() -> u8;
 	[8] Unknown8();
+	[9] Unknown9();
+	[10] Unknown10();
+	[11] Unknown11();
+	[12] Unknown12();
+	[13] Unknown13();
 }
 
 interface nn::ns::detail::ISystemUpdateInterface is ns:su {
@@ -2699,6 +3021,7 @@ interface nn::ns::detail::ISystemUpdateInterface is ns:su {
 	[2] Unknown2();
 	[3] Unknown3();
 	[4] Unknown4();
+	[5] Unknown5();
 	[6] Unknown6();
 	[9] Unknown9() -> KObject;
 	[10] Unknown10();
@@ -2753,11 +3076,14 @@ interface nn::omm::detail::IOperationModeManager is omm {
 	[1] Unknown1() -> KObject;
 	[2] Unknown2();
 	[3] Unknown3();
+	[4] Unknown4();
 	[5] Unknown5() -> u8;
 	[6] Unknown6();
 	[7] Unknown7();
+	[8] Unknown8();
 	[9] Unknown9();
 	[10] Unknown10(u8);
+	[11] Unknown11();
 	[12] Unknown12() -> KObject;
 	[13] Unknown13();
 	[14] Unknown14() -> u8;
@@ -2767,6 +3093,8 @@ interface nn::ovln::IReceiver {
 	[0] Unknown0(u128);
 	[1] Unknown1(u128);
 	[2] Unknown2() -> KObject;
+	[3] Unknown3();
+	[4] Unknown4();
 }
 
 interface nn::ovln::IReceiverService is ovln:rcv {
@@ -2774,19 +3102,40 @@ interface nn::ovln::IReceiverService is ovln:rcv {
 }
 
 interface nn::ovln::ISender {
+	[0] Unknown0();
 	[1] Unknown1() -> u32;
 }
 
 interface nn::ovln::ISenderService is ovln:snd {
+	[0] Unknown0();
 }
 
 interface nn::pcie::detail::IManager is pcie {
+	[0] Unknown0();
+	[1] Unknown1();
 }
 
 interface nn::pcie::detail::ISession {
+	[0] Unknown0();
+	[1] Unknown1();
 	[2] Unknown2(u32);
+	[3] Unknown3();
+	[4] Unknown4();
+	[5] Unknown5();
+	[6] Unknown6();
+	[7] Unknown7();
+	[8] Unknown8();
+	[9] Unknown9();
+	[10] Unknown10();
+	[11] Unknown11();
+	[12] Unknown12();
+	[13] Unknown13();
+	[14] Unknown14();
+	[15] Unknown15();
 	[16] Unknown16(u8, u32);
+	[17] Unknown17();
 	[18] Unknown18(u32);
+	[19] Unknown19();
 	[20] Unknown20(u8, u32);
 	[21] Unknown21(u8, u32);
 }
@@ -2911,6 +3260,7 @@ interface nn::pcv::detail::IPcvService is pcv {
 }
 
 interface nn::pdm::detail::INotifyService is pdm:ntfy {
+	[0] Unknown0();
 	[2] Unknown2(u8);
 	[3] Unknown3(u8);
 	[4] Unknown4();
@@ -2918,7 +3268,17 @@ interface nn::pdm::detail::INotifyService is pdm:ntfy {
 }
 
 interface nn::pdm::detail::IQueryService is pdm:qry {
+	[0] Unknown0();
 	[1] Unknown1() -> (u32, buffer<unknown, 6, 0>);
+	[2] Unknown2();
+	[3] Unknown3();
+	[4] Unknown4();
+	[5] Unknown5();
+	[6] Unknown6();
+	[7] Unknown7();
+	[8] Unknown8();
+	[9] Unknown9();
+	[10] Unknown10();
 }
 
 interface nn::pinmux::IManager is pinmux {
@@ -2950,6 +3310,7 @@ interface nn::pm::detail::IInformationInterface {
 }
 
 interface nn::pm::detail::IShellInterface {
+	[0] Unknown0();
 	[1] Unknown1(u64);
 	[2] Unknown2(u64);
 	[3] Unknown3() -> KObject;
@@ -2980,9 +3341,12 @@ interface nn::psc::sf::IPmControl is psc:c {
 	[3] Unknown3() -> u32;
 	[4] Unknown4();
 	[5] Unknown5();
+	[6] Unknown6();
 }
 
 interface nn::psc::sf::IPmModule {
+	[0] Unknown0();
+	[1] Unknown1();
 	[2] Unknown2();
 	[3] Unknown3();
 }
@@ -3009,6 +3373,7 @@ interface nn::psm::IPsmServer is psm {
 	[14] Unknown14() -> u8;
 	[15] Unknown15() -> u64;
 	[16] Unknown16() -> KObject;
+	[17] Unknown17();
 	[18] Unknown18() -> KObject;
 }
 
@@ -3051,6 +3416,9 @@ interface nn::sasbus::IManager is sasbus {
 }
 
 interface nn::sasbus::ISession {
+	[0] Unknown0();
+	[1] Unknown1();
+	[2] Unknown2();
 	[3] Unknown3();
 }
 
@@ -3280,10 +3648,29 @@ interface nn::socket::sf::IClient is bsd:u, bsd:s {
 
 interface nn::spl::detail::IGeneralInterface {
 	[0] Unknown0(u32) -> u64;
+	[1] Unknown1();
+	[2] Unknown2();
+	[3] Unknown3();
+	[4] Unknown4();
+	[5] Unknown5();
+	[7] Unknown7();
+	[9] Unknown9();
+	[10] Unknown10();
 	[11] Unknown11() -> u8;
+	[12] Unknown12();
+	[13] Unknown13();
+	[14] Unknown14();
+	[15] Unknown15();
+	[16] Unknown16();
+	[17] Unknown17();
+	[18] Unknown18();
+	[19] Unknown19();
+	[20] Unknown20();
 	[21] Unknown21() -> u32;
 	[22] Unknown22(u32);
 	[23] Unknown23() -> KObject;
+	[24] Unknown24();
+	[25] Unknown25();
 }
 
 interface nn::spl::detail::IRandomInterface {
@@ -3297,6 +3684,7 @@ interface nn::spsm::detail::IPowerStateInterface is spsm {
 	[3] Unknown3(u8);
 	[4] Unknown4() -> KObject;
 	[5] Unknown5() -> u32;
+	[6] Unknown6();
 	[7] Unknown7();
 	[8] Unknown8() -> buffer<unknown, 6, 0>;
 	[9] Unknown9(u64);
@@ -3462,17 +3850,32 @@ interface nn::tma::ISocket {
 }
 
 interface nn::ts::server::IMeasurementServer is ts {
+	[0] Unknown0();
+	[1] Unknown1();
+	[2] Unknown2();
+	[3] Unknown3();
 }
 
 interface nn::uart::IManager is uart {
 	[0] Unknown0(u32) -> u8;
 	[1] Unknown1(u32) -> u8;
+	[2] Unknown2();
+	[3] Unknown3();
+	[4] Unknown4();
+	[5] Unknown5();
 	[6] Unknown6() -> object<IUnknown>;
+	[7] Unknown7();
+	[8] Unknown8();
 }
 
 interface nn::uart::IPortSession {
+	[0] Unknown0();
+	[1] Unknown1();
 	[2] Unknown2() -> u64;
+	[3] Unknown3();
 	[4] Unknown4() -> u64;
+	[5] Unknown5();
+	[6] Unknown6();
 	[7] Unknown7(u32) -> u8;
 }
 
@@ -3514,18 +3917,33 @@ interface nn::usb::hs::IClientEpSession {
 	[1] Unknown1();
 	[2] Unknown2() -> KObject;
 	[3] Unknown3();
+	[4] Unknown4();
+	[5] Unknown5();
+	[6] Unknown6();
 }
 
 interface nn::usb::hs::IClientIfSession {
 	[0] Unknown0() -> KObject;
+	[1] Unknown1();
+	[2] Unknown2();
+	[3] Unknown3();
 	[4] Unknown4() -> u32;
+	[5] Unknown5();
 	[6] Unknown6() -> KObject;
+	[7] Unknown7();
 	[8] Unknown8();
+	[9] Unknown9();
 }
 
 interface nn::usb::hs::IClientRootSession is usb:hs {
+	[0] Unknown0();
+	[1] Unknown1();
+	[2] Unknown2();
+	[3] Unknown3();
+	[4] Unknown4();
 	[5] Unknown5(u8);
 	[6] Unknown6() -> KObject;
+	[7] Unknown7();
 }
 
 interface nn::usb::pd::detail::IPdCradleManager is usb:pd:c {
@@ -3536,6 +3954,10 @@ interface nn::usb::pd::detail::IPdCradleSession {
 	[0] Unknown0(u32, u32);
 	[1] Unknown1(u32) -> u32;
 	[2] Unknown2();
+	[3] Unknown3();
+	[4] Unknown4();
+	[5] Unknown5();
+	[6] Unknown6();
 	[7] Unknown7() -> u8;
 	[8] Unknown8() -> u8;
 }
@@ -3547,6 +3969,7 @@ interface nn::usb::pd::detail::IPdManager is usb:pd {
 interface nn::usb::pd::detail::IPdSession {
 	[0] Unknown0() -> KObject;
 	[1] Unknown1();
+	[2] Unknown2();
 	[3] Unknown3() -> u32;
 	[4] Unknown4();
 	[5] Unknown5();
@@ -3555,9 +3978,11 @@ interface nn::usb::pd::detail::IPdSession {
 
 interface nn::usb::pm::IPmService is usb:pm {
 	[0] Unknown0() -> KObject;
+	[1] Unknown1();
 	[2] Unknown2() -> KObject;
 	[3] Unknown3() -> u32;
 	[4] Unknown4(u32, u32);
+	[5] Unknown5();
 }
 
 interface nn::visrv::sf::IApplicationDisplayService {
@@ -3661,25 +4086,38 @@ interface nn::visrv::sf::ISystemRootService is vi:s {
 interface nn::wlan::detail::IInfraManager is wlan:inf {
 	[0] Unknown0();
 	[1] Unknown1();
+	[2] Unknown2();
+	[3] Unknown3();
 	[4] Unknown4();
+	[5] Unknown5();
 	[6] Unknown6();
 	[7] Unknown7();
+	[8] Unknown8();
+	[9] Unknown9();
 	[10] Unknown10() -> u32;
+	[11] Unknown11();
 	[12] Unknown12() -> u32;
 	[13] Unknown13(u32);
+	[14] Unknown14();
 	[15] Unknown15();
 	[16] Unknown16();
+	[17] Unknown17();
 	[18] Unknown18() -> u32;
+	[19] Unknown19();
 	[20] Unknown20();
 	[21] Unknown21() -> u32;
 	[22] Unknown22(u32);
 	[23] Unknown23(u32);
+	[24] Unknown24();
+	[25] Unknown25();
 }
 
 interface nn::wlan::detail::ILocalGetActionFrame is wlan:lga {
+	[0] Unknown0();
 }
 
 interface nn::wlan::detail::ILocalGetFrame is wlan:lg {
+	[0] Unknown0();
 }
 
 interface nn::wlan::detail::ILocalManager is wlan:lcl {
@@ -3689,41 +4127,84 @@ interface nn::wlan::detail::ILocalManager is wlan:lcl {
 	[3] Unknown3();
 	[4] Unknown4();
 	[5] Unknown5();
+	[6] Unknown6();
+	[7] Unknown7();
 	[8] Unknown8();
+	[9] Unknown9();
 	[10] Unknown10();
+	[11] Unknown11();
 	[12] Unknown12();
+	[13] Unknown13();
 	[14] Unknown14();
+	[15] Unknown15();
 	[16] Unknown16(u32);
+	[17] Unknown17();
+	[18] Unknown18();
+	[19] Unknown19();
 	[20] Unknown20() -> KObject;
+	[21] Unknown21();
 	[22] Unknown22() -> u32;
+	[23] Unknown23();
+	[24] Unknown24();
 	[25] Unknown25(u32);
+	[26] Unknown26();
 	[27] Unknown27(u32);
+	[28] Unknown28();
 	[29] Unknown29(u32);
+	[30] Unknown30();
+	[31] Unknown31();
+	[32] Unknown32();
+	[33] Unknown33();
+	[34] Unknown34();
+	[35] Unknown35();
+	[36] Unknown36();
 	[37] Unknown37();
+	[38] Unknown38();
 	[39] Unknown39(u32);
+	[40] Unknown40();
+	[41] Unknown41();
 	[42] Unknown42(u32);
 	[43] Unknown43() -> u32;
 	[44] Unknown44(u32);
 }
 
 interface nn::wlan::detail::ISocketGetFrame is wlan:sg {
+	[0] Unknown0();
 }
 
 interface nn::wlan::detail::ISocketManager is wlan:soc {
 	[0] Unknown0(buffer<unknown, 5, 0>);
 	[1] Unknown1(u32);
+	[2] Unknown2();
 	[3] Unknown3(u32);
+	[4] Unknown4();
+	[5] Unknown5();
+	[6] Unknown6();
 	[7] Unknown7(u8);
 	[8] Unknown8() -> u64;
+	[9] Unknown9();
 	[10] Unknown10();
 	[11] Unknown11();
 }
 
 interface nn::xcd::detail::ISystemServer is xcd:sys {
 	[0] Unknown0(u64) -> u8;
+	[1] Unknown1();
 	[2] Unknown2(u64) -> u8;
+	[3] Unknown3();
+	[4] Unknown4();
 	[5] Unknown5(u64);
+	[10] Unknown10();
+	[11] Unknown11();
+	[12] Unknown12();
 	[13] Unknown13(u64);
+	[14] Unknown14();
+	[15] Unknown15();
+	[16] Unknown16();
+	[17] Unknown17();
+	[18] Unknown18();
+	[19] Unknown19();
+	[20] Unknown20();
 	[101] Unknown101() -> u64;
 	[102] Unknown102() -> u64;
 }
@@ -3744,9 +4225,31 @@ interface nns::nvdrv::INvDrvDebugFSServices is nvdrvdbg {
 }
 
 interface nns::nvdrv::INvDrvServices is nvdrv:s, nvdrv:t, nvdrv:a, nvdrv {
+	[0] Unknown0();
+	[1] Unknown1();
+	[2] Unknown2();
+	[3] Unknown3();
+	[4] Unknown4();
+	[5] Unknown5();
+	[6] Unknown6();
+	[7] Unknown7();
+	[8] Unknown8();
+	[9] Unknown9();
+	[10] Unknown10();
+	[11] Unknown11();
+	[12] Unknown12();
+	[13] Unknown13();
 }
 
 interface nv::gemcontrol::INvGemControl is nvgem:c {
+	[0] Unknown0();
+	[1] Unknown1();
+	[2] Unknown2();
+	[3] Unknown3();
+	[4] Unknown4();
+	[5] Unknown5();
+	[6] Unknown6();
+	[7] Unknown7();
 }
 
 interface nv::gemcoredump::INvGemCoreDump is nvgem:cd {

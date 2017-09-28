@@ -8823,7 +8823,7 @@ for cname, cmds in serverInfo.items():
 		reformedServer[cname] = {}
 	for cmdid, cmd in cmds.items():
 		cmdid = int(cmdid)
-		reformedServer[cname][cmdid] = cmd['name'] if 'name' in cmd else '', '0 bytes in - 0 bytes out', cmd['args'] if 'args' in cmd else ''
+		reformedServer[cname][cmdid] = cmd['name'] if 'name' in cmd else '', '', cmd['args'] if 'args' in cmd else ''
 
 for cname, cmdid, io in clientInfo:
 	if cname not in reformedClient:
@@ -8842,6 +8842,9 @@ for cname, cmdid in allCmds:
 		idef = sdef
 	else:
 		idef = sdef[0], cdef[1], sdef[2]
+
+	if idef[1] == '':
+		idef = idef[0], '0 bytes in - 0 bytes out', idef[2]
 
 	if cname not in clses:
 		clses[cname] = {}
