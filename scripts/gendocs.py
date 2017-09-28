@@ -130,7 +130,7 @@ print >>ifp, '\t<body data-spy="scroll" data-target="#toc">'
 print >>tfp, '\t<body>'
 print >>nfp, '\t<body>'
 print >>afp, '\t\t<div class="container">'
-afp += 2
+afp += 3
 
 print >>ifp, '<div class="row">'
 print >>ifp, '\t<div class="col-11">'
@@ -212,7 +212,7 @@ for name, cmds in ifaces.items():
 		nfp += 2
 		for x in sorted(takenBy[name]):
 			print >>nfp, '<li><a href="ifaces.html#%s(%i)">%s</a></li>' % (x[0], x[1], '%s::%s [%i]' % (x[0], findCmd(x[0], x[1])[0], x[1]))
-		nfp -= 1
+		nfp -= 2
 		print >>nfp, '\t</ul>'
 		print >>nfp, '</li>'
 
@@ -242,7 +242,7 @@ for name, type in sorted(types.items(), key=lambda x: x[0]):
 tfp -= 1
 print >>tfp, '</ul>'
 
-afp -= 2
+afp -= 3
 print >>afp, '\t\t</div>'
 print >>afp, '\t</body>'
 print >>afp, '</html>'

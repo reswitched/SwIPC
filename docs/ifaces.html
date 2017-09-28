@@ -7,606 +7,606 @@
 	</head>
 	<body>
 		<div class="container">
-		<h1 class="display-3">SwIPC Interfaces</h1>
-		<br />
-		<div class="card">
-			<div class="card-header">
-				<h2 id="nn::pcv::IArbitrationManager">nn::pcv::IArbitrationManager</h2>
+			<h1 class="display-3">SwIPC Interfaces</h1>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::pcv::IArbitrationManager">nn::pcv::IArbitrationManager</h2>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Provides:</h3>
+						<ul>
+							<li>pcv:arb</li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::pcv::IArbitrationManager(0)">ReleaseControl(i32)</li>
+						</ol>
+					</li>
+				</ul>
 			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<h3>Provides:</h3>
-					<ul>
-						<li>pcv:arb</li>
-					</ul>
-				</li>
-				<li class="list-group-item">
-					<h3>Commands:</h3>
-					<ol>
-						<li value="0" id="nn::pcv::IArbitrationManager(0)">ReleaseControl(i32)</li>
-					</ol>
-				</li>
-			</ul>
-		</div>
-		<br />
-		<div class="card">
-			<div class="card-header">
-				<h2 id="nn::ldn::detail::ISystemServiceCreator">nn::ldn::detail::ISystemServiceCreator</h2>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::ldn::detail::ISystemServiceCreator">nn::ldn::detail::ISystemServiceCreator</h2>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Provides:</h3>
+						<ul>
+							<li>ldn:s</li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::ldn::detail::ISystemServiceCreator(0)">Unknown0() -&gt; IUnknown</li>
+						</ol>
+					</li>
+				</ul>
 			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<h3>Provides:</h3>
-					<ul>
-						<li>ldn:s</li>
-					</ul>
-				</li>
-				<li class="list-group-item">
-					<h3>Commands:</h3>
-					<ol>
-						<li value="0" id="nn::ldn::detail::ISystemServiceCreator(0)">Unknown0() -&gt; IUnknown</li>
-					</ol>
-				</li>
-			</ul>
-		</div>
-		<br />
-		<div class="card">
-			<div class="card-header">
-				<h2 id="nn::account::detail::INotifier">nn::account::detail::INotifier</h2>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::account::detail::INotifier">nn::account::detail::INotifier</h2>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Returned by:</h3>
+						<ul>
+							<li><a href="ifaces.html#nn::account::IAccountServiceForAdministrator(100)">nn::account::IAccountServiceForAdministrator::GetUserRegistrationNotifier [100]</a></li>
+							<li><a href="ifaces.html#nn::account::IAccountServiceForAdministrator(101)">nn::account::IAccountServiceForAdministrator::GetUserStateChangeNotifier [101]</a></li>
+							<li><a href="ifaces.html#nn::account::IAccountServiceForAdministrator(103)">nn::account::IAccountServiceForAdministrator::GetBaasUserAvailabilityChangeNotifier [103]</a></li>
+							<li><a href="ifaces.html#nn::account::IAccountServiceForAdministrator(104)">nn::account::IAccountServiceForAdministrator::GetProfileUpdateNotifier [104]</a></li>
+							<li><a href="ifaces.html#nn::account::IAccountServiceForSystemService(100)">nn::account::IAccountServiceForSystemService::GetUserRegistrationNotifier [100]</a></li>
+							<li><a href="ifaces.html#nn::account::IAccountServiceForSystemService(101)">nn::account::IAccountServiceForSystemService::GetUserStateChangeNotifier [101]</a></li>
+							<li><a href="ifaces.html#nn::account::IAccountServiceForSystemService(103)">nn::account::IAccountServiceForSystemService::GetBaasUserAvailabilityChangeNotifier [103]</a></li>
+							<li><a href="ifaces.html#nn::account::IAccountServiceForSystemService(104)">nn::account::IAccountServiceForSystemService::GetProfileUpdateNotifier [104]</a></li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::account::detail::INotifier(0)">GetSystemEvent() -&gt; KObject</li>
+						</ol>
+					</li>
+				</ul>
 			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<h3>Returned by:</h3>
-					<ul>
-						<li><a href="ifaces.html#nn::account::IAccountServiceForAdministrator(100)">nn::account::IAccountServiceForAdministrator::GetUserRegistrationNotifier [100]</a></li>
-						<li><a href="ifaces.html#nn::account::IAccountServiceForAdministrator(101)">nn::account::IAccountServiceForAdministrator::GetUserStateChangeNotifier [101]</a></li>
-						<li><a href="ifaces.html#nn::account::IAccountServiceForAdministrator(103)">nn::account::IAccountServiceForAdministrator::GetBaasUserAvailabilityChangeNotifier [103]</a></li>
-						<li><a href="ifaces.html#nn::account::IAccountServiceForAdministrator(104)">nn::account::IAccountServiceForAdministrator::GetProfileUpdateNotifier [104]</a></li>
-						<li><a href="ifaces.html#nn::account::IAccountServiceForSystemService(100)">nn::account::IAccountServiceForSystemService::GetUserRegistrationNotifier [100]</a></li>
-						<li><a href="ifaces.html#nn::account::IAccountServiceForSystemService(101)">nn::account::IAccountServiceForSystemService::GetUserStateChangeNotifier [101]</a></li>
-						<li><a href="ifaces.html#nn::account::IAccountServiceForSystemService(103)">nn::account::IAccountServiceForSystemService::GetBaasUserAvailabilityChangeNotifier [103]</a></li>
-						<li><a href="ifaces.html#nn::account::IAccountServiceForSystemService(104)">nn::account::IAccountServiceForSystemService::GetProfileUpdateNotifier [104]</a></li>
-					</ul>
-				</li>
-				<li class="list-group-item">
-					<h3>Commands:</h3>
-					<ol>
-						<li value="0" id="nn::account::detail::INotifier(0)">GetSystemEvent() -&gt; KObject</li>
-					</ol>
-				</li>
-			</ul>
-		</div>
-		<br />
-		<div class="card">
-			<div class="card-header">
-				<h2 id="nn::account::http::IOAuthProcedure">nn::account::http::IOAuthProcedure</h2>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::account::http::IOAuthProcedure">nn::account::http::IOAuthProcedure</h2>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Returned by:</h3>
+						<ul>
+							<li><a href="ifaces.html#nn::account::baas::IAdministrator(255)">nn::account::baas::IAdministrator::CreateProcedureToUpdateLinkageStateOfNintendoAccount [255]</a></li>
+							<li><a href="ifaces.html#nn::account::baas::IAdministrator(256)">nn::account::baas::IAdministrator::ResumeProcedureToUpdateLinkageStateOfNintendoAccount [256]</a></li>
+							<li><a href="ifaces.html#nn::account::baas::IAdministrator(260)">nn::account::baas::IAdministrator::CreateProcedureToLinkNnidWithNintendoAccount [260]</a></li>
+							<li><a href="ifaces.html#nn::account::baas::IAdministrator(261)">nn::account::baas::IAdministrator::ResumeProcedureToLinkNnidWithNintendoAccount [261]</a></li>
+							<li><a href="ifaces.html#nn::account::baas::IAdministrator(280)">nn::account::baas::IAdministrator::ProxyProcedureToAcquireApplicationAuthorizationForNintendoAccount [280]</a></li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::account::http::IOAuthProcedure(0)">PrepareAsync() -&gt; object&lt;<a href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a>&gt;</li>
+							<li value="1" id="nn::account::http::IOAuthProcedure(1)">GetRequest() -&gt; (buffer&lt;<a href="types.html#nn::account::RequestUrl">nn::account::RequestUrl</a>, 0x1a, 0x1000&gt;, buffer&lt;<a href="types.html#nn::account::CallbackUri">nn::account::CallbackUri</a>, 0x1a, 0x100&gt;)</li>
+							<li value="2" id="nn::account::http::IOAuthProcedure(2)">ApplyResponse(array&lt;i8, 9&gt;)</li>
+							<li value="3" id="nn::account::http::IOAuthProcedure(3)">ApplyResponseAsync(array&lt;i8, 9&gt;) -&gt; object&lt;<a href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a>&gt;</li>
+							<li value="10" id="nn::account::http::IOAuthProcedure(10)">Suspend() -&gt; <a href="types.html#nn::account::detail::Uuid">nn::account::detail::Uuid</a></li>
+						</ol>
+					</li>
+				</ul>
 			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<h3>Returned by:</h3>
-					<ul>
-						<li><a href="ifaces.html#nn::account::baas::IAdministrator(255)">nn::account::baas::IAdministrator::CreateProcedureToUpdateLinkageStateOfNintendoAccount [255]</a></li>
-						<li><a href="ifaces.html#nn::account::baas::IAdministrator(256)">nn::account::baas::IAdministrator::ResumeProcedureToUpdateLinkageStateOfNintendoAccount [256]</a></li>
-						<li><a href="ifaces.html#nn::account::baas::IAdministrator(260)">nn::account::baas::IAdministrator::CreateProcedureToLinkNnidWithNintendoAccount [260]</a></li>
-						<li><a href="ifaces.html#nn::account::baas::IAdministrator(261)">nn::account::baas::IAdministrator::ResumeProcedureToLinkNnidWithNintendoAccount [261]</a></li>
-						<li><a href="ifaces.html#nn::account::baas::IAdministrator(280)">nn::account::baas::IAdministrator::ProxyProcedureToAcquireApplicationAuthorizationForNintendoAccount [280]</a></li>
-					</ul>
-				</li>
-				<li class="list-group-item">
-					<h3>Commands:</h3>
-					<ol>
-						<li value="0" id="nn::account::http::IOAuthProcedure(0)">PrepareAsync() -&gt; object&lt;<a href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a>&gt;</li>
-						<li value="1" id="nn::account::http::IOAuthProcedure(1)">GetRequest() -&gt; (buffer&lt;<a href="types.html#nn::account::RequestUrl">nn::account::RequestUrl</a>, 0x1a, 0x1000&gt;, buffer&lt;<a href="types.html#nn::account::CallbackUri">nn::account::CallbackUri</a>, 0x1a, 0x100&gt;)</li>
-						<li value="2" id="nn::account::http::IOAuthProcedure(2)">ApplyResponse(array&lt;i8, 9&gt;)</li>
-						<li value="3" id="nn::account::http::IOAuthProcedure(3)">ApplyResponseAsync(array&lt;i8, 9&gt;) -&gt; object&lt;<a href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a>&gt;</li>
-						<li value="10" id="nn::account::http::IOAuthProcedure(10)">Suspend() -&gt; <a href="types.html#nn::account::detail::Uuid">nn::account::detail::Uuid</a></li>
-					</ol>
-				</li>
-			</ul>
-		</div>
-		<br />
-		<div class="card">
-			<div class="card-header">
-				<h2 id="nn::ns::detail::ISystemUpdateInterface">nn::ns::detail::ISystemUpdateInterface</h2>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::ns::detail::ISystemUpdateInterface">nn::ns::detail::ISystemUpdateInterface</h2>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Provides:</h3>
+						<ul>
+							<li>ns:su</li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::ns::detail::ISystemUpdateInterface(0)">Unknown0()</li>
+							<li value="1" id="nn::ns::detail::ISystemUpdateInterface(1)">Unknown1()</li>
+							<li value="2" id="nn::ns::detail::ISystemUpdateInterface(2)">Unknown2()</li>
+							<li value="3" id="nn::ns::detail::ISystemUpdateInterface(3)">Unknown3()</li>
+							<li value="4" id="nn::ns::detail::ISystemUpdateInterface(4)">Unknown4()</li>
+							<li value="5" id="nn::ns::detail::ISystemUpdateInterface(5)">Unknown5()</li>
+							<li value="6" id="nn::ns::detail::ISystemUpdateInterface(6)">Unknown6()</li>
+							<li value="9" id="nn::ns::detail::ISystemUpdateInterface(9)">Unknown9()</li>
+							<li value="10" id="nn::ns::detail::ISystemUpdateInterface(10)">Unknown10()</li>
+							<li value="11" id="nn::ns::detail::ISystemUpdateInterface(11)">Unknown11()</li>
+							<li value="12" id="nn::ns::detail::ISystemUpdateInterface(12)">Unknown12()</li>
+							<li value="13" id="nn::ns::detail::ISystemUpdateInterface(13)">Unknown13()</li>
+							<li value="14" id="nn::ns::detail::ISystemUpdateInterface(14)">Unknown14()</li>
+							<li value="15" id="nn::ns::detail::ISystemUpdateInterface(15)">Unknown15()</li>
+						</ol>
+					</li>
+				</ul>
 			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<h3>Provides:</h3>
-					<ul>
-						<li>ns:su</li>
-					</ul>
-				</li>
-				<li class="list-group-item">
-					<h3>Commands:</h3>
-					<ol>
-						<li value="0" id="nn::ns::detail::ISystemUpdateInterface(0)">Unknown0()</li>
-						<li value="1" id="nn::ns::detail::ISystemUpdateInterface(1)">Unknown1()</li>
-						<li value="2" id="nn::ns::detail::ISystemUpdateInterface(2)">Unknown2()</li>
-						<li value="3" id="nn::ns::detail::ISystemUpdateInterface(3)">Unknown3()</li>
-						<li value="4" id="nn::ns::detail::ISystemUpdateInterface(4)">Unknown4()</li>
-						<li value="5" id="nn::ns::detail::ISystemUpdateInterface(5)">Unknown5()</li>
-						<li value="6" id="nn::ns::detail::ISystemUpdateInterface(6)">Unknown6()</li>
-						<li value="9" id="nn::ns::detail::ISystemUpdateInterface(9)">Unknown9()</li>
-						<li value="10" id="nn::ns::detail::ISystemUpdateInterface(10)">Unknown10()</li>
-						<li value="11" id="nn::ns::detail::ISystemUpdateInterface(11)">Unknown11()</li>
-						<li value="12" id="nn::ns::detail::ISystemUpdateInterface(12)">Unknown12()</li>
-						<li value="13" id="nn::ns::detail::ISystemUpdateInterface(13)">Unknown13()</li>
-						<li value="14" id="nn::ns::detail::ISystemUpdateInterface(14)">Unknown14()</li>
-						<li value="15" id="nn::ns::detail::ISystemUpdateInterface(15)">Unknown15()</li>
-					</ol>
-				</li>
-			</ul>
-		</div>
-		<br />
-		<div class="card">
-			<div class="card-header">
-				<h2 id="nn::nim::detail::IAsyncData">nn::nim::detail::IAsyncData</h2>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::nim::detail::IAsyncData">nn::nim::detail::IAsyncData</h2>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::nim::detail::IAsyncData(0)">Unknown0()</li>
+							<li value="1" id="nn::nim::detail::IAsyncData(1)">Unknown1()</li>
+							<li value="2" id="nn::nim::detail::IAsyncData(2)">Unknown2()</li>
+							<li value="3" id="nn::nim::detail::IAsyncData(3)">Unknown3()</li>
+							<li value="4" id="nn::nim::detail::IAsyncData(4)">Unknown4()</li>
+						</ol>
+					</li>
+				</ul>
 			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<h3>Commands:</h3>
-					<ol>
-						<li value="0" id="nn::nim::detail::IAsyncData(0)">Unknown0()</li>
-						<li value="1" id="nn::nim::detail::IAsyncData(1)">Unknown1()</li>
-						<li value="2" id="nn::nim::detail::IAsyncData(2)">Unknown2()</li>
-						<li value="3" id="nn::nim::detail::IAsyncData(3)">Unknown3()</li>
-						<li value="4" id="nn::nim::detail::IAsyncData(4)">Unknown4()</li>
-					</ol>
-				</li>
-			</ul>
-		</div>
-		<br />
-		<div class="card">
-			<div class="card-header">
-				<h2 id="nn::pdm::detail::INotifyService">nn::pdm::detail::INotifyService</h2>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::pdm::detail::INotifyService">nn::pdm::detail::INotifyService</h2>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Provides:</h3>
+						<ul>
+							<li>pdm:ntfy</li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::pdm::detail::INotifyService(0)">Unknown0(u64, u64)</li>
+							<li value="2" id="nn::pdm::detail::INotifyService(2)">Unknown2(u8)</li>
+							<li value="3" id="nn::pdm::detail::INotifyService(3)">Unknown3(u8)</li>
+							<li value="4" id="nn::pdm::detail::INotifyService(4)">Unknown4()</li>
+							<li value="5" id="nn::pdm::detail::INotifyService(5)">Unknown5(buffer&lt;unknown, 5, 0&gt;)</li>
+						</ol>
+					</li>
+				</ul>
 			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<h3>Provides:</h3>
-					<ul>
-						<li>pdm:ntfy</li>
-					</ul>
-				</li>
-				<li class="list-group-item">
-					<h3>Commands:</h3>
-					<ol>
-						<li value="0" id="nn::pdm::detail::INotifyService(0)">Unknown0(u64, u64)</li>
-						<li value="2" id="nn::pdm::detail::INotifyService(2)">Unknown2(u8)</li>
-						<li value="3" id="nn::pdm::detail::INotifyService(3)">Unknown3(u8)</li>
-						<li value="4" id="nn::pdm::detail::INotifyService(4)">Unknown4()</li>
-						<li value="5" id="nn::pdm::detail::INotifyService(5)">Unknown5(buffer&lt;unknown, 5, 0&gt;)</li>
-					</ol>
-				</li>
-			</ul>
-		</div>
-		<br />
-		<div class="card">
-			<div class="card-header">
-				<h2 id="nn::htc::tenv::IService">nn::htc::tenv::IService</h2>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::htc::tenv::IService">nn::htc::tenv::IService</h2>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::htc::tenv::IService(0)">Unknown0(bytes&lt;0x40&gt;) -&gt; (u64, buffer&lt;unknown, 6, 0&gt;)</li>
+							<li value="1" id="nn::htc::tenv::IService(1)">Unknown1(bytes&lt;0x40&gt;) -&gt; u64</li>
+							<li value="2" id="nn::htc::tenv::IService(2)">Unknown2(u64)</li>
+						</ol>
+					</li>
+				</ul>
 			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<h3>Commands:</h3>
-					<ol>
-						<li value="0" id="nn::htc::tenv::IService(0)">Unknown0(bytes&lt;0x40&gt;) -&gt; (u64, buffer&lt;unknown, 6, 0&gt;)</li>
-						<li value="1" id="nn::htc::tenv::IService(1)">Unknown1(bytes&lt;0x40&gt;) -&gt; u64</li>
-						<li value="2" id="nn::htc::tenv::IService(2)">Unknown2(u64)</li>
-					</ol>
-				</li>
-			</ul>
-		</div>
-		<br />
-		<div class="card">
-			<div class="card-header">
-				<h2 id="nn::codec::detail::IHardwareOpusDecoderManager">nn::codec::detail::IHardwareOpusDecoderManager</h2>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::codec::detail::IHardwareOpusDecoderManager">nn::codec::detail::IHardwareOpusDecoderManager</h2>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Provides:</h3>
+						<ul>
+							<li>hwopus</li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::codec::detail::IHardwareOpusDecoderManager(0)">Unknown0(u64, u32, KObject) -&gt; IUnknown</li>
+							<li value="1" id="nn::codec::detail::IHardwareOpusDecoderManager(1)">Unknown1(u64) -&gt; u32</li>
+							<li value="2" id="nn::codec::detail::IHardwareOpusDecoderManager(2)">Unknown2(u32, KObject, buffer&lt;unknown, 0x19, 0x110&gt;) -&gt; IUnknown</li>
+							<li value="3" id="nn::codec::detail::IHardwareOpusDecoderManager(3)">Unknown3(buffer&lt;unknown, 0x19, 0x110&gt;) -&gt; u32</li>
+						</ol>
+					</li>
+				</ul>
 			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<h3>Provides:</h3>
-					<ul>
-						<li>hwopus</li>
-					</ul>
-				</li>
-				<li class="list-group-item">
-					<h3>Commands:</h3>
-					<ol>
-						<li value="0" id="nn::codec::detail::IHardwareOpusDecoderManager(0)">Unknown0(u64, u32, KObject) -&gt; IUnknown</li>
-						<li value="1" id="nn::codec::detail::IHardwareOpusDecoderManager(1)">Unknown1(u64) -&gt; u32</li>
-						<li value="2" id="nn::codec::detail::IHardwareOpusDecoderManager(2)">Unknown2(u32, KObject, buffer&lt;unknown, 0x19, 0x110&gt;) -&gt; IUnknown</li>
-						<li value="3" id="nn::codec::detail::IHardwareOpusDecoderManager(3)">Unknown3(buffer&lt;unknown, 0x19, 0x110&gt;) -&gt; u32</li>
-					</ol>
-				</li>
-			</ul>
-		</div>
-		<br />
-		<div class="card">
-			<div class="card-header">
-				<h2 id="nn::hid::IHidDebugServer">nn::hid::IHidDebugServer</h2>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::hid::IHidDebugServer">nn::hid::IHidDebugServer</h2>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Provides:</h3>
+						<ul>
+							<li>hid:dbg</li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::hid::IHidDebugServer(0)">DeactivateDebugPad()</li>
+							<li value="1" id="nn::hid::IHidDebugServer(1)">SetDebugPadAutoPilotState(<a href="types.html#nn::hid::debug::DebugPadAutoPilotState">nn::hid::debug::DebugPadAutoPilotState</a>)</li>
+							<li value="2" id="nn::hid::IHidDebugServer(2)">UnsetDebugPadAutoPilotState()</li>
+							<li value="10" id="nn::hid::IHidDebugServer(10)">DeactivateTouchScreen()</li>
+							<li value="11" id="nn::hid::IHidDebugServer(11)">SetTouchScreenAutoPilotState(array&lt;<a href="types.html#nn::hid::TouchState">nn::hid::TouchState</a>, 5&gt;)</li>
+							<li value="12" id="nn::hid::IHidDebugServer(12)">UnsetTouchScreenAutoPilotState()</li>
+							<li value="20" id="nn::hid::IHidDebugServer(20)">DeactivateMouse()</li>
+							<li value="21" id="nn::hid::IHidDebugServer(21)">SetMouseAutoPilotState(<a href="types.html#nn::hid::debug::MouseAutoPilotState">nn::hid::debug::MouseAutoPilotState</a>)</li>
+							<li value="22" id="nn::hid::IHidDebugServer(22)">UnsetMouseAutoPilotState()</li>
+							<li value="30" id="nn::hid::IHidDebugServer(30)">DeactivateKeyboard()</li>
+							<li value="31" id="nn::hid::IHidDebugServer(31)">SetKeyboardAutoPilotState(<a href="types.html#nn::hid::debug::KeyboardAutoPilotState">nn::hid::debug::KeyboardAutoPilotState</a>)</li>
+							<li value="32" id="nn::hid::IHidDebugServer(32)">UnsetKeyboardAutoPilotState()</li>
+							<li value="50" id="nn::hid::IHidDebugServer(50)">DeactivateXpad(<a href="types.html#nn::hid::BasicXpadId">nn::hid::BasicXpadId</a>)</li>
+							<li value="51" id="nn::hid::IHidDebugServer(51)">SetXpadAutoPilotState(<a href="types.html#nn::hid::BasicXpadId">nn::hid::BasicXpadId</a>, align&lt;4, <a href="types.html#nn::hid::debug::BasicXpadAutoPilotState">nn::hid::debug::BasicXpadAutoPilotState</a>&gt;)</li>
+							<li value="52" id="nn::hid::IHidDebugServer(52)">UnsetXpadAutoPilotState(<a href="types.html#nn::hid::BasicXpadId">nn::hid::BasicXpadId</a>)</li>
+							<li value="60" id="nn::hid::IHidDebugServer(60)">DeactivateJoyXpad(<a href="types.html#nn::hid::JoyXpadId">nn::hid::JoyXpadId</a>)</li>
+							<li value="91" id="nn::hid::IHidDebugServer(91)">DeactivateGesture()</li>
+							<li value="110" id="nn::hid::IHidDebugServer(110)">DeactivateHomeButton()</li>
+							<li value="111" id="nn::hid::IHidDebugServer(111)">SetHomeButtonAutoPilotState(<a href="types.html#nn::hid::debug::HomeButtonAutoPilotState">nn::hid::debug::HomeButtonAutoPilotState</a>)</li>
+							<li value="112" id="nn::hid::IHidDebugServer(112)">UnsetHomeButtonAutoPilotState()</li>
+							<li value="120" id="nn::hid::IHidDebugServer(120)">DeactivateSleepButton()</li>
+							<li value="121" id="nn::hid::IHidDebugServer(121)">SetSleepButtonAutoPilotState(<a href="types.html#nn::hid::debug::SleepButtonAutoPilotState">nn::hid::debug::SleepButtonAutoPilotState</a>)</li>
+							<li value="122" id="nn::hid::IHidDebugServer(122)">UnsetSleepButtonAutoPilotState()</li>
+							<li value="123" id="nn::hid::IHidDebugServer(123)">DeactivateInputDetector()</li>
+							<li value="130" id="nn::hid::IHidDebugServer(130)">DeactivateCaptureButton()</li>
+							<li value="131" id="nn::hid::IHidDebugServer(131)">SetCaptureButtonAutoPilotState(<a href="types.html#nn::hid::debug::CaptureButtonAutoPilotState">nn::hid::debug::CaptureButtonAutoPilotState</a>)</li>
+							<li value="132" id="nn::hid::IHidDebugServer(132)">UnsetCaptureButtonAutoPilotState()</li>
+							<li value="133" id="nn::hid::IHidDebugServer(133)">SetShiftAccelerometerCalibrationValue(<a href="types.html#nn::hid::SixAxisSensorHandle">nn::hid::SixAxisSensorHandle</a>, f32, f32, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid)</li>
+							<li value="134" id="nn::hid::IHidDebugServer(134)">GetShiftAccelerometerCalibrationValue(<a href="types.html#nn::hid::SixAxisSensorHandle">nn::hid::SixAxisSensorHandle</a>, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid) -&gt; (f32, f32)</li>
+							<li value="135" id="nn::hid::IHidDebugServer(135)">SetShiftGyroscopeCalibrationValue(<a href="types.html#nn::hid::SixAxisSensorHandle">nn::hid::SixAxisSensorHandle</a>, f32, f32, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid)</li>
+							<li value="136" id="nn::hid::IHidDebugServer(136)">GetShiftGyroscopeCalibrationValue(<a href="types.html#nn::hid::SixAxisSensorHandle">nn::hid::SixAxisSensorHandle</a>, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid) -&gt; (f32, f32)</li>
+							<li value="140" id="nn::hid::IHidDebugServer(140)">DeactivateConsoleSixAxisSensor()</li>
+							<li value="201" id="nn::hid::IHidDebugServer(201)">ActivateFirmwareUpdate()</li>
+							<li value="202" id="nn::hid::IHidDebugServer(202)">DeactivateFirmwareUpdate()</li>
+							<li value="203" id="nn::hid::IHidDebugServer(203)">StartFirmwareUpdate(<a href="types.html#nn::hid::system::UniquePadId">nn::hid::system::UniquePadId</a>)</li>
+							<li value="204" id="nn::hid::IHidDebugServer(204)">GetFirmwareUpdateStage() -&gt; (i64, i64)</li>
+							<li value="205" id="nn::hid::IHidDebugServer(205)">GetFirmwareVersion(u32, <a href="types.html#nn::hid::system::DeviceType">nn::hid::system::DeviceType</a>) -&gt; <a href="types.html#nn::hid::system::FirmwareVersion">nn::hid::system::FirmwareVersion</a></li>
+							<li value="206" id="nn::hid::IHidDebugServer(206)">GetDestinationFirmwareVersion(u32, <a href="types.html#nn::hid::system::DeviceType">nn::hid::system::DeviceType</a>) -&gt; <a href="types.html#nn::hid::system::FirmwareVersion">nn::hid::system::FirmwareVersion</a></li>
+							<li value="207" id="nn::hid::IHidDebugServer(207)">DiscardFirmwareInfoCacheForRevert()</li>
+							<li value="208" id="nn::hid::IHidDebugServer(208)">StartFirmwareUpdateForRevert(<a href="types.html#nn::hid::system::UniquePadId">nn::hid::system::UniquePadId</a>)</li>
+							<li value="209" id="nn::hid::IHidDebugServer(209)">GetAvailableFirmwareVersionForRevert(<a href="types.html#nn::hid::system::UniquePadId">nn::hid::system::UniquePadId</a>) -&gt; <a href="types.html#nn::hid::system::FirmwareVersion">nn::hid::system::FirmwareVersion</a></li>
+							<li value="221" id="nn::hid::IHidDebugServer(221)">UpdateControllerColor(<a href="types.html#nn::util::Unorm8x4">nn::util::Unorm8x4</a>, <a href="types.html#nn::util::Unorm8x4">nn::util::Unorm8x4</a>, <a href="types.html#nn::hid::system::UniquePadId">nn::hid::system::UniquePadId</a>)</li>
+						</ol>
+					</li>
+				</ul>
 			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<h3>Provides:</h3>
-					<ul>
-						<li>hid:dbg</li>
-					</ul>
-				</li>
-				<li class="list-group-item">
-					<h3>Commands:</h3>
-					<ol>
-						<li value="0" id="nn::hid::IHidDebugServer(0)">DeactivateDebugPad()</li>
-						<li value="1" id="nn::hid::IHidDebugServer(1)">SetDebugPadAutoPilotState(<a href="types.html#nn::hid::debug::DebugPadAutoPilotState">nn::hid::debug::DebugPadAutoPilotState</a>)</li>
-						<li value="2" id="nn::hid::IHidDebugServer(2)">UnsetDebugPadAutoPilotState()</li>
-						<li value="10" id="nn::hid::IHidDebugServer(10)">DeactivateTouchScreen()</li>
-						<li value="11" id="nn::hid::IHidDebugServer(11)">SetTouchScreenAutoPilotState(array&lt;<a href="types.html#nn::hid::TouchState">nn::hid::TouchState</a>, 5&gt;)</li>
-						<li value="12" id="nn::hid::IHidDebugServer(12)">UnsetTouchScreenAutoPilotState()</li>
-						<li value="20" id="nn::hid::IHidDebugServer(20)">DeactivateMouse()</li>
-						<li value="21" id="nn::hid::IHidDebugServer(21)">SetMouseAutoPilotState(<a href="types.html#nn::hid::debug::MouseAutoPilotState">nn::hid::debug::MouseAutoPilotState</a>)</li>
-						<li value="22" id="nn::hid::IHidDebugServer(22)">UnsetMouseAutoPilotState()</li>
-						<li value="30" id="nn::hid::IHidDebugServer(30)">DeactivateKeyboard()</li>
-						<li value="31" id="nn::hid::IHidDebugServer(31)">SetKeyboardAutoPilotState(<a href="types.html#nn::hid::debug::KeyboardAutoPilotState">nn::hid::debug::KeyboardAutoPilotState</a>)</li>
-						<li value="32" id="nn::hid::IHidDebugServer(32)">UnsetKeyboardAutoPilotState()</li>
-						<li value="50" id="nn::hid::IHidDebugServer(50)">DeactivateXpad(<a href="types.html#nn::hid::BasicXpadId">nn::hid::BasicXpadId</a>)</li>
-						<li value="51" id="nn::hid::IHidDebugServer(51)">SetXpadAutoPilotState(<a href="types.html#nn::hid::BasicXpadId">nn::hid::BasicXpadId</a>, align&lt;4, <a href="types.html#nn::hid::debug::BasicXpadAutoPilotState">nn::hid::debug::BasicXpadAutoPilotState</a>&gt;)</li>
-						<li value="52" id="nn::hid::IHidDebugServer(52)">UnsetXpadAutoPilotState(<a href="types.html#nn::hid::BasicXpadId">nn::hid::BasicXpadId</a>)</li>
-						<li value="60" id="nn::hid::IHidDebugServer(60)">DeactivateJoyXpad(<a href="types.html#nn::hid::JoyXpadId">nn::hid::JoyXpadId</a>)</li>
-						<li value="91" id="nn::hid::IHidDebugServer(91)">DeactivateGesture()</li>
-						<li value="110" id="nn::hid::IHidDebugServer(110)">DeactivateHomeButton()</li>
-						<li value="111" id="nn::hid::IHidDebugServer(111)">SetHomeButtonAutoPilotState(<a href="types.html#nn::hid::debug::HomeButtonAutoPilotState">nn::hid::debug::HomeButtonAutoPilotState</a>)</li>
-						<li value="112" id="nn::hid::IHidDebugServer(112)">UnsetHomeButtonAutoPilotState()</li>
-						<li value="120" id="nn::hid::IHidDebugServer(120)">DeactivateSleepButton()</li>
-						<li value="121" id="nn::hid::IHidDebugServer(121)">SetSleepButtonAutoPilotState(<a href="types.html#nn::hid::debug::SleepButtonAutoPilotState">nn::hid::debug::SleepButtonAutoPilotState</a>)</li>
-						<li value="122" id="nn::hid::IHidDebugServer(122)">UnsetSleepButtonAutoPilotState()</li>
-						<li value="123" id="nn::hid::IHidDebugServer(123)">DeactivateInputDetector()</li>
-						<li value="130" id="nn::hid::IHidDebugServer(130)">DeactivateCaptureButton()</li>
-						<li value="131" id="nn::hid::IHidDebugServer(131)">SetCaptureButtonAutoPilotState(<a href="types.html#nn::hid::debug::CaptureButtonAutoPilotState">nn::hid::debug::CaptureButtonAutoPilotState</a>)</li>
-						<li value="132" id="nn::hid::IHidDebugServer(132)">UnsetCaptureButtonAutoPilotState()</li>
-						<li value="133" id="nn::hid::IHidDebugServer(133)">SetShiftAccelerometerCalibrationValue(<a href="types.html#nn::hid::SixAxisSensorHandle">nn::hid::SixAxisSensorHandle</a>, f32, f32, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid)</li>
-						<li value="134" id="nn::hid::IHidDebugServer(134)">GetShiftAccelerometerCalibrationValue(<a href="types.html#nn::hid::SixAxisSensorHandle">nn::hid::SixAxisSensorHandle</a>, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid) -&gt; (f32, f32)</li>
-						<li value="135" id="nn::hid::IHidDebugServer(135)">SetShiftGyroscopeCalibrationValue(<a href="types.html#nn::hid::SixAxisSensorHandle">nn::hid::SixAxisSensorHandle</a>, f32, f32, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid)</li>
-						<li value="136" id="nn::hid::IHidDebugServer(136)">GetShiftGyroscopeCalibrationValue(<a href="types.html#nn::hid::SixAxisSensorHandle">nn::hid::SixAxisSensorHandle</a>, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid) -&gt; (f32, f32)</li>
-						<li value="140" id="nn::hid::IHidDebugServer(140)">DeactivateConsoleSixAxisSensor()</li>
-						<li value="201" id="nn::hid::IHidDebugServer(201)">ActivateFirmwareUpdate()</li>
-						<li value="202" id="nn::hid::IHidDebugServer(202)">DeactivateFirmwareUpdate()</li>
-						<li value="203" id="nn::hid::IHidDebugServer(203)">StartFirmwareUpdate(<a href="types.html#nn::hid::system::UniquePadId">nn::hid::system::UniquePadId</a>)</li>
-						<li value="204" id="nn::hid::IHidDebugServer(204)">GetFirmwareUpdateStage() -&gt; (i64, i64)</li>
-						<li value="205" id="nn::hid::IHidDebugServer(205)">GetFirmwareVersion(u32, <a href="types.html#nn::hid::system::DeviceType">nn::hid::system::DeviceType</a>) -&gt; <a href="types.html#nn::hid::system::FirmwareVersion">nn::hid::system::FirmwareVersion</a></li>
-						<li value="206" id="nn::hid::IHidDebugServer(206)">GetDestinationFirmwareVersion(u32, <a href="types.html#nn::hid::system::DeviceType">nn::hid::system::DeviceType</a>) -&gt; <a href="types.html#nn::hid::system::FirmwareVersion">nn::hid::system::FirmwareVersion</a></li>
-						<li value="207" id="nn::hid::IHidDebugServer(207)">DiscardFirmwareInfoCacheForRevert()</li>
-						<li value="208" id="nn::hid::IHidDebugServer(208)">StartFirmwareUpdateForRevert(<a href="types.html#nn::hid::system::UniquePadId">nn::hid::system::UniquePadId</a>)</li>
-						<li value="209" id="nn::hid::IHidDebugServer(209)">GetAvailableFirmwareVersionForRevert(<a href="types.html#nn::hid::system::UniquePadId">nn::hid::system::UniquePadId</a>) -&gt; <a href="types.html#nn::hid::system::FirmwareVersion">nn::hid::system::FirmwareVersion</a></li>
-						<li value="221" id="nn::hid::IHidDebugServer(221)">UpdateControllerColor(<a href="types.html#nn::util::Unorm8x4">nn::util::Unorm8x4</a>, <a href="types.html#nn::util::Unorm8x4">nn::util::Unorm8x4</a>, <a href="types.html#nn::hid::system::UniquePadId">nn::hid::system::UniquePadId</a>)</li>
-					</ol>
-				</li>
-			</ul>
-		</div>
-		<br />
-		<div class="card">
-			<div class="card-header">
-				<h2 id="nn::mii::detail::IStaticService">nn::mii::detail::IStaticService</h2>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::mii::detail::IStaticService">nn::mii::detail::IStaticService</h2>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Provides:</h3>
+						<ul>
+							<li>mii:e</li>
+							<li>mii:u</li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::mii::detail::IStaticService(0)">GetDatabaseService(i32) -&gt; object&lt;<a href="ifaces.html#nn::mii::detail::IDatabaseService">nn::mii::detail::IDatabaseService</a>&gt;</li>
+						</ol>
+					</li>
+				</ul>
 			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<h3>Provides:</h3>
-					<ul>
-						<li>mii:e</li>
-						<li>mii:u</li>
-					</ul>
-				</li>
-				<li class="list-group-item">
-					<h3>Commands:</h3>
-					<ol>
-						<li value="0" id="nn::mii::detail::IStaticService(0)">GetDatabaseService(i32) -&gt; object&lt;<a href="ifaces.html#nn::mii::detail::IDatabaseService">nn::mii::detail::IDatabaseService</a>&gt;</li>
-					</ol>
-				</li>
-			</ul>
-		</div>
-		<br />
-		<div class="card">
-			<div class="card-header">
-				<h2 id="nn::account::IAccountServiceForSystemService">nn::account::IAccountServiceForSystemService</h2>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::account::IAccountServiceForSystemService">nn::account::IAccountServiceForSystemService</h2>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Provides:</h3>
+						<ul>
+							<li>acc:u1</li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::account::IAccountServiceForSystemService(0)">GetUserCount() -&gt; i32</li>
+							<li value="1" id="nn::account::IAccountServiceForSystemService(1)">GetUserExistence(<a href="types.html#nn::account::Uid">nn::account::Uid</a>) -&gt; bool</li>
+							<li value="2" id="nn::account::IAccountServiceForSystemService(2)">ListAllUsers() -&gt; array&lt;<a href="types.html#nn::account::Uid">nn::account::Uid</a>, 0xa&gt;</li>
+							<li value="3" id="nn::account::IAccountServiceForSystemService(3)">ListOpenUsers() -&gt; array&lt;<a href="types.html#nn::account::Uid">nn::account::Uid</a>, 0xa&gt;</li>
+							<li value="4" id="nn::account::IAccountServiceForSystemService(4)">GetLastOpenedUser() -&gt; <a href="types.html#nn::account::Uid">nn::account::Uid</a></li>
+							<li value="5" id="nn::account::IAccountServiceForSystemService(5)">GetProfile(<a href="types.html#nn::account::Uid">nn::account::Uid</a>) -&gt; object&lt;<a href="ifaces.html#nn::account::profile::IProfile">nn::account::profile::IProfile</a>&gt;</li>
+							<li value="6" id="nn::account::IAccountServiceForSystemService(6)">GetProfileDigest(<a href="types.html#nn::account::Uid">nn::account::Uid</a>) -&gt; <a href="types.html#nn::account::ProfileDigest">nn::account::ProfileDigest</a></li>
+							<li value="50" id="nn::account::IAccountServiceForSystemService(50)">IsUserRegistrationRequestPermitted(u64, pid) -&gt; bool</li>
+							<li value="51" id="nn::account::IAccountServiceForSystemService(51)">TrySelectUserWithoutInteraction(bool) -&gt; <a href="types.html#nn::account::Uid">nn::account::Uid</a></li>
+							<li value="100" id="nn::account::IAccountServiceForSystemService(100)">GetUserRegistrationNotifier() -&gt; object&lt;<a href="ifaces.html#nn::account::detail::INotifier">nn::account::detail::INotifier</a>&gt;</li>
+							<li value="101" id="nn::account::IAccountServiceForSystemService(101)">GetUserStateChangeNotifier() -&gt; object&lt;<a href="ifaces.html#nn::account::detail::INotifier">nn::account::detail::INotifier</a>&gt;</li>
+							<li value="102" id="nn::account::IAccountServiceForSystemService(102)">GetBaasAccountManagerForSystemService(<a href="types.html#nn::account::Uid">nn::account::Uid</a>) -&gt; object&lt;<a href="ifaces.html#nn::account::baas::IManagerForSystemService">nn::account::baas::IManagerForSystemService</a>&gt;</li>
+							<li value="103" id="nn::account::IAccountServiceForSystemService(103)">GetBaasUserAvailabilityChangeNotifier() -&gt; object&lt;<a href="ifaces.html#nn::account::detail::INotifier">nn::account::detail::INotifier</a>&gt;</li>
+							<li value="104" id="nn::account::IAccountServiceForSystemService(104)">GetProfileUpdateNotifier() -&gt; object&lt;<a href="ifaces.html#nn::account::detail::INotifier">nn::account::detail::INotifier</a>&gt;</li>
+							<li value="110" id="nn::account::IAccountServiceForSystemService(110)">StoreSaveDataThumbnail(<a href="types.html#nn::account::Uid">nn::account::Uid</a>, <a href="types.html#nn::ApplicationId">nn::ApplicationId</a>, buffer&lt;unknown, 5, 0&gt;)</li>
+							<li value="111" id="nn::account::IAccountServiceForSystemService(111)">ClearSaveDataThumbnail(<a href="types.html#nn::account::Uid">nn::account::Uid</a>, <a href="types.html#nn::ApplicationId">nn::ApplicationId</a>)</li>
+							<li value="112" id="nn::account::IAccountServiceForSystemService(112)">LoadSaveDataThumbnail(<a href="types.html#nn::account::Uid">nn::account::Uid</a>, <a href="types.html#nn::ApplicationId">nn::ApplicationId</a>) -&gt; (u32, buffer&lt;unknown, 6, 0&gt;)</li>
+							<li value="190" id="nn::account::IAccountServiceForSystemService(190)">GetUserLastOpenedApplication(<a href="types.html#nn::account::Uid">nn::account::Uid</a>) -&gt; (u32, <a href="types.html#nn::ApplicationId">nn::ApplicationId</a>)</li>
+							<li value="997" id="nn::account::IAccountServiceForSystemService(997)">DebugInvalidateTokenCacheForUser(<a href="types.html#nn::account::Uid">nn::account::Uid</a>)</li>
+							<li value="998" id="nn::account::IAccountServiceForSystemService(998)">DebugSetUserStateClose(<a href="types.html#nn::account::Uid">nn::account::Uid</a>)</li>
+							<li value="999" id="nn::account::IAccountServiceForSystemService(999)">DebugSetUserStateOpen(<a href="types.html#nn::account::Uid">nn::account::Uid</a>)</li>
+						</ol>
+					</li>
+				</ul>
 			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<h3>Provides:</h3>
-					<ul>
-						<li>acc:u1</li>
-					</ul>
-				</li>
-				<li class="list-group-item">
-					<h3>Commands:</h3>
-					<ol>
-						<li value="0" id="nn::account::IAccountServiceForSystemService(0)">GetUserCount() -&gt; i32</li>
-						<li value="1" id="nn::account::IAccountServiceForSystemService(1)">GetUserExistence(<a href="types.html#nn::account::Uid">nn::account::Uid</a>) -&gt; bool</li>
-						<li value="2" id="nn::account::IAccountServiceForSystemService(2)">ListAllUsers() -&gt; array&lt;<a href="types.html#nn::account::Uid">nn::account::Uid</a>, 0xa&gt;</li>
-						<li value="3" id="nn::account::IAccountServiceForSystemService(3)">ListOpenUsers() -&gt; array&lt;<a href="types.html#nn::account::Uid">nn::account::Uid</a>, 0xa&gt;</li>
-						<li value="4" id="nn::account::IAccountServiceForSystemService(4)">GetLastOpenedUser() -&gt; <a href="types.html#nn::account::Uid">nn::account::Uid</a></li>
-						<li value="5" id="nn::account::IAccountServiceForSystemService(5)">GetProfile(<a href="types.html#nn::account::Uid">nn::account::Uid</a>) -&gt; object&lt;<a href="ifaces.html#nn::account::profile::IProfile">nn::account::profile::IProfile</a>&gt;</li>
-						<li value="6" id="nn::account::IAccountServiceForSystemService(6)">GetProfileDigest(<a href="types.html#nn::account::Uid">nn::account::Uid</a>) -&gt; <a href="types.html#nn::account::ProfileDigest">nn::account::ProfileDigest</a></li>
-						<li value="50" id="nn::account::IAccountServiceForSystemService(50)">IsUserRegistrationRequestPermitted(u64, pid) -&gt; bool</li>
-						<li value="51" id="nn::account::IAccountServiceForSystemService(51)">TrySelectUserWithoutInteraction(bool) -&gt; <a href="types.html#nn::account::Uid">nn::account::Uid</a></li>
-						<li value="100" id="nn::account::IAccountServiceForSystemService(100)">GetUserRegistrationNotifier() -&gt; object&lt;<a href="ifaces.html#nn::account::detail::INotifier">nn::account::detail::INotifier</a>&gt;</li>
-						<li value="101" id="nn::account::IAccountServiceForSystemService(101)">GetUserStateChangeNotifier() -&gt; object&lt;<a href="ifaces.html#nn::account::detail::INotifier">nn::account::detail::INotifier</a>&gt;</li>
-						<li value="102" id="nn::account::IAccountServiceForSystemService(102)">GetBaasAccountManagerForSystemService(<a href="types.html#nn::account::Uid">nn::account::Uid</a>) -&gt; object&lt;<a href="ifaces.html#nn::account::baas::IManagerForSystemService">nn::account::baas::IManagerForSystemService</a>&gt;</li>
-						<li value="103" id="nn::account::IAccountServiceForSystemService(103)">GetBaasUserAvailabilityChangeNotifier() -&gt; object&lt;<a href="ifaces.html#nn::account::detail::INotifier">nn::account::detail::INotifier</a>&gt;</li>
-						<li value="104" id="nn::account::IAccountServiceForSystemService(104)">GetProfileUpdateNotifier() -&gt; object&lt;<a href="ifaces.html#nn::account::detail::INotifier">nn::account::detail::INotifier</a>&gt;</li>
-						<li value="110" id="nn::account::IAccountServiceForSystemService(110)">StoreSaveDataThumbnail(<a href="types.html#nn::account::Uid">nn::account::Uid</a>, <a href="types.html#nn::ApplicationId">nn::ApplicationId</a>, buffer&lt;unknown, 5, 0&gt;)</li>
-						<li value="111" id="nn::account::IAccountServiceForSystemService(111)">ClearSaveDataThumbnail(<a href="types.html#nn::account::Uid">nn::account::Uid</a>, <a href="types.html#nn::ApplicationId">nn::ApplicationId</a>)</li>
-						<li value="112" id="nn::account::IAccountServiceForSystemService(112)">LoadSaveDataThumbnail(<a href="types.html#nn::account::Uid">nn::account::Uid</a>, <a href="types.html#nn::ApplicationId">nn::ApplicationId</a>) -&gt; (u32, buffer&lt;unknown, 6, 0&gt;)</li>
-						<li value="190" id="nn::account::IAccountServiceForSystemService(190)">GetUserLastOpenedApplication(<a href="types.html#nn::account::Uid">nn::account::Uid</a>) -&gt; (u32, <a href="types.html#nn::ApplicationId">nn::ApplicationId</a>)</li>
-						<li value="997" id="nn::account::IAccountServiceForSystemService(997)">DebugInvalidateTokenCacheForUser(<a href="types.html#nn::account::Uid">nn::account::Uid</a>)</li>
-						<li value="998" id="nn::account::IAccountServiceForSystemService(998)">DebugSetUserStateClose(<a href="types.html#nn::account::Uid">nn::account::Uid</a>)</li>
-						<li value="999" id="nn::account::IAccountServiceForSystemService(999)">DebugSetUserStateOpen(<a href="types.html#nn::account::Uid">nn::account::Uid</a>)</li>
-					</ol>
-				</li>
-			</ul>
-		</div>
-		<br />
-		<div class="card">
-			<div class="card-header">
-				<h2 id="nn::settings::IFactorySettingsServer">nn::settings::IFactorySettingsServer</h2>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::settings::IFactorySettingsServer">nn::settings::IFactorySettingsServer</h2>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Provides:</h3>
+						<ul>
+							<li>set:cal</li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::settings::IFactorySettingsServer(0)">GetBluetoothBdAddress() -&gt; <a href="types.html#nn::settings::factory::BdAddress">nn::settings::factory::BdAddress</a></li>
+							<li value="1" id="nn::settings::IFactorySettingsServer(1)">GetConfigurationId1() -&gt; <a href="types.html#nn::settings::factory::ConfigurationId1">nn::settings::factory::ConfigurationId1</a></li>
+							<li value="2" id="nn::settings::IFactorySettingsServer(2)">GetAccelerometerOffset() -&gt; <a href="types.html#nn::settings::factory::AccelerometerOffset">nn::settings::factory::AccelerometerOffset</a></li>
+							<li value="3" id="nn::settings::IFactorySettingsServer(3)">GetAccelerometerScale() -&gt; <a href="types.html#nn::settings::factory::AccelerometerScale">nn::settings::factory::AccelerometerScale</a></li>
+							<li value="4" id="nn::settings::IFactorySettingsServer(4)">GetGyroscopeOffset() -&gt; <a href="types.html#nn::settings::factory::GyroscopeOffset">nn::settings::factory::GyroscopeOffset</a></li>
+							<li value="5" id="nn::settings::IFactorySettingsServer(5)">GetGyroscopeScale() -&gt; <a href="types.html#nn::settings::factory::GyroscopeScale">nn::settings::factory::GyroscopeScale</a></li>
+							<li value="6" id="nn::settings::IFactorySettingsServer(6)">GetWirelessLanMacAddress() -&gt; <a href="types.html#nn::settings::factory::MacAddress">nn::settings::factory::MacAddress</a></li>
+							<li value="7" id="nn::settings::IFactorySettingsServer(7)">GetWirelessLanCountryCodeCount() -&gt; i32</li>
+							<li value="8" id="nn::settings::IFactorySettingsServer(8)">GetWirelessLanCountryCodes() -&gt; (i32, array&lt;<a href="types.html#nn::settings::factory::CountryCode">nn::settings::factory::CountryCode</a>, 0xa&gt;)</li>
+							<li value="9" id="nn::settings::IFactorySettingsServer(9)">GetSerialNumber() -&gt; <a href="types.html#nn::settings::factory::SerialNumber">nn::settings::factory::SerialNumber</a></li>
+							<li value="10" id="nn::settings::IFactorySettingsServer(10)">SetInitialSystemAppletProgramId(<a href="types.html#nn::ncm::ProgramId">nn::ncm::ProgramId</a>)</li>
+							<li value="11" id="nn::settings::IFactorySettingsServer(11)">SetOverlayDispProgramId(<a href="types.html#nn::ncm::ProgramId">nn::ncm::ProgramId</a>)</li>
+							<li value="12" id="nn::settings::IFactorySettingsServer(12)">GetBatteryLot() -&gt; <a href="types.html#nn::settings::factory::BatteryLot">nn::settings::factory::BatteryLot</a></li>
+							<li value="14" id="nn::settings::IFactorySettingsServer(14)">GetEciDeviceCertificate() -&gt; buffer&lt;<a href="types.html#nn::settings::factory::EccB233DeviceCertificate">nn::settings::factory::EccB233DeviceCertificate</a>, 0x16, 0x180&gt;</li>
+							<li value="15" id="nn::settings::IFactorySettingsServer(15)">GetEticketDeviceCertificate() -&gt; buffer&lt;<a href="types.html#nn::settings::factory::Rsa2048DeviceCertificate">nn::settings::factory::Rsa2048DeviceCertificate</a>, 0x16, 0x240&gt;</li>
+							<li value="16" id="nn::settings::IFactorySettingsServer(16)">GetSslKey() -&gt; buffer&lt;<a href="types.html#nn::settings::factory::SslKey">nn::settings::factory::SslKey</a>, 0x16, 0x134&gt;</li>
+							<li value="17" id="nn::settings::IFactorySettingsServer(17)">GetSslCertificate() -&gt; buffer&lt;<a href="types.html#nn::settings::factory::SslCertificate">nn::settings::factory::SslCertificate</a>, 0x16, 0x804&gt;</li>
+							<li value="18" id="nn::settings::IFactorySettingsServer(18)">GetGameCardKey() -&gt; buffer&lt;<a href="types.html#nn::settings::factory::GameCardKey">nn::settings::factory::GameCardKey</a>, 0x16, 0x134&gt;</li>
+							<li value="19" id="nn::settings::IFactorySettingsServer(19)">GetGameCardCertificate() -&gt; buffer&lt;<a href="types.html#nn::settings::factory::GameCardCertificate">nn::settings::factory::GameCardCertificate</a>, 0x16, 0x400&gt;</li>
+							<li value="20" id="nn::settings::IFactorySettingsServer(20)">GetEciDeviceKey() -&gt; <a href="types.html#nn::settings::factory::EccB233DeviceKey">nn::settings::factory::EccB233DeviceKey</a></li>
+							<li value="21" id="nn::settings::IFactorySettingsServer(21)">GetEticketDeviceKey() -&gt; buffer&lt;<a href="types.html#nn::settings::factory::Rsa2048DeviceKey">nn::settings::factory::Rsa2048DeviceKey</a>, 0x16, 0x244&gt;</li>
+							<li value="22" id="nn::settings::IFactorySettingsServer(22)">GetSpeakerParameter() -&gt; <a href="types.html#nn::settings::factory::SpeakerParameter">nn::settings::factory::SpeakerParameter</a></li>
+						</ol>
+					</li>
+				</ul>
 			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<h3>Provides:</h3>
-					<ul>
-						<li>set:cal</li>
-					</ul>
-				</li>
-				<li class="list-group-item">
-					<h3>Commands:</h3>
-					<ol>
-						<li value="0" id="nn::settings::IFactorySettingsServer(0)">GetBluetoothBdAddress() -&gt; <a href="types.html#nn::settings::factory::BdAddress">nn::settings::factory::BdAddress</a></li>
-						<li value="1" id="nn::settings::IFactorySettingsServer(1)">GetConfigurationId1() -&gt; <a href="types.html#nn::settings::factory::ConfigurationId1">nn::settings::factory::ConfigurationId1</a></li>
-						<li value="2" id="nn::settings::IFactorySettingsServer(2)">GetAccelerometerOffset() -&gt; <a href="types.html#nn::settings::factory::AccelerometerOffset">nn::settings::factory::AccelerometerOffset</a></li>
-						<li value="3" id="nn::settings::IFactorySettingsServer(3)">GetAccelerometerScale() -&gt; <a href="types.html#nn::settings::factory::AccelerometerScale">nn::settings::factory::AccelerometerScale</a></li>
-						<li value="4" id="nn::settings::IFactorySettingsServer(4)">GetGyroscopeOffset() -&gt; <a href="types.html#nn::settings::factory::GyroscopeOffset">nn::settings::factory::GyroscopeOffset</a></li>
-						<li value="5" id="nn::settings::IFactorySettingsServer(5)">GetGyroscopeScale() -&gt; <a href="types.html#nn::settings::factory::GyroscopeScale">nn::settings::factory::GyroscopeScale</a></li>
-						<li value="6" id="nn::settings::IFactorySettingsServer(6)">GetWirelessLanMacAddress() -&gt; <a href="types.html#nn::settings::factory::MacAddress">nn::settings::factory::MacAddress</a></li>
-						<li value="7" id="nn::settings::IFactorySettingsServer(7)">GetWirelessLanCountryCodeCount() -&gt; i32</li>
-						<li value="8" id="nn::settings::IFactorySettingsServer(8)">GetWirelessLanCountryCodes() -&gt; (i32, array&lt;<a href="types.html#nn::settings::factory::CountryCode">nn::settings::factory::CountryCode</a>, 0xa&gt;)</li>
-						<li value="9" id="nn::settings::IFactorySettingsServer(9)">GetSerialNumber() -&gt; <a href="types.html#nn::settings::factory::SerialNumber">nn::settings::factory::SerialNumber</a></li>
-						<li value="10" id="nn::settings::IFactorySettingsServer(10)">SetInitialSystemAppletProgramId(<a href="types.html#nn::ncm::ProgramId">nn::ncm::ProgramId</a>)</li>
-						<li value="11" id="nn::settings::IFactorySettingsServer(11)">SetOverlayDispProgramId(<a href="types.html#nn::ncm::ProgramId">nn::ncm::ProgramId</a>)</li>
-						<li value="12" id="nn::settings::IFactorySettingsServer(12)">GetBatteryLot() -&gt; <a href="types.html#nn::settings::factory::BatteryLot">nn::settings::factory::BatteryLot</a></li>
-						<li value="14" id="nn::settings::IFactorySettingsServer(14)">GetEciDeviceCertificate() -&gt; buffer&lt;<a href="types.html#nn::settings::factory::EccB233DeviceCertificate">nn::settings::factory::EccB233DeviceCertificate</a>, 0x16, 0x180&gt;</li>
-						<li value="15" id="nn::settings::IFactorySettingsServer(15)">GetEticketDeviceCertificate() -&gt; buffer&lt;<a href="types.html#nn::settings::factory::Rsa2048DeviceCertificate">nn::settings::factory::Rsa2048DeviceCertificate</a>, 0x16, 0x240&gt;</li>
-						<li value="16" id="nn::settings::IFactorySettingsServer(16)">GetSslKey() -&gt; buffer&lt;<a href="types.html#nn::settings::factory::SslKey">nn::settings::factory::SslKey</a>, 0x16, 0x134&gt;</li>
-						<li value="17" id="nn::settings::IFactorySettingsServer(17)">GetSslCertificate() -&gt; buffer&lt;<a href="types.html#nn::settings::factory::SslCertificate">nn::settings::factory::SslCertificate</a>, 0x16, 0x804&gt;</li>
-						<li value="18" id="nn::settings::IFactorySettingsServer(18)">GetGameCardKey() -&gt; buffer&lt;<a href="types.html#nn::settings::factory::GameCardKey">nn::settings::factory::GameCardKey</a>, 0x16, 0x134&gt;</li>
-						<li value="19" id="nn::settings::IFactorySettingsServer(19)">GetGameCardCertificate() -&gt; buffer&lt;<a href="types.html#nn::settings::factory::GameCardCertificate">nn::settings::factory::GameCardCertificate</a>, 0x16, 0x400&gt;</li>
-						<li value="20" id="nn::settings::IFactorySettingsServer(20)">GetEciDeviceKey() -&gt; <a href="types.html#nn::settings::factory::EccB233DeviceKey">nn::settings::factory::EccB233DeviceKey</a></li>
-						<li value="21" id="nn::settings::IFactorySettingsServer(21)">GetEticketDeviceKey() -&gt; buffer&lt;<a href="types.html#nn::settings::factory::Rsa2048DeviceKey">nn::settings::factory::Rsa2048DeviceKey</a>, 0x16, 0x244&gt;</li>
-						<li value="22" id="nn::settings::IFactorySettingsServer(22)">GetSpeakerParameter() -&gt; <a href="types.html#nn::settings::factory::SpeakerParameter">nn::settings::factory::SpeakerParameter</a></li>
-					</ol>
-				</li>
-			</ul>
-		</div>
-		<br />
-		<div class="card">
-			<div class="card-header">
-				<h2 id="nn::account::baas::IAdministrator">nn::account::baas::IAdministrator</h2>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::account::baas::IAdministrator">nn::account::baas::IAdministrator</h2>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Returned by:</h3>
+						<ul>
+							<li><a href="ifaces.html#nn::account::IAccountServiceForAdministrator(250)">nn::account::IAccountServiceForAdministrator::GetBaasAccountAdministrator [250]</a></li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::account::baas::IAdministrator(0)">CheckAvailability()</li>
+							<li value="1" id="nn::account::baas::IAdministrator(1)">GetAccountId() -&gt; <a href="types.html#nn::account::NetworkServiceAccountId">nn::account::NetworkServiceAccountId</a></li>
+							<li value="2" id="nn::account::baas::IAdministrator(2)">EnsureIdTokenCacheAsync() -&gt; object&lt;<a href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a>&gt;</li>
+							<li value="3" id="nn::account::baas::IAdministrator(3)">LoadIdTokenCache() -&gt; (u32, buffer&lt;unknown, 6, 0&gt;)</li>
+							<li value="100" id="nn::account::baas::IAdministrator(100)">SetSystemProgramIdentification(u64, pid, buffer&lt;<a href="types.html#nn::account::SystemProgramIdentification">nn::account::SystemProgramIdentification</a>, 0x19, 0x10&gt;)</li>
+							<li value="120" id="nn::account::baas::IAdministrator(120)">GetNintendoAccountId() -&gt; <a href="types.html#nn::account::NintendoAccountId">nn::account::NintendoAccountId</a></li>
+							<li value="130" id="nn::account::baas::IAdministrator(130)">GetNintendoAccountUserResourceCache() -&gt; (<a href="types.html#nn::account::NintendoAccountId">nn::account::NintendoAccountId</a>, buffer&lt;<a href="types.html#nn::account::nas::NasUserBase">nn::account::nas::NasUserBase</a>, 0x1a, 0x24f&gt;, buffer&lt;unknown, 6, 0&gt;)</li>
+							<li value="131" id="nn::account::baas::IAdministrator(131)">RefreshNintendoAccountUserResourceCacheAsync() -&gt; object&lt;<a href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a>&gt;</li>
+							<li value="132" id="nn::account::baas::IAdministrator(132)">RefreshNintendoAccountUserResourceCacheAsyncIfSecondsElapsed(u32) -&gt; (bool, object&lt;<a href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a>&gt;)</li>
+							<li value="150" id="nn::account::baas::IAdministrator(150)">CreateAuthorizationRequest(u32, KObject, buffer&lt;<a href="types.html#nn::account::nas::NasClientInfo">nn::account::nas::NasClientInfo</a>, 0x19, 0x108&gt;, buffer&lt;<a href="types.html#nn::account::NintendoAccountAuthorizationRequestParameters">nn::account::NintendoAccountAuthorizationRequestParameters</a>, 0x19, 0x200&gt;) -&gt; object&lt;<a href="ifaces.html#nn::account::nas::IAuthorizationRequest">nn::account::nas::IAuthorizationRequest</a>&gt;</li>
+							<li value="200" id="nn::account::baas::IAdministrator(200)">IsRegistered() -&gt; bool</li>
+							<li value="201" id="nn::account::baas::IAdministrator(201)">RegisterAsync() -&gt; object&lt;<a href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a>&gt;</li>
+							<li value="202" id="nn::account::baas::IAdministrator(202)">UnregisterAsync() -&gt; object&lt;<a href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a>&gt;</li>
+							<li value="203" id="nn::account::baas::IAdministrator(203)">DeleteRegistrationInfoLocally()</li>
+							<li value="220" id="nn::account::baas::IAdministrator(220)">SynchronizeProfileAsync() -&gt; object&lt;<a href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a>&gt;</li>
+							<li value="221" id="nn::account::baas::IAdministrator(221)">UploadProfileAsync() -&gt; object&lt;<a href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a>&gt;</li>
+							<li value="222" id="nn::account::baas::IAdministrator(222)">SynchronizeProfileAsyncIfSecondsElapsed(u32) -&gt; (bool, object&lt;<a href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a>&gt;)</li>
+							<li value="250" id="nn::account::baas::IAdministrator(250)">IsLinkedWithNintendoAccount() -&gt; bool</li>
+							<li value="251" id="nn::account::baas::IAdministrator(251)">CreateProcedureToLinkWithNintendoAccount() -&gt; object&lt;<a href="ifaces.html#nn::account::nas::IOAuthProcedureForNintendoAccountLinkage">nn::account::nas::IOAuthProcedureForNintendoAccountLinkage</a>&gt;</li>
+							<li value="252" id="nn::account::baas::IAdministrator(252)">ResumeProcedureToLinkWithNintendoAccount(<a href="types.html#nn::account::detail::Uuid">nn::account::detail::Uuid</a>) -&gt; object&lt;<a href="ifaces.html#nn::account::nas::IOAuthProcedureForNintendoAccountLinkage">nn::account::nas::IOAuthProcedureForNintendoAccountLinkage</a>&gt;</li>
+							<li value="255" id="nn::account::baas::IAdministrator(255)">CreateProcedureToUpdateLinkageStateOfNintendoAccount() -&gt; object&lt;<a href="ifaces.html#nn::account::http::IOAuthProcedure">nn::account::http::IOAuthProcedure</a>&gt;</li>
+							<li value="256" id="nn::account::baas::IAdministrator(256)">ResumeProcedureToUpdateLinkageStateOfNintendoAccount(<a href="types.html#nn::account::detail::Uuid">nn::account::detail::Uuid</a>) -&gt; object&lt;<a href="ifaces.html#nn::account::http::IOAuthProcedure">nn::account::http::IOAuthProcedure</a>&gt;</li>
+							<li value="260" id="nn::account::baas::IAdministrator(260)">CreateProcedureToLinkNnidWithNintendoAccount() -&gt; object&lt;<a href="ifaces.html#nn::account::http::IOAuthProcedure">nn::account::http::IOAuthProcedure</a>&gt;</li>
+							<li value="261" id="nn::account::baas::IAdministrator(261)">ResumeProcedureToLinkNnidWithNintendoAccount(<a href="types.html#nn::account::detail::Uuid">nn::account::detail::Uuid</a>) -&gt; object&lt;<a href="ifaces.html#nn::account::http::IOAuthProcedure">nn::account::http::IOAuthProcedure</a>&gt;</li>
+							<li value="280" id="nn::account::baas::IAdministrator(280)">ProxyProcedureToAcquireApplicationAuthorizationForNintendoAccount(<a href="types.html#nn::account::detail::Uuid">nn::account::detail::Uuid</a>) -&gt; object&lt;<a href="ifaces.html#nn::account::http::IOAuthProcedure">nn::account::http::IOAuthProcedure</a>&gt;</li>
+							<li value="997" id="nn::account::baas::IAdministrator(997)">DebugUnlinkNintendoAccountAsync() -&gt; object&lt;<a href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a>&gt;</li>
+							<li value="998" id="nn::account::baas::IAdministrator(998)">DebugSetAvailabilityErrorDetail(u32)</li>
+						</ol>
+					</li>
+				</ul>
 			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<h3>Returned by:</h3>
-					<ul>
-						<li><a href="ifaces.html#nn::account::IAccountServiceForAdministrator(250)">nn::account::IAccountServiceForAdministrator::GetBaasAccountAdministrator [250]</a></li>
-					</ul>
-				</li>
-				<li class="list-group-item">
-					<h3>Commands:</h3>
-					<ol>
-						<li value="0" id="nn::account::baas::IAdministrator(0)">CheckAvailability()</li>
-						<li value="1" id="nn::account::baas::IAdministrator(1)">GetAccountId() -&gt; <a href="types.html#nn::account::NetworkServiceAccountId">nn::account::NetworkServiceAccountId</a></li>
-						<li value="2" id="nn::account::baas::IAdministrator(2)">EnsureIdTokenCacheAsync() -&gt; object&lt;<a href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a>&gt;</li>
-						<li value="3" id="nn::account::baas::IAdministrator(3)">LoadIdTokenCache() -&gt; (u32, buffer&lt;unknown, 6, 0&gt;)</li>
-						<li value="100" id="nn::account::baas::IAdministrator(100)">SetSystemProgramIdentification(u64, pid, buffer&lt;<a href="types.html#nn::account::SystemProgramIdentification">nn::account::SystemProgramIdentification</a>, 0x19, 0x10&gt;)</li>
-						<li value="120" id="nn::account::baas::IAdministrator(120)">GetNintendoAccountId() -&gt; <a href="types.html#nn::account::NintendoAccountId">nn::account::NintendoAccountId</a></li>
-						<li value="130" id="nn::account::baas::IAdministrator(130)">GetNintendoAccountUserResourceCache() -&gt; (<a href="types.html#nn::account::NintendoAccountId">nn::account::NintendoAccountId</a>, buffer&lt;<a href="types.html#nn::account::nas::NasUserBase">nn::account::nas::NasUserBase</a>, 0x1a, 0x24f&gt;, buffer&lt;unknown, 6, 0&gt;)</li>
-						<li value="131" id="nn::account::baas::IAdministrator(131)">RefreshNintendoAccountUserResourceCacheAsync() -&gt; object&lt;<a href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a>&gt;</li>
-						<li value="132" id="nn::account::baas::IAdministrator(132)">RefreshNintendoAccountUserResourceCacheAsyncIfSecondsElapsed(u32) -&gt; (bool, object&lt;<a href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a>&gt;)</li>
-						<li value="150" id="nn::account::baas::IAdministrator(150)">CreateAuthorizationRequest(u32, KObject, buffer&lt;<a href="types.html#nn::account::nas::NasClientInfo">nn::account::nas::NasClientInfo</a>, 0x19, 0x108&gt;, buffer&lt;<a href="types.html#nn::account::NintendoAccountAuthorizationRequestParameters">nn::account::NintendoAccountAuthorizationRequestParameters</a>, 0x19, 0x200&gt;) -&gt; object&lt;<a href="ifaces.html#nn::account::nas::IAuthorizationRequest">nn::account::nas::IAuthorizationRequest</a>&gt;</li>
-						<li value="200" id="nn::account::baas::IAdministrator(200)">IsRegistered() -&gt; bool</li>
-						<li value="201" id="nn::account::baas::IAdministrator(201)">RegisterAsync() -&gt; object&lt;<a href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a>&gt;</li>
-						<li value="202" id="nn::account::baas::IAdministrator(202)">UnregisterAsync() -&gt; object&lt;<a href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a>&gt;</li>
-						<li value="203" id="nn::account::baas::IAdministrator(203)">DeleteRegistrationInfoLocally()</li>
-						<li value="220" id="nn::account::baas::IAdministrator(220)">SynchronizeProfileAsync() -&gt; object&lt;<a href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a>&gt;</li>
-						<li value="221" id="nn::account::baas::IAdministrator(221)">UploadProfileAsync() -&gt; object&lt;<a href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a>&gt;</li>
-						<li value="222" id="nn::account::baas::IAdministrator(222)">SynchronizeProfileAsyncIfSecondsElapsed(u32) -&gt; (bool, object&lt;<a href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a>&gt;)</li>
-						<li value="250" id="nn::account::baas::IAdministrator(250)">IsLinkedWithNintendoAccount() -&gt; bool</li>
-						<li value="251" id="nn::account::baas::IAdministrator(251)">CreateProcedureToLinkWithNintendoAccount() -&gt; object&lt;<a href="ifaces.html#nn::account::nas::IOAuthProcedureForNintendoAccountLinkage">nn::account::nas::IOAuthProcedureForNintendoAccountLinkage</a>&gt;</li>
-						<li value="252" id="nn::account::baas::IAdministrator(252)">ResumeProcedureToLinkWithNintendoAccount(<a href="types.html#nn::account::detail::Uuid">nn::account::detail::Uuid</a>) -&gt; object&lt;<a href="ifaces.html#nn::account::nas::IOAuthProcedureForNintendoAccountLinkage">nn::account::nas::IOAuthProcedureForNintendoAccountLinkage</a>&gt;</li>
-						<li value="255" id="nn::account::baas::IAdministrator(255)">CreateProcedureToUpdateLinkageStateOfNintendoAccount() -&gt; object&lt;<a href="ifaces.html#nn::account::http::IOAuthProcedure">nn::account::http::IOAuthProcedure</a>&gt;</li>
-						<li value="256" id="nn::account::baas::IAdministrator(256)">ResumeProcedureToUpdateLinkageStateOfNintendoAccount(<a href="types.html#nn::account::detail::Uuid">nn::account::detail::Uuid</a>) -&gt; object&lt;<a href="ifaces.html#nn::account::http::IOAuthProcedure">nn::account::http::IOAuthProcedure</a>&gt;</li>
-						<li value="260" id="nn::account::baas::IAdministrator(260)">CreateProcedureToLinkNnidWithNintendoAccount() -&gt; object&lt;<a href="ifaces.html#nn::account::http::IOAuthProcedure">nn::account::http::IOAuthProcedure</a>&gt;</li>
-						<li value="261" id="nn::account::baas::IAdministrator(261)">ResumeProcedureToLinkNnidWithNintendoAccount(<a href="types.html#nn::account::detail::Uuid">nn::account::detail::Uuid</a>) -&gt; object&lt;<a href="ifaces.html#nn::account::http::IOAuthProcedure">nn::account::http::IOAuthProcedure</a>&gt;</li>
-						<li value="280" id="nn::account::baas::IAdministrator(280)">ProxyProcedureToAcquireApplicationAuthorizationForNintendoAccount(<a href="types.html#nn::account::detail::Uuid">nn::account::detail::Uuid</a>) -&gt; object&lt;<a href="ifaces.html#nn::account::http::IOAuthProcedure">nn::account::http::IOAuthProcedure</a>&gt;</li>
-						<li value="997" id="nn::account::baas::IAdministrator(997)">DebugUnlinkNintendoAccountAsync() -&gt; object&lt;<a href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a>&gt;</li>
-						<li value="998" id="nn::account::baas::IAdministrator(998)">DebugSetAvailabilityErrorDetail(u32)</li>
-					</ol>
-				</li>
-			</ul>
-		</div>
-		<br />
-		<div class="card">
-			<div class="card-header">
-				<h2 id="nn::capsrv::sf::IScreenShotService">nn::capsrv::sf::IScreenShotService</h2>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::capsrv::sf::IScreenShotService">nn::capsrv::sf::IScreenShotService</h2>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Provides:</h3>
+						<ul>
+							<li>caps:ss</li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="201" id="nn::capsrv::sf::IScreenShotService(201)">Unknown201()</li>
+							<li value="202" id="nn::capsrv::sf::IScreenShotService(202)">Unknown202()</li>
+							<li value="203" id="nn::capsrv::sf::IScreenShotService(203)">Unknown203()</li>
+							<li value="204" id="nn::capsrv::sf::IScreenShotService(204)">Unknown204()</li>
+						</ol>
+					</li>
+				</ul>
 			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<h3>Provides:</h3>
-					<ul>
-						<li>caps:ss</li>
-					</ul>
-				</li>
-				<li class="list-group-item">
-					<h3>Commands:</h3>
-					<ol>
-						<li value="201" id="nn::capsrv::sf::IScreenShotService(201)">Unknown201()</li>
-						<li value="202" id="nn::capsrv::sf::IScreenShotService(202)">Unknown202()</li>
-						<li value="203" id="nn::capsrv::sf::IScreenShotService(203)">Unknown203()</li>
-						<li value="204" id="nn::capsrv::sf::IScreenShotService(204)">Unknown204()</li>
-					</ol>
-				</li>
-			</ul>
-		</div>
-		<br />
-		<div class="card">
-			<div class="card-header">
-				<h2 id="nn::am::service::IAppletAccessor">nn::am::service::IAppletAccessor</h2>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::am::service::IAppletAccessor">nn::am::service::IAppletAccessor</h2>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Returned by:</h3>
+						<ul>
+							<li><a href="ifaces.html#nn::am::service::IApplicationAccessor(112)">nn::am::service::IApplicationAccessor::GetCurrentLibraryApplet [112]</a></li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::am::service::IAppletAccessor(0)">GetAppletStateChangedEvent() -&gt; KObject</li>
+							<li value="1" id="nn::am::service::IAppletAccessor(1)">IsCompleted() -&gt; bool</li>
+							<li value="10" id="nn::am::service::IAppletAccessor(10)">Start()</li>
+							<li value="20" id="nn::am::service::IAppletAccessor(20)">RequestExit()</li>
+							<li value="25" id="nn::am::service::IAppletAccessor(25)">Terminate()</li>
+							<li value="30" id="nn::am::service::IAppletAccessor(30)">GetResult()</li>
+						</ol>
+					</li>
+				</ul>
 			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<h3>Returned by:</h3>
-					<ul>
-						<li><a href="ifaces.html#nn::am::service::IApplicationAccessor(112)">nn::am::service::IApplicationAccessor::GetCurrentLibraryApplet [112]</a></li>
-					</ul>
-				</li>
-				<li class="list-group-item">
-					<h3>Commands:</h3>
-					<ol>
-						<li value="0" id="nn::am::service::IAppletAccessor(0)">GetAppletStateChangedEvent() -&gt; KObject</li>
-						<li value="1" id="nn::am::service::IAppletAccessor(1)">IsCompleted() -&gt; bool</li>
-						<li value="10" id="nn::am::service::IAppletAccessor(10)">Start()</li>
-						<li value="20" id="nn::am::service::IAppletAccessor(20)">RequestExit()</li>
-						<li value="25" id="nn::am::service::IAppletAccessor(25)">Terminate()</li>
-						<li value="30" id="nn::am::service::IAppletAccessor(30)">GetResult()</li>
-					</ol>
-				</li>
-			</ul>
-		</div>
-		<br />
-		<div class="card">
-			<div class="card-header">
-				<h2 id="nv::gemcoredump::INvGemCoreDump">nv::gemcoredump::INvGemCoreDump</h2>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nv::gemcoredump::INvGemCoreDump">nv::gemcoredump::INvGemCoreDump</h2>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Provides:</h3>
+						<ul>
+							<li>nvgem:cd</li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nv::gemcoredump::INvGemCoreDump(0)">Unknown0()</li>
+							<li value="1" id="nv::gemcoredump::INvGemCoreDump(1)">Unknown1()</li>
+							<li value="2" id="nv::gemcoredump::INvGemCoreDump(2)">Unknown2()</li>
+						</ol>
+					</li>
+				</ul>
 			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<h3>Provides:</h3>
-					<ul>
-						<li>nvgem:cd</li>
-					</ul>
-				</li>
-				<li class="list-group-item">
-					<h3>Commands:</h3>
-					<ol>
-						<li value="0" id="nv::gemcoredump::INvGemCoreDump(0)">Unknown0()</li>
-						<li value="1" id="nv::gemcoredump::INvGemCoreDump(1)">Unknown1()</li>
-						<li value="2" id="nv::gemcoredump::INvGemCoreDump(2)">Unknown2()</li>
-					</ol>
-				</li>
-			</ul>
-		</div>
-		<br />
-		<div class="card">
-			<div class="card-header">
-				<h2 id="nn::wlan::detail::IInfraManager">nn::wlan::detail::IInfraManager</h2>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::wlan::detail::IInfraManager">nn::wlan::detail::IInfraManager</h2>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Provides:</h3>
+						<ul>
+							<li>wlan:inf</li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::wlan::detail::IInfraManager(0)">Unknown0()</li>
+							<li value="1" id="nn::wlan::detail::IInfraManager(1)">Unknown1()</li>
+							<li value="2" id="nn::wlan::detail::IInfraManager(2)">Unknown2()</li>
+							<li value="3" id="nn::wlan::detail::IInfraManager(3)">Unknown3()</li>
+							<li value="4" id="nn::wlan::detail::IInfraManager(4)">Unknown4()</li>
+							<li value="5" id="nn::wlan::detail::IInfraManager(5)">Unknown5()</li>
+							<li value="6" id="nn::wlan::detail::IInfraManager(6)">Unknown6()</li>
+							<li value="7" id="nn::wlan::detail::IInfraManager(7)">Unknown7()</li>
+							<li value="8" id="nn::wlan::detail::IInfraManager(8)">Unknown8()</li>
+							<li value="9" id="nn::wlan::detail::IInfraManager(9)">Unknown9()</li>
+							<li value="10" id="nn::wlan::detail::IInfraManager(10)">Unknown10()</li>
+							<li value="11" id="nn::wlan::detail::IInfraManager(11)">Unknown11()</li>
+							<li value="12" id="nn::wlan::detail::IInfraManager(12)">Unknown12()</li>
+							<li value="13" id="nn::wlan::detail::IInfraManager(13)">Unknown13()</li>
+							<li value="14" id="nn::wlan::detail::IInfraManager(14)">Unknown14()</li>
+							<li value="15" id="nn::wlan::detail::IInfraManager(15)">Unknown15()</li>
+							<li value="16" id="nn::wlan::detail::IInfraManager(16)">Unknown16()</li>
+							<li value="17" id="nn::wlan::detail::IInfraManager(17)">Unknown17()</li>
+							<li value="18" id="nn::wlan::detail::IInfraManager(18)">Unknown18()</li>
+							<li value="19" id="nn::wlan::detail::IInfraManager(19)">Unknown19()</li>
+							<li value="20" id="nn::wlan::detail::IInfraManager(20)">Unknown20()</li>
+							<li value="21" id="nn::wlan::detail::IInfraManager(21)">Unknown21()</li>
+							<li value="22" id="nn::wlan::detail::IInfraManager(22)">Unknown22()</li>
+							<li value="23" id="nn::wlan::detail::IInfraManager(23)">Unknown23()</li>
+							<li value="24" id="nn::wlan::detail::IInfraManager(24)">Unknown24()</li>
+							<li value="25" id="nn::wlan::detail::IInfraManager(25)">Unknown25()</li>
+						</ol>
+					</li>
+				</ul>
 			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<h3>Provides:</h3>
-					<ul>
-						<li>wlan:inf</li>
-					</ul>
-				</li>
-				<li class="list-group-item">
-					<h3>Commands:</h3>
-					<ol>
-						<li value="0" id="nn::wlan::detail::IInfraManager(0)">Unknown0()</li>
-						<li value="1" id="nn::wlan::detail::IInfraManager(1)">Unknown1()</li>
-						<li value="2" id="nn::wlan::detail::IInfraManager(2)">Unknown2()</li>
-						<li value="3" id="nn::wlan::detail::IInfraManager(3)">Unknown3()</li>
-						<li value="4" id="nn::wlan::detail::IInfraManager(4)">Unknown4()</li>
-						<li value="5" id="nn::wlan::detail::IInfraManager(5)">Unknown5()</li>
-						<li value="6" id="nn::wlan::detail::IInfraManager(6)">Unknown6()</li>
-						<li value="7" id="nn::wlan::detail::IInfraManager(7)">Unknown7()</li>
-						<li value="8" id="nn::wlan::detail::IInfraManager(8)">Unknown8()</li>
-						<li value="9" id="nn::wlan::detail::IInfraManager(9)">Unknown9()</li>
-						<li value="10" id="nn::wlan::detail::IInfraManager(10)">Unknown10()</li>
-						<li value="11" id="nn::wlan::detail::IInfraManager(11)">Unknown11()</li>
-						<li value="12" id="nn::wlan::detail::IInfraManager(12)">Unknown12()</li>
-						<li value="13" id="nn::wlan::detail::IInfraManager(13)">Unknown13()</li>
-						<li value="14" id="nn::wlan::detail::IInfraManager(14)">Unknown14()</li>
-						<li value="15" id="nn::wlan::detail::IInfraManager(15)">Unknown15()</li>
-						<li value="16" id="nn::wlan::detail::IInfraManager(16)">Unknown16()</li>
-						<li value="17" id="nn::wlan::detail::IInfraManager(17)">Unknown17()</li>
-						<li value="18" id="nn::wlan::detail::IInfraManager(18)">Unknown18()</li>
-						<li value="19" id="nn::wlan::detail::IInfraManager(19)">Unknown19()</li>
-						<li value="20" id="nn::wlan::detail::IInfraManager(20)">Unknown20()</li>
-						<li value="21" id="nn::wlan::detail::IInfraManager(21)">Unknown21()</li>
-						<li value="22" id="nn::wlan::detail::IInfraManager(22)">Unknown22()</li>
-						<li value="23" id="nn::wlan::detail::IInfraManager(23)">Unknown23()</li>
-						<li value="24" id="nn::wlan::detail::IInfraManager(24)">Unknown24()</li>
-						<li value="25" id="nn::wlan::detail::IInfraManager(25)">Unknown25()</li>
-					</ol>
-				</li>
-			</ul>
-		</div>
-		<br />
-		<div class="card">
-			<div class="card-header">
-				<h2 id="nn::tma::IHtcManager">nn::tma::IHtcManager</h2>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::tma::IHtcManager">nn::tma::IHtcManager</h2>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::tma::IHtcManager(0)">Unknown0(buffer&lt;unknown, 5, 0&gt;) -&gt; (u32, buffer&lt;unknown, 6, 0&gt;)</li>
+							<li value="1" id="nn::tma::IHtcManager(1)">Unknown1(buffer&lt;unknown, 5, 0&gt;) -&gt; u32</li>
+							<li value="2" id="nn::tma::IHtcManager(2)">Unknown2() -&gt; KObject</li>
+							<li value="3" id="nn::tma::IHtcManager(3)">Unknown3() -&gt; KObject</li>
+							<li value="4" id="nn::tma::IHtcManager(4)">Unknown4() -&gt; KObject</li>
+							<li value="5" id="nn::tma::IHtcManager(5)">Unknown5() -&gt; KObject</li>
+							<li value="6" id="nn::tma::IHtcManager(6)">Unknown6() -&gt; buffer&lt;unknown, 6, 0&gt;</li>
+							<li value="7" id="nn::tma::IHtcManager(7)">Unknown7() -&gt; buffer&lt;unknown, 6, 0&gt;</li>
+							<li value="8" id="nn::tma::IHtcManager(8)">Unknown8(u8)</li>
+						</ol>
+					</li>
+				</ul>
 			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<h3>Commands:</h3>
-					<ol>
-						<li value="0" id="nn::tma::IHtcManager(0)">Unknown0(buffer&lt;unknown, 5, 0&gt;) -&gt; (u32, buffer&lt;unknown, 6, 0&gt;)</li>
-						<li value="1" id="nn::tma::IHtcManager(1)">Unknown1(buffer&lt;unknown, 5, 0&gt;) -&gt; u32</li>
-						<li value="2" id="nn::tma::IHtcManager(2)">Unknown2() -&gt; KObject</li>
-						<li value="3" id="nn::tma::IHtcManager(3)">Unknown3() -&gt; KObject</li>
-						<li value="4" id="nn::tma::IHtcManager(4)">Unknown4() -&gt; KObject</li>
-						<li value="5" id="nn::tma::IHtcManager(5)">Unknown5() -&gt; KObject</li>
-						<li value="6" id="nn::tma::IHtcManager(6)">Unknown6() -&gt; buffer&lt;unknown, 6, 0&gt;</li>
-						<li value="7" id="nn::tma::IHtcManager(7)">Unknown7() -&gt; buffer&lt;unknown, 6, 0&gt;</li>
-						<li value="8" id="nn::tma::IHtcManager(8)">Unknown8(u8)</li>
-					</ol>
-				</li>
-			</ul>
-		</div>
-		<br />
-		<div class="card">
-			<div class="card-header">
-				<h2 id="nn::nfc::mifare::detail::IUser">nn::nfc::mifare::detail::IUser</h2>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::nfc::mifare::detail::IUser">nn::nfc::mifare::detail::IUser</h2>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::nfc::mifare::detail::IUser(0)">Unknown0(u64, u64, pid, buffer&lt;unknown, 5, 0&gt;)</li>
+							<li value="1" id="nn::nfc::mifare::detail::IUser(1)">Unknown1()</li>
+							<li value="2" id="nn::nfc::mifare::detail::IUser(2)">Unknown2() -&gt; (u32, buffer&lt;unknown, 0xa, 0&gt;)</li>
+							<li value="3" id="nn::nfc::mifare::detail::IUser(3)">Unknown3(u64)</li>
+							<li value="4" id="nn::nfc::mifare::detail::IUser(4)">Unknown4(u64)</li>
+							<li value="5" id="nn::nfc::mifare::detail::IUser(5)">Unknown5(u64, buffer&lt;unknown, 5, 0&gt;) -&gt; buffer&lt;unknown, 6, 0&gt;</li>
+							<li value="6" id="nn::nfc::mifare::detail::IUser(6)">Unknown6(u64, buffer&lt;unknown, 5, 0&gt;)</li>
+							<li value="7" id="nn::nfc::mifare::detail::IUser(7)">Unknown7(u64) -&gt; buffer&lt;unknown, 0x1a, 0x58&gt;</li>
+							<li value="8" id="nn::nfc::mifare::detail::IUser(8)">Unknown8(u64) -&gt; KObject</li>
+							<li value="9" id="nn::nfc::mifare::detail::IUser(9)">Unknown9(u64) -&gt; KObject</li>
+							<li value="10" id="nn::nfc::mifare::detail::IUser(10)">Unknown10() -&gt; u32</li>
+							<li value="11" id="nn::nfc::mifare::detail::IUser(11)">Unknown11(u64) -&gt; u32</li>
+							<li value="12" id="nn::nfc::mifare::detail::IUser(12)">Unknown12(u64) -&gt; u32</li>
+							<li value="13" id="nn::nfc::mifare::detail::IUser(13)">Unknown13() -&gt; KObject</li>
+						</ol>
+					</li>
+				</ul>
 			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<h3>Commands:</h3>
-					<ol>
-						<li value="0" id="nn::nfc::mifare::detail::IUser(0)">Unknown0(u64, u64, pid, buffer&lt;unknown, 5, 0&gt;)</li>
-						<li value="1" id="nn::nfc::mifare::detail::IUser(1)">Unknown1()</li>
-						<li value="2" id="nn::nfc::mifare::detail::IUser(2)">Unknown2() -&gt; (u32, buffer&lt;unknown, 0xa, 0&gt;)</li>
-						<li value="3" id="nn::nfc::mifare::detail::IUser(3)">Unknown3(u64)</li>
-						<li value="4" id="nn::nfc::mifare::detail::IUser(4)">Unknown4(u64)</li>
-						<li value="5" id="nn::nfc::mifare::detail::IUser(5)">Unknown5(u64, buffer&lt;unknown, 5, 0&gt;) -&gt; buffer&lt;unknown, 6, 0&gt;</li>
-						<li value="6" id="nn::nfc::mifare::detail::IUser(6)">Unknown6(u64, buffer&lt;unknown, 5, 0&gt;)</li>
-						<li value="7" id="nn::nfc::mifare::detail::IUser(7)">Unknown7(u64) -&gt; buffer&lt;unknown, 0x1a, 0x58&gt;</li>
-						<li value="8" id="nn::nfc::mifare::detail::IUser(8)">Unknown8(u64) -&gt; KObject</li>
-						<li value="9" id="nn::nfc::mifare::detail::IUser(9)">Unknown9(u64) -&gt; KObject</li>
-						<li value="10" id="nn::nfc::mifare::detail::IUser(10)">Unknown10() -&gt; u32</li>
-						<li value="11" id="nn::nfc::mifare::detail::IUser(11)">Unknown11(u64) -&gt; u32</li>
-						<li value="12" id="nn::nfc::mifare::detail::IUser(12)">Unknown12(u64) -&gt; u32</li>
-						<li value="13" id="nn::nfc::mifare::detail::IUser(13)">Unknown13() -&gt; KObject</li>
-					</ol>
-				</li>
-			</ul>
-		</div>
-		<br />
-		<div class="card">
-			<div class="card-header">
-				<h2 id="nn::am::service::ILibraryAppletAccessor">nn::am::service::ILibraryAppletAccessor</h2>
-			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<h3>Returned by:</h3>
-					<ul>
-						<li><a href="ifaces.html#nn::am::service::ILibraryAppletCreator(0)">nn::am::service::ILibraryAppletCreator::CreateLibraryApplet [0]</a></li>
-						<li><a href="ifaces.html#nn::am::service::IProcessWindingController(11)">nn::am::service::IProcessWindingController::OpenCallingLibraryApplet [11]</a></li>
-					</ul>
-				</li>
-				<li class="list-group-item">
-					<h3>Taken by:</h3>
-					<ul>
-						<li><a href="ifaces.html#nn::am::service::IProcessWindingController(40)">nn::am::service::IProcessWindingController::ReserveToStartAndWaitAndUnwindThis [40]</a></li>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::am::service::ILibraryAppletAccessor">nn::am::service::ILibraryAppletAccessor</h2>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Returned by:</h3>
+						<ul>
+							<li><a href="ifaces.html#nn::am::service::ILibraryAppletCreator(0)">nn::am::service::ILibraryAppletCreator::CreateLibraryApplet [0]</a></li>
+							<li><a href="ifaces.html#nn::am::service::IProcessWindingController(11)">nn::am::service::IProcessWindingController::OpenCallingLibraryApplet [11]</a></li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Taken by:</h3>
+						<ul>
+							<li><a href="ifaces.html#nn::am::service::IProcessWindingController(40)">nn::am::service::IProcessWindingController::ReserveToStartAndWaitAndUnwindThis [40]</a></li>
 						</ul>
 					</li>
 					<li class="list-group-item">
@@ -7699,552 +7699,552 @@
 							<li><a href="ifaces.html#nn::am::service::ILibraryAppletSelfAccessor(30)">nn::am::service::ILibraryAppletSelfAccessor::UnpopInData [30]</a></li>
 							<li><a href="ifaces.html#nn::am::service::ILibraryAppletSelfAccessor(31)">nn::am::service::ILibraryAppletSelfAccessor::UnpopExtraStorage [31]</a></li>
 							<li><a href="ifaces.html#nn::am::service::IProcessWindingController(21)">nn::am::service::IProcessWindingController::PushContext [21]</a></li>
-							</ul>
-						</li>
-						<li class="list-group-item">
-							<h3>Commands:</h3>
-							<ol>
-								<li value="0" id="nn::am::service::IStorage(0)">Open() -&gt; object&lt;<a href="ifaces.html#nn::am::service::IStorageAccessor">nn::am::service::IStorageAccessor</a>&gt;</li>
-								<li value="1" id="nn::am::service::IStorage(1)">OpenTransferStorage() -&gt; object&lt;<a href="ifaces.html#nn::am::service::ITransferStorageAccessor">nn::am::service::ITransferStorageAccessor</a>&gt;</li>
-							</ol>
-						</li>
-					</ul>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::am::service::IStorage(0)">Open() -&gt; object&lt;<a href="ifaces.html#nn::am::service::IStorageAccessor">nn::am::service::IStorageAccessor</a>&gt;</li>
+							<li value="1" id="nn::am::service::IStorage(1)">OpenTransferStorage() -&gt; object&lt;<a href="ifaces.html#nn::am::service::ITransferStorageAccessor">nn::am::service::ITransferStorageAccessor</a>&gt;</li>
+						</ol>
+					</li>
+				</ul>
+			</div>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::apm::IManager">nn::apm::IManager</h2>
 				</div>
-				<br />
-				<div class="card">
-					<div class="card-header">
-						<h2 id="nn::apm::IManager">nn::apm::IManager</h2>
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h3>Provides:</h3>
-							<ul>
-								<li>apm</li>
-							</ul>
-						</li>
-						<li class="list-group-item">
-							<h3>Commands:</h3>
-							<ol>
-								<li value="0" id="nn::apm::IManager(0)">OpenSession() -&gt; object&lt;<a href="ifaces.html#nn::apm::ISession">nn::apm::ISession</a>&gt;</li>
-								<li value="1" id="nn::apm::IManager(1)">GetPerformanceMode() -&gt; <a href="types.html#nn::apm::PerformanceMode">nn::apm::PerformanceMode</a></li>
-							</ol>
-						</li>
-					</ul>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Provides:</h3>
+						<ul>
+							<li>apm</li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::apm::IManager(0)">OpenSession() -&gt; object&lt;<a href="ifaces.html#nn::apm::ISession">nn::apm::ISession</a>&gt;</li>
+							<li value="1" id="nn::apm::IManager(1)">GetPerformanceMode() -&gt; <a href="types.html#nn::apm::PerformanceMode">nn::apm::PerformanceMode</a></li>
+						</ol>
+					</li>
+				</ul>
+			</div>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nv::gemcontrol::INvGemControl">nv::gemcontrol::INvGemControl</h2>
 				</div>
-				<br />
-				<div class="card">
-					<div class="card-header">
-						<h2 id="nv::gemcontrol::INvGemControl">nv::gemcontrol::INvGemControl</h2>
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h3>Provides:</h3>
-							<ul>
-								<li>nvgem:c</li>
-							</ul>
-						</li>
-						<li class="list-group-item">
-							<h3>Commands:</h3>
-							<ol>
-								<li value="0" id="nv::gemcontrol::INvGemControl(0)">Unknown0()</li>
-								<li value="1" id="nv::gemcontrol::INvGemControl(1)">Unknown1()</li>
-								<li value="2" id="nv::gemcontrol::INvGemControl(2)">Unknown2()</li>
-								<li value="3" id="nv::gemcontrol::INvGemControl(3)">Unknown3()</li>
-								<li value="4" id="nv::gemcontrol::INvGemControl(4)">Unknown4()</li>
-								<li value="5" id="nv::gemcontrol::INvGemControl(5)">Unknown5()</li>
-								<li value="6" id="nv::gemcontrol::INvGemControl(6)">Unknown6()</li>
-								<li value="7" id="nv::gemcontrol::INvGemControl(7)">Unknown7()</li>
-							</ol>
-						</li>
-					</ul>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Provides:</h3>
+						<ul>
+							<li>nvgem:c</li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nv::gemcontrol::INvGemControl(0)">Unknown0()</li>
+							<li value="1" id="nv::gemcontrol::INvGemControl(1)">Unknown1()</li>
+							<li value="2" id="nv::gemcontrol::INvGemControl(2)">Unknown2()</li>
+							<li value="3" id="nv::gemcontrol::INvGemControl(3)">Unknown3()</li>
+							<li value="4" id="nv::gemcontrol::INvGemControl(4)">Unknown4()</li>
+							<li value="5" id="nv::gemcontrol::INvGemControl(5)">Unknown5()</li>
+							<li value="6" id="nv::gemcontrol::INvGemControl(6)">Unknown6()</li>
+							<li value="7" id="nv::gemcontrol::INvGemControl(7)">Unknown7()</li>
+						</ol>
+					</li>
+				</ul>
+			</div>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::news::detail::ipc::INewsDataService">nn::news::detail::ipc::INewsDataService</h2>
 				</div>
-				<br />
-				<div class="card">
-					<div class="card-header">
-						<h2 id="nn::news::detail::ipc::INewsDataService">nn::news::detail::ipc::INewsDataService</h2>
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h3>Commands:</h3>
-							<ol>
-								<li value="0" id="nn::news::detail::ipc::INewsDataService(0)">Unknown0()</li>
-								<li value="1" id="nn::news::detail::ipc::INewsDataService(1)">Unknown1()</li>
-								<li value="2" id="nn::news::detail::ipc::INewsDataService(2)">Unknown2()</li>
-								<li value="3" id="nn::news::detail::ipc::INewsDataService(3)">Unknown3()</li>
-							</ol>
-						</li>
-					</ul>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::news::detail::ipc::INewsDataService(0)">Unknown0()</li>
+							<li value="1" id="nn::news::detail::ipc::INewsDataService(1)">Unknown1()</li>
+							<li value="2" id="nn::news::detail::ipc::INewsDataService(2)">Unknown2()</li>
+							<li value="3" id="nn::news::detail::ipc::INewsDataService(3)">Unknown3()</li>
+						</ol>
+					</li>
+				</ul>
+			</div>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::bcat::detail::ipc::IDeliveryCacheStorageService">nn::bcat::detail::ipc::IDeliveryCacheStorageService</h2>
 				</div>
-				<br />
-				<div class="card">
-					<div class="card-header">
-						<h2 id="nn::bcat::detail::ipc::IDeliveryCacheStorageService">nn::bcat::detail::ipc::IDeliveryCacheStorageService</h2>
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h3>Returned by:</h3>
-							<ul>
-								<li><a href="ifaces.html#nn::bcat::detail::ipc::IServiceCreator(1)">nn::bcat::detail::ipc::IServiceCreator::CreateDeliveryCacheStorageService [1]</a></li>
-								<li><a href="ifaces.html#nn::bcat::detail::ipc::IServiceCreator(2)">nn::bcat::detail::ipc::IServiceCreator::CreateDeliveryCacheStorageServiceWithApplicationId [2]</a></li>
-							</ul>
-						</li>
-						<li class="list-group-item">
-							<h3>Commands:</h3>
-							<ol>
-								<li value="0" id="nn::bcat::detail::ipc::IDeliveryCacheStorageService(0)">CreateFileService() -&gt; object&lt;<a href="ifaces.html#nn::bcat::detail::ipc::IDeliveryCacheFileService">nn::bcat::detail::ipc::IDeliveryCacheFileService</a>&gt;</li>
-								<li value="1" id="nn::bcat::detail::ipc::IDeliveryCacheStorageService(1)">CreateDirectoryService() -&gt; object&lt;<a href="ifaces.html#nn::bcat::detail::ipc::IDeliveryCacheDirectoryService">nn::bcat::detail::ipc::IDeliveryCacheDirectoryService</a>&gt;</li>
-								<li value="10" id="nn::bcat::detail::ipc::IDeliveryCacheStorageService(10)">EnumerateDeliveryCacheDirectory() -&gt; (i32, array&lt;<a href="types.html#nn::bcat::DirectoryName">nn::bcat::DirectoryName</a>, 6&gt;)</li>
-							</ol>
-						</li>
-					</ul>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Returned by:</h3>
+						<ul>
+							<li><a href="ifaces.html#nn::bcat::detail::ipc::IServiceCreator(1)">nn::bcat::detail::ipc::IServiceCreator::CreateDeliveryCacheStorageService [1]</a></li>
+							<li><a href="ifaces.html#nn::bcat::detail::ipc::IServiceCreator(2)">nn::bcat::detail::ipc::IServiceCreator::CreateDeliveryCacheStorageServiceWithApplicationId [2]</a></li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::bcat::detail::ipc::IDeliveryCacheStorageService(0)">CreateFileService() -&gt; object&lt;<a href="ifaces.html#nn::bcat::detail::ipc::IDeliveryCacheFileService">nn::bcat::detail::ipc::IDeliveryCacheFileService</a>&gt;</li>
+							<li value="1" id="nn::bcat::detail::ipc::IDeliveryCacheStorageService(1)">CreateDirectoryService() -&gt; object&lt;<a href="ifaces.html#nn::bcat::detail::ipc::IDeliveryCacheDirectoryService">nn::bcat::detail::ipc::IDeliveryCacheDirectoryService</a>&gt;</li>
+							<li value="10" id="nn::bcat::detail::ipc::IDeliveryCacheStorageService(10)">EnumerateDeliveryCacheDirectory() -&gt; (i32, array&lt;<a href="types.html#nn::bcat::DirectoryName">nn::bcat::DirectoryName</a>, 6&gt;)</li>
+						</ol>
+					</li>
+				</ul>
+			</div>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::fssrv::sf::IFileSystemProxy">nn::fssrv::sf::IFileSystemProxy</h2>
 				</div>
-				<br />
-				<div class="card">
-					<div class="card-header">
-						<h2 id="nn::fssrv::sf::IFileSystemProxy">nn::fssrv::sf::IFileSystemProxy</h2>
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h3>Provides:</h3>
-							<ul>
-								<li>fsp-srv</li>
-							</ul>
-						</li>
-						<li class="list-group-item">
-							<h3>Commands:</h3>
-							<ol>
-								<li value="1" id="nn::fssrv::sf::IFileSystemProxy(1)">Initialize(u64, pid)</li>
-								<li value="2" id="nn::fssrv::sf::IFileSystemProxy(2)">OpenDataFileSystemByCurrentProcess() -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt;</li>
-								<li value="7" id="nn::fssrv::sf::IFileSystemProxy(7)">MountContent7(<a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid, u32 ncaType) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt;</li>
-								<li value="8" id="nn::fssrv::sf::IFileSystemProxy(8)">MountContent(<a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid, u32 flag, buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt; contentFs</li>
-								<li value="9" id="nn::fssrv::sf::IFileSystemProxy(9)">OpenDataFileSystemByApplicationId(<a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt; dataFiles</li>
-								<li value="11" id="nn::fssrv::sf::IFileSystemProxy(11)">MountBis(<a href="types.html#nn::fssrv::sf::Partition">nn::fssrv::sf::Partition</a> partitionID, buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt; Bis</li>
-								<li value="12" id="nn::fssrv::sf::IFileSystemProxy(12)">OpenBisPartition(<a href="types.html#nn::fssrv::sf::Partition">nn::fssrv::sf::Partition</a> partitionID) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IStorage">nn::fssrv::sf::IStorage</a>&gt; BisPartition</li>
-								<li value="13" id="nn::fssrv::sf::IFileSystemProxy(13)">InvalidateBisCache()</li>
-								<li value="17" id="nn::fssrv::sf::IFileSystemProxy(17)">OpenHostFileSystemImpl(buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt;</li>
-								<li value="18" id="nn::fssrv::sf::IFileSystemProxy(18)">MountSdCard() -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt; sdCard</li>
-								<li value="19" id="nn::fssrv::sf::IFileSystemProxy(19)">FormatSdCard()</li>
-								<li value="21" id="nn::fssrv::sf::IFileSystemProxy(21)">DeleteSaveData(<a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid)</li>
-								<li value="22" id="nn::fssrv::sf::IFileSystemProxy(22)">CreateSaveData(<a href="types.html#nn::fssrv::sf::SaveStruct">nn::fssrv::sf::SaveStruct</a> saveStruct, <a href="types.html#nn::fssrv::sf::SaveCreateStruct">nn::fssrv::sf::SaveCreateStruct</a> saveCreate, u128 input)</li>
-								<li value="23" id="nn::fssrv::sf::IFileSystemProxy(23)">CreateSystemSaveData(<a href="types.html#nn::fssrv::sf::SaveStruct">nn::fssrv::sf::SaveStruct</a> saveStruct, <a href="types.html#nn::fssrv::sf::SaveCreateStruct">nn::fssrv::sf::SaveCreateStruct</a> saveCreate)</li>
-								<li value="24" id="nn::fssrv::sf::IFileSystemProxy(24)">RegisterSaveDataAtomicDeletion(buffer&lt;void, 5, 0&gt;)</li>
-								<li value="25" id="nn::fssrv::sf::IFileSystemProxy(25)">DeleteSaveDataWithSpaceId(u8, u64)</li>
-								<li value="26" id="nn::fssrv::sf::IFileSystemProxy(26)">FormatSdCardDryRun()</li>
-								<li value="27" id="nn::fssrv::sf::IFileSystemProxy(27)">IsExFatSupported() -&gt; u8 isSupported</li>
-								<li value="30" id="nn::fssrv::sf::IFileSystemProxy(30)">OpenGameCardPartition(<a href="types.html#nn::fssrv::sf::Partition">nn::fssrv::sf::Partition</a> partitionID, u32) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IStorage">nn::fssrv::sf::IStorage</a>&gt; gameCardFs</li>
-								<li value="31" id="nn::fssrv::sf::IFileSystemProxy(31)">MountGameCardPartition(u32, u32) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt; gameCardPartitionFs</li>
-								<li value="32" id="nn::fssrv::sf::IFileSystemProxy(32)">ExtendSaveData(u8, u64, u64, u64)</li>
-								<li value="51" id="nn::fssrv::sf::IFileSystemProxy(51)">MountSaveData(u8 input, <a href="types.html#nn::fssrv::sf::SaveStruct">nn::fssrv::sf::SaveStruct</a> saveStruct) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt; saveDataFs</li>
-								<li value="52" id="nn::fssrv::sf::IFileSystemProxy(52)">MountSystemSaveData(u8 input, <a href="types.html#nn::fssrv::sf::SaveStruct">nn::fssrv::sf::SaveStruct</a> saveStruct) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt; systemSaveDataFs</li>
-								<li value="53" id="nn::fssrv::sf::IFileSystemProxy(53)">MountSaveDataReadOnly(u8 input, <a href="types.html#nn::fssrv::sf::SaveStruct">nn::fssrv::sf::SaveStruct</a> saveStruct) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt; saveDataFs</li>
-								<li value="57" id="nn::fssrv::sf::IFileSystemProxy(57)">ReadSaveDataFileSystemExtraDataWithSpaceId(u8, u64) -&gt; buffer&lt;void, 6, 0&gt;</li>
-								<li value="58" id="nn::fssrv::sf::IFileSystemProxy(58)">ReadSaveDataFileSystemExtraData(u64) -&gt; buffer&lt;void, 6, 0&gt;</li>
-								<li value="59" id="nn::fssrv::sf::IFileSystemProxy(59)">WriteSaveDataFileSystemExtraData(u64, u8, buffer&lt;void, 5, 0&gt;)</li>
-								<li value="60" id="nn::fssrv::sf::IFileSystemProxy(60)">OpenSaveDataInfoReader() -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::ISaveDataInfoReader">nn::fssrv::sf::ISaveDataInfoReader</a>&gt;</li>
-								<li value="61" id="nn::fssrv::sf::IFileSystemProxy(61)">OpenSaveDataIterator(u8) -&gt; IUnknown</li>
-								<li value="80" id="nn::fssrv::sf::IFileSystemProxy(80)">OpenSaveDataThumbnailFile(u8, bytes&lt;0x40&gt;, u32) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFile">nn::fssrv::sf::IFile</a>&gt; thumbnail</li>
-								<li value="100" id="nn::fssrv::sf::IFileSystemProxy(100)">MountImageDirectory(u32) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt; imageFs</li>
-								<li value="110" id="nn::fssrv::sf::IFileSystemProxy(110)">MountContentStorage(u32 contentStorageID) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt; contentFs</li>
-								<li value="200" id="nn::fssrv::sf::IFileSystemProxy(200)">OpenDataStorageByCurrentProcess() -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IStorage">nn::fssrv::sf::IStorage</a>&gt; dataStorage</li>
-								<li value="201" id="nn::fssrv::sf::IFileSystemProxy(201)">OpenDataStorageByApplicationId(<a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IStorage">nn::fssrv::sf::IStorage</a>&gt; dataStorage</li>
-								<li value="202" id="nn::fssrv::sf::IFileSystemProxy(202)">OpenDataStorageByDataId(<a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid, u8 storageId) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IStorage">nn::fssrv::sf::IStorage</a>&gt; dataStorage</li>
-								<li value="203" id="nn::fssrv::sf::IFileSystemProxy(203)">OpenRomStorage() -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IStorage">nn::fssrv::sf::IStorage</a>&gt;</li>
-								<li value="400" id="nn::fssrv::sf::IFileSystemProxy(400)">OpenDeviceOperator() -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IDeviceOperator">nn::fssrv::sf::IDeviceOperator</a>&gt;</li>
-								<li value="500" id="nn::fssrv::sf::IFileSystemProxy(500)">OpenSdCardDetectionEventNotifier() -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IEventNotifier">nn::fssrv::sf::IEventNotifier</a>&gt; SdEventNotify</li>
-								<li value="501" id="nn::fssrv::sf::IFileSystemProxy(501)">OpenGameCardDetectionEventNotifier() -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IEventNotifier">nn::fssrv::sf::IEventNotifier</a>&gt; GameCardEventNotify</li>
-								<li value="600" id="nn::fssrv::sf::IFileSystemProxy(600)">SetCurrentPosixTime(u64 time)</li>
-								<li value="601" id="nn::fssrv::sf::IFileSystemProxy(601)">QuerySaveDataTotalSize(u64, u64) -&gt; u64 saveDataSize</li>
-								<li value="602" id="nn::fssrv::sf::IFileSystemProxy(602)">VerifySaveData(<a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid) -&gt; buffer&lt;void, 6, 0&gt;</li>
-								<li value="603" id="nn::fssrv::sf::IFileSystemProxy(603)">CorruptSaveDataForDebug(<a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid)</li>
-								<li value="604" id="nn::fssrv::sf::IFileSystemProxy(604)">CreatePaddingFile(u64 size)</li>
-								<li value="605" id="nn::fssrv::sf::IFileSystemProxy(605)">DeleteAllPaddingFiles()</li>
-								<li value="606" id="nn::fssrv::sf::IFileSystemProxy(606)">GetRightsId(u64, u8) -&gt; u128 rights</li>
-								<li value="607" id="nn::fssrv::sf::IFileSystemProxy(607)">RegisterExternalKey(u128, u128)</li>
-								<li value="608" id="nn::fssrv::sf::IFileSystemProxy(608)">UnregisterExternalKey()</li>
-								<li value="609" id="nn::fssrv::sf::IFileSystemProxy(609)">GetRightsIdByPath(buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; u128 rights</li>
-								<li value="610" id="nn::fssrv::sf::IFileSystemProxy(610)">GetRightsIdByPath2(buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; (u128 rights, u8)</li>
-								<li value="620" id="nn::fssrv::sf::IFileSystemProxy(620)">SetSdCardEncryptionSeed(u128 seedmaybe)</li>
-								<li value="800" id="nn::fssrv::sf::IFileSystemProxy(800)">GetAndClearFileSystemProxyErrorInfo() -&gt; bytes&lt;0x80&gt; errorInfo</li>
-								<li value="1000" id="nn::fssrv::sf::IFileSystemProxy(1000)">SetBisRootForHost(u32, buffer&lt;i8, 0x19, 0x301&gt; path)</li>
-								<li value="1001" id="nn::fssrv::sf::IFileSystemProxy(1001)">SetSaveDataSize(u64, u64)</li>
-								<li value="1002" id="nn::fssrv::sf::IFileSystemProxy(1002)">SetSaveDataRootPath(buffer&lt;i8, 0x19, 0x301&gt; path)</li>
-								<li value="1003" id="nn::fssrv::sf::IFileSystemProxy(1003)">DisableAutoSaveDataCreation()</li>
-								<li value="1004" id="nn::fssrv::sf::IFileSystemProxy(1004)">SetGlobalAccessLogMode(u32 mode)</li>
-								<li value="1005" id="nn::fssrv::sf::IFileSystemProxy(1005)">GetGlobalAccessLogMode() -&gt; u32 logMode</li>
-								<li value="1006" id="nn::fssrv::sf::IFileSystemProxy(1006)">OutputAccessLogToSdCard(buffer&lt;void, 5, 0&gt; logText)</li>
-							</ol>
-						</li>
-					</ul>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Provides:</h3>
+						<ul>
+							<li>fsp-srv</li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="1" id="nn::fssrv::sf::IFileSystemProxy(1)">Initialize(u64, pid)</li>
+							<li value="2" id="nn::fssrv::sf::IFileSystemProxy(2)">OpenDataFileSystemByCurrentProcess() -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt;</li>
+							<li value="7" id="nn::fssrv::sf::IFileSystemProxy(7)">MountContent7(<a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid, u32 ncaType) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt;</li>
+							<li value="8" id="nn::fssrv::sf::IFileSystemProxy(8)">MountContent(<a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid, u32 flag, buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt; contentFs</li>
+							<li value="9" id="nn::fssrv::sf::IFileSystemProxy(9)">OpenDataFileSystemByApplicationId(<a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt; dataFiles</li>
+							<li value="11" id="nn::fssrv::sf::IFileSystemProxy(11)">MountBis(<a href="types.html#nn::fssrv::sf::Partition">nn::fssrv::sf::Partition</a> partitionID, buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt; Bis</li>
+							<li value="12" id="nn::fssrv::sf::IFileSystemProxy(12)">OpenBisPartition(<a href="types.html#nn::fssrv::sf::Partition">nn::fssrv::sf::Partition</a> partitionID) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IStorage">nn::fssrv::sf::IStorage</a>&gt; BisPartition</li>
+							<li value="13" id="nn::fssrv::sf::IFileSystemProxy(13)">InvalidateBisCache()</li>
+							<li value="17" id="nn::fssrv::sf::IFileSystemProxy(17)">OpenHostFileSystemImpl(buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt;</li>
+							<li value="18" id="nn::fssrv::sf::IFileSystemProxy(18)">MountSdCard() -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt; sdCard</li>
+							<li value="19" id="nn::fssrv::sf::IFileSystemProxy(19)">FormatSdCard()</li>
+							<li value="21" id="nn::fssrv::sf::IFileSystemProxy(21)">DeleteSaveData(<a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid)</li>
+							<li value="22" id="nn::fssrv::sf::IFileSystemProxy(22)">CreateSaveData(<a href="types.html#nn::fssrv::sf::SaveStruct">nn::fssrv::sf::SaveStruct</a> saveStruct, <a href="types.html#nn::fssrv::sf::SaveCreateStruct">nn::fssrv::sf::SaveCreateStruct</a> saveCreate, u128 input)</li>
+							<li value="23" id="nn::fssrv::sf::IFileSystemProxy(23)">CreateSystemSaveData(<a href="types.html#nn::fssrv::sf::SaveStruct">nn::fssrv::sf::SaveStruct</a> saveStruct, <a href="types.html#nn::fssrv::sf::SaveCreateStruct">nn::fssrv::sf::SaveCreateStruct</a> saveCreate)</li>
+							<li value="24" id="nn::fssrv::sf::IFileSystemProxy(24)">RegisterSaveDataAtomicDeletion(buffer&lt;void, 5, 0&gt;)</li>
+							<li value="25" id="nn::fssrv::sf::IFileSystemProxy(25)">DeleteSaveDataWithSpaceId(u8, u64)</li>
+							<li value="26" id="nn::fssrv::sf::IFileSystemProxy(26)">FormatSdCardDryRun()</li>
+							<li value="27" id="nn::fssrv::sf::IFileSystemProxy(27)">IsExFatSupported() -&gt; u8 isSupported</li>
+							<li value="30" id="nn::fssrv::sf::IFileSystemProxy(30)">OpenGameCardPartition(<a href="types.html#nn::fssrv::sf::Partition">nn::fssrv::sf::Partition</a> partitionID, u32) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IStorage">nn::fssrv::sf::IStorage</a>&gt; gameCardFs</li>
+							<li value="31" id="nn::fssrv::sf::IFileSystemProxy(31)">MountGameCardPartition(u32, u32) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt; gameCardPartitionFs</li>
+							<li value="32" id="nn::fssrv::sf::IFileSystemProxy(32)">ExtendSaveData(u8, u64, u64, u64)</li>
+							<li value="51" id="nn::fssrv::sf::IFileSystemProxy(51)">MountSaveData(u8 input, <a href="types.html#nn::fssrv::sf::SaveStruct">nn::fssrv::sf::SaveStruct</a> saveStruct) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt; saveDataFs</li>
+							<li value="52" id="nn::fssrv::sf::IFileSystemProxy(52)">MountSystemSaveData(u8 input, <a href="types.html#nn::fssrv::sf::SaveStruct">nn::fssrv::sf::SaveStruct</a> saveStruct) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt; systemSaveDataFs</li>
+							<li value="53" id="nn::fssrv::sf::IFileSystemProxy(53)">MountSaveDataReadOnly(u8 input, <a href="types.html#nn::fssrv::sf::SaveStruct">nn::fssrv::sf::SaveStruct</a> saveStruct) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt; saveDataFs</li>
+							<li value="57" id="nn::fssrv::sf::IFileSystemProxy(57)">ReadSaveDataFileSystemExtraDataWithSpaceId(u8, u64) -&gt; buffer&lt;void, 6, 0&gt;</li>
+							<li value="58" id="nn::fssrv::sf::IFileSystemProxy(58)">ReadSaveDataFileSystemExtraData(u64) -&gt; buffer&lt;void, 6, 0&gt;</li>
+							<li value="59" id="nn::fssrv::sf::IFileSystemProxy(59)">WriteSaveDataFileSystemExtraData(u64, u8, buffer&lt;void, 5, 0&gt;)</li>
+							<li value="60" id="nn::fssrv::sf::IFileSystemProxy(60)">OpenSaveDataInfoReader() -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::ISaveDataInfoReader">nn::fssrv::sf::ISaveDataInfoReader</a>&gt;</li>
+							<li value="61" id="nn::fssrv::sf::IFileSystemProxy(61)">OpenSaveDataIterator(u8) -&gt; IUnknown</li>
+							<li value="80" id="nn::fssrv::sf::IFileSystemProxy(80)">OpenSaveDataThumbnailFile(u8, bytes&lt;0x40&gt;, u32) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFile">nn::fssrv::sf::IFile</a>&gt; thumbnail</li>
+							<li value="100" id="nn::fssrv::sf::IFileSystemProxy(100)">MountImageDirectory(u32) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt; imageFs</li>
+							<li value="110" id="nn::fssrv::sf::IFileSystemProxy(110)">MountContentStorage(u32 contentStorageID) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt; contentFs</li>
+							<li value="200" id="nn::fssrv::sf::IFileSystemProxy(200)">OpenDataStorageByCurrentProcess() -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IStorage">nn::fssrv::sf::IStorage</a>&gt; dataStorage</li>
+							<li value="201" id="nn::fssrv::sf::IFileSystemProxy(201)">OpenDataStorageByApplicationId(<a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IStorage">nn::fssrv::sf::IStorage</a>&gt; dataStorage</li>
+							<li value="202" id="nn::fssrv::sf::IFileSystemProxy(202)">OpenDataStorageByDataId(<a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid, u8 storageId) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IStorage">nn::fssrv::sf::IStorage</a>&gt; dataStorage</li>
+							<li value="203" id="nn::fssrv::sf::IFileSystemProxy(203)">OpenRomStorage() -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IStorage">nn::fssrv::sf::IStorage</a>&gt;</li>
+							<li value="400" id="nn::fssrv::sf::IFileSystemProxy(400)">OpenDeviceOperator() -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IDeviceOperator">nn::fssrv::sf::IDeviceOperator</a>&gt;</li>
+							<li value="500" id="nn::fssrv::sf::IFileSystemProxy(500)">OpenSdCardDetectionEventNotifier() -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IEventNotifier">nn::fssrv::sf::IEventNotifier</a>&gt; SdEventNotify</li>
+							<li value="501" id="nn::fssrv::sf::IFileSystemProxy(501)">OpenGameCardDetectionEventNotifier() -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IEventNotifier">nn::fssrv::sf::IEventNotifier</a>&gt; GameCardEventNotify</li>
+							<li value="600" id="nn::fssrv::sf::IFileSystemProxy(600)">SetCurrentPosixTime(u64 time)</li>
+							<li value="601" id="nn::fssrv::sf::IFileSystemProxy(601)">QuerySaveDataTotalSize(u64, u64) -&gt; u64 saveDataSize</li>
+							<li value="602" id="nn::fssrv::sf::IFileSystemProxy(602)">VerifySaveData(<a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid) -&gt; buffer&lt;void, 6, 0&gt;</li>
+							<li value="603" id="nn::fssrv::sf::IFileSystemProxy(603)">CorruptSaveDataForDebug(<a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid)</li>
+							<li value="604" id="nn::fssrv::sf::IFileSystemProxy(604)">CreatePaddingFile(u64 size)</li>
+							<li value="605" id="nn::fssrv::sf::IFileSystemProxy(605)">DeleteAllPaddingFiles()</li>
+							<li value="606" id="nn::fssrv::sf::IFileSystemProxy(606)">GetRightsId(u64, u8) -&gt; u128 rights</li>
+							<li value="607" id="nn::fssrv::sf::IFileSystemProxy(607)">RegisterExternalKey(u128, u128)</li>
+							<li value="608" id="nn::fssrv::sf::IFileSystemProxy(608)">UnregisterExternalKey()</li>
+							<li value="609" id="nn::fssrv::sf::IFileSystemProxy(609)">GetRightsIdByPath(buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; u128 rights</li>
+							<li value="610" id="nn::fssrv::sf::IFileSystemProxy(610)">GetRightsIdByPath2(buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; (u128 rights, u8)</li>
+							<li value="620" id="nn::fssrv::sf::IFileSystemProxy(620)">SetSdCardEncryptionSeed(u128 seedmaybe)</li>
+							<li value="800" id="nn::fssrv::sf::IFileSystemProxy(800)">GetAndClearFileSystemProxyErrorInfo() -&gt; bytes&lt;0x80&gt; errorInfo</li>
+							<li value="1000" id="nn::fssrv::sf::IFileSystemProxy(1000)">SetBisRootForHost(u32, buffer&lt;i8, 0x19, 0x301&gt; path)</li>
+							<li value="1001" id="nn::fssrv::sf::IFileSystemProxy(1001)">SetSaveDataSize(u64, u64)</li>
+							<li value="1002" id="nn::fssrv::sf::IFileSystemProxy(1002)">SetSaveDataRootPath(buffer&lt;i8, 0x19, 0x301&gt; path)</li>
+							<li value="1003" id="nn::fssrv::sf::IFileSystemProxy(1003)">DisableAutoSaveDataCreation()</li>
+							<li value="1004" id="nn::fssrv::sf::IFileSystemProxy(1004)">SetGlobalAccessLogMode(u32 mode)</li>
+							<li value="1005" id="nn::fssrv::sf::IFileSystemProxy(1005)">GetGlobalAccessLogMode() -&gt; u32 logMode</li>
+							<li value="1006" id="nn::fssrv::sf::IFileSystemProxy(1006)">OutputAccessLogToSdCard(buffer&lt;void, 5, 0&gt; logText)</li>
+						</ol>
+					</li>
+				</ul>
+			</div>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</h2>
 				</div>
-				<br />
-				<div class="card">
-					<div class="card-header">
-						<h2 id="nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</h2>
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h3>Returned by:</h3>
-							<ul>
-								<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(2)">nn::fssrv::sf::IFileSystemProxy::OpenDataFileSystemByCurrentProcess [2]</a></li>
-								<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(7)">nn::fssrv::sf::IFileSystemProxy::MountContent7 [7]</a></li>
-								<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(8)">nn::fssrv::sf::IFileSystemProxy::MountContent [8]</a></li>
-								<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(9)">nn::fssrv::sf::IFileSystemProxy::OpenDataFileSystemByApplicationId [9]</a></li>
-								<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(11)">nn::fssrv::sf::IFileSystemProxy::MountBis [11]</a></li>
-								<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(17)">nn::fssrv::sf::IFileSystemProxy::OpenHostFileSystemImpl [17]</a></li>
-								<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(18)">nn::fssrv::sf::IFileSystemProxy::MountSdCard [18]</a></li>
-								<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(31)">nn::fssrv::sf::IFileSystemProxy::MountGameCardPartition [31]</a></li>
-								<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(51)">nn::fssrv::sf::IFileSystemProxy::MountSaveData [51]</a></li>
-								<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(52)">nn::fssrv::sf::IFileSystemProxy::MountSystemSaveData [52]</a></li>
-								<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(53)">nn::fssrv::sf::IFileSystemProxy::MountSaveDataReadOnly [53]</a></li>
-								<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(100)">nn::fssrv::sf::IFileSystemProxy::MountImageDirectory [100]</a></li>
-								<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(110)">nn::fssrv::sf::IFileSystemProxy::MountContentStorage [110]</a></li>
-								<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxyForLoader(0)">nn::fssrv::sf::IFileSystemProxyForLoader::MountCode [0]</a></li>
-							</ul>
-						</li>
-						<li class="list-group-item">
-							<h3>Commands:</h3>
-							<ol>
-								<li value="0" id="nn::fssrv::sf::IFileSystem(0)">CreateFile(u64 mode, u32 size, buffer&lt;i8, 0x19, 0x301&gt; path)</li>
-								<li value="1" id="nn::fssrv::sf::IFileSystem(1)">DeleteFile(buffer&lt;i8, 0x19, 0x301&gt; path)</li>
-								<li value="2" id="nn::fssrv::sf::IFileSystem(2)">CreateDirectory(buffer&lt;i8, 0x19, 0x301&gt; path)</li>
-								<li value="3" id="nn::fssrv::sf::IFileSystem(3)">DeleteDirectory(buffer&lt;i8, 0x19, 0x301&gt; path)</li>
-								<li value="4" id="nn::fssrv::sf::IFileSystem(4)">DeleteDirectoryRecursively(buffer&lt;i8, 0x19, 0x301&gt; path)</li>
-								<li value="5" id="nn::fssrv::sf::IFileSystem(5)">RenameFile(buffer&lt;i8, 0x19, 0x301&gt; oldPath, buffer&lt;i8, 0x19, 0x301&gt; newPath)</li>
-								<li value="6" id="nn::fssrv::sf::IFileSystem(6)">RenameDirectory(buffer&lt;i8, 0x19, 0x301&gt; oldPath, buffer&lt;i8, 0x19, 0x301&gt; newPath)</li>
-								<li value="7" id="nn::fssrv::sf::IFileSystem(7)">GetEntryType(buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; u32</li>
-								<li value="8" id="nn::fssrv::sf::IFileSystem(8)">OpenFile(u32 mode, buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFile">nn::fssrv::sf::IFile</a>&gt; file</li>
-								<li value="9" id="nn::fssrv::sf::IFileSystem(9)">OpenDirectory(u32, buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IDirectory">nn::fssrv::sf::IDirectory</a>&gt; directory</li>
-								<li value="10" id="nn::fssrv::sf::IFileSystem(10)">Commit()</li>
-								<li value="11" id="nn::fssrv::sf::IFileSystem(11)">GetFreeSpaceSize(buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; u64 totalFreeSpace</li>
-								<li value="12" id="nn::fssrv::sf::IFileSystem(12)">GetTotalSpaceSize(buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; u64 totalSize</li>
-								<li value="13" id="nn::fssrv::sf::IFileSystem(13)">CleanDirectoryRecursively(buffer&lt;i8, 0x19, 0x301&gt; path)</li>
-								<li value="14" id="nn::fssrv::sf::IFileSystem(14)">GetFileTimeStampRaw(buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; bytes&lt;0x20&gt; timestamp</li>
-							</ol>
-						</li>
-					</ul>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Returned by:</h3>
+						<ul>
+							<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(2)">nn::fssrv::sf::IFileSystemProxy::OpenDataFileSystemByCurrentProcess [2]</a></li>
+							<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(7)">nn::fssrv::sf::IFileSystemProxy::MountContent7 [7]</a></li>
+							<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(8)">nn::fssrv::sf::IFileSystemProxy::MountContent [8]</a></li>
+							<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(9)">nn::fssrv::sf::IFileSystemProxy::OpenDataFileSystemByApplicationId [9]</a></li>
+							<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(11)">nn::fssrv::sf::IFileSystemProxy::MountBis [11]</a></li>
+							<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(17)">nn::fssrv::sf::IFileSystemProxy::OpenHostFileSystemImpl [17]</a></li>
+							<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(18)">nn::fssrv::sf::IFileSystemProxy::MountSdCard [18]</a></li>
+							<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(31)">nn::fssrv::sf::IFileSystemProxy::MountGameCardPartition [31]</a></li>
+							<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(51)">nn::fssrv::sf::IFileSystemProxy::MountSaveData [51]</a></li>
+							<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(52)">nn::fssrv::sf::IFileSystemProxy::MountSystemSaveData [52]</a></li>
+							<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(53)">nn::fssrv::sf::IFileSystemProxy::MountSaveDataReadOnly [53]</a></li>
+							<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(100)">nn::fssrv::sf::IFileSystemProxy::MountImageDirectory [100]</a></li>
+							<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(110)">nn::fssrv::sf::IFileSystemProxy::MountContentStorage [110]</a></li>
+							<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxyForLoader(0)">nn::fssrv::sf::IFileSystemProxyForLoader::MountCode [0]</a></li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::fssrv::sf::IFileSystem(0)">CreateFile(u64 mode, u32 size, buffer&lt;i8, 0x19, 0x301&gt; path)</li>
+							<li value="1" id="nn::fssrv::sf::IFileSystem(1)">DeleteFile(buffer&lt;i8, 0x19, 0x301&gt; path)</li>
+							<li value="2" id="nn::fssrv::sf::IFileSystem(2)">CreateDirectory(buffer&lt;i8, 0x19, 0x301&gt; path)</li>
+							<li value="3" id="nn::fssrv::sf::IFileSystem(3)">DeleteDirectory(buffer&lt;i8, 0x19, 0x301&gt; path)</li>
+							<li value="4" id="nn::fssrv::sf::IFileSystem(4)">DeleteDirectoryRecursively(buffer&lt;i8, 0x19, 0x301&gt; path)</li>
+							<li value="5" id="nn::fssrv::sf::IFileSystem(5)">RenameFile(buffer&lt;i8, 0x19, 0x301&gt; oldPath, buffer&lt;i8, 0x19, 0x301&gt; newPath)</li>
+							<li value="6" id="nn::fssrv::sf::IFileSystem(6)">RenameDirectory(buffer&lt;i8, 0x19, 0x301&gt; oldPath, buffer&lt;i8, 0x19, 0x301&gt; newPath)</li>
+							<li value="7" id="nn::fssrv::sf::IFileSystem(7)">GetEntryType(buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; u32</li>
+							<li value="8" id="nn::fssrv::sf::IFileSystem(8)">OpenFile(u32 mode, buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFile">nn::fssrv::sf::IFile</a>&gt; file</li>
+							<li value="9" id="nn::fssrv::sf::IFileSystem(9)">OpenDirectory(u32, buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IDirectory">nn::fssrv::sf::IDirectory</a>&gt; directory</li>
+							<li value="10" id="nn::fssrv::sf::IFileSystem(10)">Commit()</li>
+							<li value="11" id="nn::fssrv::sf::IFileSystem(11)">GetFreeSpaceSize(buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; u64 totalFreeSpace</li>
+							<li value="12" id="nn::fssrv::sf::IFileSystem(12)">GetTotalSpaceSize(buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; u64 totalSize</li>
+							<li value="13" id="nn::fssrv::sf::IFileSystem(13)">CleanDirectoryRecursively(buffer&lt;i8, 0x19, 0x301&gt; path)</li>
+							<li value="14" id="nn::fssrv::sf::IFileSystem(14)">GetFileTimeStampRaw(buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; bytes&lt;0x20&gt; timestamp</li>
+						</ol>
+					</li>
+				</ul>
+			</div>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::nfc::mifare::detail::IUserManager">nn::nfc::mifare::detail::IUserManager</h2>
 				</div>
-				<br />
-				<div class="card">
-					<div class="card-header">
-						<h2 id="nn::nfc::mifare::detail::IUserManager">nn::nfc::mifare::detail::IUserManager</h2>
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h3>Provides:</h3>
-							<ul>
-								<li>nfc:mf:u</li>
-							</ul>
-						</li>
-						<li class="list-group-item">
-							<h3>Commands:</h3>
-							<ol>
-								<li value="0" id="nn::nfc::mifare::detail::IUserManager(0)">Unknown0() -&gt; IUnknown</li>
-							</ol>
-						</li>
-					</ul>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Provides:</h3>
+						<ul>
+							<li>nfc:mf:u</li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::nfc::mifare::detail::IUserManager(0)">Unknown0() -&gt; IUnknown</li>
+						</ol>
+					</li>
+				</ul>
+			</div>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::spl::detail::IRandomInterface">nn::spl::detail::IRandomInterface</h2>
 				</div>
-				<br />
-				<div class="card">
-					<div class="card-header">
-						<h2 id="nn::spl::detail::IRandomInterface">nn::spl::detail::IRandomInterface</h2>
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h3>Commands:</h3>
-							<ol>
-								<li value="0" id="nn::spl::detail::IRandomInterface(0)">Unknown0() -&gt; buffer&lt;unknown, 6, 0&gt;</li>
-							</ol>
-						</li>
-					</ul>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::spl::detail::IRandomInterface(0)">Unknown0() -&gt; buffer&lt;unknown, 6, 0&gt;</li>
+						</ol>
+					</li>
+				</ul>
+			</div>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::capsrv::sf::IAlbumControlService">nn::capsrv::sf::IAlbumControlService</h2>
 				</div>
-				<br />
-				<div class="card">
-					<div class="card-header">
-						<h2 id="nn::capsrv::sf::IAlbumControlService">nn::capsrv::sf::IAlbumControlService</h2>
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h3>Provides:</h3>
-							<ul>
-								<li>caps:c</li>
-							</ul>
-						</li>
-					</ul>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Provides:</h3>
+						<ul>
+							<li>caps:c</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::am::service::IApplicationCreator">nn::am::service::IApplicationCreator</h2>
 				</div>
-				<br />
-				<div class="card">
-					<div class="card-header">
-						<h2 id="nn::am::service::IApplicationCreator">nn::am::service::IApplicationCreator</h2>
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h3>Returned by:</h3>
-							<ul>
-								<li><a href="ifaces.html#nn::am::service::ISystemAppletProxy(22)">nn::am::service::ISystemAppletProxy::GetApplicationCreator [22]</a></li>
-							</ul>
-						</li>
-						<li class="list-group-item">
-							<h3>Commands:</h3>
-							<ol>
-								<li value="0" id="nn::am::service::IApplicationCreator(0)">CreateApplication(<a href="types.html#nn::ncm::ApplicationId">nn::ncm::ApplicationId</a>) -&gt; object&lt;<a href="ifaces.html#nn::am::service::IApplicationAccessor">nn::am::service::IApplicationAccessor</a>&gt;</li>
-								<li value="1" id="nn::am::service::IApplicationCreator(1)">PopLaunchRequestedApplication() -&gt; object&lt;<a href="ifaces.html#nn::am::service::IApplicationAccessor">nn::am::service::IApplicationAccessor</a>&gt;</li>
-								<li value="10" id="nn::am::service::IApplicationCreator(10)">CreateSystemApplication(<a href="types.html#nn::ncm::SystemApplicationId">nn::ncm::SystemApplicationId</a>) -&gt; object&lt;<a href="ifaces.html#nn::am::service::IApplicationAccessor">nn::am::service::IApplicationAccessor</a>&gt;</li>
-								<li value="100" id="nn::am::service::IApplicationCreator(100)">PopFloatingApplicationForDevelopment() -&gt; object&lt;<a href="ifaces.html#nn::am::service::IApplicationAccessor">nn::am::service::IApplicationAccessor</a>&gt;</li>
-							</ol>
-						</li>
-					</ul>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Returned by:</h3>
+						<ul>
+							<li><a href="ifaces.html#nn::am::service::ISystemAppletProxy(22)">nn::am::service::ISystemAppletProxy::GetApplicationCreator [22]</a></li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::am::service::IApplicationCreator(0)">CreateApplication(<a href="types.html#nn::ncm::ApplicationId">nn::ncm::ApplicationId</a>) -&gt; object&lt;<a href="ifaces.html#nn::am::service::IApplicationAccessor">nn::am::service::IApplicationAccessor</a>&gt;</li>
+							<li value="1" id="nn::am::service::IApplicationCreator(1)">PopLaunchRequestedApplication() -&gt; object&lt;<a href="ifaces.html#nn::am::service::IApplicationAccessor">nn::am::service::IApplicationAccessor</a>&gt;</li>
+							<li value="10" id="nn::am::service::IApplicationCreator(10)">CreateSystemApplication(<a href="types.html#nn::ncm::SystemApplicationId">nn::ncm::SystemApplicationId</a>) -&gt; object&lt;<a href="ifaces.html#nn::am::service::IApplicationAccessor">nn::am::service::IApplicationAccessor</a>&gt;</li>
+							<li value="100" id="nn::am::service::IApplicationCreator(100)">PopFloatingApplicationForDevelopment() -&gt; object&lt;<a href="ifaces.html#nn::am::service::IApplicationAccessor">nn::am::service::IApplicationAccessor</a>&gt;</li>
+						</ol>
+					</li>
+				</ul>
+			</div>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::btm::IBtmSystemCore">nn::btm::IBtmSystemCore</h2>
 				</div>
-				<br />
-				<div class="card">
-					<div class="card-header">
-						<h2 id="nn::btm::IBtmSystemCore">nn::btm::IBtmSystemCore</h2>
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h3>Commands:</h3>
-							<ol>
-								<li value="0" id="nn::btm::IBtmSystemCore(0)">Unknown0()</li>
-								<li value="1" id="nn::btm::IBtmSystemCore(1)">Unknown1()</li>
-								<li value="2" id="nn::btm::IBtmSystemCore(2)">Unknown2()</li>
-								<li value="3" id="nn::btm::IBtmSystemCore(3)">Unknown3()</li>
-								<li value="4" id="nn::btm::IBtmSystemCore(4)">Unknown4()</li>
-								<li value="5" id="nn::btm::IBtmSystemCore(5)">Unknown5()</li>
-								<li value="6" id="nn::btm::IBtmSystemCore(6)">Unknown6()</li>
-								<li value="7" id="nn::btm::IBtmSystemCore(7)">Unknown7()</li>
-								<li value="8" id="nn::btm::IBtmSystemCore(8)">Unknown8()</li>
-								<li value="9" id="nn::btm::IBtmSystemCore(9)">Unknown9()</li>
-							</ol>
-						</li>
-					</ul>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::btm::IBtmSystemCore(0)">Unknown0()</li>
+							<li value="1" id="nn::btm::IBtmSystemCore(1)">Unknown1()</li>
+							<li value="2" id="nn::btm::IBtmSystemCore(2)">Unknown2()</li>
+							<li value="3" id="nn::btm::IBtmSystemCore(3)">Unknown3()</li>
+							<li value="4" id="nn::btm::IBtmSystemCore(4)">Unknown4()</li>
+							<li value="5" id="nn::btm::IBtmSystemCore(5)">Unknown5()</li>
+							<li value="6" id="nn::btm::IBtmSystemCore(6)">Unknown6()</li>
+							<li value="7" id="nn::btm::IBtmSystemCore(7)">Unknown7()</li>
+							<li value="8" id="nn::btm::IBtmSystemCore(8)">Unknown8()</li>
+							<li value="9" id="nn::btm::IBtmSystemCore(9)">Unknown9()</li>
+						</ol>
+					</li>
+				</ul>
+			</div>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::visrv::sf::IApplicationRootService">nn::visrv::sf::IApplicationRootService</h2>
 				</div>
-				<br />
-				<div class="card">
-					<div class="card-header">
-						<h2 id="nn::visrv::sf::IApplicationRootService">nn::visrv::sf::IApplicationRootService</h2>
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h3>Provides:</h3>
-							<ul>
-								<li>vi:u</li>
-							</ul>
-						</li>
-						<li class="list-group-item">
-							<h3>Commands:</h3>
-							<ol>
-								<li value="0" id="nn::visrv::sf::IApplicationRootService(0)">GetDisplayService(u32) -&gt; object&lt;<a href="ifaces.html#nn::visrv::sf::IApplicationDisplayService">nn::visrv::sf::IApplicationDisplayService</a>&gt;</li>
-							</ol>
-						</li>
-					</ul>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Provides:</h3>
+						<ul>
+							<li>vi:u</li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::visrv::sf::IApplicationRootService(0)">GetDisplayService(u32) -&gt; object&lt;<a href="ifaces.html#nn::visrv::sf::IApplicationDisplayService">nn::visrv::sf::IApplicationDisplayService</a>&gt;</li>
+						</ol>
+					</li>
+				</ul>
+			</div>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="Pm::Bm">Pm::Bm</h2>
 				</div>
-				<br />
-				<div class="card">
-					<div class="card-header">
-						<h2 id="Pm::Bm">Pm::Bm</h2>
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h3>Provides:</h3>
-							<ul>
-								<li>pm:bm</li>
-							</ul>
-						</li>
-						<li class="list-group-item">
-							<h3>Commands:</h3>
-							<ol>
-								<li value="0" id="Pm::Bm(0)">Init() -&gt; u64</li>
-								<li value="1" id="Pm::Bm(1)">EnableMaintenanceMode()</li>
-							</ol>
-						</li>
-					</ul>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Provides:</h3>
+						<ul>
+							<li>pm:bm</li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="Pm::Bm(0)">Init() -&gt; u64</li>
+							<li value="1" id="Pm::Bm(1)">EnableMaintenanceMode()</li>
+						</ol>
+					</li>
+				</ul>
+			</div>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::ssl::sf::ISslContext">nn::ssl::sf::ISslContext</h2>
 				</div>
-				<br />
-				<div class="card">
-					<div class="card-header">
-						<h2 id="nn::ssl::sf::ISslContext">nn::ssl::sf::ISslContext</h2>
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h3>Returned by:</h3>
-							<ul>
-								<li><a href="ifaces.html#nn::ssl::sf::ISslService(0)">nn::ssl::sf::ISslService::CreateContext [0]</a></li>
-							</ul>
-						</li>
-						<li class="list-group-item">
-							<h3>Commands:</h3>
-							<ol>
-								<li value="0" id="nn::ssl::sf::ISslContext(0)">SetOption(<a href="types.html#nn::ssl::sf::ContextOption">nn::ssl::sf::ContextOption</a>, i32)</li>
-								<li value="1" id="nn::ssl::sf::ISslContext(1)">GetOption(<a href="types.html#nn::ssl::sf::ContextOption">nn::ssl::sf::ContextOption</a>) -&gt; i32</li>
-								<li value="2" id="nn::ssl::sf::ISslContext(2)">CreateConnection() -&gt; object&lt;<a href="ifaces.html#nn::ssl::sf::ISslConnection">nn::ssl::sf::ISslConnection</a>&gt;</li>
-								<li value="3" id="nn::ssl::sf::ISslContext(3)">GetConnectionCount() -&gt; u32</li>
-								<li value="4" id="nn::ssl::sf::ISslContext(4)">ImportServerPki(<a href="types.html#nn::ssl::sf::CertificateFormat">nn::ssl::sf::CertificateFormat</a>, buffer&lt;unknown, 5, 0&gt;) -&gt; u64</li>
-								<li value="5" id="nn::ssl::sf::ISslContext(5)">ImportClientPki(buffer&lt;unknown, 5, 0&gt;, buffer&lt;unknown, 5, 0&gt;) -&gt; u64</li>
-								<li value="6" id="nn::ssl::sf::ISslContext(6)">RemoveServerPki(u64)</li>
-								<li value="7" id="nn::ssl::sf::ISslContext(7)">RemoveClientPki(u64)</li>
-								<li value="8" id="nn::ssl::sf::ISslContext(8)">RegisterInternalPki(<a href="types.html#nn::ssl::sf::InternalPki">nn::ssl::sf::InternalPki</a>) -&gt; u64</li>
-								<li value="9" id="nn::ssl::sf::ISslContext(9)">AddPolicyOid(buffer&lt;unknown, 5, 0&gt;)</li>
-								<li value="10" id="nn::ssl::sf::ISslContext(10)">ImportCrl(buffer&lt;unknown, 5, 0&gt;) -&gt; u64</li>
-								<li value="11" id="nn::ssl::sf::ISslContext(11)">RemoveCrl(u64)</li>
-							</ol>
-						</li>
-					</ul>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Returned by:</h3>
+						<ul>
+							<li><a href="ifaces.html#nn::ssl::sf::ISslService(0)">nn::ssl::sf::ISslService::CreateContext [0]</a></li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::ssl::sf::ISslContext(0)">SetOption(<a href="types.html#nn::ssl::sf::ContextOption">nn::ssl::sf::ContextOption</a>, i32)</li>
+							<li value="1" id="nn::ssl::sf::ISslContext(1)">GetOption(<a href="types.html#nn::ssl::sf::ContextOption">nn::ssl::sf::ContextOption</a>) -&gt; i32</li>
+							<li value="2" id="nn::ssl::sf::ISslContext(2)">CreateConnection() -&gt; object&lt;<a href="ifaces.html#nn::ssl::sf::ISslConnection">nn::ssl::sf::ISslConnection</a>&gt;</li>
+							<li value="3" id="nn::ssl::sf::ISslContext(3)">GetConnectionCount() -&gt; u32</li>
+							<li value="4" id="nn::ssl::sf::ISslContext(4)">ImportServerPki(<a href="types.html#nn::ssl::sf::CertificateFormat">nn::ssl::sf::CertificateFormat</a>, buffer&lt;unknown, 5, 0&gt;) -&gt; u64</li>
+							<li value="5" id="nn::ssl::sf::ISslContext(5)">ImportClientPki(buffer&lt;unknown, 5, 0&gt;, buffer&lt;unknown, 5, 0&gt;) -&gt; u64</li>
+							<li value="6" id="nn::ssl::sf::ISslContext(6)">RemoveServerPki(u64)</li>
+							<li value="7" id="nn::ssl::sf::ISslContext(7)">RemoveClientPki(u64)</li>
+							<li value="8" id="nn::ssl::sf::ISslContext(8)">RegisterInternalPki(<a href="types.html#nn::ssl::sf::InternalPki">nn::ssl::sf::InternalPki</a>) -&gt; u64</li>
+							<li value="9" id="nn::ssl::sf::ISslContext(9)">AddPolicyOid(buffer&lt;unknown, 5, 0&gt;)</li>
+							<li value="10" id="nn::ssl::sf::ISslContext(10)">ImportCrl(buffer&lt;unknown, 5, 0&gt;) -&gt; u64</li>
+							<li value="11" id="nn::ssl::sf::ISslContext(11)">RemoveCrl(u64)</li>
+						</ol>
+					</li>
+				</ul>
+			</div>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::btm::IBtmDebug">nn::btm::IBtmDebug</h2>
 				</div>
-				<br />
-				<div class="card">
-					<div class="card-header">
-						<h2 id="nn::btm::IBtmDebug">nn::btm::IBtmDebug</h2>
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h3>Provides:</h3>
-							<ul>
-								<li>btm:dbg</li>
-							</ul>
-						</li>
-						<li class="list-group-item">
-							<h3>Commands:</h3>
-							<ol>
-								<li value="0" id="nn::btm::IBtmDebug(0)">Unknown0()</li>
-								<li value="1" id="nn::btm::IBtmDebug(1)">Unknown1()</li>
-								<li value="2" id="nn::btm::IBtmDebug(2)">Unknown2()</li>
-								<li value="3" id="nn::btm::IBtmDebug(3)">Unknown3()</li>
-								<li value="4" id="nn::btm::IBtmDebug(4)">Unknown4()</li>
-								<li value="5" id="nn::btm::IBtmDebug(5)">Unknown5()</li>
-								<li value="6" id="nn::btm::IBtmDebug(6)">Unknown6()</li>
-								<li value="7" id="nn::btm::IBtmDebug(7)">Unknown7()</li>
-								<li value="8" id="nn::btm::IBtmDebug(8)">Unknown8()</li>
-							</ol>
-						</li>
-					</ul>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Provides:</h3>
+						<ul>
+							<li>btm:dbg</li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::btm::IBtmDebug(0)">Unknown0()</li>
+							<li value="1" id="nn::btm::IBtmDebug(1)">Unknown1()</li>
+							<li value="2" id="nn::btm::IBtmDebug(2)">Unknown2()</li>
+							<li value="3" id="nn::btm::IBtmDebug(3)">Unknown3()</li>
+							<li value="4" id="nn::btm::IBtmDebug(4)">Unknown4()</li>
+							<li value="5" id="nn::btm::IBtmDebug(5)">Unknown5()</li>
+							<li value="6" id="nn::btm::IBtmDebug(6)">Unknown6()</li>
+							<li value="7" id="nn::btm::IBtmDebug(7)">Unknown7()</li>
+							<li value="8" id="nn::btm::IBtmDebug(8)">Unknown8()</li>
+						</ol>
+					</li>
+				</ul>
+			</div>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::aocsrv::detail::IAddOnContentManager">nn::aocsrv::detail::IAddOnContentManager</h2>
 				</div>
-				<br />
-				<div class="card">
-					<div class="card-header">
-						<h2 id="nn::aocsrv::detail::IAddOnContentManager">nn::aocsrv::detail::IAddOnContentManager</h2>
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h3>Provides:</h3>
-							<ul>
-								<li>aoc:u</li>
-							</ul>
-						</li>
-						<li class="list-group-item">
-							<h3>Commands:</h3>
-							<ol>
-								<li value="0" id="nn::aocsrv::detail::IAddOnContentManager(0)">CountAddOnContentByApplicationId(<a href="types.html#nn::ncm::ApplicationId">nn::ncm::ApplicationId</a>) -&gt; i32</li>
-								<li value="1" id="nn::aocsrv::detail::IAddOnContentManager(1)">ListAddOnContentByApplicationId(i32, i32, <a href="types.html#nn::ncm::ApplicationId">nn::ncm::ApplicationId</a>) -&gt; (i32, array&lt;i32, 6&gt;)</li>
-								<li value="2" id="nn::aocsrv::detail::IAddOnContentManager(2)">CountAddOnContent(u64, pid) -&gt; i32</li>
-								<li value="3" id="nn::aocsrv::detail::IAddOnContentManager(3)">ListAddOnContent(i32, i32, u64, pid) -&gt; (i32, array&lt;i32, 6&gt;)</li>
-								<li value="4" id="nn::aocsrv::detail::IAddOnContentManager(4)">GetAddOnContentBaseIdByApplicationId(<a href="types.html#nn::ncm::ApplicationId">nn::ncm::ApplicationId</a>) -&gt; u64</li>
-								<li value="5" id="nn::aocsrv::detail::IAddOnContentManager(5)">GetAddOnContentBaseId(u64, pid) -&gt; u64</li>
-								<li value="6" id="nn::aocsrv::detail::IAddOnContentManager(6)">PrepareAddOnContentByApplicationId(i32, <a href="types.html#nn::ncm::ApplicationId">nn::ncm::ApplicationId</a>)</li>
-								<li value="7" id="nn::aocsrv::detail::IAddOnContentManager(7)">PrepareAddOnContent(i32, u64, pid)</li>
-							</ol>
-						</li>
-					</ul>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Provides:</h3>
+						<ul>
+							<li>aoc:u</li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::aocsrv::detail::IAddOnContentManager(0)">CountAddOnContentByApplicationId(<a href="types.html#nn::ncm::ApplicationId">nn::ncm::ApplicationId</a>) -&gt; i32</li>
+							<li value="1" id="nn::aocsrv::detail::IAddOnContentManager(1)">ListAddOnContentByApplicationId(i32, i32, <a href="types.html#nn::ncm::ApplicationId">nn::ncm::ApplicationId</a>) -&gt; (i32, array&lt;i32, 6&gt;)</li>
+							<li value="2" id="nn::aocsrv::detail::IAddOnContentManager(2)">CountAddOnContent(u64, pid) -&gt; i32</li>
+							<li value="3" id="nn::aocsrv::detail::IAddOnContentManager(3)">ListAddOnContent(i32, i32, u64, pid) -&gt; (i32, array&lt;i32, 6&gt;)</li>
+							<li value="4" id="nn::aocsrv::detail::IAddOnContentManager(4)">GetAddOnContentBaseIdByApplicationId(<a href="types.html#nn::ncm::ApplicationId">nn::ncm::ApplicationId</a>) -&gt; u64</li>
+							<li value="5" id="nn::aocsrv::detail::IAddOnContentManager(5)">GetAddOnContentBaseId(u64, pid) -&gt; u64</li>
+							<li value="6" id="nn::aocsrv::detail::IAddOnContentManager(6)">PrepareAddOnContentByApplicationId(i32, <a href="types.html#nn::ncm::ApplicationId">nn::ncm::ApplicationId</a>)</li>
+							<li value="7" id="nn::aocsrv::detail::IAddOnContentManager(7)">PrepareAddOnContent(i32, u64, pid)</li>
+						</ol>
+					</li>
+				</ul>
+			</div>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::ldn::detail::IUserLocalCommunicationService">nn::ldn::detail::IUserLocalCommunicationService</h2>
 				</div>
-				<br />
-				<div class="card">
-					<div class="card-header">
-						<h2 id="nn::ldn::detail::IUserLocalCommunicationService">nn::ldn::detail::IUserLocalCommunicationService</h2>
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h3>Commands:</h3>
-							<ol>
-								<li value="0" id="nn::ldn::detail::IUserLocalCommunicationService(0)">Unknown0() -&gt; u32</li>
-								<li value="1" id="nn::ldn::detail::IUserLocalCommunicationService(1)">Unknown1() -&gt; buffer&lt;unknown, 0x1a, 0x480&gt;</li>
-								<li value="2" id="nn::ldn::detail::IUserLocalCommunicationService(2)">Unknown2() -&gt; (u32, u32)</li>
-								<li value="3" id="nn::ldn::detail::IUserLocalCommunicationService(3)">Unknown3() -&gt; u16</li>
-								<li value="4" id="nn::ldn::detail::IUserLocalCommunicationService(4)">Unknown4() -&gt; bytes&lt;0x20&gt;</li>
-								<li value="5" id="nn::ldn::detail::IUserLocalCommunicationService(5)">Unknown5() -&gt; bytes&lt;0x20&gt;</li>
-								<li value="100" id="nn::ldn::detail::IUserLocalCommunicationService(100)">Unknown100() -&gt; KObject</li>
-								<li value="101" id="nn::ldn::detail::IUserLocalCommunicationService(101)">Unknown101() -&gt; (buffer&lt;unknown, 0x1a, 0x480&gt;, buffer&lt;unknown, 0xa, 0&gt;)</li>
-								<li value="102" id="nn::ldn::detail::IUserLocalCommunicationService(102)">Unknown102(u16, bytes&lt;0x60&gt;) -&gt; (u16, buffer&lt;unknown, 0x22, 0&gt;)</li>
-								<li value="103" id="nn::ldn::detail::IUserLocalCommunicationService(103)">Unknown103(u16, bytes&lt;0x60&gt;) -&gt; (u16, buffer&lt;unknown, 0x22, 0&gt;)</li>
-								<li value="200" id="nn::ldn::detail::IUserLocalCommunicationService(200)">Unknown200()</li>
-								<li value="201" id="nn::ldn::detail::IUserLocalCommunicationService(201)">Unknown201()</li>
-								<li value="202" id="nn::ldn::detail::IUserLocalCommunicationService(202)">Unknown202(bytes&lt;0x44&gt;, align&lt;1, bytes&lt;0x30&gt;&gt;, bytes&lt;0x20&gt;)</li>
-								<li value="203" id="nn::ldn::detail::IUserLocalCommunicationService(203)">Unknown203(bytes&lt;0x44&gt;, align&lt;1, bytes&lt;0x20&gt;&gt;, align&lt;1, bytes&lt;0x30&gt;&gt;, bytes&lt;0x20&gt;, buffer&lt;unknown, 9, 0&gt;)</li>
-								<li value="204" id="nn::ldn::detail::IUserLocalCommunicationService(204)">Unknown204()</li>
-								<li value="205" id="nn::ldn::detail::IUserLocalCommunicationService(205)">Unknown205(u32)</li>
-								<li value="206" id="nn::ldn::detail::IUserLocalCommunicationService(206)">Unknown206(buffer&lt;unknown, 0x21, 0&gt;)</li>
-								<li value="207" id="nn::ldn::detail::IUserLocalCommunicationService(207)">Unknown207(u8)</li>
-								<li value="208" id="nn::ldn::detail::IUserLocalCommunicationService(208)">Unknown208(bytes&lt;6&gt;)</li>
-								<li value="209" id="nn::ldn::detail::IUserLocalCommunicationService(209)">Unknown209()</li>
-								<li value="300" id="nn::ldn::detail::IUserLocalCommunicationService(300)">Unknown300()</li>
-								<li value="301" id="nn::ldn::detail::IUserLocalCommunicationService(301)">Unknown301()</li>
-								<li value="302" id="nn::ldn::detail::IUserLocalCommunicationService(302)">Unknown302(bytes&lt;0x44&gt;, align&lt;1, bytes&lt;0x30&gt;&gt;, u32, u32, buffer&lt;unknown, 0x19, 0x480&gt;)</li>
-								<li value="303" id="nn::ldn::detail::IUserLocalCommunicationService(303)">Unknown303(bytes&lt;0x44&gt;, align&lt;1, bytes&lt;0x20&gt;&gt;, align&lt;1, bytes&lt;0x30&gt;&gt;, u32, u32, bytes&lt;0x20&gt;)</li>
-								<li value="304" id="nn::ldn::detail::IUserLocalCommunicationService(304)">Unknown304()</li>
-								<li value="400" id="nn::ldn::detail::IUserLocalCommunicationService(400)">Unknown400(u64, pid)</li>
-								<li value="401" id="nn::ldn::detail::IUserLocalCommunicationService(401)">Unknown401()</li>
-							</ol>
-						</li>
-					</ul>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::ldn::detail::IUserLocalCommunicationService(0)">Unknown0() -&gt; u32</li>
+							<li value="1" id="nn::ldn::detail::IUserLocalCommunicationService(1)">Unknown1() -&gt; buffer&lt;unknown, 0x1a, 0x480&gt;</li>
+							<li value="2" id="nn::ldn::detail::IUserLocalCommunicationService(2)">Unknown2() -&gt; (u32, u32)</li>
+							<li value="3" id="nn::ldn::detail::IUserLocalCommunicationService(3)">Unknown3() -&gt; u16</li>
+							<li value="4" id="nn::ldn::detail::IUserLocalCommunicationService(4)">Unknown4() -&gt; bytes&lt;0x20&gt;</li>
+							<li value="5" id="nn::ldn::detail::IUserLocalCommunicationService(5)">Unknown5() -&gt; bytes&lt;0x20&gt;</li>
+							<li value="100" id="nn::ldn::detail::IUserLocalCommunicationService(100)">Unknown100() -&gt; KObject</li>
+							<li value="101" id="nn::ldn::detail::IUserLocalCommunicationService(101)">Unknown101() -&gt; (buffer&lt;unknown, 0x1a, 0x480&gt;, buffer&lt;unknown, 0xa, 0&gt;)</li>
+							<li value="102" id="nn::ldn::detail::IUserLocalCommunicationService(102)">Unknown102(u16, bytes&lt;0x60&gt;) -&gt; (u16, buffer&lt;unknown, 0x22, 0&gt;)</li>
+							<li value="103" id="nn::ldn::detail::IUserLocalCommunicationService(103)">Unknown103(u16, bytes&lt;0x60&gt;) -&gt; (u16, buffer&lt;unknown, 0x22, 0&gt;)</li>
+							<li value="200" id="nn::ldn::detail::IUserLocalCommunicationService(200)">Unknown200()</li>
+							<li value="201" id="nn::ldn::detail::IUserLocalCommunicationService(201)">Unknown201()</li>
+							<li value="202" id="nn::ldn::detail::IUserLocalCommunicationService(202)">Unknown202(bytes&lt;0x44&gt;, align&lt;1, bytes&lt;0x30&gt;&gt;, bytes&lt;0x20&gt;)</li>
+							<li value="203" id="nn::ldn::detail::IUserLocalCommunicationService(203)">Unknown203(bytes&lt;0x44&gt;, align&lt;1, bytes&lt;0x20&gt;&gt;, align&lt;1, bytes&lt;0x30&gt;&gt;, bytes&lt;0x20&gt;, buffer&lt;unknown, 9, 0&gt;)</li>
+							<li value="204" id="nn::ldn::detail::IUserLocalCommunicationService(204)">Unknown204()</li>
+							<li value="205" id="nn::ldn::detail::IUserLocalCommunicationService(205)">Unknown205(u32)</li>
+							<li value="206" id="nn::ldn::detail::IUserLocalCommunicationService(206)">Unknown206(buffer&lt;unknown, 0x21, 0&gt;)</li>
+							<li value="207" id="nn::ldn::detail::IUserLocalCommunicationService(207)">Unknown207(u8)</li>
+							<li value="208" id="nn::ldn::detail::IUserLocalCommunicationService(208)">Unknown208(bytes&lt;6&gt;)</li>
+							<li value="209" id="nn::ldn::detail::IUserLocalCommunicationService(209)">Unknown209()</li>
+							<li value="300" id="nn::ldn::detail::IUserLocalCommunicationService(300)">Unknown300()</li>
+							<li value="301" id="nn::ldn::detail::IUserLocalCommunicationService(301)">Unknown301()</li>
+							<li value="302" id="nn::ldn::detail::IUserLocalCommunicationService(302)">Unknown302(bytes&lt;0x44&gt;, align&lt;1, bytes&lt;0x30&gt;&gt;, u32, u32, buffer&lt;unknown, 0x19, 0x480&gt;)</li>
+							<li value="303" id="nn::ldn::detail::IUserLocalCommunicationService(303)">Unknown303(bytes&lt;0x44&gt;, align&lt;1, bytes&lt;0x20&gt;&gt;, align&lt;1, bytes&lt;0x30&gt;&gt;, u32, u32, bytes&lt;0x20&gt;)</li>
+							<li value="304" id="nn::ldn::detail::IUserLocalCommunicationService(304)">Unknown304()</li>
+							<li value="400" id="nn::ldn::detail::IUserLocalCommunicationService(400)">Unknown400(u64, pid)</li>
+							<li value="401" id="nn::ldn::detail::IUserLocalCommunicationService(401)">Unknown401()</li>
+						</ol>
+					</li>
+				</ul>
+			</div>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::ldn::detail::ISystemLocalCommunicationService">nn::ldn::detail::ISystemLocalCommunicationService</h2>
 				</div>
-				<br />
-				<div class="card">
-					<div class="card-header">
-						<h2 id="nn::ldn::detail::ISystemLocalCommunicationService">nn::ldn::detail::ISystemLocalCommunicationService</h2>
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h3>Commands:</h3>
-							<ol>
-								<li value="0" id="nn::ldn::detail::ISystemLocalCommunicationService(0)">Unknown0() -&gt; u32</li>
-								<li value="1" id="nn::ldn::detail::ISystemLocalCommunicationService(1)">Unknown1() -&gt; buffer&lt;unknown, 0x1a, 0x480&gt;</li>
-								<li value="2" id="nn::ldn::detail::ISystemLocalCommunicationService(2)">Unknown2() -&gt; (u32, u32)</li>
-								<li value="3" id="nn::ldn::detail::ISystemLocalCommunicationService(3)">Unknown3() -&gt; u16</li>
-								<li value="4" id="nn::ldn::detail::ISystemLocalCommunicationService(4)">Unknown4() -&gt; bytes&lt;0x20&gt;</li>
-								<li value="5" id="nn::ldn::detail::ISystemLocalCommunicationService(5)">Unknown5() -&gt; bytes&lt;0x20&gt;</li>
-								<li value="100" id="nn::ldn::detail::ISystemLocalCommunicationService(100)">Unknown100() -&gt; KObject</li>
-								<li value="101" id="nn::ldn::detail::ISystemLocalCommunicationService(101)">Unknown101() -&gt; (buffer&lt;unknown, 0x1a, 0x480&gt;, buffer&lt;unknown, 0xa, 0&gt;)</li>
-								<li value="102" id="nn::ldn::detail::ISystemLocalCommunicationService(102)">Unknown102(u16, bytes&lt;0x60&gt;) -&gt; (u16, buffer&lt;unknown, 0x22, 0&gt;)</li>
-								<li value="103" id="nn::ldn::detail::ISystemLocalCommunicationService(103)">Unknown103(u16, bytes&lt;0x60&gt;) -&gt; (u16, buffer&lt;unknown, 0x22, 0&gt;)</li>
-								<li value="200" id="nn::ldn::detail::ISystemLocalCommunicationService(200)">Unknown200()</li>
-								<li value="201" id="nn::ldn::detail::ISystemLocalCommunicationService(201)">Unknown201()</li>
-								<li value="202" id="nn::ldn::detail::ISystemLocalCommunicationService(202)">Unknown202(bytes&lt;0x44&gt;, align&lt;1, bytes&lt;0x30&gt;&gt;, bytes&lt;0x20&gt;)</li>
-								<li value="203" id="nn::ldn::detail::ISystemLocalCommunicationService(203)">Unknown203(bytes&lt;0x44&gt;, align&lt;1, bytes&lt;0x20&gt;&gt;, align&lt;1, bytes&lt;0x30&gt;&gt;, bytes&lt;0x20&gt;, buffer&lt;unknown, 9, 0&gt;)</li>
-								<li value="204" id="nn::ldn::detail::ISystemLocalCommunicationService(204)">Unknown204()</li>
-								<li value="205" id="nn::ldn::detail::ISystemLocalCommunicationService(205)">Unknown205(u32)</li>
-								<li value="206" id="nn::ldn::detail::ISystemLocalCommunicationService(206)">Unknown206(buffer&lt;unknown, 0x21, 0&gt;)</li>
-								<li value="207" id="nn::ldn::detail::ISystemLocalCommunicationService(207)">Unknown207(u8)</li>
-								<li value="208" id="nn::ldn::detail::ISystemLocalCommunicationService(208)">Unknown208(bytes&lt;6&gt;)</li>
-								<li value="209" id="nn::ldn::detail::ISystemLocalCommunicationService(209)">Unknown209()</li>
-								<li value="300" id="nn::ldn::detail::ISystemLocalCommunicationService(300)">Unknown300()</li>
-								<li value="301" id="nn::ldn::detail::ISystemLocalCommunicationService(301)">Unknown301()</li>
-								<li value="302" id="nn::ldn::detail::ISystemLocalCommunicationService(302)">Unknown302(bytes&lt;0x44&gt;, align&lt;1, bytes&lt;0x30&gt;&gt;, u32, u32, buffer&lt;unknown, 0x19, 0x480&gt;)</li>
-								<li value="303" id="nn::ldn::detail::ISystemLocalCommunicationService(303)">Unknown303(bytes&lt;0x44&gt;, align&lt;1, bytes&lt;0x20&gt;&gt;, align&lt;1, bytes&lt;0x30&gt;&gt;, u32, u32, bytes&lt;0x20&gt;)</li>
-								<li value="304" id="nn::ldn::detail::ISystemLocalCommunicationService(304)">Unknown304()</li>
-								<li value="400" id="nn::ldn::detail::ISystemLocalCommunicationService(400)">Unknown400(u64, pid)</li>
-								<li value="401" id="nn::ldn::detail::ISystemLocalCommunicationService(401)">Unknown401()</li>
-							</ol>
-						</li>
-					</ul>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::ldn::detail::ISystemLocalCommunicationService(0)">Unknown0() -&gt; u32</li>
+							<li value="1" id="nn::ldn::detail::ISystemLocalCommunicationService(1)">Unknown1() -&gt; buffer&lt;unknown, 0x1a, 0x480&gt;</li>
+							<li value="2" id="nn::ldn::detail::ISystemLocalCommunicationService(2)">Unknown2() -&gt; (u32, u32)</li>
+							<li value="3" id="nn::ldn::detail::ISystemLocalCommunicationService(3)">Unknown3() -&gt; u16</li>
+							<li value="4" id="nn::ldn::detail::ISystemLocalCommunicationService(4)">Unknown4() -&gt; bytes&lt;0x20&gt;</li>
+							<li value="5" id="nn::ldn::detail::ISystemLocalCommunicationService(5)">Unknown5() -&gt; bytes&lt;0x20&gt;</li>
+							<li value="100" id="nn::ldn::detail::ISystemLocalCommunicationService(100)">Unknown100() -&gt; KObject</li>
+							<li value="101" id="nn::ldn::detail::ISystemLocalCommunicationService(101)">Unknown101() -&gt; (buffer&lt;unknown, 0x1a, 0x480&gt;, buffer&lt;unknown, 0xa, 0&gt;)</li>
+							<li value="102" id="nn::ldn::detail::ISystemLocalCommunicationService(102)">Unknown102(u16, bytes&lt;0x60&gt;) -&gt; (u16, buffer&lt;unknown, 0x22, 0&gt;)</li>
+							<li value="103" id="nn::ldn::detail::ISystemLocalCommunicationService(103)">Unknown103(u16, bytes&lt;0x60&gt;) -&gt; (u16, buffer&lt;unknown, 0x22, 0&gt;)</li>
+							<li value="200" id="nn::ldn::detail::ISystemLocalCommunicationService(200)">Unknown200()</li>
+							<li value="201" id="nn::ldn::detail::ISystemLocalCommunicationService(201)">Unknown201()</li>
+							<li value="202" id="nn::ldn::detail::ISystemLocalCommunicationService(202)">Unknown202(bytes&lt;0x44&gt;, align&lt;1, bytes&lt;0x30&gt;&gt;, bytes&lt;0x20&gt;)</li>
+							<li value="203" id="nn::ldn::detail::ISystemLocalCommunicationService(203)">Unknown203(bytes&lt;0x44&gt;, align&lt;1, bytes&lt;0x20&gt;&gt;, align&lt;1, bytes&lt;0x30&gt;&gt;, bytes&lt;0x20&gt;, buffer&lt;unknown, 9, 0&gt;)</li>
+							<li value="204" id="nn::ldn::detail::ISystemLocalCommunicationService(204)">Unknown204()</li>
+							<li value="205" id="nn::ldn::detail::ISystemLocalCommunicationService(205)">Unknown205(u32)</li>
+							<li value="206" id="nn::ldn::detail::ISystemLocalCommunicationService(206)">Unknown206(buffer&lt;unknown, 0x21, 0&gt;)</li>
+							<li value="207" id="nn::ldn::detail::ISystemLocalCommunicationService(207)">Unknown207(u8)</li>
+							<li value="208" id="nn::ldn::detail::ISystemLocalCommunicationService(208)">Unknown208(bytes&lt;6&gt;)</li>
+							<li value="209" id="nn::ldn::detail::ISystemLocalCommunicationService(209)">Unknown209()</li>
+							<li value="300" id="nn::ldn::detail::ISystemLocalCommunicationService(300)">Unknown300()</li>
+							<li value="301" id="nn::ldn::detail::ISystemLocalCommunicationService(301)">Unknown301()</li>
+							<li value="302" id="nn::ldn::detail::ISystemLocalCommunicationService(302)">Unknown302(bytes&lt;0x44&gt;, align&lt;1, bytes&lt;0x30&gt;&gt;, u32, u32, buffer&lt;unknown, 0x19, 0x480&gt;)</li>
+							<li value="303" id="nn::ldn::detail::ISystemLocalCommunicationService(303)">Unknown303(bytes&lt;0x44&gt;, align&lt;1, bytes&lt;0x20&gt;&gt;, align&lt;1, bytes&lt;0x30&gt;&gt;, u32, u32, bytes&lt;0x20&gt;)</li>
+							<li value="304" id="nn::ldn::detail::ISystemLocalCommunicationService(304)">Unknown304()</li>
+							<li value="400" id="nn::ldn::detail::ISystemLocalCommunicationService(400)">Unknown400(u64, pid)</li>
+							<li value="401" id="nn::ldn::detail::ISystemLocalCommunicationService(401)">Unknown401()</li>
+						</ol>
+					</li>
+				</ul>
+			</div>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<h2 id="nn::ro::detail::IDebugMonitorInterface">nn::ro::detail::IDebugMonitorInterface</h2>
 				</div>
-				<br />
-				<div class="card">
-					<div class="card-header">
-						<h2 id="nn::ro::detail::IDebugMonitorInterface">nn::ro::detail::IDebugMonitorInterface</h2>
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h3>Provides:</h3>
-							<ul>
-								<li>ro:dmnt</li>
-							</ul>
-						</li>
-						<li class="list-group-item">
-							<h3>Commands:</h3>
-							<ol>
-								<li value="0" id="nn::ro::detail::IDebugMonitorInterface(0)">Unknown0()</li>
-							</ol>
-						</li>
-					</ul>
-				</div>
-				<br />
-				</div>
-			</body>
-		</html>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<h3>Provides:</h3>
+						<ul>
+							<li>ro:dmnt</li>
+						</ul>
+					</li>
+					<li class="list-group-item">
+						<h3>Commands:</h3>
+						<ol>
+							<li value="0" id="nn::ro::detail::IDebugMonitorInterface(0)">Unknown0()</li>
+						</ol>
+					</li>
+				</ul>
+			</div>
+			<br />
+		</div>
+	</body>
+</html>
