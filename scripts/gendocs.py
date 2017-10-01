@@ -151,10 +151,10 @@ print >>afp, '\t\t<title>SwIPC</title>'
 print >>afp, '\t\t<link rel="stylesheet" href="css/bootstrap.min.css" />'
 print >>ifp, '\t\t<link rel="stylesheet" href="css/bootstrap-toc.min.css" />'
 print >>afp, '\t\t<link rel="stylesheet" href="css/main.css" />'
-print >>ifp, '\t\t<script type="text/javascript" src="js/jquery-3.2.1.min.js" />'
-print >>ifp, '\t\t<script type="text/javascript" src="js/bootstrap.min.js" />'
-print >>ifp, '\t\t<script type="text/javascript" src="js/bootstrap-toc.min.js" />'
-print >>afp, '\t\t<script type="text/javascript" src="js/title.js" />'
+print >>ifp, '\t\t<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>'
+print >>ifp, '\t\t<script type="text/javascript" src="js/bootstrap.min.js"></script>'
+print >>ifp, '\t\t<script type="text/javascript" src="js/bootstrap-toc.min.js"></script>'
+print >>afp, '\t\t<script type="text/javascript" src="js/title.js"></script>'
 print >>afp, '\t</head>'
 print >>ifp, '\t<body data-spy="scroll" data-target="#toc">'
 print >>tfp, '\t<body>'
@@ -214,7 +214,7 @@ for name, cmds in sorted(ifaces.items(), key=lambda x: x[0]):
 	nfp += 1
 
 	print >>nfp, '<div class="card-header">'
-	print >>nfp, '\t<h2 id="%s">%s</h2>' % (name, name)
+	print >>nfp, '\t<a href="#%s"><h2 id="%s">%s</h2></a>' % (name, name, name)
 	print >>nfp, '</div>'
 	print >>nfp, '<ul class="list-group list-group-flush">'
 	nfp += 1
@@ -276,7 +276,7 @@ print >>tfp, '<br />'
 print >>tfp, '<ul class="list-group">'
 tfp += 1
 for name, type in sorted(types.items(), key=lambda x: x[0]):
-	print >>tfp, '<li class="list-group-item" id="%s">%s <small class="text-muted">%s</small></li>' % (name, name, format([(None, type)]))
+	print >>tfp, '<li class="list-group-item" id="%s"><a href="#%s">+</a> %s <small class="text-muted">%s</small></li>' % (name, name, name, format([(None, type)]))
 tfp -= 1
 print >>tfp, '</ul>'
 
