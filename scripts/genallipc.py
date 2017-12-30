@@ -6945,27 +6945,27 @@ clientInfo = (
 	('nn::lr::ILocationResolverManager', 1, '0 bytes in - 0 bytes out - OutObject<0,0>'),
 	('nn::lr::ILocationResolverManager', 2, '1 bytes in - 0 bytes out - InRaw<1,1,0>'),
 	('nn::lr::ILocationResolverManager', 3, '0 bytes in - 0 bytes out - OutObject<0,0>'),
-	('nn::lr::ILocationResolverManager_0', 0, ''),
-	('nn::lr::ILocationResolverManager_0', 1, ''),
-	('nn::lr::ILocationResolverManager_0', 2, ''),
-	('nn::lr::ILocationResolverManager_0', 3, ''),
-	('nn::lr::ILocationResolverManager_0', 4, ''),
-	('nn::lr::ILocationResolverManager_0', 5, ''),
-	('nn::lr::ILocationResolverManager_0', 6, ''),
-	('nn::lr::ILocationResolverManager_0', 7, ''),
-	('nn::lr::ILocationResolverManager_0', 8, ''),
-	('nn::lr::ILocationResolverManager_0', 9, '0 bytes in - 0 bytes out'),
-	('nn::lr::ILocationResolverManager_1', 0, ''),
-	('nn::lr::ILocationResolverManager_1', 1, ''),
-	('nn::lr::ILocationResolverManager_1', 2, '8 bytes in - 0 bytes out - InRaw<8,8,0>'),
-	('nn::lr::ILocationResolverManager_1', 3, ''),
-	('nn::lr::ILocationResolverManager_1', 4, ''),
-	('nn::lr::ILocationResolverManager_1', 5, ''),
-	('nn::lr::ILocationResolverManager_1', 6, '8 bytes in - 0 bytes out - InRaw<8,8,0>'),
-	('nn::lr::ILocationResolverManager_1', 7, ''),
-	('nn::lr::ILocationResolverManager_3', 0, ''),
-	('nn::lr::ILocationResolverManager_3', 1, '0x10 bytes in - 0 bytes out - InRaw<8,8,8>, InRaw<1,1,0>'),
-	('nn::lr::ILocationResolverManager_3', 2, '0 bytes in - 0 bytes out'),
+	('nn::lr::ILocationResolver', 0, ''),
+	('nn::lr::ILocationResolver', 1, ''),
+	('nn::lr::ILocationResolver', 2, ''),
+	('nn::lr::ILocationResolver', 3, ''),
+	('nn::lr::ILocationResolver', 4, ''),
+	('nn::lr::ILocationResolver', 5, ''),
+	('nn::lr::ILocationResolver', 6, ''),
+	('nn::lr::ILocationResolver', 7, ''),
+	('nn::lr::ILocationResolver', 8, ''),
+	('nn::lr::ILocationResolver', 9, '0 bytes in - 0 bytes out'),
+	('nn::lr::IRegisteredLocationResolver', 0, ''),
+	('nn::lr::IRegisteredLocationResolver', 1, ''),
+	('nn::lr::IRegisteredLocationResolver', 2, '8 bytes in - 0 bytes out - InRaw<8,8,0>'),
+	('nn::lr::IRegisteredLocationResolver', 3, ''),
+	('nn::lr::IRegisteredLocationResolver', 4, ''),
+	('nn::lr::IRegisteredLocationResolver', 5, ''),
+	('nn::lr::IRegisteredLocationResolver', 6, '8 bytes in - 0 bytes out - InRaw<8,8,0>'),
+	('nn::lr::IRegisteredLocationResolver', 7, ''),
+	('nn::lr::IAddOnContentLocationResolver', 0, ''),
+	('nn::lr::IAddOnContentLocationResolver', 1, '0x10 bytes in - 0 bytes out - InRaw<8,8,8>, InRaw<1,1,0>'),
+	('nn::lr::IAddOnContentLocationResolver', 2, '0 bytes in - 0 bytes out'),
 	('nn::mii::detail::IDatabaseService', 0, '4 bytes in - 1 bytes out - OutRaw<1,1,0>, InRaw<4,4,0>'),
 	('nn::mii::detail::IDatabaseService', 1, '0 bytes in - 1 bytes out - OutRaw<1,1,0>'),
 	('nn::mii::detail::IDatabaseService', 2, '4 bytes in - 4 bytes out - OutRaw<4,4,0>, InRaw<4,4,0>'),
@@ -8544,6 +8544,35 @@ clientInfo = (
 )
 
 smapping = {
+    # builtins
+    '0100000000000000': {
+        'fsp-srv': 'nn::fssrv::sf::IFileSystemProxy',
+        'fsp-ldr': 'nn::fssrv::sf::IFileSystemProxyForLoader',
+        'fsp-pr':  'nn::fssrv::sf::IProgramRegistry',
+    },
+    '0100000000000001': {
+        'ldr:shel': 'nn::ldr::detail::IShellInterface',
+        'ldr:pm':   'nn::ldr::detail::IProcessManagerInterface',
+        'ldr:dmnt': 'nn::ldr::detail::IDebugMonitorInterface',
+    },
+    '0100000000000002': {
+        'lr':  'nn::lr::ILocationResolverManager',
+        'ncm': 'nn::ncm::IContentManager',
+    },
+    '0100000000000003': {
+        'pm:info': 'nn::pm::detail::IInformationInterface',
+        'pm:shel': 'nn::pm::detail::IShellInterface',
+        'pm:bm':   'nn::pm::detail::IBootModeInterface',
+    },
+    '0100000000000004': {
+        'sm:':  'nn::sm::detail::IUserInterface',
+        'sm:m': 'nn::sm::detail::IManagerInterface',
+    },
+    '0100000000000028': {
+        'spl:':  'nn::spl::detail::IGeneralInterface',
+        'csrng': 'nn::spl::detail::IRandomInterface',
+    },
+    # not builtins
 	'0100000000000006': {  # usb
 		'usb:ds':   'nn::usb::ds::IDsService',
 		'usb:hs':   'nn::usb::hs::IClientRootSession',
@@ -8606,7 +8635,7 @@ smapping = {
 		'bsd:s':    'nn::socket::sf::IClient', # ?
 		'bsd:u':    'nn::socket::sf::IClient', # ?
 		'bsdcfg':   'nn::bsdsocket::cfg::ServerInterface',
-		'ethc:c':   'nn::eth::sf::IEthInterfaceGroup',
+		'ethc:c':   'nn::eth::sf::IEthInterface',
 		'ethc:i':   'nn::eth::sf::IEthInterfaceGroup',
 		'nsd:a':    'nn::nsd::detail::IManager', # ?
 		'nsd:u':    'nn::nsd::detail::IManager', # ?
@@ -8633,10 +8662,10 @@ smapping = {
 		'audout:u': 'nn::audio::detail::IAudioOutManager',
 		'audrec:a': 'nn::audio::detail::IFinalOutputRecorderManagerForApplet',
 		'audrec:d': 'nn::audio::detail::IFinalOutputRecorderManagerForDebugger',
-		'audrec:u': 'nn::audio::detail::IAudioRendererManager',
+		'audrec:u': 'nn::audio::detail::IFinalOutputRecorderManager',
 		'audren:a': 'nn::audio::detail::IAudioRendererManagerForApplet',
 		'audren:d': 'nn::audio::detail::IAudioRendererManagerForDebugger',
-		'audren:u': 'nn::audio::detail::IFinalOutputRecorderManager',
+		'audren:u': 'nn::audio::detail::IAudioRendererManager',
 		'hwopus':   'nn::codec::detail::IHardwareOpusDecoderManager',
 	},
 	'0100000000000015': {  # LogManager.Prod
@@ -8753,8 +8782,8 @@ smapping = {
 		'caps:sc': 'nn::capsrv::sf::IScreenShotControlService',
 		'caps:ss': 'nn::capsrv::sf::IScreenShotService',
 		'caps:su': 'nn::capsrv::sf::IScreenShotApplicationService',
-		'cec-mgr': 'nn::cec::ICecManagerx',
-		'mm:u':    'nn::mmnv::IRequest', # ?
+		'cec-mgr': 'nn::cec::ICecManager',
+		'mm:u':    'nn::mmnv::IRequest',
 		'vi:m':    'nn::visrv::sf::IManagerRootService',
 		'vi:s':    'nn::visrv::sf::ISystemRootService',
 		'vi:u':    'nn::visrv::sf::IApplicationRootService',
