@@ -1,0 +1,33 @@
+interface nn::socket::sf::IClient is bsd:u, bsd:s {
+	[0] Initialize(bytes<0x20>, u64, u64, pid, KObject) -> u32;
+	[1] StartMonitoring(u64, pid);
+	[2] Socket(u32, u32, u32) -> (u32, u32);
+	[3] SocketExempt(u32, u32, u32) -> (u32, u32);
+	[4] Open(u32, buffer<unknown, 0x21, 0>) -> (u32, u32);
+	[5] Select(u32, bytes<0x18>, buffer<unknown, 0x21, 0>, buffer<unknown, 0x21, 0>, buffer<unknown, 0x21, 0>) -> (u32, u32, buffer<unknown, 0x22, 0>, buffer<unknown, 0x22, 0>, buffer<unknown, 0x22, 0>);
+	[6] Poll(u32, u32, buffer<unknown, 0x21, 0>) -> (u32, u32, buffer<unknown, 0x22, 0>);
+	[7] Sysctl(buffer<unknown, 0x21, 0>, buffer<unknown, 0x21, 0>) -> (u32, u32, u32, buffer<unknown, 0x22, 0>);
+	[8] Recv(u32, u32) -> (u32, u32, buffer<unknown, 0x22, 0>);
+	[9] RecvFrom(u32, u32) -> (u32, u32, u32, buffer<unknown, 0x22, 0>, buffer<unknown, 0x22, 0>);
+	[10] Send(u32, u32, buffer<unknown, 0x21, 0>) -> (u32, u32);
+	[11] SendTo(u32, u32, buffer<unknown, 0x21, 0>, buffer<unknown, 0x21, 0>) -> (u32, u32);
+	[12] Accept(u32) -> (u32, u32, u32, buffer<unknown, 0x22, 0>);
+	[13] Bind(u32, buffer<unknown, 0x21, 0>) -> (u32, u32);
+	[14] Connect(u32, buffer<unknown, 0x21, 0>) -> (u32, u32);
+	[15] GetPeerName(u32) -> (u32, u32, u32, buffer<unknown, 0x22, 0>);
+	[16] GetSockName(u32) -> (u32, u32, u32, buffer<unknown, 0x22, 0>);
+	[17] GetSockOpt(u32, u32, u32) -> (u32, u32, u32, buffer<unknown, 0x22, 0>);
+	[18] Listen(u32, u32) -> (u32, u32);
+	[19] Ioctl(u32, u32, u32, buffer<unknown, 0x21, 0>, buffer<unknown, 0x21, 0>, buffer<unknown, 0x21, 0>, buffer<unknown, 0x21, 0>) -> (u32, u32, buffer<unknown, 0x22, 0>, buffer<unknown, 0x22, 0>, buffer<unknown, 0x22, 0>, buffer<unknown, 0x22, 0>);
+	[20] Fcntl(u32, u32, u32) -> (u32, u32);
+	[21] SetSockOpt(u32, u32, u32, buffer<unknown, 0x21, 0>) -> (u32, u32);
+	[22] Shutdown(u32, u32) -> (u32, u32);
+	[23] ShutdownAllSockets(u32) -> (u32, u32);
+	[24] Write(u32, buffer<unknown, 0x21, 0>) -> (u32, u32);
+	[25] Read(u32) -> (u32, u32, buffer<unknown, 0x22, 0>);
+	[26] Close(u32) -> (u32, u32);
+	[27] DuplicateSocket(u32, u64) -> (u32, u32);
+	[28] GetResourceStatistics(u64, pid) -> (u32, u32, buffer<unknown, 0x22, 0>);
+	[29] RecvMMsg(u32, u32, u32, u128) -> (u32, u32, buffer<unknown, 0x22, 0>);
+	[30] SendMMsg(u32, u32, u32, buffer<unknown, 0x21, 0>, buffer<unknown, 0x21, 0>) -> (u32, u32);
+}
