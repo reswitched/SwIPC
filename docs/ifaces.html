@@ -8196,37 +8196,37 @@
 					<li class="list-group-item">
 						<h3>Commands:</h3>
 						<ol>
-							<li value="0" id="nn::socket::sf::IClient(0)">Initialize(bytes&lt;0x20&gt;, u64, u64, pid, KObject) -&gt; u32</li>
+							<li value="0" id="nn::socket::sf::IClient(0)">Initialize(u64, u64, u64, u64, u64 pid, u64 transferMemorySize, pid, KObject) -&gt; u32 bsd_errno</li>
 							<li value="1" id="nn::socket::sf::IClient(1)">StartMonitoring(u64, pid)</li>
-							<li value="2" id="nn::socket::sf::IClient(2)">Socket(u32, u32, u32) -&gt; (u32, u32)</li>
-							<li value="3" id="nn::socket::sf::IClient(3)">SocketExempt(u32, u32, u32) -&gt; (u32, u32)</li>
-							<li value="4" id="nn::socket::sf::IClient(4)">Open(u32, buffer&lt;unknown, 0x21, 0&gt;) -&gt; (u32, u32)</li>
-							<li value="5" id="nn::socket::sf::IClient(5)">Select(u32, bytes&lt;0x18&gt;, buffer&lt;unknown, 0x21, 0&gt;, buffer&lt;unknown, 0x21, 0&gt;, buffer&lt;unknown, 0x21, 0&gt;) -&gt; (u32, u32, buffer&lt;unknown, 0x22, 0&gt;, buffer&lt;unknown, 0x22, 0&gt;, buffer&lt;unknown, 0x22, 0&gt;)</li>
-							<li value="6" id="nn::socket::sf::IClient(6)">Poll(u32, u32, buffer&lt;unknown, 0x21, 0&gt;) -&gt; (u32, u32, buffer&lt;unknown, 0x22, 0&gt;)</li>
-							<li value="7" id="nn::socket::sf::IClient(7)">Sysctl(buffer&lt;unknown, 0x21, 0&gt;, buffer&lt;unknown, 0x21, 0&gt;) -&gt; (u32, u32, u32, buffer&lt;unknown, 0x22, 0&gt;)</li>
-							<li value="8" id="nn::socket::sf::IClient(8)">Recv(u32, u32) -&gt; (u32, u32, buffer&lt;unknown, 0x22, 0&gt;)</li>
-							<li value="9" id="nn::socket::sf::IClient(9)">RecvFrom(u32, u32) -&gt; (u32, u32, u32, buffer&lt;unknown, 0x22, 0&gt;, buffer&lt;unknown, 0x22, 0&gt;)</li>
-							<li value="10" id="nn::socket::sf::IClient(10)">Send(u32, u32, buffer&lt;unknown, 0x21, 0&gt;) -&gt; (u32, u32)</li>
-							<li value="11" id="nn::socket::sf::IClient(11)">SendTo(u32, u32, buffer&lt;unknown, 0x21, 0&gt;, buffer&lt;unknown, 0x21, 0&gt;) -&gt; (u32, u32)</li>
-							<li value="12" id="nn::socket::sf::IClient(12)">Accept(u32) -&gt; (u32, u32, u32, buffer&lt;unknown, 0x22, 0&gt;)</li>
-							<li value="13" id="nn::socket::sf::IClient(13)">Bind(u32, buffer&lt;unknown, 0x21, 0&gt;) -&gt; (u32, u32)</li>
-							<li value="14" id="nn::socket::sf::IClient(14)">Connect(u32, buffer&lt;unknown, 0x21, 0&gt;) -&gt; (u32, u32)</li>
-							<li value="15" id="nn::socket::sf::IClient(15)">GetPeerName(u32) -&gt; (u32, u32, u32, buffer&lt;unknown, 0x22, 0&gt;)</li>
-							<li value="16" id="nn::socket::sf::IClient(16)">GetSockName(u32) -&gt; (u32, u32, u32, buffer&lt;unknown, 0x22, 0&gt;)</li>
-							<li value="17" id="nn::socket::sf::IClient(17)">GetSockOpt(u32, u32, u32) -&gt; (u32, u32, u32, buffer&lt;unknown, 0x22, 0&gt;)</li>
-							<li value="18" id="nn::socket::sf::IClient(18)">Listen(u32, u32) -&gt; (u32, u32)</li>
-							<li value="19" id="nn::socket::sf::IClient(19)">Ioctl(u32, u32, u32, buffer&lt;unknown, 0x21, 0&gt;, buffer&lt;unknown, 0x21, 0&gt;, buffer&lt;unknown, 0x21, 0&gt;, buffer&lt;unknown, 0x21, 0&gt;) -&gt; (u32, u32, buffer&lt;unknown, 0x22, 0&gt;, buffer&lt;unknown, 0x22, 0&gt;, buffer&lt;unknown, 0x22, 0&gt;, buffer&lt;unknown, 0x22, 0&gt;)</li>
-							<li value="20" id="nn::socket::sf::IClient(20)">Fcntl(u32, u32, u32) -&gt; (u32, u32)</li>
-							<li value="21" id="nn::socket::sf::IClient(21)">SetSockOpt(u32, u32, u32, buffer&lt;unknown, 0x21, 0&gt;) -&gt; (u32, u32)</li>
-							<li value="22" id="nn::socket::sf::IClient(22)">Shutdown(u32, u32) -&gt; (u32, u32)</li>
-							<li value="23" id="nn::socket::sf::IClient(23)">ShutdownAllSockets(u32) -&gt; (u32, u32)</li>
-							<li value="24" id="nn::socket::sf::IClient(24)">Write(u32, buffer&lt;unknown, 0x21, 0&gt;) -&gt; (u32, u32)</li>
-							<li value="25" id="nn::socket::sf::IClient(25)">Read(u32) -&gt; (u32, u32, buffer&lt;unknown, 0x22, 0&gt;)</li>
-							<li value="26" id="nn::socket::sf::IClient(26)">Close(u32) -&gt; (u32, u32)</li>
-							<li value="27" id="nn::socket::sf::IClient(27)">DuplicateSocket(u32, u64) -&gt; (u32, u32)</li>
-							<li value="28" id="nn::socket::sf::IClient(28)">GetResourceStatistics(u64, pid) -&gt; (u32, u32, buffer&lt;unknown, 0x22, 0&gt;)</li>
-							<li value="29" id="nn::socket::sf::IClient(29)">RecvMMsg(u32, u32, u32, u128) -&gt; (u32, u32, buffer&lt;unknown, 0x22, 0&gt;)</li>
-							<li value="30" id="nn::socket::sf::IClient(30)">SendMMsg(u32, u32, u32, buffer&lt;unknown, 0x21, 0&gt;, buffer&lt;unknown, 0x21, 0&gt;) -&gt; (u32, u32)</li>
+							<li value="2" id="nn::socket::sf::IClient(2)">Socket(u32 domain, u32 type, u32 protocol) -&gt; (i32 ret, u32 bsd_errno)</li>
+							<li value="3" id="nn::socket::sf::IClient(3)">SocketExempt(u32, u32, u32) -&gt; (i32 ret, u32 bsd_errno)</li>
+							<li value="4" id="nn::socket::sf::IClient(4)">Open(u32, buffer&lt;unknown, 0x21, 0&gt;) -&gt; (i32 ret, u32 bsd_errno)</li>
+							<li value="5" id="nn::socket::sf::IClient(5)">Select(u32 nfds, bytes&lt;0x18&gt; timeout, buffer&lt;fd_set, 0x21, 0&gt; readfds_in, buffer&lt;fd_set, 0x21, 0&gt; writefds_in, buffer&lt;fd_set, 0x21, 0&gt; errorfds_in) -&gt; (i32 ret, u32 bsd_errno, buffer&lt;fd_set, 0x22, 0&gt; readfds_out, buffer&lt;fd_set, 0x22, 0&gt; writefds_out, buffer&lt;fd_set, 0x22, 0&gt; errorfds_out)</li>
+							<li value="6" id="nn::socket::sf::IClient(6)">Poll(u32, u32, buffer&lt;unknown, 0x21, 0&gt;) -&gt; (i32 ret, u32 bsd_errno, buffer&lt;unknown, 0x22, 0&gt;)</li>
+							<li value="7" id="nn::socket::sf::IClient(7)">Sysctl(buffer&lt;unknown, 0x21, 0&gt;, buffer&lt;unknown, 0x21, 0&gt;) -&gt; (i32 ret, u32 bsd_errno, u32, buffer&lt;unknown, 0x22, 0&gt;)</li>
+							<li value="8" id="nn::socket::sf::IClient(8)">Recv(u32 socket, u32 flags) -&gt; (i32 ret, u32 bsd_errno, buffer&lt;i8, 0x22, 0&gt; message)</li>
+							<li value="9" id="nn::socket::sf::IClient(9)">RecvFrom(u32 sock, u32 flags) -&gt; (i32 ret, u32 bsd_errno, u32 addrlen, buffer&lt;i8, 0x22, 0&gt; message, buffer&lt;sockaddr, 0x22, 0&gt;)</li>
+							<li value="10" id="nn::socket::sf::IClient(10)">Send(u32 socket, u32 flags, buffer&lt;i8, 0x21, 0&gt;) -&gt; (i32 ret, u32 bsd_errno)</li>
+							<li value="11" id="nn::socket::sf::IClient(11)">SendTo(u32 socket, u32 flags, buffer&lt;i8, 0x21, 0&gt;, buffer&lt;sockaddr, 0x21, 0&gt;) -&gt; (i32 ret, u32 bsd_errno)</li>
+							<li value="12" id="nn::socket::sf::IClient(12)">Accept(u32 socket) -&gt; (i32 ret, u32 bsd_errno, u32 addrlen, buffer&lt;sockaddr, 0x22, 0&gt; addr)</li>
+							<li value="13" id="nn::socket::sf::IClient(13)">Bind(u32 socket, buffer&lt;sockaddr, 0x21, 0&gt;) -&gt; (i32 ret, u32 bsd_errno)</li>
+							<li value="14" id="nn::socket::sf::IClient(14)">Connect(u32 socket, buffer&lt;sockaddr, 0x21, 0&gt;) -&gt; (i32 ret, u32 bsd_errno)</li>
+							<li value="15" id="nn::socket::sf::IClient(15)">GetPeerName(u32 socket) -&gt; (i32 ret, u32 bsd_errno, u32 addrlen, buffer&lt;sockaddr, 0x22, 0&gt; addr)</li>
+							<li value="16" id="nn::socket::sf::IClient(16)">GetSockName(u32 socket) -&gt; (i32 ret, u32 bsd_errno, u32 addrlen, buffer&lt;sockaddr, 0x22, 0&gt; addr)</li>
+							<li value="17" id="nn::socket::sf::IClient(17)">GetSockOpt(u32, u32, u32) -&gt; (i32 ret, u32 bsd_errno, u32, buffer&lt;unknown, 0x22, 0&gt;)</li>
+							<li value="18" id="nn::socket::sf::IClient(18)">Listen(u32 socket, u32 backlog) -&gt; (i32 ret, u32 bsd_errno)</li>
+							<li value="19" id="nn::socket::sf::IClient(19)">Ioctl(u32, u32, u32, buffer&lt;unknown, 0x21, 0&gt;, buffer&lt;unknown, 0x21, 0&gt;, buffer&lt;unknown, 0x21, 0&gt;, buffer&lt;unknown, 0x21, 0&gt;) -&gt; (i32 ret, u32 bsd_errno, buffer&lt;unknown, 0x22, 0&gt;, buffer&lt;unknown, 0x22, 0&gt;, buffer&lt;unknown, 0x22, 0&gt;, buffer&lt;unknown, 0x22, 0&gt;)</li>
+							<li value="20" id="nn::socket::sf::IClient(20)">Fcntl(u32, u32, u32) -&gt; (i32 ret, u32 bsd_errno)</li>
+							<li value="21" id="nn::socket::sf::IClient(21)">SetSockOpt(u32 socket, u32 level, u32 option_name, buffer&lt;unknown, 0x21, 0&gt;) -&gt; (i32 ret, u32 bsd_errno)</li>
+							<li value="22" id="nn::socket::sf::IClient(22)">Shutdown(u32 socket, u32 how) -&gt; (i32 ret, u32 bsd_errno)</li>
+							<li value="23" id="nn::socket::sf::IClient(23)">ShutdownAllSockets(u32 how) -&gt; (i32 ret, u32 bsd_errno)</li>
+							<li value="24" id="nn::socket::sf::IClient(24)">Write(u32 socket, buffer&lt;i8, 0x21, 0&gt; message) -&gt; (i32 ret, u32 bsd_errno)</li>
+							<li value="25" id="nn::socket::sf::IClient(25)">Read(u32 socket) -&gt; (i32 ret, u32 bsd_errno, buffer&lt;i8, 0x22, 0&gt; message)</li>
+							<li value="26" id="nn::socket::sf::IClient(26)">Close(u32 socket) -&gt; (i32 ret, u32 bsd_errno)</li>
+							<li value="27" id="nn::socket::sf::IClient(27)">DuplicateSocket(u32, u64) -&gt; (i32 ret, u32 bsd_errno)</li>
+							<li value="28" id="nn::socket::sf::IClient(28)">GetResourceStatistics(u64, pid) -&gt; (i32 ret, u32 bsd_errno, buffer&lt;unknown, 0x22, 0&gt;)</li>
+							<li value="29" id="nn::socket::sf::IClient(29)">RecvMMsg(u32, u32, u32, u128) -&gt; (i32 ret, u32 bsd_errno, buffer&lt;unknown, 0x22, 0&gt;)</li>
+							<li value="30" id="nn::socket::sf::IClient(30)">SendMMsg(u32, u32, u32, buffer&lt;unknown, 0x21, 0&gt;, buffer&lt;unknown, 0x21, 0&gt;) -&gt; (i32 ret, u32 bsd_errno)</li>
 						</ol>
 					</li>
 				</ul>
