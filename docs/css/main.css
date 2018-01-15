@@ -63,7 +63,7 @@ ol > li > div {
   margin-right: 10px;
 }
 
-code {
+code, .docs pre {
 	background-color: #3A3A3F;
 	color: white;
         -webkit-box-shadow: 0px 0px 1px 0px inset rgba(0,0,0,0.15);
@@ -112,4 +112,14 @@ code.signature {
 
 .docs code { /* default padding is awkwardly wide for inline code blocks */
     padding: .2rem .2rem;
+    background-color: #3a3a3f99;
+}
+
+.docs pre {
+    border-radius: .2rem;
+}
+
+.docs pre code {
+    display: block;
+    padding: .4rem .4rem;
 }
