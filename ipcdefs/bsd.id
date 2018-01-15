@@ -11,42 +11,43 @@ interface nn::socket::sf::IClient is bsd:u, bsd:s {
 	[2] Socket(u32 domain, u32 type, u32 protocol) -> (i32 ret, u32 bsd_errno);
 	[3] SocketExempt(u32, u32, u32) -> (i32 ret, u32 bsd_errno);
 	[4] Open(u32, buffer<unknown, 0x21, 0>) -> (i32 ret, u32 bsd_errno);
+
 	# Synchronous I/O multiplexing
 	#
 	# The `select()` function shall examine the file descriptor sets whose
-	# addresses are passed in the readfds, writefds, and errorfds parameters
+	# addresses are passed in the `readfds`, `writefds`, and `errorfds` parameters
 	# to see whether some of their descriptors are ready for reading, are
 	# ready for writing, or have an exceptional condition pending,
 	# respectively.
 	#
-	# Upon successful completion, the select() function shall fill the
-	# readfds_out, writefds_out and errorfds_out to indicate which file
+	# Upon successful completion, the `select()` function shall fill the
+	# `readfds_out`, `writefds_out` and `errorfds_out` to indicate which file
 	# descriptors are ready for reading, ready for writing, or have an error
 	# condition pending, respectively, and shall return the total number of
 	# ready descriptors in all the output sets. For each file descriptors less
-	# than nfds, the corresponding bit shall be set on successful completion
+	# than `nfds`, the corresponding bit shall be set on successful completion
 	# if it was set on input and the associated condition is true for that
 	# descriptor.
 	#
 	# If none of the selected descriptors are ready for the requested
-	# operation, the select() function shall block until at least one of the
+	# operation, the `select()` function shall block until at least one of the
 	# requested operations becomes ready or until the timeout occurs. The
-	# timeout parameter controls how long the select() function shall take
+	# timeout parameter controls how long the `select()` function shall take
 	# before timing out. It specifies a maximum interval to wait for the
 	# selection to complete. If the specified time interval expires without
 	# any requested operation becoming ready, the function shall return.
 	#
-	# # Arguments:
+	# ### Arguments:
 	#
-	# - nfds:	Specifies the range of descriptors to be tested. The first
-	#			nfds descriptors shall be checked in each set; that is, the
-	#			descriptors from zero through nfds-1 in the descriptor sets
+	# - `nfds`:	Specifies the range of descriptors to be tested. The first
+	#			`nfds` descriptors shall be checked in each set; that is, the
+	#			descriptors from zero through `nfds-1` in the descriptor sets
 	#			shall be examined.
-	# - readfds_in:	Specifies the file descriptors to be checked for
+	# - `readfds_in`:	Specifies the file descriptors to be checked for
 	#				being ready to read.
-	# - writefds_in	Specifies the file descriptors to be checked for
+	# - `writefds_in`	Specifies the file descriptors to be checked for
 	#				being ready to write.
-	# - errorfds_in	Specifies the file descriptors to be checked for
+	# - `errorfds_in`	Specifies the file descriptors to be checked for
 	#				error conditions pending.
 	[5] Select(u32 nfds, timeout timeout, buffer<fd_set, 0x21, 0> readfds_in, buffer<fd_set, 0x21, 0> writefds_in, buffer<fd_set, 0x21, 0> errorfds_in) -> (i32 ret, u32 bsd_errno, buffer<fd_set, 0x22, 0> readfds_out, buffer<fd_set, 0x22, 0> writefds_out, buffer<fd_set, 0x22, 0> errorfds_out);
 	[6] Poll(u32, u32, buffer<unknown, 0x21, 0>) -> (i32 ret, u32 bsd_errno, buffer<unknown, 0x22, 0>);
