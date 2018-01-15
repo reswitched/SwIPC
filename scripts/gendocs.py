@@ -263,8 +263,9 @@ for name, cmds in sorted(ifaces.items(), key=lambda x: x[0]):
 		print >>nfp, '\t<ol>'
 		nfp += 2
 		for cname, cmd in sorted(cmds.items(), key=lambda x: x[1]['cmdId']):
-			cdef = '%s(%s)%s' % (cname, format(cmd['inputs']), ' -&gt; %s' % format(cmd['outputs'], output=True) if len(cmd['outputs']) != 0 else '')
-			print >>nfp, '<li value="%i" id="%s"><code>%s</code>%s</li>' % (cmd['cmdId'], '%s(%i)' % (name, cmd['cmdId']), cdef, ("<div>%s</div>" % CommonMark.commonmark(cmd['doc'])) if cmd['doc'] != "" else "")
+			urlId = "%s(%i)" % (name, cmd['cmdId'])
+			cdef = '<a href="#%s">%s</a>(%s)%s' % (urlId, cname, format(cmd['inputs']), ' -&gt; %s' % format(cmd['outputs'], output=True) if len(cmd['outputs']) != 0 else '')
+			print >>nfp, '<li class="command" value="%i" id="%s"><input checked type="checkbox" class="showDocs" id="showDocs(%s)"></input><label for="showDocs(%s)" class="showDocsLabel"></label><code class="signature">[%i] %s</code>%s</li>' % (cmd['cmdId'], urlId, urlId, urlId, cmd['cmdId'], cdef, ("<div class='docs'>%s</div>" % CommonMark.commonmark(cmd['doc'])) if cmd['doc'] != "" else "")
 		nfp -= 2
 		print >>nfp, '\t</ol>'
 		print >>nfp, '</li>'

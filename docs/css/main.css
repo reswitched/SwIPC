@@ -52,11 +52,6 @@ a:hover, a:active{
 ol {
    list-style-type: none;
 }
-ol > li:before {
-  content: "[" attr(value) "] ";
-  margin-left: -30px;
-  vertical-align: top;
-}
 
 ol > li > div {
 	margin-top: 1em;
@@ -71,5 +66,35 @@ ol > li > div {
 code {
 	background-color: #3A3A3F;
 	color: white;
-	display: inline-block;
+}
+
+code.signature {
+	display: block;
+}
+
+.showDocs {
+	display: none;
+}
+
+.showDocs ~ .showDocsLabel {
+	float: left;
+	margin-left: -35px;
+	margin-right: 5px;
+	vertical-align: top;
+	/* So [+] and [-] take the same space */
+	font-family: monospace;
+}
+
+.showDocs ~ .showDocsLabel:before {
+	content: "[+]";
+	cursor: pointer;
+	color: #19cf9b;
+}
+
+.showDocs:checked ~ .showDocsLabel:before {
+	content: "[-]";
+}
+
+.showDocs:not(:checked) ~ .docs {
+	display: none;
 }
