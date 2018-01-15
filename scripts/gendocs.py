@@ -118,14 +118,14 @@ for name, cmds in ifaces.items():
 	complete = 0
 	count = 0
 	for cname, cmd in cmds.items():
+		count += 6
+		if cmd['doc'] != "":
+			complete += 6
 		if not cname.startswith('Unknown'):
-			count += 4
 			complete += 4
 		elif len(cmd['inputs']) or len(cmd['outputs']):
-			count += 4
 			complete += 3
 		else:
-			count += 4
 			complete += 1
 	if count == 0:
 		count = 1
