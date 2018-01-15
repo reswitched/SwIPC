@@ -185,6 +185,9 @@ def gen_init():
     args = "void" if cmd is None else formatArgs(cmd['outputs'], cmd['inputs'])
 
     print "result_t %s_init(%s) {" % (c_ifacename, args)
+    print "\tif(%s_initializations++ > 0) {" % c_ifacename
+    print "\t\treturn RESULT_OK;"
+    print "\t}"
     print "\tresult_t res;"
     print "\tres = sm_get_service(&%s_object, \"%s\");" % (c_ifacename, ifacename)
     print "\tif (res != RESULT_OK)"
@@ -200,9 +203,29 @@ def gen_init():
     print "\treturn RESULT_OK;"
     print "}"
 
+def gen_finalize():
+    # force_finalize
+    print "static void %s_force_finalize() {" % c_ifacename
+    print "\tipc_close(%s_object);" % c_ifacename
+    print "\t%s_initializations = 0;" % c_ifacename
+    print "}"
+
+    # finalize
+    print "void %s_finalize() {" % c_ifacename
+    print "\tif(--%s_initializations == 0) {" % c_ifacename
+    print "\t\t%s_force_finalize();" % c_ifacename
+    print "\t}"
+    print "}"
+
+    # destructor
+    print "static __attribute__((destructor)) void %s_finalize() {" % c_ifacename
+    print "\tif(%s_initializations > 0) {" % c_ifacename
+    print "\t\t%s_force_finalize();" % c_ifacename
+    print "\t}"
+    print "}"
+
+
 def gen_ipc_method(cmd):
-
-
     print "\tipc_request_t rq = ipc_default_request;"
     print "\tipc_response_fmt_t rs = ipc_default_response_fmt;"
     print "\trq.request_id = %d;" % cmd['cmdId']
@@ -270,8 +293,9 @@ def gen_ipc_method(cmd):
         print bufpost
 
 print "static ipc_object_t %s_object;" % c_ifacename
+print "static int %s_initializations = 0;" % c_ifacename
 gen_init()
-
+gen_finalize()
 for cname, cmd in sorted(iface.items(), key=lambda x: x[1]['cmdId']):
     if cname == "Initialize":
         continue
