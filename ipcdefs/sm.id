@@ -1,8 +1,22 @@
 type ServiceName = bytes<8>;
 
 interface SmService is sm: {
-	[0] Initialize();
+	# Needs to be called before any other command may be used. On version 3.0.0
+	# and lower, if this function is not called, `GetService`, `RegisterService`
+	# and `UnregisterService` may be called without restriction, thanks to
+	# `sm:h`.
+	#
+	# # Arguments
+	# - `reserved`:  Should be set to 0.
+	[0] Initialize(pid, u64 reserved);
+	# Returns a handle to the given service. IPC messages may be sent to this
+	# handle through `svcSendSyncRequest`.
 	[1] GetService(ServiceName name) -> object<IPipe>;
+	# Registers a service with the given name. The user can use
+	# `svcAcceptSession` on the returned handle to get a new Session handle, and
+	# use `svcReplyAndReceive` on those handles to reply to IPC requests.
 	[2] RegisterService(ServiceName name, u8, u32 maxHandles) -> object<NPort>;
+	# Unregisters the given service. Future `GetService` call will not return
+	# this service anymore, but existing handles will stay alive.
 	[3] UnregisterService(ServiceName name);
 }

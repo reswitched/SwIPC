@@ -16,7 +16,7 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="width: 88%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="122" aria-valuemin="0" aria-valuemax="100" style="width: 122%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
@@ -27,10 +27,25 @@
 					<li class="list-group-item">
 						<h3>Commands:</h3>
 						<ol>
-							<li class="command" value="0" id="SmService(0)"><input checked type="checkbox" class="showDocs" id="showDocs(SmService(0))"></input><label for="showDocs(SmService(0))" class="showDocsLabel"></label><code class="signature">[0] <a href="#SmService(0)">Initialize</a>()</code></li>
-							<li class="command" value="1" id="SmService(1)"><input checked type="checkbox" class="showDocs" id="showDocs(SmService(1))"></input><label for="showDocs(SmService(1))" class="showDocsLabel"></label><code class="signature">[1] <a href="#SmService(1)">GetService</a>(<a href="types.html#ServiceName">ServiceName</a> name) -&gt; IPipe</code></li>
-							<li class="command" value="2" id="SmService(2)"><input checked type="checkbox" class="showDocs" id="showDocs(SmService(2))"></input><label for="showDocs(SmService(2))" class="showDocsLabel"></label><code class="signature">[2] <a href="#SmService(2)">RegisterService</a>(<a href="types.html#ServiceName">ServiceName</a> name, u8, u32 maxHandles) -&gt; NPort</code></li>
-							<li class="command" value="3" id="SmService(3)"><input checked type="checkbox" class="showDocs" id="showDocs(SmService(3))"></input><label for="showDocs(SmService(3))" class="showDocsLabel"></label><code class="signature">[3] <a href="#SmService(3)">UnregisterService</a>(<a href="types.html#ServiceName">ServiceName</a> name)</code></li>
+							<li class="command" value="0" id="SmService(0)"><input checked type="checkbox" class="showDocs" id="showDocs(SmService(0))"></input><label for="showDocs(SmService(0))" class="showDocsLabel"></label><code class="signature">[0] <a href="#SmService(0)">Initialize</a>(pid, u64 reserved)</code><div class='docs'><p>Needs to be called before any other command may be used. On version 3.0.0
+							and lower, if this function is not called, <code>GetService</code>, <code>RegisterService</code>
+							and <code>UnregisterService</code> may be called without restriction, thanks to
+							<code>sm:h</code>.</p>
+							<h1>Arguments</h1>
+							<ul>
+							<li><code>reserved</code>:  Should be set to 0.</li>
+							</ul>
+							</div></li>
+							<li class="command" value="1" id="SmService(1)"><input checked type="checkbox" class="showDocs" id="showDocs(SmService(1))"></input><label for="showDocs(SmService(1))" class="showDocsLabel"></label><code class="signature">[1] <a href="#SmService(1)">GetService</a>(<a href="types.html#ServiceName">ServiceName</a> name) -&gt; IPipe</code><div class='docs'><p>Returns a handle to the given service. IPC messages may be sent to this
+							handle through <code>svcSendSyncRequest</code>.</p>
+							</div></li>
+							<li class="command" value="2" id="SmService(2)"><input checked type="checkbox" class="showDocs" id="showDocs(SmService(2))"></input><label for="showDocs(SmService(2))" class="showDocsLabel"></label><code class="signature">[2] <a href="#SmService(2)">RegisterService</a>(<a href="types.html#ServiceName">ServiceName</a> name, u8, u32 maxHandles) -&gt; NPort</code><div class='docs'><p>Registers a service with the given name. The user can use
+							<code>svcAcceptSession</code> on the returned handle to get a new Session handle, and
+							use <code>svcReplyAndReceive</code> on those handles to reply to IPC requests.</p>
+							</div></li>
+							<li class="command" value="3" id="SmService(3)"><input checked type="checkbox" class="showDocs" id="showDocs(SmService(3))"></input><label for="showDocs(SmService(3))" class="showDocsLabel"></label><code class="signature">[3] <a href="#SmService(3)">UnregisterService</a>(<a href="types.html#ServiceName">ServiceName</a> name)</code><div class='docs'><p>Unregisters the given service. Future <code>GetService</code> call will not return
+							this service anymore, but existing handles will stay alive.</p>
+							</div></li>
 						</ol>
 					</li>
 				</ul>
@@ -8196,7 +8211,7 @@
 					<li class="list-group-item">
 						<h3>Commands:</h3>
 						<ol>
-							<li class="command" value="0" id="nn::socket::sf::IClient(0)"><input checked type="checkbox" class="showDocs" id="showDocs(nn::socket::sf::IClient(0))"></input><label for="showDocs(nn::socket::sf::IClient(0))" class="showDocsLabel"></label><code class="signature">[0] <a href="#nn::socket::sf::IClient(0)">Initialize</a>(u64, u64, u64, u64, u64 pid, u64 transferMemorySize, pid, KObject) -&gt; u32 bsd_errno</code></li>
+							<li class="command" value="0" id="nn::socket::sf::IClient(0)"><input checked type="checkbox" class="showDocs" id="showDocs(nn::socket::sf::IClient(0))"></input><label for="showDocs(nn::socket::sf::IClient(0))" class="showDocsLabel"></label><code class="signature">[0] <a href="#nn::socket::sf::IClient(0)">Initialize</a>(u32, u32, u32, u32, u32, u32, u32, u32, u64 pid, u64 transferMemorySize, pid, KObject) -&gt; u32 bsd_errno</code></li>
 							<li class="command" value="1" id="nn::socket::sf::IClient(1)"><input checked type="checkbox" class="showDocs" id="showDocs(nn::socket::sf::IClient(1))"></input><label for="showDocs(nn::socket::sf::IClient(1))" class="showDocsLabel"></label><code class="signature">[1] <a href="#nn::socket::sf::IClient(1)">StartMonitoring</a>(u64, pid)</code></li>
 							<li class="command" value="2" id="nn::socket::sf::IClient(2)"><input checked type="checkbox" class="showDocs" id="showDocs(nn::socket::sf::IClient(2))"></input><label for="showDocs(nn::socket::sf::IClient(2))" class="showDocsLabel"></label><code class="signature">[2] <a href="#nn::socket::sf::IClient(2)">Socket</a>(u32 domain, u32 type, u32 protocol) -&gt; (i32 ret, u32 bsd_errno)</code><div class='docs'><p>Create an endpoint for communication</p>
 							</div></li>
