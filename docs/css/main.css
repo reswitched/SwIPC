@@ -54,7 +54,8 @@ ol {
 }
 ol > li:before {
   content: "[" attr(value) "] ";
-  margin-left: -20px;
+  margin-left: -30px;
+  vertical-align: top;
 }
 
 ol > li > div {
@@ -65,4 +66,10 @@ ol > li > div {
   background-color: #47474e;
   display: inline-block;
   margin-right: 10px;
+}
+
+code {
+	background-color: #3A3A3F;
+	color: white;
+	display: inline-block;
 }
