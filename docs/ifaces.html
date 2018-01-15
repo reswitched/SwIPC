@@ -8198,10 +8198,45 @@
 						<ol>
 							<li value="0" id="nn::socket::sf::IClient(0)">Initialize(u64, u64, u64, u64, u64 pid, u64 transferMemorySize, pid, KObject) -&gt; u32 bsd_errno</li>
 							<li value="1" id="nn::socket::sf::IClient(1)">StartMonitoring(u64, pid)</li>
-							<li value="2" id="nn::socket::sf::IClient(2)">Socket(u32 domain, u32 type, u32 protocol) -&gt; (i32 ret, u32 bsd_errno)</li>
+							<li value="2" id="nn::socket::sf::IClient(2)">Socket(u32 domain, u32 type, u32 protocol) -&gt; (i32 ret, u32 bsd_errno)<div><p>Create an endpoint for communication</p>
+							</div></li>
 							<li value="3" id="nn::socket::sf::IClient(3)">SocketExempt(u32, u32, u32) -&gt; (i32 ret, u32 bsd_errno)</li>
 							<li value="4" id="nn::socket::sf::IClient(4)">Open(u32, buffer&lt;unknown, 0x21, 0&gt;) -&gt; (i32 ret, u32 bsd_errno)</li>
-							<li value="5" id="nn::socket::sf::IClient(5)">Select(u32 nfds, bytes&lt;0x18&gt; timeout, buffer&lt;fd_set, 0x21, 0&gt; readfds_in, buffer&lt;fd_set, 0x21, 0&gt; writefds_in, buffer&lt;fd_set, 0x21, 0&gt; errorfds_in) -&gt; (i32 ret, u32 bsd_errno, buffer&lt;fd_set, 0x22, 0&gt; readfds_out, buffer&lt;fd_set, 0x22, 0&gt; writefds_out, buffer&lt;fd_set, 0x22, 0&gt; errorfds_out)</li>
+							<li value="5" id="nn::socket::sf::IClient(5)">Select(u32 nfds, bytes&lt;0x18&gt; timeout, buffer&lt;fd_set, 0x21, 0&gt; readfds_in, buffer&lt;fd_set, 0x21, 0&gt; writefds_in, buffer&lt;fd_set, 0x21, 0&gt; errorfds_in) -&gt; (i32 ret, u32 bsd_errno, buffer&lt;fd_set, 0x22, 0&gt; readfds_out, buffer&lt;fd_set, 0x22, 0&gt; writefds_out, buffer&lt;fd_set, 0x22, 0&gt; errorfds_out)<div><p>Synchronous I/O multiplexing</p>
+							<p>The <code>select()</code> function shall examine the file descriptor sets whose
+							addresses are passed in the readfds, writefds, and errorfds parameters
+							to see whether some of their descriptors are ready for reading, are
+							ready for writing, or have an exceptional condition pending,
+							respectively.</p>
+							<p>Upon successful completion, the select() function shall fill the
+							readfds_out, writefds_out and errorfds_out to indicate which file
+							descriptors are ready for reading, ready for writing, or have an error
+							condition pending, respectively, and shall return the total number of
+							ready descriptors in all the output sets. For each file descriptors less
+							than nfds, the corresponding bit shall be set on successful completion
+							if it was set on input and the associated condition is true for that
+							descriptor.</p>
+							<p>If none of the selected descriptors are ready for the requested
+							operation, the select() function shall block until at least one of the
+							requested operations becomes ready or until the timeout occurs. The
+							timeout parameter controls how long the select() function shall take
+							before timing out. It specifies a maximum interval to wait for the
+							selection to complete. If the specified time interval expires without
+							any requested operation becoming ready, the function shall return.</p>
+							<h1>Arguments:</h1>
+							<ul>
+							<li>nfds:	Specifies the range of descriptors to be tested. The first
+							nfds descriptors shall be checked in each set; that is, the
+							descriptors from zero through nfds-1 in the descriptor sets
+							shall be examined.</li>
+							<li>readfds_in:	Specifies the file descriptors to be checked for
+							being ready to read.</li>
+							<li>writefds_in	Specifies the file descriptors to be checked for
+							being ready to write.</li>
+							<li>errorfds_in	Specifies the file descriptors to be checked for
+							error conditions pending.</li>
+							</ul>
+							</div></li>
 							<li value="6" id="nn::socket::sf::IClient(6)">Poll(u32, u32, buffer&lt;unknown, 0x21, 0&gt;) -&gt; (i32 ret, u32 bsd_errno, buffer&lt;unknown, 0x22, 0&gt;)</li>
 							<li value="7" id="nn::socket::sf::IClient(7)">Sysctl(buffer&lt;unknown, 0x21, 0&gt;, buffer&lt;unknown, 0x21, 0&gt;) -&gt; (i32 ret, u32 bsd_errno, u32, buffer&lt;unknown, 0x22, 0&gt;)</li>
 							<li value="8" id="nn::socket::sf::IClient(8)">Recv(u32 socket, u32 flags) -&gt; (i32 ret, u32 bsd_errno, buffer&lt;i8, 0x22, 0&gt; message)</li>

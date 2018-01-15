@@ -57,6 +57,10 @@ ol > li:before {
   margin-left: -20px;
 }
 
+ol > li > div {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
 .progress {
   background-color: #47474e;
   display: inline-block;

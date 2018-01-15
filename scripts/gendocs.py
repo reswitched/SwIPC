@@ -1,6 +1,7 @@
 import sys
 sys.path.append('.')
 import idparser
+import CommonMark
 
 class Multifile(object):
 	def __init__(self, *backing):
@@ -261,7 +262,7 @@ for name, cmds in sorted(ifaces.items(), key=lambda x: x[0]):
 		nfp += 2
 		for cname, cmd in sorted(cmds.items(), key=lambda x: x[1]['cmdId']):
 			cdef = '%s(%s)%s' % (cname, format(cmd['inputs']), ' -&gt; %s' % format(cmd['outputs'], output=True) if len(cmd['outputs']) != 0 else '')
-			print >>nfp, '<li value="%i" id="%s">%s</li>' % (cmd['cmdId'], '%s(%i)' % (name, cmd['cmdId']), cdef)
+			print >>nfp, '<li value="%i" id="%s">%s%s</li>' % (cmd['cmdId'], '%s(%i)' % (name, cmd['cmdId']), cdef, ("<div>%s</div>" % CommonMark.commonmark(cmd['doc'])) if cmd['doc'] != "" else "")
 		nfp -= 2
 		print >>nfp, '\t</ol>'
 		print >>nfp, '</li>'
