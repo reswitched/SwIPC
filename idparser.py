@@ -26,7 +26,11 @@ name = /[a-zA-Z_][a-zA-Z0-9_:]*/ ;
 sname = /[a-zA-Z_][a-zA-Z0-9_:\-]*/ ;
 serviceNameList = @:','.{ sname } ;
 template = '<' @:','.{ expression } '>' ;
-type = name:name template:[ template ] ;
+structField = type [ name ] ';' ;
+type =
+    | 'struct' '{' structFields:{ structField }+ '}'
+    | name:name template:[ template ]
+    ;
 
 typeDef = 'type' name:name '=' type:type ';' ;
 
@@ -50,13 +54,16 @@ class Semantics(object):
 		return [ast if isinstance(ast, list) else [ast, None]]
 
 def parseType(type):
-	if not isinstance(type, tatsu.ast.AST) or 'template' not in type:
+	if not isinstance(type, tatsu.ast.AST) or 'template' not in type or 'structFields' not in type:
 		return type
-	name, template = type['name'], type['template']
-	if template is None:
-		return [name]
-	else:
+	assert(not(type['template'] is not None and type['structFields'] is not None))
+	name, template, structFields = type['name'], type['template'], type['structFields']
+	if template is not None:
 		return [name] + map(parseType, template)
+	elif structFields is not None:
+		return ["struct"] + map(lambda x: [x[1], parseType(x[0])], structFields)
+	else:
+		return [name]
 
 def parse(data):
 	ast = tatsu.parse(grammar, data, semantics=Semantics(), eol_comments_re=r'\/\/.*?$')

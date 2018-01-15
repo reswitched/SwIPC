@@ -70,6 +70,8 @@ def format(elems, output=False):
 			ret = 'align&lt;%s, %s&gt;' % (emitInt(elem[1]), sub((None, elem[2])))
 		elif elem[0] == 'bytes':
 			ret = S('bytes<%s>' % emitInt(elem[1]))
+		elif elem[0] == 'struct':
+			ret = 'struct'
 		elif elem[0] in types:
 			ret = '<a href="types.html#%s">%s</a>' % (S(elem[0]), S(elem[0]))
 		else:

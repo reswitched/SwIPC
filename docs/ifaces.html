@@ -8202,7 +8202,7 @@
 							</div></li>
 							<li value="3" id="nn::socket::sf::IClient(3)">SocketExempt(u32, u32, u32) -&gt; (i32 ret, u32 bsd_errno)</li>
 							<li value="4" id="nn::socket::sf::IClient(4)">Open(u32, buffer&lt;unknown, 0x21, 0&gt;) -&gt; (i32 ret, u32 bsd_errno)</li>
-							<li value="5" id="nn::socket::sf::IClient(5)">Select(u32 nfds, bytes&lt;0x18&gt; timeout, buffer&lt;fd_set, 0x21, 0&gt; readfds_in, buffer&lt;fd_set, 0x21, 0&gt; writefds_in, buffer&lt;fd_set, 0x21, 0&gt; errorfds_in) -&gt; (i32 ret, u32 bsd_errno, buffer&lt;fd_set, 0x22, 0&gt; readfds_out, buffer&lt;fd_set, 0x22, 0&gt; writefds_out, buffer&lt;fd_set, 0x22, 0&gt; errorfds_out)<div><p>Synchronous I/O multiplexing</p>
+							<li value="5" id="nn::socket::sf::IClient(5)">Select(u32 nfds, <a href="types.html#timeout">timeout</a> timeout, buffer&lt;fd_set, 0x21, 0&gt; readfds_in, buffer&lt;fd_set, 0x21, 0&gt; writefds_in, buffer&lt;fd_set, 0x21, 0&gt; errorfds_in) -&gt; (i32 ret, u32 bsd_errno, buffer&lt;fd_set, 0x22, 0&gt; readfds_out, buffer&lt;fd_set, 0x22, 0&gt; writefds_out, buffer&lt;fd_set, 0x22, 0&gt; errorfds_out)<div><p>Synchronous I/O multiplexing</p>
 							<p>The <code>select()</code> function shall examine the file descriptor sets whose
 							addresses are passed in the readfds, writefds, and errorfds parameters
 							to see whether some of their descriptors are ready for reading, are

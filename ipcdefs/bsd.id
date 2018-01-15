@@ -1,3 +1,9 @@
+type timeout = struct {
+	u64 sec;
+	u64 usec;
+	u64 off;
+};
+
 interface nn::socket::sf::IClient is bsd:u, bsd:s {
 	[0] Initialize(u64, u64, u64, u64, u64 pid, u64 transferMemorySize, pid, KObject) -> u32 bsd_errno;
 	[1] StartMonitoring(u64, pid);
@@ -42,7 +48,7 @@ interface nn::socket::sf::IClient is bsd:u, bsd:s {
 	#				being ready to write.
 	# - errorfds_in	Specifies the file descriptors to be checked for
 	#				error conditions pending.
-	[5] Select(u32 nfds, bytes<0x18> timeout, buffer<fd_set, 0x21, 0> readfds_in, buffer<fd_set, 0x21, 0> writefds_in, buffer<fd_set, 0x21, 0> errorfds_in) -> (i32 ret, u32 bsd_errno, buffer<fd_set, 0x22, 0> readfds_out, buffer<fd_set, 0x22, 0> writefds_out, buffer<fd_set, 0x22, 0> errorfds_out);
+	[5] Select(u32 nfds, timeout timeout, buffer<fd_set, 0x21, 0> readfds_in, buffer<fd_set, 0x21, 0> writefds_in, buffer<fd_set, 0x21, 0> errorfds_in) -> (i32 ret, u32 bsd_errno, buffer<fd_set, 0x22, 0> readfds_out, buffer<fd_set, 0x22, 0> writefds_out, buffer<fd_set, 0x22, 0> errorfds_out);
 	[6] Poll(u32, u32, buffer<unknown, 0x21, 0>) -> (i32 ret, u32 bsd_errno, buffer<unknown, 0x22, 0>);
 	[7] Sysctl(buffer<unknown, 0x21, 0>, buffer<unknown, 0x21, 0>) -> (i32 ret, u32 bsd_errno, u32, buffer<unknown, 0x22, 0>);
 	[8] Recv(u32 socket, u32 flags) -> (i32 ret, u32 bsd_errno, buffer<i8, 0x22, 0> message);
