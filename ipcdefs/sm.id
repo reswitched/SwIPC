@@ -11,11 +11,11 @@ interface nn::sm::detail::IUserInterface is sm: {
 	[0] Initialize(pid, u64 reserved);
 	# Returns a handle to the given service. IPC messages may be sent to this
 	# handle through `svcSendSyncRequest`.
-	[1] GetService(ServiceName name) -> object<IPipe>;
+	[1] GetService(ServiceName name) -> KObject<move, session>;
 	# Registers a service with the given name. The user can use
 	# `svcAcceptSession` on the returned handle to get a new Session handle, and
 	# use `svcReplyAndReceive` on those handles to reply to IPC requests.
-	[2] RegisterService(ServiceName name, u8, u32 maxHandles) -> object<NPort>;
+	[2] RegisterService(ServiceName name, u8, u32 maxHandles) -> KObject<move, port>;
 	# Unregisters the given service. Future `GetService` call will not return
 	# this service anymore, but existing handles will stay alive.
 	[3] UnregisterService(ServiceName name);
