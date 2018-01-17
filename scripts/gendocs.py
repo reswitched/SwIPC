@@ -72,9 +72,7 @@ def format(elems, output=False):
 			ret = S('bytes<%s>' % emitInt(elem[1]))
 		elif elem[0] == 'struct':
 			ret = '<ul>'
-			print elem
 			for field in elem[1]:
-				print field
 				ret += '\t<li class="text-muted">%s %s</li>' % (sub((None, field[1])), field[0])
 			ret += '</ul>'
 		elif elem[0] in types:
@@ -128,7 +126,7 @@ for name, iface in ifaces.items():
 		count += 6
 		if cmd['doc'] != "":
 			complete += 6
-		if not cname.startswith('Unknown'):
+		elif not cname.startswith('Unknown'):
 			complete += 4
 		elif len(cmd['inputs']) or len(cmd['outputs']):
 			complete += 3
