@@ -22864,16 +22864,40 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="16" aria-valuemin="0" aria-valuemax="100" style="width: 16%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="122" aria-valuemin="0" aria-valuemax="100" style="width: 122%"></div></div>
+					</li>
+					<li class="list-group-item">
+						<h3>Returned by:</h3>
+						<ul>
+							<li><a href="ifaces.html#nn::usb::ds::IDsInterface(0)">nn::usb::ds::IDsInterface::GetDsEndpoint [0]</a></li>
+						</ul>
 					</li>
 					<li class="list-group-item">
 						<h3>Commands:</h3>
 						<ol>
 							<li class="command" value="0" id="nn::usb::ds::IDsEndpoint(0)">
-							
-							
-							  <code class="signature">[0] <a href="#nn::usb::ds::IDsEndpoint(0)">Unknown0</a>()</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::usb::ds::IDsEndpoint(0))"></input>
+							  <label for="showDocs(nn::usb::ds::IDsEndpoint(0))" class="showDocsLabel"></label>
+							  <code class="signature">[0] <a href="#nn::usb::ds::IDsEndpoint(0)">PostBufferAsync</a>(u32 size, u64 buffer) -&gt; u32 urbId</code>
+							  <div class="docs"><p>The output urbId can be used while parsing the output of
+							<a href="#nn::usb::ds::IDsEndpoint(3)">#GetReportData</a>, after waiting for the
+							CompletionEvent to be signaled.</p>
+							<p>The buffer address must be 0x10000-byte aligned. The input size
+							doesn't matter.</p>
+							<p>Used for data-transfer with input/output endpoints.</p>
+							<p>The user-process must flush dcache for the buffer before using this
+							command.</p>
+							<p>When sending data where size is larger than <code>wMaxPacketSize</code>, it will
+							automatically send multiple USB packets where last_packet_size = remaining
+							size. Every <code>wMaxPacketSize</code>-byte is a different packet. This only occurs
+							in some cases. When <code>size</code> is <code>~0x1000000</code>(exact size unknown),
+							Switch-side silently hangs, while host-side will timeout (no traffic on
+							USB bus indicating failure).</p>
+							<p>For receiving data, if <code>size</code> is less than {actual received USB packet
+							size}, the rest of the packet will be discarded. Later PostBufferAsync
+							cmd(s) will only return data from new packets, not the remainder of the
+							earlier packet(s).</p>
+							</div>
 							</li>
 							<li class="command" value="1" id="nn::usb::ds::IDsEndpoint(1)">
 							
@@ -22882,27 +22906,37 @@
 							
 							</li>
 							<li class="command" value="2" id="nn::usb::ds::IDsEndpoint(2)">
-							
-							
-							  <code class="signature">[2] <a href="#nn::usb::ds::IDsEndpoint(2)">Unknown2</a>()</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::usb::ds::IDsEndpoint(2))"></input>
+							  <label for="showDocs(nn::usb::ds::IDsEndpoint(2))" class="showDocsLabel"></label>
+							  <code class="signature">[2] <a href="#nn::usb::ds::IDsEndpoint(2)">GetCompletionEvent</a>() -&gt; KObject</code>
+							  <div class="docs"><p>Returns an event handle for polling the completion of
+							<a href="#nn::usb::ds::IDsEndpoint(0)">#PostBufferAsync</a>, even when it finished via
+							<a href="#nn::usb::ds::IDsEndpoint(4)">#Stall</a>.</p>
+							</div>
 							</li>
 							<li class="command" value="3" id="nn::usb::ds::IDsEndpoint(3)">
-							
-							
-							  <code class="signature">[3] <a href="#nn::usb::ds::IDsEndpoint(3)">Unknown3</a>()</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::usb::ds::IDsEndpoint(3))"></input>
+							  <label for="showDocs(nn::usb::ds::IDsEndpoint(3))" class="showDocsLabel"></label>
+							  <code class="signature">[3] <a href="#nn::usb::ds::IDsEndpoint(3)">GetReportData</a>() -&gt; (array&lt;<a href="types.html#usb_report_entry">usb_report_entry</a>, 8&gt; entries, u32 report_count)</code>
+							  <div class="docs"><p>Returns report data from the endpoint. Seems to be eventually loaded from
+							state, since this  doesn't trigger any USB bus activity. All-zero before
+							<a href="#nn::usb::ds::IDsEndpoint(0)">#PostBufferAsync</a> was used at least once.</p>
+							</div>
 							</li>
 							<li class="command" value="4" id="nn::usb::ds::IDsEndpoint(4)">
-							
-							
-							  <code class="signature">[4] <a href="#nn::usb::ds::IDsEndpoint(4)">Unknown4</a>()</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::usb::ds::IDsEndpoint(4))"></input>
+							  <label for="showDocs(nn::usb::ds::IDsEndpoint(4))" class="showDocsLabel"></label>
+							  <code class="signature">[4] <a href="#nn::usb::ds::IDsEndpoint(4)">Stall</a>()</code>
+							  <div class="docs"><p>Calls the same function used by <a href="nn::usb::ds::IDsInterface(11)">#StallCtrl</a>,
+							except this uses the endpoint associated with the current session.</p>
+							<p>Stops in-progress data-transfer done by
+							<a href="nn::usb::ds::IDsEndpoint(0)">#PostBufferAsync</a>.</p>
+							</div>
 							</li>
 							<li class="command" value="5" id="nn::usb::ds::IDsEndpoint(5)">
 							
 							
-							  <code class="signature">[5] <a href="#nn::usb::ds::IDsEndpoint(5)">Unknown5</a>()</code>
+							  <code class="signature">[5] <a href="#nn::usb::ds::IDsEndpoint(5)">Unknown5</a>(u8)</code>
 							
 							</li>
 						</ol>
@@ -22916,82 +22950,147 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="16" aria-valuemin="0" aria-valuemax="100" style="width: 16%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="139" aria-valuemin="0" aria-valuemax="100" style="width: 139%"></div></div>
+					</li>
+					<li class="list-group-item">
+						<h3>Returned by:</h3>
+						<ul>
+							<li><a href="ifaces.html#nn::usb::ds::IDsService(2)">nn::usb::ds::IDsService::GetDsInterface [2]</a></li>
+						</ul>
 					</li>
 					<li class="list-group-item">
 						<h3>Commands:</h3>
 						<ol>
 							<li class="command" value="0" id="nn::usb::ds::IDsInterface(0)">
-							
-							
-							  <code class="signature">[0] <a href="#nn::usb::ds::IDsInterface(0)">Unknown0</a>()</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::usb::ds::IDsInterface(0))"></input>
+							  <label for="showDocs(nn::usb::ds::IDsInterface(0))" class="showDocsLabel"></label>
+							  <code class="signature">[0] <a href="#nn::usb::ds::IDsInterface(0)">GetDsEndpoint</a>(buffer&lt;<a href="types.html#usb_endpoint_descriptor">usb_endpoint_descriptor</a>, 5, 0&gt;) -&gt; object&lt;<a href="ifaces.html#nn::usb::ds::IDsEndpoint">nn::usb::ds::IDsEndpoint</a>&gt;</code>
+							  <div class="docs"><p>Manu uses this twice for getting two endpoints, with the following
+							0x7-byte buffer data:</p>
+							<ul>
+							<li>First endpoint: <code>07 05 80 02 00 02 00</code>
+							<ul>
+							<li>bLength = 7</li>
+							<li>bDescriptorType = LIBUSB_DT_ENDPOINT</li>
+							<li>bEndpointAddress = LIBUSB_ENDPOINT_IN</li>
+							<li>bmAttributes = LIBUSB_TRANSFER_TYPE_BULK</li>
+							<li>wMaxPacketSize = 0x200</li>
+							<li>bInterval = 0</li>
+							</ul>
+							</li>
+							<li>Second endpoint: Same as above except byte2 is 00 (bEndpointAddress
+							= LIBUSB_ENDPOINT_OUT)</li>
+							</ul>
+							<p>The structure matches libusb_endpoint_descriptor, with fields for
+							audio devices bRefresh and bSynchAddress removed.</p>
+							<ul>
+							<li>bLength must match 7</li>
+							<li>bDescriptorType must match 5</li>
+							<li>bEndpointAddress is only compared with 0x80 to determine whether to
+							user an input or output endpoint, the actual endpoint-number is
+							allocated automatically by checking state. Hence, all input
+							endpoints must use a bEndpointAddress == 0x80. Up to endpoint-number
+							0xF can be allocated for each endpoint-direction, for a total of 16
+							endpoints including control, and 15 for non-control endpoints
+							(<a href="#nn::usb::ds::IDsEndpoint">#IDsEndpoint</a> sessions for each
+							directions). This matches the Tegra maximum.</li>
+							</ul>
+							<p>From the Tegra datasheet: &quot;The maximum packet size supported on any
+							endpoint is 1024 bytes in high-speed mode, for both device and host
+							modes.&quot;</p>
+							</div>
 							</li>
 							<li class="command" value="1" id="nn::usb::ds::IDsInterface(1)">
-							
-							
-							  <code class="signature">[1] <a href="#nn::usb::ds::IDsInterface(1)">Unknown1</a>()</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::usb::ds::IDsInterface(1))"></input>
+							  <label for="showDocs(nn::usb::ds::IDsInterface(1))" class="showDocsLabel"></label>
+							  <code class="signature">[1] <a href="#nn::usb::ds::IDsInterface(1)">GetSetupEvent</a>() -&gt; KObject</code>
+							  <div class="docs"><p>Returns an event handle. Unknown what triggers signalling, not
+							signalled during interface-enable / device&lt;&gt;host USB-comms init.</p>
+							</div>
 							</li>
 							<li class="command" value="2" id="nn::usb::ds::IDsInterface(2)">
 							
 							
-							  <code class="signature">[2] <a href="#nn::usb::ds::IDsInterface(2)">Unknown2</a>()</code>
+							  <code class="signature">[2] <a href="#nn::usb::ds::IDsInterface(2)">Unknown2</a>(buffer&lt;unknown, 6, 0&gt;)</code>
 							
 							</li>
 							<li class="command" value="3" id="nn::usb::ds::IDsInterface(3)">
-							
-							
-							  <code class="signature">[3] <a href="#nn::usb::ds::IDsInterface(3)">Unknown3</a>()</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::usb::ds::IDsInterface(3))"></input>
+							  <label for="showDocs(nn::usb::ds::IDsInterface(3))" class="showDocsLabel"></label>
+							  <code class="signature">[3] <a href="#nn::usb::ds::IDsInterface(3)">EnableInterface</a>()</code>
+							  <div class="docs"><p>Enables the current interface.</p>
+							<p>Only one interface can be enabled at a time per bInterfaceNumber. When
+							bInterfaceNumber is auto-allocated (0x4) for
+							<a href="#nn::usb::ds::IDsInterface(0)">#GetDsEndpoint</a> this isn't an issue
+							since the final bInterfaceNumber will be unique.</p>
+							<p>Once enabled, the device/interface can then actually be used over USB.</p>
+							</div>
 							</li>
 							<li class="command" value="4" id="nn::usb::ds::IDsInterface(4)">
-							
-							
-							  <code class="signature">[4] <a href="#nn::usb::ds::IDsInterface(4)">Unknown4</a>()</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::usb::ds::IDsInterface(4))"></input>
+							  <label for="showDocs(nn::usb::ds::IDsInterface(4))" class="showDocsLabel"></label>
+							  <code class="signature">[4] <a href="#nn::usb::ds::IDsInterface(4)">DisableInterface</a>()</code>
+							  <div class="docs"><p>Disables the current interface</p>
+							</div>
 							</li>
 							<li class="command" value="5" id="nn::usb::ds::IDsInterface(5)">
-							
-							
-							  <code class="signature">[5] <a href="#nn::usb::ds::IDsInterface(5)">Unknown5</a>()</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::usb::ds::IDsInterface(5))"></input>
+							  <label for="showDocs(nn::usb::ds::IDsInterface(5))" class="showDocsLabel"></label>
+							  <code class="signature">[5] <a href="#nn::usb::ds::IDsInterface(5)">CtrlInPostBufferAsync</a>(u32 size, u64 buffer) -&gt; u32 urbId</code>
+							  <div class="docs"><p>Same as <a href="#nn::usb::ds::IDsEndpoint(0)">#PostBufferAsync</a>, except this
+							uses control input endpoint 0x80.</p>
+							</div>
 							</li>
 							<li class="command" value="6" id="nn::usb::ds::IDsInterface(6)">
-							
-							
-							  <code class="signature">[6] <a href="#nn::usb::ds::IDsInterface(6)">Unknown6</a>()</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::usb::ds::IDsInterface(6))"></input>
+							  <label for="showDocs(nn::usb::ds::IDsInterface(6))" class="showDocsLabel"></label>
+							  <code class="signature">[6] <a href="#nn::usb::ds::IDsInterface(6)">CtrlOutPostBufferAsync</a>(u32 size, u64 buffer) -&gt; u32 urbId</code>
+							  <div class="docs"><p>Same as <a href="#nn::usb::ds::IDsEndpoint(0)">#PostBufferAsync</a>, except this
+							uses control output endpoint 0x00.</p>
+							</div>
 							</li>
 							<li class="command" value="7" id="nn::usb::ds::IDsInterface(7)">
-							
-							
-							  <code class="signature">[7] <a href="#nn::usb::ds::IDsInterface(7)">Unknown7</a>()</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::usb::ds::IDsInterface(7))"></input>
+							  <label for="showDocs(nn::usb::ds::IDsInterface(7))" class="showDocsLabel"></label>
+							  <code class="signature">[7] <a href="#nn::usb::ds::IDsInterface(7)">GetCtrlInCompletionEvent</a>() -&gt; KObject</code>
+							  <div class="docs"><p>Returns an event handle for polling the completion of input control
+							commands. Same as <a href="#nn::usb::ds::IDsEndpoint(2)">#GetCompletionEvent</a>,
+							except this uses control input endpoint 0x80.</p>
+							</div>
 							</li>
 							<li class="command" value="8" id="nn::usb::ds::IDsInterface(8)">
-							
-							
-							  <code class="signature">[8] <a href="#nn::usb::ds::IDsInterface(8)">Unknown8</a>()</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::usb::ds::IDsInterface(8))"></input>
+							  <label for="showDocs(nn::usb::ds::IDsInterface(8))" class="showDocsLabel"></label>
+							  <code class="signature">[8] <a href="#nn::usb::ds::IDsInterface(8)">GetCtrlInReportData</a>() -&gt; bytes&lt;0x84&gt;</code>
+							  <div class="docs"><p>Same as <a href="#nn::usb::ds::IDsEndpoint(3)">#GetReportData</a>, except this
+							uses control input endpoint 0x80.</p>
+							</div>
 							</li>
 							<li class="command" value="9" id="nn::usb::ds::IDsInterface(9)">
-							
-							
-							  <code class="signature">[9] <a href="#nn::usb::ds::IDsInterface(9)">Unknown9</a>()</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::usb::ds::IDsInterface(9))"></input>
+							  <label for="showDocs(nn::usb::ds::IDsInterface(9))" class="showDocsLabel"></label>
+							  <code class="signature">[9] <a href="#nn::usb::ds::IDsInterface(9)">GetCtrlOutCompletionEvent</a>() -&gt; KObject</code>
+							  <div class="docs"><p>Returns an event handle for polling the completion of input control
+							commands. Same as <a href="#nn::usb::ds::IDsEndpoint(2)">#GetCompletionEvent</a>,
+							except this uses control output endpoint 0x00.</p>
+							</div>
 							</li>
 							<li class="command" value="10" id="nn::usb::ds::IDsInterface(10)">
-							
-							
-							  <code class="signature">[10] <a href="#nn::usb::ds::IDsInterface(10)">Unknown10</a>()</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::usb::ds::IDsInterface(10))"></input>
+							  <label for="showDocs(nn::usb::ds::IDsInterface(10))" class="showDocsLabel"></label>
+							  <code class="signature">[10] <a href="#nn::usb::ds::IDsInterface(10)">GetCtrlOutReportData</a>() -&gt; bytes&lt;0x84&gt;</code>
+							  <div class="docs"><p>Same as <a href="#nn::usb::ds::IDsEndpoint(3)">#GetReportData</a>, except this
+							uses control output endpoint 0x00.</p>
+							</div>
 							</li>
 							<li class="command" value="11" id="nn::usb::ds::IDsInterface(11)">
-							
-							
-							  <code class="signature">[11] <a href="#nn::usb::ds::IDsInterface(11)">Unknown11</a>()</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::usb::ds::IDsInterface(11))"></input>
+							  <label for="showDocs(nn::usb::ds::IDsInterface(11))" class="showDocsLabel"></label>
+							  <code class="signature">[11] <a href="#nn::usb::ds::IDsInterface(11)">StallCtrl</a>()</code>
+							  <div class="docs"><p>Calls a function with both control endpoints (0x80 and 0x00) with the
+							same function. From strings: &quot;m_pProtocol-&gt;Stall(0x80)&quot;
+							&quot;m_pProtocol-&gt;Stall(0x00)&quot;</p>
+							</div>
 							</li>
 						</ol>
 					</li>
@@ -23004,7 +23103,7 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="16" aria-valuemin="0" aria-valuemax="100" style="width: 16%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="144" aria-valuemin="0" aria-valuemax="100" style="width: 144%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
@@ -23016,39 +23115,67 @@
 						<h3>Commands:</h3>
 						<ol>
 							<li class="command" value="0" id="nn::usb::ds::IDsService(0)">
-							
-							
-							  <code class="signature">[0] <a href="#nn::usb::ds::IDsService(0)">Unknown0</a>()</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::usb::ds::IDsService(0))"></input>
+							  <label for="showDocs(nn::usb::ds::IDsService(0))" class="showDocsLabel"></label>
+							  <code class="signature">[0] <a href="#nn::usb::ds::IDsService(0)">BindDevice</a>(u32 complexId)</code>
+							  <div class="docs"><p>Manu sends 0x02.</p>
+							<p>Binding more than once with the current session is not allowed. Once
+							this command is used, the USB device will not be listed with <code>lsusb</code>
+							until <a href="#nn::usb::ds::IDsInterface(3)">#EnableInterface</a> is used.</p>
+							</div>
 							</li>
 							<li class="command" value="1" id="nn::usb::ds::IDsService(1)">
 							
 							
-							  <code class="signature">[1] <a href="#nn::usb::ds::IDsService(1)">Unknown1</a>()</code>
+							  <code class="signature">[1] <a href="#nn::usb::ds::IDsService(1)">BindClientProcess</a>()</code>
 							
 							</li>
 							<li class="command" value="2" id="nn::usb::ds::IDsService(2)">
-							
-							
-							  <code class="signature">[2] <a href="#nn::usb::ds::IDsService(2)">Unknown2</a>()</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::usb::ds::IDsService(2))"></input>
+							  <label for="showDocs(nn::usb::ds::IDsService(2))" class="showDocsLabel"></label>
+							  <code class="signature">[2] <a href="#nn::usb::ds::IDsService(2)">GetDsInterface</a>(buffer&lt;<a href="types.html#usb_interface_descriptor">usb_interface_descriptor</a>, 5, 0&gt;, buffer&lt;unknown, 5, 0&gt;) -&gt; object&lt;<a href="ifaces.html#nn::usb::ds::IDsInterface">nn::usb::ds::IDsInterface</a>&gt;</code>
+							  <div class="docs"><p>Manu sends a 0x09-byte command (e.g.: <code>09 04 04 00 00 FF FF FF 00</code>) in
+							the first buffer and a string (&quot;usb&quot;) in the second buffer.</p>
+							<p>When the strlen output for the second buffer is &gt;=0x40, size 0x40 is
+							used instead for copying the string. This is the interface name, it's
+							not sent over USB.</p>
+							<p>Returns an error when <a href="#nn::usb::ds::IDsService(0)">#BindDevice</a> wasn't
+							used.</p>
+							<p>Up to 4 interfaces can be used+enabled.</p>
+							</div>
 							</li>
 							<li class="command" value="3" id="nn::usb::ds::IDsService(3)">
-							
-							
-							  <code class="signature">[3] <a href="#nn::usb::ds::IDsService(3)">Unknown3</a>()</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::usb::ds::IDsService(3))"></input>
+							  <label for="showDocs(nn::usb::ds::IDsService(3))" class="showDocsLabel"></label>
+							  <code class="signature">[3] <a href="#nn::usb::ds::IDsService(3)">GetStateChangeEvent</a>() -&gt; KObject</code>
+							  <div class="docs"><p>Returns an event handle for when the state returned by
+							<a href="#nn::usb::ds::IDsService(4)">#GetChange</a> changes. Signalled when
+							Switch&lt;-&gt;host USB comms change between started/stopped. USB cable
+							connected/disconnected while at least 1 interface was enabled, or
+							interface enabled/disabled while the USB cable was connected which
+							then caused USB-comms state to change.</p>
+							</div>
 							</li>
 							<li class="command" value="4" id="nn::usb::ds::IDsService(4)">
-							
-							
-							  <code class="signature">[4] <a href="#nn::usb::ds::IDsService(4)">Unknown4</a>()</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::usb::ds::IDsService(4))"></input>
+							  <label for="showDocs(nn::usb::ds::IDsService(4))" class="showDocsLabel"></label>
+							  <code class="signature">[4] <a href="#nn::usb::ds::IDsService(4)">GetState</a>() -&gt; u32</code>
+							  <div class="docs"><p>Returns an error when <a href="#nn::usb::ds::IDsService(0)">#BindDevice</a> wasn't
+							used.</p>
+							<p>Returns the current state. Values:</p>
+							<ul>
+							<li>0: Initial state</li>
+							<li>6: Device init starting</li>
+							<li>3: {Initialization}, previous state is 6</li>
+							<li>4: {Initialization}, previous state is 3</li>
+							<li>5: Initialization done, data-transfer is now available.</li>
+							</ul>
+							</div>
 							</li>
 							<li class="command" value="5" id="nn::usb::ds::IDsService(5)">
 							
 							
-							  <code class="signature">[5] <a href="#nn::usb::ds::IDsService(5)">Unknown5</a>()</code>
+							  <code class="signature">[5] <a href="#nn::usb::ds::IDsService(5)">SetVidPidBcd</a>(buffer&lt;<a href="types.html#usb_descriptor_data">usb_descriptor_data</a>, 5, 0x66&gt; descriptor)</code>
 							
 							</li>
 						</ol>

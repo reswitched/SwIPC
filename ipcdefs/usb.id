@@ -1,0 +1,193 @@
+type usb_interface_descriptor = struct {
+	u8 bLength;
+	u8 bDescriptorType;
+	u8 bInterfaceNumber;
+	u8 bAlternateSetting;
+	u8 bNumEndpoints;
+	u8 bInterfaceClass;
+	u8 bInterfaceSubClass;
+	u8 bInterfaceProtocol;
+	u8 iInterface;
+};
+
+type usb_descriptor_data = struct {
+	u16 idVendor;
+	u16 idProduct;
+	u16 bcdDevice;
+	array<u8, 0x20> manufacturer;
+	array<u8, 0x20> product;
+	array<u8, 0x20> serialNumber;
+};
+
+type usb_endpoint_descriptor = struct {
+	u8 bLength;
+	u8 bDescriptorType;
+	u8 bEndpointAddress;
+	u8 bmAttributes;
+	u16 wMaxPacketSize;
+	u8 bInterval;
+};
+
+type usb_report_entry = struct {
+	u32 urbId;
+	u32 requestedSize;
+	u32 transferredSize;
+	u32 urbStatus;
+};
+
+interface nn::usb::ds::IDsService is usb:ds {
+	# Manu sends 0x02.
+	#
+	# Binding more than once with the current session is not allowed. Once
+	# this command is used, the USB device will not be listed with `lsusb`
+	# until [#EnableInterface](#nn::usb::ds::IDsInterface(3)) is used.
+	[0] BindDevice(u32 complexId);
+	[1] BindClientProcess();
+	# Manu sends a 0x09-byte command (e.g.: `09 04 04 00 00 FF FF FF 00`) in
+	# the first buffer and a string ("usb") in the second buffer.
+	#
+	# When the strlen output for the second buffer is >=0x40, size 0x40 is
+	# used instead for copying the string. This is the interface name, it's
+	# not sent over USB.
+	#
+	# Returns an error when [#BindDevice](#nn::usb::ds::IDsService(0)) wasn't
+	# used.
+	#
+	# Up to 4 interfaces can be used+enabled.
+	[2] GetDsInterface(buffer<usb_interface_descriptor, 5, 0>, buffer<unknown, 5, 0>) -> object<nn::usb::ds::IDsInterface>;
+	# Returns an event handle for when the state returned by
+	# [#GetChange](#nn::usb::ds::IDsService(4)) changes. Signalled when
+	# Switch<->host USB comms change between started/stopped. USB cable
+	# connected/disconnected while at least 1 interface was enabled, or
+	# interface enabled/disabled while the USB cable was connected which
+	# then caused USB-comms state to change.
+	[3] GetStateChangeEvent() -> KObject;
+	# Returns an error when [#BindDevice](#nn::usb::ds::IDsService(0)) wasn't
+	# used.
+	#
+	# Returns the current state. Values:
+	# - 0: Initial state
+	# - 6: Device init starting
+	# - 3: {Initialization}, previous state is 6
+	# - 4: {Initialization}, previous state is 3
+	# - 5: Initialization done, data-transfer is now available.
+	[4] GetState() -> u32;
+	// Only available on version 2.0.0+
+	[5] SetVidPidBcd(buffer<usb_descriptor_data, 5, 0x66> descriptor);
+}
+
+interface nn::usb::ds::IDsInterface {
+	# Manu uses this twice for getting two endpoints, with the following
+	# 0x7-byte buffer data:
+	# - First endpoint: `07 05 80 02 00 02 00`
+	#   - bLength = 7
+	#   - bDescriptorType = LIBUSB_DT_ENDPOINT
+	#   - bEndpointAddress = LIBUSB_ENDPOINT_IN
+	#   - bmAttributes = LIBUSB_TRANSFER_TYPE_BULK
+	#   - wMaxPacketSize = 0x200
+	#   - bInterval = 0
+	# - Second endpoint: Same as above except byte2 is 00 (bEndpointAddress
+	#   = LIBUSB_ENDPOINT_OUT)
+	#
+	# The structure matches libusb_endpoint_descriptor, with fields for
+	# audio devices bRefresh and bSynchAddress removed.
+	#
+	# - bLength must match 7
+	# - bDescriptorType must match 5
+	# - bEndpointAddress is only compared with 0x80 to determine whether to
+	#   user an input or output endpoint, the actual endpoint-number is
+	#   allocated automatically by checking state. Hence, all input
+	#   endpoints must use a bEndpointAddress == 0x80. Up to endpoint-number
+	#   0xF can be allocated for each endpoint-direction, for a total of 16
+	#   endpoints including control, and 15 for non-control endpoints
+	#   ([#IDsEndpoint](#nn::usb::ds::IDsEndpoint) sessions for each
+	#   directions). This matches the Tegra maximum.
+	#
+	# From the Tegra datasheet: "The maximum packet size supported on any
+	# endpoint is 1024 bytes in high-speed mode, for both device and host
+	# modes."
+	[0] GetDsEndpoint(buffer<usb_endpoint_descriptor, 5, 0>) -> object<nn::usb::ds::IDsEndpoint>;
+	# Returns an event handle. Unknown what triggers signalling, not
+	# signalled during interface-enable / device<>host USB-comms init.
+	[1] GetSetupEvent() -> KObject;
+	[2] Unknown2(buffer<unknown, 0x6, 0>);
+	# Enables the current interface.
+	#
+	# Only one interface can be enabled at a time per bInterfaceNumber. When
+	# bInterfaceNumber is auto-allocated (0x4) for
+	# [#GetDsEndpoint](#nn::usb::ds::IDsInterface(0)) this isn't an issue
+	# since the final bInterfaceNumber will be unique.
+	#
+	# Once enabled, the device/interface can then actually be used over USB.
+	[3] EnableInterface();
+	# Disables the current interface
+	[4] DisableInterface();
+	# Same as [#PostBufferAsync](#nn::usb::ds::IDsEndpoint(0)), except this
+	# uses control input endpoint 0x80.
+	[5] CtrlInPostBufferAsync(u32 size, u64 buffer) -> u32 urbId;
+	# Same as [#PostBufferAsync](#nn::usb::ds::IDsEndpoint(0)), except this
+	# uses control output endpoint 0x00.
+	[6] CtrlOutPostBufferAsync(u32 size, u64 buffer) -> u32 urbId;
+	# Returns an event handle for polling the completion of input control
+	# commands. Same as [#GetCompletionEvent](#nn::usb::ds::IDsEndpoint(2)),
+	# except this uses control input endpoint 0x80.
+	[7] GetCtrlInCompletionEvent() -> KObject;
+	# Same as [#GetReportData](#nn::usb::ds::IDsEndpoint(3)), except this
+	# uses control input endpoint 0x80.
+	[8] GetCtrlInReportData() -> bytes<0x84>;
+	# Returns an event handle for polling the completion of input control
+	# commands. Same as [#GetCompletionEvent](#nn::usb::ds::IDsEndpoint(2)),
+	# except this uses control output endpoint 0x00.
+	[9] GetCtrlOutCompletionEvent() -> KObject;
+	# Same as [#GetReportData](#nn::usb::ds::IDsEndpoint(3)), except this
+	# uses control output endpoint 0x00.
+	[10] GetCtrlOutReportData() -> bytes<0x84>;
+	# Calls a function with both control endpoints (0x80 and 0x00) with the
+	# same function. From strings: "m_pProtocol->Stall(0x80)"
+	# "m_pProtocol->Stall(0x00)"
+	[11] StallCtrl();
+}
+
+interface nn::usb::ds::IDsEndpoint {
+	# The output urbId can be used while parsing the output of
+	# [#GetReportData](#nn::usb::ds::IDsEndpoint(3)), after waiting for the
+	# CompletionEvent to be signaled.
+	#
+	# The buffer address must be 0x10000-byte aligned. The input size
+	# doesn't matter.
+	#
+	# Used for data-transfer with input/output endpoints.
+	#
+	# The user-process must flush dcache for the buffer before using this
+	# command.
+	#
+	# When sending data where size is larger than `wMaxPacketSize`, it will
+	# automatically send multiple USB packets where last_packet_size = remaining
+	# size. Every `wMaxPacketSize`-byte is a different packet. This only occurs
+	# in some cases. When `size` is `~0x1000000`(exact size unknown),
+	# Switch-side silently hangs, while host-side will timeout (no traffic on
+	# USB bus indicating failure).
+	#
+	# For receiving data, if `size` is less than {actual received USB packet
+	# size}, the rest of the packet will be discarded. Later PostBufferAsync
+	# cmd(s) will only return data from new packets, not the remainder of the
+	# earlier packet(s).
+	[0] PostBufferAsync(u32 size, u64 buffer) -> u32 urbId;
+	[1] Unknown1();
+	# Returns an event handle for polling the completion of
+	# [#PostBufferAsync](#nn::usb::ds::IDsEndpoint(0)), even when it finished via
+	# [#Stall](#nn::usb::ds::IDsEndpoint(4)).
+	[2] GetCompletionEvent() -> KObject;
+	# Returns report data from the endpoint. Seems to be eventually loaded from
+	# state, since this  doesn't trigger any USB bus activity. All-zero before
+	# [#PostBufferAsync](#nn::usb::ds::IDsEndpoint(0)) was used at least once.
+	[3] GetReportData() -> (array<usb_report_entry, 8> entries, u32 report_count);
+	# Calls the same function used by [#StallCtrl](nn::usb::ds::IDsInterface(11)),
+	# except this uses the endpoint associated with the current session.
+	#
+	# Stops in-progress data-transfer done by
+	# [#PostBufferAsync](nn::usb::ds::IDsEndpoint(0)).
+	[4] Stall();
+	[5] Unknown5(u8);
+}
+
