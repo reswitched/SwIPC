@@ -71,7 +71,12 @@ def format(elems, output=False):
 		elif elem[0] == 'bytes':
 			ret = S('bytes<%s>' % emitInt(elem[1]))
 		elif elem[0] == 'struct':
-			ret = 'struct'
+			ret = '<ul>'
+			print elem
+			for field in elem[1]:
+				print field
+				ret += '\t<li class="text-muted">%s %s</li>' % (sub((None, field[1])), field[0])
+			ret += '</ul>'
 		elif elem[0] in types:
 			ret = '<a href="types.html#%s">%s</a>' % (S(elem[0]), S(elem[0]))
 		else:
@@ -285,7 +290,9 @@ print >>tfp, '<br />'
 print >>tfp, '<ul class="list-group">'
 tfp += 1
 for name, type in sorted(types.items(), key=lambda x: x[0]):
-	print >>tfp, '<li class="list-group-item" id="%s"><a href="#%s">+</a> %s <small class="text-muted">%s</small></li>' % (name, name, name, format([(None, type)]))
+	print >>tfp, '<li class="list-group-item" id="%s">' % name
+	print >>tfp, '\t<a href="#%s">+</a> %s <small class="text-muted">%s</small>' % (name, name, format([(None, type)]))
+	print >>tfp, '</li>'
 tfp -= 1
 print >>tfp, '</ul>'
 

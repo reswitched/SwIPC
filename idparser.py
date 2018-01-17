@@ -61,7 +61,7 @@ def parseType(type):
 	if template is not None:
 		return [name] + map(parseType, template)
 	elif structFields is not None:
-		return ["struct"] + map(lambda x: [x[1], parseType(x[0])], structFields)
+		return ["struct"] + [map(lambda x: [x[1], parseType(x[0])], structFields)]
 	else:
 		return [name]
 
