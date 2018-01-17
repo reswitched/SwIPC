@@ -38,7 +38,8 @@ interface = doc:{ comment }* 'interface' name:name [ 'is' serviceNames:serviceNa
 namedTuple = '(' @:','.{ type [ name ] } ')' ;
 namedType = type [ name ] ;
 comment = '#' line:/[^\\n]*/;
-funcDef = doc:{ comment }* '[' cmdId:number ']' name:name inputs:namedTuple [ '->' outputs:( namedType | namedTuple ) ] ';' ;
+range = [start:(number '.' number '.' number)] '-' [end:(number '.' number '.' number)];
+funcDef = doc:{ comment }* '[' cmdId:number [',' versionRange:range] ']' name:name inputs:namedTuple [ '->' outputs:( namedType | namedTuple ) ] ';' ;
 '''
 
 class Semantics(object):
@@ -93,6 +94,15 @@ def parse(data):
 			assert func['name'] not in iface
 			iface['cmds'][func['name']] = fdef = {}
 			fdef['cmdId'] = func['cmdId']
+			if func['versionRange'] is None:
+				fdef['versionAdded'] = '1.0.0'
+				fdef['versionRemoved'] = None
+			else:
+				fdef['versionAdded'] = func['versionRange']['start']
+				fdef['versionRemoved'] = func['versionRange']['end']
+			if fdef['versionAdded'] is None:
+				fdef['versionAdded'] = '1.0.0'
+
 			fdef['doc'] = "\n".join(map(lambda x: x.line, func['doc']))
 			fdef['inputs'] = [(name, parseType(type)) for type, name in func['inputs']]
 			if func['outputs'] is None:
