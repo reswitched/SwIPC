@@ -34,7 +34,7 @@ type =
 
 typeDef = 'type' name:name '=' type:type ';' ;
 
-interface = 'interface' name:name [ 'is' serviceNames:serviceNameList ] '{' functions:{ funcDef }* '}' ;
+interface = doc:{ comment }* 'interface' name:name [ 'is' serviceNames:serviceNameList ] '{' functions:{ funcDef }* '}' ;
 namedTuple = '(' @:','.{ type [ name ] } ')' ;
 namedType = type [ name ] ;
 comment = '#' line:/[^\\n]*/;
@@ -81,17 +81,17 @@ def parse(data):
 		if 'functions' not in elem:
 			continue
 		#assert elem['name'] not in ifaces
-		ifaces[elem['name']] = iface = {}
+		ifaces[elem['name']] = iface = { "doc": "", "cmds": {}}
 		if elem['serviceNames']:
 			services[elem['name']] = list(elem['serviceNames'])
-
+		iface['doc'] = "\n".join(map(lambda x: x.line, elem['doc']))
 		for func in elem['functions']:
 			if func['name'] in iface:
 				print >>sys.stderr, 'Duplicate function %s in %s' % (func['name'], elem['name'])
 				sys.exit(1)
 
 			assert func['name'] not in iface
-			iface[func['name']] = fdef = {}
+			iface['cmds'][func['name']] = fdef = {}
 			fdef['cmdId'] = func['cmdId']
 			fdef['doc'] = "\n".join(map(lambda x: x.line, func['doc']))
 			fdef['inputs'] = [(name, parseType(type)) for type, name in func['inputs']]

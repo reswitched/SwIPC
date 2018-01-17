@@ -35,6 +35,14 @@ type usb_report_entry = struct {
 	u32 urbStatus;
 };
 
+# Used for Switch<>PC USB comms, aka Switch-as-device. This seems to only be
+# usable in handheld-mode, with the Switch directly connected to a host via an
+# USB cable, not(?) in docked-mode. This service is used during factory setup by
+# manu.
+#
+# This service session is used as an IPC domain by manu. All of these
+# {get-session} commands also return an output u8 and the u32 <domainID>, for
+# using those sessions as domains.
 interface nn::usb::ds::IDsService is usb:ds {
 	# Manu sends 0x02.
 	#
