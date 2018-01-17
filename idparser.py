@@ -26,14 +26,19 @@ name = /[a-zA-Z_][a-zA-Z0-9_:]*/ ;
 sname = /[a-zA-Z_][a-zA-Z0-9_:\-]*/ ;
 serviceNameList = @:','.{ sname } ;
 template = '<' @:','.{ expression } '>' ;
-type = name:name template:[ template ] ;
+structField = type [ name ] ';' ;
+type =
+    | 'struct' '{' structFields:{ structField }+ '}'
+    | name:name template:[ template ]
+    ;
 
 typeDef = 'type' name:name '=' type:type ';' ;
 
 interface = 'interface' name:name [ 'is' serviceNames:serviceNameList ] '{' functions:{ funcDef }* '}' ;
 namedTuple = '(' @:','.{ type [ name ] } ')' ;
 namedType = type [ name ] ;
-funcDef = '[' cmdId:number ']' name:name inputs:namedTuple [ '->' outputs:( namedType | namedTuple ) ] ';' ;
+comment = '#' line:/[^\\n]*/;
+funcDef = doc:{ comment }* '[' cmdId:number ']' name:name inputs:namedTuple [ '->' outputs:( namedType | namedTuple ) ] ';' ;
 '''
 
 class Semantics(object):
@@ -49,13 +54,16 @@ class Semantics(object):
 		return [ast if isinstance(ast, list) else [ast, None]]
 
 def parseType(type):
-	if not isinstance(type, tatsu.ast.AST) or 'template' not in type:
+	if not isinstance(type, tatsu.ast.AST) or 'template' not in type or 'structFields' not in type:
 		return type
-	name, template = type['name'], type['template']
-	if template is None:
-		return [name]
-	else:
+	assert(not(type['template'] is not None and type['structFields'] is not None))
+	name, template, structFields = type['name'], type['template'], type['structFields']
+	if template is not None:
 		return [name] + map(parseType, template)
+	elif structFields is not None:
+		return ["struct"] + map(lambda x: [x[1], parseType(x[0])], structFields)
+	else:
+		return [name]
 
 def parse(data):
 	ast = tatsu.parse(grammar, data, semantics=Semantics(), eol_comments_re=r'\/\/.*?$')
@@ -85,6 +93,7 @@ def parse(data):
 			assert func['name'] not in iface
 			iface[func['name']] = fdef = {}
 			fdef['cmdId'] = func['cmdId']
+			fdef['doc'] = "\n".join(map(lambda x: x.line, func['doc']))
 			fdef['inputs'] = [(name, parseType(type)) for type, name in func['inputs']]
 			if func['outputs'] is None:
 				fdef['outputs'] = []

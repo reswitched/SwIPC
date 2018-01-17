@@ -1,6 +1,7 @@
 import sys
 sys.path.append('.')
 import idparser
+import CommonMark
 
 class Multifile(object):
 	def __init__(self, *backing):
@@ -69,6 +70,8 @@ def format(elems, output=False):
 			ret = 'align&lt;%s, %s&gt;' % (emitInt(elem[1]), sub((None, elem[2])))
 		elif elem[0] == 'bytes':
 			ret = S('bytes<%s>' % emitInt(elem[1]))
+		elif elem[0] == 'struct':
+			ret = 'struct'
 		elif elem[0] in types:
 			ret = '<a href="types.html#%s">%s</a>' % (S(elem[0]), S(elem[0]))
 		else:
@@ -115,14 +118,14 @@ for name, cmds in ifaces.items():
 	complete = 0
 	count = 0
 	for cname, cmd in cmds.items():
+		count += 6
+		if cmd['doc'] != "":
+			complete += 6
 		if not cname.startswith('Unknown'):
-			count += 4
 			complete += 4
 		elif len(cmd['inputs']) or len(cmd['outputs']):
-			count += 4
 			complete += 3
 		else:
-			count += 4
 			complete += 1
 	if count == 0:
 		count = 1
@@ -260,8 +263,14 @@ for name, cmds in sorted(ifaces.items(), key=lambda x: x[0]):
 		print >>nfp, '\t<ol>'
 		nfp += 2
 		for cname, cmd in sorted(cmds.items(), key=lambda x: x[1]['cmdId']):
-			cdef = '%s(%s)%s' % (cname, format(cmd['inputs']), ' -&gt; %s' % format(cmd['outputs'], output=True) if len(cmd['outputs']) != 0 else '')
-			print >>nfp, '<li value="%i" id="%s">%s</li>' % (cmd['cmdId'], '%s(%i)' % (name, cmd['cmdId']), cdef)
+			urlId = "%s(%i)" % (name, cmd['cmdId'])
+			cdef = '<a href="#%s">%s</a>(%s)%s' % (urlId, cname, format(cmd['inputs']), ' -&gt; %s' % format(cmd['outputs'], output=True) if len(cmd['outputs']) != 0 else '')
+			print >>nfp,  '<li class="command" value="%i" id="%s">' % (cmd['cmdId'], urlId)
+			print >>nfp, ('  <input type="checkbox" class="showDocs" id="showDocs(%s)"></input>' % (urlId)) if cmd['doc'] != "" else ""
+			print >>nfp, ('  <label for="showDocs(%s)" class="showDocsLabel"></label>' % (urlId)) if cmd['doc'] != "" else ""
+			print >>nfp,  '  <code class="signature">[%i] %s</code>' % (cmd['cmdId'], cdef)
+			print >>nfp, ('  <div class="docs">%s</div>' % CommonMark.commonmark(cmd['doc'])) if cmd['doc'] != "" else ""
+			print >>nfp,  '</li>'
 		nfp -= 2
 		print >>nfp, '\t</ol>'
 		print >>nfp, '</li>'

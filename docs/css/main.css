@@ -52,13 +52,74 @@ a:hover, a:active{
 ol {
    list-style-type: none;
 }
-ol > li:before {
-  content: "[" attr(value) "] ";
-  margin-left: -20px;
-}
 
+ol > li > div {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
 .progress {
   background-color: #47474e;
   display: inline-block;
   margin-right: 10px;
+}
+
+code, .docs pre {
+	background-color: #3A3A3F;
+	color: white;
+        -webkit-box-shadow: 0px 0px 1px 0px inset rgba(0,0,0,0.15);
+        -moz-box-shadow: 0px 0px 1px 0px inset rgba(0,0,0,0.15);
+        box-shadow: 0px 0px 1px 0px inset rgba(0,0,0,0.15);
+}
+
+code.signature {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.showDocs {
+	display: none;
+}
+
+.showDocs ~ .showDocsLabel {
+	float: left;
+	margin-left: -35px;
+	margin-right: 5px;
+	vertical-align: top;
+	/* So [+] and [-] take the same space */
+	font-family: monospace;
+}
+
+.showDocs ~ .showDocsLabel:before {
+	content: "[+]";
+	cursor: pointer;
+	color: #19cf9b;
+}
+
+.showDocs:checked ~ .showDocsLabel:before {
+	content: "[-]";
+}
+
+.showDocs:not(:checked) ~ .docs {
+	display: none;
+}
+
+.card {
+    background-color: transparent;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+}
+
+.docs code { /* default padding is awkwardly wide for inline code blocks */
+    padding: .2rem .2rem;
+    background-color: #3a3a3f99;
+}
+
+.docs pre {
+    border-radius: .2rem;
+}
+
+.docs pre code {
+    display: block;
+    padding: .4rem .4rem;
 }
