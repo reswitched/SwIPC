@@ -21030,7 +21030,7 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="122" aria-valuemin="0" aria-valuemax="100" style="width: 122%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
@@ -21058,7 +21058,7 @@
 							<li class="command" value="1" id="nn::sm::detail::IUserInterface(1)">
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::sm::detail::IUserInterface(1))"></input>
 							  <label for="showDocs(nn::sm::detail::IUserInterface(1))" class="showDocsLabel"></label>
-							  <code class="signature">[1] <a href="#nn::sm::detail::IUserInterface(1)">GetService</a>(<a href="types.html#ServiceName">ServiceName</a> name) -&gt; IPipe</code>
+							  <code class="signature">[1] <a href="#nn::sm::detail::IUserInterface(1)">GetService</a>(<a href="types.html#ServiceName">ServiceName</a> name) -&gt; KObject&lt;move, session&gt;</code>
 							  <div class="docs"><p>Returns a handle to the given service. IPC messages may be sent to this
 							handle through <code>svcSendSyncRequest</code>.</p>
 							</div>
@@ -21066,7 +21066,7 @@
 							<li class="command" value="2" id="nn::sm::detail::IUserInterface(2)">
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::sm::detail::IUserInterface(2))"></input>
 							  <label for="showDocs(nn::sm::detail::IUserInterface(2))" class="showDocsLabel"></label>
-							  <code class="signature">[2] <a href="#nn::sm::detail::IUserInterface(2)">RegisterService</a>(<a href="types.html#ServiceName">ServiceName</a> name, u8, u32 maxHandles) -&gt; NPort</code>
+							  <code class="signature">[2] <a href="#nn::sm::detail::IUserInterface(2)">RegisterService</a>(<a href="types.html#ServiceName">ServiceName</a> name, u8, u32 maxHandles) -&gt; KObject&lt;move, port&gt;</code>
 							  <div class="docs"><p>Registers a service with the given name. The user can use
 							<code>svcAcceptSession</code> on the returned handle to get a new Session handle, and
 							use <code>svcReplyAndReceive</code> on those handles to reply to IPC requests.</p>
@@ -21173,7 +21173,7 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100" style="width: 73%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100" style="width: 68%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
@@ -21188,7 +21188,7 @@
 							<li class="command" value="0" id="nn::socket::sf::IClient(0)">
 							
 							
-							  <code class="signature">[0] <a href="#nn::socket::sf::IClient(0)">Initialize</a>(u32, u32, u32, u32, u32, u32, u32, u32, u64 pid, u64 transferMemorySize, pid, KObject) -&gt; u32 bsd_errno</code>
+							  <code class="signature">[0] <a href="#nn::socket::sf::IClient(0)">Initialize</a>(u32, u32, u32, u32, u32, u32, u32, u32, u64 pid, u64 transferMemorySize, KObject&lt;copy, transfer_memory&gt;, pid) -&gt; u32 bsd_errno</code>
 							
 							</li>
 							<li class="command" value="1" id="nn::socket::sf::IClient(1)">
@@ -22864,7 +22864,7 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="122" aria-valuemin="0" aria-valuemax="100" style="width: 122%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 77%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Returned by:</h3>
@@ -22908,7 +22908,7 @@
 							<li class="command" value="2" id="nn::usb::ds::IDsEndpoint(2)">
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::usb::ds::IDsEndpoint(2))"></input>
 							  <label for="showDocs(nn::usb::ds::IDsEndpoint(2))" class="showDocsLabel"></label>
-							  <code class="signature">[2] <a href="#nn::usb::ds::IDsEndpoint(2)">GetCompletionEvent</a>() -&gt; KObject</code>
+							  <code class="signature">[2] <a href="#nn::usb::ds::IDsEndpoint(2)">GetCompletionEvent</a>() -&gt; KObject&lt;unknown, event&gt;</code>
 							  <div class="docs"><p>Returns an event handle for polling the completion of
 							<a href="#nn::usb::ds::IDsEndpoint(0)">#PostBufferAsync</a>, even when it finished via
 							<a href="#nn::usb::ds::IDsEndpoint(4)">#Stall</a>.</p>
@@ -22950,7 +22950,7 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="139" aria-valuemin="0" aria-valuemax="100" style="width: 139%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100" style="width: 86%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Returned by:</h3>
@@ -23003,7 +23003,7 @@
 							<li class="command" value="1" id="nn::usb::ds::IDsInterface(1)">
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::usb::ds::IDsInterface(1))"></input>
 							  <label for="showDocs(nn::usb::ds::IDsInterface(1))" class="showDocsLabel"></label>
-							  <code class="signature">[1] <a href="#nn::usb::ds::IDsInterface(1)">GetSetupEvent</a>() -&gt; KObject</code>
+							  <code class="signature">[1] <a href="#nn::usb::ds::IDsInterface(1)">GetSetupEvent</a>() -&gt; KObject&lt;unknown, event&gt;</code>
 							  <div class="docs"><p>Returns an event handle. Unknown what triggers signalling, not
 							signalled during interface-enable / device&lt;&gt;host USB-comms init.</p>
 							</div>
@@ -23052,7 +23052,7 @@
 							<li class="command" value="7" id="nn::usb::ds::IDsInterface(7)">
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::usb::ds::IDsInterface(7))"></input>
 							  <label for="showDocs(nn::usb::ds::IDsInterface(7))" class="showDocsLabel"></label>
-							  <code class="signature">[7] <a href="#nn::usb::ds::IDsInterface(7)">GetCtrlInCompletionEvent</a>() -&gt; KObject</code>
+							  <code class="signature">[7] <a href="#nn::usb::ds::IDsInterface(7)">GetCtrlInCompletionEvent</a>() -&gt; KObject&lt;unknown, event&gt;</code>
 							  <div class="docs"><p>Returns an event handle for polling the completion of input control
 							commands. Same as <a href="#nn::usb::ds::IDsEndpoint(2)">#GetCompletionEvent</a>,
 							except this uses control input endpoint 0x80.</p>
@@ -23069,7 +23069,7 @@
 							<li class="command" value="9" id="nn::usb::ds::IDsInterface(9)">
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::usb::ds::IDsInterface(9))"></input>
 							  <label for="showDocs(nn::usb::ds::IDsInterface(9))" class="showDocsLabel"></label>
-							  <code class="signature">[9] <a href="#nn::usb::ds::IDsInterface(9)">GetCtrlOutCompletionEvent</a>() -&gt; KObject</code>
+							  <code class="signature">[9] <a href="#nn::usb::ds::IDsInterface(9)">GetCtrlOutCompletionEvent</a>() -&gt; KObject&lt;unknown, event&gt;</code>
 							  <div class="docs"><p>Returns an event handle for polling the completion of input control
 							commands. Same as <a href="#nn::usb::ds::IDsEndpoint(2)">#GetCompletionEvent</a>,
 							except this uses control output endpoint 0x00.</p>
@@ -23103,13 +23103,23 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="144" aria-valuemin="0" aria-valuemax="100" style="width: 144%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="91" aria-valuemin="0" aria-valuemax="100" style="width: 91%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
 						<ul>
 							<li>usb:ds</li>
 						</ul>
+					</li>
+					<li class="list-group-item">
+						<div class="docs"><p>Used for Switch&lt;&gt;PC USB comms, aka Switch-as-device. This seems to only be
+					usable in handheld-mode, with the Switch directly connected to a host via an
+					USB cable, not(?) in docked-mode. This service is used during factory setup by
+					manu.</p>
+					<p>This service session is used as an IPC domain by manu. All of these
+					{get-session} commands also return an output u8 and the u32 <domainID>, for
+					using those sessions as domains.</p>
+					</div>
 					</li>
 					<li class="list-group-item">
 						<h3>Commands:</h3>
@@ -23127,7 +23137,7 @@
 							<li class="command" value="1" id="nn::usb::ds::IDsService(1)">
 							
 							
-							  <code class="signature">[1] <a href="#nn::usb::ds::IDsService(1)">BindClientProcess</a>()</code>
+							  <code class="signature">[1] <a href="#nn::usb::ds::IDsService(1)">BindClientProcess</a>(KObject&lt;copy, process&gt;)</code>
 							
 							</li>
 							<li class="command" value="2" id="nn::usb::ds::IDsService(2)">
@@ -23147,7 +23157,7 @@
 							<li class="command" value="3" id="nn::usb::ds::IDsService(3)">
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::usb::ds::IDsService(3))"></input>
 							  <label for="showDocs(nn::usb::ds::IDsService(3))" class="showDocsLabel"></label>
-							  <code class="signature">[3] <a href="#nn::usb::ds::IDsService(3)">GetStateChangeEvent</a>() -&gt; KObject</code>
+							  <code class="signature">[3] <a href="#nn::usb::ds::IDsService(3)">GetStateChangeEvent</a>() -&gt; KObject&lt;unknown, event&gt;</code>
 							  <div class="docs"><p>Returns an event handle for when the state returned by
 							<a href="#nn::usb::ds::IDsService(4)">#GetChange</a> changes. Signalled when
 							Switch&lt;-&gt;host USB comms change between started/stopped. USB cable
