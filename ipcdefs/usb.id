@@ -50,7 +50,7 @@ interface nn::usb::ds::IDsService is usb:ds {
 	# this command is used, the USB device will not be listed with `lsusb`
 	# until [#EnableInterface](#nn::usb::ds::IDsInterface(3)) is used.
 	[0] BindDevice(u32 complexId);
-	[1] BindClientProcess();
+	[1] BindClientProcess(KObject<copy, process>);
 	# Manu sends a 0x09-byte command (e.g.: `09 04 04 00 00 FF FF FF 00`) in
 	# the first buffer and a string ("usb") in the second buffer.
 	#
@@ -69,7 +69,7 @@ interface nn::usb::ds::IDsService is usb:ds {
 	# connected/disconnected while at least 1 interface was enabled, or
 	# interface enabled/disabled while the USB cable was connected which
 	# then caused USB-comms state to change.
-	[3] GetStateChangeEvent() -> KObject;
+	[3] GetStateChangeEvent() -> KObject<unknown, event>;
 	# Returns an error when [#BindDevice](#nn::usb::ds::IDsService(0)) wasn't
 	# used.
 	#
@@ -117,7 +117,7 @@ interface nn::usb::ds::IDsInterface {
 	[0] GetDsEndpoint(buffer<usb_endpoint_descriptor, 5, 0>) -> object<nn::usb::ds::IDsEndpoint>;
 	# Returns an event handle. Unknown what triggers signalling, not
 	# signalled during interface-enable / device<>host USB-comms init.
-	[1] GetSetupEvent() -> KObject;
+	[1] GetSetupEvent() -> KObject<unknown, event>;
 	[2] Unknown2(buffer<unknown, 0x6, 0>);
 	# Enables the current interface.
 	#
@@ -139,14 +139,14 @@ interface nn::usb::ds::IDsInterface {
 	# Returns an event handle for polling the completion of input control
 	# commands. Same as [#GetCompletionEvent](#nn::usb::ds::IDsEndpoint(2)),
 	# except this uses control input endpoint 0x80.
-	[7] GetCtrlInCompletionEvent() -> KObject;
+	[7] GetCtrlInCompletionEvent() -> KObject<unknown, event>;
 	# Same as [#GetReportData](#nn::usb::ds::IDsEndpoint(3)), except this
 	# uses control input endpoint 0x80.
 	[8] GetCtrlInReportData() -> bytes<0x84>;
 	# Returns an event handle for polling the completion of input control
 	# commands. Same as [#GetCompletionEvent](#nn::usb::ds::IDsEndpoint(2)),
 	# except this uses control output endpoint 0x00.
-	[9] GetCtrlOutCompletionEvent() -> KObject;
+	[9] GetCtrlOutCompletionEvent() -> KObject<unknown, event>;
 	# Same as [#GetReportData](#nn::usb::ds::IDsEndpoint(3)), except this
 	# uses control output endpoint 0x00.
 	[10] GetCtrlOutReportData() -> bytes<0x84>;
@@ -185,7 +185,7 @@ interface nn::usb::ds::IDsEndpoint {
 	# Returns an event handle for polling the completion of
 	# [#PostBufferAsync](#nn::usb::ds::IDsEndpoint(0)), even when it finished via
 	# [#Stall](#nn::usb::ds::IDsEndpoint(4)).
-	[2] GetCompletionEvent() -> KObject;
+	[2] GetCompletionEvent() -> KObject<unknown, event>;
 	# Returns report data from the endpoint. Seems to be eventually loaded from
 	# state, since this  doesn't trigger any USB bus activity. All-zero before
 	# [#PostBufferAsync](#nn::usb::ds::IDsEndpoint(0)) was used at least once.

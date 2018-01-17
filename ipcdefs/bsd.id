@@ -5,7 +5,7 @@ type timeout = struct {
 };
 
 interface nn::socket::sf::IClient is bsd:u, bsd:s {
-	[0] Initialize(u32, u32, u32, u32, u32, u32, u32, u32, u64 pid, u64 transferMemorySize, pid, KObject) -> u32 bsd_errno;
+	[0] Initialize(u32, u32, u32, u32, u32, u32, u32, u32, u64 pid, u64 transferMemorySize, KObject<copy, transfer_memory>, pid) -> u32 bsd_errno;
 	[1] StartMonitoring(u64, pid);
 	# Create an endpoint for communication
 	[2] Socket(u32 domain, u32 type, u32 protocol) -> (i32 ret, u32 bsd_errno);

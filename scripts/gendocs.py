@@ -64,8 +64,8 @@ def format(elems, output=False):
 				ret = 'object&lt;<a href="ifaces.html#%s">%s</a>&gt;' % (S(it), S(it))
 			else:
 				ret = S(it)
-		elif elem[0] == 'KObject':
-			ret = 'KObject'
+		elif elem[0] == 'KObject' and len(elem) == 3:
+			ret = 'KObject&lt;%s, %s&gt;' % (elem[1][0], elem[2][0])
 		elif elem[0] == 'align':
 			ret = 'align&lt;%s, %s&gt;' % (emitInt(elem[1]), sub((None, elem[2])))
 		elif elem[0] == 'bytes':
