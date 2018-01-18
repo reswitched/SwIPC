@@ -38,9 +38,14 @@ interface = doc:{ comment }* 'interface' name:name [ 'is' serviceNames:serviceNa
 namedTuple = '(' @:','.{ type [ name ] } ')' ;
 namedType = type [ name ] ;
 comment = '#' line:/[^\\n]*/;
-range = [start:(number '.' number '.' number)] '-' [end:(number '.' number '.' number)];
-funcDef = doc:{ comment }* '[' cmdId:number [',' versionRange:range] ']' name:name inputs:namedTuple [ '->' outputs:( namedType | namedTuple ) ] ';' ;
+range = [start:(number '.' number '.' number)] '-' [end:(number '.' number '.' number)] ;
+decorator = '@' @:decoratorType ;
+versionNumber = number '.' number '.' number ;
+decoratorType = type:'version' '(' startVersion:versionNumber ('+' | [ '-' endVersion:versionNumber ]) ')' ;
+funcDef = doc:{ comment }* decorators:{ decorator }* '[' cmdId:number ']' name:name inputs:namedTuple [ '->' outputs:( namedType | namedTuple ) ] ';' ;
 '''
+
+versionInfo = [ '1.0.0', '2.0.0', '2.1.0', '2.2.0', '2.3.0', '3.0.0', '3.0.1', '3.0.2', '4.0.0', '4.0.1', '4.1.0' ]
 
 class Semantics(object):
 	def number(self, ast):
@@ -94,14 +99,23 @@ def parse(data):
 			assert func['name'] not in iface
 			iface['cmds'][func['name']] = fdef = {}
 			fdef['cmdId'] = func['cmdId']
-			if func['versionRange'] is None:
-				fdef['versionAdded'] = '1.0.0'
+
+			# Handle decorators
+			for decorator in func['decorators']:
+				if decorator['type'] == 'version':
+					fdef['versionAdded'] = "".join(map(str, decorator['startVersion']))
+					if decorator['endVersion'] is not None:
+						lastVersion = "".join(map(str, decorator['endVersion']))
+						versionRemoved = versionInfo[versionInfo.index(lastVersion) + 1]
+						fdef['versionRemoved'] = versionRemoved
+					else:
+						fdef['versionRemoved'] = None
+
+			# Set default values for "missing" decorators
+			if 'versionAdded' not in fdef:
+				fdef['versionAdded'] = "1.0.0"
+			if 'versionRemoved' not in fdef:
 				fdef['versionRemoved'] = None
-			else:
-				fdef['versionAdded'] = func['versionRange']['start']
-				fdef['versionRemoved'] = func['versionRange']['end']
-			if fdef['versionAdded'] is None:
-				fdef['versionAdded'] = '1.0.0'
 
 			fdef['doc'] = "\n".join(map(lambda x: x.line, func['doc']))
 			fdef['inputs'] = [(name, parseType(type)) for type, name in func['inputs']]

@@ -81,7 +81,8 @@ interface nn::usb::ds::IDsService is usb:ds {
 	# - 5: Initialization done, data-transfer is now available.
 	[4] GetState() -> u32;
 	// Only available on version 2.0.0+
-	[5, 2.0.0-] SetVidPidBcd(buffer<usb_descriptor_data, 5, 0x66> descriptor);
+	@version(2.0.0+)
+	[5] SetVidPidBcd(buffer<usb_descriptor_data, 5, 0x66> descriptor);
 }
 
 interface nn::usb::ds::IDsInterface {
