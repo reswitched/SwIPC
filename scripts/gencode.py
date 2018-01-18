@@ -188,19 +188,30 @@ def gen_init():
     print "\tif(%s_initializations++ > 0) {" % c_ifacename
     print "\t\treturn RESULT_OK;"
     print "\t}"
+    print ""
     print "\tresult_t res;"
+    print "\tres = sm_init();"
+    print "\tif (res != RESULT_OK) {"
+    print "\t\tgoto fail;"
+    print "\t}"
+    print ""
     print "\tres = sm_get_service(&%s_object, \"%s\");" % (c_ifacename, ifacename)
-    print "\tif (res != RESULT_OK)"
-    print "\t\treturn res;"
+    print "\tif (res != RESULT_OK) {"
+    print "\t\tgoto fail_sm;"
+    print "\t}"
+    print ""
+    print "\tsm_finalize();"
     if cmd is not None:
         print ""
         gen_ipc_method(cmd)
         print "\tif (res != RESULT_OK) {"
-        print "\t\tipc_close(%s_object);" % c_ifacename
-        print "\t\treturn res;"
+        print "\t\tgoto fail;"
         print "\t}"
-    # TODO: Auto find init method, and run it if found
     print "\treturn RESULT_OK;"
+    print "fail_sm:"
+    print "\tsm_finalize();"
+    print "fail:"
+    print "\treturn res;"
     print "}"
 
 def gen_finalize():
