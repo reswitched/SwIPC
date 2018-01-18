@@ -8645,25 +8645,25 @@
 							<li class="command" value="2" id="nn::fssrv::sf::IDeviceOperator(2)">
 							
 							
-							  <code class="signature">[2] <a href="#nn::fssrv::sf::IDeviceOperator(2)">GetSdCardCid</a>(u64) -&gt; buffer&lt;unknown, 6, 0&gt; cid</code>
+							  <code class="signature">[2, 2.0.0+] <a href="#nn::fssrv::sf::IDeviceOperator(2)">GetSdCardCid</a>(u64) -&gt; buffer&lt;unknown, 6, 0&gt; cid</code>
 							
 							</li>
 							<li class="command" value="3" id="nn::fssrv::sf::IDeviceOperator(3)">
 							
 							
-							  <code class="signature">[3] <a href="#nn::fssrv::sf::IDeviceOperator(3)">GetSdCardUserAreaSize</a>() -&gt; u64 size</code>
+							  <code class="signature">[3, 2.0.0+] <a href="#nn::fssrv::sf::IDeviceOperator(3)">GetSdCardUserAreaSize</a>() -&gt; u64 size</code>
 							
 							</li>
 							<li class="command" value="4" id="nn::fssrv::sf::IDeviceOperator(4)">
 							
 							
-							  <code class="signature">[4] <a href="#nn::fssrv::sf::IDeviceOperator(4)">GetSdCardProtectedAreaSize</a>() -&gt; u64 protectedSize</code>
+							  <code class="signature">[4, 2.0.0+] <a href="#nn::fssrv::sf::IDeviceOperator(4)">GetSdCardProtectedAreaSize</a>() -&gt; u64 protectedSize</code>
 							
 							</li>
 							<li class="command" value="5" id="nn::fssrv::sf::IDeviceOperator(5)">
 							
 							
-							  <code class="signature">[5] <a href="#nn::fssrv::sf::IDeviceOperator(5)">GetAndClearSdCardErrorInfo</a>(u64) -&gt; (u128, u64, buffer&lt;unknown, 6, 0&gt;)</code>
+							  <code class="signature">[5, 2.0.0+] <a href="#nn::fssrv::sf::IDeviceOperator(5)">GetAndClearSdCardErrorInfo</a>(u64) -&gt; (u128, u64, buffer&lt;unknown, 6, 0&gt;)</code>
 							
 							</li>
 							<li class="command" value="100" id="nn::fssrv::sf::IDeviceOperator(100)">
@@ -8693,19 +8693,19 @@
 							<li class="command" value="112" id="nn::fssrv::sf::IDeviceOperator(112)">
 							
 							
-							  <code class="signature">[112] <a href="#nn::fssrv::sf::IDeviceOperator(112)">GetMmcPatrolCount</a>() -&gt; u32 patrolCount</code>
+							  <code class="signature">[112, 2.0.0+] <a href="#nn::fssrv::sf::IDeviceOperator(112)">GetMmcPatrolCount</a>() -&gt; u32 patrolCount</code>
 							
 							</li>
 							<li class="command" value="113" id="nn::fssrv::sf::IDeviceOperator(113)">
 							
 							
-							  <code class="signature">[113] <a href="#nn::fssrv::sf::IDeviceOperator(113)">GetAndClearMmcErrorInfo</a>(u64) -&gt; (u128, u64, buffer&lt;unknown, 6, 0&gt;)</code>
+							  <code class="signature">[113, 2.0.0+] <a href="#nn::fssrv::sf::IDeviceOperator(113)">GetAndClearMmcErrorInfo</a>(u64) -&gt; (u128, u64, buffer&lt;unknown, 6, 0&gt;)</code>
 							
 							</li>
 							<li class="command" value="114" id="nn::fssrv::sf::IDeviceOperator(114)">
 							
 							
-							  <code class="signature">[114] <a href="#nn::fssrv::sf::IDeviceOperator(114)">GetMmcExtendedCsd</a>(u64) -&gt; buffer&lt;unknown, 6, 0&gt;</code>
+							  <code class="signature">[114, 2.0.0+] <a href="#nn::fssrv::sf::IDeviceOperator(114)">GetMmcExtendedCsd</a>(u64) -&gt; buffer&lt;unknown, 6, 0&gt;</code>
 							
 							</li>
 							<li class="command" value="200" id="nn::fssrv::sf::IDeviceOperator(200)">
@@ -8783,43 +8783,43 @@
 							<li class="command" value="212" id="nn::fssrv::sf::IDeviceOperator(212)">
 							
 							
-							  <code class="signature">[212] <a href="#nn::fssrv::sf::IDeviceOperator(212)">GetGameCardDeviceIdForProdCard</a>(u64, u64, buffer&lt;unknown, 5, 0&gt;) -&gt; buffer&lt;unknown, 6, 0&gt; errorInfo</code>
+							  <code class="signature">[212, 2.0.0+] <a href="#nn::fssrv::sf::IDeviceOperator(212)">GetGameCardDeviceIdForProdCard</a>(u64, u64, buffer&lt;unknown, 5, 0&gt;) -&gt; buffer&lt;unknown, 6, 0&gt; errorInfo</code>
 							
 							</li>
 							<li class="command" value="213" id="nn::fssrv::sf::IDeviceOperator(213)">
 							
 							
-							  <code class="signature">[213] <a href="#nn::fssrv::sf::IDeviceOperator(213)">EraseAndWriteParamDirectly</a>(u64, buffer&lt;unknown, 5, 0&gt;)</code>
+							  <code class="signature">[213, 2.0.0+] <a href="#nn::fssrv::sf::IDeviceOperator(213)">EraseAndWriteParamDirectly</a>(u64, buffer&lt;unknown, 5, 0&gt;)</code>
 							
 							</li>
 							<li class="command" value="214" id="nn::fssrv::sf::IDeviceOperator(214)">
 							
 							
-							  <code class="signature">[214] <a href="#nn::fssrv::sf::IDeviceOperator(214)">GetGameCardCid</a>(u64) -&gt; buffer&lt;unknown, 6, 0&gt; cid</code>
+							  <code class="signature">[214, 2.0.0+] <a href="#nn::fssrv::sf::IDeviceOperator(214)">GetGameCardCid</a>(u64) -&gt; buffer&lt;unknown, 6, 0&gt; cid</code>
 							
 							</li>
 							<li class="command" value="215" id="nn::fssrv::sf::IDeviceOperator(215)">
 							
 							
-							  <code class="signature">[215] <a href="#nn::fssrv::sf::IDeviceOperator(215)">ForceEraseGameCard</a>()</code>
+							  <code class="signature">[215, 2.0.0+] <a href="#nn::fssrv::sf::IDeviceOperator(215)">ForceEraseGameCard</a>()</code>
 							
 							</li>
 							<li class="command" value="216" id="nn::fssrv::sf::IDeviceOperator(216)">
 							
 							
-							  <code class="signature">[216] <a href="#nn::fssrv::sf::IDeviceOperator(216)">GetGameCardErrorInfo</a>() -&gt; u128 errorInfo</code>
+							  <code class="signature">[216, 2.0.0+] <a href="#nn::fssrv::sf::IDeviceOperator(216)">GetGameCardErrorInfo</a>() -&gt; u128 errorInfo</code>
 							
 							</li>
 							<li class="command" value="217" id="nn::fssrv::sf::IDeviceOperator(217)">
 							
 							
-							  <code class="signature">[217] <a href="#nn::fssrv::sf::IDeviceOperator(217)">GetGameCardErrorReportInfo</a>() -&gt; bytes&lt;0x40&gt; errorReportInfo</code>
+							  <code class="signature">[217, 2.1.0+] <a href="#nn::fssrv::sf::IDeviceOperator(217)">GetGameCardErrorReportInfo</a>() -&gt; bytes&lt;0x40&gt; errorReportInfo</code>
 							
 							</li>
 							<li class="command" value="218" id="nn::fssrv::sf::IDeviceOperator(218)">
 							
 							
-							  <code class="signature">[218] <a href="#nn::fssrv::sf::IDeviceOperator(218)">GetGameCardDeviceId</a>(u64) -&gt; buffer&lt;unknown, 6, 0&gt; deviceID</code>
+							  <code class="signature">[218, 3.0.1+] <a href="#nn::fssrv::sf::IDeviceOperator(218)">GetGameCardDeviceId</a>(u64) -&gt; buffer&lt;unknown, 6, 0&gt; deviceID</code>
 							
 							</li>
 							<li class="command" value="300" id="nn::fssrv::sf::IDeviceOperator(300)">
@@ -8966,6 +8966,7 @@
 					<li class="list-group-item">
 						<h3>Returned by:</h3>
 						<ul>
+							<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(0)">nn::fssrv::sf::IFileSystemProxy::MountContent [0]</a></li>
 							<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(2)">nn::fssrv::sf::IFileSystemProxy::OpenDataFileSystemByCurrentProcess [2]</a></li>
 							<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(7)">nn::fssrv::sf::IFileSystemProxy::MountContent7 [7]</a></li>
 							<li><a href="ifaces.html#nn::fssrv::sf::IFileSystemProxy(8)">nn::fssrv::sf::IFileSystemProxy::MountContent [8]</a></li>
@@ -9066,13 +9067,13 @@
 							<li class="command" value="13" id="nn::fssrv::sf::IFileSystem(13)">
 							
 							
-							  <code class="signature">[13] <a href="#nn::fssrv::sf::IFileSystem(13)">CleanDirectoryRecursively</a>(buffer&lt;i8, 0x19, 0x301&gt; path)</code>
+							  <code class="signature">[13, 3.0.0+] <a href="#nn::fssrv::sf::IFileSystem(13)">CleanDirectoryRecursively</a>(buffer&lt;i8, 0x19, 0x301&gt; path)</code>
 							
 							</li>
 							<li class="command" value="14" id="nn::fssrv::sf::IFileSystem(14)">
 							
 							
-							  <code class="signature">[14] <a href="#nn::fssrv::sf::IFileSystem(14)">GetFileTimeStampRaw</a>(buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; bytes&lt;0x20&gt; timestamp</code>
+							  <code class="signature">[14, 3.0.0+] <a href="#nn::fssrv::sf::IFileSystem(14)">GetFileTimeStampRaw</a>(buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; bytes&lt;0x20&gt; timestamp</code>
 							
 							</li>
 						</ol>
@@ -9097,6 +9098,12 @@
 					<li class="list-group-item">
 						<h3>Commands:</h3>
 						<ol>
+							<li class="command" value="0" id="nn::fssrv::sf::IFileSystemProxy(0)">
+							
+							
+							  <code class="signature">[0, 1.0.0] <a href="#nn::fssrv::sf::IFileSystemProxy(0)">MountContent</a>(<a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid, u32 flag, buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt; contentFs</code>
+							
+							</li>
 							<li class="command" value="1" id="nn::fssrv::sf::IFileSystemProxy(1)">
 							
 							
@@ -9112,19 +9119,19 @@
 							<li class="command" value="7" id="nn::fssrv::sf::IFileSystemProxy(7)">
 							
 							
-							  <code class="signature">[7] <a href="#nn::fssrv::sf::IFileSystemProxy(7)">MountContent7</a>(<a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid, u32 ncaType) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt;</code>
+							  <code class="signature">[7, 2.0.0+] <a href="#nn::fssrv::sf::IFileSystemProxy(7)">MountContent7</a>(<a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid, u32 ncaType) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt;</code>
 							
 							</li>
 							<li class="command" value="8" id="nn::fssrv::sf::IFileSystemProxy(8)">
 							
 							
-							  <code class="signature">[8] <a href="#nn::fssrv::sf::IFileSystemProxy(8)">MountContent</a>(<a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid, u32 flag, buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt; contentFs</code>
+							  <code class="signature">[8, 2.0.0+] <a href="#nn::fssrv::sf::IFileSystemProxy(8)">MountContent</a>(<a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid, u32 flag, buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt; contentFs</code>
 							
 							</li>
 							<li class="command" value="9" id="nn::fssrv::sf::IFileSystemProxy(9)">
 							
 							
-							  <code class="signature">[9] <a href="#nn::fssrv::sf::IFileSystemProxy(9)">OpenDataFileSystemByApplicationId</a>(<a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt; dataFiles</code>
+							  <code class="signature">[9, 3.0.0+] <a href="#nn::fssrv::sf::IFileSystemProxy(9)">OpenDataFileSystemByApplicationId</a>(<a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt; dataFiles</code>
 							
 							</li>
 							<li class="command" value="11" id="nn::fssrv::sf::IFileSystemProxy(11)">
@@ -9160,7 +9167,7 @@
 							<li class="command" value="19" id="nn::fssrv::sf::IFileSystemProxy(19)">
 							
 							
-							  <code class="signature">[19] <a href="#nn::fssrv::sf::IFileSystemProxy(19)">FormatSdCard</a>()</code>
+							  <code class="signature">[19, 2.0.0+] <a href="#nn::fssrv::sf::IFileSystemProxy(19)">FormatSdCard</a>()</code>
 							
 							</li>
 							<li class="command" value="21" id="nn::fssrv::sf::IFileSystemProxy(21)">
@@ -9190,19 +9197,19 @@
 							<li class="command" value="25" id="nn::fssrv::sf::IFileSystemProxy(25)">
 							
 							
-							  <code class="signature">[25] <a href="#nn::fssrv::sf::IFileSystemProxy(25)">DeleteSaveDataWithSpaceId</a>(u8, u64)</code>
+							  <code class="signature">[25, 2.0.0+] <a href="#nn::fssrv::sf::IFileSystemProxy(25)">DeleteSaveDataWithSpaceId</a>(u8, u64)</code>
 							
 							</li>
 							<li class="command" value="26" id="nn::fssrv::sf::IFileSystemProxy(26)">
 							
 							
-							  <code class="signature">[26] <a href="#nn::fssrv::sf::IFileSystemProxy(26)">FormatSdCardDryRun</a>()</code>
+							  <code class="signature">[26, 2.0.0+] <a href="#nn::fssrv::sf::IFileSystemProxy(26)">FormatSdCardDryRun</a>()</code>
 							
 							</li>
 							<li class="command" value="27" id="nn::fssrv::sf::IFileSystemProxy(27)">
 							
 							
-							  <code class="signature">[27] <a href="#nn::fssrv::sf::IFileSystemProxy(27)">IsExFatSupported</a>() -&gt; u8 isSupported</code>
+							  <code class="signature">[27, 2.0.0+] <a href="#nn::fssrv::sf::IFileSystemProxy(27)">IsExFatSupported</a>() -&gt; u8 isSupported</code>
 							
 							</li>
 							<li class="command" value="30" id="nn::fssrv::sf::IFileSystemProxy(30)">
@@ -9220,7 +9227,7 @@
 							<li class="command" value="32" id="nn::fssrv::sf::IFileSystemProxy(32)">
 							
 							
-							  <code class="signature">[32] <a href="#nn::fssrv::sf::IFileSystemProxy(32)">ExtendSaveData</a>(u8, u64, u64, u64)</code>
+							  <code class="signature">[32, 3.0.0+] <a href="#nn::fssrv::sf::IFileSystemProxy(32)">ExtendSaveData</a>(u8, u64, u64, u64)</code>
 							
 							</li>
 							<li class="command" value="51" id="nn::fssrv::sf::IFileSystemProxy(51)">
@@ -9238,13 +9245,13 @@
 							<li class="command" value="53" id="nn::fssrv::sf::IFileSystemProxy(53)">
 							
 							
-							  <code class="signature">[53] <a href="#nn::fssrv::sf::IFileSystemProxy(53)">MountSaveDataReadOnly</a>(u8 input, <a href="types.html#nn::fssrv::sf::SaveStruct">nn::fssrv::sf::SaveStruct</a> saveStruct) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt; saveDataFs</code>
+							  <code class="signature">[53, 2.0.0+] <a href="#nn::fssrv::sf::IFileSystemProxy(53)">MountSaveDataReadOnly</a>(u8 input, <a href="types.html#nn::fssrv::sf::SaveStruct">nn::fssrv::sf::SaveStruct</a> saveStruct) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IFileSystem">nn::fssrv::sf::IFileSystem</a>&gt; saveDataFs</code>
 							
 							</li>
 							<li class="command" value="57" id="nn::fssrv::sf::IFileSystemProxy(57)">
 							
 							
-							  <code class="signature">[57] <a href="#nn::fssrv::sf::IFileSystemProxy(57)">ReadSaveDataFileSystemExtraDataWithSpaceId</a>(u8, u64) -&gt; buffer&lt;void, 6, 0&gt;</code>
+							  <code class="signature">[57, 3.0.0+] <a href="#nn::fssrv::sf::IFileSystemProxy(57)">ReadSaveDataFileSystemExtraDataWithSpaceId</a>(u8, u64) -&gt; buffer&lt;void, 6, 0&gt;</code>
 							
 							</li>
 							<li class="command" value="58" id="nn::fssrv::sf::IFileSystemProxy(58)">
@@ -9256,7 +9263,7 @@
 							<li class="command" value="59" id="nn::fssrv::sf::IFileSystemProxy(59)">
 							
 							
-							  <code class="signature">[59] <a href="#nn::fssrv::sf::IFileSystemProxy(59)">WriteSaveDataFileSystemExtraData</a>(u64, u8, buffer&lt;void, 5, 0&gt;)</code>
+							  <code class="signature">[59, 2.0.0+] <a href="#nn::fssrv::sf::IFileSystemProxy(59)">WriteSaveDataFileSystemExtraData</a>(u64, u8, buffer&lt;void, 5, 0&gt;)</code>
 							
 							</li>
 							<li class="command" value="60" id="nn::fssrv::sf::IFileSystemProxy(60)">
@@ -9298,7 +9305,7 @@
 							<li class="command" value="201" id="nn::fssrv::sf::IFileSystemProxy(201)">
 							
 							
-							  <code class="signature">[201] <a href="#nn::fssrv::sf::IFileSystemProxy(201)">OpenDataStorageByApplicationId</a>(<a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IStorage">nn::fssrv::sf::IStorage</a>&gt; dataStorage</code>
+							  <code class="signature">[201, 3.0.0+] <a href="#nn::fssrv::sf::IFileSystemProxy(201)">OpenDataStorageByApplicationId</a>(<a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid) -&gt; object&lt;<a href="ifaces.html#nn::fssrv::sf::IStorage">nn::fssrv::sf::IStorage</a>&gt; dataStorage</code>
 							
 							</li>
 							<li class="command" value="202" id="nn::fssrv::sf::IFileSystemProxy(202)">
@@ -9334,7 +9341,7 @@
 							<li class="command" value="600" id="nn::fssrv::sf::IFileSystemProxy(600)">
 							
 							
-							  <code class="signature">[600] <a href="#nn::fssrv::sf::IFileSystemProxy(600)">SetCurrentPosixTime</a>(u64 time)</code>
+							  <code class="signature">[600, 1.0.0-3.0.2] <a href="#nn::fssrv::sf::IFileSystemProxy(600)">SetCurrentPosixTime</a>(u64 time)</code>
 							
 							</li>
 							<li class="command" value="601" id="nn::fssrv::sf::IFileSystemProxy(601)">
@@ -9370,43 +9377,43 @@
 							<li class="command" value="606" id="nn::fssrv::sf::IFileSystemProxy(606)">
 							
 							
-							  <code class="signature">[606] <a href="#nn::fssrv::sf::IFileSystemProxy(606)">GetRightsId</a>(u64, u8) -&gt; u128 rights</code>
+							  <code class="signature">[606, 2.0.0+] <a href="#nn::fssrv::sf::IFileSystemProxy(606)">GetRightsId</a>(u64, u8) -&gt; u128 rights</code>
 							
 							</li>
 							<li class="command" value="607" id="nn::fssrv::sf::IFileSystemProxy(607)">
 							
 							
-							  <code class="signature">[607] <a href="#nn::fssrv::sf::IFileSystemProxy(607)">RegisterExternalKey</a>(u128, u128)</code>
+							  <code class="signature">[607, 2.0.0+] <a href="#nn::fssrv::sf::IFileSystemProxy(607)">RegisterExternalKey</a>(u128, u128)</code>
 							
 							</li>
 							<li class="command" value="608" id="nn::fssrv::sf::IFileSystemProxy(608)">
 							
 							
-							  <code class="signature">[608] <a href="#nn::fssrv::sf::IFileSystemProxy(608)">UnregisterExternalKey</a>()</code>
+							  <code class="signature">[608, 2.0.0+] <a href="#nn::fssrv::sf::IFileSystemProxy(608)">UnregisterExternalKey</a>()</code>
 							
 							</li>
 							<li class="command" value="609" id="nn::fssrv::sf::IFileSystemProxy(609)">
 							
 							
-							  <code class="signature">[609] <a href="#nn::fssrv::sf::IFileSystemProxy(609)">GetRightsIdByPath</a>(buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; u128 rights</code>
+							  <code class="signature">[609, 2.0.0+] <a href="#nn::fssrv::sf::IFileSystemProxy(609)">GetRightsIdByPath</a>(buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; u128 rights</code>
 							
 							</li>
 							<li class="command" value="610" id="nn::fssrv::sf::IFileSystemProxy(610)">
 							
 							
-							  <code class="signature">[610] <a href="#nn::fssrv::sf::IFileSystemProxy(610)">GetRightsIdByPath2</a>(buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; (u128 rights, u8)</code>
+							  <code class="signature">[610, 3.0.0+] <a href="#nn::fssrv::sf::IFileSystemProxy(610)">GetRightsIdByPath2</a>(buffer&lt;i8, 0x19, 0x301&gt; path) -&gt; (u128 rights, u8)</code>
 							
 							</li>
 							<li class="command" value="620" id="nn::fssrv::sf::IFileSystemProxy(620)">
 							
 							
-							  <code class="signature">[620] <a href="#nn::fssrv::sf::IFileSystemProxy(620)">SetSdCardEncryptionSeed</a>(u128 seedmaybe)</code>
+							  <code class="signature">[620, 2.0.0+] <a href="#nn::fssrv::sf::IFileSystemProxy(620)">SetSdCardEncryptionSeed</a>(u128 seedmaybe)</code>
 							
 							</li>
 							<li class="command" value="800" id="nn::fssrv::sf::IFileSystemProxy(800)">
 							
 							
-							  <code class="signature">[800] <a href="#nn::fssrv::sf::IFileSystemProxy(800)">GetAndClearFileSystemProxyErrorInfo</a>() -&gt; bytes&lt;0x80&gt; errorInfo</code>
+							  <code class="signature">[800, 2.0.0+] <a href="#nn::fssrv::sf::IFileSystemProxy(800)">GetAndClearFileSystemProxyErrorInfo</a>() -&gt; bytes&lt;0x80&gt; errorInfo</code>
 							
 							</li>
 							<li class="command" value="1000" id="nn::fssrv::sf::IFileSystemProxy(1000)">
@@ -23185,7 +23192,7 @@
 							<li class="command" value="5" id="nn::usb::ds::IDsService(5)">
 							
 							
-							  <code class="signature">[5] <a href="#nn::usb::ds::IDsService(5)">SetVidPidBcd</a>(buffer&lt;<a href="types.html#usb_descriptor_data">usb_descriptor_data</a>, 5, 0x66&gt; descriptor)</code>
+							  <code class="signature">[5, 2.0.0+] <a href="#nn::usb::ds::IDsService(5)">SetVidPidBcd</a>(buffer&lt;<a href="types.html#usb_descriptor_data">usb_descriptor_data</a>, 5, 0x66&gt; descriptor)</code>
 							
 							</li>
 						</ol>
