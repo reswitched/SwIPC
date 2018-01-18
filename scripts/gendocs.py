@@ -91,9 +91,9 @@ def format(elems, output=False):
 	return ', '.join(map(sub, elems))
 
 def findCmd(ifname, id):
-	for name, cmd in ifaces[ifname]['cmds'].items():
+	for cmd in ifaces[ifname]['cmds']:
 		if cmd['cmdId'] == id:
-			return (name, cmd)
+			return (cmd['name'], cmd)
 	return None
 
 types, ifaces, services = idparser.getAll()
@@ -103,7 +103,7 @@ takenBy = {}
 
 for name, iface in ifaces.items():
 	cmds = iface['cmds']
-	for cmd in cmds.values():
+	for cmd in cmds:
 		for _, elem in cmd['inputs']:
 			if elem[0] == 'object':
 				c = elem[1][0]
@@ -122,7 +122,8 @@ for name, iface in ifaces.items():
 	cmds = iface['cmds']
 	complete = 0
 	count = 0
-	for cname, cmd in cmds.items():
+	for cmd in cmds:
+		cname = cmd['name']
 		count += 6
 		if cmd['doc'] != "":
 			complete += 6
@@ -141,7 +142,7 @@ ifaceTotalCompleteness = {}
 for name, iface in ifaces.items():
 	cmds = iface['cmds']
 	deps = set([name])
-	for cmd in cmds.values():
+	for cmd in cmds:
 		for _, elem in cmd['outputs']:
 			if elem[0] == 'object':
 				deps.add(elem[1][0])
@@ -272,13 +273,23 @@ for name, iface in sorted(ifaces.items(), key=lambda x: x[0]):
 		print >>nfp, '\t<h3>Commands:</h3>'
 		print >>nfp, '\t<ol>'
 		nfp += 2
-		for cname, cmd in sorted(cmds.items(), key=lambda x: x[1]['cmdId']):
+		for cmd in sorted(cmds, key=lambda x: x['cmdId']):
+			cname = cmd['name']
 			urlId = "%s(%i)" % (name, cmd['cmdId'])
 			cdef = '<a href="#%s">%s</a>(%s)%s' % (urlId, cname, format(cmd['inputs']), ' -&gt; %s' % format(cmd['outputs'], output=True) if len(cmd['outputs']) != 0 else '')
 			print >>nfp,  '<li class="command" value="%i" id="%s">' % (cmd['cmdId'], urlId)
 			print >>nfp, ('  <input type="checkbox" class="showDocs" id="showDocs(%s)"></input>' % (urlId)) if cmd['doc'] != "" else ""
 			print >>nfp, ('  <label for="showDocs(%s)" class="showDocsLabel"></label>' % (urlId)) if cmd['doc'] != "" else ""
-			print >>nfp,  '  <code class="signature">[%i] %s</code>' % (cmd['cmdId'], cdef)
+			extra = ""
+			if cmd['versionAdded'] != '1.0.0' or cmd['lastVersion'] is not None:
+				extra += ", "
+				if cmd['versionAdded'] == cmd['lastVersion']:
+					extra += cmd['versionAdded']
+				elif cmd['lastVersion'] is None:
+					extra += cmd['versionAdded'] + '+'
+				else:
+					extra += "%s-%s" % (cmd['versionAdded'], cmd['lastVersion'])
+			print >>nfp,  '  <code class="signature">[%i%s] %s</code>' % (cmd['cmdId'], extra, cdef)
 			print >>nfp, ('  <div class="docs">%s</div>' % CommonMark.commonmark(cmd['doc'])) if cmd['doc'] != "" else ""
 			print >>nfp,  '</li>'
 		nfp -= 2
