@@ -211,6 +211,7 @@ def gen_init():
     print "fail_sm:"
     print "\tsm_finalize();"
     print "fail:"
+    print "\t%s_initializations--;" % c_ifacename
     print "\treturn res;"
     print "}"
 
