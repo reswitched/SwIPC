@@ -1,0 +1,16 @@
+{
+  "name": "genwiki",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "await-outside": "^2.1.2",
+    "parse-wikitext": "^0.3.3",
+    "pdc": "^0.2.3"
+  }
+}

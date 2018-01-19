@@ -4,3 +4,5 @@ ipcdefs/cache
 docs/iface.html
 docs/index.html
 docs/types.html
+*.cache
+node_modules/
