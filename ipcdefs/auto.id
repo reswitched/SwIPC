@@ -3309,7 +3309,7 @@ interface nn::pm::detail::IInformationInterface is pm:info {
 	[0] Unknown0(u64) -> u64;
 }
 
-interface nn::pm::detail::IShellInterface is pm:shel {
+interface nn::pm::detail::IShellInterface is pm:shell {
 	[0] Unknown0();
 	[1] Unknown1(u64);
 	[2] Unknown2(u64);
