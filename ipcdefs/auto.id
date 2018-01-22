@@ -953,7 +953,7 @@ interface nn::audio::detail::IAudioIn {
 	[10] Unknown10(u64, KObject, buffer<unknown, 0x21, 0>);
 }
 
-interface nn::audio::detail::IAudioInManager is audin:d {
+interface nn::audio::detail::IAudioInManager is audin:u {
 	[0] Unknown0() -> (u32, buffer<unknown, 6, 0>);
 	[1] Unknown1(u64, u64, pid, KObject, buffer<unknown, 5, 0>) -> (u128, object<IUnknown>, buffer<unknown, 6, 0>);
 	[2] Unknown2() -> (u32, buffer<unknown, 0x22, 0>);
@@ -968,7 +968,7 @@ interface nn::audio::detail::IAudioInManagerForApplet is audin:a {
 	[3] Unknown3(u32, u64, u64);
 }
 
-interface nn::audio::detail::IAudioInManagerForDebugger is audin:u {
+interface nn::audio::detail::IAudioInManagerForDebugger is audin:d {
 	[0] Unknown0(u64);
 	[1] Unknown1(u64);
 }
