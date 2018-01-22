@@ -1,464 +1,849 @@
-interface nn::sm::detail::IUserInterface is sm: {
-	# Takes a pid descriptor and a reserved input u64.
-	# 
-	[0] Initialize();
-	# Takes a zero-padded service name encoded as an u64 integer. Returns a
-	# handle.
-	# 
-	[1] GetService();
-	# Takes a zero-padded service name encoded as an u64 integer, an u8 bool,
-	# and an u32 (session count) at the next word. Returns a handle.
-	# 
-	[2] RegisterService();
-	# Takes a zero-padded service name encoded as an u64 integer.
-	# 
-	[3] UnregisterService();
+interface nn::pcv::IArbitrationManager is pcv:arb {
+	[0] ReleaseControl(i32);
 }
 
-
-interface nn::sm::detail::IManagerInterface is sm:m {
-	# Takes a pid and two A descriptors with the ACID and ACI0 service lists.
-	# That data originates from [NPDM](NPDM "wikilink").
-	# 
-	[0] RegisterProcess();
-	# Takes a pid.
-	# 
-	[1] UnregisterProcess();
-}
-
-
-interface nn::account::IAccountServiceForAdministrator is acc:su {
-	[0] GetUserCount();
-	[1] GetUserExistence();
-	[2] ListAllUsers();
-	[3] ListOpenUsers();
-	[4] GetLastOpenedUser();
-	[5] GetProfile();
-	[6] GetProfileDigest();
-	[50] IsUserRegistrationRequestPermitted();
-	[51] TrySelectUserWithoutInteraction();
-	[100] GetUserRegistrationNotifier();
-	[101] GetUserStateChangeNotifier();
-	[102] GetBaasAccountManagerForSystemService();
-	[103] GetBaasUserAvailabilityChangeNotifier();
-	[104] GetProfileUpdateNotifier();
-	[110] StoreSaveDataThumbnail();
-	[111] ClearSaveDataThumbnail();
-	[112] LoadSaveDataThumbnail();
-	[190] GetUserLastOpenedApplication();
-	[200] BeginUserRegistration();
-	[201] CompleteUserRegistration();
-	[202] CancelUserRegistration();
-	[203] DeleteUser();
-	[204] SetUserPosition();
-	[205] GetProfileEditor();
-	[206] CompleteUserRegistrationForcibly();
-	[210] CreateFloatingRegistrationRequest();
-	[230] AuthenticateServiceAsync();
-	[250] GetBaasAccountAdministrator();
-	[290] ProxyProcedureForGuestLoginWithNintendoAccount();
-	[291] ProxyProcedureForFloatingRegistrationWithNintendoAccount();
-	[299] SuspendBackgroundDaemon();
-	[997] DebugInvalidateTokenCacheForUser();
-	[998] DebugSetUserStateClose();
-	[999] DebugSetUserStateOpen();
-}
-
-
-interface nn::account::IAccountServiceForApplication is acc:u0 {
-	[0] GetUserCount();
-	[1] GetUserExistence();
-	[2] ListAllUsers();
-	[3] ListOpenUsers();
-	[4] GetLastOpenedUser();
-	[5] GetProfile();
-	[6] GetProfileDigest();
-	[50] IsUserRegistrationRequestPermitted();
-	[51] TrySelectUserWithoutInteraction();
-	[100] InitializeApplicationInfo();
-	[101] GetBaasAccountManagerForApplication();
-	[102] AuthenticateApplicationAsync();
-	[110] StoreSaveDataThumbnail();
-	[111] ClearSaveDataThumbnail();
-	[120] CreateGuestLoginRequest();
-}
-
-
-interface nn::account::IAccountServiceForSystemService is acc:u1 {
-	[0] GetUserCount();
-	[1] GetUserExistence();
-	[2] ListAllUsers();
-	[3] ListOpenUsers();
-	[4] GetLastOpenedUser();
-	[5] GetProfile();
-	[6] GetProfileDigest();
-	[50] IsUserRegistrationRequestPermitted();
-	[51] TrySelectUserWithoutInteraction();
-	[100] GetUserRegistrationNotifier();
-	[101] GetUserStateChangeNotifier();
-	[102] GetBaasAccountManagerForSystemService();
-	[103] GetBaasUserAvailabilityChangeNotifier();
-	[104] GetProfileUpdateNotifier();
-	[110] StoreSaveDataThumbnail();
-	[111] ClearSaveDataThumbnail();
-	[112] LoadSaveDataThumbnail();
-	[190] GetUserLastOpenedApplication();
-	[997] DebugInvalidateTokenCacheForUser();
-	[998] DebugSetUserStateClose();
-	[999] DebugSetUserStateOpen();
-}
-
-
-interface nn::account::IBaasAccessTokenAccessor is acc:aa {
-	[0] EnsureCacheAsync();
-	[1] LoadCache();
-	[2] GetDeviceAccountId();
-	[50] RegisterNotificationTokenAsync();
-	[51] UnregisterNotificationTokenAsync();
-}
-
-
-interface nn::hid::IHidServer is hid {
-	# Takes a PID and an u64 [AppletResourceUserId](AM_services "wikilink").
-	# Returns an [\#IAppletResource](#IAppletResource "wikilink").
-	# 
-	[0] CreateAppletResource();
-	[1] ActivateDebugPad();
-	[11] ActivateTouchScreen();
-	[21] ActivateMouse();
-	[31] ActivateKeyboard();
-	[40] AcquireXpadIdEventHandle();
-	[41] ReleaseXpadIdEventHandle();
-	[51] ActivateXpad();
-	[55] GetXpadIds();
-	[56] ActivateJoyXpad();
-	[58] GetJoyXpadLifoHandle();
-	[59] GetJoyXpadIds();
-	[60] ActivateSixAxisSensor();
-	[61] DeactivateSixAxisSensor();
-	[62] GetSixAxisSensorLifoHandle();
-	[63] ActivateJoySixAxisSensor();
-	[64] DeactivateJoySixAxisSensor();
-	[65] GetJoySixAxisSensorLifoHandle();
-	[66] StartSixAxisSensor();
-	[67] StopSixAxisSensor();
-	[68] IsSixAxisSensorFusionEnabled();
-	[69] EnableSixAxisSensorFusion();
-	[70] SetSixAxisSensorFusionParameters();
-	[71] GetSixAxisSensorFusionParameters();
-	[72] ResetSixAxisSensorFusionParameters();
-	[73] SetAccelerometerParameters();
-	[74] GetAccelerometerParameters();
-	[75] ResetAccelerometerParameters();
-	[76] SetAccelerometerPlayMode();
-	[77] GetAccelerometerPlayMode();
-	[78] ResetAccelerometerPlayMode();
-	[79] SetGyroscopeZeroDriftMode();
-	[80] GetGyroscopeZeroDriftMode();
-	[81] ResetGyroscopeZeroDriftMode();
-	[82] IsSixAxisSensorAtRest();
-	[91] ActivateGesture();
-	[100] SetSupportedNpadStyleSet();
-	[101] GetSupportedNpadStyleSet();
-	[102] SetSupportedNpadIdType();
-	[103] ActivateNpad();
-	[104] DeactivateNpad();
-	[106] AcquireNpadStyleSetUpdateEventHandle();
-	[107] DisconnectNpad();
-	[108] GetPlayerLedPattern();
-	[120] SetNpadJoyHoldType();
-	[121] GetNpadJoyHoldType();
-	[122] SetNpadJoyAssignmentModeSingleByDefault();
-	[123] SetNpadJoyAssignmentModeSingle();
-	[124] SetNpadJoyAssignmentModeDual();
-	[125] MergeSingleJoyAsDualJoy();
-	[126] StartLrAssignmentMode();
-	[127] StopLrAssignmentMode();
-	[128] SetNpadHandheldActivationMode();
-	# Takes a PID and an u64 [AppletResourceUserId](AM_services "wikilink").
-	# Returns an output u64. Official user-processes panic if the output u64
-	# is not 0-2.
-	# 
-	[129] GetNpadHandheldActivationMode();
-	[130] SwapNpadAssignment();
-	[131] IsUnintendedHomeButtonInputProtectionEnabled();
-	[132] EnableUnintendedHomeButtonInputProtection();
-	[200] GetVibrationDeviceInfo();
-	# Takes a PID-descriptor, an u32 VibrationDeviceHandle, 0x10-byte
-	# VibrationValue immediately after that, and an u64
-	# [AppletResourceUserId](AM_services "wikilink").
-	# 
-	[201] SendVibrationValue();
-	# Takes a PID-descriptor, an u32 VibrationDeviceHandle, and an u64
-	# [AppletResourceUserId](AM_services "wikilink"). Returns the 0x10-byte
-	# VibrationValue.
-	# 
-	[202] GetActualVibrationValue();
-	[203] CreateActiveVibrationDeviceList();
-	[204] PermitVibration();
-	[205] IsVibrationPermitted();
-	[206] SendVibrationValues();
-	[300] ActivateConsoleSixAxisSensor();
-	[301] StartConsoleSixAxisSensor();
-	[302] StopConsoleSixAxisSensor();
-	[400] IsUsbFullKeyControllerEnabled();
-	[401] EnableUsbFullKeyController();
-	[402] IsUsbFullKeyControllerConnected();
-	[1000] SetNpadCommunicationMode();
-	[1001] GetNpadCommunicationMode();
-}
-
-
-interface nn::hid::IHidDebugServer is hid:dbg {
-	[0] DeactivateDebugPad();
-	[1] SetDebugPadAutoPilotState();
-	[2] UnsetDebugPadAutoPilotState();
-	[10] DeactivateTouchScreen();
-	[11] SetTouchScreenAutoPilotState();
-	[12] UnsetTouchScreenAutoPilotState();
-	[20] DeactivateMouse();
-	[21] SetMouseAutoPilotState();
-	[22] UnsetMouseAutoPilotState();
-	[30] DeactivateKeyboard();
-	[31] SetKeyboardAutoPilotState();
-	[32] UnsetKeyboardAutoPilotState();
-	[50] DeactivateXpad();
-	[51] SetXpadAutoPilotState();
-	[52] UnsetXpadAutoPilotState();
-	[60] DeactivateJoyXpad();
-	[91] DeactivateGesture();
-	[110] DeactivateHomeButton();
-	[111] SetHomeButtonAutoPilotState();
-	[112] UnsetHomeButtonAutoPilotState();
-	[120] DeactivateSleepButton();
-	[121] SetSleepButtonAutoPilotState();
-	[122] UnsetSleepButtonAutoPilotState();
-	[123] DeactivateInputDetector();
-	[130] DeactivateCaptureButton();
-	[131] SetCaptureButtonAutoPilotState();
-	[132] UnsetCaptureButtonAutoPilotState();
-	[133] SetShiftAccelerometerCalibrationValue();
-	[134] GetShiftAccelerometerCalibrationValue();
-	[135] SetShiftGyroscopeCalibrationValue();
-	[136] GetShiftGyroscopeCalibrationValue();
-	[140] DeactivateConsoleSixAxisSensor();
-	[201] ActivateFirmwareUpdate();
-	[202] DeactivateFirmwareUpdate();
-	[203] StartFirmwareUpdate();
-	[204] GetFirmwareUpdateStage();
-	[205] GetFirmwareVersion();
-	[206] GetDestinationFirmwareVersion();
-	[207] DiscardFirmwareInfoCacheForRevert();
-	[208] StartFirmwareUpdateForRevert();
-	[209] GetAvailableFirmwareVersionForRevert();
-	[211] UpdateControllerColor();
-}
-
-
-interface nn::hid::IHidSystemServer is hid:sys {
-	[31] SendKeyboardLockKeyEvent();
-	[101] AcquireHomeButtonEventHandle();
-	[111] ActivateHomeButton();
-	[121] AcquireSleepButtonEventHandle();
-	[131] ActivateSleepButton();
-	[141] AcquireCaptureButtonEventHandle();
-	[151] ActivateCaptureButton();
-	[210] AcquireNfcDeviceUpdateEventHandle();
-	[211] GetNpadsWithNfc();
-	[212] AcquireNfcActivateEventHandle();
-	[213] ActivateNfc();
-	[230] AcquireIrSensorEventHandle();
-	[231] ActivateIrSensor();
-	[301] ActivateNpadSystem();
-	[303] ApplyNpadSystemCommonPolicy();
-	[304] EnableAssigningSingleOnSlSrPress();
-	[305] DisableAssigningSingleOnSlSrPress();
-	[306] GetLastActiveNpad();
-	[307] GetNpadSystemExtStyle();
-	[311] SetNpadPlayerLedBlinkingDevice();
-	[321] GetUniquePadsFromNpad();
-	[322] GetIrSensorState();
-	[323] GetXcdHandleForNpadWithIrSensor();
-	[500] SetAppletResourceUserId();
-	[501] RegisterAppletResourceUserId();
-	[502] UnregisterAppletResourceUserId();
-	[503] EnableAppletToGetInput();
-	[504] SetAruidValidForVibration();
-	[505] EnableAppletToGetSixAxisSensor();
-	# Takes an input 32bit float.
-	# 
-	[510] SetVibrationMasterVolume();
-	[511] GetVibrationMasterVolume();
-	[512] BeginPermitVibrationSession();
-	[513] EndPermitVibrationSession();
-	[520] EnableHandheldHids();
-	[521] DisableHandheldHids();
-	[540] AcquirePlayReportControllerUsageUpdateEvent();
-	[541] GetPlayReportControllerUsages();
-	[542] AcquirePlayReportRegisteredDeviceUpdateEvent();
-	[543] GetRegisteredDevices();
-	[544] AcquireConnectionTriggerTimeoutEvent();
-	[545] SendConnectionTrigger();
-	[546] AcquireDeviceRegisteredEventForControllerSupport();
-	[547] GetAllowedBluetoothLinksCount();
-	[700] ActivateUniquePad();
-	[702] AcquireUniquePadConnectionEventHandle();
-	[703] GetUniquePadIds();
-	[751] AcquireJoyDetachOnBluetoothOffEventHandle();
-	[800] ListSixAxisSensorHandles();
-	[801] IsSixAxisSensorUserCalibrationSupported();
-	[802] ResetSixAxisSensorCalibrationValues();
-	[803] StartSixAxisSensorUserCalibration();
-	[804] CancelSixAxisSensorUserCalibration();
-	[805] GetUniquePadBluetoothAddress();
-	[806] DisconnectUniquePad();
-	[821] StartAnalogStickManualCalibration();
-	[822] RetryCurrentAnalogStickManualCalibrationStage();
-	[823] CancelAnalogStickManualCalibration();
-	[824] ResetAnalogStickManualCalibration();
-	[850] IsUsbFullKeyControllerEnabled();
-	[851] EnableUsbFullKeyController();
-	[852] IsUsbConnected();
-	[900] ActivateInputDetector();
-	[901] NotifyInputDetector();
-	[1000] InitializeFirmwareUpdate();
-	[1001] GetFirmwareVersion();
-	[1002] GetAvailableFirmwareVersion();
-	[1003] IsFirmwareUpdateAvailable();
-	[1004] CheckFirmwareUpdateRequired();
-	[1005] StartFirmwareUpdate();
-	[1006] AbortFirmwareUpdate();
-	[1007] GetFirmwareUpdateState();
-}
-
-
-interface nn::irsensor::IIrSensorServer is irs {
-	# Takes a PID-descriptor and an
-	# [AppletResourceUserId](AM_services "wikilink"). No output.
-	# 
-	[302] ActivateIrsensor();
-	# Takes a PID-descriptor and an
-	# [AppletResourceUserId](AM_services "wikilink"). No output.
-	# 
-	[303] DeactivateIrsensor();
-	# Takes a PID-descriptor and an
-	# [AppletResourceUserId](AM_services "wikilink"). Returns a SharedMemory
-	# handle.
-	# 
-	# The SharedMemory is mapped with permissions=read-only and size=0x8000.
-	# 
-	[304] GetIrsensorSharedMemoryHandle();
-	# Takes a PID-descriptor, an
-	# [\#IrCameraHandle](#IrCameraHandle "wikilink"), and an
-	# [AppletResourceUserId](AM_services "wikilink"). No output.
-	# 
-	[305] StopImageProcessor();
-	# Takes a PID-descriptor, an
-	# [\#IrCameraHandle](#IrCameraHandle "wikilink"), an
-	# [AppletResourceUserId](AM_services "wikilink"), and a
-	# [\#PackedMomentProcessorConfig](#PackedMomentProcessorConfig "wikilink").
-	# No output.
-	# 
-	[306] RunMomentProcessor();
-	# Takes a PID-descriptor, an
-	# [\#IrCameraHandle](#IrCameraHandle "wikilink"), an
-	# [AppletResourceUserId](AM_services "wikilink"), and a
-	# [\#PackedClusteringProcessorConfig](#PackedClusteringProcessorConfig "wikilink").
-	# No output.
-	# 
-	[307] RunClusteringProcessor();
-	# Takes a PID-descriptor, an
-	# [\#IrCameraHandle](#IrCameraHandle "wikilink"), an
-	# [AppletResourceUserId](AM_services "wikilink"), a
-	# [\#PackedImageTransferProcessorConfig](#PackedImageTransferProcessorConfig "wikilink"),
-	# an u64 for the TransferMemory\_size, and a TransferMemory handle. No
-	# output.
-	# 
-	# Official sw creates the TransferMemory with an user-specified buffer and
-	# permissions=0.
-	# 
-	[308] RunImageTransferProcessor();
-	# Takes a PID-descriptor, a type-0x6 output buffer, an
-	# [\#IrCameraHandle](#IrCameraHandle "wikilink"), and an
-	# [AppletResourceUserId](AM_services "wikilink"). Returns an
-	# [\#ImageTransferProcessorState](#ImageTransferProcessorState "wikilink").
-	# No output.
-	# 
-	[309] GetImageTransferProcessorState();
-	# Takes a PID-descriptor, an
-	# [\#IrCameraHandle](#IrCameraHandle "wikilink"), a
-	# [\#PackedTeraPluginProcessorConfig](#PackedTeraPluginProcessorConfig "wikilink")
-	# (immediately after the previous word), and an
-	# [AppletResourceUserId](AM_services "wikilink"). No output.
-	# 
-	[310] RunTeraPluginProcessor();
-	# Takes an input u32. Returns an output
-	# [\#IrCameraHandle](#IrCameraHandle "wikilink").
-	# 
-	[311] GetNpadIrCameraHandle();
-	# Takes a PID-descriptor, an
-	# [\#IrCameraHandle](#IrCameraHandle "wikilink"), a
-	# [\#PackedDpdProcessorConfig](#PackedDpdProcessorConfig "wikilink")
-	# (immediately after the previous word), and an
-	# [AppletResourceUserId](AM_services "wikilink"). No output.
-	# 
-	[312] RunDpdProcessor();
-	# Takes a PID-descriptor, an
-	# [\#IrCameraHandle](#IrCameraHandle "wikilink"), and an
-	# [AppletResourceUserId](AM_services "wikilink"). No output.
-	# 
-	[313] SuspendImageProcessor();
-	# Takes a PID-descriptor, an
-	# [\#IrCameraHandle](#IrCameraHandle "wikilink"), a
-	# [\#PackedMcuVersion](#PackedMcuVersion "wikilink"), and an
-	# [AppletResourceUserId](AM_services "wikilink"). No output.
-	# 
-	@version(3.0.0+)
-	[314] CheckFirmwareVersion();
-}
-
-
-interface nn::omm::detail::IOperationModeManager is omm {
-	[0] GetOperationMode();
-	[1] GetOperationModeChangeEvent();
-	[2] EnableAudioVisual();
-	[3] DisableAudioVisual();
-	[4] EnterSleepAndWait();
-	[5] GetCradleStatus();
-	[6] FadeInDisplay();
-	[7] FadeOutDisplay();
-	@version(2.0.0+)
-	[8] Unknown8();
-	@version(2.0.0+)
-	[9] Unknown9();
-}
-
-
-interface nn::spsm::detail::IPowerStateInterface is spsm {
-	[0] GetState();
-	[1] SleepSystemAndWaitAwake();
+interface nn::ns::detail::ISystemUpdateInterface is ns:su {
+	[0] Unknown0() -> u8;
+	[1] GetISystemUpdateControl() -> object<IUnknown>;
 	[2] Unknown2();
 	[3] Unknown3();
 	[4] Unknown4();
 	[5] Unknown5();
 	[6] Unknown6();
+	[9] GetNsSuWaitEvent() -> KObject;
+	[10] Unknown10();
+}
+
+interface nn::hid::IHidDebugServer is hid:dbg {
+	[0] DeactivateDebugPad();
+	[1] SetDebugPadAutoPilotState(nn::hid::debug::DebugPadAutoPilotState);
+	[2] UnsetDebugPadAutoPilotState();
+	[10] DeactivateTouchScreen();
+	[11] SetTouchScreenAutoPilotState(array<nn::hid::TouchState,5>);
+	[12] UnsetTouchScreenAutoPilotState();
+	[20] DeactivateMouse();
+	[21] SetMouseAutoPilotState(nn::hid::debug::MouseAutoPilotState);
+	[22] UnsetMouseAutoPilotState();
+	[30] DeactivateKeyboard();
+	[31] SetKeyboardAutoPilotState(nn::hid::debug::KeyboardAutoPilotState);
+	[32] UnsetKeyboardAutoPilotState();
+	[50] DeactivateXpad(nn::hid::BasicXpadId);
+	[51] SetXpadAutoPilotState(nn::hid::BasicXpadId, align<4,nn::hid::debug::BasicXpadAutoPilotState>);
+	[52] UnsetXpadAutoPilotState(nn::hid::BasicXpadId);
+	[60] DeactivateJoyXpad(nn::hid::JoyXpadId);
+	[91] DeactivateGesture();
+	[110] DeactivateHomeButton();
+	[111] SetHomeButtonAutoPilotState(nn::hid::debug::HomeButtonAutoPilotState);
+	[112] UnsetHomeButtonAutoPilotState();
+	[120] DeactivateSleepButton();
+	[121] SetSleepButtonAutoPilotState(nn::hid::debug::SleepButtonAutoPilotState);
+	[122] UnsetSleepButtonAutoPilotState();
+	[123] DeactivateInputDetector();
+	[130] DeactivateCaptureButton();
+	[131] SetCaptureButtonAutoPilotState(nn::hid::debug::CaptureButtonAutoPilotState);
+	[132] UnsetCaptureButtonAutoPilotState();
+	[133] SetShiftAccelerometerCalibrationValue(nn::hid::SixAxisSensorHandle, f32, f32, nn::applet::AppletResourceUserId, pid);
+	[134] GetShiftAccelerometerCalibrationValue(nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid) -> (f32, f32);
+	[135] SetShiftGyroscopeCalibrationValue(nn::hid::SixAxisSensorHandle, f32, f32, nn::applet::AppletResourceUserId, pid);
+	[136] GetShiftGyroscopeCalibrationValue(nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid) -> (f32, f32);
+	[140] DeactivateConsoleSixAxisSensor();
+	[201] ActivateFirmwareUpdate();
+	[202] DeactivateFirmwareUpdate();
+	[203] StartFirmwareUpdate(nn::hid::system::UniquePadId);
+	[204] GetFirmwareUpdateStage() -> (i64, i64);
+	[205] GetFirmwareVersion(u32, nn::hid::system::DeviceType) -> nn::hid::system::FirmwareVersion;
+	[206] GetDestinationFirmwareVersion(u32, nn::hid::system::DeviceType) -> nn::hid::system::FirmwareVersion;
+	[207] DiscardFirmwareInfoCacheForRevert();
+	[208] StartFirmwareUpdateForRevert(nn::hid::system::UniquePadId);
+	[209] GetAvailableFirmwareVersionForRevert(nn::hid::system::UniquePadId) -> nn::hid::system::FirmwareVersion;
+	[211] UpdateControllerColor();
+}
+
+interface nn::account::IAccountServiceForSystemService is acc:u1 {
+	[0] GetUserCount() -> i32;
+	[1] GetUserExistence(nn::account::Uid) -> bool;
+	[2] ListAllUsers() -> array<nn::account::Uid,10>;
+	[3] ListOpenUsers() -> array<nn::account::Uid,10>;
+	[4] GetLastOpenedUser() -> nn::account::Uid;
+	[5] GetProfile(nn::account::Uid) -> object<nn::account::profile::IProfile>;
+	[6] GetProfileDigest(nn::account::Uid) -> nn::account::ProfileDigest;
+	[50] IsUserRegistrationRequestPermitted(u64, pid) -> bool;
+	[51] TrySelectUserWithoutInteraction(bool) -> nn::account::Uid;
+	[100] GetUserRegistrationNotifier() -> object<nn::account::detail::INotifier>;
+	[101] GetUserStateChangeNotifier() -> object<nn::account::detail::INotifier>;
+	[102] GetBaasAccountManagerForSystemService(nn::account::Uid) -> object<nn::account::baas::IManagerForSystemService>;
+	[103] GetBaasUserAvailabilityChangeNotifier() -> object<nn::account::detail::INotifier>;
+	[104] GetProfileUpdateNotifier() -> object<nn::account::detail::INotifier>;
+	[110] StoreSaveDataThumbnail(nn::account::Uid, nn::ApplicationId, buffer<unknown,5,0>);
+	[111] ClearSaveDataThumbnail(nn::account::Uid, nn::ApplicationId);
+	[112] LoadSaveDataThumbnail(nn::account::Uid, nn::ApplicationId) -> (u32, buffer<unknown,6,0>);
+	[190] GetUserLastOpenedApplication(nn::account::Uid) -> (u32, nn::ApplicationId);
+	[997] DebugInvalidateTokenCacheForUser(nn::account::Uid);
+	[998] DebugSetUserStateClose(nn::account::Uid);
+	[999] DebugSetUserStateOpen(nn::account::Uid);
+}
+
+interface nn::settings::IFactorySettingsServer is set:cal {
+	[0] GetBluetoothBdAddress() -> nn::settings::factory::BdAddress;
+	[1] GetConfigurationId1() -> nn::settings::factory::ConfigurationId1;
+	[2] GetAccelerometerOffset() -> nn::settings::factory::AccelerometerOffset;
+	[3] GetAccelerometerScale() -> nn::settings::factory::AccelerometerScale;
+	[4] GetGyroscopeOffset() -> nn::settings::factory::GyroscopeOffset;
+	[5] GetGyroscopeScale() -> nn::settings::factory::GyroscopeScale;
+	[6] GetWirelessLanMacAddress() -> nn::settings::factory::MacAddress;
+	[7] GetWirelessLanCountryCodeCount() -> i32;
+	[8] GetWirelessLanCountryCodes() -> (i32, array<nn::settings::factory::CountryCode,10>);
+	[9] GetSerialNumber() -> nn::settings::factory::SerialNumber;
+	[10] SetInitialSystemAppletProgramId(nn::ncm::ProgramId);
+	[11] SetOverlayDispProgramId(nn::ncm::ProgramId);
+	[12] GetBatteryLot() -> nn::settings::factory::BatteryLot;
+	# Takes a type-0x16 output buffer with fixed size 0x180.
+	# 
+	# Returns the device certificate (ECC signed). This is identical to 3DS
+	# DeviceCert/CTCert besides the strings. NIM loads the DeviceId from this.
+	# 
+	[14] GetEciDeviceCertificate() -> buffer<nn::settings::factory::EccB233DeviceCertificate,22,384>;
+	# Takes a type-0x16 output buffer with fixed size 0x240.
+	# 
+	# Returns the ETicket certificate (RSA signed).
+	# 
+	[15] GetEticketDeviceCertificate() -> buffer<nn::settings::factory::Rsa2048DeviceCertificate,22,576>;
+	# Takes a type-0x16 output buffer with fixed size 0x134.
+	# 
+	# Returns the extended SSL key (0x130 bytes) from
+	# [CAL0](Calibration#CAL0 "wikilink"). If the extended key is not
+	# programmed then it falls back to the normal SSL key (0x110 bytes).
+	# 
+	# Used by SSL-sysmodule, see [here](SSL_services "wikilink").
+	# 
+	[16] GetSslKey() -> buffer<nn::settings::factory::SslKey,22,308>;
+	# Takes a type-0x16 output buffer with fixed size 0x804.
+	# 
+	# Returns a
+	# [container](Settings_services#setcal_Container_Structure "wikilink")
+	# with the plaintext SSL certificate.
+	# 
+	# Used by SSL-sysmodule, see [here](SSL_services "wikilink").
+	# 
+	[17] GetSslCertificate() -> buffer<nn::settings::factory::SslCertificate,22,2052>;
+	# Takes a type-0x16 output buffer with fixed size 0x134.
+	# 
+	# Returns the extended GameCard key (0x130 bytes) from
+	# [CAL0](Calibration#CAL0 "wikilink"). If the extended key is not
+	# programmed then it falls back to the normal GameCard key (0x110 bytes).
+	# 
+	[18] GetGameCardKey() -> buffer<nn::settings::factory::GameCardKey,22,308>;
+	# Takes a type-0x16 output buffer with fixed size 0x404.
+	# 
+	# Returns a
+	# [container](Settings_services#setcal_Container_Structure "wikilink")
+	# with the GameCard certificate.
+	# 
+	[19] GetGameCardCertificate() -> buffer<nn::settings::factory::GameCardCertificate,22,1024>;
+	# Returns the extended device ECC-B233 key (0x50 bytes) from
+	# [CAL0](Calibration#CAL0 "wikilink"). If the extended key is not
+	# programmed then it falls back to the normal device ECC-B233 key (0x30
+	# bytes).
+	# 
+	[20] GetEciDeviceKey() -> nn::settings::factory::EccB233DeviceKey;
+	# Takes a type-0x16 output buffer with fixed size 0x244.
+	# 
+	# Returns the extended ETicket RSA-2048 key (0x240 bytes) from
+	# [CAL0](Calibration#CAL0 "wikilink"). If the extended key is not
+	# programmed then it falls back to the normal ETicket RSA-2048 key (0x220
+	# bytes).
+	# 
+	[21] GetEticketDeviceKey() -> buffer<nn::settings::factory::Rsa2048DeviceKey,22,580>;
+	[22] GetSpeakerParameter() -> nn::settings::factory::SpeakerParameter;
+	@version(4.0.0+)
+	[23] GetLcdVendorId();
+}
+
+interface nn::nim::detail::INetworkInstallManager is nim {
+	[1] Unknown1(u128);
+	[2] Unknown2() -> (u32, buffer<unknown,6,0>);
+}
+
+interface nn::fssrv::sf::IProgramRegistry is fsp-pr {
+	# Takes a storageID, a pid, a titleID, a 0x1C type-A buffer for the [ FS
+	# Access Header](NPDM#FS_Access_Header "wikilink"), and a 0x2C type-A
+	# buffer for the [ FS Access Control](NPDM#FS_Access_Control "wikilink")
+	# 
+	# Final FS permissions are stored as (ACI0\_perms & ACID\_perms). Will
+	# panic(svcBreak) when buffer sizes from ipc-rawdata are invalid.
+	# 
+	[0] SetFsPermissions(u8, u64, u64, u64, u64, buffer<unknown,5,0>, buffer<unknown,5,0>);
+	# Takes a pid. Removes registered FS permissions for that PID.
+	# 
+	[1] ClearFsPermissions(u64);
+	@version(4.0.0+)
+	[2] Initialize();
+	# Seems to sets a global flag to inputval & 1.
+	# 
+	# When the flag is zero, it will set ret=0 instead of ret={error} when
+	# verifying a RSA signature fails. This RSA signature seems to be the
+	# signature in the [NPDM](NPDM "wikilink") ACID. It then skips verifying
+	# what seems to be the second signature in the [NCA
+	# header](NCA_Format "wikilink"). Note that if verifying the NPDM(?)
+	# signature is successful, and verifying that second signature fails, it
+	# will throw an error and abort.
+	# 
+	[256] SetEnabledProgramVerification(u8);
+}
+
+interface nn::usb::pd::detail::IPdCradleManager is usb:pd:c {
+	[0] Unknown0() -> object<IUnknown>;
+}
+
+interface nn::bluetooth::IBluetoothDriver is btdrv {
+	[0] Unknown0();
+	[1] Init() -> KObject;
+	[2] Enable();
+	[3] Disable();
+	[4] CleanupAndShutdown();
+	[5] GetAdapterProperties();
+	[6] GetAdapterProperty();
+	[7] SetAdapterProperty();
+	[8] StartDiscovery();
+	[9] CancelDiscovery();
+	[10] CreateBond();
+	[11] RemoveBond(bytes<6>);
+	[12] CancelBond(bytes<6>);
+	[13] PinReply();
+	[14] SspReply();
+	[15] Unknown15() -> (u32, buffer<unknown,10,0>);
+	[16] InitInterfaces();
+	[17] HidHostInterface_Connect(bytes<6>);
+	[18] HidHostInterface_Disconnect(bytes<6>);
+	[19] HidHostInterface_SendData();
+	[20] HidHostInterface_SendData2();
+	[21] HidHostInterface_SetReport();
+	[22] HidHostInterface_GetReport();
+	[23] HidHostInterface_WakeController(bytes<6>);
+	[24] HidHostInterface_AddPairedDevice();
+	[25] HidHostInterface_GetPairedDevice();
+	[26] HidHostInterface_CleanupAndShutdown();
+	[27] Unknown27() -> (u32, buffer<unknown,10,0>);
+	[28] ExtInterface_SetTSI();
+	[29] ExtInterface_SetBurstMode();
+	[30] ExtInterface_SetZeroRetran();
+	[31] ExtInterface_SetMcMode(u8);
+	[32] ExtInterface_StartLlrMode();
+	[33] ExtInterface_ExitLlrMode();
+	[34] ExtInterface_SetRadio(u8);
+	[35] ExtInterface_SetVisibility();
+	[36] Unknown36() -> KObject;
+	[37] Unknown37() -> (u32, buffer<unknown,10,0>);
+	[38] HidHostInterface_GetLatestPlr();
+	[39] ExtInterface_GetPendingConnections();
+	[40] HidHostInterface_GetChannelMap();
+	[41] SetIsBluetoothBoostEnabled(u8);
+	[42] GetIsBluetoothBoostEnabled() -> u8;
+	[43] SetIsBluetoothAfhEnabled(u8);
+	[44] GetIsBluetoothAfhEnabled() -> u8;
+}
+
+interface nn::mmnv::IRequest is mm:u {
+	[0] Unknown0(u32, u32, u32);
+	[1] Unknown1(u32);
+	[2] Unknown2(u32, u32, u32);
+	[3] Unknown3(u32) -> u32;
+	[4] module_init_clk();
+	[5] module_deinit_clk(u32);
+	[6] module_set_clk_rate(u32, u32, u32);
+	[7] module_get_clk_rate(u32) -> u32;
+}
+
+interface nn::fatalsrv::IService is fatal:u {
+	[0] Unknown0();
+	[1] Unknown1();
+	# Takes an input u64 errorcode and an unknown u64(TID maybe?). It also
+	# takes a type-0x15 error buffer and a pid-descriptor. The error buffer
+	# contains a stack trace. The stack trace address count is stored at
+	# errorbuffer+0x240 and the addresses are stored at errorbuffer+0x130+i\*8
+	# where i = 0-\>address count
+	# 
+	[2] TransitionToFatalError();
+}
+
+interface nn::spsm::detail::IPowerStateInterface is spsm {
+	[0] GetState() -> u32;
+	[1] SleepSystemAndWaitAwake() -> KObject;
+	[2] Unknown2() -> u32;
+	[3] Unknown3(u8);
+	[4] Unknown4() -> KObject;
+	[5] Unknown5() -> u32;
+	[6] Unknown6();
+	[7] Unknown7();
+	[8] Unknown8() -> buffer<unknown,6,0>;
+	[9] Unknown9(u64);
+}
+
+interface nn::audio::detail::IAudioOutManagerForApplet is audout:a {
+	[0] RequestSuspend(u64, u64) -> KObject;
+	[1] RequestResume(u64, u64) -> KObject;
+}
+
+interface nns::hosbinder::IHOSBinderDriver is dispdrv {
+	# Takes a s32 (**ID**), an u32 (**code**), a type-0x5 input buffer
+	# (**parcel\_data**), a type-0x6 output buffer (**parcel\_reply**) and an
+	# input u32 (**flags**). Each word is placed immediately after the
+	# previous word.
+	# 
+	# Analogous to "onTransact" from "android.os.IServiceManager".
+	# 
+	[0] TransactParcel(i32, u32, u32, buffer<unknown,5,0>) -> buffer<unknown,6,0>;
+	# Takes 3 input s32s: **ID**, **addval**, and **type**. Each word
+	# immediately follows the previous word. No additional output.
+	# 
+	# | Called by official function          | addval | type |
+	# | ------------------------------------ | ------ | ---- |
+	# | "android::BpBinder::onFirstRef"      | 1      | 1    |
+	# | "android::BpBinder::onLastStrongRef" | \-1    | 1    |
+	# | ?                                    | 1      | 0    |
+	# | ?                                    | \-1    | 0    |
+	# 
+	# During init, {addval=1, type=0} is used then {addval=1, type=1} is used.
+	# 
+	[1] AdjustRefcount(i32, i32, i32);
+	# Takes an input s32 (**ID**) and u32, with the latter immediately
+	# following the previous word. Returns an output event handle.
+	# 
+	[2] GetNativeHandle(i32, u32) -> KObject;
+	# Takes a s32 (**ID**), an u32 (**code**), a type-0x21 input buffer
+	# (**parcel\_data**), a type-0x22 output buffer (**parcel\_reply**) and an
+	# input u32 (**flags**). Each word is placed immediately after the
+	# previous word.
+	# 
+	@version(3.0.0+)
+	[3] TransactParcelAuto(i32, u32, u32, buffer<unknown,33,0>) -> buffer<unknown,34,0>;
+}
+
+interface nn::pctl::detail::ipc::IParentalControlServiceFactory is pctl:s, pctl:r, pctl:a, pctl {
+	[0] GetService(u64, pid) -> object<nn::pctl::detail::ipc::IParentalControlService>;
+}
+
+interface nn::account::IAccountServiceForAdministrator is acc:su {
+	[0] GetUserCount() -> i32;
+	[1] GetUserExistence(nn::account::Uid) -> bool;
+	[2] ListAllUsers() -> array<nn::account::Uid,10>;
+	[3] ListOpenUsers() -> array<nn::account::Uid,10>;
+	[4] GetLastOpenedUser() -> nn::account::Uid;
+	[5] GetProfile(nn::account::Uid) -> object<nn::account::profile::IProfile>;
+	[6] GetProfileDigest(nn::account::Uid) -> nn::account::ProfileDigest;
+	[50] IsUserRegistrationRequestPermitted(u64, pid) -> bool;
+	[51] TrySelectUserWithoutInteraction(bool) -> nn::account::Uid;
+	[100] GetUserRegistrationNotifier() -> object<nn::account::detail::INotifier>;
+	[101] GetUserStateChangeNotifier() -> object<nn::account::detail::INotifier>;
+	[102] GetBaasAccountManagerForSystemService(nn::account::Uid) -> object<nn::account::baas::IManagerForSystemService>;
+	[103] GetBaasUserAvailabilityChangeNotifier() -> object<nn::account::detail::INotifier>;
+	[104] GetProfileUpdateNotifier() -> object<nn::account::detail::INotifier>;
+	[110] StoreSaveDataThumbnail(nn::account::Uid, nn::ApplicationId, buffer<unknown,5,0>);
+	[111] ClearSaveDataThumbnail(nn::account::Uid, nn::ApplicationId);
+	[112] LoadSaveDataThumbnail(nn::account::Uid, nn::ApplicationId) -> (u32, buffer<unknown,6,0>);
+	[190] GetUserLastOpenedApplication(nn::account::Uid) -> (u32, nn::ApplicationId);
+	[200] BeginUserRegistration() -> nn::account::Uid;
+	[201] CompleteUserRegistration(nn::account::Uid);
+	[202] CancelUserRegistration(nn::account::Uid);
+	[203] DeleteUser(nn::account::Uid);
+	[204] SetUserPosition(i32, nn::account::Uid);
+	[205] GetProfileEditor(nn::account::Uid) -> object<nn::account::profile::IProfileEditor>;
+	[206] CompleteUserRegistrationForcibly(nn::account::Uid);
+	[210] CreateFloatingRegistrationRequest(u32, KObject) -> object<nn::account::baas::IFloatingRegistrationRequest>;
+	[230] AuthenticateServiceAsync() -> object<nn::account::detail::IAsyncContext>;
+	[250] GetBaasAccountAdministrator(nn::account::Uid) -> object<nn::account::baas::IAdministrator>;
+	[290] ProxyProcedureForGuestLoginWithNintendoAccount(nn::account::detail::Uuid) -> object<nn::account::nas::IOAuthProcedureForExternalNsa>;
+	[291] ProxyProcedureForFloatingRegistrationWithNintendoAccount(nn::account::detail::Uuid) -> object<nn::account::nas::IOAuthProcedureForExternalNsa>;
+	[299] SuspendBackgroundDaemon() -> object<nn::account::detail::ISessionObject>;
+	[997] DebugInvalidateTokenCacheForUser(nn::account::Uid);
+	[998] DebugSetUserStateClose(nn::account::Uid);
+	[999] DebugSetUserStateOpen(nn::account::Uid);
+}
+
+interface nn::gpio::IManager is gpio {
+	# Takes a raw GpioPadDescriptor and returns a
+	# [\#IPadSession](#IPadSession "wikilink") session for it.
+	# 
+	[0] OpenSessionForDev(u32) -> object<IUnknown>;
+	# Same thing as OpenSessionForDev except the descriptor is looked up in
+	# the table below. Returns an [\#IPadSession](#IPadSession "wikilink")
+	# session.
+	# 
+	# | GpioPadName | GpioPadDescriptor | Description | Direction | Used by                                 |
+	# | ----------- | ----------------- | ----------- | --------- | --------------------------------------- |
+	# | 1           | 0xCC              |             |           |                                         |
+	# | 2           | 0x24              |             |           |                                         |
+	# | 4           | 0xDA              |             |           |                                         |
+	# | 5           | 0xDB              |             |           |                                         |
+	# | 6           | 0xDC              |             |           |                                         |
+	# | 7           | 0x25              |             |           |                                         |
+	# | 8           | 0x90              |             | In        | [HID services](HID_services "wikilink") |
+	# | 9           | 0x91              |             |           |                                         |
+	# | 0xA         | 0x96              |             |           |                                         |
+	# | 0xB         | 0x97              |             |           |                                         |
+	# | 0xD         | 6                 |             |           |                                         |
+	# | 0xE         | 0x78              |             |           |                                         |
+	# | 0xF         | 0x93              |             |           |                                         |
+	# | 0x10        | 0x7D              |             |           |                                         |
+	# | 0x11        | 0x7C              |             |           |                                         |
+	# | 0x12        | 0x7B              |             |           |                                         |
+	# | 0x13        | 0x7A              |             |           |                                         |
+	# | 0x14        | 0xBC              |             |           |                                         |
+	# | 0x15        | 0xAE              |             |           |                                         |
+	# | 0x17        | 0xB9              |             | In        | [HID services](HID_services "wikilink") |
+	# | 0x18        | 0xBD              |             | Out       | [HID services](HID_services "wikilink") |
+	# | 0x19        | 0xBE              | Volume key  | In        | [Boot2](Boot2 "wikilink")               |
+	# | 0x1A        | 0xBF              | Volume key  | In        | [Boot2](Boot2 "wikilink")               |
+	# | 0x1B        | 0xC0              |             |           |                                         |
+	# | 0x1C        | 0xC1              |             |           |                                         |
+	# | 0x1D        | 0xA9              |             |           |                                         |
+	# | 0x1E        | 0xAA              |             |           |                                         |
+	# | 0x20        | 0xAD              |             |           |                                         |
+	# | 0x21        | 0xC8              |             |           |                                         |
+	# | 0x22        | 0xCA              |             |           |                                         |
+	# | 0x23        | 0xCB              |             |           |                                         |
+	# | 0x24        | 0x4F              |             |           |                                         |
+	# | 0x25        | 0x50              |             |           |                                         |
+	# | 0x26        | 0x51              |             |           |                                         |
+	# | 0x27        | 0x52              |             |           |                                         |
+	# | 0x28        | 0x54              |             |           |                                         |
+	# | 0x29        | 0x56              |             |           |                                         |
+	# | 0x2A        | 0x57              |             |           |                                         |
+	# | ..          | ..                | ..          | ..        | ..                                      |
+	# 
+	[1] OpenSession(u32) -> object<IUnknown>;
+	# Same as [\#OpenSession](#OpenSession "wikilink") but panics on failure.
+	# 
+	[2] OpenSessionForTest(u32) -> object<IUnknown>;
+	[3] IsWakeEventActive(u32) -> u8;
+	[4] GetWakeEventActiveFlagSet() -> u128;
+	[5] SetWakeEventActiveFlagSetForDebug(u8, u32);
+	[6] Unknown6(u8);
+}
+
+interface nn::lbl::detail::ILblController is lbl {
+	[0] Unknown0();
+	[1] Unknown1();
+	[2] Unknown2(u32);
+	[3] Unknown3() -> u32;
+	[4] Unknown4();
+	[5] Unknown5() -> u32;
+	[6] TurnOnBacklight(u64);
+	[7] TurnOffBacklight(u64);
+	[8] GetBacklightStatus() -> u32;
+	[9] Unknown9();
+	[10] Unknown10();
+	[11] Unknown11() -> u8;
+	[12] Unknown12();
+	[13] Unknown13();
+	[14] Unknown14() -> u8;
+	[15] Unknown15(u32);
+	[16] ReadRawLightSensor() -> u32;
+	[17] Unknown17(u32, u32);
+	[18] Unknown18(u32) -> u32;
+	[19] Unknown19(bytes<12>);
+	[20] Unknown20() -> bytes<12>;
+	[21] Unknown21(bytes<12>);
+	[22] Unknown22() -> bytes<12>;
+	@version(3.0.0+)
+	[23] Unknown23() -> u8;
+	@version(3.0.0+)
+	[24] Unknown24(u32);
+	@version(3.0.0+)
+	[25] Unknown25() -> u32;
+	# No input/output. Used by
+	# [AM\_services\#SetVrModeEnabled](AM_services#SetVrModeEnabled "wikilink").
+	# 
+	# Sets a global state field to 0x1.
+	# 
+	@version(3.0.0+)
+	[26] EnableVrMode();
+	# No input/output. Used by
+	# [AM\_services\#SetVrModeEnabled](AM_services#SetVrModeEnabled "wikilink").
+	# 
+	# Sets the global state field used by
+	# [\#EnableVrMode](#EnableVrMode "wikilink") to 0x0.
+	# 
+	@version(3.0.0+)
+	[27] DisableVrMode();
+	# No input. Returns an output u8 bool set by the above commands.
+	# 
+	@version(3.0.0+)
+	[28] GetVrMode() -> u8;
+}
+
+interface nn::uart::IManager is uart {
+	[0] Unknown0(u32) -> u8;
+	[1] Unknown1(u32) -> u8;
+	[2] Unknown2();
+	[3] Unknown3();
+	[4] Unknown4();
+	[5] Unknown5();
+	[6] GetIPortSession() -> object<IUnknown>;
 	[7] Unknown7();
 	[8] Unknown8();
-	[9] Unknown9();
 }
 
-
-interface nn::aocsrv::detail::IAddOnContentManager is aoc:u {
-	[0] CountAddOnContentByApplicationId();
-	[1] ListAddOnContentByApplicationId();
-	[2] CountAddOnContent();
-	[3] ListAddOnContent();
-	[4] GetAddOnContentBaseIdByApplicationId();
-	[5] GetAddOnContentBaseId();
-	[6] PrepareAddOnContentByApplicationId();
-	[7] PrepareAddOnContent();
+interface nn::ldr::detail::IProcessManagerInterface is ldr:pm {
+	[0] CreateProcess();
+	# Takes a TitleId + StorageId, parses the NPDM, and writes output to a C
+	# descriptor buffer as
+	# follows:
+	# 
+	# | Offset   | Size     | Description                                       |
+	# | -------- | -------- | ------------------------------------------------- |
+	# | 0x0      | 0x1      | MainThreadPrio. Arg1 to svcStartProcess           |
+	# | 0x1      | 0x1      | DefaultCpuId. Arg2 to svcStartProcess             |
+	# | 0x2      | 0x1      | ApplicationType, see \[\[Process Manager services |
+	# | 0x3      | 0x1      | Padding                                           |
+	# | 0x4      | 0x4      | MainThreadStackSize. Arg3 to svcStartProcess      |
+	# | 0x8      | 0x8      | Title id                                          |
+	# | 0x10     | 0x4      | ACID \[\[NPDM\#Service Access Control             |
+	# | 0x14     | 0x4      | ACI0 \[\[NPDM\#Service Access Control             |
+	# | 0x18     | 0x4      | ACID \[\[NPDM\#FS Access Control                  |
+	# | 0x1C     | 0x4      | ACI0 \[\[NPDM\#FS Access Control                  |
+	# | 0x20     | <Varies> | ACID \[\[NPDM\#Service Access Control             |
+	# | <Varies> | <Varies> | ACI0 \[\[NPDM\#Service Access Control             |
+	# | <Varies> | <Varies> | ACID \[\[NPDM\#FS Access Control                  |
+	# | <Varies> | <Varies> | ACI0 \[\[NPDM\#FS Access Control                  |
+	# 
+	[1] GetProgramInfo();
+	# Takes a TitleId + StorageId, returns an index.
+	# 
+	[2] RegisterTitle();
+	# Takes the index from [\#RegisterTitle](#RegisterTitle "wikilink").
+	# 
+	[3] UnregisterTitle();
 }
 
+interface nn::spl::detail::IGeneralInterface is spl: {
+	# Takes a u32 (**ConfigItem**), and returns a u64 (**ConfigVal**).
+	# 
+	# | ConfigItem | Name                             |
+	# | ---------- | -------------------------------- |
+	# | 1          | DisableProgramVerification       |
+	# | 2          | MemoryConfiguration              |
+	# | 3          | SecurityEngineIRQNumber          |
+	# | 4          | Returns 0x02?                    |
+	# | 5          | HardwareType (0=Icosa, 1=Copper) |
+	# | 6          | IsRetail                         |
+	# | 7          | IsRecoveryBoot                   |
+	# | 8          | DeviceId (byte7 clear)           |
+	# | 9          | BootReason                       |
+	# | 10         | MemoryArrange                    |
+	# | 11         | IsDebugMode                      |
+	# | 12         | KernelMemoryConfiguration        |
+	# | 13         | BatteryProfile                   |
+	# 
+	# [PM](Process_Manager_services "wikilink") checks id1 and if non-zero,
+	# calls fsp-pr SetEnabledProgramVerification(false).
+	# 
+	# [PCV](PCV_services "wikilink") configures memory profiles based on
+	# id2.
+	# 
+	# | Platform     | Version                                 | Revision | id2    |
+	# | ------------ | --------------------------------------- | -------- | ------ |
+	# | "jetson-tx1" | "11\_40800\_01\_V9.8.3\_V1.6"           | N/A      | N/A    |
+	# | "nx-abcb"    | "10\_40800\_NoCfgVersion\_V9.8.4\_V1.6" | 0        | 0      |
+	# | "nx-abca2"   | "10\_40800\_NoCfgVersion\_V9.8.7\_V1.6" | 0        | 0 or 3 |
+	# | "nx-abca2"   | "10\_40800\_NoCfgVersion\_V9.8.7\_V1.6" | 1        | 4      |
+	# | "nx-abca2"   | "10\_40800\_NoCfgVersion\_V9.8.7\_V1.6" | 2        | 1      |
+	# | "nx-abca2"   | "10\_40800\_NoCfgVersion\_V9.8.7\_V1.6" | 3        | 2      |
+	# |  |
+	# 
+	# SPL uses id3 for setting up the security engine IRQ.
+	# 
+	# [NIM](NIM_services "wikilink") checks that id8 output must match the
+	# [set:cal](Settings_services "wikilink") DeviceId with byte7 cleared,
+	# otherwise panic.
+	# 
+	# \[3.0.0+\] [RO](Loader_services "wikilink") checks id11, if set then
+	# skipping NRR rsa signatures is allowed.
+	# 
+	# Kernel uses id11 to determine behavior of svcBreak positive arguments.
+	# It will break instead of just force-exiting the process which is what
+	# happens on retail. \[2.0.0+\] This is also used with certain debug
+	# [SVCs](SVC "wikilink").
+	# 
+	# Kernel reads id12 when setting up memory-related code. If bit0 is set,
+	# it will memset various allocated memory-regions with 0x58, 0x59, 0x5A
+	# ('X', 'Y', 'Z') instead of zero. This allows Nintendo devs to find
+	# uninitialized memory bugs. If bit17-16 is 0b01, the kernel assumes 6GB
+	# of DRAM instead of 4GB.
+	# 
+	[0] GetConfig(u32) -> u64;
+	# Takes one type-10 (C descriptor) buffer (**data\_out\_buf**) and 3
+	# type-9 (X descriptor) buffers (**data\_in\_buf**, **exp\_in\_buf** and
+	# **mod\_in\_buf**).
+	# 
+	# Performs asymmetric crypto with user supplied modulus and exponent.
+	# 
+	[1] UserExpMod();
+	# Takes a 16-byte EKS (**Encryption Key Source**) and two words
+	# (**KeyGeneration** and **option**) as input. **KeyGeneration** ranges
+	# from 0 to 2.
+	# 
+	# Returns a scrambled sealed KEK (**Key Encryption Key** used as
+	# **key\_x**).
+	# 
+	[2] GenerateAesKek();
+	# Takes a u32 (**keyslot**) and two 16-byte keys (**key\_x** and
+	# **key\_y**).
+	# 
+	# Sets the specified **keyslot** with a key generated from **key\_x** and
+	# **key\_y**.
+	# 
+	# \[2.0.0+\] Now verifies that the engine in use (0..3) is locked/owned by
+	# the current spl session, otherwise errors with 0xD21A. Previously engine
+	# was hardcoded to 0.
+	# 
+	[3] LoadAesKey();
+	# Takes a 16-byte KEK (**key\_x**) and a 16-byte encrypted key
+	# (**enc\_key**).
+	# 
+	# Generates a new key by decrypting **enc\_key** with a key generated from
+	# the supplied **key\_x** and a fixed **key\_y**.
+	# 
+	# \[2.0.0+\] Previously, it always used engine 0. Now it tries to allocate
+	# an engine to be used and returns 0xD01A if they're all busy. When the
+	# command is done, the engine is released.
+	# 
+	[4] GenerateAesKey();
+	# Takes a u32 (**ConfigItem**) and a u64 (**ConfigVal**).
+	# 
+	# | ConfigItem | Name           |
+	# | ---------- | -------------- |
+	# | 13         | BatteryProfile |
+	# 
+	# Any other **ConfigItem**, besides 13, can't be set.
+	# 
+	[5] SetConfig();
+	# Takes a type-6 buffer and fills it with random data. Same command for
+	# "spl:" and "csrng" services.
+	# 
+	[7] GetRandomBytes();
+	# Takes one type-9 (X descriptor) buffer (**enc\_privk\_in\_buf**), a
+	# 16-byte KEK (**key\_x**), a 16-byte key (**key\_y**) and a u32
+	# (**version**). **version** is 0 for normal keys or 1 for extended keys.
+	# 
+	# Decrypts **enc\_privk\_in\_buf** with a key generated from **key\_x**
+	# and **key\_y** and imports it for later usage.
+	# 
+	[9] DecryptImportPrivkForRsaOaep();
+	# Takes one type-10 (C descriptor) buffer (**data\_out\_buf**) and 3
+	# type-9 (X descriptor) buffers (**data\_in\_buf**, **mod\_in\_buf** and
+	# **label\_hash\_in\_buf**).
+	# 
+	# Decrypts **data\_in\_buf** into **data\_out\_buf** using the private key
+	# imported with
+	# [\#DecryptImportPrivkForRsaOaep](#DecryptImportPrivkForRsaOaep "wikilink")
+	# and the supplied **mod\_in\_buf**. Afterwards, verifies RSA-OAEP
+	# encoding using **label\_hash\_in\_buf**.
+	# 
+	# Returns an u32 (**dec\_data\_size**).
+	# 
+	[10] DecryptRsaOaep();
+	# No input params.
+	# 
+	# Uses [\#GetConfig](#GetConfig "wikilink") internally with id=6. Returns
+	# true if output from that is 0, or if the SMC returned error 2.
+	# 
+	# Returns an u8 flag for whether the system is devunit. Output flag is 0
+	# on retail.
+	# 
+	[11] IsDevelopment() -> u8;
+	# Takes a 16-byte seed (**key\_seed**) and two words (**KeyGeneration**
+	# and **option**) as input. **KeyGeneration** ranges from 0 to 2.
+	# 
+	# Returns a scrambled key (**key\_a**).
+	# 
+	[12] GenerateSpecificAesKey();
+	# Takes one type-10 (C descriptor) buffer (**dec\_privk\_out\_buf**), one
+	# type-9 (X descriptor) buffer (**enc\_privk\_in\_buf**), a 16-byte KEK
+	# (**key\_x**), a 16-byte key (**key\_y**) and a u32 (**version**).
+	# **version** is 0 for normal keys or 1 for extended keys.
+	# 
+	# Decrypts **enc\_privk\_in\_buf** into **dec\_privk\_out\_buf** with a
+	# key generated from **key\_x** and **key\_y**.
+	# 
+	# Used by [SSL](SSL_services "wikilink")-sysmodule for TLS client-privk.
+	# 
+	[13] DecryptPrivk();
+	# Takes a 16-byte encrypted key (**enc\_key**) and two words
+	# (**KeyGeneration** and **option**) as input. **KeyGeneration** ranges
+	# from 0 to 2.
+	# 
+	# Decrypts **enc\_key** with a key generated from fixed **key\_x** and
+	# **key\_y** and returns a 16-byte decrypted key (**dec\_key**).
+	# 
+	# \[2.0.0+\] Introduced same engine allocation code as for
+	# [\#GenerateAesKey](#GenerateAesKey "wikilink").
+	# 
+	[14] DecryptAesKey();
+	# Takes a type-0x46 (B descriptor) buffer (**data\_out\_buf**), a u32
+	# (**keyslot**), a type-0x45 (A descriptor) buffer (**data\_in\_buf**) and
+	# a 16-byte CTR (**aes\_ctr**).
+	# 
+	# Decrypts **data\_in\_buf** into **data\_out\_buf** using the key set in
+	# the specified **keyslot**.
+	# 
+	# \[2.0.0+\] Verifies the engine is locked by current session.
+	# 
+	[15] DecryptAesCtr();
+	# Takes one type-9 (X descriptor) buffer (**data\_in\_buf**) and a u32
+	# (**type?**).
+	# 
+	# Returns a 16-byte CMAC calculated over **data\_in\_buf**.
+	# 
+	# \[2.0.0+\] Verifies the engine is locked by current session.
+	# 
+	[16] ComputeCmac();
+	# Takes one type-9 (X descriptor) buffer (**enc\_privk\_in\_buf**), a
+	# 16-byte KEK (**key\_x**), a 16-byte key (**key\_y**) and a u32
+	# (**version**). **version** is 0 for normal keys or 1 for extended keys.
+	# 
+	# Decrypts **enc\_privk\_in\_buf** with a key generated from **key\_x**
+	# and **key\_y** and imports it for later usage.
+	# 
+	[17] DecryptImportPrivkForExpMod1();
+	# Takes 3 type-9 (X descriptor) buffers (**data\_in\_buf**,
+	# **mod\_in\_buf** and **param0\_in\_buf**).
+	# 
+	# Decrypts **data\_in\_buf** using the private key imported with
+	# [\#DecryptImportPrivkForExpMod1](#DecryptImportPrivkForExpMod1 "wikilink")
+	# and the supplied **mod\_in\_buf** and **param0\_in\_buf**.
+	# 
+	# Generates and returns a 16-byte sealed prepared key (**key\_z**).
+	# 
+	[18] UnwrapRsaWrappedPreparedAesKey();
+	# Takes a u32 (**keyslot**) and a 16-byte sealed prepared key
+	# (**key\_z**).
+	# 
+	# Sets the specified **keyslot** with a key generated from **key\_z**.
+	# 
+	# \[2.0.0+\] Verifies the engine is locked by current session.
+	# 
+	[19] LoadPreparedAesKey();
+	# Takes a 16-byte EKS (**Encryption Key Source**).
+	# 
+	# Returns a sealed prepared AES key.
+	# 
+	@version(2.0.0+)
+	[20] UnwrapAesWrappedPreparedAesKey();
+	# Returns the id of the engine that was locked, or 0xD01A if all engines
+	# are busy. You need to lock an engine before using AES functions.
+	# 
+	@version(2.0.0+)
+	[21] LockAesEngine() -> u32;
+	# Takes a single u32 and unlocks the engine with that id. It must be owned
+	# by current session otherwise 0xD21A will be returned.
+	# 
+	@version(2.0.0+)
+	[22] UnlockAesEngine(u32);
+	# Returns an event handle for synchronizing with the locked AES engine.
+	# 
+	@version(2.0.0+)
+	[23] GetSplWaitEvent() -> KObject;
+}
+
+interface nn::sm::detail::IManagerInterface is sm:m {
+	# Takes a pid and two A descriptors with the ACID and ACI0 service lists.
+	# That data originates from [NPDM](NPDM "wikilink").
+	# 
+	[0] RegisterProcess(u64, buffer<unknown,5,0>, buffer<unknown,5,0>);
+	# Takes a pid.
+	# 
+	[1] UnregisterProcess(u64);
+}
+
+interface nn::psc::sf::IPmService is psc:m {
+	[0] GetPmModule() -> object<IUnknown>;
+}
+
+interface nn::ldn::detail::IMonitorServiceCreator is ldn:m {
+	[0] GetMonitorService() -> object<IUnknown>;
+}
+
+interface nn::pm::detail::IInformationInterface is pm:info {
+	# Takes a pid and returns the title-id associated with the process.
+	# 
+	[0] GetTitleId(u64) -> u64;
+}
+
+interface nn::visrv::sf::IApplicationRootService is vi:u {
+	# Returns an
+	# [\#IApplicationDisplayService](#IApplicationDisplayService "wikilink").
+	# Takes an input u32, user-processes use 0 or 1, with 0 for
+	# regular-applications normally. 0 = user-service(vi:u), 1 =
+	# non-user-service? Returns an error when using value 1 with vi:u(same
+	# error listed below for IApplicationDisplayService for unavailable
+	# commands).
+	# 
+	[0] GetDisplayService(u32) -> object<nn::visrv::sf::IApplicationDisplayService>;
+}
+
+interface nn::timesrv::detail::service::IStaticService is time:s, time:u, time:r, time:a {
+	[0] GetStandardUserSystemClock() -> object<nn::timesrv::detail::service::ISystemClock>;
+	[1] GetStandardNetworkSystemClock() -> object<nn::timesrv::detail::service::ISystemClock>;
+	[2] GetStandardSteadyClock() -> object<nn::timesrv::detail::service::ISteadyClock>;
+	[3] GetTimeZoneService() -> object<nn::timesrv::detail::service::ITimeZoneService>;
+	[4] GetStandardLocalSystemClock() -> object<nn::timesrv::detail::service::ISystemClock>;
+	[100] IsStandardUserSystemClockAutomaticCorrectionEnabled() -> bool;
+	[101] SetStandardUserSystemClockAutomaticCorrectionEnabled(bool);
+	[200] IsStandardNetworkSystemClockAccuracySufficient() -> bool;
+}
+
+interface II2cPcv is i2c:pcv {
+	[0] Unknown0();
+	[1] Unknown1();
+	[2] Unknown2();
+	[10] Unknown10();
+	[11] Unknown11();
+	[12] Unknown12();
+}
+
+interface nn::audio::detail::ICodecController is codecctl {
+	[0] InitializeCodecController();
+	[1] FinalizeCodecController();
+	[2] SleepCodecController();
+	[3] WakeCodecController();
+	# Takes a Volume (uint32)
+	# 
+	# [Category:Services](Category:Services "wikilink")
+	# 
+	[4] SetCodecVolume();
+	[5] GetCodecVolumeMax();
+	[6] GetCodecVolumeMin();
+	[7] SetCodecActiveTarget();
+	[8] Unknown();
+	[9] BindCodecHeadphoneMicJackInterrupt();
+	[10] IsCodecHeadphoneMicJackInserted();
+	[11] ClearCodecHeadphoneMicJackInterrupt();
+	[12] IsCodecDeviceRequested();
+}
+
+interface nn::arp::detail::IWriter is arp:w {
+	[0] GetIRegistrar() -> object<IUnknown>;
+	[1] SubmitWriter(u64);
+}
+
+interface nn::account::IAccountServiceForApplication is acc:u0 {
+	[0] GetUserCount() -> i32;
+	[1] GetUserExistence(nn::account::Uid) -> bool;
+	[2] ListAllUsers() -> array<nn::account::Uid,10>;
+	[3] ListOpenUsers() -> array<nn::account::Uid,10>;
+	[4] GetLastOpenedUser() -> nn::account::Uid;
+	[5] GetProfile(nn::account::Uid) -> object<nn::account::profile::IProfile>;
+	[6] GetProfileDigest(nn::account::Uid) -> nn::account::ProfileDigest;
+	[50] IsUserRegistrationRequestPermitted(u64, pid) -> bool;
+	[51] TrySelectUserWithoutInteraction(bool) -> nn::account::Uid;
+	[100] InitializeApplicationInfo(u64, pid);
+	[101] GetBaasAccountManagerForApplication(nn::account::Uid) -> object<nn::account::baas::IManagerForApplication>;
+	[102] AuthenticateApplicationAsync() -> object<nn::account::detail::IAsyncContext>;
+	[110] StoreSaveDataThumbnail(nn::account::Uid, buffer<unknown,5,0>);
+	[111] ClearSaveDataThumbnail(nn::account::Uid);
+	[120] CreateGuestLoginRequest(u32, KObject) -> object<nn::account::baas::IGuestLoginRequest>;
+}
 
 interface INsAm is ns:am {
 	# Takes a type-6 output buffer and an u64.
@@ -651,1182 +1036,98 @@ interface INsAm is ns:am {
 	[1802] Unknown1802();
 }
 
-
-interface nn::ns::detail::ISystemUpdateInterface is ns:su {
-	[0] Unknown0();
-	[1] GetISystemUpdateControl();
-	[2] Unknown2();
-	[3] Unknown3();
-	[4] Unknown4();
-	[5] Unknown5();
-	[6] Unknown6();
-	[9] GetNsSuWaitEvent();
-	[10] Unknown10();
-}
-
-
-interface nn::ns::detail::IDevelopInterface is ns:dev {
-	# Wrapper for "pm:shell"
-	# [LaunchProcess](Process_Manager_services#LaunchProcess "wikilink").
-	# 
-	[0] LaunchTitle();
-	# Wrapper for "pm:shell"
-	# [TerminateTitleByPid](Process_Manager_services#TerminateTitleByPid "wikilink").
-	# 
-	[1] TerminateTitleByPid();
-	# Wrapper for "pm:shell"
-	# [TerminateTitleByTitleId](Process_Manager_services#TerminateTitleByTitleId "wikilink").
-	# 
-	[2] TerminateTitleByTitleId();
-	# Wrapper for "pm:shell"
-	# [GetProcessEventWaiter](Process_Manager_services#GetProcessEventWaiter "wikilink").
-	# 
-	[3] GetNsDevWaitEvent();
-	# Wrapper for "pm:shell"
-	# [GetProcessEventType](Process_Manager_services#GetProcessEventType "wikilink").
-	# 
-	[4] GetNsDevEventType();
-	# Calls "pm:shell"
-	# [GetCrashingProcessPid](Process_Manager_services#GetCrashingProcessPid "wikilink")
-	# and sends PID to
-	# [TerminateTitleByPid](Process_Manager_services#TerminateTitleByPid "wikilink").
-	# 
-	[5] TerminateCrashingTitle();
-	# Calls
-	# [IPathResolverForStorage](NCM_services#IPathResolverForStorage "wikilink")
-	# Set...NcaPath functions.
-	# 
-	# [Category:Services](Category:Services "wikilink")
-	# 
-	[6] InstallTitle();
-	[7] SetEventState6();
-	[8] SetEventState();
-}
-
-
-interface nn::apm::IManager is apm {
-	[0] OpenSession();
-	[1] GetPerformanceMode();
-}
-
-
-interface nn::apm::IManagerPrivileged is apm:p {
-	[0] OpenSession();
-}
-
-
-interface nn::apm::ISystemManager is apm:sys {
-	[0] RequestPerformanceMode();
-	[1] GetPerformanceEvent();
-	[2] GetThrottlingState();
-	[3] GetLastThrottlingState();
-	[4] ClearLastThrottlingState();
-}
-
-
-interface nn::arp::detail::IReader is arp:r {
-	[0] ReadHeader0();
-	[1] ReadHeader1();
-	[2] ReadData0();
-	[3] ReadData1();
-}
-
-
-interface nn::arp::detail::IWriter is arp:w {
-	[0] GetIRegistrar();
-	[1] SubmitWriter();
-}
-
-
-interface nn::audio::detail::IAudioOutManager is audout:u {
-	[0] ListAudioOuts();
-	# Takes two u64s (an interface ID and a PID placeholder?), a PID, a
-	# process handle, and the name of the interface you want to connect to.
-	# Returns an [\#IAudioOut](#IAudioOut "wikilink") object and four u32s:
-	# the sample rate, channel count, [PCM format](#PCM_format "wikilink"),
-	# and an unknown field.
-	# 
-	[1] OpenAudioOut();
-}
-
-
-interface nn::audio::detail::IAudioInManagerForDebugger is audin:u {
-	[0] ListAudioIns();
-	[1] OpenAudioIn();
-}
-
-
 interface nn::audio::detail::IFinalOutputRecorderManager is audrec:u {
-	[0] OpenFinalOutputRecorder();
+	[0] OpenFinalOutputRecorder(u64, u64, KObject) -> (u128, object<IUnknown>);
 }
 
-
-interface nn::audio::detail::IAudioRendererManager is audren:u {
-	[0] OpenAudioRenderer();
-	[1] GetAudioRendererWorkBufferSize();
-	[2] GetAudioRenderersProcessMasterVolume();
-	[3] SetAudioRenderersProcessMasterVolume();
-}
-
-
-interface nn::audio::detail::IAudioOutManagerForApplet is audout:a, audin:a, audrec:a, audren:a {
-	[0] RequestSuspend();
-	[1] RequestResume();
-}
-
-
-interface nn::audio::detail::IAudioOutManagerForDebugger is audout:d, audin:d, audrec:d, audren:d {
-	# Takes an
-	# [AppletResourceUserId](AM_services#AppletResourceUserId "wikilink").
-	# (u64)
+interface nn::irsensor::IIrSensorServer is irs {
+	# Takes a PID-descriptor and an
+	# [AppletResourceUserId](AM_services "wikilink"). No output.
 	# 
-	[0] RequestSuspendForDebug();
-	# Takes an
-	# [AppletResourceUserId](AM_services#AppletResourceUserId "wikilink").
-	# (u64)
+	[302] ActivateIrsensor(nn::applet::AppletResourceUserId, pid);
+	# Takes a PID-descriptor and an
+	# [AppletResourceUserId](AM_services "wikilink"). No output.
 	# 
-	[1] RequestResumeForDebug();
-}
-
-
-interface nn::audio::detail::ICodecController is codecctl {
-	[0] InitializeCodecController();
-	[1] FinalizeCodecController();
-	[2] SleepCodecController();
-	[3] WakeCodecController();
-	# Takes a Volume (uint32)
+	[303] DeactivateIrsensor(nn::applet::AppletResourceUserId, pid);
+	# Takes a PID-descriptor and an
+	# [AppletResourceUserId](AM_services "wikilink"). Returns a SharedMemory
+	# handle.
 	# 
-	# [Category:Services](Category:Services "wikilink")
+	# The SharedMemory is mapped with permissions=read-only and size=0x8000.
 	# 
-	[4] SetCodecVolume();
-	[5] GetCodecVolumeMax();
-	[6] GetCodecVolumeMin();
-	[7] SetCodecActiveTarget();
-	[8] Unknown();
-	[9] BindCodecHeadphoneMicJackInterrupt();
-	[10] IsCodecHeadphoneMicJackInserted();
-	[11] ClearCodecHeadphoneMicJackInterrupt();
-	[12] IsCodecDeviceRequested();
+	[304] GetIrsensorSharedMemoryHandle(nn::applet::AppletResourceUserId, pid) -> KObject;
+	# Takes a PID-descriptor, an
+	# [\#IrCameraHandle](#IrCameraHandle "wikilink"), and an
+	# [AppletResourceUserId](AM_services "wikilink"). No output.
+	# 
+	[305] StopImageProcessor(nn::irsensor::IrCameraHandle, nn::applet::AppletResourceUserId, pid);
+	# Takes a PID-descriptor, an
+	# [\#IrCameraHandle](#IrCameraHandle "wikilink"), an
+	# [AppletResourceUserId](AM_services "wikilink"), and a
+	# [\#PackedMomentProcessorConfig](#PackedMomentProcessorConfig "wikilink").
+	# No output.
+	# 
+	[306] RunMomentProcessor(nn::irsensor::IrCameraHandle, nn::applet::AppletResourceUserId, nn::irsensor::PackedMomentProcessorConfig, pid);
+	# Takes a PID-descriptor, an
+	# [\#IrCameraHandle](#IrCameraHandle "wikilink"), an
+	# [AppletResourceUserId](AM_services "wikilink"), and a
+	# [\#PackedClusteringProcessorConfig](#PackedClusteringProcessorConfig "wikilink").
+	# No output.
+	# 
+	[307] RunClusteringProcessor(nn::irsensor::IrCameraHandle, nn::applet::AppletResourceUserId, nn::irsensor::PackedClusteringProcessorConfig, pid);
+	# Takes a PID-descriptor, an
+	# [\#IrCameraHandle](#IrCameraHandle "wikilink"), an
+	# [AppletResourceUserId](AM_services "wikilink"), a
+	# [\#PackedImageTransferProcessorConfig](#PackedImageTransferProcessorConfig "wikilink"),
+	# an u64 for the TransferMemory\_size, and a TransferMemory handle. No
+	# output.
+	# 
+	# Official sw creates the TransferMemory with an user-specified buffer and
+	# permissions=0.
+	# 
+	[308] RunImageTransferProcessor(nn::irsensor::IrCameraHandle, nn::applet::AppletResourceUserId, nn::irsensor::PackedImageTransferProcessorConfig, u64, pid, KObject);
+	# Takes a PID-descriptor, a type-0x6 output buffer, an
+	# [\#IrCameraHandle](#IrCameraHandle "wikilink"), and an
+	# [AppletResourceUserId](AM_services "wikilink"). Returns an
+	# [\#ImageTransferProcessorState](#ImageTransferProcessorState "wikilink").
+	# No output.
+	# 
+	[309] GetImageTransferProcessorState(nn::irsensor::IrCameraHandle, nn::applet::AppletResourceUserId, pid) -> (nn::irsensor::ImageTransferProcessorState, buffer<unknown,6,0>);
+	# Takes a PID-descriptor, an
+	# [\#IrCameraHandle](#IrCameraHandle "wikilink"), a
+	# [\#PackedTeraPluginProcessorConfig](#PackedTeraPluginProcessorConfig "wikilink")
+	# (immediately after the previous word), and an
+	# [AppletResourceUserId](AM_services "wikilink"). No output.
+	# 
+	[310] RunTeraPluginProcessor(nn::irsensor::IrCameraHandle, align<2,nn::irsensor::PackedTeraPluginProcessorConfig>, nn::applet::AppletResourceUserId, pid);
+	# Takes an input u32. Returns an output
+	# [\#IrCameraHandle](#IrCameraHandle "wikilink").
+	# 
+	[311] GetNpadIrCameraHandle(u32) -> nn::irsensor::IrCameraHandle;
+	# Takes a PID-descriptor, an
+	# [\#IrCameraHandle](#IrCameraHandle "wikilink"), a
+	# [\#PackedDpdProcessorConfig](#PackedDpdProcessorConfig "wikilink")
+	# (immediately after the previous word), and an
+	# [AppletResourceUserId](AM_services "wikilink"). No output.
+	# 
+	[312] RunDpdProcessor(nn::irsensor::IrCameraHandle, align<2,nn::irsensor::PackedDpdProcessorConfig>, nn::applet::AppletResourceUserId, pid);
+	# Takes a PID-descriptor, an
+	# [\#IrCameraHandle](#IrCameraHandle "wikilink"), and an
+	# [AppletResourceUserId](AM_services "wikilink"). No output.
+	# 
+	[313] SuspendImageProcessor(nn::irsensor::IrCameraHandle, nn::applet::AppletResourceUserId, pid);
+	# Takes a PID-descriptor, an
+	# [\#IrCameraHandle](#IrCameraHandle "wikilink"), a
+	# [\#PackedMcuVersion](#PackedMcuVersion "wikilink"), and an
+	# [AppletResourceUserId](AM_services "wikilink"). No output.
+	# 
+	@version(3.0.0+)
+	[314] CheckFirmwareVersion(nn::irsensor::IrCameraHandle, nn::irsensor::PackedMcuVersion, nn::applet::AppletResourceUserId, pid);
 }
-
-
-interface nn::bpc::IBoardPowerControlManager is bpc {
-	[0] ShutdownSystem();
-	[1] RebootSystem();
-	[2] GetWakeupReason();
-	[3] GetShutdownReason();
-	[4] GetAcOk();
-	[5] GetBoardPowerControlEvent();
-	[6] GetSleepButtonState();
-	[7] GetPowerEvent();
-	[8] Unknown8();
-	[9] Unknown9();
-	[10] Unknown10();
-}
-
-
-interface nn::bpc::IRtcManager is bpc:r {
-	[0] GetExternalRtcValue();
-	[1] SetExternalRtcValue();
-	[2] ReadExternalRtcResetFlag();
-	[3] ClearExternalRtcResetFlag();
-}
-
-
-interface nn::pcv::detail::IPcvService is pcv {
-	[0] SetPowerEnabled();
-	[1] SetClockEnabled();
-	[2] SetClockRate();
-	[3] GetClockRate();
-	[4] GetState();
-	[5] GetPossibleClockRates();
-	[6] SetMinVClockRate();
-	[7] SetReset();
-	[8] SetVoltageEnabled();
-	[9] GetVoltageEnabled();
-	[10] GetVoltageRange();
-	[11] SetVoltageValue();
-	[12] GetVoltageValue();
-	[13] GetTemperatureThresholds();
-	[14] SetTemperature();
-	[15] Initialize();
-	[16] IsInitialized();
-	[17] Finalize();
-	[18] PowerOn();
-	[19] PowerOff();
-	[20] ChangeVoltage();
-	[21] GetPowerClockInfoEvent();
-	[22] GetOscillatorClock();
-	[23] GetDvfsTable();
-	[24] GetModuleStateTable();
-	[25] GetPowerDomainStateTable();
-	[26] GetFuseInfo();
-}
-
-
-interface nn::pcv::IArbitrationManager is pcv:arb {
-	[0] ReleaseControl();
-}
-
 
 interface nn::pcv::IImmediateManager is pcv:imm {
-	[0] SetClockRate();
+	[0] SetClockRate(i32, u32);
 }
-
-
-interface nn::timesrv::detail::service::IStaticService is time:u, time:a, time:s {
-	[0] GetStandardUserSystemClock();
-	[1] GetStandardNetworkSystemClock();
-	[2] GetStandardSteadyClock();
-	[3] GetTimeZoneService();
-	[4] GetStandardLocalSystemClock();
-	[100] IsStandardUserSystemClockAutomaticCorrectionEnabled();
-	[101] SetStandardUserSystemClockAutomaticCorrectionEnabled();
-	[200] IsStandardNetworkSystemClockAccuracySufficient();
-}
-
-
-interface nn::socket::sf::IClient is bsd:u, bsd:s {
-	[0] Initialize();
-	[1] StartMonitoring();
-	[2] Socket();
-	[3] SocketExempt();
-	[4] Open();
-	[5] Select();
-	[6] Poll();
-	[7] Sysctl();
-	[8] Recv();
-	[9] RecvFrom();
-	[10] Send();
-	[11] SendTo();
-	[12] Accept();
-	[13] Bind();
-	[14] Connect();
-	[15] GetPeerName();
-	[16] GetSockName();
-	[17] GetSockOpt();
-	[18] Listen();
-	[19] Ioctl();
-	[20] Fcntl();
-	[21] SetSockOpt();
-	[22] Shutdown();
-	[23] ShutdownAllSockets();
-	[24] Write();
-	[25] Read();
-	[26] Close();
-	[27] DuplicateSocket();
-	[28] GetResourceStatistics();
-	@version(3.0.0+)
-	[29] RecvMMsg();
-	@version(3.0.0+)
-	[30] SendMMsg();
-}
-
-
-interface nn::socket::resolver::IResolver is sfdnsres {
-	[0] SetDnsAddressesPrivate();
-	[1] GetDnsAddressPrivate();
-	[2] GetHostByName();
-	[3] GetHostByAddr();
-	[4] GetHostStringError();
-	[5] GetGaiStringError();
-	# Takes three type 5 buffers (host, port, and hints), and a type 6 buffer
-	# (the output addrinfos). Also takes a u8 (padded to 4 bytes so the next
-	# raw parameter can align), a u32, and a u64. The u8 is a boolean for
-	# whether to enable "nsd resolve" (1) or not (0). Not sure what the u32
-	# is. It seems to either come from a parameter to `GetAddrInfo` or be
-	# zero. The u64 is most likely a placeholder for the server to copy the
-	# PID into and should be zero. Both hints and the output buffer contain
-	# serialized addrinfo chains. The hints buffer is sized 0x400 bytes long
-	# by default, and the output buffer 0x1000 bytes.
-	# 
-	[6] GetAddrInfo();
-	[7] GetNameInfo();
-	[8] RequestCancelHandle();
-	[9] CancelSocketCall();
-}
-
-
-interface nn::nsd::detail::IManager is nsd:u, nsd:a {
-	[10] GetSettingName();
-	[11] GetEnvironmentIdentifier();
-	[12] GetDeviceId();
-	[13] DeleteSettings();
-	[14] ImportSettings();
-	[20] Resolve();
-	[21] ResolveEx();
-	[30] GetNasServiceSetting();
-	[31] GetNasServiceSettingEx();
-	[40] GetNasRequestFqdn();
-	[41] GetNasRequestFqdnEx();
-	[42] GetNasApiFqdn();
-	[43] GetNasApiFqdnEx();
-	[50] GetCurrentSetting();
-	[60] ReadSaveDataFromFsForTest();
-	[61] WriteSaveDataToFsForTest();
-	[62] DeleteSaveDataOfFsForTest();
-}
-
-
-interface INsdU is nsd:u {
-	[10] Unknown10();
-	[11] Unknown11();
-	[12] Unknown12();
-	[13] Unknown13();
-	[14] Unknown14();
-	[20] Resolve();
-	[21] ResolveEx();
-	[30] GetToken();
-	[31] GetTokenEx();
-	[40] GetAccountsLink();
-	[41] GetAccountsLinkEx();
-	[42] GetApiAccountsLink();
-	[43] GetApiAccountsLinkEx();
-	[50] Unknown50();
-	[60] Unknown60();
-	[61] Unknown61();
-	[62] Unknown62();
-}
-
-
-interface nn::bluetooth::IBluetoothDriver is btdrv {
-	[0] Unknown0();
-	[1] Init();
-	[2] Enable();
-	[3] Disable();
-	[4] CleanupAndShutdown();
-	[5] GetAdapterProperties();
-	[6] GetAdapterProperty();
-	[7] SetAdapterProperty();
-	[8] StartDiscovery();
-	[9] CancelDiscovery();
-	[10] CreateBond();
-	[11] RemoveBond();
-	[12] CancelBond();
-	[13] PinReply();
-	[14] SspReply();
-	[15] Unknown15();
-	[16] InitInterfaces();
-	[17] HidHostInterface_Connect();
-	[18] HidHostInterface_Disconnect();
-	[19] HidHostInterface_SendData();
-	[20] HidHostInterface_SendData2();
-	[21] HidHostInterface_SetReport();
-	[22] HidHostInterface_GetReport();
-	[23] HidHostInterface_WakeController();
-	[24] HidHostInterface_AddPairedDevice();
-	[25] HidHostInterface_GetPairedDevice();
-	[26] HidHostInterface_CleanupAndShutdown();
-	[27] Unknown27();
-	[28] ExtInterface_SetTSI();
-	[29] ExtInterface_SetBurstMode();
-	[30] ExtInterface_SetZeroRetran();
-	[31] ExtInterface_SetMcMode();
-	[32] ExtInterface_StartLlrMode();
-	[33] ExtInterface_ExitLlrMode();
-	[34] ExtInterface_SetRadio();
-	[35] ExtInterface_SetVisibility();
-	[36] Unknown36();
-	[37] Unknown37();
-	[38] HidHostInterface_GetLatestPlr();
-	[39] ExtInterface_GetPendingConnections();
-	[40] HidHostInterface_GetChannelMap();
-	[41] SetIsBluetoothBoostEnabled();
-	[42] GetIsBluetoothBoostEnabled();
-	[43] SetIsBluetoothAfhEnabled();
-	[44] GetIsBluetoothAfhEnabled();
-}
-
-
-interface nn::mmnv::IRequest is mm:u {
-	[0] Unknown0();
-	[1] Unknown1();
-	[2] Unknown2();
-	[3] Unknown3();
-	[4] module_init_clk();
-	[5] module_deinit_clk();
-	[6] module_set_clk_rate();
-	[7] module_get_clk_rate();
-}
-
-
-interface nn::visrv::sf::IApplicationRootService is vi:u {
-	# Returns an
-	# [\#IApplicationDisplayService](#IApplicationDisplayService "wikilink").
-	# Takes an input u32, user-processes use 0 or 1, with 0 for
-	# regular-applications normally. 0 = user-service(vi:u), 1 =
-	# non-user-service? Returns an error when using value 1 with vi:u(same
-	# error listed below for IApplicationDisplayService for unavailable
-	# commands).
-	# 
-	[0] GetDisplayService();
-}
-
-
-interface nn::visrv::sf::ISystemRootService is vi:s {
-	# Returns an
-	# [\#IApplicationDisplayService](#IApplicationDisplayService "wikilink").
-	# Takes an input u32, user-processes use 0 or 1, with 0 for
-	# regular-applications normally. 0 = user-service(vi:u), 1 =
-	# non-user-service? Returns an error when using value 1 with vi:u(same
-	# error listed below for IApplicationDisplayService for unavailable
-	# commands).
-	# 
-	[1] GetDisplayService();
-	# Returns an
-	# [\#IApplicationDisplayService](#IApplicationDisplayService "wikilink").
-	# 
-	[3] GetDisplayServiceWithProxyNameExchange();
-}
-
-
-interface nn::visrv::sf::IManagerRootService is vi:m {
-	# Returns an
-	# [\#IApplicationDisplayService](#IApplicationDisplayService "wikilink").
-	# Takes an input u32, user-processes use 0 or 1, with 0 for
-	# regular-applications normally. 0 = user-service(vi:u), 1 =
-	# non-user-service? Returns an error when using value 1 with vi:u(same
-	# error listed below for IApplicationDisplayService for unavailable
-	# commands).
-	# 
-	[2] GetDisplayService();
-	# Returns an
-	# [\#IApplicationDisplayService](#IApplicationDisplayService "wikilink").
-	# 
-	[3] GetDisplayServiceWithProxyNameExchange();
-}
-
-
-interface nns::hosbinder::IHOSBinderDriver is dispdrv {
-	# Takes a s32 (**ID**), an u32 (**code**), a type-0x5 input buffer
-	# (**parcel\_data**), a type-0x6 output buffer (**parcel\_reply**) and an
-	# input u32 (**flags**). Each word is placed immediately after the
-	# previous word.
-	# 
-	# Analogous to "onTransact" from "android.os.IServiceManager".
-	# 
-	[0] TransactParcel();
-	# Takes 3 input s32s: **ID**, **addval**, and **type**. Each word
-	# immediately follows the previous word. No additional output.
-	# 
-	# | Called by official function          | addval | type |
-	# | ------------------------------------ | ------ | ---- |
-	# | "android::BpBinder::onFirstRef"      | 1      | 1    |
-	# | "android::BpBinder::onLastStrongRef" | \-1    | 1    |
-	# | ?                                    | 1      | 0    |
-	# | ?                                    | \-1    | 0    |
-	# 
-	# During init, {addval=1, type=0} is used then {addval=1, type=1} is used.
-	# 
-	[1] AdjustRefcount();
-	# Takes an input s32 (**ID**) and u32, with the latter immediately
-	# following the previous word. Returns an output event handle.
-	# 
-	[2] GetNativeHandle();
-	# Takes a s32 (**ID**), an u32 (**code**), a type-0x21 input buffer
-	# (**parcel\_data**), a type-0x22 output buffer (**parcel\_reply**) and an
-	# input u32 (**flags**). Each word is placed immediately after the
-	# previous word.
-	# 
-	@version(3.0.0+)
-	[3] TransactParcelAuto();
-}
-
-
-interface nn::fan::detail::IManager is fan {
-	[0] Unknown0();
-	[1] Unknown1();
-	[2] Unknown2();
-	[3] Unknown3();
-	[4] Unknown4();
-	[5] Unknown5();
-	[6] Unknown6();
-	[7] Unknown7();
-}
-
-
-interface nn::psm::IPsmServer is psm {
-	[0] Unknown0();
-	[1] Unknown1();
-	[2] Unknown2();
-	[3] Unknown3();
-	[4] Unknown4();
-	[5] Unknown5();
-	[6] Unknown6();
-	[7] OpenSession();
-	[8] Unknown8();
-	[9] Unknown9();
-	[10] Unknown10();
-	[11] Unknown11();
-	[12] GetBatteryVoltageState();
-	[13] GetRawBatteryChargePercentage();
-	[14] Unknown14();
-	[15] Unknown15();
-	[16] Unknown16();
-	[17] Unknown17();
-}
-
-
-interface nn::tc::IManager is tc {
-	[0] SetOperatingMode();
-	[1] GetThermalEvent();
-	[2] Unknown2();
-	[3] Unknown3();
-	[4] Unknown4();
-	[5] Unknown5();
-	[6] Unknown6();
-	[7] Unknown7();
-	[8] Unknown8();
-}
-
-
-interface nn::ts::server::IMeasurementServer is ts {
-	[0] Unknown0();
-	[1] Unknown1();
-	[2] Unknown2();
-	[3] Unknown3();
-}
-
-
-interface nn::fatalsrv::IService is fatal:u {
-	[0] Unknown0();
-	[1] Unknown1();
-	# Takes an input u64 errorcode and an unknown u64(TID maybe?). It also
-	# takes a type-0x15 error buffer and a pid-descriptor. The error buffer
-	# contains a stack trace. The stack trace address count is stored at
-	# errorbuffer+0x240 and the addresses are stored at errorbuffer+0x130+i\*8
-	# where i = 0-\>address count
-	# 
-	[2] TransitionToFatalError();
-}
-
-
-interface nn::fssrv::sf::IFileSystemProxyForLoader is fsp-ldr {
-	[0] MountCode();
-	[1] IsCodeMounted();
-	@version(4.0.0+)
-	[2] Initialize();
-}
-
-
-interface nn::fssrv::sf::IProgramRegistry is fsp-pr {
-	# Takes a storageID, a pid, a titleID, a 0x1C type-A buffer for the [ FS
-	# Access Header](NPDM#FS_Access_Header "wikilink"), and a 0x2C type-A
-	# buffer for the [ FS Access Control](NPDM#FS_Access_Control "wikilink")
-	# 
-	# Final FS permissions are stored as (ACI0\_perms & ACID\_perms). Will
-	# panic(svcBreak) when buffer sizes from ipc-rawdata are invalid.
-	# 
-	[0] SetFsPermissions();
-	# Takes a pid. Removes registered FS permissions for that PID.
-	# 
-	[1] ClearFsPermissions();
-	@version(4.0.0+)
-	[2] Initialize();
-	# Seems to sets a global flag to inputval & 1.
-	# 
-	# When the flag is zero, it will set ret=0 instead of ret={error} when
-	# verifying a RSA signature fails. This RSA signature seems to be the
-	# signature in the [NPDM](NPDM "wikilink") ACID. It then skips verifying
-	# what seems to be the second signature in the [NCA
-	# header](NCA_Format "wikilink"). Note that if verifying the NPDM(?)
-	# signature is successful, and verifying that second signature fails, it
-	# will throw an error and abort.
-	# 
-	[256] SetEnabledProgramVerification();
-}
-
-
-interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
-	# Takes a type-0x19 input buffer, an in32, and an input title-id.
-	# 
-	# The in32 must be 5 if the NCA type is 0 (control).
-	# 
-	# The in32 must be 2..7.
-	# 
-	# The input buffer is the output string path from nsam
-	# [GetContentNcaPath](NS_Services#GetContentNcaPath "wikilink").
-	# 
-	# Returns an [\#IFileSystem](#IFileSystem "wikilink").
-	# 
-	# May return errors when attempting to access NCA-paths for an
-	# update-title with a gamecard, when the gamecard isn't inserted. May
-	# return error 0x7D402 in some cases with update-titles. Non-val2 in32
-	# values with NCA-type1 are unusable, even for normal titles.
-	# 
-	# The official "MountApplicationPackage" func uses this with in64=0 and
-	# in32=7.
-	# 
-	# After the in32-specific permissions are checked, it then gets the func
-	# retval for permissions-type 0x25 and func0.
-	# 
-	# When in32=5, it uses in64=0xffffffffffffffff internally, otherwise it
-	# checks if in64 is set to 0xffffffffffffffff then throws an error if so.
-	# When the in64 used internally is not 0xffffffffffffffff, it's compared
-	# with the NCA titleID, then an error is thrown on mismatch.
-	# 
-	@version(1.0.0)
-	[0] MountContent();
-	# Takes a pid-descriptor.
-	# 
-	[1] Initialize();
-	[2] OpenDataFileSystemByCurrentProcess();
-	# Takes an input u32 (same as [\#MountContent](#MountContent "wikilink"))
-	# and an u64 title-id. Web-applet loads the u32 from
-	# u32\_table\[inparam\]. The in32 must be 4.
-	# 
-	# Returns an [\#IFileSystem](#IFileSystem "wikilink").
-	# 
-	# Note: web-applet strings refer to both this cmd and the below
-	# "MountContent" as "MountContent".
-	# 
-	@version(2.0.0+)
-	[7] MountContent7();
-	# Takes a type-0x19 input buffer, an in32, and an input title-id.
-	# 
-	# The in32 must be 5 if the NCA type is 0 (control).
-	# 
-	# The in32 must be 2..7.
-	# 
-	# The input buffer is the output string path from nsam
-	# [GetContentNcaPath](NS_Services#GetContentNcaPath "wikilink").
-	# 
-	# Returns an [\#IFileSystem](#IFileSystem "wikilink").
-	# 
-	# May return errors when attempting to access NCA-paths for an
-	# update-title with a gamecard, when the gamecard isn't inserted. May
-	# return error 0x7D402 in some cases with update-titles. Non-val2 in32
-	# values with NCA-type1 are unusable, even for normal titles.
-	# 
-	# The official "MountApplicationPackage" func uses this with in64=0 and
-	# in32=7.
-	# 
-	# After the in32-specific permissions are checked, it then gets the func
-	# retval for permissions-type 0x25 and func0.
-	# 
-	# When in32=5, it uses in64=0xffffffffffffffff internally, otherwise it
-	# checks if in64 is set to 0xffffffffffffffff then throws an error if so.
-	# When the in64 used internally is not 0xffffffffffffffff, it's compared
-	# with the NCA titleID, then an error is thrown on mismatch.
-	# 
-	@version(2.0.0+)
-	[8] MountContent();
-	@version(3.0.0+)
-	[9] OpenDataFileSystemByApplicationId();
-	# Takes a type-0x19 input buffer string and a u32 Bis partitionID(see
-	# below). Official user-process code sets instr\[0\] = 0 normally.
-	# 
-	# Returns an [\#IFileSystem](#IFileSystem "wikilink").
-	# 
-	# Only partitionIDs for FAT partitions are usable with this, otherwise
-	# error 0x2EE202 is returned. Seems to be about the same as
-	# [\#OpenBisPartition](#OpenBisPartition "wikilink") except this mounts
-	# the partition filesystem instead of allowing direct access to the
-	# partition sectors.
-	# 
-	[11] MountBis();
-	# Takes a u32 partition ID, returns 0x2EE202 for partitions which do not
-	# exist, 0x320002 for partitions which cannot be opened and a valid
-	# [\#IStorage](#IStorage "wikilink") handle otherwise.
-	# 
-	[12] OpenBisPartition();
-	[13] InvalidateBisCache();
-	[17] OpenHostFileSystemImpl();
-	[18] MountSdCard();
-	@version(2.0.0+)
-	[19] FormatSdCard();
-	# Takes an input u64.
-	# 
-	[21] DeleteSaveData();
-	# Takes a 0x40-byte Save-struct entry, a 0x40-byte SaveCreate-struct
-	# entry, and a 0x10-byte input struct.
-	# 
-	# Only the first 0x5-bytes in the 0x10-byte struct are initialized:
-	# all-zero when automatically creating savedata during savecommon mount by
-	# official user-processes. In the dedicated save-creation code in official
-	# user-processes: +0 u32 = 0x40060, +4 u8 = 1.
-	# 
-	# Creates regular savedata.
-	# 
-	[22] CreateSaveData();
-	# Takes a 0x40-byte Save-struct entry and a 0x40-byte SaveCreate-struct
-	# entry.
-	# 
-	# Creates savedata in the SYSTEM [NAND](Flash_Filesystem "wikilink")
-	# partition.
-	# 
-	[23] CreateSystemSaveData();
-	[24] RegisterSaveDataAtomicDeletion();
-	@version(2.0.0+)
-	[25] DeleteSaveDataWithSpaceId();
-	@version(2.0.0+)
-	[26] FormatSdCardDryRun();
-	@version(2.0.0+)
-	[27] IsExFatSupported();
-	@version(4.0.0+)
-	[28] DeleteSystemSaveData();
-	# Takes an input u32 (partition ID), and returns an
-	# [\#IStorage](#IStorage "wikilink") for the
-	# [partition](Gamecard_Format "wikilink").
-	# 
-	[30] OpenGameCardPartition();
-	# Takes two input u32s, with the second u32 located at +4 in rawdata after
-	# the first u32.
-	# 
-	# Returns an [\#IFileSystem](#IFileSystem "wikilink").
-	# 
-	# Mounts a gamecard [partition](Gamecard_Partition "wikilink").
-	# 
-	[31] MountGameCardPartition();
-	@version(3.0.0+)
-	[32] ExtendSaveData();
-	# Takes an input u8 and a 0x40-byte Save-struct entry. Official
-	# user-process code is only known to use value 1 for the u8.
-	# 
-	# Returns an [\#IFileSystem](#IFileSystem "wikilink").
-	# 
-	# Permissions aren't checked until the specified save is successfully
-	# found.
-	# 
-	# Only one process can mount a given savedata at any given time (this
-	# includes systemsavedata).
-	# 
-	[51] MountSaveData();
-	# Takes an input u8 and a 0x40-byte Save-struct entry. Web-applet only
-	# uses value0 for the input u8.
-	# 
-	# Returns an [\#IFileSystem](#IFileSystem "wikilink").
-	# 
-	# Mounts savedata in the SYSTEM [NAND](Flash_Filesystem "wikilink")
-	# partition.
-	# 
-	[52] MountSystemSaveData();
-	@version(2.0.0+)
-	[53] MountSaveDataReadOnly();
-	@version(3.0.0+)
-	[57] ReadSaveDataFileSystemExtraDataWithSpaceId();
-	[58] ReadSaveDataFileSystemExtraData();
-	@version(2.0.0+)
-	[59] WriteSaveDataFileSystemExtraData();
-	[60] OpenSaveDataInfoReader();
-	[61] OpenSaveDataIterator();
-	[80] OpenSaveDataThumbnailFile();
-	@version(4.0.0+)
-	[81] OpenSaveDataTransferManager();
-	[100] MountImageDirectory();
-	# Takes a [\#ContentStorageId](#ContentStorageId "wikilink"). Invalid
-	# values return 0x2EE202.
-	# 
-	# Returns an [\#IFileSystem](#IFileSystem "wikilink") with NCA files. The
-	# read data from these files is identical to the data read by
-	# [Content\_Manager\_services\#ReadEntryRaw](Content_Manager_services#ReadEntryRaw "wikilink").
-	# 
-	[110] MountContentStorage();
-	[200] OpenDataStorageByCurrentProcess();
-	@version(3.0.0+)
-	[201] OpenDataStorageByApplicationId();
-	# Takes a [\#StorageId](#StorageId "wikilink") and a TitleID.
-	# 
-	# Returns a [domain object ID](IPC_Marshalling#Domain_message "wikilink")
-	# implementing the [\#IStorage](#IStorage "wikilink") interface for data
-	# archives.
-	# 
-	[202] OpenDataStorageByDataId();
-	# This is "nn::fssrv::sf::IStorage".
-	# 
-	# This is the interface for a raw device, usually a block
-	# device.
-	# 
-	# | Cmd | Name                    | Arguments                                      |
-	# | --- | ----------------------- | ---------------------------------------------- |
-	# | 0   | Read                    | Takes a type-0x46 buffer, an offset and length |
-	# | 1   | Write                   | Takes a type-0x45 buffer, an offset and length |
-	# | 2   | Flush                   | None                                           |
-	# | 3   | SetSize                 | Takes a size                                   |
-	# | 4   | GetSize                 | None                                           |
-	# | 5   | \[4.0.0+\] OperateRange |                                                |
-	# 
-	[203] IStorage();
-	# This command returns a session to a port implementing the
-	# [\#IDeviceOperator](#IDeviceOperator "wikilink") interface.
-	# 
-	[400] OpenDeviceOperator();
-	# This command returns a session to a port implementing the
-	# [\#IEventNotifier](#IEventNotifier "wikilink") interface.
-	# 
-	[500] OpenSdCardDetectionEventNotifier();
-	# This command returns a session to a port implementing the
-	# [\#IEventNotifier](#IEventNotifier "wikilink") interface.
-	# 
-	[501] OpenGameCardDetectionEventNotifier();
-	@version(1.0.0-3.0.2)
-	[600] SetCurrentPosixTime();
-	[601] QuerySaveDataTotalSize();
-	# Takes an unknown input u64 and a type-0x6 output buffer.
-	# 
-	# The input u64 high-byte must be non-zero, otherwise an
-	# [error](Error_codes "wikilink") is returned(0xE02).
-	# 
-	[602] VerifySaveData();
-	[603] CorruptSaveDataForDebug();
-	[604] CreatePaddingFile();
-	[605] DeleteAllPaddingFiles();
-	@version(2.0.0+)
-	[606] GetRightsId();
-	@version(2.0.0+)
-	[607] RegisterExternalKey();
-	@version(2.0.0+)
-	[608] UnregisterExternalKey();
-	@version(2.0.0+)
-	[609] GetRightsIdByPath();
-	@version(3.0.0+)
-	[610] GetRightsIdByPath2();
-	@version(4.0.0+)
-	[611] SetCurrentPosixTime();
-	@version(4.0.0+)
-	[612] GetFreeSpaceSize();
-	@version(4.0.0+)
-	[613] Unknown613();
-	@version(4.0.0+)
-	[614] Unknown614();
-	# Takes 0x10-bytes of input.
-	# 
-	# Appears to be used to load the seed into FS-module state, since
-	# FS-module itself doesn't seem to have file-reading code to handle this
-	# itself.
-	# 
-	# [NS](NS_Services "wikilink")-module uses this with data read from a
-	# file.
-	# 
-	@version(2.0.0+)
-	[620] SetSdCardEncryptionSeed();
-	@version(4.0.0+)
-	[630] SetSdCardAccessibility();
-	@version(4.0.0+)
-	[631] IsSdCardAccessible();
-	@version(4.0.0+)
-	[640] IsSignedSystemPartitionOnSdCardValid();
-	@version(2.0.0+)
-	[800] GetAndClearFileSystemProxyErrorInfo();
-	[1000] SetBisRootForHost();
-	[1001] SetSaveDataSize();
-	[1002] SetSaveDataRootPath();
-	[1003] DisableAutoSaveDataCreation();
-	# Takes an input u32.
-	# 
-	[1004] SetGlobalAccessLogMode();
-	# Returns an output u32.
-	# 
-	# GlobalAccessLogMode is normally 0.
-	# 
-	[1005] GetGlobalAccessLogMode();
-	# Takes a type-0x5 input buffer.
-	# 
-	# The input buffer is the string to output to the log. User-processes
-	# normally include a newline at the end.
-	# 
-	# User-processes only use this when the value previously loaded from
-	# [\#GetGlobalAccessLogMode](#GetGlobalAccessLogMode "wikilink") has bit1
-	# set.
-	# 
-	# When bit1 in GlobalAccessLogMode is clear, FS-module will just return 0
-	# for OutputAccessLogToSdCard. However even with that set the log doesn't
-	# show up SD, unknown why.
-	# 
-	# The input buffer is written to the "$FsAccessLog:/FsAccessLog.txt" file,
-	# where "$FsAccessLog" is the SD-card mount-name. It's written to the
-	# current end of the file(appended).
-	# 
-	[1006] OutputAccessLogToSdCard();
-	@version(4.0.0+)
-	[1007] RegisterUpdatePartition();
-	@version(4.0.0+)
-	[1008] MountRegisteredUpdatePartition();
-	@version(4.0.0+)
-	[1009] Unknown1009();
-	@version(4.0.0+)
-	[1100] OverrideSaveDataTransferTokenSignVerificationKey();
-}
-
-
-interface nn::gpio::IManager is gpio {
-	# Takes a raw GpioPadDescriptor and returns a
-	# [\#IPadSession](#IPadSession "wikilink") session for it.
-	# 
-	[0] OpenSessionForDev();
-	# Same thing as OpenSessionForDev except the descriptor is looked up in
-	# the table below. Returns an [\#IPadSession](#IPadSession "wikilink")
-	# session.
-	# 
-	# | GpioPadName | GpioPadDescriptor | Description | Direction | Used by                                 |
-	# | ----------- | ----------------- | ----------- | --------- | --------------------------------------- |
-	# | 1           | 0xCC              |             |           |                                         |
-	# | 2           | 0x24              |             |           |                                         |
-	# | 4           | 0xDA              |             |           |                                         |
-	# | 5           | 0xDB              |             |           |                                         |
-	# | 6           | 0xDC              |             |           |                                         |
-	# | 7           | 0x25              |             |           |                                         |
-	# | 8           | 0x90              |             | In        | [HID services](HID_services "wikilink") |
-	# | 9           | 0x91              |             |           |                                         |
-	# | 0xA         | 0x96              |             |           |                                         |
-	# | 0xB         | 0x97              |             |           |                                         |
-	# | 0xD         | 6                 |             |           |                                         |
-	# | 0xE         | 0x78              |             |           |                                         |
-	# | 0xF         | 0x93              |             |           |                                         |
-	# | 0x10        | 0x7D              |             |           |                                         |
-	# | 0x11        | 0x7C              |             |           |                                         |
-	# | 0x12        | 0x7B              |             |           |                                         |
-	# | 0x13        | 0x7A              |             |           |                                         |
-	# | 0x14        | 0xBC              |             |           |                                         |
-	# | 0x15        | 0xAE              |             |           |                                         |
-	# | 0x17        | 0xB9              |             | In        | [HID services](HID_services "wikilink") |
-	# | 0x18        | 0xBD              |             | Out       | [HID services](HID_services "wikilink") |
-	# | 0x19        | 0xBE              | Volume key  | In        | [Boot2](Boot2 "wikilink")               |
-	# | 0x1A        | 0xBF              | Volume key  | In        | [Boot2](Boot2 "wikilink")               |
-	# | 0x1B        | 0xC0              |             |           |                                         |
-	# | 0x1C        | 0xC1              |             |           |                                         |
-	# | 0x1D        | 0xA9              |             |           |                                         |
-	# | 0x1E        | 0xAA              |             |           |                                         |
-	# | 0x20        | 0xAD              |             |           |                                         |
-	# | 0x21        | 0xC8              |             |           |                                         |
-	# | 0x22        | 0xCA              |             |           |                                         |
-	# | 0x23        | 0xCB              |             |           |                                         |
-	# | 0x24        | 0x4F              |             |           |                                         |
-	# | 0x25        | 0x50              |             |           |                                         |
-	# | 0x26        | 0x51              |             |           |                                         |
-	# | 0x27        | 0x52              |             |           |                                         |
-	# | 0x28        | 0x54              |             |           |                                         |
-	# | 0x29        | 0x56              |             |           |                                         |
-	# | 0x2A        | 0x57              |             |           |                                         |
-	# | ..          | ..                | ..          | ..        | ..                                      |
-	# 
-	[1] OpenSession();
-	# Same as [\#OpenSession](#OpenSession "wikilink") but panics on failure.
-	# 
-	[2] OpenSessionForTest();
-	[3] IsWakeEventActive();
-	[4] GetWakeEventActiveFlagSet();
-	[5] SetWakeEventActiveFlagSetForDebug();
-	[6] Unknown6();
-}
-
-
-interface nn::i2c::IManager is i2c {
-	[0] OpenSessionForDev();
-	[1] OpenSession();
-	[2] HasDevice();
-	[3] HasDeviceForDev();
-}
-
-
-interface II2cPcv is i2c:pcv {
-	[0] Unknown0();
-	[1] Unknown1();
-	[2] Unknown2();
-	[10] Unknown10();
-	[11] Unknown11();
-	[12] Unknown12();
-}
-
-
-interface nn::uart::IManager is uart {
-	[0] Unknown0();
-	[1] Unknown1();
-	[2] Unknown2();
-	[3] Unknown3();
-	[4] Unknown4();
-	[5] Unknown5();
-	[6] GetIPortSession();
-	[7] Unknown7();
-	[8] Unknown8();
-}
-
-
-interface nn::pwm::IManager is pwm {
-	[0] OpenSessionForDev();
-	[1] OpenSession();
-}
-
-
-interface nn::lbl::detail::ILblController is lbl {
-	[0] Unknown0();
-	[1] Unknown1();
-	[2] Unknown2();
-	[3] Unknown3();
-	[4] Unknown4();
-	[5] Unknown5();
-	[6] TurnOnBacklight();
-	[7] TurnOffBacklight();
-	[8] GetBacklightStatus();
-	[9] Unknown9();
-	[10] Unknown10();
-	[11] Unknown11();
-	[12] Unknown12();
-	[13] Unknown13();
-	[14] Unknown14();
-	[15] Unknown15();
-	[16] ReadRawLightSensor();
-	[17] Unknown17();
-	[18] Unknown18();
-	[19] Unknown19();
-	[20] Unknown20();
-	[21] Unknown21();
-	[22] Unknown22();
-	@version(3.0.0+)
-	[23] Unknown23();
-	@version(3.0.0+)
-	[24] Unknown24();
-	@version(3.0.0+)
-	[25] Unknown25();
-	# No input/output. Used by
-	# [AM\_services\#SetVrModeEnabled](AM_services#SetVrModeEnabled "wikilink").
-	# 
-	# Sets a global state field to 0x1.
-	# 
-	@version(3.0.0+)
-	[26] EnableVrMode();
-	# No input/output. Used by
-	# [AM\_services\#SetVrModeEnabled](AM_services#SetVrModeEnabled "wikilink").
-	# 
-	# Sets the global state field used by
-	# [\#EnableVrMode](#EnableVrMode "wikilink") to 0x0.
-	# 
-	@version(3.0.0+)
-	[27] DisableVrMode();
-	# No input. Returns an output u8 bool set by the above commands.
-	# 
-	@version(3.0.0+)
-	[28] GetVrMode();
-}
-
-
-interface nn::ldn::detail::IMonitorServiceCreator is ldn:m {
-	[0] GetMonitorService();
-}
-
-
-interface nn::ldn::detail::ISystemServiceCreator is ldn:s {
-	[0] GetSystemLocalCommunicationService();
-}
-
-
-interface nn::ldn::detail::IUserServiceCreator is ldn:u {
-	[0] GetUserLocalCommunicationService();
-}
-
-
-interface nn::ldr::detail::IDebugMonitorInterface is ldr:dmnt {
-	[0] AddProcessToDebugLaunchQueue();
-	[1] ClearDebugLaunchQueue();
-	[2] Unknown2();
-}
-
-
-interface nn::ldr::detail::IProcessManagerInterface is ldr:pm {
-	[0] CreateProcess();
-	# Takes a TitleId + StorageId, parses the NPDM, and writes output to a C
-	# descriptor buffer as
-	# follows:
-	# 
-	# | Offset   | Size     | Description                                       |
-	# | -------- | -------- | ------------------------------------------------- |
-	# | 0x0      | 0x1      | MainThreadPrio. Arg1 to svcStartProcess           |
-	# | 0x1      | 0x1      | DefaultCpuId. Arg2 to svcStartProcess             |
-	# | 0x2      | 0x1      | ApplicationType, see \[\[Process Manager services |
-	# | 0x3      | 0x1      | Padding                                           |
-	# | 0x4      | 0x4      | MainThreadStackSize. Arg3 to svcStartProcess      |
-	# | 0x8      | 0x8      | Title id                                          |
-	# | 0x10     | 0x4      | ACID \[\[NPDM\#Service Access Control             |
-	# | 0x14     | 0x4      | ACI0 \[\[NPDM\#Service Access Control             |
-	# | 0x18     | 0x4      | ACID \[\[NPDM\#FS Access Control                  |
-	# | 0x1C     | 0x4      | ACI0 \[\[NPDM\#FS Access Control                  |
-	# | 0x20     | <Varies> | ACID \[\[NPDM\#Service Access Control             |
-	# | <Varies> | <Varies> | ACI0 \[\[NPDM\#Service Access Control             |
-	# | <Varies> | <Varies> | ACID \[\[NPDM\#FS Access Control                  |
-	# | <Varies> | <Varies> | ACI0 \[\[NPDM\#FS Access Control                  |
-	# 
-	[1] GetProgramInfo();
-	# Takes a TitleId + StorageId, returns an index.
-	# 
-	[2] RegisterTitle();
-	# Takes the index from [\#RegisterTitle](#RegisterTitle "wikilink").
-	# 
-	[3] UnregisterTitle();
-}
-
-
-interface nn::ldr::detail::IShellInterface is ldr:shel {
-	# Takes a type-0x19 input buffer with launch arguments (as string), an u32
-	# (size of arguments string), and an input title-id.
-	# 
-	# Loads a process for the specified title-id and passes along the supplied
-	# arguments. Loaded processes are kept in a queue waiting for PM to launch
-	# them. The maximum number of waiting processes in this list is 10.
-	# 
-	[0] AddProcessToLaunchQueue();
-	# Clears the loaded processes waiting queue.
-	# 
-	[1] ClearLaunchQueue();
-}
-
-
-interface nn::ldr::detail::IRoInterface is ldr:ro {
-	# | Word | Value                    |
-	# | ---- | ------------------------ |
-	# | 0    | 0x00000004               |
-	# | 1    | 0x80000012               |
-	# | 2    | 0x00000001               |
-	# | 0-1  | Pid                      |
-	# | 0    | "SCFI"                   |
-	# | 1    | 0x00000000               |
-	# | 2    | Always 0.                |
-	# | 3    | Nro heap address         |
-	# | 4    | Nro size                 |
-	# | 5    | Bss backing heap address |
-	# | 6    | Bss size                 |
-	# 
-	[0] LoadNro();
-	[1] UnloadNro();
-	# | Word | Value       |
-	# | ---- | ----------- |
-	# | 0    | 0x00000004  |
-	# | 1    | 0x8000000E  |
-	# | 2    | 0x00000001  |
-	# |  |
-	# | 0-1  | Pid         |
-	# | 0    | "SFCI"      |
-	# | 1    | 0x00000002  |
-	# | 2    | Always 0.   |
-	# | 3    | Nrr address |
-	# | 4    | Nrr size    |
-	# 
-	[2] LoadNrr();
-	[3] UnloadNrr();
-	# | Word | Value                       |
-	# | ---- | --------------------------- |
-	# | 0    | 0x00000004                  |
-	# | 1    | 0x8000000A                  |
-	# | 2    | 0x00000003                  |
-	# | 0-1  | Pid                         |
-	# | 2    | Process handle (0xFFFF8001) |
-	# | 0    | "SFCI"                      |
-	# | 1    | 0x00000004                  |
-	# | 2    | Always 0.                   |
-	# 
-	# [Category:Services](Category:Services "wikilink")
-	# 
-	[4] Initialize();
-}
-
-
-interface ILm is lm {
-	[0] Unknown0();
-	[1] Unknown1();
-	[2] Unknown2();
-	[3] Unknown3();
-	[4] Unknown4();
-}
-
 
 interface IManu is manu {
 	[0] InitUsbTransferPipeFsFile();
@@ -1838,84 +1139,12 @@ interface IManu is manu {
 	[6] Raw_Write();
 }
 
-
-interface nn::nim::detail::INetworkInstallManager is nim {
-	[1] Unknown1();
-	[2] Unknown2();
+interface nn::i2c::IManager is i2c:pcv, i2c {
+	[0] OpenSessionForDev(u16, u32, u32, u32) -> object<IUnknown>;
+	[1] OpenSession(u32) -> object<IUnknown>;
+	[2] HasDevice(u32) -> u8;
+	[3] HasDeviceForDev(u16, u32, u32, u32) -> u8;
 }
-
-
-interface nns::nvdrv::INvDrvServices is nvdrv, nvdrv:a, nvdrv:s, nvdrv:t {
-	# Takes a type-0x5 input buffer for the device-path. Returns the output
-	# 32bit **fd** and the u32 **error\_code**.
-	# 
-	[0] Open();
-	# Takes a 32bit **fd**, an u32 **ioctl\_cmd**, a type-0x21 input buffer,
-	# and a type-0x22 output buffer. Returns an output u32 (**error\_code**).
-	# 
-	# The addr/size for send/recv buffers are only set when the associated
-	# direction bit is set in the ioctl cmd (addr/size = 0 otherwise).
-	# 
-	[1] Ioctl();
-	# Takes a 32bit **fd**. Returns an output u32 (**error\_code**).
-	# 
-	[2] Close();
-	# Takes two copy-handles (**current\_process** and **transfer\_memory**)
-	# and an input u32 (**transfer\_memory\_size**). Returns an output u32
-	# (**error\_code**).
-	# 
-	# Webkit applet creates the transfer-memory with perm = 0 and size
-	# 0x300000.
-	# 
-	[3] Initialize();
-	# Takes two input u32s (**fd** and **event\_id**), with the second word
-	# immediately after the first one. Returns an output u32 (**error\_code**)
-	# and a copy-handle (**event\_handle**).
-	# 
-	[4] QueryEvent();
-	# Takes a copy-handle (**transfer\_memory**) and two input u32s (**fd**
-	# and **nvmap\_handle**). Returns an output u32 (**error\_code**).
-	# 
-	[5] MapSharedMem();
-	# Takes no input. Returns 0x10-bytes and an output u32 (**error\_code**).
-	# 
-	[6] GetStatus();
-	# Takes an input u64 which must [match](IPC_Marshalling "wikilink") the
-	# user-process PID ([AppletResourceUserId](AM_services "wikilink")).
-	# Returns an output u32 (**error\_code**).
-	# 
-	[7] ForceSetClientPID();
-	# Takes a PID-descriptor and an u64 which must
-	# [match](IPC_Marshalling "wikilink") the user-process PID
-	# ([AppletResourceUserId](AM_services "wikilink")). Returns an output u32
-	# (**error\_code**).
-	# 
-	[8] SetClientPID();
-	# No input or output. Does nothing.
-	# 
-	[9] DumpGraphicsMemoryInfo();
-	@version(3.0.0+)
-	[10] Unknown10();
-	# Takes a type-0x21 buffer, a type-0x22 buffer, a type-0x21 buffer, and
-	# two input u32s. Returns an output u32 (**error\_code**).
-	# 
-	@version(3.0.0+)
-	[11] Ioctl2();
-	# Same input/output as Ioctl2, except cmdhdr\_word1 is 0x100B instead of
-	# 0xC0B.
-	# 
-	@version(3.0.0+)
-	[12] Ioctl3();
-	@version(3.0.0+)
-	[13] Unknown13();
-}
-
-
-interface INvmemp is nvmemp {
-	[0] Cmd0();
-	[1] Cmd1();
-}
-
 
 interface nns::nvdrv::INvDrvDebugFSServices is nvdrvdbg {
 	# Takes process handle. Returns an fd.
@@ -1929,254 +1158,35 @@ interface nns::nvdrv::INvDrvDebugFSServices is nvdrvdbg {
 	[2] ReadLog();
 }
 
-
-interface nn::pcie::detail::IManager is pcie {
-	[0] GetISession();
-	# Takes a type-6 buffer.
-	# 
-	# Returns a list of connected PCIe endpoint devices.
-	# 
-	[1] ListEndpoints();
-}
-
-
-interface nn::pctl::detail::ipc::IParentalControlServiceFactory is pctl:s, pctl:r, pctl:a, pctl {
-	[0] GetService();
-}
-
-
-interface nn::pm::detail::IBootModeInterface is pm:bm {
-	[0] GetBootMode();
-	[1] SetMaintenanceBoot();
-}
-
-
-interface nn::pm::detail::IDebugMonitorInterface is pm:dmnt {
-	# Always returns u32 0 on retail.
-	# 
-	# \[2.0.0+\] Additional check on input that can return 0xC0F. The meaning
-	# is probably useless because function is somewhat nopped on non-dev
-	# builds anyway.
-	# 
-	[0] IsDebugMode();
-	# Returns an array of pids of all processes that have mask 4 set in
-	# process flags.
-	# 
-	# \[2.0.0+\] Additional check on input that can return 0xC0F. The meaning
-	# is probably useless because function is somewhat nopped on non-dev
-	# builds anyway.
-	# 
-	[1] GetDebugProcesses();
-	# Takes a pid. Last process event must be ProcessEvent\_Created or
-	# ProcessEvent\_DebugAttached.
-	# 
-	# Then it uses svcStartProcess(process\_handle, u8, u8, u32) with args
-	# coming from ldr:pm GetProgramInfo.
-	# 
-	# After that, it sets last process state to ProcessEvent\_DebugDetached.
-	# 
-	[2] StartDebugProcess();
-	# Takes a title-id and returns the pid.
-	# 
-	[3] GetTitlePid();
-	# Takes a title-id of the program to debug. Sets this to a global field.
-	# 
-	# Next time it gets launched it will be handled differently.
-	# 
-	# Returns an event handle that is signaled when the requested title is
-	# about to be launched.
-	# 
-	[4] EnableDebugForTitleId();
-	# Returns the pid of the application process.
-	# 
-	[5] GetApplicationPid();
-	# Does \*not\* take a specific title-id as input.
-	# 
-	# Returns an event handle that is triggered for application titles.
-	# 
-	[6] EnableDebugForApplication();
-}
-
-
-interface nn::pm::detail::IInformationInterface is pm:info {
-	# Takes a pid and returns the title-id associated with the process.
-	# 
-	[0] GetTitleId();
-}
-
-
-interface nn::pm::detail::IShellInterface is pm:shell {
-	# Takes launch\_flags, title-id, and storageID. See [\#Process
-	# launch](#Process_launch "wikilink").
-	# 
-	# Returns the u64 title PID.
-	# 
-	[0] LaunchProcess();
-	[1] TerminateProcessByPid();
-	[2] TerminateProcessByTitleId();
-	[3] GetProcessEventWaiter();
-	# Returns 1 if flags has mask 2 set.
-	# 
-	# Returns 2 if flags has mask 1 set and state is 6.
-	# 
-	# Returns 3 if flags has mask 0x10 set and not 0x20.
-	# 
-	# Returns 4 if flags has mask 0x30 set.
-	# 
-	# \[2.0.0+\] returns 5 if state \>= 2 and flags has mask 0x100 set.
-	# 
-	# Returns 0 if process is not found.
-	# 
-	[4] GetProcessEventType();
-	# Takes a pid as input. If the process with pid has the state "dead", it
-	# unregisters the pid in fsp:pr, sm:m, and ldr:pm.
-	# 
-	# Then it removes the process from PMs internal linked-list of active
-	# processes.
-	# 
-	[5] FinalizeDeadProcess();
-	# Takes a pid as input. Clears 0x10 from process flags.
-	# 
-	[6] ClearProcessNotificationFlag();
-	# Launches a process with hardcoded [boot2](boot2 "wikilink") title-id.
-	# 
-	[7] NotifyBootFinished();
-	# Returns the pid of the application process.
-	# 
-	[8] GetApplicationPid();
-}
-
-
-interface nn::psc::sf::IPmControl is psc:c {
-	[0] Unknown0();
+interface nn::fan::detail::IManager is fan {
+	[0] Unknown0(u32) -> object<IUnknown>;
 	[1] Unknown1();
 	[2] Unknown2();
 	[3] Unknown3();
 	[4] Unknown4();
 	[5] Unknown5();
 	[6] Unknown6();
+	[7] Unknown7();
 }
 
-
-interface nn::psc::sf::IPmService is psc:m {
-	[0] GetPmModule();
+interface nn::ldn::detail::IUserServiceCreator is ldn:u {
+	[0] GetUserLocalCommunicationService() -> object<IUnknown>;
 }
 
-
-interface nn::settings::ISettingsServer is set {
-	[0] GetLanguageCode();
-	[1] GetAvailableLanguageCodes();
-	@version(4.0.0+)
-	[2] MakeLanguageCode();
-	[3] GetAvailableLanguageCodeCount();
-	[4] GetRegionCode();
-	@version(4.0.0+)
-	[5] GetAvailableLanguageCodes2();
-	@version(4.0.0+)
-	[6] GetAvailableLanguageCodeCount2();
-	@version(4.0.0+)
-	[7] GetKeyCodeMap();
+interface nn::ldr::detail::IDebugMonitorInterface is ldr:dmnt {
+	[0] AddProcessToDebugLaunchQueue();
+	[1] ClearDebugLaunchQueue();
+	[2] Unknown2();
 }
 
-
-interface nn::settings::IFirmwareDebugSettingsServer is set:fd {
-	[2] SetSettingsItemValue();
-	[3] ResetSettingsItemValue();
-	[4] CreateSettingsItemKeyIterator();
-	@version(4.0.0+)
-	[10] ReadSettings();
-	@version(4.0.0+)
-	[11] ResetSettings();
-	@version(4.0.0+)
-	[20] SetWebInspectorFlag();
-	@version(4.0.0+)
-	[21] SetAllowedSslHosts();
-	@version(4.0.0+)
-	[22] SetHostFsMountPoint();
+interface nn::ldn::detail::ISystemServiceCreator is ldn:s {
+	[0] GetSystemLocalCommunicationService() -> object<IUnknown>;
 }
-
-
-interface nn::settings::IFactorySettingsServer is set:cal {
-	[0] GetBluetoothBdAddress();
-	[1] GetConfigurationId1();
-	[2] GetAccelerometerOffset();
-	[3] GetAccelerometerScale();
-	[4] GetGyroscopeOffset();
-	[5] GetGyroscopeScale();
-	[6] GetWirelessLanMacAddress();
-	[7] GetWirelessLanCountryCodeCount();
-	[8] GetWirelessLanCountryCodes();
-	[9] GetSerialNumber();
-	[10] SetInitialSystemAppletProgramId();
-	[11] SetOverlayDispProgramId();
-	[12] GetBatteryLot();
-	# Takes a type-0x16 output buffer with fixed size 0x180.
-	# 
-	# Returns the device certificate (ECC signed). This is identical to 3DS
-	# DeviceCert/CTCert besides the strings. NIM loads the DeviceId from this.
-	# 
-	[14] GetEciDeviceCertificate();
-	# Takes a type-0x16 output buffer with fixed size 0x240.
-	# 
-	# Returns the ETicket certificate (RSA signed).
-	# 
-	[15] GetEticketDeviceCertificate();
-	# Takes a type-0x16 output buffer with fixed size 0x134.
-	# 
-	# Returns the extended SSL key (0x130 bytes) from
-	# [CAL0](Calibration#CAL0 "wikilink"). If the extended key is not
-	# programmed then it falls back to the normal SSL key (0x110 bytes).
-	# 
-	# Used by SSL-sysmodule, see [here](SSL_services "wikilink").
-	# 
-	[16] GetSslKey();
-	# Takes a type-0x16 output buffer with fixed size 0x804.
-	# 
-	# Returns a
-	# [container](Settings_services#setcal_Container_Structure "wikilink")
-	# with the plaintext SSL certificate.
-	# 
-	# Used by SSL-sysmodule, see [here](SSL_services "wikilink").
-	# 
-	[17] GetSslCertificate();
-	# Takes a type-0x16 output buffer with fixed size 0x134.
-	# 
-	# Returns the extended GameCard key (0x130 bytes) from
-	# [CAL0](Calibration#CAL0 "wikilink"). If the extended key is not
-	# programmed then it falls back to the normal GameCard key (0x110 bytes).
-	# 
-	[18] GetGameCardKey();
-	# Takes a type-0x16 output buffer with fixed size 0x404.
-	# 
-	# Returns a
-	# [container](Settings_services#setcal_Container_Structure "wikilink")
-	# with the GameCard certificate.
-	# 
-	[19] GetGameCardCertificate();
-	# Returns the extended device ECC-B233 key (0x50 bytes) from
-	# [CAL0](Calibration#CAL0 "wikilink"). If the extended key is not
-	# programmed then it falls back to the normal device ECC-B233 key (0x30
-	# bytes).
-	# 
-	[20] GetEciDeviceKey();
-	# Takes a type-0x16 output buffer with fixed size 0x244.
-	# 
-	# Returns the extended ETicket RSA-2048 key (0x240 bytes) from
-	# [CAL0](Calibration#CAL0 "wikilink"). If the extended key is not
-	# programmed then it falls back to the normal ETicket RSA-2048 key (0x220
-	# bytes).
-	# 
-	[21] GetEticketDeviceKey();
-	[22] GetSpeakerParameter();
-	@version(4.0.0+)
-	[23] GetLcdVendorId();
-}
-
 
 interface nn::settings::ISystemSettingsServer is set:sys {
-	[0] SetLanguageCode();
-	[1] SetNetworkSettings();
-	[2] GetNetworkSettings();
+	[0] SetLanguageCode(nn::settings::LanguageCode);
+	[1] SetNetworkSettings(array<nn::settings::system::NetworkSettings,5>);
+	[2] GetNetworkSettings() -> (i32, array<nn::settings::system::NetworkSettings,6>);
 	# Takes a type-0x1A output buffer. User-processes use hard-coded size
 	# 0x100.
 	# 
@@ -2186,38 +1196,38 @@ interface nn::settings::ISystemSettingsServer is set:sys {
 	# 
 	# Then the above 0x100-byte data is copied to the output buffer.
 	# 
-	[3] GetFirmwareVersion();
+	[3] GetFirmwareVersion() -> buffer<nn::settings::system::FirmwareVersion,26,256>;
 	@version(3.0.0+)
-	[4] GetFirmwareVersion2();
-	[7] GetLockScreenFlag();
-	[8] SetLockScreenFlag();
-	[9] GetBacklightSettings();
-	[10] SetBacklightSettings();
-	[11] SetBluetoothDevicesSettings();
-	[12] GetBluetoothDevicesSettings();
-	[13] GetExternalSteadyClockSourceId();
-	[14] SetExternalSteadyClockSourceId();
-	[15] GetUserSystemClockContext();
-	[16] SetUserSystemClockContext();
-	[17] GetAccountSettings();
-	[18] SetAccountSettings();
-	[19] GetAudioVolume();
-	[20] SetAudioVolume();
-	[21] GetEulaVersions();
-	[22] SetEulaVersions();
-	[23] GetColorSetId();
-	[24] SetColorSetId();
-	[25] GetConsoleInformationUploadFlag();
-	[26] SetConsoleInformationUploadFlag();
-	[27] GetAutomaticApplicationDownloadFlag();
-	[28] SetAutomaticApplicationDownloadFlag();
-	[29] GetNotificationSettings();
-	[30] SetNotificationSettings();
-	[31] GetAccountNotificationSettings();
-	[32] SetAccountNotificationSettings();
-	[35] GetVibrationMasterVolume();
-	[36] SetVibrationMasterVolume();
-	[37] GetSettingsItemValueSize();
+	[4] GetFirmwareVersion2() -> buffer<nn::settings::system::FirmwareVersion,26,256>;
+	[7] GetLockScreenFlag() -> bool;
+	[8] SetLockScreenFlag(bool);
+	[9] GetBacklightSettings() -> nn::settings::system::BacklightSettings;
+	[10] SetBacklightSettings(nn::settings::system::BacklightSettings);
+	[11] SetBluetoothDevicesSettings(array<nn::settings::system::BluetoothDevicesSettings,5>);
+	[12] GetBluetoothDevicesSettings() -> (i32, array<nn::settings::system::BluetoothDevicesSettings,6>);
+	[13] GetExternalSteadyClockSourceId() -> nn::util::Uuid;
+	[14] SetExternalSteadyClockSourceId(nn::util::Uuid);
+	[15] GetUserSystemClockContext() -> nn::time::SystemClockContext;
+	[16] SetUserSystemClockContext(nn::time::SystemClockContext);
+	[17] GetAccountSettings() -> nn::settings::system::AccountSettings;
+	[18] SetAccountSettings(nn::settings::system::AccountSettings);
+	[19] GetAudioVolume(i32) -> nn::settings::system::AudioVolume;
+	[20] SetAudioVolume(nn::settings::system::AudioVolume, i32);
+	[21] GetEulaVersions() -> (i32, array<nn::settings::system::EulaVersion,6>);
+	[22] SetEulaVersions(array<nn::settings::system::EulaVersion,5>);
+	[23] GetColorSetId() -> i32;
+	[24] SetColorSetId(i32);
+	[25] GetConsoleInformationUploadFlag() -> bool;
+	[26] SetConsoleInformationUploadFlag(bool);
+	[27] GetAutomaticApplicationDownloadFlag() -> bool;
+	[28] SetAutomaticApplicationDownloadFlag(bool);
+	[29] GetNotificationSettings() -> nn::settings::system::NotificationSettings;
+	[30] SetNotificationSettings(nn::settings::system::NotificationSettings);
+	[31] GetAccountNotificationSettings() -> (i32, array<nn::settings::system::AccountNotificationSettings,6>);
+	[32] SetAccountNotificationSettings(array<nn::settings::system::AccountNotificationSettings,5>);
+	[35] GetVibrationMasterVolume() -> f32;
+	[36] SetVibrationMasterVolume(f32);
+	[37] GetSettingsItemValueSize(buffer<nn::settings::SettingsName,25,72>, buffer<nn::settings::SettingsItemKey,25,72>) -> u64;
 	# Takes two type-0x19 input buffers and a type-0x6 output buffer. Returns
 	# an output u64 for the actual size written to the outbuf.
 	# 
@@ -2229,30 +1239,30 @@ interface nn::settings::ISystemSettingsServer is set:sys {
 	# If loading from main config fails, it will also attempt to load config
 	# from various state if the input strings match hard-coded strings.
 	# 
-	[38] GetSettingsItemValue();
-	[39] GetTvSettings();
-	[40] SetTvSettings();
-	[41] GetEdid();
-	[42] SetEdid();
-	[43] GetAudioOutputMode();
-	[44] SetAudioOutputMode();
-	[45] IsForceMuteOnHeadphoneRemoved();
-	[46] SetForceMuteOnHeadphoneRemoved();
-	[47] GetQuestFlag();
-	[48] SetQuestFlag();
-	[49] GetDataDeletionSettings();
-	[50] SetDataDeletionSettings();
-	[51] GetInitialSystemAppletProgramId();
-	[52] GetOverlayDispProgramId();
-	[53] GetDeviceTimeZoneLocationName();
-	[54] SetDeviceTimeZoneLocationName();
-	[55] GetWirelessCertificationFileSize();
-	[56] GetWirelessCertificationFile();
-	[57] SetRegionCode();
-	[58] GetNetworkSystemClockContext();
-	[59] SetNetworkSystemClockContext();
-	[60] IsUserSystemClockAutomaticCorrectionEnabled();
-	[61] SetUserSystemClockAutomaticCorrectionEnabled();
+	[38] GetSettingsItemValue(buffer<nn::settings::SettingsName,25,72>, buffer<nn::settings::SettingsItemKey,25,72>) -> (u64, buffer<unknown,6,0>);
+	[39] GetTvSettings() -> nn::settings::system::TvSettings;
+	[40] SetTvSettings(nn::settings::system::TvSettings);
+	[41] GetEdid() -> buffer<nn::settings::system::Edid,26,256>;
+	[42] SetEdid(buffer<nn::settings::system::Edid,25,256>);
+	[43] GetAudioOutputMode(i32) -> i32;
+	[44] SetAudioOutputMode(i32, i32);
+	[45] IsForceMuteOnHeadphoneRemoved() -> bool;
+	[46] SetForceMuteOnHeadphoneRemoved(bool);
+	[47] GetQuestFlag() -> bool;
+	[48] SetQuestFlag(bool);
+	[49] GetDataDeletionSettings() -> nn::settings::system::DataDeletionSettings;
+	[50] SetDataDeletionSettings(nn::settings::system::DataDeletionSettings);
+	[51] GetInitialSystemAppletProgramId() -> nn::ncm::ProgramId;
+	[52] GetOverlayDispProgramId() -> nn::ncm::ProgramId;
+	[53] GetDeviceTimeZoneLocationName() -> nn::time::LocationName;
+	[54] SetDeviceTimeZoneLocationName(nn::time::LocationName);
+	[55] GetWirelessCertificationFileSize() -> u64;
+	[56] GetWirelessCertificationFile() -> (u64, buffer<unknown,6,0>);
+	[57] SetRegionCode(i32);
+	[58] GetNetworkSystemClockContext() -> nn::time::SystemClockContext;
+	[59] SetNetworkSystemClockContext(nn::time::SystemClockContext);
+	[60] IsUserSystemClockAutomaticCorrectionEnabled() -> bool;
+	[61] SetUserSystemClockAutomaticCorrectionEnabled(bool);
 	# Returns an output u8.
 	# 
 	# Loads the 1-byte config for \<"settings\_debug",
@@ -2261,95 +1271,95 @@ interface nn::settings::ISystemSettingsServer is set:sys {
 	# 
 	# Returned retval is always 0.
 	# 
-	[62] GetDebugModeFlag();
-	[63] GetPrimaryAlbumStorage();
-	[64] SetPrimaryAlbumStorage();
-	[65] GetUsb30EnableFlag();
-	[66] SetUsb30EnableFlag();
-	[67] GetBatteryLot();
+	[62] GetDebugModeFlag() -> bool;
+	[63] GetPrimaryAlbumStorage() -> i32;
+	[64] SetPrimaryAlbumStorage(i32);
+	[65] GetUsb30EnableFlag() -> bool;
+	[66] SetUsb30EnableFlag(bool);
+	[67] GetBatteryLot() -> nn::settings::system::BatteryLot;
 	# Returns the 0x18-byte SerialNumber string.
 	# 
-	[68] GetSerialNumber();
-	[69] GetNfcEnableFlag();
-	[70] SetNfcEnableFlag();
-	[71] GetSleepSettings();
-	[72] SetSleepSettings();
-	[73] GetWirelessLanEnableFlag();
-	[74] SetWirelessLanEnableFlag();
-	[75] GetInitialLaunchSettings();
-	[76] SetInitialLaunchSettings();
-	[77] GetDeviceNickName();
-	[78] SetDeviceNickName();
-	[79] GetProductModel();
-	[80] GetLdnChannel();
-	[81] SetLdnChannel();
-	[82] AcquireTelemetryDirtyFlagEventHandle();
-	[83] GetTelemetryDirtyFlags();
-	[84] GetPtmBatteryLot();
-	[85] SetPtmBatteryLot();
-	[86] GetPtmFuelGaugeParameter();
-	[87] SetPtmFuelGaugeParameter();
-	[88] GetBluetoothEnableFlag();
-	[89] SetBluetoothEnableFlag();
-	[90] GetMiiAuthorId();
-	[91] SetShutdownRtcValue();
-	[92] GetShutdownRtcValue();
-	[93] AcquireFatalDirtyFlagEventHandle();
-	[94] GetFatalDirtyFlags();
+	[68] GetSerialNumber() -> nn::settings::system::SerialNumber;
+	[69] GetNfcEnableFlag() -> bool;
+	[70] SetNfcEnableFlag(bool);
+	[71] GetSleepSettings() -> nn::settings::system::SleepSettings;
+	[72] SetSleepSettings(nn::settings::system::SleepSettings);
+	[73] GetWirelessLanEnableFlag() -> bool;
+	[74] SetWirelessLanEnableFlag(bool);
+	[75] GetInitialLaunchSettings() -> nn::settings::system::InitialLaunchSettings;
+	[76] SetInitialLaunchSettings(nn::settings::system::InitialLaunchSettings);
+	[77] GetDeviceNickName() -> buffer<nn::settings::system::DeviceNickName,22,128>;
+	[78] SetDeviceNickName(buffer<nn::settings::system::DeviceNickName,21,128>);
+	[79] GetProductModel() -> i32;
+	[80] GetLdnChannel() -> i32;
+	[81] SetLdnChannel(i32);
+	[82] AcquireTelemetryDirtyFlagEventHandle() -> KObject;
+	[83] GetTelemetryDirtyFlags() -> nn::settings::system::TelemetryDirtyFlag;
+	[84] GetPtmBatteryLot() -> nn::settings::factory::BatteryLot;
+	[85] SetPtmBatteryLot(nn::settings::factory::BatteryLot);
+	[86] GetPtmFuelGaugeParameter() -> nn::settings::system::PtmFuelGaugeParameter;
+	[87] SetPtmFuelGaugeParameter(nn::settings::system::PtmFuelGaugeParameter);
+	[88] GetBluetoothEnableFlag() -> bool;
+	[89] SetBluetoothEnableFlag(bool);
+	[90] GetMiiAuthorId() -> nn::util::Uuid;
+	[91] SetShutdownRtcValue(i64);
+	[92] GetShutdownRtcValue() -> i64;
+	[93] AcquireFatalDirtyFlagEventHandle() -> KObject;
+	[94] GetFatalDirtyFlags() -> nn::settings::system::FatalDirtyFlag;
 	@version(2.0.0+)
-	[95] GetAutoUpdateEnableFlag();
+	[95] GetAutoUpdateEnableFlag() -> bool;
 	@version(2.0.0+)
-	[96] SetAutoUpdateEnableFlag();
+	[96] SetAutoUpdateEnableFlag(bool);
 	@version(2.0.0+)
-	[97] GetNxControllerSettings();
+	[97] GetNxControllerSettings() -> (i32, array<nn::settings::system::NxControllerSettings,6>);
 	@version(2.0.0+)
-	[98] SetNxControllerSettings();
+	[98] SetNxControllerSettings(array<nn::settings::system::NxControllerSettings,5>);
 	@version(2.0.0+)
-	[99] GetBatteryPercentageFlag();
+	[99] GetBatteryPercentageFlag() -> bool;
 	@version(2.0.0+)
-	[100] SetBatteryPercentageFlag();
+	[100] SetBatteryPercentageFlag(bool);
 	@version(2.0.0+)
-	[101] GetExternalRtcResetFlag();
+	[101] GetExternalRtcResetFlag() -> bool;
 	@version(2.0.0+)
-	[102] SetExternalRtcResetFlag();
+	[102] SetExternalRtcResetFlag(bool);
 	@version(3.0.0+)
-	[103] GetUsbFullKeyEnableFlag();
+	[103] GetUsbFullKeyEnableFlag() -> bool;
 	@version(3.0.0+)
-	[104] SetUsbFullKeyEnableFlag();
+	[104] SetUsbFullKeyEnableFlag(bool);
 	@version(3.0.0+)
-	[105] SetExternalSteadyClockInternalOffset();
+	[105] SetExternalSteadyClockInternalOffset(i64);
 	@version(3.0.0+)
-	[106] GetExternalSteadyClockInternalOffset();
+	[106] GetExternalSteadyClockInternalOffset() -> i64;
 	@version(3.0.0+)
-	[107] GetBacklightSettingsEx();
+	[107] GetBacklightSettingsEx() -> nn::settings::system::BacklightSettingsEx;
 	@version(3.0.0+)
-	[108] SetBacklightSettingsEx();
+	[108] SetBacklightSettingsEx(nn::settings::system::BacklightSettingsEx);
 	@version(3.0.0+)
-	[109] GetHeadphoneVolumeWarningCount();
+	[109] GetHeadphoneVolumeWarningCount() -> i32;
 	@version(3.0.0+)
-	[110] SetHeadphoneVolumeWarningCount();
+	[110] SetHeadphoneVolumeWarningCount(i32);
 	@version(3.0.0+)
-	[111] GetBluetoothAfhEnableFlag();
+	[111] GetBluetoothAfhEnableFlag() -> bool;
 	@version(3.0.0+)
-	[112] SetBluetoothAfhEnableFlag();
+	[112] SetBluetoothAfhEnableFlag(bool);
 	@version(3.0.0+)
-	[113] GetBluetoothBoostEnableFlag();
+	[113] GetBluetoothBoostEnableFlag() -> bool;
 	@version(3.0.0+)
-	[114] SetBluetoothBoostEnableFlag();
+	[114] SetBluetoothBoostEnableFlag(bool);
 	@version(3.0.0+)
-	[115] GetInRepairProcessEnableFlag();
+	[115] GetInRepairProcessEnableFlag() -> bool;
 	@version(3.0.0+)
-	[116] SetInRepairProcessEnableFlag();
+	[116] SetInRepairProcessEnableFlag(bool);
 	@version(3.0.0+)
-	[117] GetHeadphoneVolumeUpdateFlag();
+	[117] GetHeadphoneVolumeUpdateFlag() -> bool;
 	@version(3.0.0+)
-	[118] SetHeadphoneVolumeUpdateFlag();
+	[118] SetHeadphoneVolumeUpdateFlag(bool);
 	@version(3.0.0+)
-	[119] NeedsToUpdateHeadphoneVolume();
+	[119] NeedsToUpdateHeadphoneVolume(bool) -> (bool, bool, i8);
 	@version(3.0.0+)
-	[120] GetPushNotificationActivityModeOnSleep();
+	[120] GetPushNotificationActivityModeOnSleep() -> i32;
 	@version(3.0.0+)
-	[121] SetPushNotificationActivityModeOnSleep();
+	[121] SetPushNotificationActivityModeOnSleep(i32);
 	# Returns 0x01 if [safemode](Safemode "wikilink") needs to be launched.
 	# 
 	# [Category:Services](Category:Services "wikilink")
@@ -2394,250 +1404,35 @@ interface nn::settings::ISystemSettingsServer is set:sys {
 	[140] GetHostFsMountPoint();
 }
 
-
-interface nn::mii::detail::IStaticService is mii:u, mii:e {
-	[0] GetDatabaseServiceSharedPointer();
+interface nn::omm::detail::IOperationModeManager is omm {
+	[0] GetOperationMode() -> u8;
+	[1] GetOperationModeChangeEvent() -> KObject;
+	[2] EnableAudioVisual();
+	[3] DisableAudioVisual();
+	[4] EnterSleepAndWait();
+	[5] GetCradleStatus() -> u8;
+	[6] FadeInDisplay();
+	[7] FadeOutDisplay();
+	@version(2.0.0+)
+	[8] Unknown8();
+	@version(2.0.0+)
+	[9] Unknown9();
 }
 
-
-interface nn::spl::detail::IRandomInterface is csrng {
-	# Takes a type-6 buffer and fills it with random data. Same command for
-	# "spl:" and "csrng" services.
-	# 
-	[0] GetRandomBytes();
+interface nn::settings::ISettingsServer is set {
+	[0] GetLanguageCode() -> nn::settings::LanguageCode;
+	[1] GetAvailableLanguageCodes() -> (i32, array<nn::settings::LanguageCode,10>);
+	@version(4.0.0+)
+	[2] MakeLanguageCode();
+	[3] GetAvailableLanguageCodeCount() -> i32;
+	[4] GetRegionCode() -> i32;
+	@version(4.0.0+)
+	[5] GetAvailableLanguageCodes2();
+	@version(4.0.0+)
+	[6] GetAvailableLanguageCodeCount2();
+	@version(4.0.0+)
+	[7] GetKeyCodeMap();
 }
-
-
-interface nn::spl::detail::IGeneralInterface is spl: {
-	# Takes a u32 (**ConfigItem**), and returns a u64 (**ConfigVal**).
-	# 
-	# | ConfigItem | Name                             |
-	# | ---------- | -------------------------------- |
-	# | 1          | DisableProgramVerification       |
-	# | 2          | MemoryConfiguration              |
-	# | 3          | SecurityEngineIRQNumber          |
-	# | 4          | Returns 0x02?                    |
-	# | 5          | HardwareType (0=Icosa, 1=Copper) |
-	# | 6          | IsRetail                         |
-	# | 7          | IsRecoveryBoot                   |
-	# | 8          | DeviceId (byte7 clear)           |
-	# | 9          | BootReason                       |
-	# | 10         | MemoryArrange                    |
-	# | 11         | IsDebugMode                      |
-	# | 12         | KernelMemoryConfiguration        |
-	# | 13         | BatteryProfile                   |
-	# 
-	# [PM](Process_Manager_services "wikilink") checks id1 and if non-zero,
-	# calls fsp-pr SetEnabledProgramVerification(false).
-	# 
-	# [PCV](PCV_services "wikilink") configures memory profiles based on
-	# id2.
-	# 
-	# | Platform     | Version                                 | Revision | id2    |
-	# | ------------ | --------------------------------------- | -------- | ------ |
-	# | "jetson-tx1" | "11\_40800\_01\_V9.8.3\_V1.6"           | N/A      | N/A    |
-	# | "nx-abcb"    | "10\_40800\_NoCfgVersion\_V9.8.4\_V1.6" | 0        | 0      |
-	# | "nx-abca2"   | "10\_40800\_NoCfgVersion\_V9.8.7\_V1.6" | 0        | 0 or 3 |
-	# | "nx-abca2"   | "10\_40800\_NoCfgVersion\_V9.8.7\_V1.6" | 1        | 4      |
-	# | "nx-abca2"   | "10\_40800\_NoCfgVersion\_V9.8.7\_V1.6" | 2        | 1      |
-	# | "nx-abca2"   | "10\_40800\_NoCfgVersion\_V9.8.7\_V1.6" | 3        | 2      |
-	# |  |
-	# 
-	# SPL uses id3 for setting up the security engine IRQ.
-	# 
-	# [NIM](NIM_services "wikilink") checks that id8 output must match the
-	# [set:cal](Settings_services "wikilink") DeviceId with byte7 cleared,
-	# otherwise panic.
-	# 
-	# \[3.0.0+\] [RO](Loader_services "wikilink") checks id11, if set then
-	# skipping NRR rsa signatures is allowed.
-	# 
-	# Kernel uses id11 to determine behavior of svcBreak positive arguments.
-	# It will break instead of just force-exiting the process which is what
-	# happens on retail. \[2.0.0+\] This is also used with certain debug
-	# [SVCs](SVC "wikilink").
-	# 
-	# Kernel reads id12 when setting up memory-related code. If bit0 is set,
-	# it will memset various allocated memory-regions with 0x58, 0x59, 0x5A
-	# ('X', 'Y', 'Z') instead of zero. This allows Nintendo devs to find
-	# uninitialized memory bugs. If bit17-16 is 0b01, the kernel assumes 6GB
-	# of DRAM instead of 4GB.
-	# 
-	[0] GetConfig();
-	# Takes one type-10 (C descriptor) buffer (**data\_out\_buf**) and 3
-	# type-9 (X descriptor) buffers (**data\_in\_buf**, **exp\_in\_buf** and
-	# **mod\_in\_buf**).
-	# 
-	# Performs asymmetric crypto with user supplied modulus and exponent.
-	# 
-	[1] UserExpMod();
-	# Takes a 16-byte EKS (**Encryption Key Source**) and two words
-	# (**KeyGeneration** and **option**) as input. **KeyGeneration** ranges
-	# from 0 to 2.
-	# 
-	# Returns a scrambled sealed KEK (**Key Encryption Key** used as
-	# **key\_x**).
-	# 
-	[2] GenerateAesKek();
-	# Takes a u32 (**keyslot**) and two 16-byte keys (**key\_x** and
-	# **key\_y**).
-	# 
-	# Sets the specified **keyslot** with a key generated from **key\_x** and
-	# **key\_y**.
-	# 
-	# \[2.0.0+\] Now verifies that the engine in use (0..3) is locked/owned by
-	# the current spl session, otherwise errors with 0xD21A. Previously engine
-	# was hardcoded to 0.
-	# 
-	[3] LoadAesKey();
-	# Takes a 16-byte KEK (**key\_x**) and a 16-byte encrypted key
-	# (**enc\_key**).
-	# 
-	# Generates a new key by decrypting **enc\_key** with a key generated from
-	# the supplied **key\_x** and a fixed **key\_y**.
-	# 
-	# \[2.0.0+\] Previously, it always used engine 0. Now it tries to allocate
-	# an engine to be used and returns 0xD01A if they're all busy. When the
-	# command is done, the engine is released.
-	# 
-	[4] GenerateAesKey();
-	# Takes a u32 (**ConfigItem**) and a u64 (**ConfigVal**).
-	# 
-	# | ConfigItem | Name           |
-	# | ---------- | -------------- |
-	# | 13         | BatteryProfile |
-	# 
-	# Any other **ConfigItem**, besides 13, can't be set.
-	# 
-	[5] SetConfig();
-	# Takes a type-6 buffer and fills it with random data. Same command for
-	# "spl:" and "csrng" services.
-	# 
-	[7] GetRandomBytes();
-	# Takes one type-9 (X descriptor) buffer (**enc\_privk\_in\_buf**), a
-	# 16-byte KEK (**key\_x**), a 16-byte key (**key\_y**) and a u32
-	# (**version**). **version** is 0 for normal keys or 1 for extended keys.
-	# 
-	# Decrypts **enc\_privk\_in\_buf** with a key generated from **key\_x**
-	# and **key\_y** and imports it for later usage.
-	# 
-	[9] DecryptImportPrivkForRsaOaep();
-	# Takes one type-10 (C descriptor) buffer (**data\_out\_buf**) and 3
-	# type-9 (X descriptor) buffers (**data\_in\_buf**, **mod\_in\_buf** and
-	# **label\_hash\_in\_buf**).
-	# 
-	# Decrypts **data\_in\_buf** into **data\_out\_buf** using the private key
-	# imported with
-	# [\#DecryptImportPrivkForRsaOaep](#DecryptImportPrivkForRsaOaep "wikilink")
-	# and the supplied **mod\_in\_buf**. Afterwards, verifies RSA-OAEP
-	# encoding using **label\_hash\_in\_buf**.
-	# 
-	# Returns an u32 (**dec\_data\_size**).
-	# 
-	[10] DecryptRsaOaep();
-	# No input params.
-	# 
-	# Uses [\#GetConfig](#GetConfig "wikilink") internally with id=6. Returns
-	# true if output from that is 0, or if the SMC returned error 2.
-	# 
-	# Returns an u8 flag for whether the system is devunit. Output flag is 0
-	# on retail.
-	# 
-	[11] IsDevelopment();
-	# Takes a 16-byte seed (**key\_seed**) and two words (**KeyGeneration**
-	# and **option**) as input. **KeyGeneration** ranges from 0 to 2.
-	# 
-	# Returns a scrambled key (**key\_a**).
-	# 
-	[12] GenerateSpecificAesKey();
-	# Takes one type-10 (C descriptor) buffer (**dec\_privk\_out\_buf**), one
-	# type-9 (X descriptor) buffer (**enc\_privk\_in\_buf**), a 16-byte KEK
-	# (**key\_x**), a 16-byte key (**key\_y**) and a u32 (**version**).
-	# **version** is 0 for normal keys or 1 for extended keys.
-	# 
-	# Decrypts **enc\_privk\_in\_buf** into **dec\_privk\_out\_buf** with a
-	# key generated from **key\_x** and **key\_y**.
-	# 
-	# Used by [SSL](SSL_services "wikilink")-sysmodule for TLS client-privk.
-	# 
-	[13] DecryptPrivk();
-	# Takes a 16-byte encrypted key (**enc\_key**) and two words
-	# (**KeyGeneration** and **option**) as input. **KeyGeneration** ranges
-	# from 0 to 2.
-	# 
-	# Decrypts **enc\_key** with a key generated from fixed **key\_x** and
-	# **key\_y** and returns a 16-byte decrypted key (**dec\_key**).
-	# 
-	# \[2.0.0+\] Introduced same engine allocation code as for
-	# [\#GenerateAesKey](#GenerateAesKey "wikilink").
-	# 
-	[14] DecryptAesKey();
-	# Takes a type-0x46 (B descriptor) buffer (**data\_out\_buf**), a u32
-	# (**keyslot**), a type-0x45 (A descriptor) buffer (**data\_in\_buf**) and
-	# a 16-byte CTR (**aes\_ctr**).
-	# 
-	# Decrypts **data\_in\_buf** into **data\_out\_buf** using the key set in
-	# the specified **keyslot**.
-	# 
-	# \[2.0.0+\] Verifies the engine is locked by current session.
-	# 
-	[15] DecryptAesCtr();
-	# Takes one type-9 (X descriptor) buffer (**data\_in\_buf**) and a u32
-	# (**type?**).
-	# 
-	# Returns a 16-byte CMAC calculated over **data\_in\_buf**.
-	# 
-	# \[2.0.0+\] Verifies the engine is locked by current session.
-	# 
-	[16] ComputeCmac();
-	# Takes one type-9 (X descriptor) buffer (**enc\_privk\_in\_buf**), a
-	# 16-byte KEK (**key\_x**), a 16-byte key (**key\_y**) and a u32
-	# (**version**). **version** is 0 for normal keys or 1 for extended keys.
-	# 
-	# Decrypts **enc\_privk\_in\_buf** with a key generated from **key\_x**
-	# and **key\_y** and imports it for later usage.
-	# 
-	[17] DecryptImportPrivkForExpMod1();
-	# Takes 3 type-9 (X descriptor) buffers (**data\_in\_buf**,
-	# **mod\_in\_buf** and **param0\_in\_buf**).
-	# 
-	# Decrypts **data\_in\_buf** using the private key imported with
-	# [\#DecryptImportPrivkForExpMod1](#DecryptImportPrivkForExpMod1 "wikilink")
-	# and the supplied **mod\_in\_buf** and **param0\_in\_buf**.
-	# 
-	# Generates and returns a 16-byte sealed prepared key (**key\_z**).
-	# 
-	[18] UnwrapRsaWrappedPreparedAesKey();
-	# Takes a u32 (**keyslot**) and a 16-byte sealed prepared key
-	# (**key\_z**).
-	# 
-	# Sets the specified **keyslot** with a key generated from **key\_z**.
-	# 
-	# \[2.0.0+\] Verifies the engine is locked by current session.
-	# 
-	[19] LoadPreparedAesKey();
-	# Takes a 16-byte EKS (**Encryption Key Source**).
-	# 
-	# Returns a sealed prepared AES key.
-	# 
-	@version(2.0.0+)
-	[20] UnwrapAesWrappedPreparedAesKey();
-	# Returns the id of the engine that was locked, or 0xD01A if all engines
-	# are busy. You need to lock an engine before using AES functions.
-	# 
-	@version(2.0.0+)
-	[21] LockAesEngine();
-	# Takes a single u32 and unlocks the engine with that id. It must be owned
-	# by current session otherwise 0xD21A will be returned.
-	# 
-	@version(2.0.0+)
-	[22] UnlockAesEngine();
-	# Returns an event handle for synchronizing with the locked AES engine.
-	# 
-	@version(2.0.0+)
-	[23] GetSplWaitEvent();
-}
-
 
 interface nn::usb::ds::IDsService is usb:ds {
 	# Takes an u32 (**complexId**). [Manu](Manu_Services "wikilink") sends
@@ -2726,14 +1521,1131 @@ interface nn::usb::ds::IDsService is usb:ds {
 	[5] SetVidPidBcd();
 }
 
-
-interface nn::usb::pd::detail::IPdCradleManager is usb:pd:c {
-	[0] Unknown0();
+interface nn::audio::detail::IAudioOutManagerForDebugger is audout:d {
+	# Takes an
+	# [AppletResourceUserId](AM_services#AppletResourceUserId "wikilink").
+	# (u64)
+	# 
+	[0] RequestSuspendForDebug(u64);
+	# Takes an
+	# [AppletResourceUserId](AM_services#AppletResourceUserId "wikilink").
+	# (u64)
+	# 
+	[1] RequestResumeForDebug(u64);
 }
 
+interface ILm is lm {
+	[0] Unknown0();
+	[1] Unknown1();
+	[2] Unknown2();
+	[3] Unknown3();
+	[4] Unknown4();
+}
+
+interface nn::settings::IFirmwareDebugSettingsServer is set:fd {
+	[2] SetSettingsItemValue(buffer<nn::settings::SettingsName,25,72>, buffer<nn::settings::SettingsItemKey,25,72>, buffer<unknown,5,0>);
+	[3] ResetSettingsItemValue(buffer<nn::settings::SettingsName,25,72>, buffer<nn::settings::SettingsItemKey,25,72>);
+	[4] CreateSettingsItemKeyIterator(buffer<nn::settings::SettingsName,25,72>) -> object<nn::settings::ISettingsItemKeyIterator>;
+	@version(4.0.0+)
+	[10] ReadSettings();
+	@version(4.0.0+)
+	[11] ResetSettings();
+	@version(4.0.0+)
+	[20] SetWebInspectorFlag();
+	@version(4.0.0+)
+	[21] SetAllowedSslHosts();
+	@version(4.0.0+)
+	[22] SetHostFsMountPoint();
+}
+
+interface nn::bpc::IBoardPowerControlManager is bpc {
+	[0] ShutdownSystem();
+	[1] RebootSystem();
+	[2] GetWakeupReason() -> u32;
+	[3] GetShutdownReason() -> u32;
+	[4] GetAcOk() -> u8;
+	[5] GetBoardPowerControlEvent(u32) -> KObject;
+	[6] GetSleepButtonState() -> u32;
+	[7] GetPowerEvent(u32) -> KObject;
+	[8] Unknown8(u64) -> u32;
+	[9] Unknown9(u32);
+	[10] Unknown10();
+}
+
+interface nn::hid::IHidServer is hid {
+	# Takes a PID and an u64 [AppletResourceUserId](AM_services "wikilink").
+	# Returns an [\#IAppletResource](#IAppletResource "wikilink").
+	# 
+	[0] CreateAppletResource(nn::applet::AppletResourceUserId, pid) -> object<nn::hid::IAppletResource>;
+	[1] ActivateDebugPad(nn::applet::AppletResourceUserId, pid);
+	[11] ActivateTouchScreen(nn::applet::AppletResourceUserId, pid);
+	[21] ActivateMouse(nn::applet::AppletResourceUserId, pid);
+	[31] ActivateKeyboard(nn::applet::AppletResourceUserId, pid);
+	[40] AcquireXpadIdEventHandle(u64) -> KObject;
+	[41] ReleaseXpadIdEventHandle(u64);
+	[51] ActivateXpad(nn::hid::BasicXpadId, nn::applet::AppletResourceUserId, pid);
+	[55] GetXpadIds() -> (i64, array<nn::hid::BasicXpadId,10>);
+	[56] ActivateJoyXpad(nn::hid::JoyXpadId);
+	[58] GetJoyXpadLifoHandle(nn::hid::JoyXpadId) -> KObject;
+	[59] GetJoyXpadIds() -> (i64, array<nn::hid::JoyXpadId,10>);
+	[60] ActivateSixAxisSensor(nn::hid::BasicXpadId);
+	[61] DeactivateSixAxisSensor(nn::hid::BasicXpadId);
+	[62] GetSixAxisSensorLifoHandle(nn::hid::BasicXpadId) -> KObject;
+	[63] ActivateJoySixAxisSensor(nn::hid::JoyXpadId);
+	[64] DeactivateJoySixAxisSensor(nn::hid::JoyXpadId);
+	[65] GetJoySixAxisSensorLifoHandle(nn::hid::JoyXpadId) -> KObject;
+	[66] StartSixAxisSensor(nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid);
+	[67] StopSixAxisSensor(nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid);
+	[68] IsSixAxisSensorFusionEnabled(nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid) -> bool;
+	[69] EnableSixAxisSensorFusion(bool, nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid);
+	[70] SetSixAxisSensorFusionParameters(nn::hid::SixAxisSensorHandle, f32, f32, nn::applet::AppletResourceUserId, pid);
+	[71] GetSixAxisSensorFusionParameters(nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid) -> (f32, f32);
+	[72] ResetSixAxisSensorFusionParameters(nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid);
+	[73] SetAccelerometerParameters(nn::hid::SixAxisSensorHandle, f32, f32, nn::applet::AppletResourceUserId, pid);
+	[74] GetAccelerometerParameters(nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid) -> (f32, f32);
+	[75] ResetAccelerometerParameters(nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid);
+	[76] SetAccelerometerPlayMode(nn::hid::SixAxisSensorHandle, u32, nn::applet::AppletResourceUserId, pid);
+	[77] GetAccelerometerPlayMode(nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid) -> u32;
+	[78] ResetAccelerometerPlayMode(nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid);
+	[79] SetGyroscopeZeroDriftMode(nn::hid::SixAxisSensorHandle, u32, nn::applet::AppletResourceUserId, pid);
+	[80] GetGyroscopeZeroDriftMode(nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid) -> u32;
+	[81] ResetGyroscopeZeroDriftMode(nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid);
+	[82] IsSixAxisSensorAtRest(nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid) -> bool;
+	[91] ActivateGesture(i32, nn::applet::AppletResourceUserId, pid);
+	[100] SetSupportedNpadStyleSet(nn::hid::NpadStyleTag, nn::applet::AppletResourceUserId, pid);
+	[101] GetSupportedNpadStyleSet(nn::applet::AppletResourceUserId, pid) -> nn::hid::NpadStyleTag;
+	[102] SetSupportedNpadIdType(nn::applet::AppletResourceUserId, pid, array<u32,9>);
+	[103] ActivateNpad(nn::applet::AppletResourceUserId, pid);
+	[104] DeactivateNpad(nn::applet::AppletResourceUserId, pid);
+	[106] AcquireNpadStyleSetUpdateEventHandle(u32, nn::applet::AppletResourceUserId, u64, pid) -> KObject;
+	[107] DisconnectNpad(u32, nn::applet::AppletResourceUserId, pid);
+	[108] GetPlayerLedPattern(u32) -> u64;
+	[120] SetNpadJoyHoldType(nn::applet::AppletResourceUserId, i64, pid);
+	[121] GetNpadJoyHoldType(nn::applet::AppletResourceUserId, pid) -> i64;
+	[122] SetNpadJoyAssignmentModeSingleByDefault(u32, nn::applet::AppletResourceUserId, pid);
+	[123] SetNpadJoyAssignmentModeSingle(u32, nn::applet::AppletResourceUserId, i64, pid);
+	[124] SetNpadJoyAssignmentModeDual(u32, nn::applet::AppletResourceUserId, pid);
+	[125] MergeSingleJoyAsDualJoy(u32, u32, nn::applet::AppletResourceUserId, pid);
+	[126] StartLrAssignmentMode(nn::applet::AppletResourceUserId, pid);
+	[127] StopLrAssignmentMode(nn::applet::AppletResourceUserId, pid);
+	[128] SetNpadHandheldActivationMode(nn::applet::AppletResourceUserId, i64, pid);
+	# Takes a PID and an u64 [AppletResourceUserId](AM_services "wikilink").
+	# Returns an output u64. Official user-processes panic if the output u64
+	# is not 0-2.
+	# 
+	[129] GetNpadHandheldActivationMode(nn::applet::AppletResourceUserId, pid) -> i64;
+	[130] SwapNpadAssignment(u32, u32, nn::applet::AppletResourceUserId, pid);
+	[131] IsUnintendedHomeButtonInputProtectionEnabled(u32, nn::applet::AppletResourceUserId, pid) -> bool;
+	[132] EnableUnintendedHomeButtonInputProtection(bool, u32, nn::applet::AppletResourceUserId, pid);
+	[200] GetVibrationDeviceInfo(nn::hid::VibrationDeviceHandle) -> nn::hid::VibrationDeviceInfoForIpc;
+	# Takes a PID-descriptor, an u32 VibrationDeviceHandle, 0x10-byte
+	# VibrationValue immediately after that, and an u64
+	# [AppletResourceUserId](AM_services "wikilink").
+	# 
+	[201] SendVibrationValue(nn::hid::VibrationDeviceHandle, align<4,nn::hid::VibrationValue>, nn::applet::AppletResourceUserId, pid);
+	# Takes a PID-descriptor, an u32 VibrationDeviceHandle, and an u64
+	# [AppletResourceUserId](AM_services "wikilink"). Returns the 0x10-byte
+	# VibrationValue.
+	# 
+	[202] GetActualVibrationValue(nn::hid::VibrationDeviceHandle, nn::applet::AppletResourceUserId, pid) -> nn::hid::VibrationValue;
+	[203] CreateActiveVibrationDeviceList() -> object<nn::hid::IActiveVibrationDeviceList>;
+	[204] PermitVibration(bool);
+	[205] IsVibrationPermitted() -> bool;
+	[206] SendVibrationValues(nn::applet::AppletResourceUserId, array<nn::hid::VibrationDeviceHandle,9>, array<nn::hid::VibrationValue,9>);
+	[300] ActivateConsoleSixAxisSensor(nn::applet::AppletResourceUserId, pid);
+	[301] StartConsoleSixAxisSensor(nn::hid::ConsoleSixAxisSensorHandle, nn::applet::AppletResourceUserId, pid);
+	[302] StopConsoleSixAxisSensor(nn::hid::ConsoleSixAxisSensorHandle, nn::applet::AppletResourceUserId, pid);
+	[400] IsUsbFullKeyControllerEnabled() -> bool;
+	[401] EnableUsbFullKeyController(bool);
+	[402] IsUsbFullKeyControllerConnected(u32) -> bool;
+	[1000] SetNpadCommunicationMode(nn::applet::AppletResourceUserId, i64, pid);
+	[1001] GetNpadCommunicationMode() -> i64;
+}
+
+interface nn::tc::IManager is tc {
+	[0] SetOperatingMode(u32);
+	[1] GetThermalEvent(u32) -> KObject;
+	[2] Unknown2(u32) -> u8;
+	[3] Unknown3(u32);
+	[4] Unknown4(u32);
+	[5] Unknown5(u32, u32);
+	[6] Unknown6();
+	[7] Unknown7();
+	[8] Unknown8() -> u8;
+}
+
+interface nn::pcv::detail::IPcvService is pcv {
+	[0] SetPowerEnabled(bool, i32);
+	[1] SetClockEnabled(bool, i32);
+	[2] SetClockRate(i32, u32);
+	[3] GetClockRate(i32) -> u32;
+	[4] GetState(i32) -> nn::pcv::ModuleState;
+	[5] GetPossibleClockRates(i32, i32) -> (i32, i32, array<u32,10>);
+	[6] SetMinVClockRate(i32, u32);
+	[7] SetReset(bool, i32);
+	[8] SetVoltageEnabled(bool, i32);
+	[9] GetVoltageEnabled(i32) -> bool;
+	[10] GetVoltageRange(i32) -> (i32, i32, i32);
+	[11] SetVoltageValue(i32, i32);
+	[12] GetVoltageValue(i32) -> i32;
+	[13] GetTemperatureThresholds(i32) -> (i32, array<nn::pcv::TemperatureThreshold,10>);
+	[14] SetTemperature(i32);
+	[15] Initialize();
+	[16] IsInitialized() -> bool;
+	[17] Finalize();
+	[18] PowerOn(nn::pcv::PowerControlTarget, i32);
+	[19] PowerOff(nn::pcv::PowerControlTarget);
+	[20] ChangeVoltage(nn::pcv::PowerControlTarget, i32);
+	[21] GetPowerClockInfoEvent() -> KObject;
+	[22] GetOscillatorClock() -> u32;
+	[23] GetDvfsTable(i32, i32) -> (i32, array<u32,10>, array<i32,10>);
+	[24] GetModuleStateTable(i32) -> (i32, array<nn::pcv::ModuleState,10>);
+	[25] GetPowerDomainStateTable(i32) -> (i32, array<nn::pcv::PowerDomainState,10>);
+	[26] GetFuseInfo(i32) -> (i32, array<u32,10>);
+}
+
+interface INsdU is nsd:u {
+	[10] Unknown10();
+	[11] Unknown11();
+	[12] Unknown12();
+	[13] Unknown13();
+	[14] Unknown14();
+	[20] Resolve();
+	[21] ResolveEx();
+	[30] GetToken();
+	[31] GetTokenEx();
+	[40] GetAccountsLink();
+	[41] GetAccountsLinkEx();
+	[42] GetApiAccountsLink();
+	[43] GetApiAccountsLinkEx();
+	[50] Unknown50();
+	[60] Unknown60();
+	[61] Unknown61();
+	[62] Unknown62();
+}
+
+interface nn::audio::detail::IAudioRendererManager is audren:u {
+	[0] OpenAudioRenderer(bytes<52>, u64, u64, pid, KObject, KObject) -> object<IUnknown>;
+	[1] GetAudioRendererWorkBufferSize(bytes<52>) -> u64;
+	[2] GetAudioRenderersProcessMasterVolume(u64) -> object<IUnknown>;
+	[3] SetAudioRenderersProcessMasterVolume(bytes<52>, u64, u64, u64, pid, KObject) -> object<IUnknown>;
+}
+
+interface INvmemp is nvmemp {
+	[0] Cmd0();
+	[1] Cmd1();
+}
+
+interface nn::sm::detail::IUserInterface is sm: {
+	# Takes a pid descriptor and a reserved input u64.
+	# 
+	[0] Initialize(u64, pid);
+	# Takes a zero-padded service name encoded as an u64 integer. Returns a
+	# handle.
+	# 
+	[1] GetService(u64) -> KObject;
+	# Takes a zero-padded service name encoded as an u64 integer, an u8 bool,
+	# and an u32 (session count) at the next word. Returns a handle.
+	# 
+	[2] RegisterService(u64, u8, u32) -> KObject;
+	# Takes a zero-padded service name encoded as an u64 integer.
+	# 
+	[3] UnregisterService(u64);
+}
+
+interface nn::apm::ISystemManager is apm:sys {
+	[0] RequestPerformanceMode(nn::apm::PerformanceMode);
+	[1] GetPerformanceEvent(nn::apm::EventTarget) -> KObject;
+	[2] GetThrottlingState() -> nn::apm::ThrottlingState;
+	[3] GetLastThrottlingState() -> nn::apm::ThrottlingState;
+	[4] ClearLastThrottlingState();
+}
+
+interface nn::visrv::sf::ISystemRootService is vi:s {
+	# Returns an
+	# [\#IApplicationDisplayService](#IApplicationDisplayService "wikilink").
+	# Takes an input u32, user-processes use 0 or 1, with 0 for
+	# regular-applications normally. 0 = user-service(vi:u), 1 =
+	# non-user-service? Returns an error when using value 1 with vi:u(same
+	# error listed below for IApplicationDisplayService for unavailable
+	# commands).
+	# 
+	[1] GetDisplayService(u32) -> object<nn::visrv::sf::IApplicationDisplayService>;
+	# Returns an
+	# [\#IApplicationDisplayService](#IApplicationDisplayService "wikilink").
+	# 
+	[3] GetDisplayServiceWithProxyNameExchange(nn::vi::ProxyName, u32) -> object<nn::visrv::sf::IApplicationDisplayService>;
+}
+
+interface nn::ns::detail::IDevelopInterface is ns:dev {
+	# Wrapper for "pm:shell"
+	# [LaunchProcess](Process_Manager_services#LaunchProcess "wikilink").
+	# 
+	[0] LaunchTitle();
+	# Wrapper for "pm:shell"
+	# [TerminateTitleByPid](Process_Manager_services#TerminateTitleByPid "wikilink").
+	# 
+	[1] TerminateTitleByPid();
+	# Wrapper for "pm:shell"
+	# [TerminateTitleByTitleId](Process_Manager_services#TerminateTitleByTitleId "wikilink").
+	# 
+	[2] TerminateTitleByTitleId();
+	# Wrapper for "pm:shell"
+	# [GetProcessEventWaiter](Process_Manager_services#GetProcessEventWaiter "wikilink").
+	# 
+	[3] GetNsDevWaitEvent();
+	# Wrapper for "pm:shell"
+	# [GetProcessEventType](Process_Manager_services#GetProcessEventType "wikilink").
+	# 
+	[4] GetNsDevEventType();
+	# Calls "pm:shell"
+	# [GetCrashingProcessPid](Process_Manager_services#GetCrashingProcessPid "wikilink")
+	# and sends PID to
+	# [TerminateTitleByPid](Process_Manager_services#TerminateTitleByPid "wikilink").
+	# 
+	[5] TerminateCrashingTitle();
+	# Calls
+	# [IPathResolverForStorage](NCM_services#IPathResolverForStorage "wikilink")
+	# Set...NcaPath functions.
+	# 
+	# [Category:Services](Category:Services "wikilink")
+	# 
+	[6] InstallTitle();
+	[7] SetEventState6();
+	[8] SetEventState();
+}
 
 interface IGrcC is grc:c {
 	[1] GetContinuousRecorder();
 	[2] GetGameMovieTrimmer();
+}
+
+interface nn::account::IBaasAccessTokenAccessor is acc:aa {
+	[0] EnsureCacheAsync(nn::account::Uid) -> object<nn::account::detail::IAsyncContext>;
+	[1] LoadCache(nn::account::Uid) -> (u32, buffer<unknown,6,0>);
+	[2] GetDeviceAccountId(nn::account::Uid) -> u64;
+	[50] RegisterNotificationTokenAsync(nn::npns::NotificationToken, nn::account::Uid) -> object<nn::account::detail::IAsyncContext>;
+	[51] UnregisterNotificationTokenAsync(nn::account::Uid) -> object<nn::account::detail::IAsyncContext>;
+}
+
+interface nn::socket::sf::IClient is bsd:u, bsd:s {
+	[0] Initialize(bytes<32>, u64, u64, pid, KObject) -> u32;
+	[1] StartMonitoring(u64, pid);
+	[2] Socket(u32, u32, u32) -> (u32, u32);
+	[3] SocketExempt(u32, u32, u32) -> (u32, u32);
+	[4] Open(u32, buffer<unknown,33,0>) -> (u32, u32);
+	[5] Select(u32, bytes<24>, buffer<unknown,33,0>, buffer<unknown,33,0>, buffer<unknown,33,0>) -> (u32, u32, buffer<unknown,34,0>, buffer<unknown,34,0>, buffer<unknown,34,0>);
+	[6] Poll(u32, u32, buffer<unknown,33,0>) -> (u32, u32, buffer<unknown,34,0>);
+	[7] Sysctl(buffer<unknown,33,0>, buffer<unknown,33,0>) -> (u32, u32, u32, buffer<unknown,34,0>);
+	[8] Recv(u32, u32) -> (u32, u32, buffer<unknown,34,0>);
+	[9] RecvFrom(u32, u32) -> (u32, u32, u32, buffer<unknown,34,0>, buffer<unknown,34,0>);
+	[10] Send(u32, u32, buffer<unknown,33,0>) -> (u32, u32);
+	[11] SendTo(u32, u32, buffer<unknown,33,0>, buffer<unknown,33,0>) -> (u32, u32);
+	[12] Accept(u32) -> (u32, u32, u32, buffer<unknown,34,0>);
+	[13] Bind(u32, buffer<unknown,33,0>) -> (u32, u32);
+	[14] Connect(u32, buffer<unknown,33,0>) -> (u32, u32);
+	[15] GetPeerName(u32) -> (u32, u32, u32, buffer<unknown,34,0>);
+	[16] GetSockName(u32) -> (u32, u32, u32, buffer<unknown,34,0>);
+	[17] GetSockOpt(u32, u32, u32) -> (u32, u32, u32, buffer<unknown,34,0>);
+	[18] Listen(u32, u32) -> (u32, u32);
+	[19] Ioctl(u32, u32, u32, buffer<unknown,33,0>, buffer<unknown,33,0>, buffer<unknown,33,0>, buffer<unknown,33,0>) -> (u32, u32, buffer<unknown,34,0>, buffer<unknown,34,0>, buffer<unknown,34,0>, buffer<unknown,34,0>);
+	[20] Fcntl(u32, u32, u32) -> (u32, u32);
+	[21] SetSockOpt(u32, u32, u32, buffer<unknown,33,0>) -> (u32, u32);
+	[22] Shutdown(u32, u32) -> (u32, u32);
+	[23] ShutdownAllSockets(u32) -> (u32, u32);
+	[24] Write(u32, buffer<unknown,33,0>) -> (u32, u32);
+	[25] Read(u32) -> (u32, u32, buffer<unknown,34,0>);
+	[26] Close(u32) -> (u32, u32);
+	[27] DuplicateSocket(u32, u64) -> (u32, u32);
+	[28] GetResourceStatistics(u64, pid) -> (u32, u32, buffer<unknown,34,0>);
+	@version(3.0.0+)
+	[29] RecvMMsg(u32, u32, u32, u128) -> (u32, u32, buffer<unknown,34,0>);
+	@version(3.0.0+)
+	[30] SendMMsg(u32, u32, u32, buffer<unknown,33,0>, buffer<unknown,33,0>) -> (u32, u32);
+}
+
+interface nn::ts::server::IMeasurementServer is ts {
+	[0] Unknown0();
+	[1] Unknown1();
+	[2] Unknown2();
+	[3] Unknown3();
+}
+
+interface nn::ldr::detail::IShellInterface is ldr:shel {
+	# Takes a type-0x19 input buffer with launch arguments (as string), an u32
+	# (size of arguments string), and an input title-id.
+	# 
+	# Loads a process for the specified title-id and passes along the supplied
+	# arguments. Loaded processes are kept in a queue waiting for PM to launch
+	# them. The maximum number of waiting processes in this list is 10.
+	# 
+	[0] AddProcessToLaunchQueue();
+	# Clears the loaded processes waiting queue.
+	# 
+	[1] ClearLaunchQueue();
+}
+
+interface nn::apm::IManagerPrivileged is apm:p {
+	[0] OpenSession() -> object<nn::apm::ISession>;
+}
+
+interface nn::pwm::IManager is pwm {
+	[0] OpenSessionForDev(u32) -> object<IUnknown>;
+	[1] OpenSession(u32) -> object<IUnknown>;
+}
+
+interface nn::bpc::IRtcManager is bpc:r {
+	[0] GetExternalRtcValue() -> u64;
+	[1] SetExternalRtcValue(u64);
+	[2] ReadExternalRtcResetFlag() -> u8;
+	[3] ClearExternalRtcResetFlag();
+}
+
+interface nn::fssrv::sf::IFileSystemProxyForLoader is fsp-ldr {
+	[0] MountCode(u64, buffer<unknown,25,769>) -> object<IUnknown>;
+	[1] IsCodeMounted(u64) -> u8;
+	@version(4.0.0+)
+	[2] Initialize();
+}
+
+interface nn::visrv::sf::IManagerRootService is vi:m {
+	# Returns an
+	# [\#IApplicationDisplayService](#IApplicationDisplayService "wikilink").
+	# Takes an input u32, user-processes use 0 or 1, with 0 for
+	# regular-applications normally. 0 = user-service(vi:u), 1 =
+	# non-user-service? Returns an error when using value 1 with vi:u(same
+	# error listed below for IApplicationDisplayService for unavailable
+	# commands).
+	# 
+	[2] GetDisplayService(u32) -> object<nn::visrv::sf::IApplicationDisplayService>;
+	# Returns an
+	# [\#IApplicationDisplayService](#IApplicationDisplayService "wikilink").
+	# 
+	[3] GetDisplayServiceWithProxyNameExchange(nn::vi::ProxyName, u32) -> object<nn::visrv::sf::IApplicationDisplayService>;
+}
+
+interface nn::hid::IHidSystemServer is hid:sys {
+	[31] SendKeyboardLockKeyEvent(nn::hid::system::KeyboardLockKeyEvent);
+	[101] AcquireHomeButtonEventHandle(nn::applet::AppletResourceUserId, pid) -> KObject;
+	[111] ActivateHomeButton(nn::applet::AppletResourceUserId, pid);
+	[121] AcquireSleepButtonEventHandle(nn::applet::AppletResourceUserId, pid) -> KObject;
+	[131] ActivateSleepButton(nn::applet::AppletResourceUserId, pid);
+	[141] AcquireCaptureButtonEventHandle(nn::applet::AppletResourceUserId, pid) -> KObject;
+	[151] ActivateCaptureButton(nn::applet::AppletResourceUserId, pid);
+	[210] AcquireNfcDeviceUpdateEventHandle() -> KObject;
+	[211] GetNpadsWithNfc() -> (i64, array<u32,10>);
+	[212] AcquireNfcActivateEventHandle(u32) -> KObject;
+	[213] ActivateNfc(bool, u32, nn::applet::AppletResourceUserId, pid);
+	[230] AcquireIrSensorEventHandle(u32) -> KObject;
+	[231] ActivateIrSensor(bool, u32, nn::applet::AppletResourceUserId, pid);
+	[301] ActivateNpadSystem(u32);
+	[303] ApplyNpadSystemCommonPolicy(nn::applet::AppletResourceUserId, pid);
+	[304] EnableAssigningSingleOnSlSrPress(nn::applet::AppletResourceUserId, pid);
+	[305] DisableAssigningSingleOnSlSrPress(nn::applet::AppletResourceUserId, pid);
+	[306] GetLastActiveNpad() -> u32;
+	[307] GetNpadSystemExtStyle(u32) -> (i64, i64);
+	[311] SetNpadPlayerLedBlinkingDevice(u32, nn::hid::system::DeviceType, nn::applet::AppletResourceUserId, pid);
+	[321] GetUniquePadsFromNpad(u32) -> (i64, array<nn::hid::system::UniquePadId,10>);
+	[322] GetIrSensorState(u32, nn::applet::AppletResourceUserId, pid) -> i64;
+	[323] GetXcdHandleForNpadWithIrSensor(u32, nn::applet::AppletResourceUserId, pid) -> u64;
+	[500] SetAppletResourceUserId(nn::applet::AppletResourceUserId);
+	[501] RegisterAppletResourceUserId(bool, nn::applet::AppletResourceUserId);
+	[502] UnregisterAppletResourceUserId(nn::applet::AppletResourceUserId);
+	[503] EnableAppletToGetInput(bool, nn::applet::AppletResourceUserId);
+	[504] SetAruidValidForVibration(bool, nn::applet::AppletResourceUserId);
+	[505] EnableAppletToGetSixAxisSensor(bool, nn::applet::AppletResourceUserId);
+	# Takes an input 32bit float.
+	# 
+	[510] SetVibrationMasterVolume(f32);
+	[511] GetVibrationMasterVolume() -> f32;
+	[512] BeginPermitVibrationSession(nn::applet::AppletResourceUserId);
+	[513] EndPermitVibrationSession();
+	[520] EnableHandheldHids();
+	[521] DisableHandheldHids();
+	[540] AcquirePlayReportControllerUsageUpdateEvent() -> KObject;
+	[541] GetPlayReportControllerUsages() -> (i64, array<nn::hid::system::PlayReportControllerUsage,10>);
+	[542] AcquirePlayReportRegisteredDeviceUpdateEvent() -> KObject;
+	[543] GetRegisteredDevices() -> (i64, array<nn::hid::system::RegisteredDevice,10>);
+	[544] AcquireConnectionTriggerTimeoutEvent() -> KObject;
+	[545] SendConnectionTrigger(nn::bluetooth::Address);
+	[546] AcquireDeviceRegisteredEventForControllerSupport() -> KObject;
+	[547] GetAllowedBluetoothLinksCount() -> i64;
+	[700] ActivateUniquePad(nn::applet::AppletResourceUserId, nn::hid::system::UniquePadId, pid);
+	[702] AcquireUniquePadConnectionEventHandle() -> KObject;
+	[703] GetUniquePadIds() -> (i64, array<nn::hid::system::UniquePadId,10>);
+	[751] AcquireJoyDetachOnBluetoothOffEventHandle(nn::applet::AppletResourceUserId, pid) -> KObject;
+	[800] ListSixAxisSensorHandles(nn::hid::system::UniquePadId) -> (i64, array<nn::hid::system::UniqueSixAxisSensorHandle,10>);
+	[801] IsSixAxisSensorUserCalibrationSupported(nn::hid::system::UniqueSixAxisSensorHandle) -> bool;
+	[802] ResetSixAxisSensorCalibrationValues(nn::hid::system::UniqueSixAxisSensorHandle);
+	[803] StartSixAxisSensorUserCalibration(nn::hid::system::UniqueSixAxisSensorHandle);
+	[804] CancelSixAxisSensorUserCalibration(nn::hid::system::UniqueSixAxisSensorHandle);
+	[805] GetUniquePadBluetoothAddress(nn::hid::system::UniquePadId) -> nn::bluetooth::Address;
+	[806] DisconnectUniquePad(nn::hid::system::UniquePadId);
+	[821] StartAnalogStickManualCalibration(nn::hid::system::UniquePadId, i64);
+	[822] RetryCurrentAnalogStickManualCalibrationStage(nn::hid::system::UniquePadId, i64);
+	[823] CancelAnalogStickManualCalibration(nn::hid::system::UniquePadId, i64);
+	[824] ResetAnalogStickManualCalibration(nn::hid::system::UniquePadId, i64);
+	[850] IsUsbFullKeyControllerEnabled() -> bool;
+	[851] EnableUsbFullKeyController(bool);
+	[852] IsUsbConnected(nn::hid::system::UniquePadId) -> bool;
+	[900] ActivateInputDetector(nn::applet::AppletResourceUserId, pid);
+	[901] NotifyInputDetector(nn::hid::system::InputSourceId);
+	[1000] InitializeFirmwareUpdate();
+	[1001] GetFirmwareVersion(nn::hid::system::UniquePadId) -> nn::hid::system::FirmwareVersion;
+	[1002] GetAvailableFirmwareVersion(nn::hid::system::UniquePadId) -> nn::hid::system::FirmwareVersion;
+	[1003] IsFirmwareUpdateAvailable(nn::hid::system::UniquePadId) -> bool;
+	[1004] CheckFirmwareUpdateRequired(nn::hid::system::UniquePadId) -> i64;
+	[1005] StartFirmwareUpdate(nn::hid::system::UniquePadId) -> nn::hid::system::FirmwareUpdateDeviceHandle;
+	[1006] AbortFirmwareUpdate();
+	[1007] GetFirmwareUpdateState(nn::hid::system::FirmwareUpdateDeviceHandle) -> nn::hid::system::FirmwareUpdateState;
+}
+
+interface nn::pcie::detail::IManager is pcie {
+	[0] GetISession();
+	# Takes a type-6 buffer.
+	# 
+	# Returns a list of connected PCIe endpoint devices.
+	# 
+	[1] ListEndpoints();
+}
+
+interface nn::pm::detail::IDebugMonitorInterface is pm:dmnt {
+	# Always returns u32 0 on retail.
+	# 
+	# \[2.0.0+\] Additional check on input that can return 0xC0F. The meaning
+	# is probably useless because function is somewhat nopped on non-dev
+	# builds anyway.
+	# 
+	[0] IsDebugMode();
+	# Returns an array of pids of all processes that have mask 4 set in
+	# process flags.
+	# 
+	# \[2.0.0+\] Additional check on input that can return 0xC0F. The meaning
+	# is probably useless because function is somewhat nopped on non-dev
+	# builds anyway.
+	# 
+	[1] GetDebugProcesses();
+	# Takes a pid. Last process event must be ProcessEvent\_Created or
+	# ProcessEvent\_DebugAttached.
+	# 
+	# Then it uses svcStartProcess(process\_handle, u8, u8, u32) with args
+	# coming from ldr:pm GetProgramInfo.
+	# 
+	# After that, it sets last process state to ProcessEvent\_DebugDetached.
+	# 
+	[2] StartDebugProcess();
+	# Takes a title-id and returns the pid.
+	# 
+	[3] GetTitlePid();
+	# Takes a title-id of the program to debug. Sets this to a global field.
+	# 
+	# Next time it gets launched it will be handled differently.
+	# 
+	# Returns an event handle that is signaled when the requested title is
+	# about to be launched.
+	# 
+	[4] EnableDebugForTitleId();
+	# Returns the pid of the application process.
+	# 
+	[5] GetApplicationPid();
+	# Does \*not\* take a specific title-id as input.
+	# 
+	# Returns an event handle that is triggered for application titles.
+	# 
+	[6] EnableDebugForApplication();
+}
+
+interface nn::nsd::detail::IManager is nsd:a, nsd:u {
+	[10] GetSettingName() -> buffer<unknown,22,256>;
+	[11] GetEnvironmentIdentifier() -> buffer<unknown,22,8>;
+	[12] GetDeviceId() -> u128;
+	[13] DeleteSettings(u32);
+	[14] ImportSettings(u32, buffer<unknown,5,0>) -> buffer<unknown,6,0>;
+	[20] Resolve(buffer<unknown,21,256>) -> buffer<unknown,22,256>;
+	[21] ResolveEx(buffer<unknown,21,256>) -> (u32, buffer<unknown,22,256>);
+	[30] GetNasServiceSetting(buffer<unknown,21,16>) -> buffer<unknown,22,264>;
+	[31] GetNasServiceSettingEx(buffer<unknown,21,16>) -> (u32, buffer<unknown,22,264>);
+	[40] GetNasRequestFqdn() -> buffer<unknown,22,256>;
+	[41] GetNasRequestFqdnEx() -> (u32, buffer<unknown,22,256>);
+	[42] GetNasApiFqdn() -> buffer<unknown,22,256>;
+	[43] GetNasApiFqdnEx() -> (u32, buffer<unknown,22,256>);
+	[50] GetCurrentSetting() -> buffer<unknown,22,76784>;
+	[60] ReadSaveDataFromFsForTest() -> buffer<unknown,22,76784>;
+	[61] WriteSaveDataToFsForTest(buffer<unknown,21,76784>);
+	[62] DeleteSaveDataOfFsForTest();
+}
+
+interface nn::pm::detail::IBootModeInterface is pm:bm {
+	[0] GetBootMode() -> u32;
+	[1] SetMaintenanceBoot();
+}
+
+interface nn::psc::sf::IPmControl is psc:c {
+	[0] Unknown0() -> KObject;
+	[1] Unknown1(u32, u32, u32);
+	[2] Unknown2();
+	[3] Unknown3() -> u32;
+	[4] Unknown4();
+	[5] Unknown5();
+	[6] Unknown6();
+}
+
+interface nn::mii::detail::IStaticService is mii:e, mii:u {
+	[0] GetDatabaseServiceSharedPointer(i32) -> object<nn::mii::detail::IDatabaseService>;
+}
+
+interface nns::nvdrv::INvDrvServices is nvdrv:s, nvdrv:t, nvdrv:a, nvdrv {
+	# Takes a type-0x5 input buffer for the device-path. Returns the output
+	# 32bit **fd** and the u32 **error\_code**.
+	# 
+	[0] Open();
+	# Takes a 32bit **fd**, an u32 **ioctl\_cmd**, a type-0x21 input buffer,
+	# and a type-0x22 output buffer. Returns an output u32 (**error\_code**).
+	# 
+	# The addr/size for send/recv buffers are only set when the associated
+	# direction bit is set in the ioctl cmd (addr/size = 0 otherwise).
+	# 
+	[1] Ioctl();
+	# Takes a 32bit **fd**. Returns an output u32 (**error\_code**).
+	# 
+	[2] Close();
+	# Takes two copy-handles (**current\_process** and **transfer\_memory**)
+	# and an input u32 (**transfer\_memory\_size**). Returns an output u32
+	# (**error\_code**).
+	# 
+	# Webkit applet creates the transfer-memory with perm = 0 and size
+	# 0x300000.
+	# 
+	[3] Initialize();
+	# Takes two input u32s (**fd** and **event\_id**), with the second word
+	# immediately after the first one. Returns an output u32 (**error\_code**)
+	# and a copy-handle (**event\_handle**).
+	# 
+	[4] QueryEvent();
+	# Takes a copy-handle (**transfer\_memory**) and two input u32s (**fd**
+	# and **nvmap\_handle**). Returns an output u32 (**error\_code**).
+	# 
+	[5] MapSharedMem();
+	# Takes no input. Returns 0x10-bytes and an output u32 (**error\_code**).
+	# 
+	[6] GetStatus();
+	# Takes an input u64 which must [match](IPC_Marshalling "wikilink") the
+	# user-process PID ([AppletResourceUserId](AM_services "wikilink")).
+	# Returns an output u32 (**error\_code**).
+	# 
+	[7] ForceSetClientPID();
+	# Takes a PID-descriptor and an u64 which must
+	# [match](IPC_Marshalling "wikilink") the user-process PID
+	# ([AppletResourceUserId](AM_services "wikilink")). Returns an output u32
+	# (**error\_code**).
+	# 
+	[8] SetClientPID();
+	# No input or output. Does nothing.
+	# 
+	[9] DumpGraphicsMemoryInfo();
+	@version(3.0.0+)
+	[10] Unknown10();
+	# Takes a type-0x21 buffer, a type-0x22 buffer, a type-0x21 buffer, and
+	# two input u32s. Returns an output u32 (**error\_code**).
+	# 
+	@version(3.0.0+)
+	[11] Ioctl2();
+	# Same input/output as Ioctl2, except cmdhdr\_word1 is 0x100B instead of
+	# 0xC0B.
+	# 
+	@version(3.0.0+)
+	[12] Ioctl3();
+	@version(3.0.0+)
+	[13] Unknown13();
+}
+
+interface nn::pm::detail::IShellInterface is pm:shell {
+	# Takes launch\_flags, title-id, and storageID. See [\#Process
+	# launch](#Process_launch "wikilink").
+	# 
+	# Returns the u64 title PID.
+	# 
+	[0] LaunchProcess();
+	[1] TerminateProcessByPid(u64);
+	[2] TerminateProcessByTitleId(u64);
+	[3] GetProcessEventWaiter() -> KObject;
+	# Returns 1 if flags has mask 2 set.
+	# 
+	# Returns 2 if flags has mask 1 set and state is 6.
+	# 
+	# Returns 3 if flags has mask 0x10 set and not 0x20.
+	# 
+	# Returns 4 if flags has mask 0x30 set.
+	# 
+	# \[2.0.0+\] returns 5 if state \>= 2 and flags has mask 0x100 set.
+	# 
+	# Returns 0 if process is not found.
+	# 
+	[4] GetProcessEventType() -> u128;
+	# Takes a pid as input. If the process with pid has the state "dead", it
+	# unregisters the pid in fsp:pr, sm:m, and ldr:pm.
+	# 
+	# Then it removes the process from PMs internal linked-list of active
+	# processes.
+	# 
+	[5] FinalizeDeadProcess(u64);
+	# Takes a pid as input. Clears 0x10 from process flags.
+	# 
+	[6] ClearProcessNotificationFlag(u64);
+	# Launches a process with hardcoded [boot2](boot2 "wikilink") title-id.
+	# 
+	[7] NotifyBootFinished();
+	# Returns the pid of the application process.
+	# 
+	[8] GetApplicationPid() -> u64;
+}
+
+interface nn::audio::detail::IAudioInManagerForDebugger is audin:d {
+	[0] ListAudioIns(u64);
+	[1] OpenAudioIn(u64);
+}
+
+interface nn::audio::detail::IAudioOutManager is audout:u {
+	[0] ListAudioOuts() -> (u32, buffer<unknown,6,0>);
+	# Takes two u64s (an interface ID and a PID placeholder?), a PID, a
+	# process handle, and the name of the interface you want to connect to.
+	# Returns an [\#IAudioOut](#IAudioOut "wikilink") object and four u32s:
+	# the sample rate, channel count, [PCM format](#PCM_format "wikilink"),
+	# and an unknown field.
+	# 
+	[1] OpenAudioOut(u64, u64, pid, KObject, buffer<unknown,5,0>) -> (u128, object<IUnknown>, buffer<unknown,6,0>);
+}
+
+interface nn::arp::detail::IReader is arp:r {
+	[0] ReadHeader0();
+	[1] ReadHeader1();
+	[2] ReadData0();
+	[3] ReadData1();
+}
+
+interface nn::ldr::detail::IRoInterface is ldr:ro {
+	# | Word | Value                    |
+	# | ---- | ------------------------ |
+	# | 0    | 0x00000004               |
+	# | 1    | 0x80000012               |
+	# | 2    | 0x00000001               |
+	# | 0-1  | Pid                      |
+	# | 0    | "SCFI"                   |
+	# | 1    | 0x00000000               |
+	# | 2    | Always 0.                |
+	# | 3    | Nro heap address         |
+	# | 4    | Nro size                 |
+	# | 5    | Bss backing heap address |
+	# | 6    | Bss size                 |
+	# 
+	[0] LoadNro();
+	[1] UnloadNro();
+	# | Word | Value       |
+	# | ---- | ----------- |
+	# | 0    | 0x00000004  |
+	# | 1    | 0x8000000E  |
+	# | 2    | 0x00000001  |
+	# |  |
+	# | 0-1  | Pid         |
+	# | 0    | "SFCI"      |
+	# | 1    | 0x00000002  |
+	# | 2    | Always 0.   |
+	# | 3    | Nrr address |
+	# | 4    | Nrr size    |
+	# 
+	[2] LoadNrr();
+	[3] UnloadNrr();
+	# | Word | Value                       |
+	# | ---- | --------------------------- |
+	# | 0    | 0x00000004                  |
+	# | 1    | 0x8000000A                  |
+	# | 2    | 0x00000003                  |
+	# | 0-1  | Pid                         |
+	# | 2    | Process handle (0xFFFF8001) |
+	# | 0    | "SFCI"                      |
+	# | 1    | 0x00000004                  |
+	# | 2    | Always 0.                   |
+	# 
+	# [Category:Services](Category:Services "wikilink")
+	# 
+	[4] Initialize();
+}
+
+interface nn::apm::IManager is apm {
+	[0] OpenSession() -> object<nn::apm::ISession>;
+	[1] GetPerformanceMode() -> nn::apm::PerformanceMode;
+}
+
+interface nn::psm::IPsmServer is psm {
+	[0] Unknown0() -> u32;
+	[1] Unknown1() -> u32;
+	[2] Unknown2();
+	[3] Unknown3();
+	[4] Unknown4() -> u8;
+	[5] Unknown5();
+	[6] Unknown6();
+	[7] OpenSession() -> object<IUnknown>;
+	[8] Unknown8();
+	[9] Unknown9();
+	[10] Unknown10();
+	[11] Unknown11();
+	[12] GetBatteryVoltageState() -> u32;
+	[13] GetRawBatteryChargePercentage() -> u64;
+	[14] Unknown14() -> u8;
+	[15] Unknown15() -> u64;
+	[16] Unknown16() -> KObject;
+	[17] Unknown17();
+}
+
+interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
+	# Takes a type-0x19 input buffer, an in32, and an input title-id.
+	# 
+	# The in32 must be 5 if the NCA type is 0 (control).
+	# 
+	# The in32 must be 2..7.
+	# 
+	# The input buffer is the output string path from nsam
+	# [GetContentNcaPath](NS_Services#GetContentNcaPath "wikilink").
+	# 
+	# Returns an [\#IFileSystem](#IFileSystem "wikilink").
+	# 
+	# May return errors when attempting to access NCA-paths for an
+	# update-title with a gamecard, when the gamecard isn't inserted. May
+	# return error 0x7D402 in some cases with update-titles. Non-val2 in32
+	# values with NCA-type1 are unusable, even for normal titles.
+	# 
+	# The official "MountApplicationPackage" func uses this with in64=0 and
+	# in32=7.
+	# 
+	# After the in32-specific permissions are checked, it then gets the func
+	# retval for permissions-type 0x25 and func0.
+	# 
+	# When in32=5, it uses in64=0xffffffffffffffff internally, otherwise it
+	# checks if in64 is set to 0xffffffffffffffff then throws an error if so.
+	# When the in64 used internally is not 0xffffffffffffffff, it's compared
+	# with the NCA titleID, then an error is thrown on mismatch.
+	# 
+	@version(1.0.0)
+	[0] MountContent();
+	# Takes a pid-descriptor.
+	# 
+	[1] Initialize(u64, pid);
+	[2] OpenDataFileSystemByCurrentProcess() -> object<IUnknown>;
+	# Takes an input u32 (same as [\#MountContent](#MountContent "wikilink"))
+	# and an u64 title-id. Web-applet loads the u32 from
+	# u32\_table\[inparam\]. The in32 must be 4.
+	# 
+	# Returns an [\#IFileSystem](#IFileSystem "wikilink").
+	# 
+	# Note: web-applet strings refer to both this cmd and the below
+	# "MountContent" as "MountContent".
+	# 
+	@version(2.0.0+)
+	[7] MountContent7(u32, u64) -> object<IUnknown>;
+	# Takes a type-0x19 input buffer, an in32, and an input title-id.
+	# 
+	# The in32 must be 5 if the NCA type is 0 (control).
+	# 
+	# The in32 must be 2..7.
+	# 
+	# The input buffer is the output string path from nsam
+	# [GetContentNcaPath](NS_Services#GetContentNcaPath "wikilink").
+	# 
+	# Returns an [\#IFileSystem](#IFileSystem "wikilink").
+	# 
+	# May return errors when attempting to access NCA-paths for an
+	# update-title with a gamecard, when the gamecard isn't inserted. May
+	# return error 0x7D402 in some cases with update-titles. Non-val2 in32
+	# values with NCA-type1 are unusable, even for normal titles.
+	# 
+	# The official "MountApplicationPackage" func uses this with in64=0 and
+	# in32=7.
+	# 
+	# After the in32-specific permissions are checked, it then gets the func
+	# retval for permissions-type 0x25 and func0.
+	# 
+	# When in32=5, it uses in64=0xffffffffffffffff internally, otherwise it
+	# checks if in64 is set to 0xffffffffffffffff then throws an error if so.
+	# When the in64 used internally is not 0xffffffffffffffff, it's compared
+	# with the NCA titleID, then an error is thrown on mismatch.
+	# 
+	@version(2.0.0+)
+	[8] MountContent(u32, u64, buffer<unknown,25,769>) -> object<IUnknown>;
+	@version(3.0.0+)
+	[9] OpenDataFileSystemByApplicationId(u64) -> object<IUnknown>;
+	# Takes a type-0x19 input buffer string and a u32 Bis partitionID(see
+	# below). Official user-process code sets instr\[0\] = 0 normally.
+	# 
+	# Returns an [\#IFileSystem](#IFileSystem "wikilink").
+	# 
+	# Only partitionIDs for FAT partitions are usable with this, otherwise
+	# error 0x2EE202 is returned. Seems to be about the same as
+	# [\#OpenBisPartition](#OpenBisPartition "wikilink") except this mounts
+	# the partition filesystem instead of allowing direct access to the
+	# partition sectors.
+	# 
+	[11] MountBis(u32, buffer<unknown,25,769>) -> object<IUnknown>;
+	# Takes a u32 partition ID, returns 0x2EE202 for partitions which do not
+	# exist, 0x320002 for partitions which cannot be opened and a valid
+	# [\#IStorage](#IStorage "wikilink") handle otherwise.
+	# 
+	[12] OpenBisPartition(u32) -> object<IUnknown>;
+	[13] InvalidateBisCache();
+	[17] OpenHostFileSystemImpl(buffer<unknown,25,769>) -> object<IUnknown>;
+	[18] MountSdCard() -> object<IUnknown>;
+	@version(2.0.0+)
+	[19] FormatSdCard();
+	# Takes an input u64.
+	# 
+	[21] DeleteSaveData(u64);
+	# Takes a 0x40-byte Save-struct entry, a 0x40-byte SaveCreate-struct
+	# entry, and a 0x10-byte input struct.
+	# 
+	# Only the first 0x5-bytes in the 0x10-byte struct are initialized:
+	# all-zero when automatically creating savedata during savecommon mount by
+	# official user-processes. In the dedicated save-creation code in official
+	# user-processes: +0 u32 = 0x40060, +4 u8 = 1.
+	# 
+	# Creates regular savedata.
+	# 
+	[22] CreateSaveData(bytes<64>, bytes<64>, u128);
+	# Takes a 0x40-byte Save-struct entry and a 0x40-byte SaveCreate-struct
+	# entry.
+	# 
+	# Creates savedata in the SYSTEM [NAND](Flash_Filesystem "wikilink")
+	# partition.
+	# 
+	[23] CreateSystemSaveData(bytes<64>, bytes<64>);
+	[24] RegisterSaveDataAtomicDeletion(buffer<unknown,5,0>);
+	@version(2.0.0+)
+	[25] DeleteSaveDataWithSpaceId(u8, u64);
+	@version(2.0.0+)
+	[26] FormatSdCardDryRun();
+	@version(2.0.0+)
+	[27] IsExFatSupported() -> u8;
+	@version(4.0.0+)
+	[28] DeleteSystemSaveData();
+	# Takes an input u32 (partition ID), and returns an
+	# [\#IStorage](#IStorage "wikilink") for the
+	# [partition](Gamecard_Format "wikilink").
+	# 
+	[30] OpenGameCardPartition(u32, u32) -> object<IUnknown>;
+	# Takes two input u32s, with the second u32 located at +4 in rawdata after
+	# the first u32.
+	# 
+	# Returns an [\#IFileSystem](#IFileSystem "wikilink").
+	# 
+	# Mounts a gamecard [partition](Gamecard_Partition "wikilink").
+	# 
+	[31] MountGameCardPartition(u32, u32) -> object<IUnknown>;
+	@version(3.0.0+)
+	[32] ExtendSaveData(u8, u64, u64, u64);
+	# Takes an input u8 and a 0x40-byte Save-struct entry. Official
+	# user-process code is only known to use value 1 for the u8.
+	# 
+	# Returns an [\#IFileSystem](#IFileSystem "wikilink").
+	# 
+	# Permissions aren't checked until the specified save is successfully
+	# found.
+	# 
+	# Only one process can mount a given savedata at any given time (this
+	# includes systemsavedata).
+	# 
+	[51] MountSaveData(u8, bytes<64>) -> object<IUnknown>;
+	# Takes an input u8 and a 0x40-byte Save-struct entry. Web-applet only
+	# uses value0 for the input u8.
+	# 
+	# Returns an [\#IFileSystem](#IFileSystem "wikilink").
+	# 
+	# Mounts savedata in the SYSTEM [NAND](Flash_Filesystem "wikilink")
+	# partition.
+	# 
+	[52] MountSystemSaveData(u8, bytes<64>) -> object<IUnknown>;
+	@version(2.0.0+)
+	[53] MountSaveDataReadOnly(u8, bytes<64>) -> object<IUnknown>;
+	@version(3.0.0+)
+	[57] ReadSaveDataFileSystemExtraDataWithSpaceId(u8, u64) -> buffer<unknown,6,0>;
+	[58] ReadSaveDataFileSystemExtraData(u64) -> buffer<unknown,6,0>;
+	@version(2.0.0+)
+	[59] WriteSaveDataFileSystemExtraData(u8, u64, buffer<unknown,5,0>);
+	[60] OpenSaveDataInfoReader() -> object<IUnknown>;
+	[61] OpenSaveDataIterator(u8) -> object<IUnknown>;
+	[80] OpenSaveDataThumbnailFile(u8, u32, bytes<64>) -> object<IUnknown>;
+	@version(4.0.0+)
+	[81] OpenSaveDataTransferManager();
+	[100] MountImageDirectory(u32) -> object<IUnknown>;
+	# Takes a [\#ContentStorageId](#ContentStorageId "wikilink"). Invalid
+	# values return 0x2EE202.
+	# 
+	# Returns an [\#IFileSystem](#IFileSystem "wikilink") with NCA files. The
+	# read data from these files is identical to the data read by
+	# [Content\_Manager\_services\#ReadEntryRaw](Content_Manager_services#ReadEntryRaw "wikilink").
+	# 
+	[110] MountContentStorage(u32) -> object<IUnknown>;
+	[200] OpenDataStorageByCurrentProcess() -> object<IUnknown>;
+	@version(3.0.0+)
+	[201] OpenDataStorageByApplicationId(u64) -> object<IUnknown>;
+	# Takes a [\#StorageId](#StorageId "wikilink") and a TitleID.
+	# 
+	# Returns a [domain object ID](IPC_Marshalling#Domain_message "wikilink")
+	# implementing the [\#IStorage](#IStorage "wikilink") interface for data
+	# archives.
+	# 
+	[202] OpenDataStorageByDataId(u8, u64) -> object<IUnknown>;
+	# This is "nn::fssrv::sf::IStorage".
+	# 
+	# This is the interface for a raw device, usually a block
+	# device.
+	# 
+	# | Cmd | Name                    | Arguments                                      |
+	# | --- | ----------------------- | ---------------------------------------------- |
+	# | 0   | Read                    | Takes a type-0x46 buffer, an offset and length |
+	# | 1   | Write                   | Takes a type-0x45 buffer, an offset and length |
+	# | 2   | Flush                   | None                                           |
+	# | 3   | SetSize                 | Takes a size                                   |
+	# | 4   | GetSize                 | None                                           |
+	# | 5   | \[4.0.0+\] OperateRange |                                                |
+	# 
+	[203] IStorage() -> object<IUnknown>;
+	# This command returns a session to a port implementing the
+	# [\#IDeviceOperator](#IDeviceOperator "wikilink") interface.
+	# 
+	[400] OpenDeviceOperator() -> object<IUnknown>;
+	# This command returns a session to a port implementing the
+	# [\#IEventNotifier](#IEventNotifier "wikilink") interface.
+	# 
+	[500] OpenSdCardDetectionEventNotifier() -> object<IUnknown>;
+	# This command returns a session to a port implementing the
+	# [\#IEventNotifier](#IEventNotifier "wikilink") interface.
+	# 
+	[501] OpenGameCardDetectionEventNotifier() -> object<IUnknown>;
+	@version(1.0.0-3.0.2)
+	[600] SetCurrentPosixTime(u64);
+	[601] QuerySaveDataTotalSize(u64, u64) -> u64;
+	# Takes an unknown input u64 and a type-0x6 output buffer.
+	# 
+	# The input u64 high-byte must be non-zero, otherwise an
+	# [error](Error_codes "wikilink") is returned(0xE02).
+	# 
+	[602] VerifySaveData(u64) -> buffer<unknown,6,0>;
+	[603] CorruptSaveDataForDebug(u64);
+	[604] CreatePaddingFile(u64);
+	[605] DeleteAllPaddingFiles();
+	@version(2.0.0+)
+	[606] GetRightsId(u8, u64) -> u128;
+	@version(2.0.0+)
+	[607] RegisterExternalKey(u128, u128);
+	@version(2.0.0+)
+	[608] UnregisterExternalKey();
+	@version(2.0.0+)
+	[609] GetRightsIdByPath(buffer<unknown,25,769>) -> u128;
+	@version(3.0.0+)
+	[610] GetRightsIdByPath2(buffer<unknown,25,769>) -> (u8, u128);
+	@version(4.0.0+)
+	[611] SetCurrentPosixTime();
+	@version(4.0.0+)
+	[612] GetFreeSpaceSize();
+	@version(4.0.0+)
+	[613] Unknown613();
+	@version(4.0.0+)
+	[614] Unknown614();
+	# Takes 0x10-bytes of input.
+	# 
+	# Appears to be used to load the seed into FS-module state, since
+	# FS-module itself doesn't seem to have file-reading code to handle this
+	# itself.
+	# 
+	# [NS](NS_Services "wikilink")-module uses this with data read from a
+	# file.
+	# 
+	@version(2.0.0+)
+	[620] SetSdCardEncryptionSeed(u128);
+	@version(4.0.0+)
+	[630] SetSdCardAccessibility();
+	@version(4.0.0+)
+	[631] IsSdCardAccessible();
+	@version(4.0.0+)
+	[640] IsSignedSystemPartitionOnSdCardValid();
+	@version(2.0.0+)
+	[800] GetAndClearFileSystemProxyErrorInfo() -> bytes<128>;
+	[1000] SetBisRootForHost(u32, buffer<unknown,25,769>);
+	[1001] SetSaveDataSize(u64, u64);
+	[1002] SetSaveDataRootPath(buffer<unknown,25,769>);
+	[1003] DisableAutoSaveDataCreation();
+	# Takes an input u32.
+	# 
+	[1004] SetGlobalAccessLogMode(u32);
+	# Returns an output u32.
+	# 
+	# GlobalAccessLogMode is normally 0.
+	# 
+	[1005] GetGlobalAccessLogMode() -> u32;
+	# Takes a type-0x5 input buffer.
+	# 
+	# The input buffer is the string to output to the log. User-processes
+	# normally include a newline at the end.
+	# 
+	# User-processes only use this when the value previously loaded from
+	# [\#GetGlobalAccessLogMode](#GetGlobalAccessLogMode "wikilink") has bit1
+	# set.
+	# 
+	# When bit1 in GlobalAccessLogMode is clear, FS-module will just return 0
+	# for OutputAccessLogToSdCard. However even with that set the log doesn't
+	# show up SD, unknown why.
+	# 
+	# The input buffer is written to the "$FsAccessLog:/FsAccessLog.txt" file,
+	# where "$FsAccessLog" is the SD-card mount-name. It's written to the
+	# current end of the file(appended).
+	# 
+	[1006] OutputAccessLogToSdCard(buffer<unknown,5,0>);
+	@version(4.0.0+)
+	[1007] RegisterUpdatePartition();
+	@version(4.0.0+)
+	[1008] MountRegisteredUpdatePartition();
+	@version(4.0.0+)
+	[1009] Unknown1009();
+	@version(4.0.0+)
+	[1100] OverrideSaveDataTransferTokenSignVerificationKey();
+}
+
+interface nn::socket::resolver::IResolver is sfdnsres {
+	[0] SetDnsAddressesPrivate(u32, buffer<unknown,5,0>);
+	[1] GetDnsAddressPrivate(u32) -> buffer<unknown,6,0>;
+	[2] GetHostByName(u8, u32, u64, pid, buffer<unknown,5,0>) -> (u32, u32, u32, buffer<unknown,6,0>);
+	[3] GetHostByAddr(u32, u32, u32, u64, pid, buffer<unknown,5,0>) -> (u32, u32, u32, buffer<unknown,6,0>);
+	[4] GetHostStringError(u32) -> buffer<unknown,6,0>;
+	[5] GetGaiStringError(u32) -> buffer<unknown,6,0>;
+	# Takes three type 5 buffers (host, port, and hints), and a type 6 buffer
+	# (the output addrinfos). Also takes a u8 (padded to 4 bytes so the next
+	# raw parameter can align), a u32, and a u64. The u8 is a boolean for
+	# whether to enable "nsd resolve" (1) or not (0). Not sure what the u32
+	# is. It seems to either come from a parameter to `GetAddrInfo` or be
+	# zero. The u64 is most likely a placeholder for the server to copy the
+	# PID into and should be zero. Both hints and the output buffer contain
+	# serialized addrinfo chains. The hints buffer is sized 0x400 bytes long
+	# by default, and the output buffer 0x1000 bytes.
+	# 
+	[6] GetAddrInfo(u8, u32, u64, pid, buffer<unknown,5,0>, buffer<unknown,5,0>, buffer<unknown,5,0>) -> (u32, u32, u32, buffer<unknown,6,0>);
+	[7] GetNameInfo(u32, u32, u64, pid, buffer<unknown,5,0>) -> (u32, u32, buffer<unknown,6,0>, buffer<unknown,6,0>);
+	[8] RequestCancelHandle(u64, pid) -> u32;
+	[9] CancelSocketCall(u32, u64, pid);
+}
+
+interface nn::spl::detail::IRandomInterface is csrng {
+	# Takes a type-6 buffer and fills it with random data. Same command for
+	# "spl:" and "csrng" services.
+	# 
+	[0] GetRandomBytes() -> buffer<unknown,6,0>;
+}
+
+interface nn::aocsrv::detail::IAddOnContentManager is aoc:u {
+	[0] CountAddOnContentByApplicationId(nn::ncm::ApplicationId) -> i32;
+	[1] ListAddOnContentByApplicationId(i32, i32, nn::ncm::ApplicationId) -> (i32, array<i32,6>);
+	[2] CountAddOnContent(u64, pid) -> i32;
+	[3] ListAddOnContent(i32, i32, u64, pid) -> (i32, array<i32,6>);
+	[4] GetAddOnContentBaseIdByApplicationId(nn::ncm::ApplicationId) -> u64;
+	[5] GetAddOnContentBaseId(u64, pid) -> u64;
+	[6] PrepareAddOnContentByApplicationId(i32, nn::ncm::ApplicationId);
+	[7] PrepareAddOnContent(i32, u64, pid);
 }
 
