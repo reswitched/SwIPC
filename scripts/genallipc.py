@@ -8561,7 +8561,7 @@ smapping = {
     },
     '0100000000000003': {
         'pm:info': 'nn::pm::detail::IInformationInterface',
-        'pm:shel': 'nn::pm::detail::IShellInterface',
+        'pm:shell': 'nn::pm::detail::IShellInterface',
         'pm:bm':   'nn::pm::detail::IBootModeInterface',
     },
     '0100000000000004': {
