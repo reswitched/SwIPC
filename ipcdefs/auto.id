@@ -4209,7 +4209,7 @@ interface nn::xcd::detail::ISystemServer is xcd:sys {
 	[102] Unknown102() -> u64;
 }
 
-interface nns::hosbinder::IHOSBinderDriver {
+interface nns::hosbinder::IHOSBinderDriver is dispdrv {
 	[0] TransactParcel(i32, u32, u32, buffer<unknown, 5, 0>) -> buffer<unknown, 6, 0>;
 	[1] AdjustRefcount(i32, i32, i32);
 	[2] GetNativeHandle(i32, u32) -> KObject;
