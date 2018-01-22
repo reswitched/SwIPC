@@ -22,11 +22,11 @@ function capitalize(s) {
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
-function buildInterface([serviceName, cmds]) {
+function buildInterface([serviceName, iface]) {
   var ret = "";
   var interfaceName = 'I' + serviceName.split(",")[0].split(/[:-]/).map(v => capitalize(v)).join("");
-  ret += `interface ${interfaceName} is ${serviceName} {\n`
-  for (var cmd of cmds) {
+  ret += `interface ${iface.ifaceName || interfaceName} is ${serviceName} {\n`
+  for (var cmd of iface.cmdList) {
     var name = cmd.name || `Unknown${cmd.id}`;
     if (cmd.doc) {
       for (var line of cmd.doc.split("\n")) {
@@ -76,6 +76,12 @@ async function getServiceStuff(services) {
     var serviceTable = getFirstTable(service.content);
     if (serviceTable.length == 0) {
       continue;
+    }
+
+    var ifaceName = null;
+    if (service.content[0].includes("This is \"")) {
+      ifaceName = service.content[0].slice(service.content[0].indexOf('"') + 1);
+      ifaceName = ifaceName.slice(0, ifaceName.indexOf('"'));
     }
 
     // Normalize multi-service names
@@ -151,7 +157,7 @@ async function getServiceStuff(services) {
       cmdList.push({ id: cmd['Cmd'], name: cmdName, version, doc: cmdDocs });
     }
     if (cmdList.length > 0)
-      servicesRet[serviceName] = cmdList;
+      servicesRet[serviceName] = { ifaceName, cmdList };
   }
   return servicesRet;
 }

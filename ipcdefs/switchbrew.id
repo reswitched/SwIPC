@@ -1,4 +1,4 @@
-interface ISm is sm: {
+interface nn::sm::detail::IUserInterface is sm: {
 	# Takes a pid descriptor and a reserved input u64.
 	# 
 	[0] Initialize();
@@ -16,7 +16,7 @@ interface ISm is sm: {
 }
 
 
-interface ISmM is sm:m {
+interface nn::sm::detail::IManagerInterface is sm:m {
 	# Takes a pid and two A descriptors with the ACID and ACI0 service lists.
 	# That data originates from [NPDM](NPDM "wikilink").
 	# 
@@ -27,7 +27,7 @@ interface ISmM is sm:m {
 }
 
 
-interface IAccSu is acc:su {
+interface nn::account::IAccountServiceForAdministrator is acc:su {
 	[0] GetUserCount();
 	[1] GetUserExistence();
 	[2] ListAllUsers();
@@ -65,7 +65,7 @@ interface IAccSu is acc:su {
 }
 
 
-interface IAccU0 is acc:u0 {
+interface nn::account::IAccountServiceForApplication is acc:u0 {
 	[0] GetUserCount();
 	[1] GetUserExistence();
 	[2] ListAllUsers();
@@ -84,7 +84,7 @@ interface IAccU0 is acc:u0 {
 }
 
 
-interface IAccU1 is acc:u1 {
+interface nn::account::IAccountServiceForSystemService is acc:u1 {
 	[0] GetUserCount();
 	[1] GetUserExistence();
 	[2] ListAllUsers();
@@ -109,7 +109,7 @@ interface IAccU1 is acc:u1 {
 }
 
 
-interface IAccAa is acc:aa {
+interface nn::account::IBaasAccessTokenAccessor is acc:aa {
 	[0] EnsureCacheAsync();
 	[1] LoadCache();
 	[2] GetDeviceAccountId();
@@ -118,7 +118,7 @@ interface IAccAa is acc:aa {
 }
 
 
-interface IHid is hid {
+interface nn::hid::IHidServer is hid {
 	# Takes a PID and an u64 [AppletResourceUserId](AM_services "wikilink").
 	# Returns an [\#IAppletResource](#IAppletResource "wikilink").
 	# 
@@ -209,7 +209,7 @@ interface IHid is hid {
 }
 
 
-interface IHidDbg is hid:dbg {
+interface nn::hid::IHidDebugServer is hid:dbg {
 	[0] DeactivateDebugPad();
 	[1] SetDebugPadAutoPilotState();
 	[2] UnsetDebugPadAutoPilotState();
@@ -255,7 +255,7 @@ interface IHidDbg is hid:dbg {
 }
 
 
-interface IHidSys is hid:sys {
+interface nn::hid::IHidSystemServer is hid:sys {
 	[31] SendKeyboardLockKeyEvent();
 	[101] AcquireHomeButtonEventHandle();
 	[111] ActivateHomeButton();
@@ -332,7 +332,7 @@ interface IHidSys is hid:sys {
 }
 
 
-interface IIrs is irs {
+interface nn::irsensor::IIrSensorServer is irs {
 	# Takes a PID-descriptor and an
 	# [AppletResourceUserId](AM_services "wikilink"). No output.
 	# 
@@ -418,7 +418,7 @@ interface IIrs is irs {
 }
 
 
-interface IOmm is omm {
+interface nn::omm::detail::IOperationModeManager is omm {
 	[0] GetOperationMode();
 	[1] GetOperationModeChangeEvent();
 	[2] EnableAudioVisual();
@@ -434,7 +434,7 @@ interface IOmm is omm {
 }
 
 
-interface ISpsm is spsm {
+interface nn::spsm::detail::IPowerStateInterface is spsm {
 	[0] GetState();
 	[1] SleepSystemAndWaitAwake();
 	[2] Unknown2();
@@ -448,7 +448,7 @@ interface ISpsm is spsm {
 }
 
 
-interface IAocU is aoc:u {
+interface nn::aocsrv::detail::IAddOnContentManager is aoc:u {
 	[0] CountAddOnContentByApplicationId();
 	[1] ListAddOnContentByApplicationId();
 	[2] CountAddOnContent();
@@ -652,7 +652,7 @@ interface INsAm is ns:am {
 }
 
 
-interface INsSu is ns:su {
+interface nn::ns::detail::ISystemUpdateInterface is ns:su {
 	[0] Unknown0();
 	[1] GetISystemUpdateControl();
 	[2] Unknown2();
@@ -665,7 +665,7 @@ interface INsSu is ns:su {
 }
 
 
-interface INsDev is ns:dev {
+interface nn::ns::detail::IDevelopInterface is ns:dev {
 	# Wrapper for "pm:shell"
 	# [LaunchProcess](Process_Manager_services#LaunchProcess "wikilink").
 	# 
@@ -704,18 +704,18 @@ interface INsDev is ns:dev {
 }
 
 
-interface IApm is apm {
+interface nn::apm::IManager is apm {
 	[0] OpenSession();
 	[1] GetPerformanceMode();
 }
 
 
-interface IApmP is apm:p {
+interface nn::apm::IManagerPrivileged is apm:p {
 	[0] OpenSession();
 }
 
 
-interface IApmSys is apm:sys {
+interface nn::apm::ISystemManager is apm:sys {
 	[0] RequestPerformanceMode();
 	[1] GetPerformanceEvent();
 	[2] GetThrottlingState();
@@ -724,7 +724,7 @@ interface IApmSys is apm:sys {
 }
 
 
-interface IArpR is arp:r {
+interface nn::arp::detail::IReader is arp:r {
 	[0] ReadHeader0();
 	[1] ReadHeader1();
 	[2] ReadData0();
@@ -732,13 +732,13 @@ interface IArpR is arp:r {
 }
 
 
-interface IArpW is arp:w {
+interface nn::arp::detail::IWriter is arp:w {
 	[0] GetIRegistrar();
 	[1] SubmitWriter();
 }
 
 
-interface IAudoutU is audout:u {
+interface nn::audio::detail::IAudioOutManager is audout:u {
 	[0] ListAudioOuts();
 	# Takes two u64s (an interface ID and a PID placeholder?), a PID, a
 	# process handle, and the name of the interface you want to connect to.
@@ -750,18 +750,18 @@ interface IAudoutU is audout:u {
 }
 
 
-interface IAudinU is audin:u {
+interface nn::audio::detail::IAudioInManagerForDebugger is audin:u {
 	[0] ListAudioIns();
 	[1] OpenAudioIn();
 }
 
 
-interface IAudrecU is audrec:u {
+interface nn::audio::detail::IFinalOutputRecorderManager is audrec:u {
 	[0] OpenFinalOutputRecorder();
 }
 
 
-interface IAudrenU is audren:u {
+interface nn::audio::detail::IAudioRendererManager is audren:u {
 	[0] OpenAudioRenderer();
 	[1] GetAudioRendererWorkBufferSize();
 	[2] GetAudioRenderersProcessMasterVolume();
@@ -769,13 +769,13 @@ interface IAudrenU is audren:u {
 }
 
 
-interface IAudoutA is audout:a, audin:a, audrec:a, audren:a {
+interface nn::audio::detail::IAudioOutManagerForApplet is audout:a, audin:a, audrec:a, audren:a {
 	[0] RequestSuspend();
 	[1] RequestResume();
 }
 
 
-interface IAudoutD is audout:d, audin:d, audrec:d, audren:d {
+interface nn::audio::detail::IAudioOutManagerForDebugger is audout:d, audin:d, audrec:d, audren:d {
 	# Takes an
 	# [AppletResourceUserId](AM_services#AppletResourceUserId "wikilink").
 	# (u64)
@@ -789,7 +789,7 @@ interface IAudoutD is audout:d, audin:d, audrec:d, audren:d {
 }
 
 
-interface ICodecctl is codecctl {
+interface nn::audio::detail::ICodecController is codecctl {
 	[0] InitializeCodecController();
 	[1] FinalizeCodecController();
 	[2] SleepCodecController();
@@ -810,7 +810,7 @@ interface ICodecctl is codecctl {
 }
 
 
-interface IBpc is bpc {
+interface nn::bpc::IBoardPowerControlManager is bpc {
 	[0] ShutdownSystem();
 	[1] RebootSystem();
 	[2] GetWakeupReason();
@@ -825,7 +825,7 @@ interface IBpc is bpc {
 }
 
 
-interface IBpcR is bpc:r {
+interface nn::bpc::IRtcManager is bpc:r {
 	[0] GetExternalRtcValue();
 	[1] SetExternalRtcValue();
 	[2] ReadExternalRtcResetFlag();
@@ -833,7 +833,7 @@ interface IBpcR is bpc:r {
 }
 
 
-interface IPcv is pcv {
+interface nn::pcv::detail::IPcvService is pcv {
 	[0] SetPowerEnabled();
 	[1] SetClockEnabled();
 	[2] SetClockRate();
@@ -864,17 +864,17 @@ interface IPcv is pcv {
 }
 
 
-interface IPcvArb is pcv:arb {
+interface nn::pcv::IArbitrationManager is pcv:arb {
 	[0] ReleaseControl();
 }
 
 
-interface IPcvImm is pcv:imm {
+interface nn::pcv::IImmediateManager is pcv:imm {
 	[0] SetClockRate();
 }
 
 
-interface ITimeU is time:u, time:a, time:s {
+interface nn::timesrv::detail::service::IStaticService is time:u, time:a, time:s {
 	[0] GetStandardUserSystemClock();
 	[1] GetStandardNetworkSystemClock();
 	[2] GetStandardSteadyClock();
@@ -886,7 +886,7 @@ interface ITimeU is time:u, time:a, time:s {
 }
 
 
-interface IBsdU is bsd:u, bsd:s {
+interface nn::socket::sf::IClient is bsd:u, bsd:s {
 	[0] Initialize();
 	[1] StartMonitoring();
 	[2] Socket();
@@ -923,7 +923,7 @@ interface IBsdU is bsd:u, bsd:s {
 }
 
 
-interface ISfdnsres is sfdnsres {
+interface nn::socket::resolver::IResolver is sfdnsres {
 	[0] SetDnsAddressesPrivate();
 	[1] GetDnsAddressPrivate();
 	[2] GetHostByName();
@@ -947,7 +947,7 @@ interface ISfdnsres is sfdnsres {
 }
 
 
-interface INsdU is nsd:u, nsd:a {
+interface nn::nsd::detail::IManager is nsd:u, nsd:a {
 	[10] GetSettingName();
 	[11] GetEnvironmentIdentifier();
 	[12] GetDeviceId();
@@ -989,7 +989,7 @@ interface INsdU is nsd:u {
 }
 
 
-interface IBtdrv is btdrv {
+interface nn::bluetooth::IBluetoothDriver is btdrv {
 	[0] Unknown0();
 	[1] Init();
 	[2] Enable();
@@ -1038,7 +1038,7 @@ interface IBtdrv is btdrv {
 }
 
 
-interface IMmU is mm:u {
+interface nn::mmnv::IRequest is mm:u {
 	[0] Unknown0();
 	[1] Unknown1();
 	[2] Unknown2();
@@ -1050,7 +1050,7 @@ interface IMmU is mm:u {
 }
 
 
-interface IViU is vi:u {
+interface nn::visrv::sf::IApplicationRootService is vi:u {
 	# Returns an
 	# [\#IApplicationDisplayService](#IApplicationDisplayService "wikilink").
 	# Takes an input u32, user-processes use 0 or 1, with 0 for
@@ -1063,7 +1063,7 @@ interface IViU is vi:u {
 }
 
 
-interface IViS is vi:s {
+interface nn::visrv::sf::ISystemRootService is vi:s {
 	# Returns an
 	# [\#IApplicationDisplayService](#IApplicationDisplayService "wikilink").
 	# Takes an input u32, user-processes use 0 or 1, with 0 for
@@ -1080,7 +1080,7 @@ interface IViS is vi:s {
 }
 
 
-interface IViM is vi:m {
+interface nn::visrv::sf::IManagerRootService is vi:m {
 	# Returns an
 	# [\#IApplicationDisplayService](#IApplicationDisplayService "wikilink").
 	# Takes an input u32, user-processes use 0 or 1, with 0 for
@@ -1097,7 +1097,7 @@ interface IViM is vi:m {
 }
 
 
-interface IDispdrv is dispdrv {
+interface nns::hosbinder::IHOSBinderDriver is dispdrv {
 	# Takes a s32 (**ID**), an u32 (**code**), a type-0x5 input buffer
 	# (**parcel\_data**), a type-0x6 output buffer (**parcel\_reply**) and an
 	# input u32 (**flags**). Each word is placed immediately after the
@@ -1133,7 +1133,7 @@ interface IDispdrv is dispdrv {
 }
 
 
-interface IFan is fan {
+interface nn::fan::detail::IManager is fan {
 	[0] Unknown0();
 	[1] Unknown1();
 	[2] Unknown2();
@@ -1145,7 +1145,7 @@ interface IFan is fan {
 }
 
 
-interface IPsm is psm {
+interface nn::psm::IPsmServer is psm {
 	[0] Unknown0();
 	[1] Unknown1();
 	[2] Unknown2();
@@ -1167,7 +1167,7 @@ interface IPsm is psm {
 }
 
 
-interface ITc is tc {
+interface nn::tc::IManager is tc {
 	[0] SetOperatingMode();
 	[1] GetThermalEvent();
 	[2] Unknown2();
@@ -1180,7 +1180,7 @@ interface ITc is tc {
 }
 
 
-interface ITs is ts {
+interface nn::ts::server::IMeasurementServer is ts {
 	[0] Unknown0();
 	[1] Unknown1();
 	[2] Unknown2();
@@ -1188,7 +1188,7 @@ interface ITs is ts {
 }
 
 
-interface IFatalU is fatal:u {
+interface nn::fatalsrv::IService is fatal:u {
 	[0] Unknown0();
 	[1] Unknown1();
 	# Takes an input u64 errorcode and an unknown u64(TID maybe?). It also
@@ -1201,7 +1201,7 @@ interface IFatalU is fatal:u {
 }
 
 
-interface IFspLdr is fsp-ldr {
+interface nn::fssrv::sf::IFileSystemProxyForLoader is fsp-ldr {
 	[0] MountCode();
 	[1] IsCodeMounted();
 	@version(4.0.0+)
@@ -1209,7 +1209,7 @@ interface IFspLdr is fsp-ldr {
 }
 
 
-interface IFspPr is fsp-pr {
+interface nn::fssrv::sf::IProgramRegistry is fsp-pr {
 	# Takes a storageID, a pid, a titleID, a 0x1C type-A buffer for the [ FS
 	# Access Header](NPDM#FS_Access_Header "wikilink"), and a 0x2C type-A
 	# buffer for the [ FS Access Control](NPDM#FS_Access_Control "wikilink")
@@ -1237,7 +1237,7 @@ interface IFspPr is fsp-pr {
 }
 
 
-interface IFspSrv is fsp-srv {
+interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	# Takes a type-0x19 input buffer, an in32, and an input title-id.
 	# 
 	# The in32 must be 5 if the NCA type is 0 (control).
@@ -1432,6 +1432,8 @@ interface IFspSrv is fsp-srv {
 	# archives.
 	# 
 	[202] OpenDataStorageByDataId();
+	# This is "nn::fssrv::sf::IStorage".
+	# 
 	# This is the interface for a raw device, usually a block
 	# device.
 	# 
@@ -1547,7 +1549,7 @@ interface IFspSrv is fsp-srv {
 }
 
 
-interface IGpio is gpio {
+interface nn::gpio::IManager is gpio {
 	# Takes a raw GpioPadDescriptor and returns a
 	# [\#IPadSession](#IPadSession "wikilink") session for it.
 	# 
@@ -1609,7 +1611,7 @@ interface IGpio is gpio {
 }
 
 
-interface II2c is i2c {
+interface nn::i2c::IManager is i2c {
 	[0] OpenSessionForDev();
 	[1] OpenSession();
 	[2] HasDevice();
@@ -1627,7 +1629,7 @@ interface II2cPcv is i2c:pcv {
 }
 
 
-interface IUart is uart {
+interface nn::uart::IManager is uart {
 	[0] Unknown0();
 	[1] Unknown1();
 	[2] Unknown2();
@@ -1640,13 +1642,13 @@ interface IUart is uart {
 }
 
 
-interface IPwm is pwm {
+interface nn::pwm::IManager is pwm {
 	[0] OpenSessionForDev();
 	[1] OpenSession();
 }
 
 
-interface ILbl is lbl {
+interface nn::lbl::detail::ILblController is lbl {
 	[0] Unknown0();
 	[1] Unknown1();
 	[2] Unknown2();
@@ -1698,29 +1700,29 @@ interface ILbl is lbl {
 }
 
 
-interface ILdnM is ldn:m {
+interface nn::ldn::detail::IMonitorServiceCreator is ldn:m {
 	[0] GetMonitorService();
 }
 
 
-interface ILdnS is ldn:s {
+interface nn::ldn::detail::ISystemServiceCreator is ldn:s {
 	[0] GetSystemLocalCommunicationService();
 }
 
 
-interface ILdnU is ldn:u {
+interface nn::ldn::detail::IUserServiceCreator is ldn:u {
 	[0] GetUserLocalCommunicationService();
 }
 
 
-interface ILdrDmnt is ldr:dmnt {
+interface nn::ldr::detail::IDebugMonitorInterface is ldr:dmnt {
 	[0] AddProcessToDebugLaunchQueue();
 	[1] ClearDebugLaunchQueue();
 	[2] Unknown2();
 }
 
 
-interface ILdrPm is ldr:pm {
+interface nn::ldr::detail::IProcessManagerInterface is ldr:pm {
 	[0] CreateProcess();
 	# Takes a TitleId + StorageId, parses the NPDM, and writes output to a C
 	# descriptor buffer as
@@ -1753,7 +1755,7 @@ interface ILdrPm is ldr:pm {
 }
 
 
-interface ILdrShel is ldr:shel {
+interface nn::ldr::detail::IShellInterface is ldr:shel {
 	# Takes a type-0x19 input buffer with launch arguments (as string), an u32
 	# (size of arguments string), and an input title-id.
 	# 
@@ -1768,7 +1770,7 @@ interface ILdrShel is ldr:shel {
 }
 
 
-interface ILdrRo is ldr:ro {
+interface nn::ldr::detail::IRoInterface is ldr:ro {
 	# | Word | Value                    |
 	# | ---- | ------------------------ |
 	# | 0    | 0x00000004               |
@@ -1837,13 +1839,13 @@ interface IManu is manu {
 }
 
 
-interface INim is nim {
+interface nn::nim::detail::INetworkInstallManager is nim {
 	[1] Unknown1();
 	[2] Unknown2();
 }
 
 
-interface INvdrv is nvdrv, nvdrv:a, nvdrv:s, nvdrv:t {
+interface nns::nvdrv::INvDrvServices is nvdrv, nvdrv:a, nvdrv:s, nvdrv:t {
 	# Takes a type-0x5 input buffer for the device-path. Returns the output
 	# 32bit **fd** and the u32 **error\_code**.
 	# 
@@ -1915,7 +1917,7 @@ interface INvmemp is nvmemp {
 }
 
 
-interface INvdrvdbg is nvdrvdbg {
+interface nns::nvdrv::INvDrvDebugFSServices is nvdrvdbg {
 	# Takes process handle. Returns an fd.
 	# 
 	[0] OpenLog();
@@ -1928,7 +1930,7 @@ interface INvdrvdbg is nvdrvdbg {
 }
 
 
-interface IPcie is pcie {
+interface nn::pcie::detail::IManager is pcie {
 	[0] GetISession();
 	# Takes a type-6 buffer.
 	# 
@@ -1938,18 +1940,18 @@ interface IPcie is pcie {
 }
 
 
-interface IPctlS is pctl:s {
+interface nn::pctl::detail::ipc::IParentalControlServiceFactory is pctl:s, pctl:r, pctl:a, pctl {
 	[0] GetService();
 }
 
 
-interface IPmBm is pm:bm {
+interface nn::pm::detail::IBootModeInterface is pm:bm {
 	[0] GetBootMode();
 	[1] SetMaintenanceBoot();
 }
 
 
-interface IPmDmnt is pm:dmnt {
+interface nn::pm::detail::IDebugMonitorInterface is pm:dmnt {
 	# Always returns u32 0 on retail.
 	# 
 	# \[2.0.0+\] Additional check on input that can return 0xC0F. The meaning
@@ -1996,14 +1998,14 @@ interface IPmDmnt is pm:dmnt {
 }
 
 
-interface IPmInfo is pm:info {
+interface nn::pm::detail::IInformationInterface is pm:info {
 	# Takes a pid and returns the title-id associated with the process.
 	# 
 	[0] GetTitleId();
 }
 
 
-interface IPmShell is pm:shell {
+interface nn::pm::detail::IShellInterface is pm:shell {
 	# Takes launch\_flags, title-id, and storageID. See [\#Process
 	# launch](#Process_launch "wikilink").
 	# 
@@ -2045,7 +2047,7 @@ interface IPmShell is pm:shell {
 }
 
 
-interface IPscC is psc:c {
+interface nn::psc::sf::IPmControl is psc:c {
 	[0] Unknown0();
 	[1] Unknown1();
 	[2] Unknown2();
@@ -2056,12 +2058,12 @@ interface IPscC is psc:c {
 }
 
 
-interface IPscM is psc:m {
+interface nn::psc::sf::IPmService is psc:m {
 	[0] GetPmModule();
 }
 
 
-interface ISet is set {
+interface nn::settings::ISettingsServer is set {
 	[0] GetLanguageCode();
 	[1] GetAvailableLanguageCodes();
 	@version(4.0.0+)
@@ -2077,7 +2079,7 @@ interface ISet is set {
 }
 
 
-interface ISetFd is set:fd {
+interface nn::settings::IFirmwareDebugSettingsServer is set:fd {
 	[2] SetSettingsItemValue();
 	[3] ResetSettingsItemValue();
 	[4] CreateSettingsItemKeyIterator();
@@ -2094,7 +2096,7 @@ interface ISetFd is set:fd {
 }
 
 
-interface ISetCal is set:cal {
+interface nn::settings::IFactorySettingsServer is set:cal {
 	[0] GetBluetoothBdAddress();
 	[1] GetConfigurationId1();
 	[2] GetAccelerometerOffset();
@@ -2171,7 +2173,7 @@ interface ISetCal is set:cal {
 }
 
 
-interface ISetSys is set:sys {
+interface nn::settings::ISystemSettingsServer is set:sys {
 	[0] SetLanguageCode();
 	[1] SetNetworkSettings();
 	[2] GetNetworkSettings();
@@ -2393,12 +2395,12 @@ interface ISetSys is set:sys {
 }
 
 
-interface IMiiU is mii:u, mii:e {
+interface nn::mii::detail::IStaticService is mii:u, mii:e {
 	[0] GetDatabaseServiceSharedPointer();
 }
 
 
-interface ICsrng is csrng {
+interface nn::spl::detail::IRandomInterface is csrng {
 	# Takes a type-6 buffer and fills it with random data. Same command for
 	# "spl:" and "csrng" services.
 	# 
@@ -2406,7 +2408,7 @@ interface ICsrng is csrng {
 }
 
 
-interface ISpl is spl: {
+interface nn::spl::detail::IGeneralInterface is spl: {
 	# Takes a u32 (**ConfigItem**), and returns a u64 (**ConfigVal**).
 	# 
 	# | ConfigItem | Name                             |
@@ -2637,7 +2639,7 @@ interface ISpl is spl: {
 }
 
 
-interface IUsbDs is usb:ds {
+interface nn::usb::ds::IDsService is usb:ds {
 	# Takes an u32 (**complexId**). [Manu](Manu_Services "wikilink") sends
 	# 0x02.
 	# 
@@ -2725,7 +2727,7 @@ interface IUsbDs is usb:ds {
 }
 
 
-interface IUsbPdC is usb:pd:c {
+interface nn::usb::pd::detail::IPdCradleManager is usb:pd:c {
 	[0] Unknown0();
 }
 
