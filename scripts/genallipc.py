@@ -8655,8 +8655,8 @@ smapping = {
 	'0100000000000014': {  # audio
 		'audctl':   'nn::audioctrl::detail::IAudioController',
 		'audin:a':  'nn::audio::detail::IAudioInManagerForApplet',
-		'audin:d':  'nn::audio::detail::IAudioInManager',
-		'audin:u':  'nn::audio::detail::IAudioInManagerForDebugger',
+		'audin:d':  'nn::audio::detail::IAudioInManagerForDebugger',
+		'audin:u':  'nn::audio::detail::IAudioInManager',
 		'audout:a': 'nn::audio::detail::IAudioOutManagerForApplet',
 		'audout:d': 'nn::audio::detail::IAudioOutManagerForDebugger',
 		'audout:u': 'nn::audio::detail::IAudioOutManager',
