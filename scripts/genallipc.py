@@ -8712,6 +8712,9 @@ smapping = {
 		'fgm':     'nn::fgm::sf::ISession',
 		'fgm:9':   'nn::fgm::sf::ISession', # no nn::fgm::sf::IDebugger ?
 	},
+	'010000000000001C': {  # nvnflinger
+		'dispdrv': 'nns::hosbinder::IHOSBinderDriver',
+	},
 	'010000000000001D': {  # pcie.withoutHb
 		'pcie': 'nn::pcie::detail::IManager',
 	},

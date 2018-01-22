@@ -1,6 +1,6 @@
 type ServiceName = bytes<8>;
 
-interface SmService is sm: {
+interface nn::sm::detail::IUserInterface is sm: {
 	# Needs to be called before any other command may be used. On version 3.0.0
 	# and lower, if this function is not called, `GetService`, `RegisterService`
 	# and `UnregisterService` may be called without restriction, thanks to

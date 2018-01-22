@@ -12,67 +12,6 @@
 			<br />
 			<div class="card">
 				<div class="card-header">
-					<a href="#SmService"><h2 id="SmService">SmService</h2></a>
-				</div>
-				<ul class="list-group list-group-flush">
-					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="122" aria-valuemin="0" aria-valuemax="100" style="width: 122%"></div></div>
-					</li>
-					<li class="list-group-item">
-						<h3>Provides:</h3>
-						<ul>
-							<li>sm:</li>
-						</ul>
-					</li>
-					<li class="list-group-item">
-						<h3>Commands:</h3>
-						<ol>
-							<li class="command" value="0" id="SmService(0)">
-							  <input type="checkbox" class="showDocs" id="showDocs(SmService(0))"></input>
-							  <label for="showDocs(SmService(0))" class="showDocsLabel"></label>
-							  <code class="signature">[0] <a href="#SmService(0)">Initialize</a>(pid, u64 reserved)</code>
-							  <div class="docs"><p>Needs to be called before any other command may be used. On version 3.0.0
-							and lower, if this function is not called, <code>GetService</code>, <code>RegisterService</code>
-							and <code>UnregisterService</code> may be called without restriction, thanks to
-							<code>sm:h</code>.</p>
-							<h1>Arguments</h1>
-							<ul>
-							<li><code>reserved</code>:  Should be set to 0.</li>
-							</ul>
-							</div>
-							</li>
-							<li class="command" value="1" id="SmService(1)">
-							  <input type="checkbox" class="showDocs" id="showDocs(SmService(1))"></input>
-							  <label for="showDocs(SmService(1))" class="showDocsLabel"></label>
-							  <code class="signature">[1] <a href="#SmService(1)">GetService</a>(<a href="types.html#ServiceName">ServiceName</a> name) -&gt; IPipe</code>
-							  <div class="docs"><p>Returns a handle to the given service. IPC messages may be sent to this
-							handle through <code>svcSendSyncRequest</code>.</p>
-							</div>
-							</li>
-							<li class="command" value="2" id="SmService(2)">
-							  <input type="checkbox" class="showDocs" id="showDocs(SmService(2))"></input>
-							  <label for="showDocs(SmService(2))" class="showDocsLabel"></label>
-							  <code class="signature">[2] <a href="#SmService(2)">RegisterService</a>(<a href="types.html#ServiceName">ServiceName</a> name, u8, u32 maxHandles) -&gt; NPort</code>
-							  <div class="docs"><p>Registers a service with the given name. The user can use
-							<code>svcAcceptSession</code> on the returned handle to get a new Session handle, and
-							use <code>svcReplyAndReceive</code> on those handles to reply to IPC requests.</p>
-							</div>
-							</li>
-							<li class="command" value="3" id="SmService(3)">
-							  <input type="checkbox" class="showDocs" id="showDocs(SmService(3))"></input>
-							  <label for="showDocs(SmService(3))" class="showDocsLabel"></label>
-							  <code class="signature">[3] <a href="#SmService(3)">UnregisterService</a>(<a href="types.html#ServiceName">ServiceName</a> name)</code>
-							  <div class="docs"><p>Unregisters the given service. Future <code>GetService</code> call will not return
-							this service anymore, but existing handles will stay alive.</p>
-							</div>
-							</li>
-						</ol>
-					</li>
-				</ul>
-			</div>
-			<br />
-			<div class="card">
-				<div class="card-header">
 					<a href="#nn::account::IAccountServiceForAdministrator"><h2 id="nn::account::IAccountServiceForAdministrator">nn::account::IAccountServiceForAdministrator</h2></a>
 				</div>
 				<ul class="list-group list-group-flush">
@@ -21091,7 +21030,7 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="122" aria-valuemin="0" aria-valuemax="100" style="width: 122%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
@@ -21103,28 +21042,43 @@
 						<h3>Commands:</h3>
 						<ol>
 							<li class="command" value="0" id="nn::sm::detail::IUserInterface(0)">
-							
-							
-							  <code class="signature">[0] <a href="#nn::sm::detail::IUserInterface(0)">Unknown0</a>(u64, pid)</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::sm::detail::IUserInterface(0))"></input>
+							  <label for="showDocs(nn::sm::detail::IUserInterface(0))" class="showDocsLabel"></label>
+							  <code class="signature">[0] <a href="#nn::sm::detail::IUserInterface(0)">Initialize</a>(pid, u64 reserved)</code>
+							  <div class="docs"><p>Needs to be called before any other command may be used. On version 3.0.0
+							and lower, if this function is not called, <code>GetService</code>, <code>RegisterService</code>
+							and <code>UnregisterService</code> may be called without restriction, thanks to
+							<code>sm:h</code>.</p>
+							<h1>Arguments</h1>
+							<ul>
+							<li><code>reserved</code>:  Should be set to 0.</li>
+							</ul>
+							</div>
 							</li>
 							<li class="command" value="1" id="nn::sm::detail::IUserInterface(1)">
-							
-							
-							  <code class="signature">[1] <a href="#nn::sm::detail::IUserInterface(1)">Unknown1</a>(u64) -&gt; KObject</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::sm::detail::IUserInterface(1))"></input>
+							  <label for="showDocs(nn::sm::detail::IUserInterface(1))" class="showDocsLabel"></label>
+							  <code class="signature">[1] <a href="#nn::sm::detail::IUserInterface(1)">GetService</a>(<a href="types.html#ServiceName">ServiceName</a> name) -&gt; IPipe</code>
+							  <div class="docs"><p>Returns a handle to the given service. IPC messages may be sent to this
+							handle through <code>svcSendSyncRequest</code>.</p>
+							</div>
 							</li>
 							<li class="command" value="2" id="nn::sm::detail::IUserInterface(2)">
-							
-							
-							  <code class="signature">[2] <a href="#nn::sm::detail::IUserInterface(2)">Unknown2</a>(u64, u8, u32) -&gt; KObject</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::sm::detail::IUserInterface(2))"></input>
+							  <label for="showDocs(nn::sm::detail::IUserInterface(2))" class="showDocsLabel"></label>
+							  <code class="signature">[2] <a href="#nn::sm::detail::IUserInterface(2)">RegisterService</a>(<a href="types.html#ServiceName">ServiceName</a> name, u8, u32 maxHandles) -&gt; NPort</code>
+							  <div class="docs"><p>Registers a service with the given name. The user can use
+							<code>svcAcceptSession</code> on the returned handle to get a new Session handle, and
+							use <code>svcReplyAndReceive</code> on those handles to reply to IPC requests.</p>
+							</div>
 							</li>
 							<li class="command" value="3" id="nn::sm::detail::IUserInterface(3)">
-							
-							
-							  <code class="signature">[3] <a href="#nn::sm::detail::IUserInterface(3)">Unknown3</a>(u64)</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::sm::detail::IUserInterface(3))"></input>
+							  <label for="showDocs(nn::sm::detail::IUserInterface(3))" class="showDocsLabel"></label>
+							  <code class="signature">[3] <a href="#nn::sm::detail::IUserInterface(3)">UnregisterService</a>(<a href="types.html#ServiceName">ServiceName</a> name)</code>
+							  <div class="docs"><p>Unregisters the given service. Future <code>GetService</code> call will not return
+							this service anymore, but existing handles will stay alive.</p>
+							</div>
 							</li>
 						</ol>
 					</li>
@@ -24955,6 +24909,12 @@
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
 						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100" style="width: 66%"></div></div>
+					</li>
+					<li class="list-group-item">
+						<h3>Provides:</h3>
+						<ul>
+							<li>dispdrv</li>
+						</ul>
 					</li>
 					<li class="list-group-item">
 						<h3>Returned by:</h3>
