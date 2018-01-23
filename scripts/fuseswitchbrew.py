@@ -47,6 +47,8 @@ for ifaceName, iface in switchbrewIfaces.items():
 		autoCmdMaybe = [autoCmd for autoCmd in autoIface['cmds'] if cmd['cmdId'] == autoCmd['cmdId']]
 		if len(autoCmdMaybe) > 0:
 			autoCmd = autoCmdMaybe.pop()
+			if newCmd['name'].startswith("Unknown"):
+				newCmd['name'] = autoCmd['name']
 			newCmd['inputs'] = autoCmd['inputs']
 			newCmd['outputs'] = autoCmd['outputs']
 			newIFace['cmds'].append(newCmd)
@@ -81,22 +83,23 @@ def genArgs(elems, output=False):
 	return base + ', '.join(map(sub, elems))
 
 def printIFace(ifaceName, iface, services):
-	isService = ", ".join(services)
-	if len(service) > 0:
-		isService = "is " + isService + " "
+	isService = ""
+	if services is not None and len(services) > 0:
+		isService = "is " + ", ".join(services) + " "
 	print "interface %s %s{" % (ifaceName, isService)
-	for cmd in iface['cmds']:
+	for cmd in sorted(iface['cmds'], key=lambda x: x['cmdId']):
 		if cmd['doc'] != "":
 			for docLine in cmd['doc'].split("\n"):
-				print "\t#%s" % docLine
+				# kill weird non ascii
+				print "\t#%s" % docLine.replace(u'\xa0', ' ')
 		if cmd['versionAdded'] != "1.0.0" or cmd['lastVersion'] is not None:
 			print "\t@version(%s)" % (genVersion(cmd['versionAdded'], cmd['lastVersion']))
 		print "\t[%d] %s(%s)%s;" % (cmd['cmdId'], cmd['name'], genArgs(cmd['inputs']), genArgs(cmd['outputs'], True))
 	print "}"
 
-for ifaceName, iface in fusedIFaces.items():
+for ifaceName, iface in sorted(fusedIFaces.items()):
         services = autoServices.get(ifaceName)
         if services is None:
-                services = switchbrewServices[ifaceName]
+                services = switchbrewServices.get(ifaceName)
 	printIFace(ifaceName, iface, services)
 	print ""
