@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "await-outside": "^2.1.2",
+    "pandoc-filter": "^0.1.8",
     "parse-wikitext": "^0.3.3",
     "pdc": "^0.2.3"
   }
