@@ -3,6 +3,8 @@ var WikiTextParser = require('parse-wikitext');
 var fs = require('fs');
 var util = require('util');
 var pandoc = require('pdc');
+var pandocfilter = require('pandoc-filter');
+
 var wikiTextParser = new WikiTextParser("switchbrew.org");
 var pro = util.promisify;
 
@@ -23,7 +25,6 @@ function capitalize(s) {
 }
 
 function buildInterface([ifaceName, iface]) {
-  console.error(ifaceName);
   var ret = "";
   var services = ""
   if (iface.services != null)
@@ -175,9 +176,9 @@ async function iter(ret, serviceName, content, services) {
         return null;
       }
       cmdDocs = findRecurse(services, cmdName);
-      if (cmdDocs != null)
-        cmdDocs = await pro(pandoc)(cmdDocs.content.join("\n"), 'mediawiki', 'gfm');
-      else
+      if (cmdDocs != null) {
+        cmdDocs = cmdDocs.content.join("\n");
+      } else
         console.error("Docs not found", serviceName, cmdName);
     }
 
@@ -198,12 +199,59 @@ async function iter(ret, serviceName, content, services) {
   }
 }
 
-async function getServiceStuff(services) {
+async function getServiceStuff(serviceName, services) {
   var ret = {services: {}, interfaces: {}};
 
-  // Now we have only services
   var promises = iterate(services, iter.bind(null, ret));
   await Promise.all(promises)
+
+  // Fix up the documentation links ! Find all doc links
+  await Promise.all(Object.entries(ret.interfaces).map(function([ifaceName, iface]) {
+    return Promise.all(iface.cmdList.map(async function(cmd) {
+      if (cmd.doc != null) {
+        // Turn it into json to do filtering
+        var jsonCmdDocs = await pro(pandoc)(cmd.doc, 'mediawiki', 'json');
+        jsonCmdDocs = pandocfilter.filter(JSON.parse(jsonCmdDocs), function(type, content, format, meta) {
+          if (type == 'Link') {
+            let [attrs, inlines, target] = content;
+            var newLink = null;
+            // If the link is relative, try to find a function or interface
+            // named by it first, and do a relative link within SwIPC instead.
+            if (target[0].startsWith("#")) {
+              outerloop:
+              for (let [otherIfaceName, otherIface] of Object.entries(ret.interfaces)) {
+                // Is the name the same ? Maybe just the last part of the name ?
+                if (target[0].slice(1) == otherIfaceName ||
+                    target[0].slice(1) == otherIfaceName.split("::").slice(-1)[0]) {
+                  newLink = `#${otherIfaceName}`;
+                  break outerloop;
+                }
+                // Let's look for a cmd with the same name then !
+                for (let otherCmd of otherIface.cmdList) {
+                  if (otherCmd.name == target[0].slice(1)) {
+                    newLink = `#${otherIfaceName}(${otherCmd.id})`;
+                    break outerloop;
+                  }
+                }
+              }
+              if (newLink == null) {
+                // Let's just redirect to switchbrew then
+                newLink = "http://switchbrew.org/index.php?title=" + serviceName + target[0];
+              }
+            } else {
+              // If the link is not relative, let's just link to switchbrew.
+              newLink = "http://switchbrew.org/index.php?title=" + target[0];
+            }
+            return pandocfilter.Link(attrs, inlines, [newLink, target[1]]);
+          }
+        }, "");
+        // And finally, turn it into Github-Flavored Markdown (For the ASCII
+        // tables)
+        cmd.doc = await pro(pandoc)(JSON.stringify(jsonCmdDocs), 'json', 'gfm');
+      }
+    }));
+  }));
+
   return ret;
 }
 
@@ -215,7 +263,7 @@ async function retrieveServices() {
   delete services['Service List'];
 
   var ret = {services: {}, interfaces: {}};
-  ret = Object.assign({}, ret, await getServiceStuff(services));
+  ret = Object.assign({}, ret, await getServiceStuff("Services API", services));
 
   var servicePages = parseWikiTable(serviceList.content);
   for (var servicePage of servicePages) {
@@ -223,7 +271,7 @@ async function retrieveServices() {
       var pageName = s.substring(0, s.indexOf("]]"));
       if (pageName == "") continue;
       let page = await retrievePage(pageName);
-      let { services, interfaces } = await getServiceStuff(page)
+      let { services, interfaces } = await getServiceStuff(pageName, page)
       ret.services = Object.assign({}, ret.services, services);
       ret.interfaces = Object.assign({}, ret.interfaces, interfaces);
     }
