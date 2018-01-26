@@ -1766,11 +1766,13 @@
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::am::service::IAllSystemAppletProxiesService(201))"></input>
 							  <label for="showDocs(nn::am::service::IAllSystemAppletProxiesService(201))" class="showDocsLabel"></label>
 							  <code class="signature">[201, 3.0.0+] <a href="#nn::am::service::IAllSystemAppletProxiesService(201)">OpenLibraryAppletProxy</a>(u64, pid, KObject, buffer&lt;<a href="types.html#nn::am::AppletAttribute">nn::am::AppletAttribute</a>, 0x15, 0x80&gt;) -&gt; object&lt;<a href="ifaces.html#nn::am::service::ILibraryAppletProxy">nn::am::service::ILibraryAppletProxy</a>&gt;</code>
-							  <div class="docs"><p>Returns an <a href="#IApplicationProxy" title="wikilink">#IApplicationProxy</a>.</p>
-							<p>Takes a <a href="IPC_Marshalling" title="wikilink">reserved</a> input u64(official
-							user-processes use hard-coded value 0), a PID,a process
-							copy-handle(cur-proc handle alias), and an 0x80-byte type-0x15 input
-							buffer <strong>AppletAttribute</strong>.</p>
+							  <div class="docs"><p>Returns an
+							<a href="http://switchbrew.org/index.php?title=AM%20services#IApplicationProxy" title="wikilink">#IApplicationProxy</a>.</p>
+							<p>Takes a
+							<a href="http://switchbrew.org/index.php?title=IPC_Marshalling" title="wikilink">reserved</a>
+							input u64(official user-processes use hard-coded value 0), a PID,a
+							process copy-handle(cur-proc handle alias), and an 0x80-byte type-0x15
+							input buffer <strong>AppletAttribute</strong>.</p>
 							<p>Official user-processes use the same retry loop with this as the other
 							Open*Proxy commands.</p>
 							</div>
@@ -2264,11 +2266,14 @@
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::am::service::IApplicationProxyService(0))"></input>
 							  <label for="showDocs(nn::am::service::IApplicationProxyService(0))" class="showDocsLabel"></label>
 							  <code class="signature">[0] <a href="#nn::am::service::IApplicationProxyService(0)">OpenApplicationProxy</a>(u64, pid, KObject) -&gt; object&lt;<a href="ifaces.html#nn::am::service::IApplicationProxy">nn::am::service::IApplicationProxy</a>&gt;</code>
-							  <div class="docs"><p>Returns an <a href="#IApplicationProxy" title="wikilink">#IApplicationProxy</a>. See
-							<a href="#appletAE" title="wikilink">#appletAE</a>.</p>
-							<p>Takes a <a href="IPC_Marshalling" title="wikilink">reserved</a> input u64(official
-							user-processes use hard-coded value 0), a PID, and a process
-							copy-handle(cur-proc handle alias).</p>
+							  <div class="docs"><p>Returns an
+							<a href="http://switchbrew.org/index.php?title=AM%20services#IApplicationProxy" title="wikilink">#IApplicationProxy</a>.
+							See
+							<a href="http://switchbrew.org/index.php?title=AM%20services#appletAE" title="wikilink">#appletAE</a>.</p>
+							<p>Takes a
+							<a href="http://switchbrew.org/index.php?title=IPC_Marshalling" title="wikilink">reserved</a>
+							input u64(official user-processes use hard-coded value 0), a PID, and a
+							process copy-handle(cur-proc handle alias).</p>
 							<p>On failure, official user-processes will retry using this command in a
 							loop while the retval is 0x19280, with svcSleepThread(10000000) being
 							called first.</p>
@@ -4709,9 +4714,9 @@
 							  <label for="showDocs(nn::audio::detail::IAudioOut(5))" class="showDocsLabel"></label>
 							  <code class="signature">[5] <a href="#nn::audio::detail::IAudioOut(5)">GetReleasedAudioOutBuffer</a>() -&gt; (u32, buffer&lt;unknown, 6, 0&gt;)</code>
 							  <div class="docs"><p>Takes a buffer, which it will fill with the identifiers passed from
-							<a href="#AppendAudioOutBuffer" title="wikilink">#AppendAudioOutBuffer</a> of audio
-							buffers that have been released. Will return a u32 (may indicate how
-							many buffers were released?)</p>
+							<a href="#nn::audio::detail::IAudioOut(3)" title="wikilink">#AppendAudioOutBuffer</a>
+							of audio buffers that have been released. Will return a u32 (may
+							indicate how many buffers were released?)</p>
 							</div>
 							</li>
 							<li class="command" value="6" id="nn::audio::detail::IAudioOut(6)">
@@ -4744,9 +4749,9 @@
 							  <label for="showDocs(nn::audio::detail::IAudioOut(8))" class="showDocsLabel"></label>
 							  <code class="signature">[8] <a href="#nn::audio::detail::IAudioOut(8)">GetReleasedAudioOutBuffer</a>() -&gt; (u32, buffer&lt;unknown, 0x22, 0&gt;)</code>
 							  <div class="docs"><p>Takes a buffer, which it will fill with the identifiers passed from
-							<a href="#AppendAudioOutBuffer" title="wikilink">#AppendAudioOutBuffer</a> of audio
-							buffers that have been released. Will return a u32 (may indicate how
-							many buffers were released?)</p>
+							<a href="#nn::audio::detail::IAudioOut(3)" title="wikilink">#AppendAudioOutBuffer</a>
+							of audio buffers that have been released. Will return a u32 (may
+							indicate how many buffers were released?)</p>
 							</div>
 							</li>
 						</ol>
@@ -4783,8 +4788,9 @@
 							  <code class="signature">[1] <a href="#nn::audio::detail::IAudioOutManager(1)">OpenAudioOut</a>(u64, u64, pid, KObject, buffer&lt;unknown, 5, 0&gt;) -&gt; (u128, IUnknown, buffer&lt;unknown, 6, 0&gt;)</code>
 							  <div class="docs"><p>Takes two u64s (an interface ID and a PID placeholder?), a PID, a
 							process handle, and the name of the interface you want to connect to.
-							Returns an <a href="#IAudioOut" title="wikilink">#IAudioOut</a> object and four u32s:
-							the sample rate, channel count, <a href="#PCM_format" title="wikilink">PCM format</a>,
+							Returns an <a href="#nn::audio::detail::IAudioOut" title="wikilink">#IAudioOut</a>
+							object and four u32s: the sample rate, channel count, <a href="http://switchbrew.org/index.php?title=Audio%20services#PCM_format" title="wikilink">PCM
+							format</a>,
 							and an unknown field.</p>
 							</div>
 							</li>
@@ -4849,7 +4855,7 @@
 							  <label for="showDocs(nn::audio::detail::IAudioOutManagerForDebugger(0))" class="showDocsLabel"></label>
 							  <code class="signature">[0] <a href="#nn::audio::detail::IAudioOutManagerForDebugger(0)">RequestSuspendForDebug</a>(u64)</code>
 							  <div class="docs"><p>Takes an
-							<a href="AM_services#AppletResourceUserId" title="wikilink">AppletResourceUserId</a>.
+							<a href="http://switchbrew.org/index.php?title=AM_services#AppletResourceUserId" title="wikilink">AppletResourceUserId</a>.
 							(u64)</p>
 							</div>
 							</li>
@@ -4858,7 +4864,7 @@
 							  <label for="showDocs(nn::audio::detail::IAudioOutManagerForDebugger(1))" class="showDocsLabel"></label>
 							  <code class="signature">[1] <a href="#nn::audio::detail::IAudioOutManagerForDebugger(1)">RequestResumeForDebug</a>(u64)</code>
 							  <div class="docs"><p>Takes an
-							<a href="AM_services#AppletResourceUserId" title="wikilink">AppletResourceUserId</a>.
+							<a href="http://switchbrew.org/index.php?title=AM_services#AppletResourceUserId" title="wikilink">AppletResourceUserId</a>.
 							(u64)</p>
 							</div>
 							</li>
@@ -5132,8 +5138,9 @@
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::audio::detail::ICodecController(4))"></input>
 							  <label for="showDocs(nn::audio::detail::ICodecController(4))" class="showDocsLabel"></label>
 							  <code class="signature">[4] <a href="#nn::audio::detail::ICodecController(4)">SetCodecVolume</a>()</code>
-							  <div class="docs"><p>Takes a Volume (uint32)</p>
-							<p><a href="Category:Services" title="wikilink">Category:Services</a></p>
+							  <div class="docs"><p>Takes a Volume
+							(uint32)</p>
+							<p><a href="http://switchbrew.org/index.php?title=Category:Services" title="wikilink">Category:Services</a></p>
 							</div>
 							</li>
 							<li class="command" value="5" id="nn::audio::detail::ICodecController(5)">
@@ -10264,8 +10271,10 @@
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::hid::IHidServer(0))"></input>
 							  <label for="showDocs(nn::hid::IHidServer(0))" class="showDocsLabel"></label>
 							  <code class="signature">[0] <a href="#nn::hid::IHidServer(0)">CreateAppletResource</a>(<a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid) -&gt; object&lt;<a href="ifaces.html#nn::hid::IAppletResource">nn::hid::IAppletResource</a>&gt;</code>
-							  <div class="docs"><p>Takes a PID and an u64 <a href="AM_services" title="wikilink">AppletResourceUserId</a>.
-							Returns an <a href="#IAppletResource" title="wikilink">#IAppletResource</a>.</p>
+							  <div class="docs"><p>Takes a PID and an u64
+							<a href="http://switchbrew.org/index.php?title=AM_services" title="wikilink">AppletResourceUserId</a>.
+							Returns an
+							<a href="http://switchbrew.org/index.php?title=HID%20services#IAppletResource" title="wikilink">#IAppletResource</a>.</p>
 							</div>
 							</li>
 							<li class="command" value="1" id="nn::hid::IHidServer(1)">
@@ -10584,7 +10593,8 @@
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::hid::IHidServer(129))"></input>
 							  <label for="showDocs(nn::hid::IHidServer(129))" class="showDocsLabel"></label>
 							  <code class="signature">[129] <a href="#nn::hid::IHidServer(129)">GetNpadHandheldActivationMode</a>(<a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid) -&gt; i64</code>
-							  <div class="docs"><p>Takes a PID and an u64 <a href="AM_services" title="wikilink">AppletResourceUserId</a>.
+							  <div class="docs"><p>Takes a PID and an u64
+							<a href="http://switchbrew.org/index.php?title=AM_services" title="wikilink">AppletResourceUserId</a>.
 							Returns an output u64. Official user-processes panic if the output u64
 							is not 0-2.</p>
 							</div>
@@ -10619,7 +10629,7 @@
 							  <code class="signature">[201] <a href="#nn::hid::IHidServer(201)">SendVibrationValue</a>(<a href="types.html#nn::hid::VibrationDeviceHandle">nn::hid::VibrationDeviceHandle</a>, align&lt;4, <a href="types.html#nn::hid::VibrationValue">nn::hid::VibrationValue</a>&gt;, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid)</code>
 							  <div class="docs"><p>Takes a PID-descriptor, an u32 VibrationDeviceHandle, 0x10-byte
 							VibrationValue immediately after that, and an u64
-							<a href="AM_services" title="wikilink">AppletResourceUserId</a>.</p>
+							<a href="http://switchbrew.org/index.php?title=AM_services" title="wikilink">AppletResourceUserId</a>.</p>
 							</div>
 							</li>
 							<li class="command" value="202" id="nn::hid::IHidServer(202)">
@@ -10627,8 +10637,8 @@
 							  <label for="showDocs(nn::hid::IHidServer(202))" class="showDocsLabel"></label>
 							  <code class="signature">[202] <a href="#nn::hid::IHidServer(202)">GetActualVibrationValue</a>(<a href="types.html#nn::hid::VibrationDeviceHandle">nn::hid::VibrationDeviceHandle</a>, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid) -&gt; <a href="types.html#nn::hid::VibrationValue">nn::hid::VibrationValue</a></code>
 							  <div class="docs"><p>Takes a PID-descriptor, an u32 VibrationDeviceHandle, and an u64
-							<a href="AM_services" title="wikilink">AppletResourceUserId</a>. Returns the 0x10-byte
-							VibrationValue.</p>
+							<a href="http://switchbrew.org/index.php?title=AM_services" title="wikilink">AppletResourceUserId</a>.
+							Returns the 0x10-byte VibrationValue.</p>
 							</div>
 							</li>
 							<li class="command" value="203" id="nn::hid::IHidServer(203)">
@@ -11420,7 +11430,8 @@
 							  <label for="showDocs(nn::irsensor::IIrSensorServer(302))" class="showDocsLabel"></label>
 							  <code class="signature">[302] <a href="#nn::irsensor::IIrSensorServer(302)">ActivateIrsensor</a>(<a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid)</code>
 							  <div class="docs"><p>Takes a PID-descriptor and an
-							<a href="AM_services" title="wikilink">AppletResourceUserId</a>. No output.</p>
+							<a href="http://switchbrew.org/index.php?title=AM_services" title="wikilink">AppletResourceUserId</a>.
+							No output.</p>
 							</div>
 							</li>
 							<li class="command" value="303" id="nn::irsensor::IIrSensorServer(303)">
@@ -11428,7 +11439,8 @@
 							  <label for="showDocs(nn::irsensor::IIrSensorServer(303))" class="showDocsLabel"></label>
 							  <code class="signature">[303] <a href="#nn::irsensor::IIrSensorServer(303)">DeactivateIrsensor</a>(<a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid)</code>
 							  <div class="docs"><p>Takes a PID-descriptor and an
-							<a href="AM_services" title="wikilink">AppletResourceUserId</a>. No output.</p>
+							<a href="http://switchbrew.org/index.php?title=AM_services" title="wikilink">AppletResourceUserId</a>.
+							No output.</p>
 							</div>
 							</li>
 							<li class="command" value="304" id="nn::irsensor::IIrSensorServer(304)">
@@ -11436,8 +11448,8 @@
 							  <label for="showDocs(nn::irsensor::IIrSensorServer(304))" class="showDocsLabel"></label>
 							  <code class="signature">[304] <a href="#nn::irsensor::IIrSensorServer(304)">GetIrsensorSharedMemoryHandle</a>(<a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid) -&gt; KObject</code>
 							  <div class="docs"><p>Takes a PID-descriptor and an
-							<a href="AM_services" title="wikilink">AppletResourceUserId</a>. Returns a SharedMemory
-							handle.</p>
+							<a href="http://switchbrew.org/index.php?title=AM_services" title="wikilink">AppletResourceUserId</a>.
+							Returns a SharedMemory handle.</p>
 							<p>The SharedMemory is mapped with permissions=read-only and size=0x8000.</p>
 							</div>
 							</li>
@@ -11446,8 +11458,10 @@
 							  <label for="showDocs(nn::irsensor::IIrSensorServer(305))" class="showDocsLabel"></label>
 							  <code class="signature">[305] <a href="#nn::irsensor::IIrSensorServer(305)">StopImageProcessor</a>(<a href="types.html#nn::irsensor::IrCameraHandle">nn::irsensor::IrCameraHandle</a>, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid)</code>
 							  <div class="docs"><p>Takes a PID-descriptor, an
-							<a href="#IrCameraHandle" title="wikilink">#IrCameraHandle</a>, and an
-							<a href="AM_services" title="wikilink">AppletResourceUserId</a>. No output.</p>
+							<a href="http://switchbrew.org/index.php?title=HID%20services#IrCameraHandle" title="wikilink">#IrCameraHandle</a>,
+							and an
+							<a href="http://switchbrew.org/index.php?title=AM_services" title="wikilink">AppletResourceUserId</a>.
+							No output.</p>
 							</div>
 							</li>
 							<li class="command" value="306" id="nn::irsensor::IIrSensorServer(306)">
@@ -11455,9 +11469,11 @@
 							  <label for="showDocs(nn::irsensor::IIrSensorServer(306))" class="showDocsLabel"></label>
 							  <code class="signature">[306] <a href="#nn::irsensor::IIrSensorServer(306)">RunMomentProcessor</a>(<a href="types.html#nn::irsensor::IrCameraHandle">nn::irsensor::IrCameraHandle</a>, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, <a href="types.html#nn::irsensor::PackedMomentProcessorConfig">nn::irsensor::PackedMomentProcessorConfig</a>, pid)</code>
 							  <div class="docs"><p>Takes a PID-descriptor, an
-							<a href="#IrCameraHandle" title="wikilink">#IrCameraHandle</a>, an
-							<a href="AM_services" title="wikilink">AppletResourceUserId</a>, and a
-							<a href="#PackedMomentProcessorConfig" title="wikilink">#PackedMomentProcessorConfig</a>.
+							<a href="http://switchbrew.org/index.php?title=HID%20services#IrCameraHandle" title="wikilink">#IrCameraHandle</a>,
+							an
+							<a href="http://switchbrew.org/index.php?title=AM_services" title="wikilink">AppletResourceUserId</a>,
+							and a
+							<a href="http://switchbrew.org/index.php?title=HID%20services#PackedMomentProcessorConfig" title="wikilink">#PackedMomentProcessorConfig</a>.
 							No output.</p>
 							</div>
 							</li>
@@ -11466,9 +11482,11 @@
 							  <label for="showDocs(nn::irsensor::IIrSensorServer(307))" class="showDocsLabel"></label>
 							  <code class="signature">[307] <a href="#nn::irsensor::IIrSensorServer(307)">RunClusteringProcessor</a>(<a href="types.html#nn::irsensor::IrCameraHandle">nn::irsensor::IrCameraHandle</a>, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, <a href="types.html#nn::irsensor::PackedClusteringProcessorConfig">nn::irsensor::PackedClusteringProcessorConfig</a>, pid)</code>
 							  <div class="docs"><p>Takes a PID-descriptor, an
-							<a href="#IrCameraHandle" title="wikilink">#IrCameraHandle</a>, an
-							<a href="AM_services" title="wikilink">AppletResourceUserId</a>, and a
-							<a href="#PackedClusteringProcessorConfig" title="wikilink">#PackedClusteringProcessorConfig</a>.
+							<a href="http://switchbrew.org/index.php?title=HID%20services#IrCameraHandle" title="wikilink">#IrCameraHandle</a>,
+							an
+							<a href="http://switchbrew.org/index.php?title=AM_services" title="wikilink">AppletResourceUserId</a>,
+							and a
+							<a href="http://switchbrew.org/index.php?title=HID%20services#PackedClusteringProcessorConfig" title="wikilink">#PackedClusteringProcessorConfig</a>.
 							No output.</p>
 							</div>
 							</li>
@@ -11477,9 +11495,11 @@
 							  <label for="showDocs(nn::irsensor::IIrSensorServer(308))" class="showDocsLabel"></label>
 							  <code class="signature">[308] <a href="#nn::irsensor::IIrSensorServer(308)">RunImageTransferProcessor</a>(<a href="types.html#nn::irsensor::IrCameraHandle">nn::irsensor::IrCameraHandle</a>, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, <a href="types.html#nn::irsensor::PackedImageTransferProcessorConfig">nn::irsensor::PackedImageTransferProcessorConfig</a>, u64, pid, KObject)</code>
 							  <div class="docs"><p>Takes a PID-descriptor, an
-							<a href="#IrCameraHandle" title="wikilink">#IrCameraHandle</a>, an
-							<a href="AM_services" title="wikilink">AppletResourceUserId</a>, a
-							<a href="#PackedImageTransferProcessorConfig" title="wikilink">#PackedImageTransferProcessorConfig</a>,
+							<a href="http://switchbrew.org/index.php?title=HID%20services#IrCameraHandle" title="wikilink">#IrCameraHandle</a>,
+							an
+							<a href="http://switchbrew.org/index.php?title=AM_services" title="wikilink">AppletResourceUserId</a>,
+							a
+							<a href="http://switchbrew.org/index.php?title=HID%20services#PackedImageTransferProcessorConfig" title="wikilink">#PackedImageTransferProcessorConfig</a>,
 							an u64 for the TransferMemory_size, and a TransferMemory handle. No
 							output.</p>
 							<p>Official sw creates the TransferMemory with an user-specified buffer and
@@ -11491,9 +11511,11 @@
 							  <label for="showDocs(nn::irsensor::IIrSensorServer(309))" class="showDocsLabel"></label>
 							  <code class="signature">[309] <a href="#nn::irsensor::IIrSensorServer(309)">GetImageTransferProcessorState</a>(<a href="types.html#nn::irsensor::IrCameraHandle">nn::irsensor::IrCameraHandle</a>, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid) -&gt; (<a href="types.html#nn::irsensor::ImageTransferProcessorState">nn::irsensor::ImageTransferProcessorState</a>, buffer&lt;unknown, 6, 0&gt;)</code>
 							  <div class="docs"><p>Takes a PID-descriptor, a type-0x6 output buffer, an
-							<a href="#IrCameraHandle" title="wikilink">#IrCameraHandle</a>, and an
-							<a href="AM_services" title="wikilink">AppletResourceUserId</a>. Returns an
-							<a href="#ImageTransferProcessorState" title="wikilink">#ImageTransferProcessorState</a>.
+							<a href="http://switchbrew.org/index.php?title=HID%20services#IrCameraHandle" title="wikilink">#IrCameraHandle</a>,
+							and an
+							<a href="http://switchbrew.org/index.php?title=AM_services" title="wikilink">AppletResourceUserId</a>.
+							Returns an
+							<a href="http://switchbrew.org/index.php?title=HID%20services#ImageTransferProcessorState" title="wikilink">#ImageTransferProcessorState</a>.
 							No output.</p>
 							</div>
 							</li>
@@ -11502,10 +11524,12 @@
 							  <label for="showDocs(nn::irsensor::IIrSensorServer(310))" class="showDocsLabel"></label>
 							  <code class="signature">[310] <a href="#nn::irsensor::IIrSensorServer(310)">RunTeraPluginProcessor</a>(<a href="types.html#nn::irsensor::IrCameraHandle">nn::irsensor::IrCameraHandle</a>, align&lt;2, <a href="types.html#nn::irsensor::PackedTeraPluginProcessorConfig">nn::irsensor::PackedTeraPluginProcessorConfig</a>&gt;, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid)</code>
 							  <div class="docs"><p>Takes a PID-descriptor, an
-							<a href="#IrCameraHandle" title="wikilink">#IrCameraHandle</a>, a
-							<a href="#PackedTeraPluginProcessorConfig" title="wikilink">#PackedTeraPluginProcessorConfig</a>
+							<a href="http://switchbrew.org/index.php?title=HID%20services#IrCameraHandle" title="wikilink">#IrCameraHandle</a>,
+							a
+							<a href="http://switchbrew.org/index.php?title=HID%20services#PackedTeraPluginProcessorConfig" title="wikilink">#PackedTeraPluginProcessorConfig</a>
 							(immediately after the previous word), and an
-							<a href="AM_services" title="wikilink">AppletResourceUserId</a>. No output.</p>
+							<a href="http://switchbrew.org/index.php?title=AM_services" title="wikilink">AppletResourceUserId</a>.
+							No output.</p>
 							</div>
 							</li>
 							<li class="command" value="311" id="nn::irsensor::IIrSensorServer(311)">
@@ -11513,7 +11537,7 @@
 							  <label for="showDocs(nn::irsensor::IIrSensorServer(311))" class="showDocsLabel"></label>
 							  <code class="signature">[311] <a href="#nn::irsensor::IIrSensorServer(311)">GetNpadIrCameraHandle</a>(u32) -&gt; <a href="types.html#nn::irsensor::IrCameraHandle">nn::irsensor::IrCameraHandle</a></code>
 							  <div class="docs"><p>Takes an input u32. Returns an output
-							<a href="#IrCameraHandle" title="wikilink">#IrCameraHandle</a>.</p>
+							<a href="http://switchbrew.org/index.php?title=HID%20services#IrCameraHandle" title="wikilink">#IrCameraHandle</a>.</p>
 							</div>
 							</li>
 							<li class="command" value="312" id="nn::irsensor::IIrSensorServer(312)">
@@ -11521,10 +11545,12 @@
 							  <label for="showDocs(nn::irsensor::IIrSensorServer(312))" class="showDocsLabel"></label>
 							  <code class="signature">[312] <a href="#nn::irsensor::IIrSensorServer(312)">RunDpdProcessor</a>(<a href="types.html#nn::irsensor::IrCameraHandle">nn::irsensor::IrCameraHandle</a>, align&lt;2, <a href="types.html#nn::irsensor::PackedDpdProcessorConfig">nn::irsensor::PackedDpdProcessorConfig</a>&gt;, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid)</code>
 							  <div class="docs"><p>Takes a PID-descriptor, an
-							<a href="#IrCameraHandle" title="wikilink">#IrCameraHandle</a>, a
-							<a href="#PackedDpdProcessorConfig" title="wikilink">#PackedDpdProcessorConfig</a>
+							<a href="http://switchbrew.org/index.php?title=HID%20services#IrCameraHandle" title="wikilink">#IrCameraHandle</a>,
+							a
+							<a href="http://switchbrew.org/index.php?title=HID%20services#PackedDpdProcessorConfig" title="wikilink">#PackedDpdProcessorConfig</a>
 							(immediately after the previous word), and an
-							<a href="AM_services" title="wikilink">AppletResourceUserId</a>. No output.</p>
+							<a href="http://switchbrew.org/index.php?title=AM_services" title="wikilink">AppletResourceUserId</a>.
+							No output.</p>
 							</div>
 							</li>
 							<li class="command" value="313" id="nn::irsensor::IIrSensorServer(313)">
@@ -11532,8 +11558,10 @@
 							  <label for="showDocs(nn::irsensor::IIrSensorServer(313))" class="showDocsLabel"></label>
 							  <code class="signature">[313] <a href="#nn::irsensor::IIrSensorServer(313)">SuspendImageProcessor</a>(<a href="types.html#nn::irsensor::IrCameraHandle">nn::irsensor::IrCameraHandle</a>, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid)</code>
 							  <div class="docs"><p>Takes a PID-descriptor, an
-							<a href="#IrCameraHandle" title="wikilink">#IrCameraHandle</a>, and an
-							<a href="AM_services" title="wikilink">AppletResourceUserId</a>. No output.</p>
+							<a href="http://switchbrew.org/index.php?title=HID%20services#IrCameraHandle" title="wikilink">#IrCameraHandle</a>,
+							and an
+							<a href="http://switchbrew.org/index.php?title=AM_services" title="wikilink">AppletResourceUserId</a>.
+							No output.</p>
 							</div>
 							</li>
 							<li class="command" value="314" id="nn::irsensor::IIrSensorServer(314)">
@@ -11541,9 +11569,12 @@
 							  <label for="showDocs(nn::irsensor::IIrSensorServer(314))" class="showDocsLabel"></label>
 							  <code class="signature">[314, 3.0.0+] <a href="#nn::irsensor::IIrSensorServer(314)">CheckFirmwareVersion</a>(<a href="types.html#nn::irsensor::IrCameraHandle">nn::irsensor::IrCameraHandle</a>, <a href="types.html#nn::irsensor::PackedMcuVersion">nn::irsensor::PackedMcuVersion</a>, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid)</code>
 							  <div class="docs"><p>Takes a PID-descriptor, an
-							<a href="#IrCameraHandle" title="wikilink">#IrCameraHandle</a>, a
-							<a href="#PackedMcuVersion" title="wikilink">#PackedMcuVersion</a>, and an
-							<a href="AM_services" title="wikilink">AppletResourceUserId</a>. No output.</p>
+							<a href="http://switchbrew.org/index.php?title=HID%20services#IrCameraHandle" title="wikilink">#IrCameraHandle</a>,
+							a
+							<a href="http://switchbrew.org/index.php?title=HID%20services#PackedMcuVersion" title="wikilink">#PackedMcuVersion</a>,
+							and an
+							<a href="http://switchbrew.org/index.php?title=AM_services" title="wikilink">AppletResourceUserId</a>.
+							No output.</p>
 							</div>
 							</li>
 						</ol>
@@ -11775,7 +11806,7 @@
 							  <label for="showDocs(nn::lbl::detail::ILblController(26))" class="showDocsLabel"></label>
 							  <code class="signature">[26, 3.0.0+] <a href="#nn::lbl::detail::ILblController(26)">EnableVrMode</a>()</code>
 							  <div class="docs"><p>No input/output. Used by
-							<a href="AM_services#SetVrModeEnabled" title="wikilink">AM_services#SetVrModeEnabled</a>.</p>
+							<a href="http://switchbrew.org/index.php?title=AM_services#SetVrModeEnabled" title="wikilink">AM_services#SetVrModeEnabled</a>.</p>
 							<p>Sets a global state field to 0x1.</p>
 							</div>
 							</li>
@@ -11784,9 +11815,10 @@
 							  <label for="showDocs(nn::lbl::detail::ILblController(27))" class="showDocsLabel"></label>
 							  <code class="signature">[27, 3.0.0+] <a href="#nn::lbl::detail::ILblController(27)">DisableVrMode</a>()</code>
 							  <div class="docs"><p>No input/output. Used by
-							<a href="AM_services#SetVrModeEnabled" title="wikilink">AM_services#SetVrModeEnabled</a>.</p>
+							<a href="http://switchbrew.org/index.php?title=AM_services#SetVrModeEnabled" title="wikilink">AM_services#SetVrModeEnabled</a>.</p>
 							<p>Sets the global state field used by
-							<a href="#EnableVrMode" title="wikilink">#EnableVrMode</a> to 0x0.</p>
+							<a href="#nn::lbl::detail::ILblController(26)" title="wikilink">#EnableVrMode</a> to
+							0x0.</p>
 							</div>
 							</li>
 							<li class="command" value="28" id="nn::lbl::detail::ILblController(28)">
@@ -12404,7 +12436,8 @@
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::ldr::detail::IProcessManagerInterface(3))"></input>
 							  <label for="showDocs(nn::ldr::detail::IProcessManagerInterface(3))" class="showDocsLabel"></label>
 							  <code class="signature">[3] <a href="#nn::ldr::detail::IProcessManagerInterface(3)">UnregisterTitle</a>()</code>
-							  <div class="docs"><p>Takes the index from <a href="#RegisterTitle" title="wikilink">#RegisterTitle</a>.</p>
+							  <div class="docs"><p>Takes the index from
+							<a href="#nn::ldr::detail::IProcessManagerInterface(2)" title="wikilink">#RegisterTitle</a>.</p>
 							</div>
 							</li>
 						</ol>
@@ -12492,7 +12525,7 @@
 							| 0    | &quot;SFCI&quot;                      |
 							| 1    | 0x00000004                  |
 							| 2    | Always 0.                   |</p>
-							<p><a href="Category:Services" title="wikilink">Category:Services</a></p>
+							<p><a href="http://switchbrew.org/index.php?title=Category:Services" title="wikilink">Category:Services</a></p>
 							</div>
 							</li>
 						</ol>
@@ -13295,13 +13328,16 @@
 							entryoffset and a 0x10-sized entry. Returns a u32 for
 							total_read_entries.</p>
 							<p>The input entry is the output entry from
-							<a href="#GetTitleIdInfo" title="wikilink">#GetTitleIdInfo</a> starting at the TID. The
-							output 0x10-bytes entries are the same as the output from
-							<a href="#GetTitleIdInfo" title="wikilink">#GetTitleIdInfo</a> starting at the TID.
-							However, &quot;pad[0]&quot; is used for something else it seems?(0 for
-							everything except for TID <a href="Title_list" title="wikilink">010000000000081B</a>,
+							<a href="#nn::ncm::IContentMetaDatabase(6)" title="wikilink">#GetTitleIdInfo</a>
+							starting at the TID. The output 0x10-bytes entries are the same as the
+							output from
+							<a href="#nn::ncm::IContentMetaDatabase(6)" title="wikilink">#GetTitleIdInfo</a>
+							starting at the TID. However, &quot;pad[0]&quot; is used for something else it
+							seems?(0 for everything except for TID
+							<a href="http://switchbrew.org/index.php?title=Title_list" title="wikilink">010000000000081B</a>,
 							where it's 1)</p>
-							<p>See <a href="NCA#Meta_records" title="wikilink">NCA#Meta_records</a>.</p>
+							<p>See
+							<a href="http://switchbrew.org/index.php?title=NCA#Meta_records" title="wikilink">NCA#Meta_records</a>.</p>
 							<p>This reads the titlelist stored in the specified title, normally a title
 							with title-type 3, which is sysupdate-title 0100000000000816. Returns 0
 							with total_read_entries=0 when used with other title(s).</p>
@@ -13424,7 +13460,8 @@
 							  <code class="signature">[13] <a href="#nn::ncm::IContentStorage(13)">GetEntries</a>()</code>
 							  <div class="docs"><p>Takes an output buffer, u32 offset and gets all entries starting at that
 							offset. Returns number of entries read.</p>
-							<p>Each entry is a <a href="#NcaID" title="wikilink">#NcaID</a>.</p>
+							<p>Each entry is a
+							<a href="http://switchbrew.org/index.php?title=NCM%20services#NcaID" title="wikilink">#NcaID</a>.</p>
 							<p>The total read entries is exactly the same as the number of &quot;<hex>.nca&quot;
 							directories in the storage FS(or at least under the &quot;registered&quot;
 							directory?).</p>
@@ -13434,9 +13471,13 @@
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::ncm::IContentStorage(14))"></input>
 							  <label for="showDocs(nn::ncm::IContentStorage(14))" class="showDocsLabel"></label>
 							  <code class="signature">[14] <a href="#nn::ncm::IContentStorage(14)">GetEntrySize</a>()</code>
-							  <div class="docs"><p>Takes a <a href="#NcaID" title="wikilink">#NcaID</a> as input.</p>
+							  <div class="docs"><p>Takes a
+							<a href="http://switchbrew.org/index.php?title=NCM%20services#NcaID" title="wikilink">#NcaID</a>
+							as input.</p>
 							<p>Returns the total size readable by ReadEntryRaw. This is the same as the
-							size-field in the <a href="NAX0" title="wikilink">NAX0</a> &quot;<NcaID>.nca/00&quot; file.</p>
+							size-field in the
+							<a href="http://switchbrew.org/index.php?title=NAX0" title="wikilink">NAX0</a>
+							&quot;<NcaID>.nca/00&quot; file.</p>
 							</div>
 							</li>
 							<li class="command" value="15" id="nn::ncm::IContentStorage(15)">
@@ -13461,13 +13502,15 @@
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::ncm::IContentStorage(18))"></input>
 							  <label for="showDocs(nn::ncm::IContentStorage(18))" class="showDocsLabel"></label>
 							  <code class="signature">[18] <a href="#nn::ncm::IContentStorage(18)">ReadEntryRaw</a>()</code>
-							  <div class="docs"><p>Takes an output buffer, a <a href="#NcaID" title="wikilink">#NcaID</a> as input, and a
-							u64 file offset.</p>
+							  <div class="docs"><p>Takes an output buffer, a
+							<a href="http://switchbrew.org/index.php?title=NCM%20services#NcaID" title="wikilink">#NcaID</a>
+							as input, and a u64 file offset.</p>
 							<p>Returns encrypted looking data from the content in the
-							<a href="NAX0" title="wikilink">NAX0</a>. Doesn't match the encrypted raw data in the
-							<a href="NAX0" title="wikilink">NAX0</a> &quot;<NcaID>.nca/00&quot; file. Seems to be at least one
-							crypto layer below the initial NAX0 layer, since the data doesn't change
-							after NAX0 recreation.</p>
+							<a href="http://switchbrew.org/index.php?title=NAX0" title="wikilink">NAX0</a>. Doesn't
+							match the encrypted raw data in the
+							<a href="http://switchbrew.org/index.php?title=NAX0" title="wikilink">NAX0</a>
+							&quot;<NcaID>.nca/00&quot; file. Seems to be at least one crypto layer below the
+							initial NAX0 layer, since the data doesn't change after NAX0 recreation.</p>
 							<p>Manually modifying the content in the NAX0(starting at offset 0x4000)
 							results in different output data being returned by this cmd. Changing
 							any data within the first 0x10-bytes results in the entire 0x10-byte
@@ -13498,11 +13541,13 @@
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::ncm::IContentStorage(20))"></input>
 							  <label for="showDocs(nn::ncm::IContentStorage(20))" class="showDocsLabel"></label>
 							  <code class="signature">[20] <a href="#nn::ncm::IContentStorage(20)">GetNcaTitleInfo</a>()</code>
-							  <div class="docs"><p>Takes a <a href="#NcaID" title="wikilink">#NcaID</a> and returns the following
-							0x10-sized entry.</p>
+							  <div class="docs"><p>Takes a
+							<a href="http://switchbrew.org/index.php?title=NCM%20services#NcaID" title="wikilink">#NcaID</a>
+							and returns the following 0x10-sized entry.</p>
 							<p>With some NcaIDs this may return 0 with an all-zero output entry. This
 							seems to be the case for most/all (?) NandSystem NcaIds? This seems to
-							be only usable with NcaIds which have <a href="NCA" title="wikilink">type</a> 1 or 4.</p>
+							be only usable with NcaIds which have
+							<a href="http://switchbrew.org/index.php?title=NCA" title="wikilink">type</a> 1 or 4.</p>
 							<p>| Offset | Size | Description            |
 							| ------ | ---- | ---------------------- |
 							| 0x0    | 0x8  | Big-endian titleID     |
@@ -17204,7 +17249,7 @@
 							  <label for="showDocs(nn::ns::detail::IDevelopInterface(0))" class="showDocsLabel"></label>
 							  <code class="signature">[0] <a href="#nn::ns::detail::IDevelopInterface(0)">LaunchTitle</a>()</code>
 							  <div class="docs"><p>Wrapper for &quot;pm:shell&quot;
-							<a href="Process_Manager_services#LaunchProcess" title="wikilink">LaunchProcess</a>.</p>
+							<a href="http://switchbrew.org/index.php?title=Process_Manager_services#LaunchProcess" title="wikilink">LaunchProcess</a>.</p>
 							</div>
 							</li>
 							<li class="command" value="1" id="nn::ns::detail::IDevelopInterface(1)">
@@ -17212,7 +17257,7 @@
 							  <label for="showDocs(nn::ns::detail::IDevelopInterface(1))" class="showDocsLabel"></label>
 							  <code class="signature">[1] <a href="#nn::ns::detail::IDevelopInterface(1)">TerminateTitleByPid</a>()</code>
 							  <div class="docs"><p>Wrapper for &quot;pm:shell&quot;
-							<a href="Process_Manager_services#TerminateTitleByPid" title="wikilink">TerminateTitleByPid</a>.</p>
+							<a href="http://switchbrew.org/index.php?title=Process_Manager_services#TerminateTitleByPid" title="wikilink">TerminateTitleByPid</a>.</p>
 							</div>
 							</li>
 							<li class="command" value="2" id="nn::ns::detail::IDevelopInterface(2)">
@@ -17220,7 +17265,7 @@
 							  <label for="showDocs(nn::ns::detail::IDevelopInterface(2))" class="showDocsLabel"></label>
 							  <code class="signature">[2] <a href="#nn::ns::detail::IDevelopInterface(2)">TerminateTitleByTitleId</a>()</code>
 							  <div class="docs"><p>Wrapper for &quot;pm:shell&quot;
-							<a href="Process_Manager_services#TerminateTitleByTitleId" title="wikilink">TerminateTitleByTitleId</a>.</p>
+							<a href="http://switchbrew.org/index.php?title=Process_Manager_services#TerminateTitleByTitleId" title="wikilink">TerminateTitleByTitleId</a>.</p>
 							</div>
 							</li>
 							<li class="command" value="3" id="nn::ns::detail::IDevelopInterface(3)">
@@ -17228,7 +17273,7 @@
 							  <label for="showDocs(nn::ns::detail::IDevelopInterface(3))" class="showDocsLabel"></label>
 							  <code class="signature">[3] <a href="#nn::ns::detail::IDevelopInterface(3)">GetNsDevWaitEvent</a>()</code>
 							  <div class="docs"><p>Wrapper for &quot;pm:shell&quot;
-							<a href="Process_Manager_services#GetProcessEventWaiter" title="wikilink">GetProcessEventWaiter</a>.</p>
+							<a href="http://switchbrew.org/index.php?title=Process_Manager_services#GetProcessEventWaiter" title="wikilink">GetProcessEventWaiter</a>.</p>
 							</div>
 							</li>
 							<li class="command" value="4" id="nn::ns::detail::IDevelopInterface(4)">
@@ -17236,7 +17281,7 @@
 							  <label for="showDocs(nn::ns::detail::IDevelopInterface(4))" class="showDocsLabel"></label>
 							  <code class="signature">[4] <a href="#nn::ns::detail::IDevelopInterface(4)">GetNsDevEventType</a>()</code>
 							  <div class="docs"><p>Wrapper for &quot;pm:shell&quot;
-							<a href="Process_Manager_services#GetProcessEventType" title="wikilink">GetProcessEventType</a>.</p>
+							<a href="http://switchbrew.org/index.php?title=Process_Manager_services#GetProcessEventType" title="wikilink">GetProcessEventType</a>.</p>
 							</div>
 							</li>
 							<li class="command" value="5" id="nn::ns::detail::IDevelopInterface(5)">
@@ -17244,9 +17289,9 @@
 							  <label for="showDocs(nn::ns::detail::IDevelopInterface(5))" class="showDocsLabel"></label>
 							  <code class="signature">[5] <a href="#nn::ns::detail::IDevelopInterface(5)">TerminateCrashingTitle</a>()</code>
 							  <div class="docs"><p>Calls &quot;pm:shell&quot;
-							<a href="Process_Manager_services#GetCrashingProcessPid" title="wikilink">GetCrashingProcessPid</a>
+							<a href="http://switchbrew.org/index.php?title=Process_Manager_services#GetCrashingProcessPid" title="wikilink">GetCrashingProcessPid</a>
 							and sends PID to
-							<a href="Process_Manager_services#TerminateTitleByPid" title="wikilink">TerminateTitleByPid</a>.</p>
+							<a href="http://switchbrew.org/index.php?title=Process_Manager_services#TerminateTitleByPid" title="wikilink">TerminateTitleByPid</a>.</p>
 							</div>
 							</li>
 							<li class="command" value="6" id="nn::ns::detail::IDevelopInterface(6)">
@@ -17254,9 +17299,10 @@
 							  <label for="showDocs(nn::ns::detail::IDevelopInterface(6))" class="showDocsLabel"></label>
 							  <code class="signature">[6] <a href="#nn::ns::detail::IDevelopInterface(6)">InstallTitle</a>()</code>
 							  <div class="docs"><p>Calls
-							<a href="NCM_services#IPathResolverForStorage" title="wikilink">IPathResolverForStorage</a>
-							Set...NcaPath functions.</p>
-							<p><a href="Category:Services" title="wikilink">Category:Services</a></p>
+							<a href="http://switchbrew.org/index.php?title=NCM_services#IPathResolverForStorage" title="wikilink">IPathResolverForStorage</a>
+							Set...NcaPath
+							functions.</p>
+							<p><a href="http://switchbrew.org/index.php?title=Category:Services" title="wikilink">Category:Services</a></p>
 							</div>
 							</li>
 							<li class="command" value="7" id="nn::ns::detail::IDevelopInterface(7)">
@@ -17736,7 +17782,7 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100" style="width: 66%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: 72%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
@@ -17833,22 +17879,33 @@
 							
 							</li>
 							<li class="command" value="60" id="nn::nsd::detail::IManager(60)">
-							
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::nsd::detail::IManager(60))"></input>
+							  <label for="showDocs(nn::nsd::detail::IManager(60))" class="showDocsLabel"></label>
 							  <code class="signature">[60] <a href="#nn::nsd::detail::IManager(60)">ReadSaveDataFromFsForTest</a>() -&gt; buffer&lt;unknown, 0x16, 0x12bf0&gt;</code>
-							
+							  <div class="docs"><p>Requires the <code>nsd!test_mode</code> setting to be equal to 1.</p>
+							<p>Mounts the system save data for bsdsockets as <code>nsdsave</code> and reads from
+							<code>nsd:/file</code> to the specified buffer, at the specified size and offset
+							with no checks whatsoever. <code>nsdsave</code> is then unmounted.</p>
+							</div>
 							</li>
 							<li class="command" value="61" id="nn::nsd::detail::IManager(61)">
-							
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::nsd::detail::IManager(61))"></input>
+							  <label for="showDocs(nn::nsd::detail::IManager(61))" class="showDocsLabel"></label>
 							  <code class="signature">[61] <a href="#nn::nsd::detail::IManager(61)">WriteSaveDataToFsForTest</a>(buffer&lt;unknown, 0x15, 0x12bf0&gt;)</code>
-							
+							  <div class="docs"><p>Requires the <code>nsd!test_mode</code> setting to be equal to 1.</p>
+							<p>Mounts the system save data for bsdsockets as <code>nsdsave</code> and writes to
+							<code>nsd:/file</code> (appending is allowed) using the specified buffer, at the
+							specified size and offset, with no checks whatsoever. <code>nsdsave</code> is then
+							commited and unmounted.</p>
+							</div>
 							</li>
 							<li class="command" value="62" id="nn::nsd::detail::IManager(62)">
-							
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::nsd::detail::IManager(62))"></input>
+							  <label for="showDocs(nn::nsd::detail::IManager(62))" class="showDocsLabel"></label>
 							  <code class="signature">[62] <a href="#nn::nsd::detail::IManager(62)">DeleteSaveDataOfFsForTest</a>()</code>
-							
+							  <div class="docs"><p>Requires the <code>nsd!test_mode</code> setting to be equal to 1.</p>
+							<p>Deletes the system save data for bsdsockets.</p>
+							</div>
 							</li>
 						</ol>
 					</li>
@@ -18540,7 +18597,9 @@
 							  <code class="signature">[1204] <a href="#nn::pctl::detail::ipc::IParentalControlService(1204)">GenerateInquiryCode</a>() -&gt; <a href="types.html#nn::pctl::InquiryCode">nn::pctl::InquiryCode</a></code>
 							  <div class="docs"><p>This cmd takes no input, and produces 0x20 bytes of raw output
 							containing snprintf(&quot;%02d%08llu&quot;, 10, [inquiry_rnd]) on &lt;=
-							<a href="3.0.0" title="wikilink">3.0.0</a>. This changed on <a href="3.0.1" title="wikilink">3.0.1</a> to
+							<a href="http://switchbrew.org/index.php?title=3.0.0" title="wikilink">3.0.0</a>. This
+							changed on
+							<a href="http://switchbrew.org/index.php?title=3.0.1" title="wikilink">3.0.1</a> to
 							produce &quot;11(...)&quot; instead of &quot;10(...)&quot;.</p>
 							<p>The random number generation relies on TinyMT.</p>
 							</div>
@@ -18552,10 +18611,11 @@
 							  <div class="docs"><p>This cmd takes the 0x20 bytes produced by GenerateInquiryCode, and an
 							0x20 byte X descriptor containing snprintf(&quot;%08llu&quot;, master_key), and
 							returns a bool 00 if the master key is not valid, and 01 if it is.</p>
-							<p>Master Keys are validated as follows on &lt;= <a href="3.0.0" title="wikilink">3.0.0</a>:
-							first, svcSleepThread(1000000000LL) is called to introduce a delay to
-							prevent brute force attacks. Then, strlen(master_key) is called -- if
-							this is not 8, 0 is returned. Next, the inquiry code is regenerated and
+							<p>Master Keys are validated as follows on &lt;=
+							<a href="http://switchbrew.org/index.php?title=3.0.0" title="wikilink">3.0.0</a>: first,
+							svcSleepThread(1000000000LL) is called to introduce a delay to prevent
+							brute force attacks. Then, strlen(master_key) is called -- if this is
+							not 8, 0 is returned. Next, the inquiry code is regenerated and
 							snprintf(&quot;%02d%08llu&quot;, 10, generated_inquiry_rnd) is compared to the
 							inquiry data passed in as an argument. If this doesn't match, 0 is
 							returned. Then, hmac-sha256(snprintf(&quot;%02d%08llu&quot;, 10,
@@ -18563,8 +18623,9 @@
 							master key argument is compared to snprintf(&quot;%08llu&quot;, (hmac_result &amp;
 							0xFFFFFFFFFFFF) % 100000000). If this matches, 1 is returned, otherwise
 							0 is returned.</p>
-							<p>On <a href="3.0.1" title="wikilink">3.0.1</a> this was changed to use different hardcoded
-							keydata, and to pass 11 as the snprintf argument instead of 10.</p>
+							<p>On <a href="http://switchbrew.org/index.php?title=3.0.1" title="wikilink">3.0.1</a> this
+							was changed to use different hardcoded keydata, and to pass 11 as the
+							snprintf argument instead of 10.</p>
 							</div>
 							</li>
 							<li class="command" value="1206" id="nn::pctl::detail::ipc::IParentalControlService(1206)">
@@ -19318,31 +19379,38 @@
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::pl::detail::ISharedFontManager(0))"></input>
 							  <label for="showDocs(nn::pl::detail::ISharedFontManager(0))" class="showDocsLabel"></label>
 							  <code class="signature">[0] <a href="#nn::pl::detail::ISharedFontManager(0)">RequestLoad</a>(u32)</code>
-							  <div class="docs"><p>Takes a <a href="#SharedFontType" title="wikilink">#SharedFontType</a> (uint32)</p>
+							  <div class="docs"><p>Takes a
+							<a href="http://switchbrew.org/index.php?title=Shared%20Database%20services#SharedFontType" title="wikilink">#SharedFontType</a>
+							(uint32)</p>
 							</div>
 							</li>
 							<li class="command" value="1" id="nn::pl::detail::ISharedFontManager(1)">
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::pl::detail::ISharedFontManager(1))"></input>
 							  <label for="showDocs(nn::pl::detail::ISharedFontManager(1))" class="showDocsLabel"></label>
 							  <code class="signature">[1] <a href="#nn::pl::detail::ISharedFontManager(1)">GetLoadState</a>(u32) -&gt; u32</code>
-							  <div class="docs"><p>Takes a <a href="#SharedFontType" title="wikilink">#SharedFontType</a> (uint32), returns
-							the <a href="#LoadState" title="wikilink">#LoadState</a> (uint32).</p>
+							  <div class="docs"><p>Takes a
+							<a href="http://switchbrew.org/index.php?title=Shared%20Database%20services#SharedFontType" title="wikilink">#SharedFontType</a>
+							(uint32), returns the
+							<a href="http://switchbrew.org/index.php?title=Shared%20Database%20services#LoadState" title="wikilink">#LoadState</a>
+							(uint32).</p>
 							</div>
 							</li>
 							<li class="command" value="2" id="nn::pl::detail::ISharedFontManager(2)">
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::pl::detail::ISharedFontManager(2))"></input>
 							  <label for="showDocs(nn::pl::detail::ISharedFontManager(2))" class="showDocsLabel"></label>
 							  <code class="signature">[2] <a href="#nn::pl::detail::ISharedFontManager(2)">GetSize</a>(u32) -&gt; u32</code>
-							  <div class="docs"><p>Takes a <a href="#SharedFontType" title="wikilink">#SharedFontType</a> (uint32), returns
-							the Font Size (uint32)</p>
+							  <div class="docs"><p>Takes a
+							<a href="http://switchbrew.org/index.php?title=Shared%20Database%20services#SharedFontType" title="wikilink">#SharedFontType</a>
+							(uint32), returns the Font Size (uint32)</p>
 							</div>
 							</li>
 							<li class="command" value="3" id="nn::pl::detail::ISharedFontManager(3)">
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::pl::detail::ISharedFontManager(3))"></input>
 							  <label for="showDocs(nn::pl::detail::ISharedFontManager(3))" class="showDocsLabel"></label>
 							  <code class="signature">[3] <a href="#nn::pl::detail::ISharedFontManager(3)">GetSharedMemoryAddressOffset</a>(u32) -&gt; u32</code>
-							  <div class="docs"><p>Takes a <a href="#SharedFontType" title="wikilink">#SharedFontType</a> (uint32), returns
-							the offset (uint32) to the Font Address.</p>
+							  <div class="docs"><p>Takes a
+							<a href="http://switchbrew.org/index.php?title=Shared%20Database%20services#SharedFontType" title="wikilink">#SharedFontType</a>
+							(uint32), returns the offset (uint32) to the Font Address.</p>
 							</div>
 							</li>
 							<li class="command" value="4" id="nn::pl::detail::ISharedFontManager(4)">
@@ -19382,13 +19450,13 @@
 							<li class="command" value="0" id="nn::pm::detail::IBootModeInterface(0)">
 							
 							
-							  <code class="signature">[0] <a href="#nn::pm::detail::IBootModeInterface(0)">Init</a>() -&gt; u64</code>
+							  <code class="signature">[0] <a href="#nn::pm::detail::IBootModeInterface(0)">GetBootMode</a>() -&gt; u32</code>
 							
 							</li>
 							<li class="command" value="1" id="nn::pm::detail::IBootModeInterface(1)">
 							
 							
-							  <code class="signature">[1] <a href="#nn::pm::detail::IBootModeInterface(1)">EnableMaintenanceMode</a>()</code>
+							  <code class="signature">[1] <a href="#nn::pm::detail::IBootModeInterface(1)">SetMaintenanceBoot</a>()</code>
 							
 							</li>
 						</ol>
@@ -19517,7 +19585,7 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="width: 88%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
@@ -19529,21 +19597,24 @@
 						<h3>Commands:</h3>
 						<ol>
 							<li class="command" value="0" id="nn::pm::detail::IShellInterface(0)">
-							
-							
-							  <code class="signature">[0] <a href="#nn::pm::detail::IShellInterface(0)">LaunchTitle</a>(u64, <a href="types.html#nn::ApplicationId">nn::ApplicationId</a> tid)</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::pm::detail::IShellInterface(0))"></input>
+							  <label for="showDocs(nn::pm::detail::IShellInterface(0))" class="showDocsLabel"></label>
+							  <code class="signature">[0] <a href="#nn::pm::detail::IShellInterface(0)">LaunchProcess</a>()</code>
+							  <div class="docs"><p>Takes launch_flags, title-id, and storageID. See <a href="http://switchbrew.org/index.php?title=Process%20Manager%20services#Process_launch" title="wikilink">#Process
+							launch</a>.</p>
+							<p>Returns the u64 title PID.</p>
+							</div>
 							</li>
 							<li class="command" value="1" id="nn::pm::detail::IShellInterface(1)">
 							
 							
-							  <code class="signature">[1] <a href="#nn::pm::detail::IShellInterface(1)">Unknown1</a>(u64)</code>
+							  <code class="signature">[1] <a href="#nn::pm::detail::IShellInterface(1)">TerminateProcessByPid</a>(u64)</code>
 							
 							</li>
 							<li class="command" value="2" id="nn::pm::detail::IShellInterface(2)">
 							
 							
-							  <code class="signature">[2] <a href="#nn::pm::detail::IShellInterface(2)">Unknown2</a>(u64)</code>
+							  <code class="signature">[2] <a href="#nn::pm::detail::IShellInterface(2)">TerminateProcessByTitleId</a>(u64)</code>
 							
 							</li>
 							<li class="command" value="3" id="nn::pm::detail::IShellInterface(3)">
@@ -19553,34 +19624,49 @@
 							
 							</li>
 							<li class="command" value="4" id="nn::pm::detail::IShellInterface(4)">
-							
-							
-							  <code class="signature">[4] <a href="#nn::pm::detail::IShellInterface(4)">Unknown4</a>() -&gt; u128</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::pm::detail::IShellInterface(4))"></input>
+							  <label for="showDocs(nn::pm::detail::IShellInterface(4))" class="showDocsLabel"></label>
+							  <code class="signature">[4] <a href="#nn::pm::detail::IShellInterface(4)">GetProcessEventType</a>() -&gt; u128</code>
+							  <div class="docs"><p>Returns 1 if flags has mask 2 set.</p>
+							<p>Returns 2 if flags has mask 1 set and state is 6.</p>
+							<p>Returns 3 if flags has mask 0x10 set and not 0x20.</p>
+							<p>Returns 4 if flags has mask 0x30 set.</p>
+							<p>[2.0.0+] returns 5 if state &gt;= 2 and flags has mask 0x100 set.</p>
+							<p>Returns 0 if process is not found.</p>
+							</div>
 							</li>
 							<li class="command" value="5" id="nn::pm::detail::IShellInterface(5)">
-							
-							
-							  <code class="signature">[5] <a href="#nn::pm::detail::IShellInterface(5)">Unknown5</a>(u64)</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::pm::detail::IShellInterface(5))"></input>
+							  <label for="showDocs(nn::pm::detail::IShellInterface(5))" class="showDocsLabel"></label>
+							  <code class="signature">[5] <a href="#nn::pm::detail::IShellInterface(5)">FinalizeDeadProcess</a>(u64)</code>
+							  <div class="docs"><p>Takes a pid as input. If the process with pid has the state &quot;dead&quot;, it
+							unregisters the pid in fsp:pr, sm:m, and ldr:pm.</p>
+							<p>Then it removes the process from PMs internal linked-list of active
+							processes.</p>
+							</div>
 							</li>
 							<li class="command" value="6" id="nn::pm::detail::IShellInterface(6)">
-							
-							
-							  <code class="signature">[6] <a href="#nn::pm::detail::IShellInterface(6)">Unknown6</a>(u64)</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::pm::detail::IShellInterface(6))"></input>
+							  <label for="showDocs(nn::pm::detail::IShellInterface(6))" class="showDocsLabel"></label>
+							  <code class="signature">[6] <a href="#nn::pm::detail::IShellInterface(6)">ClearProcessNotificationFlag</a>(u64)</code>
+							  <div class="docs"><p>Takes a pid as input. Clears 0x10 from process flags.</p>
+							</div>
 							</li>
 							<li class="command" value="7" id="nn::pm::detail::IShellInterface(7)">
-							
-							
-							  <code class="signature">[7] <a href="#nn::pm::detail::IShellInterface(7)">Unknown7</a>()</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::pm::detail::IShellInterface(7))"></input>
+							  <label for="showDocs(nn::pm::detail::IShellInterface(7))" class="showDocsLabel"></label>
+							  <code class="signature">[7] <a href="#nn::pm::detail::IShellInterface(7)">NotifyBootFinished</a>()</code>
+							  <div class="docs"><p>Launches a process with hardcoded
+							<a href="http://switchbrew.org/index.php?title=boot2" title="wikilink">boot2</a>
+							title-id.</p>
+							</div>
 							</li>
 							<li class="command" value="8" id="nn::pm::detail::IShellInterface(8)">
-							
-							
-							  <code class="signature">[8] <a href="#nn::pm::detail::IShellInterface(8)">Unknown8</a>() -&gt; u64</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::pm::detail::IShellInterface(8))"></input>
+							  <label for="showDocs(nn::pm::detail::IShellInterface(8))" class="showDocsLabel"></label>
+							  <code class="signature">[8] <a href="#nn::pm::detail::IShellInterface(8)">GetApplicationPid</a>() -&gt; u64</code>
+							  <div class="docs"><p>Returns the pid of the application process.</p>
+							</div>
 							</li>
 						</ol>
 					</li>
@@ -20354,9 +20440,11 @@
 							  <code class="signature">[16] <a href="#nn::settings::IFactorySettingsServer(16)">GetSslKey</a>() -&gt; buffer&lt;<a href="types.html#nn::settings::factory::SslKey">nn::settings::factory::SslKey</a>, 0x16, 0x134&gt;</code>
 							  <div class="docs"><p>Takes a type-0x16 output buffer with fixed size 0x134.</p>
 							<p>Returns the extended SSL key (0x130 bytes) from
-							<a href="Calibration#CAL0" title="wikilink">CAL0</a>. If the extended key is not
-							programmed then it falls back to the normal SSL key (0x110 bytes).</p>
-							<p>Used by SSL-sysmodule, see <a href="SSL_services" title="wikilink">here</a>.</p>
+							<a href="http://switchbrew.org/index.php?title=Calibration#CAL0" title="wikilink">CAL0</a>.
+							If the extended key is not programmed then it falls back to the normal
+							SSL key (0x110 bytes).</p>
+							<p>Used by SSL-sysmodule, see
+							<a href="http://switchbrew.org/index.php?title=SSL_services" title="wikilink">here</a>.</p>
 							</div>
 							</li>
 							<li class="command" value="17" id="nn::settings::IFactorySettingsServer(17)">
@@ -20365,9 +20453,10 @@
 							  <code class="signature">[17] <a href="#nn::settings::IFactorySettingsServer(17)">GetSslCertificate</a>() -&gt; buffer&lt;<a href="types.html#nn::settings::factory::SslCertificate">nn::settings::factory::SslCertificate</a>, 0x16, 0x804&gt;</code>
 							  <div class="docs"><p>Takes a type-0x16 output buffer with fixed size 0x804.</p>
 							<p>Returns a
-							<a href="Settings_services#setcal_Container_Structure" title="wikilink">container</a>
+							<a href="http://switchbrew.org/index.php?title=Settings_services#setcal_Container_Structure" title="wikilink">container</a>
 							with the plaintext SSL certificate.</p>
-							<p>Used by SSL-sysmodule, see <a href="SSL_services" title="wikilink">here</a>.</p>
+							<p>Used by SSL-sysmodule, see
+							<a href="http://switchbrew.org/index.php?title=SSL_services" title="wikilink">here</a>.</p>
 							</div>
 							</li>
 							<li class="command" value="18" id="nn::settings::IFactorySettingsServer(18)">
@@ -20376,8 +20465,9 @@
 							  <code class="signature">[18] <a href="#nn::settings::IFactorySettingsServer(18)">GetGameCardKey</a>() -&gt; buffer&lt;<a href="types.html#nn::settings::factory::GameCardKey">nn::settings::factory::GameCardKey</a>, 0x16, 0x134&gt;</code>
 							  <div class="docs"><p>Takes a type-0x16 output buffer with fixed size 0x134.</p>
 							<p>Returns the extended GameCard key (0x130 bytes) from
-							<a href="Calibration#CAL0" title="wikilink">CAL0</a>. If the extended key is not
-							programmed then it falls back to the normal GameCard key (0x110 bytes).</p>
+							<a href="http://switchbrew.org/index.php?title=Calibration#CAL0" title="wikilink">CAL0</a>.
+							If the extended key is not programmed then it falls back to the normal
+							GameCard key (0x110 bytes).</p>
 							</div>
 							</li>
 							<li class="command" value="19" id="nn::settings::IFactorySettingsServer(19)">
@@ -20386,7 +20476,7 @@
 							  <code class="signature">[19] <a href="#nn::settings::IFactorySettingsServer(19)">GetGameCardCertificate</a>() -&gt; buffer&lt;<a href="types.html#nn::settings::factory::GameCardCertificate">nn::settings::factory::GameCardCertificate</a>, 0x16, 0x400&gt;</code>
 							  <div class="docs"><p>Takes a type-0x16 output buffer with fixed size 0x404.</p>
 							<p>Returns a
-							<a href="Settings_services#setcal_Container_Structure" title="wikilink">container</a>
+							<a href="http://switchbrew.org/index.php?title=Settings_services#setcal_Container_Structure" title="wikilink">container</a>
 							with the GameCard certificate.</p>
 							</div>
 							</li>
@@ -20395,9 +20485,9 @@
 							  <label for="showDocs(nn::settings::IFactorySettingsServer(20))" class="showDocsLabel"></label>
 							  <code class="signature">[20] <a href="#nn::settings::IFactorySettingsServer(20)">GetEciDeviceKey</a>() -&gt; <a href="types.html#nn::settings::factory::EccB233DeviceKey">nn::settings::factory::EccB233DeviceKey</a></code>
 							  <div class="docs"><p>Returns the extended device ECC-B233 key (0x50 bytes) from
-							<a href="Calibration#CAL0" title="wikilink">CAL0</a>. If the extended key is not
-							programmed then it falls back to the normal device ECC-B233 key (0x30
-							bytes).</p>
+							<a href="http://switchbrew.org/index.php?title=Calibration#CAL0" title="wikilink">CAL0</a>.
+							If the extended key is not programmed then it falls back to the normal
+							device ECC-B233 key (0x30 bytes).</p>
 							</div>
 							</li>
 							<li class="command" value="21" id="nn::settings::IFactorySettingsServer(21)">
@@ -20406,9 +20496,9 @@
 							  <code class="signature">[21] <a href="#nn::settings::IFactorySettingsServer(21)">GetEticketDeviceKey</a>() -&gt; buffer&lt;<a href="types.html#nn::settings::factory::Rsa2048DeviceKey">nn::settings::factory::Rsa2048DeviceKey</a>, 0x16, 0x244&gt;</code>
 							  <div class="docs"><p>Takes a type-0x16 output buffer with fixed size 0x244.</p>
 							<p>Returns the extended ETicket RSA-2048 key (0x240 bytes) from
-							<a href="Calibration#CAL0" title="wikilink">CAL0</a>. If the extended key is not
-							programmed then it falls back to the normal ETicket RSA-2048 key (0x220
-							bytes).</p>
+							<a href="http://switchbrew.org/index.php?title=Calibration#CAL0" title="wikilink">CAL0</a>.
+							If the extended key is not programmed then it falls back to the normal
+							ETicket RSA-2048 key (0x220 bytes).</p>
 							</div>
 							</li>
 							<li class="command" value="22" id="nn::settings::IFactorySettingsServer(22)">
@@ -20650,8 +20740,8 @@
 							  <div class="docs"><p>Takes a type-0x1A output buffer. User-processes use hard-coded size
 							0x100.</p>
 							<p>If needed, reads the content of the
-							<a href="System_Version_Title" title="wikilink">System_Version_Title</a> &quot;/file&quot; into
-							state. This is only done once.</p>
+							<a href="http://switchbrew.org/index.php?title=System_Version_Title" title="wikilink">System_Version_Title</a>
+							&quot;/file&quot; into state. This is only done once.</p>
 							<p>Then the above 0x100-byte data is copied to the output buffer.</p>
 							</div>
 							</li>
@@ -21357,8 +21447,11 @@
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::settings::ISystemSettingsServer(122))"></input>
 							  <label for="showDocs(nn::settings::ISystemSettingsServer(122))" class="showDocsLabel"></label>
 							  <code class="signature">[122, 4.0.0+] <a href="#nn::settings::ISystemSettingsServer(122)">GetServiceDiscoveryControlSettings</a>()</code>
-							  <div class="docs"><p>Returns 0x01 if <a href="Safemode" title="wikilink">safemode</a> needs to be launched.</p>
-							<p><a href="Category:Services" title="wikilink">Category:Services</a></p>
+							  <div class="docs"><p>Returns 0x01 if
+							<a href="http://switchbrew.org/index.php?title=Safemode" title="wikilink">safemode</a>
+							needs to be
+							launched.</p>
+							<p><a href="http://switchbrew.org/index.php?title=Category:Services" title="wikilink">Category:Services</a></p>
 							</div>
 							</li>
 							<li class="command" value="123" id="nn::settings::ISystemSettingsServer(123)">
@@ -21496,7 +21589,8 @@
 							  <label for="showDocs(nn::sm::detail::IManagerInterface(0))" class="showDocsLabel"></label>
 							  <code class="signature">[0] <a href="#nn::sm::detail::IManagerInterface(0)">RegisterProcess</a>(u64, buffer&lt;unknown, 5, 0&gt;, buffer&lt;unknown, 5, 0&gt;)</code>
 							  <div class="docs"><p>Takes a pid and two A descriptors with the ACID and ACI0 service lists.
-							That data originates from <a href="NPDM" title="wikilink">NPDM</a>.</p>
+							That data originates from
+							<a href="http://switchbrew.org/index.php?title=NPDM" title="wikilink">NPDM</a>.</p>
 							</div>
 							</li>
 							<li class="command" value="1" id="nn::sm::detail::IManagerInterface(1)">
@@ -21578,7 +21672,7 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="61" aria-valuemin="0" aria-valuemax="100" style="width: 61%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
@@ -21656,6 +21750,18 @@
 							
 							
 							  <code class="signature">[9] <a href="#nn::socket::resolver::IResolver(9)">CancelSocketCall</a>(u32, u64, pid)</code>
+							
+							</li>
+							<li class="command" value="10" id="nn::socket::resolver::IResolver(10)">
+							
+							
+							  <code class="signature">[10] <a href="#nn::socket::resolver::IResolver(10)">Unknown10</a>()</code>
+							
+							</li>
+							<li class="command" value="11" id="nn::socket::resolver::IResolver(11)">
+							
+							
+							  <code class="signature">[11] <a href="#nn::socket::resolver::IResolver(11)">Unknown11</a>()</code>
 							
 							</li>
 						</ol>
@@ -21929,24 +22035,26 @@
 							  <label for="showDocs(nn::spl::detail::IGeneralInterface(0))" class="showDocsLabel"></label>
 							  <code class="signature">[0] <a href="#nn::spl::detail::IGeneralInterface(0)">GetConfig</a>(u32) -&gt; u64</code>
 							  <div class="docs"><p>Takes a u32 (<strong>ConfigItem</strong>), and returns a u64 (<strong>ConfigVal</strong>).</p>
-							<p>| ConfigItem | Name                             |
-							| ---------- | -------------------------------- |
-							| 1          | DisableProgramVerification       |
-							| 2          | MemoryConfiguration              |
-							| 3          | SecurityEngineIRQNumber          |
-							| 4          | Returns 0x02?                    |
-							| 5          | HardwareType (0=Icosa, 1=Copper) |
-							| 6          | IsRetail                         |
-							| 7          | IsRecoveryBoot                   |
-							| 8          | DeviceId (byte7 clear)           |
-							| 9          | BootReason                       |
-							| 10         | MemoryArrange                    |
-							| 11         | IsDebugMode                      |
-							| 12         | KernelMemoryConfiguration        |
-							| 13         | BatteryProfile                   |</p>
-							<p><a href="Process_Manager_services" title="wikilink">PM</a> checks id1 and if non-zero,
-							calls fsp-pr SetEnabledProgramVerification(false).</p>
-							<p><a href="PCV_services" title="wikilink">PCV</a> configures memory profiles based on
+							<p>| ConfigItem | Name                                                  |
+							| ---------- | ----------------------------------------------------- |
+							| 1          | DisableProgramVerification                            |
+							| 2          | MemoryConfiguration                                   |
+							| 3          | SecurityEngineIRQNumber                               |
+							| 4          | Returns 0x02?                                         |
+							| 5          | HardwareType (0=Icosa (nx-abca2), 1=Copper (nx-abcb)) |
+							| 6          | IsRetail                                              |
+							| 7          | IsRecoveryBoot                                        |
+							| 8          | DeviceId (byte7 clear)                                |
+							| 9          | BootReason                                            |
+							| 10         | MemoryArrange                                         |
+							| 11         | IsDebugMode                                           |
+							| 12         | KernelMemoryConfiguration                             |
+							| 13         | BatteryProfile                                        |</p>
+							<p><a href="http://switchbrew.org/index.php?title=Process_Manager_services" title="wikilink">PM</a>
+							checks id1 and if non-zero, calls fsp-pr
+							SetEnabledProgramVerification(false).</p>
+							<p><a href="http://switchbrew.org/index.php?title=PCV_services" title="wikilink">PCV</a>
+							configures memory profiles based on
 							id2.</p>
 							<p>| Platform     | Version                                 | Revision | id2    |
 							| ------------ | --------------------------------------- | -------- | ------ |
@@ -21958,15 +22066,17 @@
 							| &quot;nx-abca2&quot;   | &quot;10_40800_NoCfgVersion_V9.8.7_V1.6&quot; | 3        | 2      |
 							|  |</p>
 							<p>SPL uses id3 for setting up the security engine IRQ.</p>
-							<p><a href="NIM_services" title="wikilink">NIM</a> checks that id8 output must match the
-							<a href="Settings_services" title="wikilink">set:cal</a> DeviceId with byte7 cleared,
-							otherwise panic.</p>
-							<p>[3.0.0+] <a href="Loader_services" title="wikilink">RO</a> checks id11, if set then
-							skipping NRR rsa signatures is allowed.</p>
+							<p><a href="http://switchbrew.org/index.php?title=NIM_services" title="wikilink">NIM</a>
+							checks that id8 output must match the
+							<a href="http://switchbrew.org/index.php?title=Settings_services" title="wikilink">set:cal</a>
+							DeviceId with byte7 cleared, otherwise panic.</p>
+							<p>[3.0.0+]
+							<a href="http://switchbrew.org/index.php?title=Loader_services" title="wikilink">RO</a>
+							checks id11, if set then skipping NRR rsa signatures is allowed.</p>
 							<p>Kernel uses id11 to determine behavior of svcBreak positive arguments.
 							It will break instead of just force-exiting the process which is what
 							happens on retail. [2.0.0+] This is also used with certain debug
-							<a href="SVC" title="wikilink">SVCs</a>.</p>
+							<a href="http://switchbrew.org/index.php?title=SVC" title="wikilink">SVCs</a>.</p>
 							<p>Kernel reads id12 when setting up memory-related code. If bit0 is set,
 							it will memset various allocated memory-regions with 0x58, 0x59, 0x5A
 							('X', 'Y', 'Z') instead of zero. This allows Nintendo devs to find
@@ -22060,7 +22170,7 @@
 							<strong>label_hash_in_buf</strong>).</p>
 							<p>Decrypts <strong>data_in_buf</strong> into <strong>data_out_buf</strong> using the private key
 							imported with
-							<a href="#DecryptImportPrivkForRsaOaep" title="wikilink">#DecryptImportPrivkForRsaOaep</a>
+							<a href="#nn::spl::detail::IGeneralInterface(9)" title="wikilink">#DecryptImportPrivkForRsaOaep</a>
 							and the supplied <strong>mod_in_buf</strong>. Afterwards, verifies RSA-OAEP
 							encoding using <strong>label_hash_in_buf</strong>.</p>
 							<p>Returns an u32 (<strong>dec_data_size</strong>).</p>
@@ -22071,8 +22181,9 @@
 							  <label for="showDocs(nn::spl::detail::IGeneralInterface(11))" class="showDocsLabel"></label>
 							  <code class="signature">[11] <a href="#nn::spl::detail::IGeneralInterface(11)">IsDevelopment</a>() -&gt; u8</code>
 							  <div class="docs"><p>No input params.</p>
-							<p>Uses <a href="#GetConfig" title="wikilink">#GetConfig</a> internally with id=6. Returns
-							true if output from that is 0, or if the SMC returned error 2.</p>
+							<p>Uses <a href="#nn::spl::detail::IGeneralInterface(0)" title="wikilink">#GetConfig</a>
+							internally with id=6. Returns true if output from that is 0, or if the
+							SMC returned error 2.</p>
 							<p>Returns an u8 flag for whether the system is devunit. Output flag is 0
 							on retail.</p>
 							</div>
@@ -22096,7 +22207,9 @@
 							<strong>version</strong> is 0 for normal keys or 1 for extended keys.</p>
 							<p>Decrypts <strong>enc_privk_in_buf</strong> into <strong>dec_privk_out_buf</strong> with a
 							key generated from <strong>key_x</strong> and <strong>key_y</strong>.</p>
-							<p>Used by <a href="SSL_services" title="wikilink">SSL</a>-sysmodule for TLS client-privk.</p>
+							<p>Used by
+							<a href="http://switchbrew.org/index.php?title=SSL_services" title="wikilink">SSL</a>-sysmodule
+							for TLS client-privk.</p>
 							</div>
 							</li>
 							<li class="command" value="14" id="nn::spl::detail::IGeneralInterface(14)">
@@ -22109,7 +22222,7 @@
 							<p>Decrypts <strong>enc_key</strong> with a key generated from fixed <strong>key_x</strong> and
 							<strong>key_y</strong> and returns a 16-byte decrypted key (<strong>dec_key</strong>).</p>
 							<p>[2.0.0+] Introduced same engine allocation code as for
-							<a href="#GenerateAesKey" title="wikilink">#GenerateAesKey</a>.</p>
+							<a href="#nn::spl::detail::IGeneralInterface(4)" title="wikilink">#GenerateAesKey</a>.</p>
 							</div>
 							</li>
 							<li class="command" value="15" id="nn::spl::detail::IGeneralInterface(15)">
@@ -22148,31 +22261,30 @@
 							<li class="command" value="18" id="nn::spl::detail::IGeneralInterface(18)">
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::spl::detail::IGeneralInterface(18))"></input>
 							  <label for="showDocs(nn::spl::detail::IGeneralInterface(18))" class="showDocsLabel"></label>
-							  <code class="signature">[18] <a href="#nn::spl::detail::IGeneralInterface(18)">UnwrapRsaWrappedPreparedAesKey</a>()</code>
+							  <code class="signature">[18] <a href="#nn::spl::detail::IGeneralInterface(18)">UnwrapRsaWrappedTitleKey</a>()</code>
 							  <div class="docs"><p>Takes 3 type-9 (X descriptor) buffers (<strong>data_in_buf</strong>,
 							<strong>mod_in_buf</strong> and <strong>param0_in_buf</strong>).</p>
 							<p>Decrypts <strong>data_in_buf</strong> using the private key imported with
-							<a href="#DecryptImportPrivkForExpMod1" title="wikilink">#DecryptImportPrivkForExpMod1</a>
+							<a href="#nn::spl::detail::IGeneralInterface(17)" title="wikilink">#DecryptImportPrivkForExpMod1</a>
 							and the supplied <strong>mod_in_buf</strong> and <strong>param0_in_buf</strong>.</p>
-							<p>Generates and returns a 16-byte sealed prepared key (<strong>key_z</strong>).</p>
+							<p>Generates and returns a 16-byte sealed titlekey.</p>
 							</div>
 							</li>
 							<li class="command" value="19" id="nn::spl::detail::IGeneralInterface(19)">
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::spl::detail::IGeneralInterface(19))"></input>
 							  <label for="showDocs(nn::spl::detail::IGeneralInterface(19))" class="showDocsLabel"></label>
-							  <code class="signature">[19] <a href="#nn::spl::detail::IGeneralInterface(19)">LoadPreparedAesKey</a>()</code>
-							  <div class="docs"><p>Takes a u32 (<strong>keyslot</strong>) and a 16-byte sealed prepared key
-							(<strong>key_z</strong>).</p>
-							<p>Sets the specified <strong>keyslot</strong> with a key generated from <strong>key_z</strong>.</p>
+							  <code class="signature">[19] <a href="#nn::spl::detail::IGeneralInterface(19)">LoadTitleKey</a>()</code>
+							  <div class="docs"><p>Takes a u32 (<strong>keyslot</strong>) and a 16-byte sealed titlekey.</p>
+							<p>Sets the specified <strong>keyslot</strong> with the titlekey.</p>
 							<p>[2.0.0+] Verifies the engine is locked by current session.</p>
 							</div>
 							</li>
 							<li class="command" value="20" id="nn::spl::detail::IGeneralInterface(20)">
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::spl::detail::IGeneralInterface(20))"></input>
 							  <label for="showDocs(nn::spl::detail::IGeneralInterface(20))" class="showDocsLabel"></label>
-							  <code class="signature">[20, 2.0.0+] <a href="#nn::spl::detail::IGeneralInterface(20)">UnwrapAesWrappedPreparedAesKey</a>()</code>
+							  <code class="signature">[20, 2.0.0+] <a href="#nn::spl::detail::IGeneralInterface(20)">UnwrapAesWrappedTitleKey</a>()</code>
 							  <div class="docs"><p>Takes a 16-byte EKS (<strong>Encryption Key Source</strong>).</p>
-							<p>Returns a sealed prepared AES key.</p>
+							<p>Returns a sealed titlekey.</p>
 							</div>
 							</li>
 							<li class="command" value="21" id="nn::spl::detail::IGeneralInterface(21)">
@@ -23340,7 +23452,7 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="14" aria-valuemin="0" aria-valuemax="100" style="width: 14%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width: 33%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
@@ -23354,55 +23466,55 @@
 							<li class="command" value="0" id="nn::uart::IManager(0)">
 							
 							
-							  <code class="signature">[0] <a href="#nn::uart::IManager(0)">Unknown0</a>(u32) -&gt; u8</code>
+							  <code class="signature">[0] <a href="#nn::uart::IManager(0)">DoesUartExist</a>(u32) -&gt; u8</code>
 							
 							</li>
 							<li class="command" value="1" id="nn::uart::IManager(1)">
 							
 							
-							  <code class="signature">[1] <a href="#nn::uart::IManager(1)">Unknown1</a>(u32) -&gt; u8</code>
+							  <code class="signature">[1] <a href="#nn::uart::IManager(1)">DoesUartExistForTest</a>(u32) -&gt; u8</code>
 							
 							</li>
 							<li class="command" value="2" id="nn::uart::IManager(2)">
 							
 							
-							  <code class="signature">[2] <a href="#nn::uart::IManager(2)">Unknown2</a>()</code>
+							  <code class="signature">[2] <a href="#nn::uart::IManager(2)">SetUartBaudrate</a>()</code>
 							
 							</li>
 							<li class="command" value="3" id="nn::uart::IManager(3)">
 							
 							
-							  <code class="signature">[3] <a href="#nn::uart::IManager(3)">Unknown3</a>()</code>
+							  <code class="signature">[3] <a href="#nn::uart::IManager(3)">SetUartBaudrateForTest</a>()</code>
 							
 							</li>
 							<li class="command" value="4" id="nn::uart::IManager(4)">
 							
 							
-							  <code class="signature">[4] <a href="#nn::uart::IManager(4)">Unknown4</a>()</code>
+							  <code class="signature">[4] <a href="#nn::uart::IManager(4)">IsSomethingUartValid</a>()</code>
 							
 							</li>
 							<li class="command" value="5" id="nn::uart::IManager(5)">
 							
 							
-							  <code class="signature">[5] <a href="#nn::uart::IManager(5)">Unknown5</a>()</code>
+							  <code class="signature">[5] <a href="#nn::uart::IManager(5)">IsSomethingUartValidForTest</a>()</code>
 							
 							</li>
 							<li class="command" value="6" id="nn::uart::IManager(6)">
 							
 							
-							  <code class="signature">[6] <a href="#nn::uart::IManager(6)">GetIPortSession</a>() -&gt; IUnknown</code>
+							  <code class="signature">[6] <a href="#nn::uart::IManager(6)">GetSession</a>() -&gt; IUnknown</code>
 							
 							</li>
 							<li class="command" value="7" id="nn::uart::IManager(7)">
 							
 							
-							  <code class="signature">[7] <a href="#nn::uart::IManager(7)">Unknown7</a>()</code>
+							  <code class="signature">[7] <a href="#nn::uart::IManager(7)">IsSomethingUartValid2</a>()</code>
 							
 							</li>
 							<li class="command" value="8" id="nn::uart::IManager(8)">
 							
 							
-							  <code class="signature">[8] <a href="#nn::uart::IManager(8)">Unknown8</a>()</code>
+							  <code class="signature">[8] <a href="#nn::uart::IManager(8)">IsSomethingUartValid2ForTest</a>()</code>
 							
 							</li>
 						</ol>
@@ -24268,15 +24380,18 @@
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::visrv::sf::IApplicationDisplayService(100))"></input>
 							  <label for="showDocs(nn::visrv::sf::IApplicationDisplayService(100))" class="showDocsLabel"></label>
 							  <code class="signature">[100] <a href="#nn::visrv::sf::IApplicationDisplayService(100)">GetRelayService</a>() -&gt; object&lt;<a href="ifaces.html#nns::hosbinder::IHOSBinderDriver">nns::hosbinder::IHOSBinderDriver</a>&gt;</code>
-							  <div class="docs"><p>Returns an <a href="Nvnflinger_services#dispdrv" title="wikilink">IHOSBinderDriver</a>
-							interface which abstracts &quot;nn::visrv::<a href="service::RelayServiceImpl">service::RelayServiceImpl</a>&quot;.</p>
+							  <div class="docs"><p>Returns an
+							<a href="http://switchbrew.org/index.php?title=Nvnflinger_services#dispdrv" title="wikilink">IHOSBinderDriver</a>
+							interface which abstracts
+							&quot;nn::visrv::<a href="http://switchbrew.org/index.php?title=service::RelayServiceImpl">service::RelayServiceImpl</a>&quot;.</p>
 							</div>
 							</li>
 							<li class="command" value="101" id="nn::visrv::sf::IApplicationDisplayService(101)">
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::visrv::sf::IApplicationDisplayService(101))"></input>
 							  <label for="showDocs(nn::visrv::sf::IApplicationDisplayService(101))" class="showDocsLabel"></label>
 							  <code class="signature">[101] <a href="#nn::visrv::sf::IApplicationDisplayService(101)">GetSystemDisplayService</a>() -&gt; object&lt;<a href="ifaces.html#nn::visrv::sf::ISystemDisplayService">nn::visrv::sf::ISystemDisplayService</a>&gt;</code>
-							  <div class="docs"><p>Returns an <a href="#ISystemDisplayService" title="wikilink">#ISystemDisplayService</a>.</p>
+							  <div class="docs"><p>Returns an
+							<a href="#nn::visrv::sf::ISystemDisplayService" title="wikilink">#ISystemDisplayService</a>.</p>
 							</div>
 							</li>
 							<li class="command" value="102" id="nn::visrv::sf::IApplicationDisplayService(102)">
@@ -24284,16 +24399,17 @@
 							  <label for="showDocs(nn::visrv::sf::IApplicationDisplayService(102))" class="showDocsLabel"></label>
 							  <code class="signature">[102] <a href="#nn::visrv::sf::IApplicationDisplayService(102)">GetManagerDisplayService</a>() -&gt; object&lt;<a href="ifaces.html#nn::visrv::sf::IManagerDisplayService">nn::visrv::sf::IManagerDisplayService</a>&gt;</code>
 							  <div class="docs"><p>Returns an
-							<a href="#IManagerDisplayService" title="wikilink">#IManagerDisplayService</a>.</p>
+							<a href="#nn::visrv::sf::IManagerDisplayService" title="wikilink">#IManagerDisplayService</a>.</p>
 							</div>
 							</li>
 							<li class="command" value="103" id="nn::visrv::sf::IApplicationDisplayService(103)">
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::visrv::sf::IApplicationDisplayService(103))"></input>
 							  <label for="showDocs(nn::visrv::sf::IApplicationDisplayService(103))" class="showDocsLabel"></label>
 							  <code class="signature">[103, 2.0.0+] <a href="#nn::visrv::sf::IApplicationDisplayService(103)">GetIndirectDisplayTransactionService</a>() -&gt; object&lt;<a href="ifaces.html#nns::hosbinder::IHOSBinderDriver">nns::hosbinder::IHOSBinderDriver</a>&gt;</code>
-							  <div class="docs"><p>Returns an <a href="Nvnflinger_services#dispdrv" title="wikilink">IHOSBinderDriver</a>
+							  <div class="docs"><p>Returns an
+							<a href="http://switchbrew.org/index.php?title=Nvnflinger_services#dispdrv" title="wikilink">IHOSBinderDriver</a>
 							interface which abstracts
-							&quot;nn::visrv::<a href="service::IndirectDisplayTransactionServiceImpl">service::IndirectDisplayTransactionServiceImpl</a>&quot;.</p>
+							&quot;nn::visrv::<a href="http://switchbrew.org/index.php?title=service::IndirectDisplayTransactionServiceImpl">service::IndirectDisplayTransactionServiceImpl</a>&quot;.</p>
 							</div>
 							</li>
 							<li class="command" value="1000" id="nn::visrv::sf::IApplicationDisplayService(1000)">
@@ -24301,8 +24417,8 @@
 							  <label for="showDocs(nn::visrv::sf::IApplicationDisplayService(1000))" class="showDocsLabel"></label>
 							  <code class="signature">[1000] <a href="#nn::visrv::sf::IApplicationDisplayService(1000)">ListDisplays</a>() -&gt; (i64, array&lt;<a href="types.html#nn::vi::DisplayInfo">nn::vi::DisplayInfo</a>, 6&gt;)</code>
 							  <div class="docs"><p>Takes a type-0x6 output buffer containing the array of
-							<a href="#DisplayInfo" title="wikilink">#DisplayInfo</a> output entries. Returns an
-							output u64: total number of output entries.</p>
+							<a href="http://switchbrew.org/index.php?title=Display%20services#DisplayInfo" title="wikilink">#DisplayInfo</a>
+							output entries. Returns an output u64: total number of output entries.</p>
 							<p>Normally(?) this only returns the &quot;Default&quot; display.</p>
 							</div>
 							</li>
@@ -24310,8 +24426,9 @@
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::visrv::sf::IApplicationDisplayService(1010))"></input>
 							  <label for="showDocs(nn::visrv::sf::IApplicationDisplayService(1010))" class="showDocsLabel"></label>
 							  <code class="signature">[1010] <a href="#nn::visrv::sf::IApplicationDisplayService(1010)">OpenDisplay</a>(<a href="types.html#nn::vi::DisplayName">nn::vi::DisplayName</a>) -&gt; u64</code>
-							  <div class="docs"><p>Takes a <a href="#DisplayName" title="wikilink">#DisplayName</a> as input. Returns an
-							output u64, the DisplayId.</p>
+							  <div class="docs"><p>Takes a
+							<a href="http://switchbrew.org/index.php?title=Display%20services#DisplayName" title="wikilink">#DisplayName</a>
+							as input. Returns an output u64, the DisplayId.</p>
 							<p>To open the default display, input string &quot;Default&quot; can be used.</p>
 							</div>
 							</li>
@@ -24351,19 +24468,22 @@
 							  <label for="showDocs(nn::visrv::sf::IApplicationDisplayService(2020))" class="showDocsLabel"></label>
 							  <code class="signature">[2020] <a href="#nn::visrv::sf::IApplicationDisplayService(2020)">OpenLayer</a>(<a href="types.html#nn::vi::DisplayName">nn::vi::DisplayName</a>, u64, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid) -&gt; (i64, buffer&lt;unknown, 6, 0&gt;)</code>
 							  <div class="docs"><p>Takes a PID-descriptor, a type-0x6 buffer for the output
-							<a href="#NativeWindow" title="wikilink">#NativeWindow</a>, a
-							<a href="#DisplayName" title="wikilink">#DisplayName</a>(which was previously used with
-							<a href="#OpenDisplay" title="wikilink">#OpenDisplay</a>), an u64 LayerId, and an u64
-							<a href="AM_services" title="wikilink">AppletResourceUserId</a>. Returns an output u64
-							NativeWindow_Size.</p>
+							<a href="http://switchbrew.org/index.php?title=Display%20services#NativeWindow" title="wikilink">#NativeWindow</a>,
+							a
+							<a href="http://switchbrew.org/index.php?title=Display%20services#DisplayName" title="wikilink">#DisplayName</a>(which
+							was previously used with
+							<a href="#nn::visrv::sf::IApplicationDisplayService(1010)" title="wikilink">#OpenDisplay</a>),
+							an u64 LayerId, and an u64
+							<a href="http://switchbrew.org/index.php?title=AM_services" title="wikilink">AppletResourceUserId</a>.
+							Returns an output u64 NativeWindow_Size.</p>
 							<p>Official user-processes use a LayerId stored in a global state
 							field(&quot;...ExternalLayerId&quot;) if non-zero, otherwise:</p>
 							<ul>
 							<li>When AppletResourceUserId==0,
-							<a href="#CreateStrayLayer" title="wikilink">#CreateStrayLayer</a> is used instead
-							of the OpenLayer cmd.</li>
+							<a href="#nn::visrv::sf::IApplicationDisplayService(2030)" title="wikilink">#CreateStrayLayer</a>
+							is used instead of the OpenLayer cmd.</li>
 							<li>When AppletResourceUserId!=0,
-							<a href="AM_services#CreateManagedDisplayLayer" title="wikilink">AM_services#CreateManagedDisplayLayer</a>
+							<a href="http://switchbrew.org/index.php?title=AM_services#CreateManagedDisplayLayer" title="wikilink">AM_services#CreateManagedDisplayLayer</a>
 							is used and the output from that is used for LayerId with the
 							OpenLayer cmd.</li>
 							</ul>
@@ -24376,7 +24496,7 @@
 							  <label for="showDocs(nn::visrv::sf::IApplicationDisplayService(2021))" class="showDocsLabel"></label>
 							  <code class="signature">[2021] <a href="#nn::visrv::sf::IApplicationDisplayService(2021)">CloseLayer</a>(u64)</code>
 							  <div class="docs"><p>Takes an input u64: LayerId which was used with
-							<a href="#OpenLayer" title="wikilink">#OpenLayer</a>.</p>
+							<a href="#nn::visrv::sf::IApplicationDisplayService(2020)" title="wikilink">#OpenLayer</a>.</p>
 							</div>
 							</li>
 							<li class="command" value="2030" id="nn::visrv::sf::IApplicationDisplayService(2030)">
@@ -24384,9 +24504,9 @@
 							  <label for="showDocs(nn::visrv::sf::IApplicationDisplayService(2030))" class="showDocsLabel"></label>
 							  <code class="signature">[2030] <a href="#nn::visrv::sf::IApplicationDisplayService(2030)">CreateStrayLayer</a>(u32, u64) -&gt; (u64, i64, buffer&lt;unknown, 6, 0&gt;)</code>
 							  <div class="docs"><p>Takes a type-0x6 buffer for the output
-							<a href="#NativeWindow" title="wikilink">#NativeWindow</a>, an u32(LayerFlags bitmask),
-							and an u64 DisplayId. Returns two output u64s: LayerId and
-							NativeWindow_Size.</p>
+							<a href="http://switchbrew.org/index.php?title=Display%20services#NativeWindow" title="wikilink">#NativeWindow</a>,
+							an u32(LayerFlags bitmask), and an u64 DisplayId. Returns two output
+							u64s: LayerId and NativeWindow_Size.</p>
 							</div>
 							</li>
 							<li class="command" value="2031" id="nn::visrv::sf::IApplicationDisplayService(2031)">
@@ -24394,7 +24514,7 @@
 							  <label for="showDocs(nn::visrv::sf::IApplicationDisplayService(2031))" class="showDocsLabel"></label>
 							  <code class="signature">[2031] <a href="#nn::visrv::sf::IApplicationDisplayService(2031)">DestroyStrayLayer</a>(u64)</code>
 							  <div class="docs"><p>Takes an input u64: LayerId from
-							<a href="#CreateStrayLayer" title="wikilink">#CreateStrayLayer</a>.</p>
+							<a href="#nn::visrv::sf::IApplicationDisplayService(2030)" title="wikilink">#CreateStrayLayer</a>.</p>
 							</div>
 							</li>
 							<li class="command" value="2101" id="nn::visrv::sf::IApplicationDisplayService(2101)">
@@ -24409,9 +24529,11 @@
 							  <label for="showDocs(nn::visrv::sf::IApplicationDisplayService(2450))" class="showDocsLabel"></label>
 							  <code class="signature">[2450] <a href="#nn::visrv::sf::IApplicationDisplayService(2450)">GetIndirectLayerImageMap</a>(i64, i64, u64, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid) -&gt; (i64, i64, buffer&lt;unknown, 0x46, 0&gt;)</code>
 							  <div class="docs"><p>Takes a PID-descriptor, an type-0x46 buffer, and four u64s: width(s32),
-							height(s32), &lt;output from <a href="AM_services" title="wikilink">AM</a>
+							height(s32), &lt;output from
+							<a href="http://switchbrew.org/index.php?title=AM_services" title="wikilink">AM</a>
 							GetIndirectLayerConsumerHandle&gt;, and
-							<a href="AM_services" title="wikilink">AppletResourceUserId</a>. Returns two output u64s.</p>
+							<a href="http://switchbrew.org/index.php?title=AM_services" title="wikilink">AppletResourceUserId</a>.
+							Returns two output u64s.</p>
 							</div>
 							</li>
 							<li class="command" value="2451" id="nn::visrv::sf::IApplicationDisplayService(2451)">
@@ -24419,8 +24541,10 @@
 							  <label for="showDocs(nn::visrv::sf::IApplicationDisplayService(2451))" class="showDocsLabel"></label>
 							  <code class="signature">[2451] <a href="#nn::visrv::sf::IApplicationDisplayService(2451)">GetIndirectLayerImageCropMap</a>(f32, f32, f32, f32, i64, i64, u64, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid) -&gt; (i64, i64, buffer&lt;unknown, 0x46, 0&gt;)</code>
 							  <div class="docs"><p>Takes a PID-descriptor, an type-0x46 buffer, four floats, four u64s(last
-							u64 is <a href="AM_services" title="wikilink">AppletResourceUserId</a>). Returns two
-							output u64s. The floats are stored immediately after each other(32bits).</p>
+							u64 is
+							<a href="http://switchbrew.org/index.php?title=AM_services" title="wikilink">AppletResourceUserId</a>).
+							Returns two output u64s. The floats are stored immediately after each
+							other(32bits).</p>
 							</div>
 							</li>
 							<li class="command" value="2460" id="nn::visrv::sf::IApplicationDisplayService(2460)">
@@ -24472,7 +24596,7 @@
 							  <label for="showDocs(nn::visrv::sf::IApplicationRootService(0))" class="showDocsLabel"></label>
 							  <code class="signature">[0] <a href="#nn::visrv::sf::IApplicationRootService(0)">GetDisplayService</a>(u32) -&gt; object&lt;<a href="ifaces.html#nn::visrv::sf::IApplicationDisplayService">nn::visrv::sf::IApplicationDisplayService</a>&gt;</code>
 							  <div class="docs"><p>Returns an
-							<a href="#IApplicationDisplayService" title="wikilink">#IApplicationDisplayService</a>.
+							<a href="#nn::visrv::sf::IApplicationDisplayService" title="wikilink">#IApplicationDisplayService</a>.
 							Takes an input u32, user-processes use 0 or 1, with 0 for
 							regular-applications normally. 0 = user-service(vi:u), 1 =
 							non-user-service? Returns an error when using value 1 with vi:u(same
@@ -24661,7 +24785,7 @@
 							  <label for="showDocs(nn::visrv::sf::IManagerRootService(2))" class="showDocsLabel"></label>
 							  <code class="signature">[2] <a href="#nn::visrv::sf::IManagerRootService(2)">GetDisplayService</a>(u32) -&gt; object&lt;<a href="ifaces.html#nn::visrv::sf::IApplicationDisplayService">nn::visrv::sf::IApplicationDisplayService</a>&gt;</code>
 							  <div class="docs"><p>Returns an
-							<a href="#IApplicationDisplayService" title="wikilink">#IApplicationDisplayService</a>.
+							<a href="#nn::visrv::sf::IApplicationDisplayService" title="wikilink">#IApplicationDisplayService</a>.
 							Takes an input u32, user-processes use 0 or 1, with 0 for
 							regular-applications normally. 0 = user-service(vi:u), 1 =
 							non-user-service? Returns an error when using value 1 with vi:u(same
@@ -24674,7 +24798,7 @@
 							  <label for="showDocs(nn::visrv::sf::IManagerRootService(3))" class="showDocsLabel"></label>
 							  <code class="signature">[3] <a href="#nn::visrv::sf::IManagerRootService(3)">GetDisplayServiceWithProxyNameExchange</a>(<a href="types.html#nn::vi::ProxyName">nn::vi::ProxyName</a>, u32) -&gt; object&lt;<a href="ifaces.html#nn::visrv::sf::IApplicationDisplayService">nn::visrv::sf::IApplicationDisplayService</a>&gt;</code>
 							  <div class="docs"><p>Returns an
-							<a href="#IApplicationDisplayService" title="wikilink">#IApplicationDisplayService</a>.</p>
+							<a href="#nn::visrv::sf::IApplicationDisplayService" title="wikilink">#IApplicationDisplayService</a>.</p>
 							</div>
 							</li>
 						</ol>
@@ -24924,7 +25048,7 @@
 							  <label for="showDocs(nn::visrv::sf::ISystemRootService(1))" class="showDocsLabel"></label>
 							  <code class="signature">[1] <a href="#nn::visrv::sf::ISystemRootService(1)">GetDisplayService</a>(u32) -&gt; object&lt;<a href="ifaces.html#nn::visrv::sf::IApplicationDisplayService">nn::visrv::sf::IApplicationDisplayService</a>&gt;</code>
 							  <div class="docs"><p>Returns an
-							<a href="#IApplicationDisplayService" title="wikilink">#IApplicationDisplayService</a>.
+							<a href="#nn::visrv::sf::IApplicationDisplayService" title="wikilink">#IApplicationDisplayService</a>.
 							Takes an input u32, user-processes use 0 or 1, with 0 for
 							regular-applications normally. 0 = user-service(vi:u), 1 =
 							non-user-service? Returns an error when using value 1 with vi:u(same
@@ -24937,7 +25061,7 @@
 							  <label for="showDocs(nn::visrv::sf::ISystemRootService(3))" class="showDocsLabel"></label>
 							  <code class="signature">[3] <a href="#nn::visrv::sf::ISystemRootService(3)">GetDisplayServiceWithProxyNameExchange</a>(<a href="types.html#nn::vi::ProxyName">nn::vi::ProxyName</a>, u32) -&gt; object&lt;<a href="ifaces.html#nn::visrv::sf::IApplicationDisplayService">nn::visrv::sf::IApplicationDisplayService</a>&gt;</code>
 							  <div class="docs"><p>Returns an
-							<a href="#IApplicationDisplayService" title="wikilink">#IApplicationDisplayService</a>.</p>
+							<a href="#nn::visrv::sf::IApplicationDisplayService" title="wikilink">#IApplicationDisplayService</a>.</p>
 							</div>
 							</li>
 						</ol>
@@ -25929,8 +26053,10 @@
 							  <input type="checkbox" class="showDocs" id="showDocs(nns::nvdrv::INvDrvServices(7))"></input>
 							  <label for="showDocs(nns::nvdrv::INvDrvServices(7))" class="showDocsLabel"></label>
 							  <code class="signature">[7] <a href="#nns::nvdrv::INvDrvServices(7)">ForceSetClientPID</a>()</code>
-							  <div class="docs"><p>Takes an input u64 which must <a href="IPC_Marshalling" title="wikilink">match</a> the
-							user-process PID (<a href="AM_services" title="wikilink">AppletResourceUserId</a>).
+							  <div class="docs"><p>Takes an input u64 which must
+							<a href="http://switchbrew.org/index.php?title=IPC_Marshalling" title="wikilink">match</a>
+							the user-process PID
+							(<a href="http://switchbrew.org/index.php?title=AM_services" title="wikilink">AppletResourceUserId</a>).
 							Returns an output u32 (<strong>error_code</strong>).</p>
 							</div>
 							</li>
@@ -25939,9 +26065,10 @@
 							  <label for="showDocs(nns::nvdrv::INvDrvServices(8))" class="showDocsLabel"></label>
 							  <code class="signature">[8] <a href="#nns::nvdrv::INvDrvServices(8)">SetClientPID</a>()</code>
 							  <div class="docs"><p>Takes a PID-descriptor and an u64 which must
-							<a href="IPC_Marshalling" title="wikilink">match</a> the user-process PID
-							(<a href="AM_services" title="wikilink">AppletResourceUserId</a>). Returns an output u32
-							(<strong>error_code</strong>).</p>
+							<a href="http://switchbrew.org/index.php?title=IPC_Marshalling" title="wikilink">match</a>
+							the user-process PID
+							(<a href="http://switchbrew.org/index.php?title=AM_services" title="wikilink">AppletResourceUserId</a>).
+							Returns an output u32 (<strong>error_code</strong>).</p>
 							</div>
 							</li>
 							<li class="command" value="9" id="nns::nvdrv::INvDrvServices(9)">
