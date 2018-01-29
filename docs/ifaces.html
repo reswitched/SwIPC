@@ -4450,7 +4450,14 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100" style="width: 43%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%"></div></div>
+					</li>
+					<li class="list-group-item">
+						<h3>Returned by:</h3>
+						<ul>
+							<li><a href="ifaces.html#nn::audio::detail::IAudioInManager(1)">nn::audio::detail::IAudioInManager::OpenAudioIn [1]</a></li>
+							<li><a href="ifaces.html#nn::audio::detail::IAudioInManager(3)">nn::audio::detail::IAudioInManager::OpenAudioIn_ex [3]</a></li>
+						</ul>
 					</li>
 					<li class="list-group-item">
 						<h3>Commands:</h3>
@@ -4458,43 +4465,43 @@
 							<li class="command" value="0" id="nn::audio::detail::IAudioIn(0)">
 							
 							
-							  <code class="signature">[0] <a href="#nn::audio::detail::IAudioIn(0)">Unknown0</a>() -&gt; u32</code>
+							  <code class="signature">[0] <a href="#nn::audio::detail::IAudioIn(0)">GetAudioInState</a>() -&gt; u32</code>
 							
 							</li>
 							<li class="command" value="1" id="nn::audio::detail::IAudioIn(1)">
 							
 							
-							  <code class="signature">[1] <a href="#nn::audio::detail::IAudioIn(1)">Unknown1</a>()</code>
+							  <code class="signature">[1] <a href="#nn::audio::detail::IAudioIn(1)">StartAudioIn</a>()</code>
 							
 							</li>
 							<li class="command" value="2" id="nn::audio::detail::IAudioIn(2)">
 							
 							
-							  <code class="signature">[2] <a href="#nn::audio::detail::IAudioIn(2)">Unknown2</a>()</code>
+							  <code class="signature">[2] <a href="#nn::audio::detail::IAudioIn(2)">StopAudioIn</a>()</code>
 							
 							</li>
 							<li class="command" value="3" id="nn::audio::detail::IAudioIn(3)">
 							
 							
-							  <code class="signature">[3] <a href="#nn::audio::detail::IAudioIn(3)">Unknown3</a>(u64, buffer&lt;unknown, 5, 0&gt;)</code>
+							  <code class="signature">[3] <a href="#nn::audio::detail::IAudioIn(3)">AppendAudioInBuffer</a>(u64, buffer&lt;unknown, 5, 0&gt;)</code>
 							
 							</li>
 							<li class="command" value="4" id="nn::audio::detail::IAudioIn(4)">
 							
 							
-							  <code class="signature">[4] <a href="#nn::audio::detail::IAudioIn(4)">Unknown4</a>() -&gt; KObject</code>
+							  <code class="signature">[4] <a href="#nn::audio::detail::IAudioIn(4)">RegisterBufferEvent</a>() -&gt; KObject</code>
 							
 							</li>
 							<li class="command" value="5" id="nn::audio::detail::IAudioIn(5)">
 							
 							
-							  <code class="signature">[5] <a href="#nn::audio::detail::IAudioIn(5)">Unknown5</a>() -&gt; (u32, buffer&lt;unknown, 6, 0&gt;)</code>
+							  <code class="signature">[5] <a href="#nn::audio::detail::IAudioIn(5)">GetReleasedAudioInBuffer</a>() -&gt; (u32, buffer&lt;unknown, 6, 0&gt;)</code>
 							
 							</li>
 							<li class="command" value="6" id="nn::audio::detail::IAudioIn(6)">
 							
 							
-							  <code class="signature">[6] <a href="#nn::audio::detail::IAudioIn(6)">Unknown6</a>(u64) -&gt; u8</code>
+							  <code class="signature">[6] <a href="#nn::audio::detail::IAudioIn(6)">ContainsAudioInBuffer</a>(u64) -&gt; u8</code>
 							
 							</li>
 							<li class="command" value="7" id="nn::audio::detail::IAudioIn(7)">
@@ -4532,12 +4539,12 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
 						<ul>
-							<li>audin:u</li>
+							<li>audin:d</li>
 						</ul>
 					</li>
 					<li class="list-group-item">
@@ -4546,13 +4553,13 @@
 							<li class="command" value="0" id="nn::audio::detail::IAudioInManager(0)">
 							
 							
-							  <code class="signature">[0] <a href="#nn::audio::detail::IAudioInManager(0)">Unknown0</a>() -&gt; (u32, buffer&lt;unknown, 6, 0&gt;)</code>
+							  <code class="signature">[0] <a href="#nn::audio::detail::IAudioInManager(0)">ListAudioIns</a>() -&gt; (u32 count, buffer&lt;uint8_t, 6, 0&gt; names)</code>
 							
 							</li>
 							<li class="command" value="1" id="nn::audio::detail::IAudioInManager(1)">
 							
 							
-							  <code class="signature">[1] <a href="#nn::audio::detail::IAudioInManager(1)">Unknown1</a>(u64, u64, pid, KObject, buffer&lt;unknown, 5, 0&gt;) -&gt; (u128, IUnknown, buffer&lt;unknown, 6, 0&gt;)</code>
+							  <code class="signature">[1] <a href="#nn::audio::detail::IAudioInManager(1)">OpenAudioIn</a>(u64, u64 pid_copy, pid, KObject process, buffer&lt;uint8_t, 5, 0&gt; name) -&gt; (u32 sample_rate, u32 channel_count, u32 pcm_format, u32, object&lt;<a href="ifaces.html#nn::audio::detail::IAudioIn">nn::audio::detail::IAudioIn</a>&gt;, buffer&lt;unknown, 6, 0&gt; name)</code>
 							
 							</li>
 							<li class="command" value="2" id="nn::audio::detail::IAudioInManager(2)">
@@ -4562,10 +4569,11 @@
 							
 							</li>
 							<li class="command" value="3" id="nn::audio::detail::IAudioInManager(3)">
-							
-							
-							  <code class="signature">[3] <a href="#nn::audio::detail::IAudioInManager(3)">Unknown3</a>(u64, u64, pid, KObject, buffer&lt;unknown, 0x21, 0&gt;) -&gt; (u128, IUnknown, buffer&lt;unknown, 0x22, 0&gt;)</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::audio::detail::IAudioInManager(3))"></input>
+							  <label for="showDocs(nn::audio::detail::IAudioInManager(3))" class="showDocsLabel"></label>
+							  <code class="signature">[3] <a href="#nn::audio::detail::IAudioInManager(3)">OpenAudioIn_ex</a>(u64, u64, pid, KObject, buffer&lt;unknown, 0x21, 0&gt;) -&gt; (u32 sample_rate, u32 channel_count, u32 pcm_format, u32, object&lt;<a href="ifaces.html#nn::audio::detail::IAudioIn">nn::audio::detail::IAudioIn</a>&gt;, buffer&lt;unknown, 0x22, 0&gt; name)</code>
+							  <div class="docs"><p>guessed to be the same as OpenAudioIn, just with different buffer types</p>
+							</div>
 							</li>
 							<li class="command" value="4" id="nn::audio::detail::IAudioInManager(4)">
 							
@@ -4584,7 +4592,7 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100" style="width: 66%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
@@ -4598,25 +4606,25 @@
 							<li class="command" value="0" id="nn::audio::detail::IAudioInManagerForApplet(0)">
 							
 							
-							  <code class="signature">[0] <a href="#nn::audio::detail::IAudioInManagerForApplet(0)">Unknown0</a>(u64, u64) -&gt; KObject</code>
+							  <code class="signature">[0] <a href="#nn::audio::detail::IAudioInManagerForApplet(0)">RequestSuspendAudioIns</a>(u64, u64) -&gt; KObject</code>
 							
 							</li>
 							<li class="command" value="1" id="nn::audio::detail::IAudioInManagerForApplet(1)">
 							
 							
-							  <code class="signature">[1] <a href="#nn::audio::detail::IAudioInManagerForApplet(1)">Unknown1</a>(u64, u64) -&gt; KObject</code>
+							  <code class="signature">[1] <a href="#nn::audio::detail::IAudioInManagerForApplet(1)">RequestResumeAudioIns</a>(u64, u64) -&gt; KObject</code>
 							
 							</li>
 							<li class="command" value="2" id="nn::audio::detail::IAudioInManagerForApplet(2)">
 							
 							
-							  <code class="signature">[2] <a href="#nn::audio::detail::IAudioInManagerForApplet(2)">Unknown2</a>(u64) -&gt; u32</code>
+							  <code class="signature">[2] <a href="#nn::audio::detail::IAudioInManagerForApplet(2)">GetAudioInsProcessMasterVolume</a>(u64) -&gt; u32</code>
 							
 							</li>
 							<li class="command" value="3" id="nn::audio::detail::IAudioInManagerForApplet(3)">
 							
 							
-							  <code class="signature">[3] <a href="#nn::audio::detail::IAudioInManagerForApplet(3)">Unknown3</a>(u32, u64, u64)</code>
+							  <code class="signature">[3] <a href="#nn::audio::detail::IAudioInManagerForApplet(3)">SetAudioInsProcessMasterVolume</a>(u32, u64, u64)</code>
 							
 							</li>
 						</ol>
@@ -4630,12 +4638,12 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100" style="width: 66%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
 						<ul>
-							<li>audin:d</li>
+							<li>audin:u</li>
 						</ul>
 					</li>
 					<li class="list-group-item">
@@ -4644,13 +4652,13 @@
 							<li class="command" value="0" id="nn::audio::detail::IAudioInManagerForDebugger(0)">
 							
 							
-							  <code class="signature">[0] <a href="#nn::audio::detail::IAudioInManagerForDebugger(0)">Unknown0</a>(u64)</code>
+							  <code class="signature">[0] <a href="#nn::audio::detail::IAudioInManagerForDebugger(0)">RequestSuspendAudioInsForDebug</a>(u64)</code>
 							
 							</li>
 							<li class="command" value="1" id="nn::audio::detail::IAudioInManagerForDebugger(1)">
 							
 							
-							  <code class="signature">[1] <a href="#nn::audio::detail::IAudioInManagerForDebugger(1)">Unknown1</a>(u64)</code>
+							  <code class="signature">[1] <a href="#nn::audio::detail::IAudioInManagerForDebugger(1)">RequestResumeAudioInsForDebug</a>(u64)</code>
 							
 							</li>
 						</ol>
@@ -4664,7 +4672,13 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="42" aria-valuemin="0" aria-valuemax="100" style="width: 42%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="width: 88%"></div></div>
+					</li>
+					<li class="list-group-item">
+						<h3>Returned by:</h3>
+						<ul>
+							<li><a href="ifaces.html#nn::audio::detail::IAudioOutManager(1)">nn::audio::detail::IAudioOutManager::OpenAudioOut [1]</a></li>
+						</ul>
 					</li>
 					<li class="list-group-item">
 						<h3>Commands:</h3>
@@ -4672,56 +4686,58 @@
 							<li class="command" value="0" id="nn::audio::detail::IAudioOut(0)">
 							
 							
-							  <code class="signature">[0] <a href="#nn::audio::detail::IAudioOut(0)">Unknown0</a>() -&gt; u32</code>
+							  <code class="signature">[0] <a href="#nn::audio::detail::IAudioOut(0)">GetAudioOutState</a>() -&gt; u32</code>
 							
 							</li>
 							<li class="command" value="1" id="nn::audio::detail::IAudioOut(1)">
 							
 							
-							  <code class="signature">[1] <a href="#nn::audio::detail::IAudioOut(1)">Unknown1</a>()</code>
+							  <code class="signature">[1] <a href="#nn::audio::detail::IAudioOut(1)">StartAudioOut</a>()</code>
 							
 							</li>
 							<li class="command" value="2" id="nn::audio::detail::IAudioOut(2)">
 							
 							
-							  <code class="signature">[2] <a href="#nn::audio::detail::IAudioOut(2)">Unknown2</a>()</code>
+							  <code class="signature">[2] <a href="#nn::audio::detail::IAudioOut(2)">StopAudioOut</a>()</code>
 							
 							</li>
 							<li class="command" value="3" id="nn::audio::detail::IAudioOut(3)">
 							
 							
-							  <code class="signature">[3] <a href="#nn::audio::detail::IAudioOut(3)">Unknown3</a>(u64, buffer&lt;unknown, 5, 0&gt;)</code>
+							  <code class="signature">[3] <a href="#nn::audio::detail::IAudioOut(3)">AppendAudioOutBuffer</a>(u64, buffer&lt;unknown, 5, 0&gt;)</code>
 							
 							</li>
 							<li class="command" value="4" id="nn::audio::detail::IAudioOut(4)">
 							
 							
-							  <code class="signature">[4] <a href="#nn::audio::detail::IAudioOut(4)">Unknown4</a>() -&gt; KObject</code>
+							  <code class="signature">[4] <a href="#nn::audio::detail::IAudioOut(4)">RegisterBufferEvent</a>() -&gt; KObject</code>
 							
 							</li>
 							<li class="command" value="5" id="nn::audio::detail::IAudioOut(5)">
 							
 							
-							  <code class="signature">[5] <a href="#nn::audio::detail::IAudioOut(5)">Unknown5</a>() -&gt; (u32, buffer&lt;unknown, 6, 0&gt;)</code>
+							  <code class="signature">[5] <a href="#nn::audio::detail::IAudioOut(5)">GetReleasedAudioOutBuffer</a>() -&gt; (u32, buffer&lt;unknown, 6, 0&gt;)</code>
 							
 							</li>
 							<li class="command" value="6" id="nn::audio::detail::IAudioOut(6)">
 							
 							
-							  <code class="signature">[6] <a href="#nn::audio::detail::IAudioOut(6)">Unknown6</a>(u64) -&gt; u8</code>
+							  <code class="signature">[6] <a href="#nn::audio::detail::IAudioOut(6)">ContainsAudioOutBuffer</a>(u64) -&gt; u8</code>
 							
 							</li>
 							<li class="command" value="7" id="nn::audio::detail::IAudioOut(7)">
-							
-							
-							  <code class="signature">[7] <a href="#nn::audio::detail::IAudioOut(7)">Unknown7</a>(u64, buffer&lt;unknown, 0x21, 0&gt;)</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::audio::detail::IAudioOut(7))"></input>
+							  <label for="showDocs(nn::audio::detail::IAudioOut(7))" class="showDocsLabel"></label>
+							  <code class="signature">[7] <a href="#nn::audio::detail::IAudioOut(7)">AppendAudioOutBuffer_ex</a>(u64, buffer&lt;unknown, 0x21, 0&gt;)</code>
+							  <div class="docs"><p>verified to be the same as AppendAudioOutBuffer, just with different buffer types</p>
+							</div>
 							</li>
 							<li class="command" value="8" id="nn::audio::detail::IAudioOut(8)">
-							
-							
-							  <code class="signature">[8] <a href="#nn::audio::detail::IAudioOut(8)">Unknown8</a>() -&gt; (u32, buffer&lt;unknown, 0x22, 0&gt;)</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::audio::detail::IAudioOut(8))"></input>
+							  <label for="showDocs(nn::audio::detail::IAudioOut(8))" class="showDocsLabel"></label>
+							  <code class="signature">[8] <a href="#nn::audio::detail::IAudioOut(8)">GetReleasedAudioOutBuffer_ex</a>() -&gt; (u32, buffer&lt;unknown, 0x22, 0&gt;)</code>
+							  <div class="docs"><p>verified to be the same as GetReleasedAudioOutBuffer, just with different buffer types</p>
+							</div>
 							</li>
 						</ol>
 					</li>
@@ -4734,7 +4750,7 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100" style="width: 68%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
@@ -4748,26 +4764,28 @@
 							<li class="command" value="0" id="nn::audio::detail::IAudioOutManager(0)">
 							
 							
-							  <code class="signature">[0] <a href="#nn::audio::detail::IAudioOutManager(0)">Unknown0</a>() -&gt; (u32, buffer&lt;unknown, 6, 0&gt;)</code>
+							  <code class="signature">[0] <a href="#nn::audio::detail::IAudioOutManager(0)">ListAudioOuts</a>() -&gt; (u32, buffer&lt;unknown, 6, 0&gt;)</code>
 							
 							</li>
 							<li class="command" value="1" id="nn::audio::detail::IAudioOutManager(1)">
 							
 							
-							  <code class="signature">[1] <a href="#nn::audio::detail::IAudioOutManager(1)">Unknown1</a>(u64, u64, pid, KObject, buffer&lt;unknown, 5, 0&gt;) -&gt; (u128, IUnknown, buffer&lt;unknown, 6, 0&gt;)</code>
+							  <code class="signature">[1] <a href="#nn::audio::detail::IAudioOutManager(1)">OpenAudioOut</a>(u64, u64, pid, KObject process, buffer&lt;unknown, 5, 0&gt; name_in) -&gt; (u32 sample_rate, u32 channel_count, u32 pcm_format, u32, object&lt;<a href="ifaces.html#nn::audio::detail::IAudioOut">nn::audio::detail::IAudioOut</a>&gt;, buffer&lt;unknown, 6, 0&gt; name_out)</code>
 							
 							</li>
 							<li class="command" value="2" id="nn::audio::detail::IAudioOutManager(2)">
-							
-							
-							  <code class="signature">[2] <a href="#nn::audio::detail::IAudioOutManager(2)">Unknown2</a>() -&gt; (u32, buffer&lt;unknown, 0x22, 0&gt;)</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::audio::detail::IAudioOutManager(2))"></input>
+							  <label for="showDocs(nn::audio::detail::IAudioOutManager(2))" class="showDocsLabel"></label>
+							  <code class="signature">[2] <a href="#nn::audio::detail::IAudioOutManager(2)">ListAudioOuts_ex</a>() -&gt; (u32, buffer&lt;unknown, 0x22, 0&gt;)</code>
+							  <div class="docs"><p>verified to be the same as ListAudioOuts, just with different buffer types</p>
+							</div>
 							</li>
 							<li class="command" value="3" id="nn::audio::detail::IAudioOutManager(3)">
-							
-							
-							  <code class="signature">[3] <a href="#nn::audio::detail::IAudioOutManager(3)">Unknown3</a>(u64, u64, pid, KObject, buffer&lt;unknown, 0x21, 0&gt;) -&gt; (u128, IUnknown, buffer&lt;unknown, 0x22, 0&gt;)</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::audio::detail::IAudioOutManager(3))"></input>
+							  <label for="showDocs(nn::audio::detail::IAudioOutManager(3))" class="showDocsLabel"></label>
+							  <code class="signature">[3] <a href="#nn::audio::detail::IAudioOutManager(3)">OpenAudioOut_ex</a>(u64, u64, pid, KObject, buffer&lt;unknown, 0x21, 0&gt;) -&gt; (u128, IUnknown, buffer&lt;unknown, 0x22, 0&gt;)</code>
+							  <div class="docs"><p>verified to be the same as OpenAudioOut, just with different buffer types</p>
+							</div>
 							</li>
 						</ol>
 					</li>
@@ -4780,7 +4798,7 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100" style="width: 66%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
@@ -4794,25 +4812,25 @@
 							<li class="command" value="0" id="nn::audio::detail::IAudioOutManagerForApplet(0)">
 							
 							
-							  <code class="signature">[0] <a href="#nn::audio::detail::IAudioOutManagerForApplet(0)">Unknown0</a>(u64, u64) -&gt; KObject</code>
+							  <code class="signature">[0] <a href="#nn::audio::detail::IAudioOutManagerForApplet(0)">RequestSuspendAudioOuts</a>(u64, u64) -&gt; KObject</code>
 							
 							</li>
 							<li class="command" value="1" id="nn::audio::detail::IAudioOutManagerForApplet(1)">
 							
 							
-							  <code class="signature">[1] <a href="#nn::audio::detail::IAudioOutManagerForApplet(1)">Unknown1</a>(u64, u64) -&gt; KObject</code>
+							  <code class="signature">[1] <a href="#nn::audio::detail::IAudioOutManagerForApplet(1)">RequestResumeAudioOuts</a>(u64, u64) -&gt; KObject</code>
 							
 							</li>
 							<li class="command" value="2" id="nn::audio::detail::IAudioOutManagerForApplet(2)">
 							
 							
-							  <code class="signature">[2] <a href="#nn::audio::detail::IAudioOutManagerForApplet(2)">Unknown2</a>(u64) -&gt; u32</code>
+							  <code class="signature">[2] <a href="#nn::audio::detail::IAudioOutManagerForApplet(2)">GetAudioOutsProcessMasterVolume</a>(u64) -&gt; u32</code>
 							
 							</li>
 							<li class="command" value="3" id="nn::audio::detail::IAudioOutManagerForApplet(3)">
 							
 							
-							  <code class="signature">[3] <a href="#nn::audio::detail::IAudioOutManagerForApplet(3)">Unknown3</a>(u32, u64, u64)</code>
+							  <code class="signature">[3] <a href="#nn::audio::detail::IAudioOutManagerForApplet(3)">SetAudioOutsProcessMasterVolume</a>(u32, u64, u64)</code>
 							
 							</li>
 						</ol>
@@ -4826,7 +4844,7 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100" style="width: 66%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
@@ -4840,13 +4858,13 @@
 							<li class="command" value="0" id="nn::audio::detail::IAudioOutManagerForDebugger(0)">
 							
 							
-							  <code class="signature">[0] <a href="#nn::audio::detail::IAudioOutManagerForDebugger(0)">Unknown0</a>(u64)</code>
+							  <code class="signature">[0] <a href="#nn::audio::detail::IAudioOutManagerForDebugger(0)">RequestSuspendAudioOutsForDebug</a>(u64)</code>
 							
 							</li>
 							<li class="command" value="1" id="nn::audio::detail::IAudioOutManagerForDebugger(1)">
 							
 							
-							  <code class="signature">[1] <a href="#nn::audio::detail::IAudioOutManagerForDebugger(1)">Unknown1</a>(u64)</code>
+							  <code class="signature">[1] <a href="#nn::audio::detail::IAudioOutManagerForDebugger(1)">RequestResumeAudioOutsForDebug</a>(u64)</code>
 							
 							</li>
 						</ol>
@@ -4860,7 +4878,13 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="41" aria-valuemin="0" aria-valuemax="100" style="width: 41%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%"></div></div>
+					</li>
+					<li class="list-group-item">
+						<h3>Returned by:</h3>
+						<ul>
+							<li><a href="ifaces.html#nn::audio::detail::IAudioRendererManager(0)">nn::audio::detail::IAudioRendererManager::OpenAudioRenderer [0]</a></li>
+						</ul>
 					</li>
 					<li class="list-group-item">
 						<h3>Commands:</h3>
@@ -4868,68 +4892,69 @@
 							<li class="command" value="0" id="nn::audio::detail::IAudioRenderer(0)">
 							
 							
-							  <code class="signature">[0] <a href="#nn::audio::detail::IAudioRenderer(0)">Unknown0</a>() -&gt; u32</code>
+							  <code class="signature">[0] <a href="#nn::audio::detail::IAudioRenderer(0)">GetSampleRate</a>() -&gt; u32</code>
 							
 							</li>
 							<li class="command" value="1" id="nn::audio::detail::IAudioRenderer(1)">
 							
 							
-							  <code class="signature">[1] <a href="#nn::audio::detail::IAudioRenderer(1)">Unknown1</a>() -&gt; u32</code>
+							  <code class="signature">[1] <a href="#nn::audio::detail::IAudioRenderer(1)">GetSampleCount</a>() -&gt; u32</code>
 							
 							</li>
 							<li class="command" value="2" id="nn::audio::detail::IAudioRenderer(2)">
 							
 							
-							  <code class="signature">[2] <a href="#nn::audio::detail::IAudioRenderer(2)">Unknown2</a>() -&gt; u32</code>
+							  <code class="signature">[2] <a href="#nn::audio::detail::IAudioRenderer(2)">GetMixBufferCount</a>() -&gt; u32</code>
 							
 							</li>
 							<li class="command" value="3" id="nn::audio::detail::IAudioRenderer(3)">
 							
 							
-							  <code class="signature">[3] <a href="#nn::audio::detail::IAudioRenderer(3)">Unknown3</a>() -&gt; u32</code>
+							  <code class="signature">[3] <a href="#nn::audio::detail::IAudioRenderer(3)">GetState</a>() -&gt; u32</code>
 							
 							</li>
 							<li class="command" value="4" id="nn::audio::detail::IAudioRenderer(4)">
 							
 							
-							  <code class="signature">[4] <a href="#nn::audio::detail::IAudioRenderer(4)">Unknown4</a>(buffer&lt;unknown, 5, 0&gt;) -&gt; (buffer&lt;unknown, 6, 0&gt;, buffer&lt;unknown, 6, 0&gt;)</code>
+							  <code class="signature">[4] <a href="#nn::audio::detail::IAudioRenderer(4)">RequestUpdateAudioRenderer</a>(buffer&lt;unknown, 5, 0&gt;) -&gt; (buffer&lt;unknown, 6, 0&gt;, buffer&lt;unknown, 6, 0&gt;)</code>
 							
 							</li>
 							<li class="command" value="5" id="nn::audio::detail::IAudioRenderer(5)">
 							
 							
-							  <code class="signature">[5] <a href="#nn::audio::detail::IAudioRenderer(5)">Unknown5</a>()</code>
+							  <code class="signature">[5] <a href="#nn::audio::detail::IAudioRenderer(5)">Start</a>()</code>
 							
 							</li>
 							<li class="command" value="6" id="nn::audio::detail::IAudioRenderer(6)">
 							
 							
-							  <code class="signature">[6] <a href="#nn::audio::detail::IAudioRenderer(6)">Unknown6</a>()</code>
+							  <code class="signature">[6] <a href="#nn::audio::detail::IAudioRenderer(6)">Stop</a>()</code>
 							
 							</li>
 							<li class="command" value="7" id="nn::audio::detail::IAudioRenderer(7)">
 							
 							
-							  <code class="signature">[7] <a href="#nn::audio::detail::IAudioRenderer(7)">Unknown7</a>() -&gt; KObject</code>
+							  <code class="signature">[7] <a href="#nn::audio::detail::IAudioRenderer(7)">QuerySystemEvent</a>() -&gt; KObject</code>
 							
 							</li>
 							<li class="command" value="8" id="nn::audio::detail::IAudioRenderer(8)">
 							
 							
-							  <code class="signature">[8] <a href="#nn::audio::detail::IAudioRenderer(8)">Unknown8</a>(u32)</code>
+							  <code class="signature">[8] <a href="#nn::audio::detail::IAudioRenderer(8)">SetAudioRendererRenderingTimeLimit</a>(u32)</code>
 							
 							</li>
 							<li class="command" value="9" id="nn::audio::detail::IAudioRenderer(9)">
 							
 							
-							  <code class="signature">[9] <a href="#nn::audio::detail::IAudioRenderer(9)">Unknown9</a>() -&gt; u32</code>
+							  <code class="signature">[9] <a href="#nn::audio::detail::IAudioRenderer(9)">GetAudioRendererRenderingTimeLimit</a>() -&gt; u32</code>
 							
 							</li>
 							<li class="command" value="10" id="nn::audio::detail::IAudioRenderer(10)">
-							
-							
-							  <code class="signature">[10] <a href="#nn::audio::detail::IAudioRenderer(10)">Unknown10</a>(buffer&lt;unknown, 0x21, 0&gt;) -&gt; (buffer&lt;unknown, 0x22, 0&gt;, buffer&lt;unknown, 0x22, 0&gt;)</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::audio::detail::IAudioRenderer(10))"></input>
+							  <label for="showDocs(nn::audio::detail::IAudioRenderer(10))" class="showDocsLabel"></label>
+							  <code class="signature">[10] <a href="#nn::audio::detail::IAudioRenderer(10)">RequestUpdateAudioRenderer_ex</a>(buffer&lt;unknown, 0x21, 0&gt;) -&gt; (buffer&lt;unknown, 0x22, 0&gt;, buffer&lt;unknown, 0x22, 0&gt;)</code>
+							  <div class="docs"><p>guessed to be the same as RequestUpdateAudioRenderer, just with different buffer types</p>
+							</div>
 							</li>
 							<li class="command" value="11" id="nn::audio::detail::IAudioRenderer(11)">
 							
@@ -4948,12 +4973,12 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="42" aria-valuemin="0" aria-valuemax="100" style="width: 42%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
 						<ul>
-							<li>audren:u</li>
+							<li>audrec:u</li>
 						</ul>
 					</li>
 					<li class="list-group-item">
@@ -4962,13 +4987,13 @@
 							<li class="command" value="0" id="nn::audio::detail::IAudioRendererManager(0)">
 							
 							
-							  <code class="signature">[0] <a href="#nn::audio::detail::IAudioRendererManager(0)">Unknown0</a>(bytes&lt;0x34&gt;, u64, u64, pid, KObject, KObject) -&gt; IUnknown</code>
+							  <code class="signature">[0] <a href="#nn::audio::detail::IAudioRendererManager(0)">OpenAudioRenderer</a>(bytes&lt;0x34&gt;, u64, u64, pid, KObject, KObject) -&gt; object&lt;<a href="ifaces.html#nn::audio::detail::IAudioRenderer">nn::audio::detail::IAudioRenderer</a>&gt;</code>
 							
 							</li>
 							<li class="command" value="1" id="nn::audio::detail::IAudioRendererManager(1)">
 							
 							
-							  <code class="signature">[1] <a href="#nn::audio::detail::IAudioRendererManager(1)">Unknown1</a>(bytes&lt;0x34&gt;) -&gt; u64</code>
+							  <code class="signature">[1] <a href="#nn::audio::detail::IAudioRendererManager(1)">GetWorkBufferSize</a>(bytes&lt;0x34&gt;) -&gt; u64</code>
 							
 							</li>
 							<li class="command" value="2" id="nn::audio::detail::IAudioRendererManager(2)">
@@ -5086,7 +5111,13 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100" style="width: 43%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="61" aria-valuemin="0" aria-valuemax="100" style="width: 61%"></div></div>
+					</li>
+					<li class="list-group-item">
+						<h3>Returned by:</h3>
+						<ul>
+							<li><a href="ifaces.html#nn::audio::detail::IFinalOutputRecorderManager(0)">nn::audio::detail::IFinalOutputRecorderManager::OpenFinalOutputRecorder [0]</a></li>
+						</ul>
 					</li>
 					<li class="list-group-item">
 						<h3>Commands:</h3>
@@ -5094,43 +5125,43 @@
 							<li class="command" value="0" id="nn::audio::detail::IFinalOutputRecorder(0)">
 							
 							
-							  <code class="signature">[0] <a href="#nn::audio::detail::IFinalOutputRecorder(0)">Unknown0</a>() -&gt; u32</code>
+							  <code class="signature">[0] <a href="#nn::audio::detail::IFinalOutputRecorder(0)">GetFinalOutputRecorderState</a>() -&gt; u32</code>
 							
 							</li>
 							<li class="command" value="1" id="nn::audio::detail::IFinalOutputRecorder(1)">
 							
 							
-							  <code class="signature">[1] <a href="#nn::audio::detail::IFinalOutputRecorder(1)">Unknown1</a>()</code>
+							  <code class="signature">[1] <a href="#nn::audio::detail::IFinalOutputRecorder(1)">StartFinalOutputRecorder</a>()</code>
 							
 							</li>
 							<li class="command" value="2" id="nn::audio::detail::IFinalOutputRecorder(2)">
 							
 							
-							  <code class="signature">[2] <a href="#nn::audio::detail::IFinalOutputRecorder(2)">Unknown2</a>()</code>
+							  <code class="signature">[2] <a href="#nn::audio::detail::IFinalOutputRecorder(2)">StopFinalOutputRecorder</a>()</code>
 							
 							</li>
 							<li class="command" value="3" id="nn::audio::detail::IFinalOutputRecorder(3)">
 							
 							
-							  <code class="signature">[3] <a href="#nn::audio::detail::IFinalOutputRecorder(3)">Unknown3</a>(u64, buffer&lt;unknown, 5, 0&gt;)</code>
+							  <code class="signature">[3] <a href="#nn::audio::detail::IFinalOutputRecorder(3)">AppendFinalOutputRecorderBuffer</a>(u64, buffer&lt;unknown, 5, 0&gt;)</code>
 							
 							</li>
 							<li class="command" value="4" id="nn::audio::detail::IFinalOutputRecorder(4)">
 							
 							
-							  <code class="signature">[4] <a href="#nn::audio::detail::IFinalOutputRecorder(4)">Unknown4</a>() -&gt; KObject</code>
+							  <code class="signature">[4] <a href="#nn::audio::detail::IFinalOutputRecorder(4)">RegisterBufferEvent</a>() -&gt; KObject</code>
 							
 							</li>
 							<li class="command" value="5" id="nn::audio::detail::IFinalOutputRecorder(5)">
 							
 							
-							  <code class="signature">[5] <a href="#nn::audio::detail::IFinalOutputRecorder(5)">Unknown5</a>() -&gt; (u32, u64, buffer&lt;unknown, 6, 0&gt;)</code>
+							  <code class="signature">[5] <a href="#nn::audio::detail::IFinalOutputRecorder(5)">GetReleasedFinalOutputRecorderBuffer</a>() -&gt; (u32, u64, buffer&lt;unknown, 6, 0&gt;)</code>
 							
 							</li>
 							<li class="command" value="6" id="nn::audio::detail::IFinalOutputRecorder(6)">
 							
 							
-							  <code class="signature">[6] <a href="#nn::audio::detail::IFinalOutputRecorder(6)">Unknown6</a>(u64) -&gt; u8</code>
+							  <code class="signature">[6] <a href="#nn::audio::detail::IFinalOutputRecorder(6)">ContainsFinalOutputRecorderBuffer</a>(u64) -&gt; u8</code>
 							
 							</li>
 							<li class="command" value="7" id="nn::audio::detail::IFinalOutputRecorder(7)">
@@ -5162,12 +5193,12 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="63" aria-valuemin="0" aria-valuemax="100" style="width: 63%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
 						<ul>
-							<li>audrec:u</li>
+							<li>audren:u</li>
 						</ul>
 					</li>
 					<li class="list-group-item">
@@ -5176,7 +5207,7 @@
 							<li class="command" value="0" id="nn::audio::detail::IFinalOutputRecorderManager(0)">
 							
 							
-							  <code class="signature">[0] <a href="#nn::audio::detail::IFinalOutputRecorderManager(0)">Unknown0</a>(u64, u64, KObject) -&gt; (u128, IUnknown)</code>
+							  <code class="signature">[0] <a href="#nn::audio::detail::IFinalOutputRecorderManager(0)">OpenFinalOutputRecorder</a>(u64, u64, KObject) -&gt; (u128, object&lt;<a href="ifaces.html#nn::audio::detail::IFinalOutputRecorder">nn::audio::detail::IFinalOutputRecorder</a>&gt;)</code>
 							
 							</li>
 						</ol>
@@ -5258,7 +5289,7 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="44" aria-valuemin="0" aria-valuemax="100" style="width: 44%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="49" aria-valuemin="0" aria-valuemax="100" style="width: 49%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
@@ -5272,31 +5303,31 @@
 							<li class="command" value="0" id="nn::audioctrl::detail::IAudioController(0)">
 							
 							
-							  <code class="signature">[0] <a href="#nn::audioctrl::detail::IAudioController(0)">Unknown0</a>(u32) -&gt; u32</code>
+							  <code class="signature">[0] <a href="#nn::audioctrl::detail::IAudioController(0)">SetExpectedMasterVolume</a>(u32) -&gt; u32</code>
 							
 							</li>
 							<li class="command" value="1" id="nn::audioctrl::detail::IAudioController(1)">
 							
 							
-							  <code class="signature">[1] <a href="#nn::audioctrl::detail::IAudioController(1)">Unknown1</a>(u32, u32)</code>
+							  <code class="signature">[1] <a href="#nn::audioctrl::detail::IAudioController(1)">GetMainAppletExpectedMasterVolume</a>(u32, u32)</code>
 							
 							</li>
 							<li class="command" value="2" id="nn::audioctrl::detail::IAudioController(2)">
 							
 							
-							  <code class="signature">[2] <a href="#nn::audioctrl::detail::IAudioController(2)">Unknown2</a>() -&gt; u32</code>
+							  <code class="signature">[2] <a href="#nn::audioctrl::detail::IAudioController(2)">GetLibraryAppletExpectedMasterVolume</a>() -&gt; u32</code>
 							
 							</li>
 							<li class="command" value="3" id="nn::audioctrl::detail::IAudioController(3)">
 							
 							
-							  <code class="signature">[3] <a href="#nn::audioctrl::detail::IAudioController(3)">Unknown3</a>() -&gt; u32</code>
+							  <code class="signature">[3] <a href="#nn::audioctrl::detail::IAudioController(3)">ChangeMainAppletMasterVolume</a>() -&gt; u32</code>
 							
 							</li>
 							<li class="command" value="4" id="nn::audioctrl::detail::IAudioController(4)">
 							
 							
-							  <code class="signature">[4] <a href="#nn::audioctrl::detail::IAudioController(4)">Unknown4</a>()</code>
+							  <code class="signature">[4] <a href="#nn::audioctrl::detail::IAudioController(4)">SetTransparentVolumeRate</a>()</code>
 							
 							</li>
 							<li class="command" value="5" id="nn::audioctrl::detail::IAudioController(5)">
