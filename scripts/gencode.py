@@ -3,10 +3,15 @@ sys.path.append('.')
 import idparser
 
 BUILTINS = {
+    "bool": { "len": 1, "ctype": "int" },
     "u8": { "len": 1, "ctype": "uint8_t" },
+    "i8": { "len": 4, "ctype": "int8_t" },
     "u16": { "len": 2, "ctype": "uint16_t" },
+    "i16": { "len": 4, "ctype": "int16_t" },
     "u32": { "len": 4, "ctype": "uint32_t" },
+    "i32": { "len": 4, "ctype": "int32_t" },
     "u64": { "len": 8, "ctype": "uint64_t" },
+    "i64": { "len": 4, "ctype": "int64_t" },
     "u128": { "len": 16, "ctype": "uint128_t" }, # DERP
 }
 
@@ -139,6 +144,8 @@ def generate_output_code(name, ty, objectlen, rawoffset, objectoffset, bufferlis
         buf_pre += "KObject %s NOTSUPPORTED" % name
     elif ty[0] == 'align':
         buf_pre += "align %s NOTSUPPORTED" % name
+    elif ty[0] == 'array':
+        buf_pre += "array %s NOTSUPPORTED" % name
     elif ty[0] == 'bytes':
         buf_pre += "\tmemcpy(%s, rs.raw_data + %d, %d);" % (name, rawoffset, ty[1])
         rawoffset += ty[1]
@@ -172,13 +179,31 @@ for name, cmds in ifaces.items():
 					returnedBy[c] = []
 				returnedBy[c].append((name, cmd['cmdId']))
 
-if len(sys.argv) < 2:
-    print "Usage: %s <servicename>" % sys.argv[0]
-    exit()
+import getopt
 
-ifacename = sys.argv[1]
+def usage():
+    print "Usage: ./gencode [-s servicename] [-i ifacename]"
+    sys.exit(2)
+
+try:
+    optlist, args = getopt.getopt(sys.argv[1:], 's:i:')
+except getopt.GetoptError as err:
+    print str(err)
+    usage()
+
+print optlist, args
+
+if len(optlist) != 1:
+    usage()
+
+opt, name = optlist[0]
+ifacename = name
 c_ifacename = ninty_to_c(ifacename)
-iface = ifaces[invServices[ifacename]]
+
+if opt == "-s":
+    iface = ifaces[invServices[ifacename]]
+else:
+    iface = ifaces[ifacename]
 
 def gen_init():
     cmd = iface.get('Initialize')
