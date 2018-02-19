@@ -230,7 +230,7 @@ def gen_finalize():
     print "}"
 
     # destructor
-    print "static __attribute__((destructor)) void %s_finalize() {" % c_ifacename
+    print "static __attribute__((destructor)) void %s_destruct() {" % c_ifacename
     print "\tif(%s_initializations > 0) {" % c_ifacename
     print "\t\t%s_force_finalize();" % c_ifacename
     print "\t}"
