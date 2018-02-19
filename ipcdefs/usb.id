@@ -1,4 +1,4 @@
-type usb_interface_descriptor = struct {
+type nn::usb::usb_interface_descriptor = struct {
 	u8 bLength;
 	u8 bDescriptorType;
 	u8 bInterfaceNumber;
@@ -10,7 +10,7 @@ type usb_interface_descriptor = struct {
 	u8 iInterface;
 };
 
-type usb_descriptor_data = struct {
+type nn::usb::usb_descriptor_data = struct {
 	u16 idVendor;
 	u16 idProduct;
 	u16 bcdDevice;
@@ -19,7 +19,7 @@ type usb_descriptor_data = struct {
 	array<u8, 0x20> serialNumber;
 };
 
-type usb_endpoint_descriptor = struct {
+type nn::usb::usb_endpoint_descriptor = struct {
 	u8 bLength;
 	u8 bDescriptorType;
 	u8 bEndpointAddress;
@@ -28,7 +28,7 @@ type usb_endpoint_descriptor = struct {
 	u8 bInterval;
 };
 
-type usb_report_entry = struct {
+type nn::usb::usb_report_entry = struct {
 	u32 urbId;
 	u32 requestedSize;
 	u32 transferredSize;
@@ -62,7 +62,7 @@ interface nn::usb::ds::IDsService is usb:ds {
 	# used.
 	#
 	# Up to 4 interfaces can be used+enabled.
-	[2] GetDsInterface(buffer<usb_interface_descriptor, 5, 0>, buffer<unknown, 5, 0>) -> object<nn::usb::ds::IDsInterface>;
+	[2] GetDsInterface(buffer<nn::usb::usb_interface_descriptor, 5, 0>, buffer<unknown, 5, 0>) -> object<nn::usb::ds::IDsInterface>;
 	# Returns an event handle for when the state returned by
 	# [#GetChange](#nn::usb::ds::IDsService(4)) changes. Signalled when
 	# Switch<->host USB comms change between started/stopped. USB cable
@@ -82,7 +82,7 @@ interface nn::usb::ds::IDsService is usb:ds {
 	[4] GetState() -> u32;
 	// Only available on version 2.0.0+
 	@version(2.0.0+)
-	[5] SetVidPidBcd(buffer<usb_descriptor_data, 5, 0x66> descriptor);
+	[5] SetVidPidBcd(buffer<nn::usb::usb_descriptor_data, 5, 0x66> descriptor);
 }
 
 interface nn::usb::ds::IDsInterface {
@@ -90,15 +90,15 @@ interface nn::usb::ds::IDsInterface {
 	# 0x7-byte buffer data:
 	# - First endpoint: `07 05 80 02 00 02 00`
 	#   - bLength = 7
-	#   - bDescriptorType = LIBUSB_DT_ENDPOINT
-	#   - bEndpointAddress = LIBUSB_ENDPOINT_IN
-	#   - bmAttributes = LIBUSB_TRANSFER_TYPE_BULK
+	#   - bDescriptorType = LIBnn::usb::usb_DT_ENDPOINT
+	#   - bEndpointAddress = LIBnn::usb::usb_ENDPOINT_IN
+	#   - bmAttributes = LIBnn::usb::usb_TRANSFER_TYPE_BULK
 	#   - wMaxPacketSize = 0x200
 	#   - bInterval = 0
 	# - Second endpoint: Same as above except byte2 is 00 (bEndpointAddress
-	#   = LIBUSB_ENDPOINT_OUT)
+	#   = LIBnn::usb::usb_ENDPOINT_OUT)
 	#
-	# The structure matches libusb_endpoint_descriptor, with fields for
+	# The structure matches libnn::usb::usb_endpoint_descriptor, with fields for
 	# audio devices bRefresh and bSynchAddress removed.
 	#
 	# - bLength must match 7
@@ -115,7 +115,7 @@ interface nn::usb::ds::IDsInterface {
 	# From the Tegra datasheet: "The maximum packet size supported on any
 	# endpoint is 1024 bytes in high-speed mode, for both device and host
 	# modes."
-	[0] GetDsEndpoint(buffer<usb_endpoint_descriptor, 5, 0>) -> object<nn::usb::ds::IDsEndpoint>;
+	[0] GetDsEndpoint(buffer<nn::usb::usb_endpoint_descriptor, 5, 0>) -> object<nn::usb::ds::IDsEndpoint>;
 	# Returns an event handle. Unknown what triggers signalling, not
 	# signalled during interface-enable / device<>host USB-comms init.
 	[1] GetSetupEvent() -> KObject<unknown, event>;
@@ -190,7 +190,7 @@ interface nn::usb::ds::IDsEndpoint {
 	# Returns report data from the endpoint. Seems to be eventually loaded from
 	# state, since this  doesn't trigger any USB bus activity. All-zero before
 	# [#PostBufferAsync](#nn::usb::ds::IDsEndpoint(0)) was used at least once.
-	[3] GetReportData() -> (array<usb_report_entry, 8> entries, u32 report_count);
+	[3] GetReportData() -> (array<nn::usb::usb_report_entry, 8> entries, u32 report_count);
 	# Calls the same function used by [#StallCtrl](nn::usb::ds::IDsInterface(11)),
 	# except this uses the endpoint associated with the current session.
 	#

@@ -25,7 +25,7 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	[21] DeleteSaveData(nn::ApplicationId tid);
 	[22] CreateSaveData(nn::fssrv::sf::SaveStruct saveStruct, nn::fssrv::sf::SaveCreateStruct saveCreate, u128 input);
 	[23] CreateSystemSaveData(nn::fssrv::sf::SaveStruct saveStruct, nn::fssrv::sf::SaveCreateStruct saveCreate);
-	[24] RegisterSaveDataAtomicDeletion(buffer<void, 5, 0>);
+	[24] RegisterSaveDataAtomicDeletion(buffer<unknown, 5, 0>);
 	@version(2.0.0+)
 	[25] DeleteSaveDataWithSpaceId(u8, u64);
 	@version(2.0.0+)
@@ -41,10 +41,10 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	@version(2.0.0+)
 	[53] MountSaveDataReadOnly(u8 input, nn::fssrv::sf::SaveStruct saveStruct) -> object<nn::fssrv::sf::IFileSystem> saveDataFs;
 	@version(3.0.0+)
-	[57] ReadSaveDataFileSystemExtraDataWithSpaceId (u8, u64) -> buffer<void, 6, 0>;
-	[58] ReadSaveDataFileSystemExtraData(u64) -> buffer<void, 6, 0>;
+	[57] ReadSaveDataFileSystemExtraDataWithSpaceId (u8, u64) -> buffer<unknown, 6, 0>;
+	[58] ReadSaveDataFileSystemExtraData(u64) -> buffer<unknown, 6, 0>;
 	@version(2.0.0+)
-	[59] WriteSaveDataFileSystemExtraData(u64, u8, buffer<void, 5, 0>);
+	[59] WriteSaveDataFileSystemExtraData(u64, u8, buffer<unknown, 5, 0>);
 	[60] OpenSaveDataInfoReader() -> object<nn::fssrv::sf::ISaveDataInfoReader>;
 	[61] OpenSaveDataIterator(u8) -> object<IUnknown>;
 	[80] OpenSaveDataThumbnailFile(u8, bytes<0x40>, u32) -> object<nn::fssrv::sf::IFile> thumbnail;
@@ -61,7 +61,7 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	@version(1.0.0-3.0.2)
 	[600] SetCurrentPosixTime(u64 time);
 	[601] QuerySaveDataTotalSize(u64, u64) -> u64 saveDataSize;
-	[602] VerifySaveData(nn::ApplicationId tid) -> buffer<void, 6, 0>;
+	[602] VerifySaveData(nn::ApplicationId tid) -> buffer<unknown, 6, 0>;
 	[603] CorruptSaveDataForDebug(nn::ApplicationId tid);
 	[604] CreatePaddingFile(u64 size);
 	[605] DeleteAllPaddingFiles();
@@ -85,7 +85,7 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	[1003] DisableAutoSaveDataCreation();
 	[1004] SetGlobalAccessLogMode(u32 mode);
 	[1005] GetGlobalAccessLogMode() -> u32 logMode;
-	[1006] OutputAccessLogToSdCard(buffer<void, 5, 0> logText);
+	[1006] OutputAccessLogToSdCard(buffer<unknown, 5, 0> logText);
 }
 
 interface nn::fssrv::sf::IStorage {
