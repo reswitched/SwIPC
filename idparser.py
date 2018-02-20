@@ -100,9 +100,9 @@ def getAll():
 	fns = [dir + 'ipcdefs/auto.id'] + [x for x in glob.glob(dir + 'ipcdefs/*.id') if x != dir + 'ipcdefs/auto.id']
 
 	if os.path.exists(dir + 'ipcdefs/cache') and all(os.path.getmtime(dir + 'ipcdefs/cache') > os.path.getmtime(x) for x in fns):
-		res = json.load(file(dir + 'ipcdefs/cache'))
+		res = json.load(open(dir + 'ipcdefs/cache'))
 	else:
-		res = parse('\n'.join(file(fn).read() for fn in fns))
-		with file(dir + 'ipcdefs/cache', 'w') as fp:
+		res = parse('\n'.join(open(fn).read() for fn in fns))
+		with open(dir + 'ipcdefs/cache', 'w') as fp:
 			json.dump(res, fp)
 	return res
