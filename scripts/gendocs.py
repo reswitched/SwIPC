@@ -1,6 +1,7 @@
 import sys
 sys.path.append('.')
 import idparser
+import CommonMark
 
 class Multifile(object):
 	def __init__(self, *backing):
@@ -63,12 +64,17 @@ def format(elems, output=False):
 				ret = 'object&lt;<a href="ifaces.html#%s">%s</a>&gt;' % (S(it), S(it))
 			else:
 				ret = S(it)
-		elif elem[0] == 'KObject':
-			ret = 'KObject'
+		elif elem[0] == 'KObject' and len(elem) == 3:
+			ret = 'KObject&lt;%s, %s&gt;' % (elem[1][0], elem[2][0])
 		elif elem[0] == 'align':
 			ret = 'align&lt;%s, %s&gt;' % (emitInt(elem[1]), sub((None, elem[2])))
 		elif elem[0] == 'bytes':
 			ret = S('bytes<%s>' % emitInt(elem[1]))
+		elif elem[0] == 'struct':
+			ret = '<ul>'
+			for field in elem[1]:
+				ret += '\t<li class="text-muted">%s %s</li>' % (sub((None, field[1])), field[0])
+			ret += '</ul>'
 		elif elem[0] in types:
 			ret = '<a href="types.html#%s">%s</a>' % (S(elem[0]), S(elem[0]))
 		else:
@@ -85,9 +91,9 @@ def format(elems, output=False):
 	return ', '.join(map(sub, elems))
 
 def findCmd(ifname, id):
-	for name, cmd in ifaces[ifname].items():
+	for cmd in ifaces[ifname]['cmds']:
 		if cmd['cmdId'] == id:
-			return (name, cmd)
+			return (cmd['name'], cmd)
 	return None
 
 types, ifaces, services = idparser.getAll()
@@ -95,8 +101,9 @@ invServices = {svc : ifname for ifname, svcs in services.items() for svc in svcs
 returnedBy = {}
 takenBy = {}
 
-for name, cmds in ifaces.items():
-	for cmd in cmds.values():
+for name, iface in ifaces.items():
+	cmds = iface['cmds']
+	for cmd in cmds:
 		for _, elem in cmd['inputs']:
 			if elem[0] == 'object':
 				c = elem[1][0]
@@ -111,18 +118,20 @@ for name, cmds in ifaces.items():
 				returnedBy[c].append((name, cmd['cmdId']))
 
 ifaceCompleteness = dict(IUnknown=0, IPipe=100, NPort=100)
-for name, cmds in ifaces.items():
+for name, iface in ifaces.items():
+	cmds = iface['cmds']
 	complete = 0
 	count = 0
-	for cname, cmd in cmds.items():
-		if not cname.startswith('Unknown'):
-			count += 4
+	for cmd in cmds:
+		cname = cmd['name']
+		count += 6
+		if cmd['doc'] != "":
+			complete += 6
+		elif not cname.startswith('Unknown'):
 			complete += 4
 		elif len(cmd['inputs']) or len(cmd['outputs']):
-			count += 4
 			complete += 3
 		else:
-			count += 4
 			complete += 1
 	if count == 0:
 		count = 1
@@ -130,10 +139,10 @@ for name, cmds in ifaces.items():
 	ifaceCompleteness[name] = int(complete * 100. / count)
 
 ifaceTotalCompleteness = {}
-for name, cmds in ifaces.items():
-	cmds = ifaces[name]
+for name, iface in ifaces.items():
+	cmds = iface['cmds']
 	deps = set([name])
-	for cmd in cmds.values():
+	for cmd in cmds:
 		for _, elem in cmd['outputs']:
 			if elem[0] == 'object':
 				deps.add(elem[1][0])
@@ -209,7 +218,8 @@ print >>ifp, '</div>'
 
 print >>nfp, '<h1 class="display-3">SwIPC Interfaces</h1>'
 print >>nfp, '<br />'
-for name, cmds in sorted(ifaces.items(), key=lambda x: x[0]):
+for name, iface in sorted(ifaces.items(), key=lambda x: x[0]):
+	cmds = iface['cmds']
 	print >>nfp, '<div class="card">'
 	nfp += 1
 
@@ -254,14 +264,34 @@ for name, cmds in sorted(ifaces.items(), key=lambda x: x[0]):
 		print >>nfp, '\t</ul>'
 		print >>nfp, '</li>'
 
-	if len(cmds):
+	if len(iface['doc']):
+		print >>nfp, '<li class="list-group-item">'
+		print >>nfp, '\t<div class="docs">%s</div>' % CommonMark.commonmark(iface['doc'])
+		print >>nfp, '</li>'
+	if len(iface['cmds']):
 		print >>nfp, '<li class="list-group-item">'
 		print >>nfp, '\t<h3>Commands:</h3>'
 		print >>nfp, '\t<ol>'
 		nfp += 2
-		for cname, cmd in sorted(cmds.items(), key=lambda x: x[1]['cmdId']):
-			cdef = '%s(%s)%s' % (cname, format(cmd['inputs']), ' -&gt; %s' % format(cmd['outputs'], output=True) if len(cmd['outputs']) != 0 else '')
-			print >>nfp, '<li value="%i" id="%s">%s</li>' % (cmd['cmdId'], '%s(%i)' % (name, cmd['cmdId']), cdef)
+		for cmd in sorted(cmds, key=lambda x: x['cmdId']):
+			cname = cmd['name']
+			urlId = "%s(%i)" % (name, cmd['cmdId'])
+			cdef = '<a href="#%s">%s</a>(%s)%s' % (urlId, cname, format(cmd['inputs']), ' -&gt; %s' % format(cmd['outputs'], output=True) if len(cmd['outputs']) != 0 else '')
+			print >>nfp,  '<li class="command" value="%i" id="%s">' % (cmd['cmdId'], urlId)
+			print >>nfp, ('  <input type="checkbox" class="showDocs" id="showDocs(%s)"></input>' % (urlId)) if cmd['doc'] != "" else ""
+			print >>nfp, ('  <label for="showDocs(%s)" class="showDocsLabel"></label>' % (urlId)) if cmd['doc'] != "" else ""
+			extra = ""
+			if cmd['versionAdded'] != '1.0.0' or cmd['lastVersion'] is not None:
+				extra += ", "
+				if cmd['versionAdded'] == cmd['lastVersion']:
+					extra += cmd['versionAdded']
+				elif cmd['lastVersion'] is None:
+					extra += cmd['versionAdded'] + '+'
+				else:
+					extra += "%s-%s" % (cmd['versionAdded'], cmd['lastVersion'])
+			print >>nfp,  '  <code class="signature">[%i%s] %s</code>' % (cmd['cmdId'], extra, cdef)
+			print >>nfp, ('  <div class="docs">%s</div>' % CommonMark.commonmark(cmd['doc'])) if cmd['doc'] != "" else ""
+			print >>nfp,  '</li>'
 		nfp -= 2
 		print >>nfp, '\t</ol>'
 		print >>nfp, '</li>'
@@ -276,7 +306,9 @@ print >>tfp, '<br />'
 print >>tfp, '<ul class="list-group">'
 tfp += 1
 for name, type in sorted(types.items(), key=lambda x: x[0]):
-	print >>tfp, '<li class="list-group-item" id="%s"><a href="#%s">+</a> %s <small class="text-muted">%s</small></li>' % (name, name, name, format([(None, type)]))
+	print >>tfp, '<li class="list-group-item" id="%s">' % name
+	print >>tfp, '\t<a href="#%s">+</a> %s <small class="text-muted">%s</small>' % (name, name, format([(None, type)]))
+	print >>tfp, '</li>'
 tfp -= 1
 print >>tfp, '</ul>'
 

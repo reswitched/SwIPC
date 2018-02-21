@@ -8561,7 +8561,7 @@ smapping = {
     },
     '0100000000000003': {
         'pm:info': 'nn::pm::detail::IInformationInterface',
-        'pm:shel': 'nn::pm::detail::IShellInterface',
+        'pm:shell': 'nn::pm::detail::IShellInterface',
         'pm:bm':   'nn::pm::detail::IBootModeInterface',
     },
     '0100000000000004': {
@@ -8655,8 +8655,8 @@ smapping = {
 	'0100000000000014': {  # audio
 		'audctl':   'nn::audioctrl::detail::IAudioController',
 		'audin:a':  'nn::audio::detail::IAudioInManagerForApplet',
-		'audin:d':  'nn::audio::detail::IAudioInManager',
-		'audin:u':  'nn::audio::detail::IAudioInManagerForDebugger',
+		'audin:d':  'nn::audio::detail::IAudioInManagerForDebugger',
+		'audin:u':  'nn::audio::detail::IAudioInManager',
 		'audout:a': 'nn::audio::detail::IAudioOutManagerForApplet',
 		'audout:d': 'nn::audio::detail::IAudioOutManagerForDebugger',
 		'audout:u': 'nn::audio::detail::IAudioOutManager',
@@ -8711,6 +8711,9 @@ smapping = {
 		'fgm:0':   'nn::fgm::sf::ISession',
 		'fgm':     'nn::fgm::sf::ISession',
 		'fgm:9':   'nn::fgm::sf::ISession', # no nn::fgm::sf::IDebugger ?
+	},
+	'010000000000001C': {  # nvnflinger
+		'dispdrv': 'nns::hosbinder::IHOSBinderDriver',
 	},
 	'010000000000001D': {  # pcie.withoutHb
 		'pcie': 'nn::pcie::detail::IManager',

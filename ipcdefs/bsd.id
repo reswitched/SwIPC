@@ -1,0 +1,80 @@
+type nn::socket::timeout = struct {
+	u64 sec;
+	u64 usec;
+	u64 off;
+};
+type nn::socket::fd_set = u128;
+type nn::socket::sockaddr = unknown;
+
+interface nn::socket::sf::IClient is bsd:u, bsd:s {
+	[0] Initialize(u32, u32, u32, u32, u32, u32, u32, u32, u64 pid, u64 transferMemorySize, KObject<copy, transfer_memory>, pid) -> u32 bsd_errno;
+	[1] StartMonitoring(u64, pid);
+	# Create an endpoint for communication
+	[2] Socket(u32 domain, u32 type, u32 protocol) -> (i32 ret, u32 bsd_errno);
+	[3] SocketExempt(u32, u32, u32) -> (i32 ret, u32 bsd_errno);
+	[4] Open(u32, buffer<unknown, 0x21, 0>) -> (i32 ret, u32 bsd_errno);
+
+	# Synchronous I/O multiplexing
+	#
+	# The `select()` function shall examine the file descriptor sets whose
+	# addresses are passed in the `readfds`, `writefds`, and `errorfds` parameters
+	# to see whether some of their descriptors are ready for reading, are
+	# ready for writing, or have an exceptional condition pending,
+	# respectively.
+	#
+	# Upon successful completion, the `select()` function shall fill the
+	# `readfds_out`, `writefds_out` and `errorfds_out` to indicate which file
+	# descriptors are ready for reading, ready for writing, or have an error
+	# condition pending, respectively, and shall return the total number of
+	# ready descriptors in all the output sets. For each file descriptors less
+	# than `nfds`, the corresponding bit shall be set on successful completion
+	# if it was set on input and the associated condition is true for that
+	# descriptor.
+	#
+	# If none of the selected descriptors are ready for the requested
+	# operation, the `select()` function shall block until at least one of the
+	# requested operations becomes ready or until the timeout occurs. The
+	# timeout parameter controls how long the `select()` function shall take
+	# before timing out. It specifies a maximum interval to wait for the
+	# selection to complete. If the specified time interval expires without
+	# any requested operation becoming ready, the function shall return.
+	#
+	# ### Arguments:
+	#
+	# - `nfds`:	Specifies the range of descriptors to be tested. The first
+	#			`nfds` descriptors shall be checked in each set; that is, the
+	#			descriptors from zero through `nfds-1` in the descriptor sets
+	#			shall be examined.
+	# - `readfds_in`:	Specifies the file descriptors to be checked for
+	#				being ready to read.
+	# - `writefds_in`	Specifies the file descriptors to be checked for
+	#				being ready to write.
+	# - `errorfds_in`	Specifies the file descriptors to be checked for
+	#				error conditions pending.
+	[5] Select(u32 nfds, nn::socket::timeout timeout, buffer<nn::socket::fd_set, 0x21, 0> readfds_in, buffer<nn::socket::fd_set, 0x21, 0> writefds_in, buffer<nn::socket::fd_set, 0x21, 0> errorfds_in) -> (i32 ret, u32 bsd_errno, buffer<nn::socket::fd_set, 0x22, 0> readfds_out, buffer<nn::socket::fd_set, 0x22, 0> writefds_out, buffer<nn::socket::fd_set, 0x22, 0> errorfds_out);
+	[6] Poll(u32, u32, buffer<unknown, 0x21, 0>) -> (i32 ret, u32 bsd_errno, buffer<unknown, 0x22, 0>);
+	[7] Sysctl(buffer<unknown, 0x21, 0>, buffer<unknown, 0x21, 0>) -> (i32 ret, u32 bsd_errno, u32, buffer<unknown, 0x22, 0>);
+	[8] Recv(u32 socket, u32 flags) -> (i32 ret, u32 bsd_errno, buffer<i8, 0x22, 0> message);
+	[9] RecvFrom(u32 sock, u32 flags) -> (i32 ret, u32 bsd_errno, u32 addrlen, buffer<i8, 0x22, 0> message, buffer<nn::socket::sockaddr, 0x22, 0>);
+	[10] Send(u32 socket, u32 flags, buffer<i8, 0x21, 0>) -> (i32 ret, u32 bsd_errno);
+	[11] SendTo(u32 socket, u32 flags, buffer<i8, 0x21, 0>, buffer<nn::socket::sockaddr, 0x21, 0>) -> (i32 ret, u32 bsd_errno);
+	[12] Accept(u32 socket) -> (i32 ret, u32 bsd_errno, u32 addrlen, buffer<nn::socket::sockaddr, 0x22, 0> addr);
+	[13] Bind(u32 socket, buffer<nn::socket::sockaddr, 0x21, 0>) -> (i32 ret, u32 bsd_errno);
+	[14] Connect(u32 socket, buffer<nn::socket::sockaddr, 0x21, 0>) -> (i32 ret, u32 bsd_errno);
+	[15] GetPeerName(u32 socket) -> (i32 ret, u32 bsd_errno, u32 addrlen, buffer<nn::socket::sockaddr, 0x22, 0> addr);
+	[16] GetSockName(u32 socket) -> (i32 ret, u32 bsd_errno, u32 addrlen, buffer<nn::socket::sockaddr, 0x22, 0> addr);
+	[17] GetSockOpt(u32, u32, u32) -> (i32 ret, u32 bsd_errno, u32, buffer<unknown, 0x22, 0>);
+	[18] Listen(u32 socket, u32 backlog) -> (i32 ret, u32 bsd_errno);
+	[19] Ioctl(u32, u32, u32, buffer<unknown, 0x21, 0>, buffer<unknown, 0x21, 0>, buffer<unknown, 0x21, 0>, buffer<unknown, 0x21, 0>) -> (i32 ret, u32 bsd_errno, buffer<unknown, 0x22, 0>, buffer<unknown, 0x22, 0>, buffer<unknown, 0x22, 0>, buffer<unknown, 0x22, 0>);
+	[20] Fcntl(u32, u32, u32) -> (i32 ret, u32 bsd_errno);
+	[21] SetSockOpt(u32 socket, u32 level, u32 option_name, buffer<unknown, 0x21, 0>) -> (i32 ret, u32 bsd_errno);
+	[22] Shutdown(u32 socket, u32 how) -> (i32 ret, u32 bsd_errno);
+	[23] ShutdownAllSockets(u32 how) -> (i32 ret, u32 bsd_errno);
+	[24] Write(u32 socket, buffer<i8, 0x21, 0> message) -> (i32 ret, u32 bsd_errno);
+	[25] Read(u32 socket) -> (i32 ret, u32 bsd_errno, buffer<i8, 0x22, 0> message);
+	[26] Close(u32 socket) -> (i32 ret, u32 bsd_errno);
+	[27] DuplicateSocket(u32, u64) -> (i32 ret, u32 bsd_errno);
+	[28] GetResourceStatistics(u64, pid) -> (i32 ret, u32 bsd_errno, buffer<unknown, 0x22, 0>);
+	[29] RecvMMsg(u32, u32, u32, u128) -> (i32 ret, u32 bsd_errno, buffer<unknown, 0x22, 0>); // [3.0.0+]
+	[30] SendMMsg(u32, u32, u32, buffer<unknown, 0x21, 0>, buffer<unknown, 0x21, 0>) -> (i32 ret, u32 bsd_errno); // [3.0.0+]
+}
