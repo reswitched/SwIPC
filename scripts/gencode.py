@@ -199,8 +199,9 @@ invServices = {svc : ifname for ifname, svcs in services.items() for svc in svcs
 returnedBy = {}
 takenBy = {}
 
-for name, cmds in ifaces.items():
-	for cmd in cmds.values():
+for name, iface in ifaces.items():
+	for cmd in iface['cmds']:
+		name = cmd['name']
 		for _, elem in cmd['inputs']:
 			if elem[0] == 'object':
 				c = elem[1][0]
@@ -382,10 +383,8 @@ if prog_args.s:
 	gen_init()
 	gen_finalize()
 
-if prog_args.ipc_object_arg:
-	print("typedef ipc_object_t %s_t;" % c_ifacename)
-
-for cname, cmd in sorted(iface.items(), key=lambda x: x[1]['cmdId']):
+for cmd in sorted(iface['cmds'], key=lambda x: x['cmdId']):
+	cname = cmd['name']
 	if cname == "Initialize":
 		continue
 	try:
@@ -409,10 +408,19 @@ print("#pragma once")
 print("")
 print("#include <libtransistor/types.h>")
 print("")
-print("// TODO: Generate the structs")
+
+if prog_args.ipc_object_arg:
+	print("typedef ipc_object_t %s_t;" % c_ifacename)
+	print("")
+
+#for tname, type in sorted(types.items(), key=lambda x: x[0]):
+#  print tname
+print("// TODO: Codegen structs")
+
 print("")
 
-for cname, cmd in sorted(iface.items(), key=lambda x: x[1]['cmdId']):
+for cmd in sorted(iface['cmds'], key=lambda x: x['cmdId']):
+	cname = cmd['name']
 	if cname == "Initialize":
 		continue
 	try:
