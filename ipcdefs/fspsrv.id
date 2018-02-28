@@ -75,7 +75,7 @@ interface nn::fssrv::sf::IStorage {
 }
 
 interface nn::fssrv::sf::IFileSystem {
-	[0] CreateFile(u64 mode, u32 size, buffer<i8, 0x19, 0x301> path);
+	[0] CreateFile(u32 mode, u64 size, buffer<i8, 0x19, 0x301> path);
 	[1] DeleteFile(buffer<i8, 0x19, 0x301> path);
 	[2] CreateDirectory(buffer<i8, 0x19, 0x301> path);
 	[3] DeleteDirectory(buffer<i8, 0x19, 0x301> path);
