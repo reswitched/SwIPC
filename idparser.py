@@ -26,13 +26,13 @@ name = /[a-zA-Z_][a-zA-Z0-9_:]*/ ;
 sname = /[a-zA-Z_][a-zA-Z0-9_:\-]*/ ;
 serviceNameList = @:','.{ sname } ;
 template = '<' @:','.{ expression } '>' ;
-structField = type [ name ] ';' ;
+structField = doc:{ comment }* type:type name:name ';' ;
 type =
-    | 'struct' '{' structFields:{ structField }+ '}'
+    | 'struct' [ template ] '{' structFields:{ structField }+ '}'
     | name:name template:[ template ]
     ;
 
-typeDef = 'type' name:name '=' type:type ';' ;
+typeDef = doc:{ comment }* 'type' name:name '=' type:type ';' ;
 
 interface = doc:{ comment }* 'interface' name:name [ 'is' serviceNames:serviceNameList ] '{' functions:{ funcDef }* '}' ;
 namedTuple = '(' @:','.{ type [ name ] } ')' ;
@@ -41,7 +41,12 @@ comment = '#' line:/[^\\n]*/;
 range = [start:(number '.' number '.' number)] '-' [end:(number '.' number '.' number)] ;
 decorator = '@' @:decoratorType ;
 versionNumber = number '.' number '.' number ;
-decoratorType = type:'version' '(' startVersion:versionNumber postfix:[('+' | '-' endVersion:versionNumber)] ')' ;
+decoratorType
+	=
+	| type:'version' '(' startVersion:versionNumber postfix:[('+' | '-' endVersion:versionNumber)] ')'
+	| type:'undocumented'
+	;
+
 funcDef = doc:{ comment }* decorators:{ decorator }* '[' cmdId:number ']' name:name inputs:namedTuple [ '->' outputs:( namedType | namedTuple ) ] ';' ;
 '''
 
@@ -65,9 +70,9 @@ def parseType(type):
 	assert(not(type['template'] is not None and type['structFields'] is not None))
 	name, template, structFields = type['name'], type['template'], type['structFields']
 	if template is not None:
-		return [name] + map(parseType, template)
+		return [name] + list(map(parseType, template))
 	elif structFields is not None:
-		return ["struct"] + [map(lambda x: [x[1], parseType(x[0])], structFields)]
+		return ["struct"] + [list(map(lambda x: [x['name'], parseType(x['type']), list(map(lambda x: x.line, x['doc']))], structFields))]
 	else:
 		return [name]
 
@@ -101,10 +106,13 @@ def parse(data):
 			iface['cmds'].append(fdef)
 			fdef['name'] = func['name']
 			fdef['cmdId'] = func['cmdId']
+			fdef['undocumented'] = False
 
 			# Handle decorators
 			for decorator in func['decorators']:
-				if decorator['type'] == 'version':
+				if decorator['type'] == 'undocumented':
+					fdef['undocumented'] = True
+				elif decorator['type'] == 'version':
 					fdef['versionAdded'] = "".join(map(str, decorator['startVersion']))
 					if decorator['postfix'] is None:
 						fdef['lastVersion'] = fdef['versionAdded']

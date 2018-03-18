@@ -8876,7 +8876,7 @@ for cname, cmdid in allCmds:
 		idef = sdef[0], cdef[1], sdef[2]
 
 	if idef[1] == '':
-		idef = idef[0], '0 bytes in - 0 bytes out', idef[2]
+		idef = idef[0], 'UNK bytes in - UNK bytes out', idef[2]
 
 	if cname not in clses:
 		clses[cname] = {}
@@ -9149,9 +9149,11 @@ for cname, functions in clses.items():
 		if fname == '':
 			fname = 'Unknown%i' % cmdId
 		spec = spec.split(' - ')
-		if len(spec) == 2 or (len(spec) == 3 and spec[2] == 'takes pid'):
+		if len(spec) == 2 and spec[0] == 'UNK bytes in' and spec[1] == 'UNK bytes out':
+			iface[cmdId] = (fname, (), (), False)
+		elif len(spec) == 2 or (len(spec) == 3 and spec[2] == 'takes pid'):
 			assert spec[0] == '0 bytes in' and spec[1] == '0 bytes out'
-			iface[cmdId] = (fname, (['pid'], ) if len(spec) == 3 else (), ())
+			iface[cmdId] = (fname, (['pid'], ) if len(spec) == 3 else (), (), True)
 		elif len(spec) == 3 or (len(spec) == 4 and spec[2] == 'takes pid'):
 			if spec[2] == 'takes pid':
 				pid = True
@@ -9161,7 +9163,7 @@ for cname, functions in clses.items():
 				cs = spec[2]
 
 			ins, outs = parseFunc(cs, params, pid)
-			iface[cmdId] = fname, ins, outs
+			iface[cmdId] = fname, ins, outs, True
 
 for elem in bufferTypes:
 	if elem not in dataSizes:
@@ -9198,17 +9200,20 @@ with file('ipcdefs/auto.id', 'w') as fp:
 		else:
 			print 'wtf?', type
 
-	def emitFunction(cmdId, fname, ins, outs):
+	def emitFunction(cmdId, fname, ins, outs, documented):
 		outstr = ''
-		if len(outs) == 1:
-			outstr = ' -> %s' % emitType(outs[0])
-		elif len(outs):
-			outstr = ' -> (%s)' % ', '.join(emitType(x) for x in outs)
-		return '[%i] %s(%s)%s;' % (cmdId, fname, ', '.join(emitType(x) for x in ins), outstr)
+		if documented:
+			if len(outs) == 1:
+				outstr = ' -> %s' % emitType(outs[0])
+			elif len(outs):
+				outstr = ' -> (%s)' % ', '.join(emitType(x) for x in outs)
+			return '[%i] %s(%s)%s;' % (cmdId, fname, ', '.join(emitType(x) for x in ins), outstr)
+		else:
+			return '@undocumented\n\t[%i] %s();' % (cmdId, fname)
 
 	for cname, cmds in sorted(ifaces.items(), key=lambda x: x[0]):
 		print >>fp, 'interface %s%s {' % (cname, ' is ' + ', '.join(clsToInterface[cname]) if cname in clsToInterface else '')
-		for cmdId, (fname, ins, outs) in sorted(cmds.items(), key=lambda x: x[0]):
-			print >>fp, '\t' + emitFunction(cmdId, fname, ins, outs)
+		for cmdId, (fname, ins, outs, documented) in sorted(cmds.items(), key=lambda x: x[0]):
+			print >>fp, '\t' + emitFunction(cmdId, fname, ins, outs, documented)
 		print >>fp, '}'
 		print >>fp
