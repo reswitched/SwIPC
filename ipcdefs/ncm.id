@@ -22,3 +22,20 @@ interface nn::ncm::detail::INcmInterface is ncm {
 
 interface nn::ncm::detail::LocationResolverInterface is lr {
 }
+
+interface nn::ncm::detail::PackageInstallTask {
+	[2] Initialize() -> char const*, object<nn::ncm::StorageId>, void *, ulong, bool;
+	[3] GetInstallContentMetaInfo() -> object<nn::ncm::InstallContentMetaInfo> *, object<nn::ncm::ContentMetaKey> const&;
+	[4] IsContentMetaContentName() -> char const*;
+	[5] PrepareInstallContentMetaData() -> void;
+}
+
+interface nn::ncm::detail::PackageInstallTaskBase {
+	[2] Initialize() -> char const*, void *, ulong, object<nn::ncm::StorageId>, object<nn::ncm::InstallTaskDataBase> *, uint;
+	[3] CreateCertificatePath() -> nn::kvdb::BoundedString<256> *, object<nn::fs::RightsId>;
+	[4] CreateContentPath() -> nn::kvdb::BoundedString<256> *, object<nn::ncm::ContentId>;
+	[5] CreateContentMetaPath() -> nn::kvdb::BoundedString<256> *, object<nn::ncm::ContentId>;
+	[5] CreateTicketPath() -> nn::kvdb::BoundedString<256> *, object<nn::fs::RightsId>;
+	[5] InstallTicket() -> object<nn::fs::RightsId> const&, object<nn::ncm::ContentMetaType>;
+	[5] OnWritePlaceHolder() -> object<nn::ncm::InstallContentInfo> *;
+}
