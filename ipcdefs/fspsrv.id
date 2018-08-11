@@ -3,11 +3,41 @@ type nn::fssrv::sf::SaveCreateStruct = bytes<0x40>;
 type nn::fssrv::sf::IDirectoryEntry = struct {
 	bytes<0x300> path;
 	u32 unk1;
-	u8 directory_entry_type;
+	nn::fssrv::sf::DirectoryEntryType directory_entry_type;
 	u64 filesize;
 };
+type nn::fssrv::sf::Partition = enum<u32> {
+	BootPartition1Root = 0;
+	BootPartition2Root = 10;
+	UserDataRoot = 20;
+	BootConfigAndPackage2Part1 = 21;
+	BootConfigAndPackage2Part2 = 22;
+	BootConfigAndPackage2Part3 = 23;
+	BootConfigAndPackage2Part4 = 24;
+	BootConfigAndPackage2Part5 = 25;
+	BootConfigAndPackage2Part6 = 26;
+	CalibrationBinary = 27;
+	CalibrationFile = 28;
+	SafeMode = 29;
+	SystemProperEncryption = 30;
+	User = 31;
+};
 
-type nn::fssrv::sf::Partition = u32;
+type nn::fssrv::sf::DirectoryEntryType = enum<u8> {
+	Directory = 0;
+	File = 1;
+};
+
+type nn::fssrv::sf::FileSystemType = enum<u32> {
+	Invalid = 0;
+	Invalid2 = 1;
+	Logo = 2;
+	ContentControl = 3;
+	ContentManual = 4;
+	ContentMeta = 5;
+	ContentData = 6;
+	ApplicationPackage = 7;
+};
 
 // --------------------------------------------- FSP-SRV ---------------------------------------------
 
@@ -17,7 +47,7 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	# \[2.0.0+\] This function was removed.
 	# 
 	@version(1.0.0)
-	[0] OpenFileSystem(u32 filesystem_type, nn::ApplicationId tid, buffer<bytes<0x301>, 0x19, 0x301> path) -> object<nn::fssrv::sf::IFileSystem> contentFs;
+	[0] OpenFileSystem(nn::fssrv::sf::FileSystemType filesystem_type, nn::ApplicationId tid, buffer<bytes<0x301>, 0x19, 0x301> path) -> object<nn::fssrv::sf::IFileSystem> contentFs;
 	# Takes a pid-descriptor.
 	# 
 	[1] Initialize(u64, pid);
@@ -29,7 +59,7 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	# Note: web-applet strings refer to both this cmd and [\#OpenFileSystemWithId](#nn::fssrv::sf::IFileSystemProxy(8) "wikilink") as MountContent, but official nn\_sf\_sync symbols use OpenXX names.
 	# 
 	@version(2.0.0+)
-	[7] OpenFileSystemWithPatch(u32 filesystem_type, nn::ApplicationId tid) -> object<nn::fssrv::sf::IFileSystem>;
+	[7] OpenFileSystemWithPatch(nn::fssrv::sf::FileSystemType filesystem_type, nn::ApplicationId tid) -> object<nn::fssrv::sf::IFileSystem>;
 	# Takes a type-0x19 input buffer, an [\#FileSystemType](http://switchbrew.org/index.php?title=Filesystem services#FileSystemType "wikilink") and an u64 title-id. Returns an [\#IFileSystem](#nn::fssrv::sf::IFileSystem "wikilink").
 	# 
 	# The [\#IFileSystem](#nn::fssrv::sf::IFileSystem "wikilink") must be **ContentMeta** if the NCA type is 0 (control).
@@ -45,7 +75,7 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	# When [\#FileSystemType](http://switchbrew.org/index.php?title=Filesystem services#FileSystemType "wikilink") is **ContentMeta**, it uses in64=0xffffffffffffffff internally, otherwise it checks if in64 is set to 0xffffffffffffffff then throws an error if so. When the in64 used internally is not 0xffffffffffffffff, it's compared with the NCA titleID, then an error is thrown on mismatch.
 	# 
 	@version(2.0.0+)
-	[8] OpenFileSystemWithId(u32 filesystem_type, nn::ApplicationId tid, buffer<bytes<0x301>, 0x19, 0x301> path) -> object<nn::fssrv::sf::IFileSystem> contentFs;
+	[8] OpenFileSystemWithId(nn::fssrv::sf::FileSystemType filesystem_type, nn::ApplicationId tid, buffer<bytes<0x301>, 0x19, 0x301> path) -> object<nn::fssrv::sf::IFileSystem> contentFs;
 	@version(3.0.0+)
 	[9] OpenDataFileSystemByApplicationId(nn::ApplicationId tid) -> object<nn::fssrv::sf::IFileSystem> dataFiles;
 	# Takes a type-0x19 input buffer string and a u32 [Bis partitionID](http://switchbrew.org/index.php?title=Flash_Filesystem "wikilink"). Official user-process code sets instr\[0\] = 0 normally. Returns an [\#IFileSystem](#nn::fssrv::sf::IFileSystem "wikilink").
@@ -279,7 +309,7 @@ interface nn::fssrv::sf::IFileSystem {
 	[6] RenameDirectory(buffer<bytes<0x301>, 0x19, 0x301> oldPath, buffer<bytes<0x301>, 0x19, 0x301> newPath);
 	# Takes a type-0x9 input buffer for the path and returns [\#DirectoryEntryType](http://switchbrew.org/index.php?title=Filesystem services#DirectoryEntryType "wikilink") as an output u32.
 	# 
-	[7] GetEntryType(buffer<bytes<0x301>, 0x19, 0x301> path) -> u32;
+	[7] GetEntryType(buffer<bytes<0x301>, 0x19, 0x301> path) -> nn::fssrv::sf::DirectoryEntryType;
 	# Takes a type-0x19 input buffer for the path, and an u32 **mode**. **mode** controls how the file is opened, based on which bits are set:
 	# 
 	# -   When bit 0 is set, the file is Readable: you can use the Read operation.

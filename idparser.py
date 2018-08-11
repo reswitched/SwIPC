@@ -27,8 +27,10 @@ sname = /[a-zA-Z_][a-zA-Z0-9_:\-]*/ ;
 serviceNameList = @:','.{ sname } ;
 template = '<' @:','.{ expression } '>' ;
 structField = doc:{ comment }* type:type name:name ';' ;
+enumField = doc:{ comment }* name:name '=' value:number ';' ;
 type =
-    | 'struct' [ template ] '{' structFields:{ structField }+ '}'
+    | 'struct' template:[ template ] '{' structFields:{ structField }+ '}'
+    | 'enum' template:template '{' enumFields:{ enumField }+ '}'
     | name:name template:[ template ]
     ;
 
@@ -65,14 +67,16 @@ class Semantics(object):
 		return [ast if isinstance(ast, list) else [ast, None]]
 
 def parseType(type):
-	if not isinstance(type, tatsu.ast.AST) or 'template' not in type or 'structFields' not in type:
+	if not isinstance(type, tatsu.ast.AST) or 'template' not in type or 'structFields' not in type or 'enumFields' not in type:
 		return type
-	assert(not(type['template'] is not None and type['structFields'] is not None))
-	name, template, structFields = type['name'], type['template'], type['structFields']
-	if template is not None:
-		return [name] + list(map(parseType, template))
-	elif structFields is not None:
+	assert(not(type['template'] is not None and type['structFields'] is not None and type['enumFields'] is not None))
+	name, template, structFields, enumFields = type['name'], type['template'], type['structFields'], type['enumFields']
+	if structFields is not None:
 		return ["struct"] + [list(map(lambda x: [x['name'], parseType(x['type']), list(map(lambda x: x.line, x['doc']))], structFields))]
+	elif enumFields is not None:
+		return ["enum"] + [list(map(lambda x: [x['name'], x['value'], list(map(lambda x: x.line, x['doc']))], enumFields))] + [template[0]['name']]
+	elif template is not None:
+		return [name] + list(map(parseType, template))
 	else:
 		return [name]
 

@@ -75,6 +75,11 @@ def format(elems, output=False):
 			for field in elem[1]:
 				ret += '\t<li class="text-muted">%s %s</li>' % (sub((None, field[1])), field[0])
 			ret += '</ul>'
+		elif elem[0] == 'enum':
+			ret = '<span>&lt;size = %s&gt;</span><ul>' % elem[2]
+			for field in elem[1]:
+				ret += '\t<li class="text-muted">%s = %d</li>' % (field[0], field[1])
+			ret += '</ul>'
 		elif elem[0] in types:
 			ret = '<a href="types.html#%s">%s</a>' % (S(elem[0]), S(elem[0]))
 		else:
