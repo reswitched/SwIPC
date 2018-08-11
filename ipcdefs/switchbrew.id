@@ -3315,7 +3315,7 @@ interface nn::nfp::detail::IDebug {
 	[24] RecreateApplicationArea(u64, u32, buffer<unknown,5,0>);
 	[100] Format(u64);
 	[101] GetAdminInfo(u64) -> buffer<unknown,26,64>;
-	[102] GetRegisterInfo(u64) -> buffer<unknown,26,256>;
+	[102] GetRegisterInfo2(u64) -> buffer<unknown,26,256>;
 	[103] SetRegisterInfo(u64, buffer<unknown,25,256>);
 	[104] DeleteRegisterInfo(u64);
 	[105] DeleteApplicationArea(u64);
@@ -3385,7 +3385,7 @@ interface nn::nfp::detail::ISystem {
 	[23] AttachAvailabilityChangeEvent() -> KObject;
 	[100] Format(u64);
 	[101] GetAdminInfo(u64) -> buffer<unknown,26,64>;
-	[102] GetRegisterInfo(u64) -> buffer<unknown,26,256>;
+	[102] GetRegisterInfo2(u64) -> buffer<unknown,26,256>;
 	[103] SetRegisterInfo(u64, buffer<unknown,25,256>);
 	[104] DeleteRegisterInfo(u64);
 	[105] DeleteApplicationArea(u64);
