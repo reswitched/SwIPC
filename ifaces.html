@@ -21061,7 +21061,7 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="122" aria-valuemin="0" aria-valuemax="100" style="width: 122%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="166" aria-valuemin="0" aria-valuemax="100" style="width: 166%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
@@ -21089,7 +21089,7 @@
 							<li class="command" value="1" id="nn::sm::detail::IUserInterface(1)">
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::sm::detail::IUserInterface(1))"></input>
 							  <label for="showDocs(nn::sm::detail::IUserInterface(1))" class="showDocsLabel"></label>
-							  <code class="signature">[1] <a href="#nn::sm::detail::IUserInterface(1)">GetService</a>(<a href="types.html#ServiceName">ServiceName</a> name) -&gt; IPipe</code>
+							  <code class="signature">[1] <a href="#nn::sm::detail::IUserInterface(1)">GetService</a>(<a href="types.html#ServiceName">ServiceName</a> name) -&gt; KObject&lt;move, session&gt;</code>
 							  <div class="docs"><p>Returns a handle to the given service. IPC messages may be sent to this
 							handle through <code>svcSendSyncRequest</code>.</p>
 							</div>
@@ -21097,7 +21097,7 @@
 							<li class="command" value="2" id="nn::sm::detail::IUserInterface(2)">
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::sm::detail::IUserInterface(2))"></input>
 							  <label for="showDocs(nn::sm::detail::IUserInterface(2))" class="showDocsLabel"></label>
-							  <code class="signature">[2] <a href="#nn::sm::detail::IUserInterface(2)">RegisterService</a>(<a href="types.html#ServiceName">ServiceName</a> name, u8, u32 maxHandles) -&gt; NPort</code>
+							  <code class="signature">[2] <a href="#nn::sm::detail::IUserInterface(2)">RegisterService</a>(<a href="types.html#ServiceName">ServiceName</a> name, u8, u32 maxHandles) -&gt; KObject&lt;move, port&gt;</code>
 							  <div class="docs"><p>Registers a service with the given name. The user can use
 							<code>svcAcceptSession</code> on the returned handle to get a new Session handle, and
 							use <code>svcReplyAndReceive</code> on those handles to reply to IPC requests.</p>
@@ -21219,7 +21219,7 @@
 							<li class="command" value="0" id="nn::socket::sf::IClient(0)">
 							
 							
-							  <code class="signature">[0] <a href="#nn::socket::sf::IClient(0)">Initialize</a>(u32, u32, u32, u32, u32, u32, u32, u32, u64 pid, u64 transferMemorySize, pid, KObject) -&gt; u32 bsd_errno</code>
+							  <code class="signature">[0] <a href="#nn::socket::sf::IClient(0)">Initialize</a>(u32, u32, u32, u32, u32, u32, u32, u32, u64 pid, u64 transferMemorySize, KObject&lt;copy, transfer_memory&gt;, pid) -&gt; u32 bsd_errno</code>
 							
 							</li>
 							<li class="command" value="1" id="nn::socket::sf::IClient(1)">
