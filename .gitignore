@@ -1,3 +1,6 @@
 *.pyc
 ipcdefs/cache
 *~
+docs/iface.html
+docs/index.html
+docs/types.html
