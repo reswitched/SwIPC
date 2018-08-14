@@ -129,12 +129,10 @@ for name, iface in ifaces.items():
 	count = 0
 	for cmd in cmds:
 		cname = cmd['name']
-		count += 6
-		if cmd['doc'] != "":
-			complete += 6
+		count += 4
 		if not cname.startswith('Unknown'):
 			complete += 4
-		elif len(cmd['inputs']) or len(cmd['outputs']):
+		elif not cmd['undocumented']:
 			complete += 3
 		else:
 			complete += 1
@@ -142,6 +140,21 @@ for name, iface in ifaces.items():
 		count = 1
 
 	ifaceCompleteness[name] = int(complete * 100. / count)
+
+ifaceDocCompleteness = dict(IUnknown=0, IPipe=100, NPort=100)
+for name, iface in ifaces.items():
+	cmds = iface['cmds']
+	complete = 0
+	count = 0
+	for cmd in cmds:
+		cname = cmd['name']
+		count += 1
+		if cmd['doc'] != "":
+		    complete += 1
+	if count == 0:
+		count = 1
+
+	ifaceDocCompleteness[name] = int(complete * 100. / count)
 
 ifaceTotalCompleteness = {}
 for name, iface in ifaces.items():
@@ -235,7 +248,8 @@ for name, iface in sorted(ifaces.items(), key=lambda x: x[0]):
 	nfp += 1
 
 	print >>nfp, '<li class="list-group-item">'
-	print >>nfp, '\t<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="%i" aria-valuemin="0" aria-valuemax="100" style="width: %i%%"></div></div>' % (ifaceTotalCompleteness[name], ifaceTotalCompleteness[name])
+	print >>nfp, '\t<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="%i" aria-valuemin="0" aria-valuemax="100" style="width: %i%%"></div></div>' % (ifaceCompleteness[name], ifaceCompleteness[name])
+	print >>nfp, '\t<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="%i" aria-valuemin="0" aria-valuemax="100" style="width: %i%%"></div></div>' % (ifaceDocCompleteness[name], ifaceDocCompleteness[name])
 	print >>nfp, '</li>'
 
 	if name in services:
