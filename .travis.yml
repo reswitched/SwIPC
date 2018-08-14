@@ -1,15 +1,16 @@
 language: python
 python:
 - '2.7'
-
 script:
 - python scripts/gendocs.py
-
 deploy:
-    provider: pages
-    skip-cleanup: true
-    github-token: $GITHUB_TOKEN
-    keep-history: true
-    local-dir: docs
-    on:
-        branch: master
+  provider: pages
+  skip-cleanup: true
+  github-token: "$GITHUB_TOKEN"
+  keep-history: true
+  local-dir: docs
+  on:
+    branch: master
+env:
+  global:
+    secure: PT7H0gLF/YVmSBCPOHNwAr6XyH8Aunwhg0ddoU7HKx2wGinN/rSYH/joYQoO045ZkpFIEHKUlFWTNCOWHL6Mu2CdKfIA9h7a+kZF5ssg+mkgfXLqYsKZdTlsg2uWzltziBYo0+DbrmKth8UyAQLgcYTMAOuvCmCAVP0t0JSAMXGXhJ0XfbYeZZOtsO/euXx5yp5ui6jCZeEl/KBKVFHaa3vh0FyHTkhuovV5719PY5Ozf8I9EY2zFPUu3G74fOVSVMha5XyDihQAtm3Vo/DBDyDy1J2s+fqAfOzr8ksQgm7CVKftRYKQmx5xmtIemHhEblf9DsJijpUjG+ZpkxrCdq/qUy4tDpVIx0YRrFfYv5MajT584VDkKpUexMCGbNygUUK0yF9GWSF/KvvmcCtvuH5aKNv/2jAWYZHjyf573eN2am4QpVawFsLqYoSzVG36UJccIugA6Zstb+J2r5eR6Mv0MGOTgSyJz3mW9xKKwzX4UMpJaPe/aQ7HyjWQnGMdIDtNcpcJHfjtaX/DR2FBFJ1QU1417ib5lH1vwBakLgxkGK1ZXL0LirWuoL51netmWw/OorFwMegWxq/152DQwejWwe7Me1pLe+WTOFcuuPJKhA8zhzU9dOIWf8v8quZDEpnFtsLV8M0+guota6jBkOVAWO1WHmCXPgc+mnzV0Yc=
