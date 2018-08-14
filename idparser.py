@@ -38,8 +38,14 @@ interface = doc:{ comment }* 'interface' name:name [ 'is' serviceNames:serviceNa
 namedTuple = '(' @:','.{ type [ name ] } ')' ;
 namedType = type [ name ] ;
 comment = '#' line:/[^\\n]*/;
-funcDef = doc:{ comment }* '[' cmdId:number ']' name:name inputs:namedTuple [ '->' outputs:( namedType | namedTuple ) ] ';' ;
+range = [start:(number '.' number '.' number)] '-' [end:(number '.' number '.' number)] ;
+decorator = '@' @:decoratorType ;
+versionNumber = number '.' number '.' number ;
+decoratorType = type:'version' '(' startVersion:versionNumber postfix:[('+' | '-' endVersion:versionNumber)] ')' ;
+funcDef = doc:{ comment }* decorators:{ decorator }* '[' cmdId:number ']' name:name inputs:namedTuple [ '->' outputs:( namedType | namedTuple ) ] ';' ;
 '''
+
+versionInfo = [ '1.0.0', '2.0.0', '2.1.0', '2.2.0', '2.3.0', '3.0.0', '3.0.1', '3.0.2', '4.0.0', '4.0.1', '4.1.0', '5.0.0', '5.0.1', '5.0.2', '5.1.0']
 
 class Semantics(object):
 	def number(self, ast):
@@ -81,7 +87,7 @@ def parse(data):
 		if 'functions' not in elem:
 			continue
 		#assert elem['name'] not in ifaces
-		ifaces[elem['name']] = iface = { "doc": "", "cmds": {}}
+		ifaces[elem['name']] = iface = { "doc": "", "cmds": []}
 		if elem['serviceNames']:
 			services[elem['name']] = list(elem['serviceNames'])
 		iface['doc'] = "\n".join(map(lambda x: x.line, elem['doc']))
@@ -91,8 +97,28 @@ def parse(data):
 				sys.exit(1)
 
 			assert func['name'] not in iface
-			iface['cmds'][func['name']] = fdef = {}
+			fdef = {}
+			iface['cmds'].append(fdef)
+			fdef['name'] = func['name']
 			fdef['cmdId'] = func['cmdId']
+
+			# Handle decorators
+			for decorator in func['decorators']:
+				if decorator['type'] == 'version':
+					fdef['versionAdded'] = "".join(map(str, decorator['startVersion']))
+					if decorator['postfix'] is None:
+						fdef['lastVersion'] = fdef['versionAdded']
+					elif decorator['postfix'] == '+':
+						fdef['versionRemoved'] = None
+					else:
+						fdef['lastVersion'] = "".join(map(str, decorator['endVersion']))
+
+			# Set default values for "missing" decorators
+			if 'versionAdded' not in fdef:
+				fdef['versionAdded'] = "1.0.0"
+			if 'lastVersion' not in fdef:
+				fdef['lastVersion'] = None
+
 			fdef['doc'] = "\n".join(map(lambda x: x.line, func['doc']))
 			fdef['inputs'] = [(name, parseType(type)) for type, name in func['inputs']]
 			if func['outputs'] is None:
@@ -114,4 +140,6 @@ def getAll():
 		res = parse('\n'.join(file(fn).read() for fn in fns))
 		with file(dir + 'ipcdefs/cache', 'w') as fp:
 			json.dump(res, fp)
+	# TODO: Check coherence. Especially of cmdId/version range (For each
+	# cmd ID, we need to make sure there is no version overlap !)
 	return res
