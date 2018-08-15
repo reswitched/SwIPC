@@ -427,7 +427,7 @@ interface nn::fssrv::sf::IFile {
 }
 
 interface nn::fssrv::sf::IEventNotifier {
-	[0] GetEventHandle() -> KObject;
+	[0] GetEventHandle() -> handle<copy, event>;
 }
 
 interface nn::fssrv::sf::ISaveDataInfoReader {
