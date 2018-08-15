@@ -2,6 +2,9 @@ language: python
 python:
 - '2.7'
 script:
+# Verify the quality of the data.
+- python scripts/verifier.py
+# Generate the docs for deployment.
 - python scripts/gendocs.py
 deploy:
   provider: pages
