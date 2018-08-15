@@ -290,7 +290,7 @@ for name, iface in sorted(ifaces.items(), key=lambda x: x[0]):
 				else:
 					extra += "%s-%s" % (cmd['versionAdded'], cmd['lastVersion'])
 			print >>nfp,  '  <code class="signature">[%i%s] %s</code>' % (cmd['cmdId'], extra, cdef)
-			print >>nfp, ('  <div class="docs">%s</div>' % CommonMark.commonmark(cmd['doc'])) if cmd['doc'] != "" else ""
+			print >>nfp, ('  <div class="docs">%s</div>' % CommonMark.commonmark(cmd['doc']).encode('utf-8')) if cmd['doc'] != "" else ""
 			print >>nfp,  '</li>'
 		nfp -= 2
 		print >>nfp, '\t</ol>'
