@@ -105,9 +105,11 @@ async function iter(ret, serviceName, content, services) {
     return;
   }
 
+  var firstLine = content.find(v => v != "");
+
   var ifaceName = null;
-  if (content[0].includes("This is \"")) {
-    ifaceName = content[0].slice(content[0].indexOf('"') + 1);
+  if (firstLine.includes("::")) {
+    ifaceName = firstLine.slice(firstLine.indexOf('"') + 1);
     ifaceName = ifaceName.slice(0, ifaceName.indexOf('"'));
   } else {
     // TODO: Meh
@@ -141,23 +143,61 @@ async function iter(ret, serviceName, content, services) {
       cmdName = cmdName.split("|").slice(-1)[0];
     }
 
-    // Recover the version.
-    var idx = name.indexOf("[");
-    var version = null;
-    if (idx != -1) {
-      version = name.slice(idx + 1, name.slice(idx).indexOf("]") + idx);
-      // Remove from the name
-      if (name == cmdName)
-        cmdName = cmdName.slice(cmdName.slice(idx).indexOf("]") + idx + 1).trim().replace(/[\(\)]/, "");
+    function regexIndexOf(str, regex, startpos) {
+      var indexOf = str.substring(startpos || 0).search(regex);
+      return (indexOf >= 0) ? (indexOf + (startpos || 0)) : indexOf;
     }
 
+
+    function regexLastIndexOf(str, regex, startpos) {
+        regex = (regex.global) ? regex : new RegExp(regex.source, "g" + (regex.ignoreCase ? "i" : "") + (regex.multiLine ? "m" : ""));
+        if(typeof (startpos) == "undefined") {
+            startpos = str.length;
+        } else if(startpos < 0) {
+            startpos = 0;
+        }
+        var stringToWorkWith = str.substring(0, startpos + 1);
+        var lastIndexOf = -1;
+        var nextStop = 0;
+        while((result = regex.exec(stringToWorkWith)) != null) {
+            lastIndexOf = result.index;
+            regex.lastIndex = ++nextStop;
+        }
+        return lastIndexOf;
+    }
+
+    // Recover the version.
+    var idx = regexIndexOf(name, /[\[\(]/);
+    var version = null;
+    if (idx != -1) {
+      var endIdx = regexIndexOf(name.slice(idx), /[\]\)]/)
+      if (endIdx != -1) {
+        version = name.slice(idx + 1, endIdx + idx);
+        // Remove from the name
+        if (name == cmdName)
+          cmdName = cmdName.slice(endIdx + idx + 1).trim().replace(/[\(\)]/, "");
+      }
+    }
+
+    // Maybe it's in the cmd id
+    var cmdid = cmd['Cmd'];
+    if (version == null) {
+      idx = regexIndexOf(cmdid, /[\[\(]/);
+      if (idx != -1) {
+        endIdx = regexLastIndexOf(cmdid, /[\]\)]/);
+        if (endIdx != -1) {
+          version = cmdid.slice(idx + 1, endIdx + idx).replace("[[", "").replace("]]", "");
+          cmdid = cmdid.slice(endIdx + idx + 1).trim().replace(/\[\(\)]/, "");
+        }
+      }
+    }
     cmdName = cmdName.split(" ").find(v => cmdName.trim().length != 0) || cmdName;
     if (cmdName.endsWith("?"))
-      console.error("Might be wrong function name for", ifaceName, cmdName + "(" + cmd['Cmd'] + ")");
+      console.error("Might be wrong function name for", ifaceName, cmdName + "(" + cmdid + ")");
     cmdName = cmdName.replace("?", "").trim();
 
     if (idx > 0)
-      console.error("Might be wrong version info for", ifaceName, cmdName + "(" + cmd['Cmd'] + ")");
+      console.error("Might be wrong version info for", ifaceName, cmdName + "(" + cmdid + ")");
 
     // Recover the description if name was a link
     if (getDesc) {
@@ -190,7 +230,7 @@ async function iter(ret, serviceName, content, services) {
     // Fsp-Srv specific hack (this is me being lazy)
     if (cmdName == "GetRightsIdByPath2 (returns extra byte)")
       cmdName = "GetRightsIdByPath2";
-    cmdList.push({ id: cmd['Cmd'], name: cmdName, version, doc: cmdDocs });
+    cmdList.push({ id: cmdid, name: cmdName, version, doc: cmdDocs });
   }
   if (cmdList.length > 0) {
     if (serviceName.toLowerCase() == serviceName || serviceName.startsWith("applet"))
