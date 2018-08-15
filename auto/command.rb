@@ -26,6 +26,7 @@ module SwIPC
       @outinterfaces = nil
       @inhandles = nil
       @outhandles = nil
+      @documented = false
     end
 
     def initialize_known
@@ -38,6 +39,7 @@ module SwIPC
       @outinterfaces = []
       @inhandles = []
       @outhandles = []
+      @documented = true
     end
 
     def initialize_server_known
@@ -49,6 +51,7 @@ module SwIPC
       @outinterfaces = []
       @inhandles = []
       @outhandles = []
+      @documented = false
     end
     
     attr_reader :context
@@ -67,7 +70,8 @@ module SwIPC
     attr_accessor :outhandles
     attr_accessor :inargs
     attr_accessor :outargs
-
+    attr_accessor :documented
+    
     def inspect
       {
         :id => @id,
@@ -123,6 +127,7 @@ module SwIPC
         :@outhandles => :nillable,
         :@sources => :array_concat,
         :@versions => :array_concat_uniq,
+        :@documented => :bool_or,
       }
     end
     
@@ -233,9 +238,15 @@ module SwIPC
           output.push("object<#{i || "unknown"}>")
         end
       end
+
+      str = ""
+      
+      if !@documented then
+        str+= "@undocumented\n"
+      end
       
       # build string
-      str = "[#{id}] #{name_or_placeholder}(" +
+      str+= "[#{id}] #{name_or_placeholder}(" +
             input.join(", ") +
             ")"
       

@@ -266,6 +266,9 @@ def parseClientData(version, path, desc)
       end
       args = TemplateAST.parse_list(desc["args"] || "", true)
       arginfo = TemplateAST.parse_list(desc["arginfo"] || "", true)
+      if args then
+        command.documented = true
+      end
       args.fill(nil, args.length...arginfo.length)
       add_args_to_command(command, args.zip(arginfo), desc["args"] != nil, desc["arginfo"] != nil, version)
       command.validate

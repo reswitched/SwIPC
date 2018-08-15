@@ -329,14 +329,19 @@ type nn::vi::native::NativeSync = bytes<0x24, 0x4>;
 
 @version(4.0.0+)
 interface CecManagerSubinterface100 {
+	@undocumented
 	[0] Unknown0() -> handle<copy>;
+	@undocumented
 	[1] Unknown1() -> unknown<0x4>;
+	@undocumented
 	[2] Unknown2(unknown<0x4>);
+	@undocumented
 	[3] Unknown3() -> unknown<0x4>;
 }
 
 @version(4.0.0+)
 interface JpegDecoder {
+	@undocumented
 	[3001] Unknown3001(unknown<0x28>, buffer<unknown, 0x5, unknown>) -> buffer<unknown, 0x46, unknown>;
 }
 
@@ -707,48 +712,74 @@ interface nn::account::profile::IProfileEditor {
 }
 
 interface nn::ahid::ICtrlSession {
+	@undocumented
 	[0] Unknown0(unknown<0x1>) -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[1] Unknown1() -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[2] Unknown2(unknown<0x2>) -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[3] Unknown3(unknown<0x2>, buffer<unknown, 0x5, unknown>);
+	@undocumented
 	[4] Unknown4(unknown<0x1>) -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[5] Unknown5(unknown<0x2>);
+	@undocumented
 	[6] Unknown6() -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[7] Unknown7(unknown<0x1>);
+	@undocumented
 	[8] Unknown8(unknown<0x6>) -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[9] Unknown9(unknown<0x6>, buffer<unknown, 0x5, unknown>);
+	@undocumented
 	[10] Unknown10() -> handle<copy>;
+	@undocumented
 	[11] Unknown11();
 	@version(3.0.0+)
+	@undocumented
 	[12] Unknown12(unknown<0x8>, buffer<unknown, 0x5, unknown>) -> unknown<0x4>;
 }
 
 interface nn::ahid::IReadSession {
 	@version(1.0.0-2.0.0)
+	@undocumented
 	[0] Unknown0() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(3.0.0+)
+	@undocumented
 	[0] Unknown0(unknown<0x8>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 }
 
 interface nn::ahid::IServerSession {
+	@undocumented
 	[0] Unknown0(unknown<0x4>);
+	@undocumented
 	[1] Unknown1(unknown<0x4>);
+	@undocumented
 	[2] Unknown2(unknown<0x4>) -> object<nn::ahid::ICtrlSession>;
+	@undocumented
 	[3] Unknown3(unknown<0x4>) -> object<nn::ahid::IReadSession>;
 	@version(1.0.0-2.0.0)
+	@undocumented
 	[4] Unknown4(unknown<0x4>) -> object<nn::ahid::IWriteSession>;
 }
 
 @version(1.0.0-2.0.0)
 interface nn::ahid::IWriteSession {
+	@undocumented
 	[0] Unknown0(buffer<unknown, 0x5, unknown>) -> unknown<0x4>;
 }
 
 interface nn::ahid::hdr::ISession {
+	@undocumented
 	[0] Unknown0() -> unknown<0x4>;
+	@undocumented
 	[1] Unknown1(unknown<0x4>, buffer<unknown, 0x5, unknown>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[2] Unknown2(unknown<0x4>) -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[3] Unknown3(buffer<unknown, 0x5, unknown>) -> unknown<0x4>;
+	@undocumented
 	[4] Unknown4(unknown<0x4>);
 }
 
@@ -1246,8 +1277,10 @@ interface nn::am::service::ISelfController {
 }
 
 interface nn::am::service::IStorage {
+	@undocumented
 	[0] Unknown0() -> object<nn::am::service::IStorageAccessor>;
 	@version(2.0.0+)
+	@undocumented
 	[1] Unknown1() -> object<nn::am::service::ITransferStorageAccessor>;
 }
 
@@ -1341,20 +1374,29 @@ interface nn::apm::ISystemManager {
 }
 
 interface nn::arp::detail::IReader {
+	@undocumented
 	[0] Unknown0(unknown<0x8>) -> unknown<0x10>;
+	@undocumented
 	[1] Unknown1(unknown<0x8>) -> unknown<0x10>;
+	@undocumented
 	[2] Unknown2(unknown<0x8>) -> buffer<unknown, 0x16, unknown>;
+	@undocumented
 	[3] Unknown3(unknown<0x8>) -> buffer<unknown, 0x16, unknown>;
 }
 
 interface nn::arp::detail::IRegistrar {
+	@undocumented
 	[0] Unknown0(unknown<0x8>);
+	@undocumented
 	[1] Unknown1(unknown<0x10>);
+	@undocumented
 	[2] Unknown2(buffer<unknown, 0x15, unknown>);
 }
 
 interface nn::arp::detail::IWriter {
+	@undocumented
 	[0] Unknown0() -> object<nn::arp::detail::IRegistrar>;
+	@undocumented
 	[1] Unknown1(unknown<0x8>);
 }
 
@@ -1602,42 +1644,69 @@ interface nn::audio::detail::IFinalOutputRecorderManagerForDebugger {
 }
 
 interface nn::audioctrl::detail::IAudioController {
+	@undocumented
 	[0] Unknown0(unknown<0x4>) -> unknown<0x4>;
+	@undocumented
 	[1] Unknown1(unknown<0x8>);
+	@undocumented
 	[2] Unknown2() -> unknown<0x4>;
+	@undocumented
 	[3] Unknown3() -> unknown<0x4>;
+	@undocumented
 	[4] Unknown4(unknown<0x4>) -> unknown<0x1>;
+	@undocumented
 	[5] Unknown5(unknown<0x8>);
+	@undocumented
 	[6] Unknown6(unknown<0x4>) -> unknown<0x1>;
+	@undocumented
 	[7] Unknown7(unknown<0x18>);
+	@undocumented
 	[8] Unknown8() -> unknown<0x4>;
+	@undocumented
 	[9] Unknown9(unknown<0x4>) -> unknown<0x4>;
+	@undocumented
 	[10] Unknown10(unknown<0x8>);
+	@undocumented
 	[11] Unknown11(unknown<0x4>);
+	@undocumented
 	[12] Unknown12() -> unknown<0x4>;
+	@undocumented
 	[13] Unknown13(unknown<0x4>) -> unknown<0x4>;
+	@undocumented
 	[14] Unknown14(unknown<0x8>);
+	@undocumented
 	[15] Unknown15(unknown<0x4>);
+	@undocumented
 	[16] Unknown16(unknown<0x1>);
 	@version(3.0.0+)
+	@undocumented
 	[17] Unknown17(unknown<0x4>);
 	@version(3.0.0+)
+	@undocumented
 	[18] Unknown18() -> unknown<0x4>;
 	@version(3.0.0+)
+	@undocumented
 	[19] Unknown19() -> handle<copy>;
 	@version(3.0.0+)
+	@undocumented
 	[20] Unknown20() -> handle<copy>;
 	@version(3.0.0+)
+	@undocumented
 	[21] Unknown21() -> unknown<0x4>;
 	@version(3.0.0+)
+	@undocumented
 	[22] Unknown22();
 	@version(4.0.0+)
+	@undocumented
 	[23] Unknown23(unknown<0x4>);
 	@version(4.0.0+)
+	@undocumented
 	[24] Unknown24() -> unknown<0x4>;
 	@version(4.0.0+)
+	@undocumented
 	[25] Unknown25() -> unknown<0x7>;
 	@version(4.0.0+)
+	@undocumented
 	[26] Unknown26(unknown<0x1>);
 }
 
@@ -1726,483 +1795,767 @@ interface nn::bcat::detail::ipc::IServiceCreator {
 
 @version(2.0.0+)
 interface nn::bgtc::IStateControlService {
+	@undocumented
 	[1] Unknown1() -> unknown<0x4>;
+	@undocumented
 	[2] Unknown2() -> handle<copy>;
+	@undocumented
 	[3] Unknown3();
+	@undocumented
 	[4] Unknown4();
 	@version(3.0.0+)
+	@undocumented
 	[5] Unknown5(unknown<0x1>);
 }
 
 @version(2.0.0+)
 interface nn::bgtc::ITaskService {
+	@undocumented
 	[1] Unknown1();
+	@undocumented
 	[2] Unknown2();
+	@undocumented
 	[3] Unknown3() -> handle<copy>;
+	@undocumented
 	[4] Unknown4() -> unknown<0x1>;
+	@undocumented
 	[5] Unknown5(buffer<unknown, 0x9, unknown>);
 	@version(3.0.0+)
+	@undocumented
 	[6] Unknown6() -> unknown<0x1>;
 
+	@undocumented
 	[11] Unknown11(unknown<0x4>);
+	@undocumented
 	[12] Unknown12() -> unknown<0x4>;
+	@undocumented
 	[13] Unknown13();
+	@undocumented
 	[14] Unknown14() -> handle<copy>;
+	@undocumented
 	[15] Unknown15(unknown<0x8>);
 
 	@version(3.0.0+)
+	@undocumented
 	[101] Unknown101() -> unknown<0x4>;
 	@version(3.0.0+)
+	@undocumented
 	[102] Unknown102() -> unknown<0x1>;
 	@version(3.0.0+)
+	@undocumented
 	[103] Unknown103() -> unknown<0x1>;
 }
 
 interface nn::bluetooth::IBluetoothDriver {
+	@undocumented
 	[0] Unknown0();
+	@undocumented
 	[1] Unknown1() -> handle<copy>;
+	@undocumented
 	[2] Unknown2();
+	@undocumented
 	[3] Unknown3();
+	@undocumented
 	[4] Unknown4();
+	@undocumented
 	[5] Unknown5() -> buffer<unknown, 0x1a, unknown>;
+	@undocumented
 	[6] Unknown6(unknown<0x4>) -> buffer<unknown, 0xa, unknown>;
+	@undocumented
 	[7] Unknown7(unknown<0x4>, buffer<unknown, 0x9, unknown>);
+	@undocumented
 	[8] Unknown8();
+	@undocumented
 	[9] Unknown9();
+	@undocumented
 	[10] Unknown10(unknown<0x6>, buffer<unknown, 0x19, unknown>);
+	@undocumented
 	[11] Unknown11(unknown<0x6>);
+	@undocumented
 	[12] Unknown12(unknown<0x6>);
+	@undocumented
 	[13] Unknown13(unknown<0x18>);
+	@undocumented
 	[14] Unknown14(unknown<0xc>);
+	@undocumented
 	[15] Unknown15() -> (unknown<0x4>, buffer<unknown, 0xa, unknown>);
+	@undocumented
 	[16] Unknown16(unknown<0x2>) -> handle<copy>;
+	@undocumented
 	[17] Unknown17(unknown<0x6>);
+	@undocumented
 	[18] Unknown18(unknown<0x6>);
+	@undocumented
 	[19] Unknown19(unknown<0x6>, buffer<unknown, 0x19, unknown>);
+	@undocumented
 	[20] Unknown20(unknown<0x6>, buffer<unknown, 0x9, unknown>);
+	@undocumented
 	[21] Unknown21(unknown<0xc>, buffer<unknown, 0x19, unknown>);
+	@undocumented
 	[22] Unknown22(unknown<0xc>);
+	@undocumented
 	[23] Unknown23(unknown<0x6>);
+	@undocumented
 	[24] Unknown24(buffer<unknown, 0x19, unknown>);
+	@undocumented
 	[25] Unknown25(unknown<0x6>) -> buffer<unknown, 0x1a, unknown>;
+	@undocumented
 	[26] Unknown26();
+	@undocumented
 	[27] Unknown27() -> (unknown<0x4>, buffer<unknown, 0xa, unknown>);
+	@undocumented
 	[28] Unknown28(unknown<0x7>);
+	@undocumented
 	[29] Unknown29(unknown<0x7>);
+	@undocumented
 	[30] Unknown30(unknown<0x6>, buffer<unknown, 0x9, unknown>);
+	@undocumented
 	[31] Unknown31(unknown<0x1>);
+	@undocumented
 	[32] Unknown32();
+	@undocumented
 	[33] Unknown33();
+	@undocumented
 	[34] Unknown34(unknown<0x1>);
+	@undocumented
 	[35] Unknown35(unknown<0x2>);
 	@version(1.0.0-3.0.0)
+	@undocumented
 	[36] Unknown36() -> handle<copy>;
 	@version(4.0.0+)
+	@undocumented
 	[36] Unknown36(unknown<0x1>);
 	@version(1.0.0-3.0.0)
+	@undocumented
 	[37] Unknown37() -> (unknown<0x4>, buffer<unknown, 0xa, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[37] Unknown37() -> handle<copy>;
 	@version(1.0.0-3.0.0)
+	@undocumented
 	[38] Unknown38() -> buffer<unknown, 0x16, unknown>;
 	@version(4.0.0+)
+	@undocumented
 	[38] Unknown38() -> (unknown<0x4>, buffer<unknown, 0xa, unknown>);
 	@version(1.0.0-3.0.0)
+	@undocumented
 	[39] Unknown39();
 	@version(4.0.0+)
+	@undocumented
 	[39] Unknown39() -> buffer<unknown, 0x16, unknown>;
 	@version(3.0.0)
+	@undocumented
 	[40] Unknown40() -> buffer<unknown, 0x16, unknown>;
 	@version(4.0.0+)
+	@undocumented
 	[40] Unknown40();
 	@version(3.0.0)
+	@undocumented
 	[41] Unknown41(unknown<0x1>);
 	@version(4.0.0+)
+	@undocumented
 	[41] Unknown41() -> buffer<unknown, 0x16, unknown>;
 	@version(3.0.0)
+	@undocumented
 	[42] Unknown42() -> unknown<0x1>;
 	@version(4.0.0+)
+	@undocumented
 	[42] Unknown42(unknown<0x1>);
 	@version(3.0.0)
+	@undocumented
 	[43] Unknown43(unknown<0x1>);
 	@version(4.0.0+)
+	@undocumented
 	[43] Unknown43() -> unknown<0x1>;
 	@version(3.0.0)
+	@undocumented
 	[44] Unknown44() -> unknown<0x1>;
 	@version(4.0.0+)
+	@undocumented
 	[44] Unknown44(unknown<0x1>);
 	@version(4.0.0+)
+	@undocumented
 	[45] Unknown45() -> unknown<0x1>;
 	@version(4.0.0+)
+	@undocumented
 	[46] Unknown46();
 	@version(4.0.0+)
+	@undocumented
 	[47] Unknown47();
 	@version(4.0.0+)
+	@undocumented
 	[48] Unknown48();
 	@version(4.0.0+)
+	@undocumented
 	[49] Unknown49(unknown<0x2>);
 	@version(4.0.0+)
+	@undocumented
 	[50] Unknown50(unknown<0x14>);
 	@version(4.0.0+)
+	@undocumented
 	[51] Unknown51(unknown<0x14>);
 	@version(4.0.0+)
+	@undocumented
 	[52] Unknown52(buffer<unknown, 0x19, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[53] Unknown53(unknown<0xa>);
 	@version(4.0.0+)
+	@undocumented
 	[54] Unknown54();
 	@version(4.0.0+)
+	@undocumented
 	[55] Unknown55();
 	@version(4.0.0+)
+	@undocumented
 	[56] Unknown56(buffer<unknown, 0x19, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[57] Unknown57(buffer<unknown, 0x19, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[58] Unknown58(unknown<0x1>);
 	@version(4.0.0+)
+	@undocumented
 	[59] Unknown59();
 	@version(4.0.0+)
+	@undocumented
 	[60] Unknown60(unknown<0x1>);
 	@version(4.0.0+)
+	@undocumented
 	[61] Unknown61(unknown<0x14>);
 	@version(4.0.0+)
+	@undocumented
 	[62] Unknown62(unknown<0x1>);
 	@version(4.0.0+)
+	@undocumented
 	[63] Unknown63();
 	@version(4.0.0+)
+	@undocumented
 	[64] Unknown64(unknown<0x8>);
 	@version(4.0.0+)
+	@undocumented
 	[65] Unknown65(unknown<0x2>);
 	@version(4.0.0+)
+	@undocumented
 	[66] Unknown66(unknown<0x8>);
 	@version(4.0.0+)
+	@undocumented
 	[67] Unknown67(unknown<0x18>);
 	@version(4.0.0+)
+	@undocumented
 	[68] Unknown68(unknown<0x34>);
 	@version(4.0.0+)
+	@undocumented
 	[69] Unknown69(unknown<0x4c>);
 	@version(4.0.0+)
+	@undocumented
 	[70] Unknown70(unknown<0x38>, buffer<unknown, 0x9, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[71] Unknown71(unknown<0x50>, buffer<unknown, 0x9, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[72] Unknown72(unknown<0x34>);
 	@version(4.0.0+)
+	@undocumented
 	[73] Unknown73(unknown<0x34>);
 	@version(4.0.0+)
+	@undocumented
 	[74] Unknown74(unknown<0x4>);
 	@version(4.0.0+)
+	@undocumented
 	[75] Unknown75(unknown<0x14>);
 	@version(4.0.0+)
+	@undocumented
 	[76] Unknown76(unknown<0x1>);
 	@version(4.0.0+)
+	@undocumented
 	[77] Unknown77(unknown<0x8>);
 	@version(4.0.0+)
+	@undocumented
 	[78] Unknown78(unknown<0x7>);
 	@version(4.0.0+)
+	@undocumented
 	[79] Unknown79(unknown<0x18>);
 	@version(4.0.0+)
+	@undocumented
 	[80] Unknown80(unknown<0x18>);
 	@version(4.0.0+)
+	@undocumented
 	[81] Unknown81(unknown<0x2c>);
 	@version(4.0.0+)
+	@undocumented
 	[82] Unknown82(unknown<0x2c>);
 	@version(4.0.0+)
+	@undocumented
 	[83] Unknown83(unknown<0x2c>, buffer<unknown, 0x9, unknown>);
 }
 
 interface nn::bpc::IBoardPowerControlManager {
+	@undocumented
 	[0] Unknown0();
+	@undocumented
 	[1] Unknown1();
+	@undocumented
 	[2] Unknown2() -> unknown<0x4>;
+	@undocumented
 	[3] Unknown3() -> unknown<0x4>;
+	@undocumented
 	[4] Unknown4() -> unknown<0x1>;
+	@undocumented
 	[5] Unknown5(unknown<0x4>) -> handle<copy>;
 	@version(2.0.0+)
+	@undocumented
 	[6] Unknown6() -> unknown<0x4>;
 	@version(2.0.0+)
+	@undocumented
 	[7] Unknown7(unknown<0x4>) -> handle<copy>;
 	@version(2.0.0+)
+	@undocumented
 	[8] Unknown8(unknown<0x8>) -> unknown<0x4>;
 	@version(2.0.0+)
+	@undocumented
 	[9] Unknown9(unknown<0x4>);
 	@version(2.0.0)
+	@undocumented
 	[10] Unknown10() -> unknown<0x10>;
 	@version(3.0.0+)
+	@undocumented
 	[10] Unknown10() -> unknown<0xc>;
 	@version(3.0.0+)
+	@undocumented
 	[11] Unknown11(unknown<0x10>) -> unknown<0x4>;
 	@version(3.0.0+)
+	@undocumented
 	[12] Unknown12() -> unknown<0x4>;
 	@version(3.0.0+)
+	@undocumented
 	[13] Unknown13(unknown<0x4>);
 }
 
 @version(1.0.0)
 interface nn::bpc::IPowerButtonManager {
+	@undocumented
 	[0] Unknown0() -> unknown<0x4>;
+	@undocumented
 	[1] Unknown1(unknown<0x4>) -> handle<copy>;
 }
 
 interface nn::bpc::IRtcManager {
+	@undocumented
 	[0] Unknown0() -> unknown<0x8>;
+	@undocumented
 	[1] Unknown1(unknown<0x8>);
+	@undocumented
 	[2] Unknown2() -> unknown<0x1>;
 	@version(2.0.0+)
+	@undocumented
 	[3] Unknown3();
 	@version(3.0.0+)
+	@undocumented
 	[4] Unknown4();
 }
 
 @version(1.0.0)
 interface nn::bpc::IWakeupConfigManager {
+	@undocumented
 	[0] Unknown0(unknown<0x8>) -> unknown<0x4>;
+	@undocumented
 	[1] Unknown1(unknown<0x4>);
+	@undocumented
 	[2] Unknown2() -> unknown<0x10>;
 }
 
 interface nn::bsdsocket::cfg::ServerInterface {
 	@version(1.0.0-2.0.0)
+	@undocumented
 	[0] Unknown0(unknown<0x28>, buffer<unknown, 0x5, unknown>);
 	@version(3.0.0+)
+	@undocumented
 	[0] Unknown0(unknown<0x2c>, buffer<unknown, 0x5, unknown>);
 	@version(1.0.0-2.0.0)
+	@undocumented
 	[1] Unknown1(unknown<0x28>, buffer<unknown, 0x5, unknown>) -> handle<copy>;
 	@version(3.0.0+)
+	@undocumented
 	[1] Unknown1(unknown<0x2c>, buffer<unknown, 0x5, unknown>) -> handle<copy>;
+	@undocumented
 	[2] Unknown2(buffer<unknown, 0x5, unknown>);
+	@undocumented
 	[3] Unknown3(unknown<0x4>, buffer<unknown, 0x5, unknown>);
+	@undocumented
 	[4] Unknown4(buffer<unknown, 0x5, unknown>) -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[5] Unknown5(buffer<unknown, 0x5, unknown>);
+	@undocumented
 	[6] Unknown6(unknown<0x4>, buffer<unknown, 0x5, unknown>);
+	@undocumented
 	[7] Unknown7(unknown<0x4>);
+	@undocumented
 	[8] Unknown8(unknown<0x4>) -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[9] Unknown9(buffer<unknown, 0x5, unknown>) -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[10] Unknown10();
+	@undocumented
 	[11] Unknown11(buffer<unknown, 0x5, unknown>);
+	@undocumented
 	[12] Unknown12();
 }
 
 interface nn::btm::IBtm {
+	@undocumented
 	[0] Unknown0() -> unknown<0x4>;
+	@undocumented
 	[1] Unknown1() -> unknown<0x2a>;
 	@version(1.0.0-2.0.0)
+	@undocumented
 	[2] Unknown2() -> handle<copy>;
 	@version(3.0.0+)
+	@undocumented
 	[2] Unknown2() -> (unknown<0x1>, handle<copy>);
+	@undocumented
 	[3] Unknown3() -> buffer<unknown, 0x1a, unknown>;
+	@undocumented
 	[4] Unknown4(unknown<0x7>);
+	@undocumented
 	[5] Unknown5(buffer<unknown, 0x19, unknown>);
+	@undocumented
 	[6] Unknown6(unknown<0x4>);
+	@undocumented
 	[7] Unknown7(unknown<0x4>);
 	@version(1.0.0-2.0.0)
+	@undocumented
 	[8] Unknown8() -> handle<copy>;
 	@version(3.0.0+)
+	@undocumented
 	[8] Unknown8() -> (unknown<0x1>, handle<copy>);
+	@undocumented
 	[9] Unknown9() -> buffer<unknown, 0x1a, unknown>;
+	@undocumented
 	[10] Unknown10(unknown<0x60>);
+	@undocumented
 	[11] Unknown11(unknown<0x6>);
+	@undocumented
 	[12] Unknown12(unknown<0x6>);
+	@undocumented
 	[13] Unknown13(unknown<0x6>);
+	@undocumented
 	[14] Unknown14();
+	@undocumented
 	[15] Unknown15();
+	@undocumented
 	[16] Unknown16(unknown<0x6>);
+	@undocumented
 	[17] Unknown17(unknown<0x6>, buffer<unknown, 0x19, unknown>);
 	@version(2.0.0)
+	@undocumented
 	[18] Unknown18() -> handle<copy>;
 	@version(3.0.0+)
+	@undocumented
 	[18] Unknown18() -> (unknown<0x1>, handle<copy>);
 	@version(4.0.0+)
+	@undocumented
 	[19] Unknown19() -> (unknown<0x1>, handle<copy>);
 	@version(4.0.0+)
+	@undocumented
 	[20] Unknown20() -> unknown<0x1>;
 	@version(4.0.0+)
+	@undocumented
 	[21] Unknown21(unknown<0x1>);
 }
 
 interface nn::btm::IBtmDebug {
 	@version(1.0.0-2.0.0)
+	@undocumented
 	[0] Unknown0() -> handle<copy>;
 	@version(3.0.0+)
+	@undocumented
 	[0] Unknown0() -> (unknown<0x1>, handle<copy>);
+	@undocumented
 	[1] Unknown1();
+	@undocumented
 	[2] Unknown2();
+	@undocumented
 	[3] Unknown3() -> buffer<unknown, 0x1a, unknown>;
+	@undocumented
 	[4] Unknown4(unknown<0x6>);
+	@undocumented
 	[5] Unknown5(unknown<0x6>);
+	@undocumented
 	[6] Unknown6(unknown<0xc>);
+	@undocumented
 	[7] Unknown7(unknown<0x4>);
+	@undocumented
 	[8] Unknown8(unknown<0x6>);
 }
 
 interface nn::btm::IBtmSystem {
+	@undocumented
 	[0] Unknown0() -> object<nn::btm::IBtmSystemCore>;
 }
 
 interface nn::btm::IBtmSystemCore {
+	@undocumented
 	[0] Unknown0();
+	@undocumented
 	[1] Unknown1();
+	@undocumented
 	[2] Unknown2();
+	@undocumented
 	[3] Unknown3() -> unknown<0x1>;
+	@undocumented
 	[4] Unknown4();
+	@undocumented
 	[5] Unknown5();
+	@undocumented
 	[6] Unknown6() -> unknown<0x1>;
 	@version(3.0.0+)
+	@undocumented
 	[7] Unknown7() -> (unknown<0x1>, handle<copy>);
 	@version(3.0.0+)
+	@undocumented
 	[8] Unknown8() -> (unknown<0x1>, handle<copy>);
 	@version(3.0.0+)
+	@undocumented
 	[9] Unknown9() -> unknown<0x1>;
 }
 
 interface nn::capsrv::sf::IAlbumAccessorService {
+	@undocumented
 	[0] Unknown0(unknown<0x1>) -> unknown<0x8>;
+	@undocumented
 	[1] Unknown1(unknown<0x1>) -> (unknown<0x8>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[2] Unknown2(unknown<0x18>) -> (unknown<0x8>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[3] Unknown3(unknown<0x18>);
+	@undocumented
 	[4] Unknown4(unknown<0x20>);
+	@undocumented
 	[5] Unknown5(unknown<0x1>) -> unknown<0x1>;
+	@undocumented
 	[6] Unknown6(unknown<0x1>) -> unknown<0x30>;
+	@undocumented
 	[7] Unknown7(unknown<0x18>) -> unknown<0x8>;
+	@undocumented
 	[8] Unknown8(unknown<0x18>) -> (unknown<0x8>, buffer<unknown, 0x6, unknown>);
 	@version(2.0.0+)
+	@undocumented
 	[9] Unknown9(unknown<0x18>) -> (unknown<0x10>, buffer<unknown, 0x46, unknown>, buffer<unknown, 0x6, unknown>);
 	@version(2.0.0+)
+	@undocumented
 	[10] Unknown10(unknown<0x18>) -> (unknown<0x10>, buffer<unknown, 0x46, unknown>, buffer<unknown, 0x6, unknown>);
 	@version(2.0.0+)
+	@undocumented
 	[11] Unknown11(unknown<0x28>) -> unknown<0x20>;
 	@version(3.0.0+)
+	@undocumented
 	[12] Unknown12(unknown<0x38>) -> (unknown<0x10>, buffer<unknown, 0x46, unknown>, buffer<unknown, 0x6, unknown>);
 	@version(3.0.0+)
+	@undocumented
 	[13] Unknown13(unknown<0x38>) -> (unknown<0x10>, buffer<unknown, 0x46, unknown>, buffer<unknown, 0x6, unknown>);
 	@version(3.0.0+)
+	@undocumented
 	[14] Unknown14(unknown<0x38>) -> (unknown<0x50>, buffer<unknown, 0x46, unknown>, buffer<unknown, 0x6, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[15] Unknown15(unknown<0x1>) -> unknown<0x48>;
 	@version(4.0.0+)
+	@undocumented
 	[16] Unknown16(unknown<0x1>);
 	@version(4.0.0+)
+	@undocumented
 	[17] Unknown17(unknown<0x10>) -> buffer<unknown, 0x16, unknown>;
 
 	@version(1.0.0-2.0.0)
+	@undocumented
 	[202] Unknown202(unknown<0x38>, buffer<unknown, 0x5, unknown>, buffer<unknown, 0x5, unknown>) -> unknown<0x20>;
 
+	@undocumented
 	[301] Unknown301() -> (unknown<0x20>, buffer<unknown, 0x6, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[302] Unknown302() -> (unknown<0x20>, buffer<unknown, 0x6, unknown>);
 
+	@undocumented
 	[401] Unknown401() -> unknown<0x1>;
 
+	@undocumented
 	[501] Unknown501(unknown<0x2>) -> unknown<0x8>;
 
 	@version(3.0.0+)
+	@undocumented
 	[1001] Unknown1001(unknown<0x38>) -> (unknown<0x50>, buffer<unknown, 0x46, unknown>, buffer<unknown, 0x6, unknown>);
 	@version(3.0.0)
+	@undocumented
 	[1002] Unknown1002(unknown<0x38>, buffer<unknown, 0x5, unknown>, buffer<unknown, 0x5, unknown>) -> unknown<0x20>;
 	@version(4.0.0+)
+	@undocumented
 	[1002] Unknown1002(unknown<0x38>) -> (buffer<unknown, 0x16, unknown>, buffer<unknown, 0x46, unknown>, buffer<unknown, 0x6, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[1003] Unknown1003(unknown<0x38>) -> (buffer<unknown, 0x16, unknown>, buffer<unknown, 0x46, unknown>, buffer<unknown, 0x6, unknown>);
 
+	@undocumented
 	[8001] Unknown8001(unknown<0x1>);
+	@undocumented
 	[8002] Unknown8002(unknown<0x1>);
 
+	@undocumented
 	[8011] Unknown8011(unknown<0x1>);
+	@undocumented
 	[8012] Unknown8012(unknown<0x1>) -> unknown<0x10>;
 	@version(4.0.0+)
+	@undocumented
 	[8013] Unknown8013(unknown<0x2>) -> unknown<0x10>;
 
 	@version(2.0.0+)
+	@undocumented
 	[8021] Unknown8021(unknown<0x28>, pid) -> unknown<0x20>;
 
+	@undocumented
 	[10011] Unknown10011(unknown<0x1>);
 
 	@version(4.0.0+)
+	@undocumented
 	[60002] Unknown60002(unknown<0x8>, pid) -> object<nn::capsrv::sf::IAlbumAccessorSession>;
 }
 
 @version(4.0.0+)
 interface nn::capsrv::sf::IAlbumAccessorSession {
+	@undocumented
 	[2001] Unknown2001(unknown<0x18>) -> unknown<0x8>;
+	@undocumented
 	[2002] Unknown2002(unknown<0x8>);
+	@undocumented
 	[2003] Unknown2003(unknown<0x8>) -> unknown<0x8>;
+	@undocumented
 	[2004] Unknown2004(unknown<0x10>) -> (unknown<0x8>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[2005] Unknown2005(unknown<0x8>);
+	@undocumented
 	[2006] Unknown2006(unknown<0x8>) -> unknown<0x8>;
+	@undocumented
 	[2007] Unknown2007(unknown<0x10>) -> (unknown<0x8>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[2008] Unknown2008(unknown<0x8>) -> unknown<0x40>;
 }
 
 @version(2.0.0+)
 interface nn::capsrv::sf::IAlbumControlService {
+	@undocumented
 	[2001] Unknown2001(unknown<0x1>);
+	@undocumented
 	[2002] Unknown2002(unknown<0x1>);
 
+	@undocumented
 	[2011] Unknown2011(unknown<0x10>);
+	@undocumented
 	[2012] Unknown2012(unknown<0x10>);
+	@undocumented
 	[2013] Unknown2013(unknown<0x8>) -> unknown<0x8>;
+	@undocumented
 	[2014] Unknown2014(unknown<0x8>);
 
+	@undocumented
 	[2101] Unknown2101(unknown<0x10>) -> unknown<0x18>;
+	@undocumented
 	[2102] Unknown2102(unknown<0x28>) -> unknown<0x20>;
 
 	@version(2.0.0-3.0.0)
+	@undocumented
 	[2201] Unknown2201(unknown<0x18>, buffer<unknown, 0x45, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[2202] Unknown2202(unknown<0x30>, buffer<unknown, 0x45, unknown>);
 
+	@undocumented
 	[2301] Unknown2301(unknown<0x18>, buffer<unknown, 0x45, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[2302] Unknown2302(unknown<0x18>, buffer<unknown, 0x45, unknown>);
 
 	@version(4.0.0+)
+	@undocumented
 	[60001] Unknown60001(unknown<0x8>, pid) -> object<nn::capsrv::sf::IAlbumControlSession>;
 }
 
 @version(4.0.0+)
 interface nn::capsrv::sf::IAlbumControlSession {
+	@undocumented
 	[2001] Unknown2001(unknown<0x18>) -> unknown<0x8>;
+	@undocumented
 	[2002] Unknown2002(unknown<0x8>);
+	@undocumented
 	[2003] Unknown2003(unknown<0x8>) -> unknown<0x8>;
+	@undocumented
 	[2004] Unknown2004(unknown<0x10>) -> (unknown<0x8>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[2005] Unknown2005(unknown<0x8>);
+	@undocumented
 	[2006] Unknown2006(unknown<0x8>) -> unknown<0x8>;
+	@undocumented
 	[2007] Unknown2007(unknown<0x10>) -> (unknown<0x8>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[2008] Unknown2008(unknown<0x8>) -> unknown<0x40>;
 
+	@undocumented
 	[2401] Unknown2401(unknown<0x18>) -> unknown<0x8>;
+	@undocumented
 	[2402] Unknown2402(unknown<0x8>);
+	@undocumented
 	[2403] Unknown2403(unknown<0x8>);
+	@undocumented
 	[2404] Unknown2404(unknown<0x8>);
+	@undocumented
 	[2405] Unknown2405(unknown<0x8>);
 
+	@undocumented
 	[2411] Unknown2411(unknown<0x8>);
+	@undocumented
 	[2412] Unknown2412(unknown<0x8>);
+	@undocumented
 	[2413] Unknown2413(unknown<0x8>);
+	@undocumented
 	[2414] Unknown2414(unknown<0x8>);
 
+	@undocumented
 	[2421] Unknown2421(unknown<0x10>) -> (unknown<0x8>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[2422] Unknown2422(unknown<0x10>, buffer<unknown, 0x5, unknown>);
 
+	@undocumented
 	[2424] Unknown2424(unknown<0x20>, buffer<unknown, 0x5, unknown>);
 
+	@undocumented
 	[2431] Unknown2431(unknown<0x8>);
 
+	@undocumented
 	[2433] Unknown2433(unknown<0x8>) -> unknown<0x8>;
+	@undocumented
 	[2434] Unknown2434(unknown<0x10>);
 }
 
 @version(1.0.0)
 interface nn::capsrv::sf::ICaptureControllerService {
+	@undocumented
 	[1] Unknown1(unknown<0x20>) -> buffer<unknown, 0x46, unknown>;
+	@undocumented
 	[2] Unknown2(unknown<0x28>) -> buffer<unknown, 0x46, unknown>;
 
+	@undocumented
 	[1001] Unknown1001(unknown<0x10>);
+	@undocumented
 	[1002] Unknown1002(unknown<0x18>);
 
+	@undocumented
 	[1011] Unknown1011(unknown<0x8>);
 
+	@undocumented
 	[2001] Unknown2001(unknown<0x1>);
+	@undocumented
 	[2002] Unknown2002(unknown<0x1>);
 }
 
@@ -2215,57 +2568,83 @@ interface nn::capsrv::sf::IScreenShotApplicationService {
 
 @version(2.0.0+)
 interface nn::capsrv::sf::IScreenShotControlService {
+	@undocumented
 	[1] Unknown1(unknown<0x28>) -> buffer<unknown, 0x46, unknown>;
+	@undocumented
 	[2] Unknown2(unknown<0x30>) -> buffer<unknown, 0x46, unknown>;
 
+	@undocumented
 	[1001] Unknown1001(unknown<0x10>);
+	@undocumented
 	[1002] Unknown1002(unknown<0x18>);
 	@version(3.0.0+)
+	@undocumented
 	[1003] Unknown1003(unknown<0x58>);
 
+	@undocumented
 	[1011] Unknown1011(unknown<0x8>);
+	@undocumented
 	[1012] Unknown1012(unknown<0x8>);
 
 	@version(4.0.0+)
+	@undocumented
 	[1101] Unknown1101(unknown<0x28>) -> (buffer<unknown, 0x46, unknown>, buffer<unknown, 0x46, unknown>);
 
 	@version(4.0.0+)
+	@undocumented
 	[1106] Unknown1106(unknown<0x30>, buffer<unknown, 0x15, unknown>, buffer<unknown, 0x15, unknown>) -> (unknown<0x18>, buffer<unknown, 0x6, unknown>, buffer<unknown, 0x46, unknown>, buffer<unknown, 0x46, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[1107] Unknown1107(unknown<0x30>, buffer<unknown, 0x15, unknown>, buffer<unknown, 0x15, unknown>, buffer<unknown, 0x45, unknown>) -> (unknown<0x18>, buffer<unknown, 0x6, unknown>);
 
 	@version(3.0.0+)
+	@undocumented
 	[1201] Unknown1201(unknown<0x10>) -> unknown<0x18>;
 	@version(3.0.0+)
+	@undocumented
 	[1202] Unknown1202();
 	@version(3.0.0+)
+	@undocumented
 	[1203] Unknown1203(unknown<0x8>) -> (unknown<0x8>, buffer<unknown, 0x6, unknown>);
 }
 
 @version(2.0.0+)
 interface nn::capsrv::sf::IScreenShotService {
+	@undocumented
 	[201] Unknown201(unknown<0x10>, pid, buffer<unknown, 0x45, unknown>) -> unknown<0x20>;
+	@undocumented
 	[202] Unknown202(unknown<0x38>, buffer<unknown, 0x45, unknown>, buffer<unknown, 0x45, unknown>) -> unknown<0x20>;
 	@version(3.0.0+)
+	@undocumented
 	[203] Unknown203(unknown<0x50>, pid, buffer<unknown, 0x45, unknown>) -> unknown<0x20>;
 	@version(3.0.0+)
+	@undocumented
 	[204] Unknown204(unknown<0x78>, buffer<unknown, 0x45, unknown>, buffer<unknown, 0x45, unknown>) -> unknown<0x20>;
 
 	@version(4.0.0+)
+	@undocumented
 	[206] Unknown206(unknown<0x78>, buffer<unknown, 0x15, unknown>, buffer<unknown, 0x45, unknown>, buffer<unknown, 0x45, unknown>) -> unknown<0x20>;
 }
 
 interface nn::cec::ICecManager {
+	@undocumented
 	[0] Unknown0() -> (unknown<0x8>, handle<copy>);
+	@undocumented
 	[1] Unknown1(unknown<0x4>) -> unknown<0x4>;
+	@undocumented
 	[2] Unknown2(unknown<0x4>);
+	@undocumented
 	[3] Unknown3(unknown<0x18>) -> unknown<0x4>;
+	@undocumented
 	[4] Unknown4(unknown<0x4>) -> unknown<0x18>;
+	@undocumented
 	[5] Unknown5() -> unknown<0x20>;
 	@version(2.0.0+)
+	@undocumented
 	[6] Unknown6() -> unknown<0x8>;
 
 	@version(4.0.0+)
+	@undocumented
 	[100] Unknown100() -> object<CecManagerSubinterface100>;
 }
 
@@ -2292,162 +2671,251 @@ interface nn::codec::detail::IHardwareOpusDecoderManager {
 }
 
 interface nn::erpt::sf::IContext {
+	@undocumented
 	[0] Unknown0(buffer<unknown, 0x5, unknown>, buffer<unknown, 0x5, unknown>);
+	@undocumented
 	[1] Unknown1(unknown<0x4>, buffer<unknown, 0x5, unknown>, buffer<unknown, 0x5, unknown>, buffer<unknown, 0x5, unknown>);
 	@version(3.0.0+)
+	@undocumented
 	[2] Unknown2(unknown<0x18>);
 	@version(3.0.0+)
+	@undocumented
 	[3] Unknown3();
 	@version(3.0.0+)
+	@undocumented
 	[4] Unknown4();
 	@version(3.0.0+)
+	@undocumented
 	[5] Unknown5();
 }
 
 interface nn::erpt::sf::IManager {
+	@undocumented
 	[0] Unknown0(unknown<0x4>) -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[1] Unknown1() -> handle<copy>;
 	@version(4.0.0+)
+	@undocumented
 	[2] Unknown2();
 }
 
 interface nn::erpt::sf::IReport {
+	@undocumented
 	[0] Unknown0(unknown<0x14>);
+	@undocumented
 	[1] Unknown1() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[2] Unknown2(unknown<0x4>);
+	@undocumented
 	[3] Unknown3() -> unknown<0x4>;
+	@undocumented
 	[4] Unknown4();
+	@undocumented
 	[5] Unknown5() -> unknown<0x8>;
 }
 
 interface nn::erpt::sf::ISession {
+	@undocumented
 	[0] Unknown0() -> object<nn::erpt::sf::IReport>;
+	@undocumented
 	[1] Unknown1() -> object<nn::erpt::sf::IManager>;
 }
 
 interface nn::es::IETicketService {
+	@undocumented
 	[1] Unknown1(buffer<unknown, 0x5, unknown>, buffer<unknown, 0x5, unknown>);
+	@undocumented
 	[2] Unknown2(buffer<unknown, 0x5, unknown>);
 	@version(1.0.0)
+	@undocumented
 	[3] Unknown3(buffer<unknown, 0x9, unknown>);
 	@version(2.0.0+)
+	@undocumented
 	[3] Unknown3(buffer<unknown, 0x5, unknown>);
+	@undocumented
 	[4] Unknown4(unknown<0x4>);
+	@undocumented
 	[5] Unknown5();
+	@undocumented
 	[6] Unknown6();
 	@version(1.0.0)
+	@undocumented
 	[7] Unknown7(buffer<unknown, 0x9, unknown>);
 	@version(2.0.0+)
+	@undocumented
 	[7] Unknown7(buffer<unknown, 0x5, unknown>);
 	@version(1.0.0-2.0.0)
+	@undocumented
 	[8] Unknown8(unknown<0x10>) -> buffer<unknown, 0x16, unknown>;
 	@version(3.0.0+)
+	@undocumented
 	[8] Unknown8(unknown<0x14>) -> buffer<unknown, 0x16, unknown>;
+	@undocumented
 	[9] Unknown9() -> unknown<0x4>;
+	@undocumented
 	[10] Unknown10() -> unknown<0x4>;
 	@version(1.0.0)
+	@undocumented
 	[11] Unknown11() -> (unknown<0x4>, buffer<unknown, 0xa, unknown>);
 	@version(2.0.0+)
+	@undocumented
 	[11] Unknown11() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(1.0.0)
+	@undocumented
 	[12] Unknown12() -> (unknown<0x4>, buffer<unknown, 0xa, unknown>);
 	@version(2.0.0+)
+	@undocumented
 	[12] Unknown12() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(1.0.0)
+	@undocumented
 	[13] Unknown13(buffer<unknown, 0x5, unknown>) -> (unknown<0x4>, buffer<unknown, 0xa, unknown>);
 	@version(2.0.0+)
+	@undocumented
 	[13] Unknown13(buffer<unknown, 0x5, unknown>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[14] Unknown14(unknown<0x10>) -> unknown<0x8>;
+	@undocumented
 	[15] Unknown15(unknown<0x10>) -> unknown<0x8>;
+	@undocumented
 	[16] Unknown16(unknown<0x10>) -> (unknown<0x8>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[17] Unknown17(unknown<0x10>) -> (unknown<0x8>, buffer<unknown, 0x6, unknown>);
 	@version(1.0.0)
+	@undocumented
 	[18] Unknown18(buffer<unknown, 0x9, unknown>) -> buffer<unknown, 0xa, unknown>;
 	@version(2.0.0+)
+	@undocumented
 	[18] Unknown18(buffer<unknown, 0x5, unknown>) -> buffer<unknown, 0x6, unknown>;
 	@version(1.0.0)
+	@undocumented
 	[19] Unknown19(buffer<unknown, 0x9, unknown>) -> (unknown<0x4>, buffer<unknown, 0xa, unknown>);
 	@version(2.0.0+)
+	@undocumented
 	[19] Unknown19(buffer<unknown, 0x5, unknown>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(1.0.0)
+	@undocumented
 	[20] Unknown20(buffer<unknown, 0x5, unknown>) -> (buffer<unknown, 0x16, unknown>, buffer<unknown, 0x16, unknown>);
 	@version(2.0.0+)
+	@undocumented
 	[20] Unknown20(unknown<0x10>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(2.0.0+)
+	@undocumented
 	[21] Unknown21(buffer<unknown, 0x5, unknown>) -> (buffer<unknown, 0x16, unknown>, buffer<unknown, 0x16, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[22] Unknown22(unknown<0x10>) -> unknown<0x10>;
 	@version(4.0.0+)
+	@undocumented
 	[23] Unknown23(unknown<0x10>) -> (unknown<0x10>, buffer<unknown, 0x6, unknown>, buffer<unknown, 0x6, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[24] Unknown24(buffer<unknown, 0x15, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[25] Unknown25(buffer<unknown, 0x15, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[26] Unknown26();
 	@version(4.0.0+)
+	@undocumented
 	[27] Unknown27() -> unknown<0x4>;
 	@version(4.0.0+)
+	@undocumented
 	[28] Unknown28() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[29] Unknown29(unknown<0x10>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 }
 
 interface nn::eth::sf::IEthInterface {
+	@undocumented
 	[0] Unknown0(buffer<unknown, 0x5, unknown>) -> handle<copy>;
+	@undocumented
 	[1] Unknown1();
+	@undocumented
 	[2] Unknown2();
+	@undocumented
 	[3] Unknown3() -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[4] Unknown4(unknown<0x4>);
+	@undocumented
 	[5] Unknown5() -> unknown<0xc>;
 }
 
 interface nn::eth::sf::IEthInterfaceGroup {
+	@undocumented
 	[0] Unknown0() -> handle<copy>;
+	@undocumented
 	[1] Unknown1();
+	@undocumented
 	[2] Unknown2();
+	@undocumented
 	[3] Unknown3() -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[4] Unknown4() -> unknown<0x4>;
 }
 
 interface nn::eupld::sf::IControl {
+	@undocumented
 	[0] Unknown0(buffer<unknown, 0x5, unknown>);
+	@undocumented
 	[1] Unknown1(buffer<unknown, 0x5, unknown>);
+	@undocumented
 	[2] Unknown2(buffer<unknown, 0x5, unknown>, buffer<unknown, 0x5, unknown>);
+	@undocumented
 	[3] Unknown3(unknown<0x8>);
 }
 
 interface nn::eupld::sf::IRequest {
+	@undocumented
 	[0] Unknown0() -> handle<copy>;
+	@undocumented
 	[1] Unknown1();
+	@undocumented
 	[2] Unknown2(buffer<unknown, 0x5, unknown>);
+	@undocumented
 	[3] Unknown3() -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[4] Unknown4();
+	@undocumented
 	[5] Unknown5();
 }
 
 interface nn::fan::detail::IController {
+	@undocumented
 	[0] Unknown0(unknown<0x4>);
+	@undocumented
 	[1] Unknown1(unknown<0x4>) -> unknown<0x4>;
+	@undocumented
 	[2] Unknown2() -> unknown<0x4>;
+	@undocumented
 	[3] Unknown3(unknown<0x4>);
+	@undocumented
 	[4] Unknown4() -> unknown<0x4>;
+	@undocumented
 	[5] Unknown5();
+	@undocumented
 	[6] Unknown6();
+	@undocumented
 	[7] Unknown7() -> unknown<0x4>;
 }
 
 interface nn::fan::detail::IManager {
+	@undocumented
 	[0] Unknown0(unknown<0x4>) -> object<nn::fan::detail::IController>;
 }
 
 interface nn::fatalsrv::IPrivateService {
+	@undocumented
 	[0] Unknown0() -> handle<copy>;
 }
 
 interface nn::fatalsrv::IService {
+	@undocumented
 	[0] Unknown0(unknown<0x10>, pid);
+	@undocumented
 	[1] Unknown1(unknown<0x10>, pid);
+	@undocumented
 	[2] Unknown2(unknown<0x10>, pid, buffer<unknown, 0x15, unknown>);
 }
 
@@ -2938,12 +3406,18 @@ interface nn::gpio::IPadSession {
 
 @version(4.0.0+)
 interface nn::grcsrv::IContinuousRecorder {
+	@undocumented
 	[1] Unknown1();
+	@undocumented
 	[2] Unknown2();
 
+	@undocumented
 	[10] Unknown10() -> handle<copy>;
+	@undocumented
 	[11] Unknown11();
+	@undocumented
 	[12] Unknown12();
+	@undocumented
 	[13] Unknown13(unknown<0x8>);
 }
 
@@ -2959,7 +3433,9 @@ interface nn::grcsrv::IGameMovieTrimmer {
 
 @version(4.0.0+)
 interface nn::grcsrv::IGrcService {
+	@undocumented
 	[1] Unknown1(unknown<0x28>, handle<copy>) -> object<nn::grcsrv::IContinuousRecorder>;
+	@undocumented
 	[2] Unknown2(unknown<0x8>, handle<copy>) -> object<nn::grcsrv::IGameMovieTrimmer>;
 }
 
@@ -3343,17 +3819,24 @@ interface nn::i2c::ISession {
 }
 
 interface nn::idle::detail::IPolicyManagerSystem {
+	@undocumented
 	[0] Unknown0() -> handle<copy>;
 	@version(1.0.0-3.0.0)
+	@undocumented
 	[1] Unknown1();
 	@version(1.0.0-3.0.0)
+	@undocumented
 	[2] Unknown2();
 	@version(1.0.0-2.0.0)
+	@undocumented
 	[3] Unknown3(unknown<0x28>);
 	@version(3.0.0+)
+	@undocumented
 	[3] Unknown3(unknown<0x38>);
+	@undocumented
 	[4] Unknown4();
 	@version(2.0.0+)
+	@undocumented
 	[5] Unknown5();
 }
 
@@ -3396,40 +3879,69 @@ interface nn::irsensor::IIrSensorSystemServer {
 }
 
 interface nn::lbl::detail::ILblController {
+	@undocumented
 	[0] Unknown0();
+	@undocumented
 	[1] Unknown1();
+	@undocumented
 	[2] Unknown2(unknown<0x4>);
+	@undocumented
 	[3] Unknown3() -> unknown<0x4>;
+	@undocumented
 	[4] Unknown4();
+	@undocumented
 	[5] Unknown5() -> unknown<0x4>;
+	@undocumented
 	[6] Unknown6(unknown<0x8>);
+	@undocumented
 	[7] Unknown7(unknown<0x8>);
+	@undocumented
 	[8] Unknown8() -> unknown<0x4>;
+	@undocumented
 	[9] Unknown9();
+	@undocumented
 	[10] Unknown10();
+	@undocumented
 	[11] Unknown11() -> unknown<0x1>;
+	@undocumented
 	[12] Unknown12();
+	@undocumented
 	[13] Unknown13();
+	@undocumented
 	[14] Unknown14() -> unknown<0x1>;
+	@undocumented
 	[15] Unknown15(unknown<0x4>);
+	@undocumented
 	[16] Unknown16() -> unknown<0x4>;
+	@undocumented
 	[17] Unknown17(unknown<0x8>);
+	@undocumented
 	[18] Unknown18(unknown<0x4>) -> unknown<0x4>;
+	@undocumented
 	[19] Unknown19(unknown<0xc>);
+	@undocumented
 	[20] Unknown20() -> unknown<0xc>;
+	@undocumented
 	[21] Unknown21(unknown<0xc>);
+	@undocumented
 	[22] Unknown22() -> unknown<0xc>;
 	@version(3.0.0+)
+	@undocumented
 	[23] Unknown23() -> unknown<0x1>;
 	@version(3.0.0+)
+	@undocumented
 	[24] Unknown24(unknown<0x4>);
 	@version(3.0.0+)
+	@undocumented
 	[25] Unknown25() -> unknown<0x4>;
 	@version(3.0.0+)
+	@undocumented
 	[26] Unknown26();
 	@version(3.0.0+)
+	@undocumented
 	[27] Unknown27();
 	@version(3.0.0+)
+	@undocumented
 	[28] Unknown28() -> unknown<0x1>;
 }
 
@@ -3528,15 +4040,22 @@ interface nn::ldn::detail::IUserServiceCreator {
 }
 
 interface nn::ldr::detail::IDebugMonitorInterface {
+	@undocumented
 	[0] Unknown0(unknown<0x10>, buffer<unknown, 0x9, unknown>);
+	@undocumented
 	[1] Unknown1();
+	@undocumented
 	[2] Unknown2(unknown<0x8>) -> (unknown<0x4>, buffer<unknown, 0xa, unknown>);
 }
 
 interface nn::ldr::detail::IProcessManagerInterface {
+	@undocumented
 	[0] Unknown0(unknown<0x10>, handle<copy>) -> handle<move>;
+	@undocumented
 	[1] Unknown1(unknown<0x10>) -> buffer<unknown, 0x1a, unknown>;
+	@undocumented
 	[2] Unknown2(unknown<0x10>) -> unknown<0x8>;
+	@undocumented
 	[3] Unknown3(unknown<0x8>);
 }
 
@@ -3550,7 +4069,9 @@ interface nn::ldr::detail::IRoInterface {
 }
 
 interface nn::ldr::detail::IShellInterface {
+	@undocumented
 	[0] Unknown0(unknown<0x10>, buffer<unknown, 0x9, unknown>);
+	@undocumented
 	[1] Unknown1();
 }
 
@@ -3566,118 +4087,183 @@ interface nn::lm::ILogger {
 
 @version(2.0.0+)
 interface nn::lr::IAddOnContentLocationResolver {
+	@undocumented
 	[0] Unknown0(unknown<0x8>) -> buffer<unknown, 0x1a, unknown>;
+	@undocumented
 	[1] Unknown1(unknown<0x10>);
+	@undocumented
 	[2] Unknown2();
 }
 
 interface nn::lr::ILocationResolver {
+	@undocumented
 	[0] Unknown0(unknown<0x8>) -> buffer<unknown, 0x1a, unknown>;
+	@undocumented
 	[1] Unknown1(unknown<0x8>, buffer<unknown, 0x19, unknown>);
+	@undocumented
 	[2] Unknown2(unknown<0x8>) -> buffer<unknown, 0x1a, unknown>;
+	@undocumented
 	[3] Unknown3(unknown<0x8>) -> buffer<unknown, 0x1a, unknown>;
+	@undocumented
 	[4] Unknown4(unknown<0x8>) -> buffer<unknown, 0x1a, unknown>;
+	@undocumented
 	[5] Unknown5(unknown<0x8>, buffer<unknown, 0x19, unknown>);
+	@undocumented
 	[6] Unknown6(unknown<0x8>, buffer<unknown, 0x19, unknown>);
+	@undocumented
 	[7] Unknown7(unknown<0x8>) -> buffer<unknown, 0x1a, unknown>;
+	@undocumented
 	[8] Unknown8(unknown<0x8>, buffer<unknown, 0x19, unknown>);
+	@undocumented
 	[9] Unknown9();
 }
 
 interface nn::lr::ILocationResolverManager {
+	@undocumented
 	[0] Unknown0(unknown<0x1>) -> object<nn::lr::ILocationResolver>;
+	@undocumented
 	[1] Unknown1() -> object<nn::lr::IRegisteredLocationResolver>;
+	@undocumented
 	[2] Unknown2(unknown<0x1>);
 	@version(2.0.0+)
+	@undocumented
 	[3] Unknown3() -> object<nn::lr::IAddOnContentLocationResolver>;
 }
 
 interface nn::lr::IRegisteredLocationResolver {
+	@undocumented
 	[0] Unknown0(unknown<0x8>) -> buffer<unknown, 0x1a, unknown>;
+	@undocumented
 	[1] Unknown1(unknown<0x8>, buffer<unknown, 0x19, unknown>);
+	@undocumented
 	[2] Unknown2(unknown<0x8>);
+	@undocumented
 	[3] Unknown3(unknown<0x8>, buffer<unknown, 0x19, unknown>);
 	@version(2.0.0+)
+	@undocumented
 	[4] Unknown4(unknown<0x8>) -> buffer<unknown, 0x1a, unknown>;
 	@version(2.0.0+)
+	@undocumented
 	[5] Unknown5(unknown<0x8>, buffer<unknown, 0x19, unknown>);
 	@version(2.0.0+)
+	@undocumented
 	[6] Unknown6(unknown<0x8>);
 	@version(2.0.0+)
+	@undocumented
 	[7] Unknown7(unknown<0x8>, buffer<unknown, 0x19, unknown>);
 }
 
 @version(4.0.0+)
 interface nn::migration::detail::IAsyncContext {
+	@undocumented
 	[0] Unknown0() -> handle<copy>;
+	@undocumented
 	[1] Unknown1();
+	@undocumented
 	[2] Unknown2() -> unknown<0x1>;
+	@undocumented
 	[3] Unknown3();
 }
 
 @version(4.0.0+)
 interface nn::migration::user::IClient {
+	@undocumented
 	[0] Unknown0() -> buffer<unknown, 0x1a, unknown>;
 
+	@undocumented
 	[10] Unknown10() -> unknown<0x10>;
+	@undocumented
 	[11] Unknown11() -> unknown<0x8>;
+	@undocumented
 	[12] Unknown12() -> unknown<0x21>;
+	@undocumented
 	[13] Unknown13() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 
+	@undocumented
 	[100] Unknown100() -> object<nn::migration::detail::IAsyncContext>;
+	@undocumented
 	[101] Unknown101() -> unknown<0x1>;
 
+	@undocumented
 	[200] Unknown200() -> object<nn::migration::detail::IAsyncContext>;
+	@undocumented
 	[201] Unknown201() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 
+	@undocumented
 	[210] Unknown210(unknown<0x10>) -> object<nn::migration::detail::IAsyncContext>;
 
+	@undocumented
 	[300] Unknown300() -> unknown<0x8>;
+	@undocumented
 	[301] Unknown301() -> unknown<0x10>;
+	@undocumented
 	[302] Unknown302() -> unknown<0x10>;
 
+	@undocumented
 	[310] Unknown310() -> unknown<0x10>;
+	@undocumented
 	[311] Unknown311() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 
+	@undocumented
 	[320] Unknown320() -> object<nn::migration::detail::IAsyncContext>;
 
+	@undocumented
 	[350] Unknown350() -> object<nn::migration::detail::IAsyncContext>;
 
+	@undocumented
 	[400] Unknown400() -> object<nn::migration::detail::IAsyncContext>;
 
+	@undocumented
 	[500] Unknown500();
 
+	@undocumented
 	[999] Unknown999() -> object<nn::migration::detail::IAsyncContext>;
 }
 
 @version(4.0.0+)
 interface nn::migration::user::IServer {
+	@undocumented
 	[0] Unknown0() -> unknown<0x10>;
+	@undocumented
 	[1] Unknown1() -> buffer<unknown, 0x1a, unknown>;
 
+	@undocumented
 	[100] Unknown100() -> object<nn::migration::detail::IAsyncContext>;
+	@undocumented
 	[101] Unknown101() -> unknown<0x1>;
 
+	@undocumented
 	[200] Unknown200() -> object<nn::migration::detail::IAsyncContext>;
+	@undocumented
 	[201] Unknown201() -> buffer<unknown, 0x1a, unknown>;
+	@undocumented
 	[202] Unknown202() -> object<nn::migration::detail::IAsyncContext>;
+	@undocumented
 	[203] Unknown203() -> object<nn::migration::detail::IAsyncContext>;
 
+	@undocumented
 	[300] Unknown300() -> object<nn::migration::detail::IAsyncContext>;
 
+	@undocumented
 	[400] Unknown400() -> object<nn::migration::detail::IAsyncContext>;
 
+	@undocumented
 	[500] Unknown500();
 }
 
 @version(4.0.0+)
 interface nn::migration::user::IService {
+	@undocumented
 	[10] Unknown10() -> unknown<0xc>;
 
+	@undocumented
 	[100] Unknown100(unknown<0x18>, handle<copy>, buffer<unknown, 0x19, unknown>) -> object<nn::migration::user::IServer>;
+	@undocumented
 	[101] Unknown101(unknown<0x4>, handle<copy>) -> object<nn::migration::user::IServer>;
 
+	@undocumented
 	[200] Unknown200(unknown<0x4>, handle<copy>, buffer<unknown, 0x19, unknown>) -> object<nn::migration::user::IClient>;
+	@undocumented
 	[201] Unknown201(unknown<0x4>, handle<copy>) -> object<nn::migration::user::IClient>;
 }
 
@@ -3726,170 +4312,268 @@ interface nn::mmnv::IRequest {
 }
 
 interface nn::ncm::IContentManager {
+	@undocumented
 	[0] Unknown0(unknown<0x1>);
+	@undocumented
 	[1] Unknown1(unknown<0x1>);
+	@undocumented
 	[2] Unknown2(unknown<0x1>);
+	@undocumented
 	[3] Unknown3(unknown<0x1>);
+	@undocumented
 	[4] Unknown4(unknown<0x1>) -> object<nn::ncm::IContentStorage>;
+	@undocumented
 	[5] Unknown5(unknown<0x1>) -> object<nn::ncm::IContentMetaDatabase>;
 	@version(1.0.0)
+	@undocumented
 	[6] Unknown6(unknown<0x1>);
 	@version(1.0.0)
+	@undocumented
 	[7] Unknown7(unknown<0x1>);
+	@undocumented
 	[8] Unknown8(unknown<0x1>);
 	@version(2.0.0+)
+	@undocumented
 	[9] Unknown9(unknown<0x1>);
 	@version(2.0.0+)
+	@undocumented
 	[10] Unknown10(unknown<0x1>);
 	@version(2.0.0+)
+	@undocumented
 	[11] Unknown11(unknown<0x1>);
 	@version(2.0.0+)
+	@undocumented
 	[12] Unknown12(unknown<0x1>);
 }
 
 interface nn::ncm::IContentMetaDatabase {
+	@undocumented
 	[0] Unknown0(unknown<0x10>, buffer<unknown, 0x5, unknown>);
+	@undocumented
 	[1] Unknown1(unknown<0x10>) -> (unknown<0x8>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[2] Unknown2(unknown<0x10>);
+	@undocumented
 	[3] Unknown3(unknown<0x18>) -> unknown<0x10>;
+	@undocumented
 	[4] Unknown4(unknown<0x18>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[5] Unknown5(unknown<0x20>) -> (unknown<0x8>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[6] Unknown6(unknown<0x8>) -> unknown<0x10>;
+	@undocumented
 	[7] Unknown7(unknown<0x1>) -> (unknown<0x8>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[8] Unknown8(unknown<0x10>) -> unknown<0x1>;
+	@undocumented
 	[9] Unknown9(buffer<unknown, 0x5, unknown>) -> unknown<0x1>;
+	@undocumented
 	[10] Unknown10(unknown<0x10>) -> unknown<0x8>;
+	@undocumented
 	[11] Unknown11(unknown<0x10>) -> unknown<0x4>;
+	@undocumented
 	[12] Unknown12(unknown<0x10>) -> unknown<0x8>;
+	@undocumented
 	[13] Unknown13();
+	@undocumented
 	[14] Unknown14(buffer<unknown, 0x5, unknown>) -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[15] Unknown15();
+	@undocumented
 	[16] Unknown16(unknown<0x20>) -> unknown<0x1>;
+	@undocumented
 	[17] Unknown17(unknown<0x18>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[18] Unknown18(unknown<0x10>) -> unknown<0x1>;
 	@version(2.0.0+)
+	@undocumented
 	[19] Unknown19(unknown<0x10>) -> unknown<0x4>;
 }
 
 interface nn::ncm::IContentStorage {
+	@undocumented
 	[0] Unknown0() -> unknown<0x10>;
+	@undocumented
 	[1] Unknown1(unknown<0x28>);
+	@undocumented
 	[2] Unknown2(unknown<0x10>);
+	@undocumented
 	[3] Unknown3(unknown<0x10>) -> unknown<0x1>;
+	@undocumented
 	[4] Unknown4(unknown<0x18>, buffer<unknown, 0x5, unknown>);
+	@undocumented
 	[5] Unknown5(unknown<0x20>);
+	@undocumented
 	[6] Unknown6(unknown<0x10>);
+	@undocumented
 	[7] Unknown7(unknown<0x10>) -> unknown<0x1>;
+	@undocumented
 	[8] Unknown8(unknown<0x10>) -> buffer<unknown, 0x1a, unknown>;
+	@undocumented
 	[9] Unknown9(unknown<0x10>) -> buffer<unknown, 0x1a, unknown>;
+	@undocumented
 	[10] Unknown10();
+	@undocumented
 	[11] Unknown11() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[12] Unknown12() -> unknown<0x4>;
+	@undocumented
 	[13] Unknown13(unknown<0x4>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[14] Unknown14(unknown<0x10>) -> unknown<0x8>;
+	@undocumented
 	[15] Unknown15();
 	@version(2.0.0+)
+	@undocumented
 	[16] Unknown16(unknown<0x30>);
 	@version(2.0.0+)
+	@undocumented
 	[17] Unknown17(unknown<0x18>);
 	@version(2.0.0+)
+	@undocumented
 	[18] Unknown18(unknown<0x18>) -> buffer<unknown, 0x6, unknown>;
 	@version(2.0.0)
+	@undocumented
 	[19] Unknown19(unknown<0x10>) -> unknown<0x10>;
 	@version(3.0.0+)
+	@undocumented
 	[19] Unknown19(unknown<0x10>) -> unknown<0x18>;
 	@version(2.0.0)
+	@undocumented
 	[20] Unknown20(unknown<0x10>) -> unknown<0x10>;
 	@version(3.0.0+)
+	@undocumented
 	[20] Unknown20(unknown<0x10>) -> unknown<0x18>;
 	@version(2.0.0+)
+	@undocumented
 	[21] Unknown21(unknown<0x18>, buffer<unknown, 0x5, unknown>);
 	@version(2.0.0+)
+	@undocumented
 	[22] Unknown22() -> unknown<0x8>;
 	@version(2.0.0+)
+	@undocumented
 	[23] Unknown23() -> unknown<0x8>;
 	@version(3.0.0+)
+	@undocumented
 	[24] Unknown24();
 	@version(4.0.0+)
+	@undocumented
 	[25] Unknown25(unknown<0x10>) -> unknown<0x8>;
 	@version(4.0.0+)
+	@undocumented
 	[26] Unknown26();
 }
 
 interface nn::news::detail::ipc::INewlyArrivedEventHolder {
+	@undocumented
 	[0] Unknown0() -> handle<copy>;
 }
 
 interface nn::news::detail::ipc::INewsDataService {
+	@undocumented
 	[0] Unknown0(buffer<unknown, 0x9, unknown>);
+	@undocumented
 	[1] Unknown1(unknown<0x48>);
+	@undocumented
 	[2] Unknown2(unknown<0x8>) -> (unknown<0x8>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[3] Unknown3() -> unknown<0x8>;
 }
 
 interface nn::news::detail::ipc::INewsDatabaseService {
+	@undocumented
 	[0] Unknown0(unknown<0x4>, buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[1] Unknown1(buffer<unknown, 0x9, unknown>) -> unknown<0x4>;
+	@undocumented
 	[2] Unknown2(unknown<0x1>, buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>) -> unknown<0x4>;
+	@undocumented
 	[3] Unknown3(unknown<0x4>, buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>);
+	@undocumented
 	[4] Unknown4(unknown<0x4>, buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>);
+	@undocumented
 	[5] Unknown5(buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>);
 }
 
 interface nn::news::detail::ipc::INewsService {
+	@undocumented
 	[10100] Unknown10100(buffer<unknown, 0x5, unknown>);
 
+	@undocumented
 	[20100] Unknown20100(unknown<0x8>, buffer<unknown, 0x9, unknown>);
 
+	@undocumented
 	[30100] Unknown30100(buffer<unknown, 0x9, unknown>) -> unknown<0x4>;
 	@version(3.0.0+)
+	@undocumented
 	[30101] Unknown30101(unknown<0x4>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 
+	@undocumented
 	[30200] Unknown30200() -> unknown<0x1>;
 
+	@undocumented
 	[30300] Unknown30300(buffer<unknown, 0x9, unknown>);
 
 	@version(3.0.0+)
+	@undocumented
 	[30400] Unknown30400(buffer<unknown, 0x5, unknown>) -> (unknown<0x8>, buffer<unknown, 0x6, unknown>);
 
 	@version(1.0.0)
+	@undocumented
 	[30900] Unknown30900() -> object<nn::news::detail::ipc::INewlyArrivedEventHolder>;
 	@version(1.0.0)
+	@undocumented
 	[30901] Unknown30901() -> object<nn::news::detail::ipc::INewsDataService>;
 	@version(1.0.0)
+	@undocumented
 	[30902] Unknown30902() -> object<nn::news::detail::ipc::INewsDatabaseService>;
 
+	@undocumented
 	[40100] Unknown40100(unknown<0x4>, buffer<unknown, 0x9, unknown>);
 	@version(3.0.0+)
+	@undocumented
 	[40101] Unknown40101(unknown<0x8>);
 
+	@undocumented
 	[40200] Unknown40200();
+	@undocumented
 	[40201] Unknown40201();
 
+	@undocumented
 	[90100] Unknown90100() -> (unknown<0x8>, buffer<unknown, 0x6, unknown>);
 }
 
 @version(2.0.0+)
 interface nn::news::detail::ipc::IOverwriteEventHolder {
+	@undocumented
 	[0] Unknown0() -> handle<copy>;
 }
 
 @version(2.0.0+)
 interface nn::news::detail::ipc::IServiceCreator {
+	@undocumented
 	[0] Unknown0() -> object<nn::news::detail::ipc::INewsService>;
+	@undocumented
 	[1] Unknown1() -> object<nn::news::detail::ipc::INewlyArrivedEventHolder>;
+	@undocumented
 	[2] Unknown2() -> object<nn::news::detail::ipc::INewsDataService>;
+	@undocumented
 	[3] Unknown3() -> object<nn::news::detail::ipc::INewsDatabaseService>;
+	@undocumented
 	[4] Unknown4() -> object<nn::news::detail::ipc::IOverwriteEventHolder>;
 }
 
 interface nn::nfc::am::detail::IAm {
+	@undocumented
 	[0] Unknown0();
+	@undocumented
 	[1] Unknown1();
+	@undocumented
 	[2] Unknown2(unknown<0x8>);
 }
 
 interface nn::nfc::am::detail::IAmManager {
+	@undocumented
 	[0] Unknown0() -> object<nn::nfc::am::detail::IAm>;
 }
 
@@ -4023,6 +4707,7 @@ interface nn::nfc::mifare::detail::IUserManager {
 	@version(1.0.0-3.0.0)
 	[0] Unknown0() -> object<nn::nfc::mifare::detail::IUser>;
 	@version(4.0.0+)
+	@undocumented
 	[0] Unknown0() -> object<nn::nfc::detail::IUser>;
 }
 
@@ -4304,723 +4989,1117 @@ interface nn::nifm::detail::IStaticService {
 
 @version(2.0.0+)
 interface nn::nim::detail::IAsyncData {
+	@undocumented
 	[0] Unknown0();
+	@undocumented
 	[1] Unknown1();
+	@undocumented
 	[2] Unknown2() -> unknown<0x8>;
+	@undocumented
 	[3] Unknown3(unknown<0x8>) -> (unknown<0x8>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[4] Unknown4() -> unknown<0x28>;
 	@version(4.0.0+)
+	@undocumented
 	[5] Unknown5() -> buffer<unknown, 0x16, unknown>;
 }
 
 @version(2.0.0+)
 interface nn::nim::detail::IAsyncProgressResult {
+	@undocumented
 	[0] Unknown0();
+	@undocumented
 	[1] Unknown1();
+	@undocumented
 	[2] Unknown2() -> unknown<0x10>;
 	@version(4.0.0+)
+	@undocumented
 	[3] Unknown3() -> buffer<unknown, 0x16, unknown>;
 }
 
 interface nn::nim::detail::IAsyncResult {
+	@undocumented
 	[0] Unknown0();
+	@undocumented
 	[1] Unknown1();
 	@version(4.0.0+)
+	@undocumented
 	[2] Unknown2() -> buffer<unknown, 0x16, unknown>;
 }
 
 interface nn::nim::detail::IAsyncValue {
+	@undocumented
 	[0] Unknown0() -> unknown<0x8>;
+	@undocumented
 	[1] Unknown1() -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[2] Unknown2();
 	@version(4.0.0+)
+	@undocumented
 	[3] Unknown3() -> buffer<unknown, 0x16, unknown>;
 }
 
 interface nn::nim::detail::INetworkInstallManager {
+	@undocumented
 	[0] Unknown0(unknown<0x18>) -> unknown<0x10>;
+	@undocumented
 	[1] Unknown1(unknown<0x10>);
+	@undocumented
 	[2] Unknown2() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[3] Unknown3(unknown<0x10>) -> (handle<copy>, object<nn::nim::detail::IAsyncResult>);
 	@version(1.0.0-2.0.0)
+	@undocumented
 	[4] Unknown4(unknown<0x10>) -> unknown<0x28>;
 	@version(3.0.0+)
+	@undocumented
 	[4] Unknown4(unknown<0x10>) -> unknown<0x38>;
+	@undocumented
 	[5] Unknown5(unknown<0x10>);
+	@undocumented
 	[6] Unknown6(unknown<0x10>, buffer<unknown, 0x5, unknown>) -> unknown<0x10>;
+	@undocumented
 	[7] Unknown7(unknown<0x10>);
+	@undocumented
 	[8] Unknown8() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[9] Unknown9(unknown<0x10>) -> (handle<copy>, object<nn::nim::detail::IAsyncResult>);
 	@version(1.0.0)
+	@undocumented
 	[10] Unknown10(unknown<0x10>) -> unknown<0x20>;
 	@version(2.0.0)
+	@undocumented
 	[10] Unknown10(unknown<0x10>) -> unknown<0x28>;
 	@version(3.0.0+)
+	@undocumented
 	[10] Unknown10(unknown<0x10>) -> unknown<0x40>;
+	@undocumented
 	[11] Unknown11(unknown<0x10>);
+	@undocumented
 	[12] Unknown12() -> (handle<copy>, object<nn::nim::detail::IAsyncValue>);
 	@version(1.0.0)
+	@undocumented
 	[13] Unknown13(unknown<0x10>) -> (handle<copy>, object<nn::nim::detail::IAsyncValue>);
+	@undocumented
 	[14] Unknown14(unknown<0x8>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(1.0.0)
+	@undocumented
 	[15] Unknown15(unknown<0x10>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(2.0.0+)
+	@undocumented
 	[15] Unknown15(unknown<0x14>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(1.0.0)
+	@undocumented
 	[16] Unknown16(buffer<unknown, 0x5, unknown>) -> (handle<copy>, object<nn::nim::detail::IAsyncValue>);
 	@version(2.0.0+)
+	@undocumented
 	[16] Unknown16(unknown<0x8>) -> (handle<copy>, object<nn::nim::detail::IAsyncValue>);
 	@version(1.0.0)
+	@undocumented
 	[17] Unknown17(unknown<0x10>);
 	@version(2.0.0+)
+	@undocumented
 	[17] Unknown17(unknown<0x18>);
+	@undocumented
 	[18] Unknown18(unknown<0x10>, buffer<unknown, 0x5, unknown>);
+	@undocumented
 	[19] Unknown19(unknown<0x18>) -> buffer<unknown, 0x16, unknown>;
+	@undocumented
 	[20] Unknown20(unknown<0x10>) -> unknown<0x8>;
+	@undocumented
 	[21] Unknown21(unknown<0x10>) -> unknown<0x1>;
+	@undocumented
 	[22] Unknown22() -> unknown<0x10>;
 	@version(2.0.0+)
+	@undocumented
 	[23] Unknown23() -> (handle<copy>, object<nn::nim::detail::IAsyncValue>);
 	@version(2.0.0+)
+	@undocumented
 	[24] Unknown24(unknown<0x8>, buffer<unknown, 0x5, unknown>, buffer<unknown, 0x5, unknown>) -> (handle<copy>, object<nn::nim::detail::IAsyncValue>);
 	@version(2.0.0+)
+	@undocumented
 	[25] Unknown25(unknown<0x10>, buffer<unknown, 0x5, unknown>, buffer<unknown, 0x5, unknown>) -> (handle<copy>, object<nn::nim::detail::IAsyncResult>);
 	@version(2.0.0+)
+	@undocumented
 	[26] Unknown26(unknown<0x28>) -> (handle<copy>, object<nn::nim::detail::IAsyncResult>);
 	@version(2.0.0+)
+	@undocumented
 	[27] Unknown27(unknown<0x28>) -> (handle<copy>, object<nn::nim::detail::IAsyncData>);
 	@version(2.0.0+)
+	@undocumented
 	[28] Unknown28(unknown<0x10>) -> (handle<copy>, object<nn::nim::detail::IAsyncValue>);
 	@version(2.0.0+)
+	@undocumented
 	[29] Unknown29(unknown<0x8>) -> (handle<copy>, object<nn::nim::detail::IAsyncValue>);
 	@version(2.0.0+)
+	@undocumented
 	[30] Unknown30(unknown<0x28>) -> (handle<copy>, object<nn::nim::detail::IAsyncData>);
 	@version(2.0.0+)
+	@undocumented
 	[31] Unknown31(unknown<0x20>, buffer<unknown, 0x5, unknown>) -> unknown<0x10>;
 	@version(2.0.0+)
+	@undocumented
 	[32] Unknown32(unknown<0x10>);
 	@version(2.0.0+)
+	@undocumented
 	[33] Unknown33(unknown<0x8>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(2.0.0+)
+	@undocumented
 	[34] Unknown34(unknown<0x10>) -> (handle<copy>, object<nn::nim::detail::IAsyncResult>);
 	@version(2.0.0)
+	@undocumented
 	[35] Unknown35(unknown<0x10>) -> unknown<0x20>;
 	@version(3.0.0+)
+	@undocumented
 	[35] Unknown35(unknown<0x10>) -> unknown<0x30>;
 	@version(2.0.0+)
+	@undocumented
 	[36] Unknown36(unknown<0x14>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(2.0.0+)
+	@undocumented
 	[37] Unknown37(unknown<0x10>);
 	@version(2.0.0+)
+	@undocumented
 	[38] Unknown38(unknown<0x10>) -> unknown<0x8>;
 	@version(2.0.0+)
+	@undocumented
 	[39] Unknown39();
 	@version(2.0.0+)
+	@undocumented
 	[40] Unknown40() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(2.0.0+)
+	@undocumented
 	[41] Unknown41(unknown<0x10>);
 	@version(3.0.0+)
+	@undocumented
 	[42] Unknown42(unknown<0x10>) -> unknown<0x10>;
 	@version(3.0.0+)
+	@undocumented
 	[43] Unknown43() -> unknown<0x10>;
 	@version(3.0.0+)
+	@undocumented
 	[44] Unknown44(unknown<0x10>) -> unknown<0x1>;
 	@version(3.0.0+)
+	@undocumented
 	[45] Unknown45(unknown<0x28>) -> unknown<0x8>;
 	@version(3.0.0+)
+	@undocumented
 	[46] Unknown46();
 	@version(4.0.0+)
+	@undocumented
 	[47] Unknown47(unknown<0x10>) -> unknown<0x4>;
 	@version(4.0.0+)
+	@undocumented
 	[48] Unknown48(unknown<0x10>, buffer<unknown, 0x5, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[49] Unknown49(unknown<0x14>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[50] Unknown50(unknown<0x14>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[51] Unknown51(unknown<0x10>) -> unknown<0x4>;
 	@version(4.0.0+)
+	@undocumented
 	[52] Unknown52(unknown<0x10>) -> buffer<unknown, 0x16, unknown>;
 	@version(4.0.0+)
+	@undocumented
 	[53] Unknown53(unknown<0x18>, buffer<unknown, 0x5, unknown>) -> unknown<0x10>;
 	@version(4.0.0+)
+	@undocumented
 	[54] Unknown54(unknown<0x10>);
 	@version(4.0.0+)
+	@undocumented
 	[55] Unknown55() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[56] Unknown56(unknown<0x10>) -> (handle<copy>, object<nn::nim::detail::IAsyncResult>);
 	@version(4.0.0+)
+	@undocumented
 	[57] Unknown57(unknown<0x10>) -> unknown<0x38>;
 	@version(4.0.0+)
+	@undocumented
 	[58] Unknown58(unknown<0x10>);
 	@version(4.0.0+)
+	@undocumented
 	[59] Unknown59(unknown<0x14>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[60] Unknown60(unknown<0x10>, buffer<unknown, 0x5, unknown>) -> unknown<0x10>;
 	@version(4.0.0+)
+	@undocumented
 	[61] Unknown61(unknown<0x10>) -> (handle<copy>, object<nn::nim::detail::IAsyncResult>);
 	@version(4.0.0+)
+	@undocumented
 	[62] Unknown62(unknown<0x10>) -> buffer<unknown, 0x16, unknown>;
 	@version(4.0.0+)
+	@undocumented
 	[63] Unknown63(unknown<0x10>) -> unknown<0x20>;
 	@version(4.0.0+)
+	@undocumented
 	[64] Unknown64(unknown<0x10>);
 	@version(4.0.0+)
+	@undocumented
 	[65] Unknown65(unknown<0x10>) -> buffer<unknown, 0x16, unknown>;
 	@version(4.0.0+)
+	@undocumented
 	[66] Unknown66(unknown<0x10>) -> unknown<0x8>;
 	@version(4.0.0+)
+	@undocumented
 	[67] Unknown67(unknown<0x8>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[68] Unknown68(unknown<0x8>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[69] Unknown69(unknown<0x20>) -> unknown<0x10>;
 	@version(4.0.0+)
+	@undocumented
 	[70] Unknown70(unknown<0x10>);
 	@version(4.0.0+)
+	@undocumented
 	[71] Unknown71() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[72] Unknown72(unknown<0x10>) -> (handle<copy>, object<nn::nim::detail::IAsyncResult>);
 	@version(4.0.0+)
+	@undocumented
 	[73] Unknown73(unknown<0x10>) -> unknown<0x38>;
 	@version(4.0.0+)
+	@undocumented
 	[74] Unknown74(unknown<0x10>);
 	@version(4.0.0+)
+	@undocumented
 	[75] Unknown75(unknown<0x10>) -> buffer<unknown, 0x16, unknown>;
 	@version(4.0.0+)
+	@undocumented
 	[76] Unknown76(unknown<0x18>) -> unknown<0x10>;
 	@version(4.0.0+)
+	@undocumented
 	[77] Unknown77(unknown<0x10>) -> (handle<copy>, object<nn::nim::detail::IAsyncResult>);
 	@version(4.0.0+)
+	@undocumented
 	[78] Unknown78(unknown<0x10>) -> unknown<0x20>;
 	@version(4.0.0+)
+	@undocumented
 	[79] Unknown79(unknown<0x10>);
 	@version(4.0.0+)
+	@undocumented
 	[80] Unknown80(unknown<0x10>) -> buffer<unknown, 0x16, unknown>;
 	@version(4.0.0+)
+	@undocumented
 	[81] Unknown81() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[82] Unknown82(unknown<0x18>) -> buffer<unknown, 0x16, unknown>;
 	@version(4.0.0+)
+	@undocumented
 	[83] Unknown83(unknown<0x11>) -> unknown<0x8>;
 }
 
 @version(2.0.0+)
 interface nn::nim::detail::IShopServiceManager {
+	@undocumented
 	[0] Unknown0() -> (handle<copy>, object<nn::nim::detail::IAsyncValue>);
 	@version(3.0.0+)
+	@undocumented
 	[1] Unknown1(unknown<0x8>) -> (handle<copy>, object<nn::nim::detail::IAsyncValue>);
 
+	@undocumented
 	[100] Unknown100() -> (handle<copy>, object<nn::nim::detail::IAsyncResult>);
+	@undocumented
 	[101] Unknown101() -> (handle<copy>, object<nn::nim::detail::IAsyncResult>);
+	@undocumented
 	[102] Unknown102() -> (handle<copy>, object<nn::nim::detail::IAsyncValue>);
+	@undocumented
 	[103] Unknown103() -> unknown<0x20>;
+	@undocumented
 	[104] Unknown104() -> (handle<copy>, object<nn::nim::detail::IAsyncValue>);
+	@undocumented
 	[105] Unknown105() -> (handle<copy>, object<nn::nim::detail::IAsyncResult>);
 	@version(3.0.0+)
+	@undocumented
 	[106] Unknown106() -> (handle<copy>, object<nn::nim::detail::IAsyncResult>);
 	@version(3.0.0+)
+	@undocumented
 	[107] Unknown107(unknown<0x8>) -> unknown<0x1>;
 
+	@undocumented
 	[200] Unknown200(unknown<0x28>) -> (handle<copy>, object<nn::nim::detail::IAsyncResult>);
 
+	@undocumented
 	[300] Unknown300(unknown<0x8>) -> (handle<copy>, object<nn::nim::detail::IAsyncResult>);
+	@undocumented
 	[301] Unknown301(unknown<0x10>) -> (handle<copy>, object<nn::nim::detail::IAsyncResult>);
+	@undocumented
 	[302] Unknown302(unknown<0x10>) -> (handle<copy>, object<nn::nim::detail::IAsyncResult>);
+	@undocumented
 	[303] Unknown303(unknown<0x10>) -> unknown<0x1>;
 	@version(4.0.0+)
+	@undocumented
 	[304] Unknown304() -> (handle<copy>, object<nn::nim::detail::IAsyncResult>);
 	@version(4.0.0+)
+	@undocumented
 	[305] Unknown305(unknown<0x10>) -> (handle<copy>, object<nn::nim::detail::IAsyncResult>);
 	@version(4.0.0+)
+	@undocumented
 	[306] Unknown306(unknown<0x10>) -> (handle<copy>, object<nn::nim::detail::IAsyncValue>);
 
+	@undocumented
 	[400] Unknown400(unknown<0x4>) -> unknown<0x10>;
 
+	@undocumented
 	[500] Unknown500() -> (handle<copy>, object<nn::nim::detail::IAsyncProgressResult>);
+	@undocumented
 	[501] Unknown501(unknown<0x10>) -> (handle<copy>, object<nn::nim::detail::IAsyncResult>);
 	@version(4.0.0+)
+	@undocumented
 	[502] Unknown502(unknown<0x10>) -> (handle<copy>, object<nn::nim::detail::IAsyncValue>);
 }
 
 interface nn::npns::INpnsSystem {
+	@undocumented
 	[1] Unknown1();
+	@undocumented
 	[2] Unknown2(unknown<0x8>);
+	@undocumented
 	[3] Unknown3(unknown<0x2>) -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[4] Unknown4(unknown<0x2>) -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[5] Unknown5() -> handle<copy>;
+	@undocumented
 	[6] Unknown6();
+	@undocumented
 	[7] Unknown7() -> handle<copy>;
 
+	@undocumented
 	[11] Unknown11(buffer<unknown, 0x9, unknown>);
+	@undocumented
 	[12] Unknown12(buffer<unknown, 0x9, unknown>);
+	@undocumented
 	[13] Unknown13(buffer<unknown, 0x9, unknown>) -> unknown<0x1>;
 
+	@undocumented
 	[21] Unknown21(unknown<0x10>) -> unknown<0x28>;
+	@undocumented
 	[22] Unknown22(unknown<0x18>) -> unknown<0x28>;
+	@undocumented
 	[23] Unknown23(unknown<0x10>);
+	@undocumented
 	[24] Unknown24(unknown<0x18>);
+	@undocumented
 	[25] Unknown25(unknown<0x28>) -> unknown<0x1>;
 
+	@undocumented
 	[31] Unknown31(unknown<0x10>);
 	@version(2.0.0+)
+	@undocumented
 	[32] Unknown32(unknown<0x10>);
 
+	@undocumented
 	[101] Unknown101();
+	@undocumented
 	[102] Unknown102();
+	@undocumented
 	[103] Unknown103() -> unknown<0x4>;
 	@version(3.0.0+)
+	@undocumented
 	[104] Unknown104() -> buffer<unknown, 0x6, unknown>;
 	@version(3.0.0+)
+	@undocumented
 	[105] Unknown105() -> handle<copy>;
 
+	@undocumented
 	[111] Unknown111() -> buffer<unknown, 0xa, unknown>;
+	@undocumented
 	[112] Unknown112();
+	@undocumented
 	[113] Unknown113();
+	@undocumented
 	[114] Unknown114(buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>);
+	@undocumented
 	[115] Unknown115() -> (buffer<unknown, 0xa, unknown>, buffer<unknown, 0xa, unknown>);
 
 	@version(3.0.0+)
+	@undocumented
 	[201] Unknown201(unknown<0x10>);
 	@version(3.0.0+)
+	@undocumented
 	[202] Unknown202(unknown<0x4>);
 }
 
 interface nn::npns::INpnsUser {
+	@undocumented
 	[1] Unknown1();
+	@undocumented
 	[2] Unknown2(unknown<0x8>);
+	@undocumented
 	[3] Unknown3(unknown<0x2>) -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[4] Unknown4(unknown<0x2>) -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[5] Unknown5() -> handle<copy>;
 
+	@undocumented
 	[7] Unknown7() -> handle<copy>;
 
+	@undocumented
 	[21] Unknown21(unknown<0x10>) -> unknown<0x28>;
 
+	@undocumented
 	[23] Unknown23(unknown<0x10>);
 
+	@undocumented
 	[25] Unknown25(unknown<0x28>) -> unknown<0x1>;
 
+	@undocumented
 	[101] Unknown101();
+	@undocumented
 	[102] Unknown102();
+	@undocumented
 	[103] Unknown103() -> unknown<0x4>;
 	@version(3.0.0+)
+	@undocumented
 	[104] Unknown104() -> buffer<unknown, 0x6, unknown>;
 
+	@undocumented
 	[111] Unknown111() -> buffer<unknown, 0xa, unknown>;
 }
 
 @version(3.0.0+)
 interface nn::ns::detail::IAccountProxyInterface {
+	@undocumented
 	[0] Unknown0(unknown<0x21>, buffer<unknown, 0x5, unknown>);
 }
 
 interface nn::ns::detail::IApplicationManagerInterface {
+	@undocumented
 	[0] Unknown0(unknown<0x4>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[1] Unknown1() -> unknown<0x8>;
+	@undocumented
 	[2] Unknown2() -> handle<copy>;
+	@undocumented
 	[3] Unknown3(buffer<unknown, 0x5, unknown>) -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[4] Unknown4(unknown<0x8>);
+	@undocumented
 	[5] Unknown5(unknown<0x8>);
+	@undocumented
 	[6] Unknown6() -> unknown<0x1>;
+	@undocumented
 	[7] Unknown7();
+	@undocumented
 	[8] Unknown8(unknown<0x10>) -> unknown<0x1>;
+	@undocumented
 	[9] Unknown9(unknown<0x10>);
 
+	@undocumented
 	[11] Unknown11(unknown<0x8>) -> unknown<0x80>;
 
+	@undocumented
 	[16] Unknown16(unknown<0x10>, buffer<unknown, 0x5, unknown>);
+	@undocumented
 	[17] Unknown17(unknown<0x10>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(1.0.0)
+	@undocumented
 	[18] Unknown18(unknown<0x8>) -> unknown<0x1>;
+	@undocumented
 	[19] Unknown19(unknown<0x8>) -> unknown<0x8>;
 
+	@undocumented
 	[21] Unknown21(unknown<0x10>) -> buffer<unknown, 0x16, unknown>;
+	@undocumented
 	[22] Unknown22(unknown<0x8>);
 	@version(2.0.0+)
+	@undocumented
 	[23] Unknown23(unknown<0x10>);
 
+	@undocumented
 	[26] Unknown26(unknown<0x10>);
 	@version(1.0.0)
+	@undocumented
 	[27] Unknown27(buffer<unknown, 0x5, unknown>);
 	@version(2.0.0+)
+	@undocumented
 	[27] Unknown27(unknown<0x8>);
 
+	@undocumented
 	[30] Unknown30(unknown<0x8>) -> (handle<copy>, object<nn::ns::detail::IAsyncValue>);
 	@version(1.0.0-3.0.0)
+	@undocumented
 	[31] Unknown31(unknown<0x10>) -> (handle<copy>, object<nn::ns::detail::IAsyncResult>);
+	@undocumented
 	[32] Unknown32(unknown<0x8>);
+	@undocumented
 	[33] Unknown33(unknown<0x8>);
 	@version(1.0.0)
+	@undocumented
 	[34] Unknown34();
+	@undocumented
 	[35] Unknown35(buffer<unknown, 0x5, unknown>);
+	@undocumented
 	[36] Unknown36(unknown<0x10>);
+	@undocumented
 	[37] Unknown37() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[38] Unknown38(unknown<0x8>);
+	@undocumented
 	[39] Unknown39(unknown<0x8>);
+	@undocumented
 	[40] Unknown40(unknown<0x8>, buffer<unknown, 0x15, unknown>) -> (unknown<0x8>, buffer<unknown, 0x6, unknown>);
 	@version(1.0.0)
+	@undocumented
 	[41] Unknown41(unknown<0x8>) -> unknown<0x8>;
 	@version(2.0.0+)
+	@undocumented
 	[41] Unknown41(unknown<0x8>) -> unknown<0x10>;
+	@undocumented
 	[42] Unknown42();
+	@undocumented
 	[43] Unknown43();
+	@undocumented
 	[44] Unknown44() -> handle<copy>;
+	@undocumented
 	[45] Unknown45() -> handle<copy>;
+	@undocumented
 	[46] Unknown46() -> unknown<0x10>;
+	@undocumented
 	[47] Unknown47(unknown<0x1>) -> unknown<0x8>;
+	@undocumented
 	[48] Unknown48(unknown<0x1>) -> unknown<0x8>;
+	@undocumented
 	[49] Unknown49() -> handle<copy>;
 
+	@undocumented
 	[52] Unknown52() -> handle<copy>;
+	@undocumented
 	[53] Unknown53(unknown<0x8>);
+	@undocumented
 	[54] Unknown54(unknown<0x8>);
+	@undocumented
 	[55] Unknown55(unknown<0x4>) -> unknown<0x1>;
+	@undocumented
 	[56] Unknown56(unknown<0x10>);
+	@undocumented
 	[57] Unknown57(unknown<0x8>);
+	@undocumented
 	[58] Unknown58();
+	@undocumented
 	[59] Unknown59(unknown<0x1>) -> unknown<0x8>;
+	@undocumented
 	[60] Unknown60(unknown<0x8>) -> unknown<0x1>;
+	@undocumented
 	[61] Unknown61() -> unknown<0x10>;
+	@undocumented
 	[62] Unknown62() -> object<nn::ns::detail::IGameCardStopper>;
+	@undocumented
 	[63] Unknown63(unknown<0x8>) -> unknown<0x1>;
 	@version(2.0.0+)
+	@undocumented
 	[64] Unknown64(unknown<0x8>);
 	@version(2.0.0+)
+	@undocumented
 	[65] Unknown65() -> object<nn::ns::detail::IRequestServerStopper>;
 	@version(3.0.0+)
+	@undocumented
 	[66] Unknown66() -> unknown<0x10>;
 	@version(3.0.0+)
+	@undocumented
 	[67] Unknown67(unknown<0x8>);
 	@version(3.0.0+)
+	@undocumented
 	[68] Unknown68(unknown<0x8>);
 	@version(3.0.0+)
+	@undocumented
 	[69] Unknown69(unknown<0x8>) -> unknown<0x10>;
 	@version(3.0.0+)
+	@undocumented
 	[70] Unknown70();
 	@version(3.0.0+)
+	@undocumented
 	[71] Unknown71(unknown<0x1>) -> unknown<0x10>;
 
 	@version(3.0.0+)
+	@undocumented
 	[80] Unknown80(unknown<0x10>) -> (handle<copy>, object<nn::ns::detail::IAsyncResult>);
 	@version(3.0.0)
+	@undocumented
 	[81] Unknown81(unknown<0x8>, buffer<unknown, 0x5, unknown>) -> (handle<copy>, object<nn::ns::detail::IAsyncResult>);
 	@version(4.0.0+)
+	@undocumented
 	[81] Unknown81(unknown<0x10>, buffer<unknown, 0x5, unknown>) -> (handle<copy>, object<nn::ns::detail::IAsyncResult>);
 	@version(3.0.0+)
+	@undocumented
 	[82] Unknown82(unknown<0x10>);
 	@version(4.0.0+)
+	@undocumented
 	[83] Unknown83(unknown<0x8>);
 	@version(4.0.0+)
+	@undocumented
 	[84] Unknown84() -> handle<copy>;
 	@version(4.0.0+)
+	@undocumented
 	[85] Unknown85(unknown<0x8>) -> (handle<copy>, object<nn::ns::detail::IAsyncResult>);
 	@version(4.0.0+)
+	@undocumented
 	[86] Unknown86(unknown<0x1>);
 	@version(4.0.0+)
+	@undocumented
 	[87] Unknown87() -> unknown<0x1>;
 
 	@version(4.0.0+)
+	@undocumented
 	[90] Unknown90(unknown<0x8>);
 
+	@undocumented
 	[100] Unknown100();
+	@undocumented
 	[101] Unknown101();
 	@version(2.0.0+)
+	@undocumented
 	[102] Unknown102();
 
+	@undocumented
 	[200] Unknown200(unknown<0x10>) -> unknown<0x10>;
+	@undocumented
 	[201] Unknown201(unknown<0x10>) -> object<nn::ns::detail::IProgressMonitorForDeleteUserSaveDataAll>;
 
+	@undocumented
 	[210] Unknown210(unknown<0x18>);
 
+	@undocumented
 	[220] Unknown220(unknown<0x10>);
 
+	@undocumented
 	[300] Unknown300() -> handle<copy>;
+	@undocumented
 	[301] Unknown301() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[302] Unknown302(unknown<0x8>) -> unknown<0x8>;
+	@undocumented
 	[303] Unknown303(unknown<0x8>);
+	@undocumented
 	[304] Unknown304() -> unknown<0x8>;
+	@undocumented
 	[305] Unknown305(unknown<0x8>);
+	@undocumented
 	[306] Unknown306() -> unknown<0x8>;
+	@undocumented
 	[307] Unknown307(unknown<0x8>);
 
+	@undocumented
 	[400] Unknown400(unknown<0x10>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[401] Unknown401();
+	@undocumented
 	[402] Unknown402(unknown<0x8>) -> (handle<copy>, object<nn::ns::detail::IAsyncResult>);
+	@undocumented
 	[403] Unknown403() -> unknown<0x4>;
 	@version(2.0.0+)
+	@undocumented
 	[404] Unknown404(unknown<0x8>);
 	@version(2.0.0+)
+	@undocumented
 	[405] Unknown405() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 
 	@version(2.0.0+)
+	@undocumented
 	[502] Unknown502(unknown<0x8>) -> (handle<copy>, object<nn::ns::detail::IAsyncResult>);
 	@version(2.0.0+)
+	@undocumented
 	[503] Unknown503(unknown<0x18>) -> (handle<copy>, object<nn::ns::detail::IAsyncValue>);
 	@version(2.0.0+)
+	@undocumented
 	[504] Unknown504(unknown<0x20>) -> (handle<copy>, object<nn::ns::detail::IAsyncResult>);
 	@version(3.0.0+)
+	@undocumented
 	[505] Unknown505() -> handle<copy>;
 	@version(3.0.0+)
+	@undocumented
 	[506] Unknown506() -> unknown<0x1>;
 	@version(3.0.0+)
+	@undocumented
 	[507] Unknown507();
 	@version(3.0.0+)
+	@undocumented
 	[508] Unknown508();
 
 	@version(2.0.0+)
+	@undocumented
 	[600] Unknown600(unknown<0x8>) -> unknown<0x4>;
 	@version(2.0.0+)
+	@undocumented
 	[601] Unknown601(unknown<0x10>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(2.0.0+)
+	@undocumented
 	[602] Unknown602(unknown<0x10>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(2.0.0+)
+	@undocumented
 	[603] Unknown603(unknown<0x10>) -> unknown<0x10>;
 	@version(2.0.0+)
+	@undocumented
 	[604] Unknown604(unknown<0x10>);
 	@version(2.0.0+)
+	@undocumented
 	[605] Unknown605(unknown<0x10>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(3.0.0+)
+	@undocumented
 	[606] Unknown606(unknown<0x10>) -> unknown<0x1>;
 
 	@version(2.0.0+)
+	@undocumented
 	[700] Unknown700(buffer<unknown, 0x5, unknown>);
 	@version(2.0.0+)
+	@undocumented
 	[701] Unknown701();
 	@version(2.0.0+)
+	@undocumented
 	[702] Unknown702();
 	@version(2.0.0+)
+	@undocumented
 	[703] Unknown703() -> (handle<copy>, object<nn::ns::detail::IAsyncResult>);
 	@version(2.0.0+)
+	@undocumented
 	[704] Unknown704() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(2.0.0+)
+	@undocumented
 	[705] Unknown705() -> (handle<copy>, object<nn::ns::detail::IAsyncValue>);
 
 	@version(2.0.0+)
+	@undocumented
 	[800] Unknown800();
 	@version(2.0.0+)
+	@undocumented
 	[801] Unknown801() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(3.0.0+)
+	@undocumented
 	[802] Unknown802() -> (handle<copy>, object<nn::ns::detail::IAsyncValue>);
 
 	@version(2.0.0+)
+	@undocumented
 	[900] Unknown900(unknown<0x8>) -> unknown<0x18>;
 	@version(2.0.0+)
+	@undocumented
 	[901] Unknown901(unknown<0x8>) -> buffer<unknown, 0x16, unknown>;
 	@version(2.0.0+)
+	@undocumented
 	[902] Unknown902(unknown<0x8>);
 	@version(2.0.0+)
+	@undocumented
 	[903] Unknown903(unknown<0x8>);
 	@version(2.0.0+)
+	@undocumented
 	[904] Unknown904(unknown<0x8>);
 	@version(2.0.0+)
+	@undocumented
 	[905] Unknown905(unknown<0x10>);
 	@version(2.0.0+)
+	@undocumented
 	[906] Unknown906(unknown<0x8>) -> unknown<0x8>;
 	@version(2.0.0+)
+	@undocumented
 	[907] Unknown907(unknown<0x8>);
 	@version(2.0.0+)
+	@undocumented
 	[908] Unknown908(unknown<0x10>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(3.0.0+)
+	@undocumented
 	[909] Unknown909(unknown<0x8>);
 
 	@version(2.0.0+)
+	@undocumented
 	[1000] Unknown1000(unknown<0x10>, handle<copy>) -> (handle<copy>, object<nn::ns::detail::IProgressAsyncResult>);
 	@version(2.0.0+)
+	@undocumented
 	[1001] Unknown1001(unknown<0x10>);
 	@version(3.0.0+)
+	@undocumented
 	[1002] Unknown1002(unknown<0x8>) -> (handle<copy>, object<nn::ns::detail::IProgressAsyncResult>);
 
 	@version(2.0.0+)
+	@undocumented
 	[1200] Unknown1200() -> unknown<0x1>;
 
 	@version(2.0.0+)
+	@undocumented
 	[1300] Unknown1300(unknown<0x8>) -> unknown<0x1>;
 	@version(2.0.0+)
+	@undocumented
 	[1301] Unknown1301(unknown<0x10>);
 	@version(2.0.0+)
+	@undocumented
 	[1302] Unknown1302(unknown<0x8>);
 	@version(3.0.0+)
+	@undocumented
 	[1303] Unknown1303(unknown<0x8>);
 	@version(3.0.0+)
+	@undocumented
 	[1304] Unknown1304(unknown<0x10>);
 
 	@version(2.0.0+)
+	@undocumented
 	[1400] Unknown1400();
 
 	@version(2.0.0+)
+	@undocumented
 	[1500] Unknown1500();
 	@version(2.0.0+)
+	@undocumented
 	[1501] Unknown1501() -> unknown<0x1>;
 	@version(2.0.0+)
+	@undocumented
 	[1502] Unknown1502();
 	@version(2.0.0)
+	@undocumented
 	[1503] Unknown1503();
 	@version(3.0.0+)
+	@undocumented
 	[1504] Unknown1504();
 	@version(3.0.0+)
+	@undocumented
 	[1505] Unknown1505();
 
 	@version(2.0.0+)
+	@undocumented
 	[1600] Unknown1600() -> unknown<0x20>;
 	@version(3.0.0+)
+	@undocumented
 	[1601] Unknown1601();
 
 	@version(2.0.0+)
+	@undocumented
 	[1700] Unknown1700(unknown<0x10>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(3.0.0+)
+	@undocumented
 	[1701] Unknown1701(buffer<unknown, 0x5, unknown>) -> buffer<unknown, 0x6, unknown>;
 	@version(3.0.0+)
+	@undocumented
 	[1702] Unknown1702(unknown<0x8>) -> unknown<0x1>;
 	@version(4.0.0+)
+	@undocumented
 	[1703] Unknown1703(unknown<0x8>) -> buffer<unknown, 0x16, unknown>;
 
 	@version(2.0.0+)
+	@undocumented
 	[1800] Unknown1800() -> unknown<0x1>;
 	@version(2.0.0+)
+	@undocumented
 	[1801] Unknown1801() -> unknown<0x8>;
 	@version(2.0.0+)
+	@undocumented
 	[1802] Unknown1802() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(3.0.0+)
+	@undocumented
 	[1803] Unknown1803() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 
 	@version(3.0.0+)
+	@undocumented
 	[1900] Unknown1900(unknown<0x4>) -> unknown<0x1>;
 	@version(4.0.0+)
+	@undocumented
 	[1901] Unknown1901(unknown<0x8>) -> (handle<copy>, object<nn::ns::detail::IAsyncResult>);
 
 	@version(4.0.0+)
+	@undocumented
 	[2000] Unknown2000() -> buffer<unknown, 0x16, unknown>;
 	@version(4.0.0+)
+	@undocumented
 	[2001] Unknown2001(buffer<unknown, 0x15, unknown>, buffer<unknown, 0x5, unknown>, buffer<unknown, 0x5, unknown>) -> unknown<0x4>;
 	@version(4.0.0+)
+	@undocumented
 	[2002] Unknown2002(buffer<unknown, 0x15, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[2003] Unknown2003(unknown<0x10>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[2004] Unknown2004(buffer<unknown, 0x5, unknown>) -> unknown<0x1>;
 	@version(4.0.0+)
+	@undocumented
 	[2005] Unknown2005(buffer<unknown, 0x5, unknown>, buffer<unknown, 0x5, unknown>) -> unknown<0x4>;
 	@version(4.0.0+)
+	@undocumented
 	[2006] Unknown2006(buffer<unknown, 0x5, unknown>, buffer<unknown, 0x5, unknown>) -> unknown<0x1>;
 	@version(4.0.0+)
+	@undocumented
 	[2007] Unknown2007(unknown<0x4>, buffer<unknown, 0x5, unknown>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[2008] Unknown2008(buffer<unknown, 0x15, unknown>, buffer<unknown, 0x5, unknown>) -> unknown<0x1>;
 	@version(4.0.0+)
+	@undocumented
 	[2009] Unknown2009(buffer<unknown, 0x5, unknown>) -> unknown<0x8>;
 	@version(4.0.0+)
+	@undocumented
 	[2010] Unknown2010(unknown<0x10>, buffer<unknown, 0x5, unknown>) -> (handle<copy>, object<nn::ns::detail::IAsyncResult>);
 	@version(4.0.0+)
+	@undocumented
 	[2011] Unknown2011(unknown<0x8>);
 	@version(4.0.0+)
+	@undocumented
 	[2012] Unknown2012(unknown<0x8>) -> unknown<0x10>;
 	@version(4.0.0+)
+	@undocumented
 	[2013] Unknown2013(unknown<0x10>, buffer<unknown, 0x5, unknown>) -> (handle<copy>, object<nn::ns::detail::IAsyncResult>);
 	@version(4.0.0+)
+	@undocumented
 	[2014] Unknown2014(unknown<0x8>) -> unknown<0x10>;
 	@version(4.0.0+)
+	@undocumented
 	[2015] Unknown2015(buffer<unknown, 0x15, unknown>, buffer<unknown, 0x15, unknown>) -> unknown<0x4>;
 	@version(4.0.0+)
+	@undocumented
 	[2016] Unknown2016(unknown<0x10>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[2017] Unknown2017(unknown<0x8>, buffer<unknown, 0x5, unknown>);
 }
 
 @version(4.0.0+)
 interface nn::ns::detail::IApplicationVersionInterface {
+	@undocumented
 	[0] Unknown0(unknown<0x8>) -> unknown<0x4>;
+	@undocumented
 	[1] Unknown1(unknown<0x10>);
 
+	@undocumented
 	[35] Unknown35(buffer<unknown, 0x5, unknown>);
+	@undocumented
 	[36] Unknown36(unknown<0x10>);
+	@undocumented
 	[37] Unknown37() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 
+	@undocumented
 	[800] Unknown800();
+	@undocumented
 	[801] Unknown801() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[802] Unknown802() -> (handle<copy>, object<nn::ns::detail::IAsyncValue>);
 
+	@undocumented
 	[1000] Unknown1000();
 }
 
 interface nn::ns::detail::IAsyncResult {
+	@undocumented
 	[0] Unknown0();
+	@undocumented
 	[1] Unknown1();
 	@version(4.0.0+)
+	@undocumented
 	[2] Unknown2() -> buffer<unknown, 0x16, unknown>;
 }
 
 interface nn::ns::detail::IAsyncValue {
+	@undocumented
 	[0] Unknown0() -> unknown<0x8>;
+	@undocumented
 	[1] Unknown1() -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[2] Unknown2();
 	@version(4.0.0+)
+	@undocumented
 	[3] Unknown3() -> buffer<unknown, 0x16, unknown>;
 }
 
 @version(3.0.0+)
 interface nn::ns::detail::IContentManagementInterface {
+	@undocumented
 	[11] Unknown11(unknown<0x8>) -> unknown<0x80>;
 
+	@undocumented
 	[43] Unknown43();
 
+	@undocumented
 	[47] Unknown47(unknown<0x1>) -> unknown<0x8>;
+	@undocumented
 	[48] Unknown48(unknown<0x1>) -> unknown<0x8>;
 
+	@undocumented
 	[600] Unknown600(unknown<0x8>) -> unknown<0x4>;
+	@undocumented
 	[601] Unknown601(unknown<0x10>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 
+	@undocumented
 	[605] Unknown605(unknown<0x10>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 
+	@undocumented
 	[607] Unknown607() -> unknown<0x1>;
 }
 
 interface nn::ns::detail::IDevelopInterface {
+	@undocumented
 	[0] Unknown0(unknown<0x18>) -> unknown<0x8>;
+	@undocumented
 	[1] Unknown1(unknown<0x8>);
+	@undocumented
 	[2] Unknown2(unknown<0x8>);
 
+	@undocumented
 	[4] Unknown4() -> handle<copy>;
+	@undocumented
 	[5] Unknown5() -> unknown<0x10>;
+	@undocumented
 	[6] Unknown6();
+	@undocumented
 	[7] Unknown7(buffer<unknown, 0x5, unknown>) -> unknown<0x10>;
+	@undocumented
 	[8] Unknown8(unknown<0x10>) -> unknown<0x8>;
+	@undocumented
 	[9] Unknown9(unknown<0x10>) -> unknown<0x8>;
 }
 
 @version(3.0.0+)
 interface nn::ns::detail::IDocumentInterface {
+	@undocumented
 	[21] Unknown21(unknown<0x10>) -> buffer<unknown, 0x16, unknown>;
 
+	@undocumented
 	[23] Unknown23(unknown<0x10>);
 }
 
 @version(3.0.0+)
 interface nn::ns::detail::IDownloadTaskInterface {
+	@undocumented
 	[701] Unknown701();
+	@undocumented
 	[702] Unknown702();
+	@undocumented
 	[703] Unknown703() -> (handle<copy>, object<nn::ns::detail::IAsyncResult>);
+	@undocumented
 	[704] Unknown704() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[705] Unknown705() -> (handle<copy>, object<nn::ns::detail::IAsyncValue>);
 	@version(4.0.0+)
+	@undocumented
 	[706] Unknown706();
 	@version(4.0.0+)
+	@undocumented
 	[707] Unknown707();
 	@version(4.0.0+)
+	@undocumented
 	[708] Unknown708();
 	@version(4.0.0+)
+	@undocumented
 	[709] Unknown709();
 }
 
 @version(4.0.0+)
 interface nn::ns::detail::IECommerceInterface {
+	@undocumented
 	[0] Unknown0(unknown<0x10>) -> (handle<copy>, object<nn::ns::detail::IAsyncResult>);
 }
 
 @version(3.0.0+)
 interface nn::ns::detail::IFactoryResetInterface {
+	@undocumented
 	[100] Unknown100();
+	@undocumented
 	[101] Unknown101();
+	@undocumented
 	[102] Unknown102();
 }
 
@@ -5030,19 +6109,28 @@ interface nn::ns::detail::IGameCardStopper {
 
 @version(2.0.0+)
 interface nn::ns::detail::IProgressAsyncResult {
+	@undocumented
 	[0] Unknown0();
+	@undocumented
 	[1] Unknown1();
+	@undocumented
 	[2] Unknown2() -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[3] Unknown3();
 	@version(4.0.0+)
+	@undocumented
 	[4] Unknown4() -> buffer<unknown, 0x16, unknown>;
 }
 
 interface nn::ns::detail::IProgressMonitorForDeleteUserSaveDataAll {
+	@undocumented
 	[0] Unknown0() -> handle<copy>;
+	@undocumented
 	[1] Unknown1() -> unknown<0x1>;
+	@undocumented
 	[2] Unknown2();
 
+	@undocumented
 	[10] Unknown10() -> unknown<0x28>;
 }
 
@@ -5053,90 +6141,142 @@ interface nn::ns::detail::IRequestServerStopper {
 @version(3.0.0+)
 interface nn::ns::detail::IServiceGetterInterface {
 	@version(4.0.0+)
+	@undocumented
 	[7992] Unknown7992() -> object<nn::ns::detail::IECommerceInterface>;
 	@version(4.0.0+)
+	@undocumented
 	[7993] Unknown7993() -> object<nn::ns::detail::IApplicationVersionInterface>;
+	@undocumented
 	[7994] Unknown7994() -> object<nn::ns::detail::IFactoryResetInterface>;
+	@undocumented
 	[7995] Unknown7995() -> object<nn::ns::detail::IAccountProxyInterface>;
+	@undocumented
 	[7996] Unknown7996() -> object<nn::ns::detail::IApplicationManagerInterface>;
+	@undocumented
 	[7997] Unknown7997() -> object<nn::ns::detail::IDownloadTaskInterface>;
+	@undocumented
 	[7998] Unknown7998() -> object<nn::ns::detail::IContentManagementInterface>;
+	@undocumented
 	[7999] Unknown7999() -> object<nn::ns::detail::IDocumentInterface>;
 }
 
 interface nn::ns::detail::ISystemUpdateControl {
+	@undocumented
 	[0] Unknown0() -> unknown<0x1>;
+	@undocumented
 	[1] Unknown1() -> (handle<copy>, object<nn::ns::detail::IAsyncValue>);
+	@undocumented
 	[2] Unknown2() -> (handle<copy>, object<nn::ns::detail::IAsyncResult>);
+	@undocumented
 	[3] Unknown3() -> unknown<0x10>;
+	@undocumented
 	[4] Unknown4();
+	@undocumented
 	[5] Unknown5() -> (handle<copy>, object<nn::ns::detail::IAsyncResult>);
+	@undocumented
 	[6] Unknown6() -> unknown<0x10>;
+	@undocumented
 	[7] Unknown7() -> unknown<0x1>;
+	@undocumented
 	[8] Unknown8();
+	@undocumented
 	[9] Unknown9(buffer<unknown, 0x15, unknown>) -> unknown<0x8>;
+	@undocumented
 	[10] Unknown10(buffer<unknown, 0x15, unknown>) -> (unknown<0x8>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[11] Unknown11(unknown<0x8>, handle<copy>);
+	@undocumented
 	[12] Unknown12(buffer<unknown, 0x15, unknown>) -> unknown<0x8>;
+	@undocumented
 	[13] Unknown13(buffer<unknown, 0x15, unknown>) -> (unknown<0x8>, buffer<unknown, 0x6, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[14] Unknown14(unknown<0x8>, handle<copy>);
 	@version(4.0.0+)
+	@undocumented
 	[15] Unknown15() -> unknown<0x1>;
 	@version(4.0.0+)
+	@undocumented
 	[16] Unknown16(unknown<0x8>, buffer<unknown, 0x15, unknown>) -> (handle<copy>, object<nn::ns::detail::IAsyncResult>);
 	@version(4.0.0+)
+	@undocumented
 	[17] Unknown17() -> unknown<0x10>;
 	@version(4.0.0+)
+	@undocumented
 	[18] Unknown18();
 	@version(4.0.0+)
+	@undocumented
 	[19] Unknown19(buffer<unknown, 0x15, unknown>) -> unknown<0x8>;
 	@version(4.0.0+)
+	@undocumented
 	[20] Unknown20(buffer<unknown, 0x15, unknown>) -> (unknown<0x8>, buffer<unknown, 0x6, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[21] Unknown21();
 }
 
 interface nn::ns::detail::ISystemUpdateInterface {
+	@undocumented
 	[0] Unknown0() -> unknown<0x1>;
+	@undocumented
 	[1] Unknown1() -> object<nn::ns::detail::ISystemUpdateControl>;
+	@undocumented
 	[2] Unknown2();
+	@undocumented
 	[3] Unknown3();
+	@undocumented
 	[4] Unknown4();
+	@undocumented
 	[5] Unknown5(unknown<0x10>);
+	@undocumented
 	[6] Unknown6();
 	@version(1.0.0)
+	@undocumented
 	[7] Unknown7() -> handle<copy>;
 	@version(1.0.0)
+	@undocumented
 	[8] Unknown8();
 	@version(2.0.0+)
+	@undocumented
 	[9] Unknown9() -> handle<copy>;
 	@version(2.0.0+)
+	@undocumented
 	[10] Unknown10();
 	@version(3.0.0+)
+	@undocumented
 	[11] Unknown11();
 	@version(3.0.0)
+	@undocumented
 	[12] Unknown12() -> handle<copy>;
 	@version(3.0.0)
+	@undocumented
 	[13] Unknown13();
 	@version(3.0.0)
+	@undocumented
 	[14] Unknown14() -> handle<copy>;
 	@version(3.0.0)
+	@undocumented
 	[15] Unknown15();
 	@version(4.0.0+)
+	@undocumented
 	[16] Unknown16();
 	@version(4.0.0+)
+	@undocumented
 	[17] Unknown17(unknown<0x8>, buffer<unknown, 0x15, unknown>) -> (handle<copy>, object<nn::ns::detail::IAsyncResult>);
 	@version(4.0.0+)
+	@undocumented
 	[18] Unknown18() -> unknown<0x10>;
 }
 
 @version(3.0.0+)
 interface nn::ns::detail::IVulnerabilityManagerInterface {
+	@undocumented
 	[1200] Unknown1200() -> unknown<0x1>;
 	@version(4.0.0+)
+	@undocumented
 	[1201] Unknown1201(unknown<0x10>);
 	@version(4.0.0+)
+	@undocumented
 	[1202] Unknown1202() -> unknown<0x10>;
 }
 
@@ -5189,102 +6329,161 @@ interface nn::ntc::detail::service::IStaticService {
 }
 
 interface nn::omm::detail::IOperationModeManager {
+	@undocumented
 	[0] Unknown0() -> unknown<0x1>;
+	@undocumented
 	[1] Unknown1() -> handle<copy>;
+	@undocumented
 	[2] Unknown2();
+	@undocumented
 	[3] Unknown3();
 	@version(1.0.0)
+	@undocumented
 	[4] Unknown4();
 	@version(2.0.0+)
+	@undocumented
 	[4] Unknown4(handle<copy>);
+	@undocumented
 	[5] Unknown5() -> unknown<0x1>;
+	@undocumented
 	[6] Unknown6();
+	@undocumented
 	[7] Unknown7();
 	@version(2.0.0+)
+	@undocumented
 	[8] Unknown8() -> unknown<0x10>;
 	@version(2.0.0+)
+	@undocumented
 	[9] Unknown9();
 	@version(3.0.0+)
+	@undocumented
 	[10] Unknown10(unknown<0x1>);
 	@version(3.0.0+)
+	@undocumented
 	[11] Unknown11() -> unknown<0x8>;
 	@version(3.0.0+)
+	@undocumented
 	[12] Unknown12() -> handle<copy>;
 	@version(3.0.0+)
+	@undocumented
 	[13] Unknown13();
 	@version(3.0.0+)
+	@undocumented
 	[14] Unknown14() -> unknown<0x1>;
 	@version(4.0.0+)
+	@undocumented
 	[15] Unknown15();
 	@version(4.0.0+)
+	@undocumented
 	[16] Unknown16();
 	@version(4.0.0+)
+	@undocumented
 	[17] Unknown17();
 	@version(4.0.0+)
+	@undocumented
 	[18] Unknown18();
 	@version(4.0.0+)
+	@undocumented
 	[19] Unknown19() -> handle<copy>;
 	@version(4.0.0+)
+	@undocumented
 	[20] Unknown20() -> unknown<0x1>;
 	@version(4.0.0+)
+	@undocumented
 	[21] Unknown21(unknown<0x1>);
 	@version(4.0.0+)
+	@undocumented
 	[22] Unknown22() -> handle<copy>;
 	@version(4.0.0+)
+	@undocumented
 	[23] Unknown23() -> unknown<0x1>;
 }
 
 interface nn::ovln::IReceiver {
+	@undocumented
 	[0] Unknown0(unknown<0x10>);
+	@undocumented
 	[1] Unknown1(unknown<0x10>);
+	@undocumented
 	[2] Unknown2() -> handle<copy>;
+	@undocumented
 	[3] Unknown3() -> unknown<0x80>;
+	@undocumented
 	[4] Unknown4() -> unknown<0x88>;
 }
 
 interface nn::ovln::IReceiverService {
+	@undocumented
 	[0] Unknown0() -> object<nn::ovln::IReceiver>;
 }
 
 interface nn::ovln::ISender {
+	@undocumented
 	[0] Unknown0(unknown<0x88>);
+	@undocumented
 	[1] Unknown1() -> unknown<0x4>;
 }
 
 interface nn::ovln::ISenderService {
+	@undocumented
 	[0] Unknown0(unknown<0x18>) -> object<nn::ovln::ISender>;
 }
 
 interface nn::pcie::detail::IManager {
+	@undocumented
 	[0] Unknown0(unknown<0x18>, handle<copy>) -> (handle<copy>, object<nn::pcie::detail::ISession>);
+	@undocumented
 	[1] Unknown1() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 }
 
 interface nn::pcie::detail::ISession {
+	@undocumented
 	[0] Unknown0() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[1] Unknown1(unknown<0x4>) -> handle<copy>;
+	@undocumented
 	[2] Unknown2(unknown<0x4>);
+	@undocumented
 	[3] Unknown3(unknown<0x4>) -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[4] Unknown4(unknown<0x8>) -> unknown<0x18>;
+	@undocumented
 	[5] Unknown5(unknown<0xc>) -> unknown<0x4>;
+	@undocumented
 	[6] Unknown6(unknown<0x10>);
+	@undocumented
 	[7] Unknown7(unknown<0x10>) -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[8] Unknown8(unknown<0x10>, buffer<unknown, 0x5, unknown>);
+	@undocumented
 	[9] Unknown9(unknown<0x8>) -> unknown<0x4>;
+	@undocumented
 	[10] Unknown10(unknown<0x8>) -> unknown<0x4>;
+	@undocumented
 	[11] Unknown11(unknown<0x18>) -> unknown<0x8>;
+	@undocumented
 	[12] Unknown12(unknown<0x10>);
+	@undocumented
 	[13] Unknown13(unknown<0x10>);
+	@undocumented
 	[14] Unknown14(unknown<0x10>) -> unknown<0x8>;
+	@undocumented
 	[15] Unknown15(unknown<0x4>) -> unknown<0x10>;
+	@undocumented
 	[16] Unknown16(unknown<0x8>);
+	@undocumented
 	[17] Unknown17(unknown<0x8>) -> handle<copy>;
+	@undocumented
 	[18] Unknown18(unknown<0x4>);
+	@undocumented
 	[19] Unknown19(unknown<0xc>);
+	@undocumented
 	[20] Unknown20(unknown<0x8>);
 	@version(3.0.0+)
+	@undocumented
 	[21] Unknown21(unknown<0x8>);
 	@version(4.0.0+)
+	@undocumented
 	[22] Unknown22(unknown<0x8>);
 }
 
@@ -5483,45 +6682,69 @@ interface nn::pcv::detail::IPcvService {
 }
 
 interface nn::pdm::detail::INotifyService {
+	@undocumented
 	[0] Unknown0(unknown<0x10>);
 
+	@undocumented
 	[2] Unknown2(unknown<0x1>);
+	@undocumented
 	[3] Unknown3(unknown<0x1>);
+	@undocumented
 	[4] Unknown4();
 	@version(2.0.0+)
+	@undocumented
 	[5] Unknown5(buffer<unknown, 0x5, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[6] Unknown6(unknown<0x10>);
 	@version(4.0.0+)
+	@undocumented
 	[7] Unknown7(unknown<0x10>);
 }
 
 interface nn::pdm::detail::IQueryService {
+	@undocumented
 	[0] Unknown0(unknown<0x4>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[1] Unknown1() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[2] Unknown2(unknown<0x10>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[3] Unknown3(unknown<0x8>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[4] Unknown4(unknown<0x8>) -> unknown<0x28>;
+	@undocumented
 	[5] Unknown5(unknown<0x18>) -> unknown<0x28>;
+	@undocumented
 	[6] Unknown6(unknown<0x10>) -> unknown<0x28>;
+	@undocumented
 	[7] Unknown7(buffer<unknown, 0x5, unknown>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[8] Unknown8(unknown<0x4>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[9] Unknown9() -> unknown<0xc>;
 	@version(3.0.0+)
+	@undocumented
 	[10] Unknown10(unknown<0x4>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[11] Unknown11(unknown<0x18>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(4.0.0+)
+	@undocumented
 	[12] Unknown12(unknown<0x10>) -> unknown<0xc>;
 }
 
 interface nn::pinmux::IManager {
+	@undocumented
 	[0] Unknown0(unknown<0x4>) -> object<nn::pinmux::ISession>;
 }
 
 interface nn::pinmux::ISession {
+	@undocumented
 	[0] Unknown0(unknown<0x4>);
+	@undocumented
 	[1] Unknown1() -> unknown<0x4>;
+	@undocumented
 	[2] Unknown2(unknown<0x4>);
 }
 
@@ -5537,35 +6760,55 @@ interface nn::pl::detail::ISharedFontManager {
 }
 
 interface nn::pm::detail::IBootModeInterface {
+	@undocumented
 	[0] Unknown0() -> unknown<0x4>;
+	@undocumented
 	[1] Unknown1();
 }
 
 interface nn::pm::detail::IDebugMonitorInterface {
+	@undocumented
 	[0] Unknown0(unknown<0x8>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[1] Unknown1() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[2] Unknown2(unknown<0x8>);
+	@undocumented
 	[3] Unknown3(unknown<0x8>) -> unknown<0x8>;
+	@undocumented
 	[4] Unknown4(unknown<0x8>) -> handle<copy>;
+	@undocumented
 	[5] Unknown5() -> unknown<0x8>;
+	@undocumented
 	[6] Unknown6() -> handle<copy>;
 }
 
 interface nn::pm::detail::IInformationInterface {
+	@undocumented
 	[0] Unknown0(unknown<0x8>) -> unknown<0x8>;
 }
 
 interface nn::pm::detail::IShellInterface {
+	@undocumented
 	[0] Unknown0(unknown<0x18>) -> unknown<0x8>;
+	@undocumented
 	[1] Unknown1(unknown<0x8>);
+	@undocumented
 	[2] Unknown2(unknown<0x8>);
+	@undocumented
 	[3] Unknown3() -> handle<copy>;
+	@undocumented
 	[4] Unknown4() -> unknown<0x10>;
+	@undocumented
 	[5] Unknown5(unknown<0x8>);
+	@undocumented
 	[6] Unknown6(unknown<0x8>);
+	@undocumented
 	[7] Unknown7();
+	@undocumented
 	[8] Unknown8() -> unknown<0x8>;
 	@version(4.0.0+)
+	@undocumented
 	[9] Unknown9(unknown<0x8>);
 }
 
@@ -5591,66 +6834,105 @@ interface nn::prepo::detail::ipc::IPrepoService {
 	[40101] SetUserAgreementCheckEnabled(b8);
 
 	@version(1.0.0)
+	@undocumented
 	[90100] Unknown90100(unknown<0x4>);
 	@version(2.0.0+)
 	[90100] GetStorageUsage() -> (u64, u64);
 	@version(1.0.0)
+	@undocumented
 	[90101] Unknown90101() -> unknown<0x4>;
 	@version(1.0.0)
+	@undocumented
 	[90102] Unknown90102() -> unknown<0x10>;
 }
 
 interface nn::psc::sf::IPmControl {
+	@undocumented
 	[0] Unknown0() -> handle<copy>;
+	@undocumented
 	[1] Unknown1(unknown<0xc>);
+	@undocumented
 	[2] Unknown2();
+	@undocumented
 	[3] Unknown3() -> unknown<0x4>;
+	@undocumented
 	[4] Unknown4();
+	@undocumented
 	[5] Unknown5();
+	@undocumented
 	[6] Unknown6() -> (unknown<0x28>, buffer<unknown, 0x6, unknown>, buffer<unknown, 0x6, unknown>);
 }
 
 interface nn::psc::sf::IPmModule {
+	@undocumented
 	[0] Unknown0(unknown<0x4>, buffer<unknown, 0x5, unknown>) -> handle<copy>;
+	@undocumented
 	[1] Unknown1() -> unknown<0x8>;
+	@undocumented
 	[2] Unknown2();
+	@undocumented
 	[3] Unknown3();
 }
 
 interface nn::psc::sf::IPmService {
+	@undocumented
 	[0] Unknown0() -> object<nn::psc::sf::IPmModule>;
 }
 
 interface nn::psm::IPsmServer {
+	@undocumented
 	[0] Unknown0() -> unknown<0x4>;
+	@undocumented
 	[1] Unknown1() -> unknown<0x4>;
+	@undocumented
 	[2] Unknown2();
+	@undocumented
 	[3] Unknown3();
+	@undocumented
 	[4] Unknown4() -> unknown<0x1>;
+	@undocumented
 	[5] Unknown5();
+	@undocumented
 	[6] Unknown6();
+	@undocumented
 	[7] Unknown7() -> object<nn::psm::IPsmSession>;
+	@undocumented
 	[8] Unknown8();
+	@undocumented
 	[9] Unknown9();
+	@undocumented
 	[10] Unknown10();
+	@undocumented
 	[11] Unknown11();
+	@undocumented
 	[12] Unknown12() -> unknown<0x4>;
+	@undocumented
 	[13] Unknown13() -> unknown<0x8>;
+	@undocumented
 	[14] Unknown14() -> unknown<0x1>;
+	@undocumented
 	[15] Unknown15() -> unknown<0x8>;
 	@version(2.0.0+)
+	@undocumented
 	[16] Unknown16() -> handle<copy>;
 	@version(2.0.0+)
+	@undocumented
 	[17] Unknown17() -> unknown<0x40>;
 	@version(3.0.0+)
+	@undocumented
 	[18] Unknown18() -> handle<copy>;
 }
 
 interface nn::psm::IPsmSession {
+	@undocumented
 	[0] Unknown0() -> handle<copy>;
+	@undocumented
 	[1] Unknown1();
+	@undocumented
 	[2] Unknown2(unknown<0x1>);
+	@undocumented
 	[3] Unknown3(unknown<0x1>);
+	@undocumented
 	[4] Unknown4(unknown<0x1>);
 }
 
@@ -5670,6 +6952,7 @@ interface nn::pwm::IManager {
 
 @version(3.0.0+)
 interface nn::ro::detail::IDebugMonitorInterface {
+	@undocumented
 	[0] Unknown0(unknown<0x8>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 }
 
@@ -5684,14 +6967,19 @@ interface nn::ro::detail::IRoInterface {
 
 @version(3.0.0+)
 interface nn::sasbus::IManager {
+	@undocumented
 	[0] Unknown0(unknown<0x4>) -> object<nn::sasbus::ISession>;
 }
 
 @version(3.0.0+)
 interface nn::sasbus::ISession {
+	@undocumented
 	[0] Unknown0(unknown<0x1>, buffer<unknown, 0x21, unknown>);
+	@undocumented
 	[1] Unknown1(unknown<0x1>) -> buffer<unknown, 0x22, unknown>;
+	@undocumented
 	[2] Unknown2(unknown<0x18>, handle<copy>);
+	@undocumented
 	[3] Unknown3();
 }
 
@@ -5953,10 +7241,15 @@ interface nn::settings::ISystemSettingsServer {
 
 @version(1.0.0-2.0.0)
 interface nn::sf::hipc::detail::IHipcManager {
+	@undocumented
 	[0] Unknown0() -> unknown<0x4>;
+	@undocumented
 	[1] Unknown1(unknown<0x4>) -> handle<move>;
+	@undocumented
 	[2] Unknown2() -> handle<move>;
+	@undocumented
 	[3] Unknown3() -> unknown<0x2>;
+	@undocumented
 	[4] Unknown4(unknown<0x4>) -> handle<move>;
 }
 
@@ -6026,136 +7319,219 @@ interface nn::socket::sf::IClient {
 
 @version(4.0.0+)
 interface nn::spl::detail::ICryptoInterface {
+	@undocumented
 	[0] Unknown0(unknown<0x4>) -> unknown<0x8>;
+	@undocumented
 	[1] Unknown1(buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>) -> buffer<unknown, 0xa, unknown>;
+	@undocumented
 	[2] Unknown2(unknown<0x18>) -> unknown<0x10>;
+	@undocumented
 	[3] Unknown3(unknown<0x24>);
+	@undocumented
 	[4] Unknown4(unknown<0x20>) -> unknown<0x10>;
+	@undocumented
 	[5] Unknown5(unknown<0x10>);
 
+	@undocumented
 	[7] Unknown7() -> buffer<unknown, 0xa, unknown>;
 
+	@undocumented
 	[11] Unknown11() -> unknown<0x1>;
 
+	@undocumented
 	[14] Unknown14(unknown<0x18>) -> unknown<0x10>;
+	@undocumented
 	[15] Unknown15(unknown<0x14>, buffer<unknown, 0x45, unknown>) -> buffer<unknown, 0x46, unknown>;
+	@undocumented
 	[16] Unknown16(unknown<0x4>, buffer<unknown, 0x9, unknown>) -> unknown<0x10>;
 
+	@undocumented
 	[21] Unknown21() -> unknown<0x4>;
+	@undocumented
 	[22] Unknown22(unknown<0x4>);
+	@undocumented
 	[23] Unknown23() -> handle<copy>;
+	@undocumented
 	[24] Unknown24(unknown<0x4>);
+	@undocumented
 	[25] Unknown25() -> unknown<0x4>;
 }
 
 @version(4.0.0+)
 interface nn::spl::detail::IEsInterface {
+	@undocumented
 	[0] Unknown0(unknown<0x4>) -> unknown<0x8>;
+	@undocumented
 	[1] Unknown1(buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>) -> buffer<unknown, 0xa, unknown>;
+	@undocumented
 	[2] Unknown2(unknown<0x18>) -> unknown<0x10>;
+	@undocumented
 	[3] Unknown3(unknown<0x24>);
+	@undocumented
 	[4] Unknown4(unknown<0x20>) -> unknown<0x10>;
+	@undocumented
 	[5] Unknown5(unknown<0x10>);
 
+	@undocumented
 	[7] Unknown7() -> buffer<unknown, 0xa, unknown>;
 
+	@undocumented
 	[11] Unknown11() -> unknown<0x1>;
 
+	@undocumented
 	[13] Unknown13(unknown<0x24>, buffer<unknown, 0x9, unknown>) -> buffer<unknown, 0xa, unknown>;
+	@undocumented
 	[14] Unknown14(unknown<0x18>) -> unknown<0x10>;
+	@undocumented
 	[15] Unknown15(unknown<0x14>, buffer<unknown, 0x45, unknown>) -> buffer<unknown, 0x46, unknown>;
+	@undocumented
 	[16] Unknown16(unknown<0x4>, buffer<unknown, 0x9, unknown>) -> unknown<0x10>;
+	@undocumented
 	[17] Unknown17(unknown<0x24>, buffer<unknown, 0x9, unknown>);
+	@undocumented
 	[18] Unknown18(unknown<0x4>, buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>) -> unknown<0x10>;
 
+	@undocumented
 	[20] Unknown20(unknown<0x14>) -> unknown<0x10>;
+	@undocumented
 	[21] Unknown21() -> unknown<0x4>;
+	@undocumented
 	[22] Unknown22(unknown<0x4>);
+	@undocumented
 	[23] Unknown23() -> handle<copy>;
+	@undocumented
 	[24] Unknown24(unknown<0x4>);
+	@undocumented
 	[25] Unknown25() -> unknown<0x4>;
 }
 
 @version(4.0.0+)
 interface nn::spl::detail::IFsInterface {
+	@undocumented
 	[0] Unknown0(unknown<0x4>) -> unknown<0x8>;
+	@undocumented
 	[1] Unknown1(buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>) -> buffer<unknown, 0xa, unknown>;
+	@undocumented
 	[2] Unknown2(unknown<0x18>) -> unknown<0x10>;
+	@undocumented
 	[3] Unknown3(unknown<0x24>);
+	@undocumented
 	[4] Unknown4(unknown<0x20>) -> unknown<0x10>;
+	@undocumented
 	[5] Unknown5(unknown<0x10>);
 
+	@undocumented
 	[7] Unknown7() -> buffer<unknown, 0xa, unknown>;
 
+	@undocumented
 	[9] Unknown9(unknown<0x24>, buffer<unknown, 0x9, unknown>);
+	@undocumented
 	[10] Unknown10(buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>) -> (unknown<0x4>, buffer<unknown, 0xa, unknown>);
+	@undocumented
 	[11] Unknown11() -> unknown<0x1>;
+	@undocumented
 	[12] Unknown12(unknown<0x18>) -> unknown<0x10>;
 
+	@undocumented
 	[14] Unknown14(unknown<0x18>) -> unknown<0x10>;
+	@undocumented
 	[15] Unknown15(unknown<0x14>, buffer<unknown, 0x45, unknown>) -> buffer<unknown, 0x46, unknown>;
+	@undocumented
 	[16] Unknown16(unknown<0x4>, buffer<unknown, 0x9, unknown>) -> unknown<0x10>;
 
+	@undocumented
 	[19] Unknown19(unknown<0x14>);
 
+	@undocumented
 	[21] Unknown21() -> unknown<0x4>;
+	@undocumented
 	[22] Unknown22(unknown<0x4>);
+	@undocumented
 	[23] Unknown23() -> handle<copy>;
+	@undocumented
 	[24] Unknown24(unknown<0x4>);
+	@undocumented
 	[25] Unknown25() -> unknown<0x4>;
 }
 
 interface nn::spl::detail::IGeneralInterface {
+	@undocumented
 	[0] Unknown0(unknown<0x4>) -> unknown<0x8>;
+	@undocumented
 	[1] Unknown1(buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>) -> buffer<unknown, 0xa, unknown>;
 	@version(1.0.0-3.0.0)
+	@undocumented
 	[2] Unknown2(unknown<0x18>) -> unknown<0x10>;
 	@version(1.0.0-3.0.0)
+	@undocumented
 	[3] Unknown3(unknown<0x24>);
 	@version(1.0.0-3.0.0)
+	@undocumented
 	[4] Unknown4(unknown<0x20>) -> unknown<0x10>;
+	@undocumented
 	[5] Unknown5(unknown<0x10>);
 
+	@undocumented
 	[7] Unknown7() -> buffer<unknown, 0xa, unknown>;
 
 	@version(1.0.0-3.0.0)
+	@undocumented
 	[9] Unknown9(unknown<0x24>, buffer<unknown, 0x9, unknown>);
 	@version(1.0.0-3.0.0)
+	@undocumented
 	[10] Unknown10(buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>) -> (unknown<0x4>, buffer<unknown, 0xa, unknown>);
+	@undocumented
 	[11] Unknown11() -> unknown<0x1>;
 	@version(1.0.0-3.0.0)
+	@undocumented
 	[12] Unknown12(unknown<0x18>) -> unknown<0x10>;
 	@version(1.0.0-3.0.0)
+	@undocumented
 	[13] Unknown13(unknown<0x24>, buffer<unknown, 0x9, unknown>) -> buffer<unknown, 0xa, unknown>;
 	@version(1.0.0-3.0.0)
+	@undocumented
 	[14] Unknown14(unknown<0x18>) -> unknown<0x10>;
 	@version(1.0.0)
+	@undocumented
 	[15] Unknown15(unknown<0x14>, buffer<unknown, 0x5, unknown>) -> buffer<unknown, 0x6, unknown>;
 	@version(2.0.0-3.0.0)
+	@undocumented
 	[15] Unknown15(unknown<0x14>, buffer<unknown, 0x45, unknown>) -> buffer<unknown, 0x46, unknown>;
 	@version(1.0.0-3.0.0)
+	@undocumented
 	[16] Unknown16(unknown<0x4>, buffer<unknown, 0x9, unknown>) -> unknown<0x10>;
 	@version(1.0.0-3.0.0)
+	@undocumented
 	[17] Unknown17(unknown<0x24>, buffer<unknown, 0x9, unknown>);
 	@version(1.0.0-2.0.0)
+	@undocumented
 	[18] Unknown18(buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>) -> unknown<0x10>;
 	@version(3.0.0)
+	@undocumented
 	[18] Unknown18(unknown<0x4>, buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>) -> unknown<0x10>;
 	@version(1.0.0-3.0.0)
+	@undocumented
 	[19] Unknown19(unknown<0x14>);
 	@version(2.0.0)
+	@undocumented
 	[20] Unknown20(unknown<0x10>) -> unknown<0x10>;
 	@version(3.0.0)
+	@undocumented
 	[20] Unknown20(unknown<0x14>) -> unknown<0x10>;
 	@version(2.0.0-3.0.0)
+	@undocumented
 	[21] Unknown21() -> unknown<0x4>;
 	@version(2.0.0-3.0.0)
+	@undocumented
 	[22] Unknown22(unknown<0x4>);
 	@version(2.0.0-3.0.0)
+	@undocumented
 	[23] Unknown23() -> handle<copy>;
 	@version(3.0.0+)
+	@undocumented
 	[24] Unknown24(unknown<0x4>);
 	@version(3.0.0+)
+	@undocumented
 	[25] Unknown25() -> unknown<0x4>;
 }
 
@@ -6165,45 +7541,75 @@ interface nn::spl::detail::IRandomInterface {
 
 @version(4.0.0+)
 interface nn::spl::detail::ISslInterface {
+	@undocumented
 	[0] Unknown0(unknown<0x4>) -> unknown<0x8>;
+	@undocumented
 	[1] Unknown1(buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>) -> buffer<unknown, 0xa, unknown>;
+	@undocumented
 	[2] Unknown2(unknown<0x18>) -> unknown<0x10>;
+	@undocumented
 	[3] Unknown3(unknown<0x24>);
+	@undocumented
 	[4] Unknown4(unknown<0x20>) -> unknown<0x10>;
+	@undocumented
 	[5] Unknown5(unknown<0x10>);
 
+	@undocumented
 	[7] Unknown7() -> buffer<unknown, 0xa, unknown>;
 
+	@undocumented
 	[11] Unknown11() -> unknown<0x1>;
 
+	@undocumented
 	[13] Unknown13(unknown<0x24>, buffer<unknown, 0x9, unknown>) -> buffer<unknown, 0xa, unknown>;
+	@undocumented
 	[14] Unknown14(unknown<0x18>) -> unknown<0x10>;
+	@undocumented
 	[15] Unknown15(unknown<0x14>, buffer<unknown, 0x45, unknown>) -> buffer<unknown, 0x46, unknown>;
+	@undocumented
 	[16] Unknown16(unknown<0x4>, buffer<unknown, 0x9, unknown>) -> unknown<0x10>;
 
+	@undocumented
 	[21] Unknown21() -> unknown<0x4>;
+	@undocumented
 	[22] Unknown22(unknown<0x4>);
+	@undocumented
 	[23] Unknown23() -> handle<copy>;
+	@undocumented
 	[24] Unknown24(unknown<0x4>);
+	@undocumented
 	[25] Unknown25() -> unknown<0x4>;
 }
 
 interface nn::spsm::detail::IPowerStateInterface {
+	@undocumented
 	[0] Unknown0() -> unknown<0x4>;
+	@undocumented
 	[1] Unknown1() -> handle<copy>;
+	@undocumented
 	[2] Unknown2() -> unknown<0x4>;
+	@undocumented
 	[3] Unknown3(unknown<0x1>);
+	@undocumented
 	[4] Unknown4() -> handle<copy>;
+	@undocumented
 	[5] Unknown5() -> unknown<0x4>;
+	@undocumented
 	[6] Unknown6() -> unknown<0x50>;
+	@undocumented
 	[7] Unknown7();
+	@undocumented
 	[8] Unknown8() -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[9] Unknown9(unknown<0x8>);
 	@version(2.0.0+)
+	@undocumented
 	[10] Unknown10();
 	@version(2.0.0)
+	@undocumented
 	[11] Unknown11();
 	@version(3.0.0)
+	@undocumented
 	[11] Unknown11(unknown<0x8>);
 }
 
@@ -6274,14 +7680,23 @@ interface nn::ssl::sf::ISslService {
 }
 
 interface nn::tc::IManager {
+	@undocumented
 	[0] Unknown0(unknown<0x4>);
+	@undocumented
 	[1] Unknown1(unknown<0x4>) -> handle<copy>;
+	@undocumented
 	[2] Unknown2(unknown<0x4>) -> unknown<0x1>;
+	@undocumented
 	[3] Unknown3(unknown<0x4>);
+	@undocumented
 	[4] Unknown4(unknown<0x4>);
+	@undocumented
 	[5] Unknown5(unknown<0x8>);
+	@undocumented
 	[6] Unknown6();
+	@undocumented
 	[7] Unknown7();
+	@undocumented
 	[8] Unknown8() -> unknown<0x1>;
 }
 
@@ -6430,216 +7845,335 @@ interface nn::tma::ISocket {
 }
 
 interface nn::ts::server::IMeasurementServer {
+	@undocumented
 	[0] Unknown0(unknown<0x1>) -> unknown<0x8>;
+	@undocumented
 	[1] Unknown1(unknown<0x1>) -> unknown<0x4>;
+	@undocumented
 	[2] Unknown2(unknown<0x2>);
+	@undocumented
 	[3] Unknown3(unknown<0x1>) -> unknown<0x4>;
 }
 
 interface nn::uart::IManager {
+	@undocumented
 	[0] Unknown0(unknown<0x4>) -> unknown<0x1>;
+	@undocumented
 	[1] Unknown1(unknown<0x4>) -> unknown<0x1>;
+	@undocumented
 	[2] Unknown2(unknown<0x8>) -> unknown<0x1>;
+	@undocumented
 	[3] Unknown3(unknown<0x8>) -> unknown<0x1>;
+	@undocumented
 	[4] Unknown4(unknown<0x8>) -> unknown<0x1>;
+	@undocumented
 	[5] Unknown5(unknown<0x8>) -> unknown<0x1>;
+	@undocumented
 	[6] Unknown6() -> object<nn::uart::IPortSession>;
+	@undocumented
 	[7] Unknown7(unknown<0x8>) -> unknown<0x1>;
+	@undocumented
 	[8] Unknown8(unknown<0x8>) -> unknown<0x1>;
 }
 
 interface nn::uart::IPortSession {
+	@undocumented
 	[0] Unknown0(unknown<0x20>, handle<copy>, handle<copy>) -> unknown<0x1>;
+	@undocumented
 	[1] Unknown1(unknown<0x20>, handle<copy>, handle<copy>) -> unknown<0x1>;
+	@undocumented
 	[2] Unknown2() -> unknown<0x8>;
+	@undocumented
 	[3] Unknown3(buffer<unknown, 0x21, unknown>) -> unknown<0x8>;
+	@undocumented
 	[4] Unknown4() -> unknown<0x8>;
+	@undocumented
 	[5] Unknown5() -> (unknown<0x8>, buffer<unknown, 0x22, unknown>);
+	@undocumented
 	[6] Unknown6(unknown<0x10>) -> (unknown<0x1>, handle<copy>);
+	@undocumented
 	[7] Unknown7(unknown<0x4>) -> unknown<0x1>;
 }
 
 interface nn::usb::ds::IDsEndpoint {
+	@undocumented
 	[0] Unknown0(unknown<0x10>) -> unknown<0x4>;
+	@undocumented
 	[1] Unknown1();
+	@undocumented
 	[2] Unknown2() -> handle<copy>;
+	@undocumented
 	[3] Unknown3() -> unknown<0x84>;
+	@undocumented
 	[4] Unknown4();
+	@undocumented
 	[5] Unknown5(unknown<0x1>);
 }
 
 interface nn::usb::ds::IDsInterface {
+	@undocumented
 	[0] Unknown0(buffer<unknown, 0x5, unknown>) -> (unknown<0x1>, object<nn::usb::ds::IDsEndpoint>);
+	@undocumented
 	[1] Unknown1() -> handle<copy>;
+	@undocumented
 	[2] Unknown2() -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[3] Unknown3();
+	@undocumented
 	[4] Unknown4();
+	@undocumented
 	[5] Unknown5(unknown<0x10>) -> unknown<0x4>;
+	@undocumented
 	[6] Unknown6(unknown<0x10>) -> unknown<0x4>;
+	@undocumented
 	[7] Unknown7() -> handle<copy>;
+	@undocumented
 	[8] Unknown8() -> unknown<0x84>;
+	@undocumented
 	[9] Unknown9() -> handle<copy>;
+	@undocumented
 	[10] Unknown10() -> unknown<0x84>;
+	@undocumented
 	[11] Unknown11();
 }
 
 interface nn::usb::ds::IDsService {
+	@undocumented
 	[0] Unknown0(unknown<0x4>);
+	@undocumented
 	[1] Unknown1(handle<copy>);
+	@undocumented
 	[2] Unknown2(buffer<unknown, 0x5, unknown>, buffer<unknown, 0x5, unknown>) -> (unknown<0x1>, object<nn::usb::ds::IDsInterface>);
+	@undocumented
 	[3] Unknown3() -> handle<copy>;
+	@undocumented
 	[4] Unknown4() -> unknown<0x4>;
 	@version(2.0.0+)
+	@undocumented
 	[5] Unknown5(buffer<unknown, 0x5, unknown>);
 }
 
 interface nn::usb::hs::IClientEpSession {
 	@version(1.0.0)
+	@undocumented
 	[0] Unknown0(unknown<0x8>, buffer<unknown, 0x5, unknown>) -> unknown<0x4>;
 	@version(2.0.0+)
+	@undocumented
 	[0] Unknown0();
 	@version(1.0.0)
+	@undocumented
 	[1] Unknown1(unknown<0x8>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(2.0.0+)
+	@undocumented
 	[1] Unknown1();
 	@version(1.0.0)
+	@undocumented
 	[2] Unknown2();
 	@version(2.0.0+)
+	@undocumented
 	[2] Unknown2() -> handle<copy>;
+	@undocumented
 	[3] Unknown3();
 	@version(2.0.0+)
+	@undocumented
 	[4] Unknown4(unknown<0x18>) -> unknown<0x4>;
 	@version(2.0.0)
+	@undocumented
 	[5] Unknown5(unknown<0x4>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(3.0.0+)
+	@undocumented
 	[5] Unknown5(unknown<0x4>) -> (unknown<0x4>, buffer<unknown, 0x22, unknown>);
 	@version(2.0.0)
+	@undocumented
 	[6] Unknown6(unknown<0x20>, buffer<unknown, 0x5, unknown>) -> unknown<0x4>;
 	@version(3.0.0+)
+	@undocumented
 	[6] Unknown6(unknown<0x20>, buffer<unknown, 0x21, unknown>) -> unknown<0x4>;
 	@version(4.0.0+)
+	@undocumented
 	[7] Unknown7(unknown<0x10>);
 	@version(4.0.0+)
+	@undocumented
 	[8] Unknown8(unknown<0x4>, handle<copy>);
 }
 
 interface nn::usb::hs::IClientIfSession {
+	@undocumented
 	[0] Unknown0() -> handle<copy>;
+	@undocumented
 	[1] Unknown1(unknown<0x1>) -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[2] Unknown2() -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[3] Unknown3(unknown<0x1>) -> buffer<unknown, 0x6, unknown>;
 	@version(1.0.0)
+	@undocumented
 	[4] Unknown4(unknown<0x14>) -> (unknown<0x7>, object<nn::usb::hs::IClientEpSession>);
 	@version(2.0.0+)
+	@undocumented
 	[4] Unknown4() -> unknown<0x4>;
 	@version(1.0.0)
+	@undocumented
 	[5] Unknown5() -> unknown<0x4>;
 	@version(2.0.0+)
+	@undocumented
 	[5] Unknown5(unknown<0x10>);
 	@version(1.0.0)
+	@undocumented
 	[6] Unknown6(unknown<0xc>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(2.0.0+)
+	@undocumented
 	[6] Unknown6() -> handle<copy>;
 	@version(1.0.0)
+	@undocumented
 	[7] Unknown7(unknown<0xc>, buffer<unknown, 0x5, unknown>) -> unknown<0x4>;
 	@version(2.0.0+)
+	@undocumented
 	[7] Unknown7() -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[8] Unknown8();
 	@version(2.0.0+)
+	@undocumented
 	[9] Unknown9(unknown<0x14>) -> (unknown<0x7>, object<nn::usb::hs::IClientEpSession>);
 }
 
 interface nn::usb::hs::IClientRootSession {
 	@version(1.0.0)
+	@undocumented
 	[0] Unknown0(unknown<0x10>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(2.0.0+)
+	@undocumented
 	[0] Unknown0(handle<copy>);
+	@undocumented
 	[1] Unknown1(unknown<0x10>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(1.0.0)
+	@undocumented
 	[2] Unknown2() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(2.0.0+)
+	@undocumented
 	[2] Unknown2(unknown<0x10>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(1.0.0)
+	@undocumented
 	[3] Unknown3(unknown<0x12>) -> handle<copy>;
 	@version(2.0.0+)
+	@undocumented
 	[3] Unknown3() -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(1.0.0)
+	@undocumented
 	[4] Unknown4(unknown<0x1>);
 	@version(2.0.0+)
+	@undocumented
 	[4] Unknown4(unknown<0x12>) -> handle<copy>;
 	@version(1.0.0)
+	@undocumented
 	[5] Unknown5() -> handle<copy>;
 	@version(2.0.0+)
+	@undocumented
 	[5] Unknown5(unknown<0x1>);
 	@version(1.0.0)
+	@undocumented
 	[6] Unknown6(unknown<0x4>) -> (buffer<unknown, 0x6, unknown>, object<nn::usb::hs::IClientIfSession>);
 	@version(2.0.0+)
+	@undocumented
 	[6] Unknown6() -> handle<copy>;
 	@version(1.0.0)
+	@undocumented
 	[7] Unknown7(unknown<0x8>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 	@version(2.0.0)
+	@undocumented
 	[7] Unknown7(unknown<0x4>) -> (buffer<unknown, 0x6, unknown>, object<nn::usb::hs::IClientIfSession>);
 	@version(3.0.0+)
+	@undocumented
 	[7] Unknown7(unknown<0x4>) -> (buffer<unknown, 0x6, unknown>, buffer<unknown, 0x6, unknown>, object<nn::usb::hs::IClientIfSession>);
 	@version(1.0.0)
+	@undocumented
 	[8] Unknown8(unknown<0x4>);
 }
 
 interface nn::usb::pd::detail::IPdCradleManager {
+	@undocumented
 	[0] Unknown0() -> object<nn::usb::pd::detail::IPdCradleSession>;
 }
 
 interface nn::usb::pd::detail::IPdCradleSession {
+	@undocumented
 	[0] Unknown0(unknown<0x8>);
+	@undocumented
 	[1] Unknown1(unknown<0x4>) -> unknown<0x4>;
+	@undocumented
 	[2] Unknown2();
 	@version(2.0.0+)
+	@undocumented
 	[3] Unknown3() -> unknown<0x2>;
 	@version(2.0.0+)
+	@undocumented
 	[4] Unknown4() -> unknown<0x2>;
 	@version(2.0.0+)
+	@undocumented
 	[5] Unknown5() -> unknown<0x2>;
 	@version(2.0.0+)
+	@undocumented
 	[6] Unknown6() -> unknown<0x2>;
 	@version(3.0.0+)
+	@undocumented
 	[7] Unknown7() -> unknown<0x1>;
 	@version(3.0.0+)
+	@undocumented
 	[8] Unknown8() -> unknown<0x1>;
 }
 
 interface nn::usb::pd::detail::IPdManager {
+	@undocumented
 	[0] Unknown0() -> object<nn::usb::pd::detail::IPdSession>;
 }
 
 @version(1.0.0)
 interface nn::usb::pd::detail::IPdManufactureManager {
+	@undocumented
 	[0] Unknown0() -> object<nn::usb::pd::detail::IPdManufactureSession>;
 }
 
 @version(1.0.0)
 interface nn::usb::pd::detail::IPdManufactureSession {
+	@undocumented
 	[0] Unknown0() -> unknown<0x2>;
+	@undocumented
 	[1] Unknown1() -> unknown<0x2>;
+	@undocumented
 	[2] Unknown2() -> unknown<0x2>;
+	@undocumented
 	[3] Unknown3() -> unknown<0x2>;
 }
 
 interface nn::usb::pd::detail::IPdSession {
+	@undocumented
 	[0] Unknown0() -> handle<copy>;
+	@undocumented
 	[1] Unknown1();
+	@undocumented
 	[2] Unknown2() -> unknown<0x14>;
+	@undocumented
 	[3] Unknown3() -> unknown<0x4>;
+	@undocumented
 	[4] Unknown4();
+	@undocumented
 	[5] Unknown5();
+	@undocumented
 	[6] Unknown6(unknown<0x1>);
 }
 
 interface nn::usb::pm::IPmService {
+	@undocumented
 	[0] Unknown0() -> handle<copy>;
+	@undocumented
 	[1] Unknown1() -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[2] Unknown2() -> handle<copy>;
+	@undocumented
 	[3] Unknown3() -> unknown<0x4>;
+	@undocumented
 	[4] Unknown4(unknown<0x8>);
+	@undocumented
 	[5] Unknown5(unknown<0x4>) -> unknown<0x4>;
 }
 
@@ -6888,170 +8422,290 @@ interface nn::visrv::sf::ISystemRootService {
 }
 
 interface nn::wlan::detail::IInfraManager {
+	@undocumented
 	[0] Unknown0();
+	@undocumented
 	[1] Unknown1();
+	@undocumented
 	[2] Unknown2() -> unknown<0x6>;
+	@undocumented
 	[3] Unknown3(buffer<unknown, 0x15, unknown>);
+	@undocumented
 	[4] Unknown4();
 	@version(1.0.0-3.0.0)
+	@undocumented
 	[5] Unknown5(unknown<0x7c>);
 	@version(4.0.0+)
+	@undocumented
 	[5] Unknown5(unknown<0x80>);
+	@undocumented
 	[6] Unknown6();
+	@undocumented
 	[7] Unknown7();
+	@undocumented
 	[8] Unknown8(unknown<0x4>) -> handle<copy>;
+	@undocumented
 	[9] Unknown9() -> unknown<0x3c>;
+	@undocumented
 	[10] Unknown10() -> unknown<0x4>;
+	@undocumented
 	[11] Unknown11() -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[12] Unknown12() -> unknown<0x4>;
+	@undocumented
 	[13] Unknown13(unknown<0x4>);
+	@undocumented
 	[14] Unknown14() -> buffer<unknown, 0xa, unknown>;
+	@undocumented
 	[15] Unknown15();
+	@undocumented
 	[16] Unknown16();
+	@undocumented
 	[17] Unknown17(unknown<0x8>, buffer<unknown, 0x9, unknown>);
 	@version(3.0.0+)
+	@undocumented
 	[18] Unknown18() -> unknown<0x4>;
 	@version(3.0.0+)
+	@undocumented
 	[19] Unknown19(unknown<0x18>);
 	@version(3.0.0+)
+	@undocumented
 	[20] Unknown20();
 	@version(3.0.0+)
+	@undocumented
 	[21] Unknown21() -> unknown<0x4>;
 	@version(3.0.0+)
+	@undocumented
 	[22] Unknown22(unknown<0x4>);
 	@version(3.0.0+)
+	@undocumented
 	[23] Unknown23(unknown<0x4>);
 	@version(3.0.0+)
+	@undocumented
 	[24] Unknown24() -> unknown<0x5c>;
 	@version(3.0.0+)
+	@undocumented
 	[25] Unknown25(unknown<0x2>);
 	@version(4.0.0+)
+	@undocumented
 	[26] Unknown26();
 	@version(4.0.0+)
+	@undocumented
 	[27] Unknown27();
 }
 
 interface nn::wlan::detail::ILocalGetActionFrame {
+	@undocumented
 	[0] Unknown0(unknown<0x4>) -> (unknown<0xc>, buffer<unknown, 0x6, unknown>);
 }
 
 interface nn::wlan::detail::ILocalGetFrame {
+	@undocumented
 	[0] Unknown0(unknown<0x4>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 }
 
 interface nn::wlan::detail::ILocalManager {
+	@undocumented
 	[0] Unknown0();
+	@undocumented
 	[1] Unknown1();
+	@undocumented
 	[2] Unknown2();
+	@undocumented
 	[3] Unknown3();
+	@undocumented
 	[4] Unknown4();
+	@undocumented
 	[5] Unknown5();
+	@undocumented
 	[6] Unknown6() -> unknown<0x6>;
 	@version(1.0.0-3.0.0)
+	@undocumented
 	[7] Unknown7(unknown<0x80>);
 	@version(4.0.0+)
+	@undocumented
 	[7] Unknown7(unknown<0x84>);
+	@undocumented
 	[8] Unknown8();
+	@undocumented
 	[9] Unknown9(buffer<unknown, 0x15, unknown>);
+	@undocumented
 	[10] Unknown10();
 	@version(1.0.0-3.0.0)
+	@undocumented
 	[11] Unknown11(unknown<0x80>);
 	@version(4.0.0+)
+	@undocumented
 	[11] Unknown11(unknown<0x84>);
+	@undocumented
 	[12] Unknown12();
 	@version(1.0.0-3.0.0)
+	@undocumented
 	[13] Unknown13(unknown<0x80>);
 	@version(4.0.0+)
+	@undocumented
 	[13] Unknown13(unknown<0x84>);
+	@undocumented
 	[14] Unknown14();
+	@undocumented
 	[15] Unknown15(unknown<0x10>);
+	@undocumented
 	[16] Unknown16(unknown<0x4>);
+	@undocumented
 	[17] Unknown17(unknown<0x4>) -> handle<copy>;
+	@undocumented
 	[18] Unknown18() -> unknown<0x3c>;
+	@undocumented
 	[19] Unknown19() -> buffer<unknown, 0x16, unknown>;
+	@undocumented
 	[20] Unknown20() -> handle<copy>;
+	@undocumented
 	[21] Unknown21() -> buffer<unknown, 0x16, unknown>;
+	@undocumented
 	[22] Unknown22() -> unknown<0x4>;
+	@undocumented
 	[23] Unknown23() -> unknown<0x50>;
+	@undocumented
 	[24] Unknown24(unknown<0x4>, buffer<unknown, 0x5, unknown>) -> unknown<0x4>;
+	@undocumented
 	[25] Unknown25(unknown<0x4>);
+	@undocumented
 	[26] Unknown26(buffer<unknown, 0x5, unknown>);
+	@undocumented
 	[27] Unknown27(unknown<0x4>);
+	@undocumented
 	[28] Unknown28(unknown<0x4>, buffer<unknown, 0x9, unknown>) -> unknown<0x4>;
+	@undocumented
 	[29] Unknown29(unknown<0x4>);
+	@undocumented
 	[30] Unknown30(unknown<0x8>);
+	@undocumented
 	[31] Unknown31(unknown<0x2>) -> unknown<0x4>;
+	@undocumented
 	[32] Unknown32(unknown<0x4>, buffer<unknown, 0x19, unknown>);
+	@undocumented
 	[33] Unknown33(unknown<0x4>, buffer<unknown, 0x19, unknown>);
+	@undocumented
 	[34] Unknown34(buffer<unknown, 0x19, unknown>) -> buffer<unknown, 0x6, unknown>;
+	@undocumented
 	[35] Unknown35(unknown<0x10>, buffer<unknown, 0x5, unknown>);
+	@undocumented
 	[36] Unknown36(buffer<unknown, 0x5, unknown>);
+	@undocumented
 	[37] Unknown37();
+	@undocumented
 	[38] Unknown38(unknown<0x4>, buffer<unknown, 0x9, unknown>) -> unknown<0x4>;
+	@undocumented
 	[39] Unknown39(unknown<0x4>);
+	@undocumented
 	[40] Unknown40(unknown<0x8>);
+	@undocumented
 	[41] Unknown41(unknown<0x4>) -> unknown<0x4>;
+	@undocumented
 	[42] Unknown42(unknown<0x4>);
+	@undocumented
 	[43] Unknown43() -> unknown<0x4>;
+	@undocumented
 	[44] Unknown44(unknown<0x4>);
 	@version(4.0.0+)
+	@undocumented
 	[45] Unknown45();
 	@version(4.0.0+)
+	@undocumented
 	[46] Unknown46();
 	@version(4.0.0+)
+	@undocumented
 	[47] Unknown47();
 	@version(4.0.0+)
+	@undocumented
 	[48] Unknown48();
 }
 
 interface nn::wlan::detail::ISocketGetFrame {
+	@undocumented
 	[0] Unknown0(unknown<0x4>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
 }
 
 interface nn::wlan::detail::ISocketManager {
+	@undocumented
 	[0] Unknown0(buffer<unknown, 0x5, unknown>);
+	@undocumented
 	[1] Unknown1(unknown<0x4>);
+	@undocumented
 	[2] Unknown2(unknown<0x4>, buffer<unknown, 0x9, unknown>) -> unknown<0x4>;
+	@undocumented
 	[3] Unknown3(unknown<0x4>);
+	@undocumented
 	[4] Unknown4(unknown<0x8>);
+	@undocumented
 	[5] Unknown5(unknown<0x2>) -> unknown<0x4>;
+	@undocumented
 	[6] Unknown6() -> unknown<0x6>;
+	@undocumented
 	[7] Unknown7(unknown<0x1>);
+	@undocumented
 	[8] Unknown8() -> unknown<0x8>;
+	@undocumented
 	[9] Unknown9(unknown<0x4>, handle<copy>, handle<copy>, handle<copy>, handle<copy>, handle<copy>);
+	@undocumented
 	[10] Unknown10();
+	@undocumented
 	[11] Unknown11();
 }
 
 interface nn::xcd::detail::ISystemServer {
+	@undocumented
 	[0] Unknown0(unknown<0x8>) -> unknown<0x1>;
+	@undocumented
 	[1] Unknown1(unknown<0x10>);
+	@undocumented
 	[2] Unknown2(unknown<0x8>) -> unknown<0x1>;
+	@undocumented
 	[3] Unknown3(unknown<0x10>);
+	@undocumented
 	[4] Unknown4(unknown<0x8>) -> unknown<0x20>;
+	@undocumented
 	[5] Unknown5(unknown<0x8>);
 
+	@undocumented
 	[10] Unknown10(unknown<0x8>) -> (handle<copy>, handle<copy>);
+	@undocumented
 	[11] Unknown11(unknown<0x8>) -> buffer<unknown, 0x1a, unknown>;
+	@undocumented
 	[12] Unknown12(unknown<0x10>);
+	@undocumented
 	[13] Unknown13(unknown<0x8>);
+	@undocumented
 	[14] Unknown14(unknown<0x30>);
+	@undocumented
 	[15] Unknown15(unknown<0x8>, buffer<unknown, 0x19, unknown>);
+	@undocumented
 	[16] Unknown16(unknown<0x8>, buffer<unknown, 0x19, unknown>);
+	@undocumented
 	[17] Unknown17(unknown<0x8>, buffer<unknown, 0x19, unknown>);
+	@undocumented
 	[18] Unknown18(unknown<0x10>);
+	@undocumented
 	[19] Unknown19(unknown<0x8>, buffer<unknown, 0x19, unknown>);
+	@undocumented
 	[20] Unknown20(unknown<0x8>, buffer<unknown, 0x19, unknown>);
 
+	@undocumented
 	[101] Unknown101() -> unknown<0x8>;
+	@undocumented
 	[102] Unknown102() -> unknown<0x8>;
 }
 
 interface nns::nvdrv::INvDrvDebugFSServices {
+	@undocumented
 	[0] Unknown0(handle<copy>) -> unknown<0x4>;
+	@undocumented
 	[1] Unknown1(unknown<0x4>);
+	@undocumented
 	[2] Unknown2(unknown<0x4>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[3] Unknown3(unknown<0x4>, buffer<unknown, 0x5, unknown>) -> (unknown<0x4>, buffer<unknown, 0x6, unknown>);
+	@undocumented
 	[4] Unknown4(unknown<0x4>, buffer<unknown, 0x5, unknown>, buffer<unknown, 0x5, unknown>) -> unknown<0x4>;
 }
 
@@ -7082,19 +8736,30 @@ interface nv::MemoryProfiler::IMemoryProfiler {
 }
 
 interface nv::gemcontrol::INvGemControl {
+	@undocumented
 	[0] Unknown0() -> unknown<0x4>;
+	@undocumented
 	[1] Unknown1() -> (unknown<0x4>, handle<copy>);
+	@undocumented
 	[2] Unknown2(unknown<0x1>) -> unknown<0x4>;
+	@undocumented
 	[3] Unknown3(unknown<0x10>) -> unknown<0x4>;
+	@undocumented
 	[4] Unknown4(unknown<0x10>) -> unknown<0x4>;
+	@undocumented
 	[5] Unknown5() -> unknown<0x10>;
+	@undocumented
 	[6] Unknown6() -> unknown<0x4>;
 	@version(3.0.0+)
+	@undocumented
 	[7] Unknown7() -> unknown<0x10>;
 }
 
 interface nv::gemcoredump::INvGemCoreDump {
+	@undocumented
 	[0] Unknown0() -> unknown<0x4>;
+	@undocumented
 	[1] Unknown1() -> unknown<0x10>;
+	@undocumented
 	[2] Unknown2() -> (unknown<0x4>, buffer<unknown, 0x22, unknown>);
 }

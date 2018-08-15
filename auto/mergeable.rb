@@ -44,6 +44,7 @@ module SwIPC
           end
         when :array_concat
         when :array_concat_uniq
+        when :bool_or
         else
           raise "invalid merge mode '#{mode}'"
         end
@@ -109,6 +110,8 @@ module SwIPC
           instance_variable_set(prop, a.concat(b))
         when :array_concat_uniq
           instance_variable_set(prop, a.concat(b).uniq)
+        when :bool_or
+          instance_variable_set(prop, a || b)
         else
           raise "invalid merge mode: #{mode}"
         end
