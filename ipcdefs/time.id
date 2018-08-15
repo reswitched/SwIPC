@@ -1,0 +1,16 @@
+type nn::time::CalendarTime = struct<0x8> {
+	u16 year;
+	u8 month;
+	u8 day;
+	u8 hour;
+	u8 minute;
+	u8 second;
+};
+
+type nn::time::sf::CalendarAdditionalInfo = struct<0x18> {
+	u32 tm_wday;
+	i32 tm_yday;
+	bytes<8> tz_name;
+	bool is_daylight_saving_time;
+	i32 utc_offset_seconds;
+};

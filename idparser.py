@@ -28,8 +28,10 @@ serviceNameList = @:','.{ sname } ;
 template = '<' @:','.{ expression } '>' ;
 arrayLength = '[' length:number ']' ;
 structField = doc:{ comment }* type:type name:name ';' ;
+enumField = doc:{ comment }* name:name '=' value:number ';' ;
 type =
-    | 'struct' [ template ] '{' structFields:{ structField }+ '}'
+    | 'struct' template:[ template ] '{' structFields:{ structField }+ '}'
+    | 'enum' template:template '{' enumFields:{ enumField }+ '}'
     | name:name template:[ template ] length:[ arrayLength ]
     ;
 
@@ -66,14 +68,16 @@ class Semantics(object):
 		return [ast if isinstance(ast, list) else [ast, None]]
 
 def parseType(type):
-	if not isinstance(type, tatsu.ast.AST) or 'template' not in type or 'structFields' not in type:
+	if not isinstance(type, tatsu.ast.AST) or 'template' not in type or 'structFields' not in type or 'enumFields' not in type:
 		return type
-	assert(not(type['template'] is not None and type['structFields'] is not None))
-	name, template, structFields = type['name'], type['template'], type['structFields']
-	if template is not None:
-		return [name] + list(map(parseType, template))
-	elif structFields is not None:
+	assert(not(type['template'] is not None and type['structFields'] is not None and type['enumFields'] is not None))
+	name, template, structFields, enumFields = type['name'], type['template'], type['structFields'], type['enumFields']
+	if structFields is not None:
 		return ["struct"] + [list(map(lambda x: [x['name'], parseType(x['type']), list(map(lambda x: x.line, x['doc']))], structFields))]
+	elif enumFields is not None:
+		return ["enum"] + [list(map(lambda x: [x['name'], x['value'], list(map(lambda x: x.line, x['doc']))], enumFields))] + [template[0]['name']]
+	elif template is not None:
+		return [name] + list(map(parseType, template))
 	else:
 		return [name]
 
@@ -142,7 +146,7 @@ def parse(data):
 
 def getAll():
 	dir = os.path.dirname(os.path.realpath(__file__)) + '/'
-	fns = [dir + 'ipcdefs/auto.id'] + [x for x in glob.glob(dir + 'ipcdefs/*.id') if x != dir + 'ipcdefs/auto.id']
+	fns = [dir + 'ipcdefs/auto.id', dir + 'ipcdefs/switchbrew.id'] + [x for x in glob.glob(dir + 'ipcdefs/*.id') if x != dir + 'ipcdefs/auto.id' and x != dir + 'ipcdefs/switchbrew.id']
 
 	if os.path.exists(dir + 'ipcdefs/cache') and all(os.path.getmtime(dir + 'ipcdefs/cache') > os.path.getmtime(x) for x in fns):
 		res = json.load(file(dir + 'ipcdefs/cache'))
@@ -150,6 +154,4 @@ def getAll():
 		res = parse('\n'.join(file(fn).read() for fn in fns))
 		with file(dir + 'ipcdefs/cache', 'w') as fp:
 			json.dump(res, fp)
-	# TODO: Check coherence. Especially of cmdId/version range (For each
-	# cmd ID, we need to make sure there is no version overlap !)
 	return res
