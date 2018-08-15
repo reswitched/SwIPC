@@ -233,11 +233,17 @@
 				<li class="list-group-item" id="nn::friends::detail::ipc::SizedNotificationInfo">
 					<a href="#nn::friends::detail::ipc::SizedNotificationInfo">+</a> nn::friends::detail::ipc::SizedNotificationInfo <small class="text-muted">u128</small>
 				</li>
+				<li class="list-group-item" id="nn::fssrv::sf::DirectoryEntryType">
+					<a href="#nn::fssrv::sf::DirectoryEntryType">+</a> nn::fssrv::sf::DirectoryEntryType <small class="text-muted"><span>&lt;size = u8&gt;</span><ul>	<li class="text-muted">Directory = 0</li>	<li class="text-muted">File = 1</li></ul></small>
+				</li>
+				<li class="list-group-item" id="nn::fssrv::sf::FileSystemType">
+					<a href="#nn::fssrv::sf::FileSystemType">+</a> nn::fssrv::sf::FileSystemType <small class="text-muted"><span>&lt;size = u32&gt;</span><ul>	<li class="text-muted">Invalid = 0</li>	<li class="text-muted">Invalid2 = 1</li>	<li class="text-muted">Logo = 2</li>	<li class="text-muted">ContentControl = 3</li>	<li class="text-muted">ContentManual = 4</li>	<li class="text-muted">ContentMeta = 5</li>	<li class="text-muted">ContentData = 6</li>	<li class="text-muted">ApplicationPackage = 7</li></ul></small>
+				</li>
 				<li class="list-group-item" id="nn::fssrv::sf::IDirectoryEntry">
-					<a href="#nn::fssrv::sf::IDirectoryEntry">+</a> nn::fssrv::sf::IDirectoryEntry <small class="text-muted"><ul>	<li class="text-muted">bytes&lt;0x300&gt; path</li>	<li class="text-muted">u32 unk1</li>	<li class="text-muted">u8 directory_entry_type</li>	<li class="text-muted">u64 filesize</li></ul></small>
+					<a href="#nn::fssrv::sf::IDirectoryEntry">+</a> nn::fssrv::sf::IDirectoryEntry <small class="text-muted"><ul>	<li class="text-muted">bytes&lt;0x300&gt; path</li>	<li class="text-muted">u32 unk1</li>	<li class="text-muted"><a href="types.html#nn::fssrv::sf::DirectoryEntryType">nn::fssrv::sf::DirectoryEntryType</a> directory_entry_type</li>	<li class="text-muted">u64 filesize</li></ul></small>
 				</li>
 				<li class="list-group-item" id="nn::fssrv::sf::Partition">
-					<a href="#nn::fssrv::sf::Partition">+</a> nn::fssrv::sf::Partition <small class="text-muted">u32</small>
+					<a href="#nn::fssrv::sf::Partition">+</a> nn::fssrv::sf::Partition <small class="text-muted"><span>&lt;size = u32&gt;</span><ul>	<li class="text-muted">BootPartition1Root = 0</li>	<li class="text-muted">BootPartition2Root = 10</li>	<li class="text-muted">UserDataRoot = 20</li>	<li class="text-muted">BootConfigAndPackage2Part1 = 21</li>	<li class="text-muted">BootConfigAndPackage2Part2 = 22</li>	<li class="text-muted">BootConfigAndPackage2Part3 = 23</li>	<li class="text-muted">BootConfigAndPackage2Part4 = 24</li>	<li class="text-muted">BootConfigAndPackage2Part5 = 25</li>	<li class="text-muted">BootConfigAndPackage2Part6 = 26</li>	<li class="text-muted">CalibrationBinary = 27</li>	<li class="text-muted">CalibrationFile = 28</li>	<li class="text-muted">SafeMode = 29</li>	<li class="text-muted">SystemProperEncryption = 30</li>	<li class="text-muted">User = 31</li></ul></small>
 				</li>
 				<li class="list-group-item" id="nn::fssrv::sf::SaveCreateStruct">
 					<a href="#nn::fssrv::sf::SaveCreateStruct">+</a> nn::fssrv::sf::SaveCreateStruct <small class="text-muted">bytes&lt;0x40&gt;</small>
