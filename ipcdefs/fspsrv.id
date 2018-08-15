@@ -362,7 +362,7 @@ interface nn::fssrv::sf::IDeviceOperator {
 	@version(2.0.0+)
 	[215] ForceEraseGameCard();
 	@version(2.0.0+)
-	[216] GetGameCardErrorInfo() -> u128 errorInfo;
+	[216] GetGameCardErrorInfo2() -> u128 errorInfo;
 	@version(2.1.0+)
 	[217] GetGameCardErrorReportInfo() -> bytes<0x40> errorReportInfo;
 	@version(3.0.0+)
