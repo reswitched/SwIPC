@@ -56,8 +56,10 @@ def format(elems, output=False):
 		ret = None
 		if elem[0] == 'array':
 			ret = 'array&lt;%s, %s&gt;' % (sub((None, elem[1])), emitInt(elem[2]))
-		elif elem[0] == 'buffer':
-			ret = 'buffer&lt;%s, %s, %s&gt;' % (sub((None, elem[1])), emitInt(elem[2]), emitInt(elem[3]))
+		elif elem[0] == 'buffer' and len(elem) == 4:
+			ret = 'buffer&lt;%s, %s, %s&gt;' % (sub((None, elem[1])), emitInt(elem[2]), emitInt(elem[3]) if isinstance(elem[3], int) else S(elem[3][0]))
+		elif elem[0] == 'buffer' and len(elem) == 3:
+			ret = 'buffer&lt;%s, %s&gt;' % (sub((None, elem[1])), emitInt(elem[2]))
 		elif elem[0] == 'object':
 			it = elem[1][0]
 			if it in ifaces:
@@ -66,10 +68,23 @@ def format(elems, output=False):
 				ret = S(it)
 		elif elem[0] == 'KObject' and len(elem) == 3:
 			ret = 'KObject&lt;%s, %s&gt;' % (elem[1][0], elem[2][0])
+		elif elem[0] == 'KHandle' and len(elem) == 2:
+			ret = 'KHandle&lt;%s&gt;' % elem[1][0]
+		elif elem[0] == 'KHandle' and len(elem) == 3:
+			ret = 'KHandle&lt;%s, %s&gt;' % (elem[1][0], elem[2][0])
+                elif elem[0] == 'handle' and len(elem) == 2:
+                        ret = 'handle&lt;%s&gt;' % elem[1][0]
+                elif elem[0] == 'handle' and len(elem) == 3:
+			ret = 'handle&lt;%s, %s&gt;' % (elem[1][0], elem[2][0])
 		elif elem[0] == 'align':
 			ret = 'align&lt;%s, %s&gt;' % (emitInt(elem[1]), sub((None, elem[2])))
 		elif elem[0] == 'bytes':
 			ret = S('bytes<%s>' % emitInt(elem[1]))
+		elif elem[0] == 'unknown':
+                        if len(elem) == 1:
+				ret = 'unknown'
+			else:
+				ret = S('unknown<%s>' % emitInt(elem[1]))
 		elif elem[0] == 'struct':
 			ret = '<ul>'
 			for field in elem[1]:
@@ -117,7 +132,7 @@ for name, iface in ifaces.items():
 					returnedBy[c] = []
 				returnedBy[c].append((name, cmd['cmdId']))
 
-ifaceCompleteness = dict(IUnknown=0, IPipe=100, NPort=100)
+ifaceCompleteness = dict(IUnknown=0, unknown=0)
 for name, iface in ifaces.items():
 	cmds = iface['cmds']
 	complete = 0

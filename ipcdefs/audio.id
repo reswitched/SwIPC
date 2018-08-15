@@ -1,51 +1,47 @@
-interface nn::audio::detail::IAudioDebugManager {
-	[0] Unknown0(u32, u64, KObject);
-	[1] Unknown1();
-	[2] Unknown2();
-	[3] Unknown3();
-}
-
-interface nn::audio::detail::IAudioDevice {
-	[0] Unknown0() -> (u32, buffer<unknown, 6, 0>);
-	[1] Unknown1(u32, buffer<unknown, 5, 0>);
-	[2] Unknown2(buffer<unknown, 5, 0>) -> u32;
-	[3] Unknown3() -> buffer<unknown, 6, 0>;
-	[4] Unknown4() -> KObject;
-	[5] Unknown5() -> u32;
-	[6] Unknown6() -> (u32, buffer<unknown, 0x22, 0>);
-	[7] Unknown7(u32, buffer<unknown, 0x21, 0>);
-	[8] Unknown8(buffer<unknown, 0x21, 0>) -> u32;
-	[10] Unknown10() -> buffer<unknown, 0x22, 0>;
-	[11] Unknown11() -> KObject;
-	[12] Unknown12() -> KObject;
-}
-
 interface nn::audio::detail::IAudioIn {
 	[0] GetAudioInState() -> u32;
 	[1] StartAudioIn();
 	[2] StopAudioIn();
-	[3] AppendAudioInBuffer(u64, buffer<unknown, 5, 0>);
-	[4] RegisterBufferEvent() -> KObject;
-	[5] GetReleasedAudioInBuffer() -> (u32, buffer<unknown, 6, 0>);
+	[3] AppendAudioInBuffer(u64, buffer<nn::audio::AudioInBuffer, 5, 0x28>);
+	[4] RegisterBufferEvent() -> KHandle<copy>;
+	[5] GetReleasedAudioInBuffer() -> (u32, buffer<nn::audio::AudioInBuffer, 6, 0x28>);
 	[6] ContainsAudioInBuffer(u64) -> u8;
-	[7] Unknown7(u64, KObject, buffer<unknown, 5, 0>);
-	[8] Unknown8(u64, buffer<unknown, 0x21, 0>);
-	[9] Unknown9() -> (u32, buffer<unknown, 0x22, 0>);
-	[10] Unknown10(u64, KObject, buffer<unknown, 0x21, 0>);
+	@version(3.0.0+)
+	[7] AppendAudioInBufferWithUserEvent(u64, KHandle<copy>, buffer<nn::audio::AudioInBuffer, 5, 0x28>);
+	@version(3.0.0+)
+	[8] AppendAudioInBufferAuto(u64, buffer<nn::audio::AudioInBuffer, 0x21, 0x28>);
+	@version(3.0.0+)
+	[9] GetReleasedAudioInBufferAuto() -> (u32, buffer<nn::audio::AudioInBuffer, 0x22, 0x28>);
+	@version(3.0.0+)
+	[10] AppendAudioInBufferWithUserEventAuto(u64, KHandle<copy>, buffer<nn::audio::AudioInBuffer, 0x21, 0x28>);
+	@version(4.0.0+)
+	[11] GetAudioInBufferCount() -> u32;
+	@version(4.0.0+)
+	[12] SetAudioInDeviceGain(u32);
+	@version(4.0.0+)
+	[13] GetAudioInDeviceGain() -> u32;
 }
 
 interface nn::audio::detail::IAudioInManager is audin:d {
-	[0] ListAudioIns() -> (u32 count, buffer<uint8_t, 6, 0> names);
-	[1] OpenAudioIn(u64, u64 pid_copy, pid, KObject process, buffer<uint8_t, 5, 0> name) -> (u32 sample_rate, u32 channel_count, u32 pcm_format, u32, object<nn::audio::detail::IAudioIn>, buffer<unknown, 6, 0> name_out);
-	[2] Unknown2() -> (u32, buffer<unknown, 0x22, 0>);
-	# guessed to be the same as OpenAudioIn, just with different buffer types
-	[3] OpenAudioIn_ex(u64, u64, pid, KObject, buffer<unknown, 0x21, 0>) -> (u32 sample_rate, u32 channel_count, u32 pcm_format, u32, object<nn::audio::detail::IAudioIn>, buffer<unknown, 0x22, 0> name);
-	[4] Unknown4() -> (u32, buffer<unknown, 0x22, 0>);
+	[0] ListAudioIns() -> (u32 count, buffer<u8, 6, variable> names);
+	[1] OpenAudioIn(u64, u64 pid_copy, pid, KHandle<copy, process>, buffer<u8, 5, variable> name) -> (u32 sample_rate, u32 channel_count, u32 pcm_format, u32, object<nn::audio::detail::IAudioIn>, buffer<u8, 6, variable> name);
+	@version(3.0.0+)
+	[2] Unknown2() -> (u32, buffer<u8, 0x22, 0>);
+	@version(3.0.0+)
+	[3] OpenAudioInAuto(u64, u64 pid_copy, pid, KHandle<copy, process>, buffer<u8, 0x21, variable>) -> (u32 sample_rate, u32 channel_count, u32 pcm_format, u32, object<nn::audio::detail::IAudioIn>, buffer<u8, 0x22, variable> name);
+	@version(3.0.0+)
+	[4] ListAudioInsAuto() -> (u32, buffer<u8, 0x22, 0>);
 }
 
 interface nn::audio::detail::IAudioInManagerForApplet is audin:a {
-	[0] RequestSuspendAudioIns(u64, u64) -> KObject;
-	[1] RequestResumeAudioIns(u64, u64) -> KObject;
+	@version(1.0.0-3.0.0)
+	[0] RequestSuspendAudioIns(u64, u64) -> KHandle<copy>;
+	@version(4.0.0+)
+	[0] RequestSuspendAudioIns(u64, u64);
+	@version(1.0.0-3.0.0)
+	[1] RequestResumeAudioIns(u64, u64) -> KHandle<copy>;
+	@version(4.0.0+)
+	[1] RequestResumeAudioIns(u64, u64);
 	[2] GetAudioInsProcessMasterVolume(u64) -> u32;
 	[3] SetAudioInsProcessMasterVolume(u32, u64, u64);
 }
@@ -59,30 +55,46 @@ interface nn::audio::detail::IAudioOut {
 	[0] GetAudioOutState() -> u32;
 	[1] StartAudioOut();
 	[2] StopAudioOut();
-	[3] AppendAudioOutBuffer(u64, buffer<unknown, 5, 0>);
-	[4] RegisterBufferEvent() -> KObject;
-	[5] GetReleasedAudioOutBuffer() -> (u32, buffer<unknown, 6, 0>);
-	[6] ContainsAudioOutBuffer(u64) -> u8;
-	# verified to be the same as AppendAudioOutBuffer, just with different buffer types
-	[7] AppendAudioOutBuffer_ex(u64, buffer<unknown, 0x21, 0>);
-	# verified to be the same as GetReleasedAudioOutBuffer, just with different buffer types
-	[8] GetReleasedAudioOutBuffer_ex() -> (u32, buffer<unknown, 0x22, 0>);
+	[3] AppendAudioOutBuffer(u64, buffer<nn::audio::AudioOutBuffer, 5, variable>);
+	[4] RegisterBufferEvent() -> KHandle<copy>;
+	[5] GetReleasedAudioOutBuffer() -> (u32, buffer<nn::audio::AudioOutBuffer, 6, 0x28>);
+	[6] ContainsAudioOutBuffer(u64) -> b8;
+	@version(3.0.0+)
+	[7] AppendAudioOutBufferAuto(u64, buffer<nn::audio::AudioOutBuffer, 0x21, 0x28>);
+	@version(3.0.0+)
+	[8] GetReleasedAudioOutBufferAuto() -> (u32, buffer<nn::audio::AudioOutBuffer, 0x22, 0x28>);
+	@version(4.0.0+)
+	[9] GetAudioOutBufferCount() -> u32;
+	@version(4.0.0+)
+	[10] GetAudioOutPlayedSampleCount() -> u64;
+	@version(4.0.0+)
+	[11] FlushAudioOutBuffers() -> u8;
 }
 
 interface nn::audio::detail::IAudioOutManager is audout:u {
-	[0] ListAudioOuts() -> (u32, buffer<unknown, 6, 0>);
-	[1] OpenAudioOut(u64, u64, pid, KObject process, buffer<unknown, 5, 0> name_in) -> (u32 sample_rate, u32 channel_count, u32 pcm_format, u32, object<nn::audio::detail::IAudioOut>, buffer<unknown, 6, 0> name_out);
-	# verified to be the same as ListAudioOuts, just with different buffer types
-	[2] ListAudioOuts_ex() -> (u32, buffer<unknown, 0x22, 0>);
-	# verified to be the same as OpenAudioOut, just with different buffer types
-	[3] OpenAudioOut_ex(u64, u64, pid, KObject, buffer<unknown, 0x21, 0>) -> (u128, object<IUnknown>, buffer<unknown, 0x22, 0>);
+	[0] ListAudioOuts() -> (u32, buffer<u8, 6, variable>);
+	[1] OpenAudioOut(u64, u64, pid, KHandle<copy, process>, buffer<u8, 5, variable> name_in) -> (u32 sample_rate, u32 channel_count, u32 pcm_format, u32, object<nn::audio::detail::IAudioOut>, buffer<u8, 6, variable> name_out);
+	@version(3.0.0+)
+	[2] ListAudioOutsAuto() -> (u32 count, buffer<u8, 0x22, variable>);
+	@version(3.0.0+)
+	[3] OpenAudioOutAuto(u64, u64, pid, KHandle<copy, process>, buffer<u8, 0x21, variable>) -> (u32 sample_rate, u32 channel_count, u32 pcm_format, u32, object<nn::audio::detail::IAudioOut>, buffer<u8, 0x22, variable> name_out);
 }
 
 interface nn::audio::detail::IAudioOutManagerForApplet is audout:a {
-	[0] RequestSuspendAudioOuts(u64, u64) -> KObject;
-	[1] RequestResumeAudioOuts(u64, u64) -> KObject;
+	@version(1.0.0-3.0.0)
+	[0] RequestSuspendAudioOuts(u64, u64) -> KHandle<copy>;
+	@version(4.0.0+)
+	[0] RequestSuspendAudioOuts(u64, u64);
+	@version(1.0.0-3.0.0)
+	[1] RequestResumeAudioOuts(u64, u64) -> KHandle<copy>;
+	@version(4.0.0+)
+	[1] RequestResumeAudioOuts(u64, u64);
 	[2] GetAudioOutsProcessMasterVolume(u64) -> u32;
 	[3] SetAudioOutsProcessMasterVolume(u32, u64, u64);
+	@version(4.0.0+)
+	[4] GetAudioOutsProcessRecordVolume(u64) -> u32;
+	@version(4.0.0+)
+	[5] SetAudioOutsProcessRecordVolume(u32, u64, u64);
 }
 
 interface nn::audio::detail::IAudioOutManagerForDebugger is audout:d {
@@ -95,87 +107,145 @@ interface nn::audio::detail::IAudioRenderer {
 	[1] GetSampleCount() -> u32;
 	[2] GetMixBufferCount() -> u32;
 	[3] GetState() -> u32;
-	[4] RequestUpdateAudioRenderer(buffer<unknown, 5, 0>) -> (buffer<unknown, 6, 0>, buffer<unknown, 6, 0>);
+	[4] RequestUpdateAudioRenderer(buffer<unknown, 5, variable>) -> (buffer<unknown, 6, variable>, buffer<unknown, 6, variable>);
 	[5] Start();
 	[6] Stop();
-	[7] QuerySystemEvent() -> KObject;
+	[7] QuerySystemEvent() -> KHandle<copy>;
 	[8] SetAudioRendererRenderingTimeLimit(u32);
 	[9] GetAudioRendererRenderingTimeLimit() -> u32;
-	# guessed to be the same as RequestUpdateAudioRenderer, just with different buffer types
-	[10] RequestUpdateAudioRenderer_ex(buffer<unknown, 0x21, 0>) -> (buffer<unknown, 0x22, 0>, buffer<unknown, 0x22, 0>);
-	[11] Unknown11();
+	@version(3.0.0+)
+	[10] RequestUpdateAudioRendererAuto(buffer<unknown, 0x21, variable>) -> (buffer<unknown, 0x22, variable>, buffer<unknown, 0x22, variable>);
+	@version(3.0.0+)
+	[11] ExecuteAudioRendererRendering();
 }
 
 interface nn::audio::detail::IAudioRendererManager is audrec:u {
-	[0] OpenAudioRenderer(bytes<0x34>, u64, u64, pid, KObject, KObject) -> object<nn::audio::detail::IAudioRenderer>;
+	[0] OpenAudioRenderer(unknown<0x34>, u64, u64, pid, KHandle<copy>, KHandle<copy>) -> object<nn::audio::detail::IAudioRenderer>;
 	[1] GetWorkBufferSize(bytes<0x34>) -> u64;
-	[2] Unknown2(u64) -> object<IUnknown>;
-	[3] Unknown3(bytes<0x34>, u64, u64, u64, pid, KObject) -> object<IUnknown>;
+	[2] GetAudioDeviceService(u64) -> object<nn::audio::detail::IAudioDevice>;
+	@version(3.0.0+)
+	[3] OpenAudioRendererAuto(unknown<0x34>, u64, u64, u64, pid, KHandle<copy>) -> object<nn::audio::detail::IAudioRenderer>;
+	@version(4.0.0+)
+	[4] GetAudioDeviceServiceWithRevisionInfo(u32, u64) -> object<nn::audio::detail::IAudioDevice>;
 }
 
 interface nn::audio::detail::IAudioRendererManagerForApplet is audren:a {
-	[0] Unknown0(u64, u64) -> KObject;
-	[1] Unknown1(u64, u64) -> KObject;
-	[2] Unknown2(u64) -> u32;
-	[3] Unknown3(u32, u64, u64);
-	[4] Unknown4(u64);
-	[5] Unknown5(u64);
+	@version(1.0.0-3.0.0)
+	[0] RequestSuspendAudioRenderers(u64, u64) -> KHandle<copy>;
+	@version(4.0.0+)
+	[0] RequestSuspendAudioRenderers(u64, u64);
+	@version(1.0.0-3.0.0)
+	[1] RequestResumeAudioRenderers(u64, u64) -> KHandle<copy>;
+	@version(4.0.0+)
+	[1] RequestResumeAudioRenderers(u64, u64);
+	[2] GetAudioRenderersProcessMasterVolume(u64) -> u32;
+	[3] SetAudioRenderersProcessMasterVolume(u32, u64, u64);
+	[4] RegisterAppletResourceUserId(u64);
+	[5] UnregisterAppletResourceUserId(u64);
+	@version(4.0.0+)
+	[6] GetAudioRenderersProcessRecordVolume(u64) -> u32;
+	@version(4.0.0+)
+	[7] SetAudioRenderersProcessRecordVolume(u32, u64, u64);
 }
 
 interface nn::audio::detail::IAudioRendererManagerForDebugger is audren:d {
-	[0] Unknown0(u64);
-	[1] Unknown1(u64);
+	[0] RequestSuspendForDebug(u64);
+	[1] RequestResumeForDebug(u64);
+}
+
+@version(1.0.0-2.0.0)
+interface nn::audio::detail::ICodecController is codecctl {
+	[0] InitializeCodecController();
+	[1] FinalizeCodecController();
+	[2] SleepCodecController();
+	[3] WakeCodecController();
+	[4] SetCodecVolume(u32);
+	[5] GetCodecVolumeMax() -> u32;
+	[6] GetCodecVolumeMin() -> u32;
+	[7] SetCodecActiveTarget(u32);
+	[8] GetCodecActiveTarget() -> u32;
+	[9] BindCodecHeadphoneMicJackInterrupt() -> KHandle<copy>;
+	[10] IsCodecHeadphoneMicJackInserted() -> b8;
+	[11] ClearCodecHeadphoneMicJackInterrupt();
+	[12] IsCodecDeviceRequested() -> b8;
 }
 
 interface nn::audio::detail::IFinalOutputRecorder {
 	[0] GetFinalOutputRecorderState() -> u32;
 	[1] StartFinalOutputRecorder();
 	[2] StopFinalOutputRecorder();
-	[3] AppendFinalOutputRecorderBuffer(u64, buffer<unknown, 5, 0>);
-	[4] RegisterBufferEvent() -> KObject;
-	[5] GetReleasedFinalOutputRecorderBuffer() -> (u32, u64, buffer<unknown, 6, 0>);
-	[6] ContainsFinalOutputRecorderBuffer(u64) -> u8;
+	[3] AppendFinalOutputRecorderBuffer(u64, buffer<nn::audio::AudioInBuffer, 5, 0x28>);
+	[4] RegisterBufferEvent() -> KHandle<copy>;
+	@version(1.0.0)
+	[5] GetReleasedFinalOutputRecorderBuffer() -> (u32, buffer<nn::audio::AudoInBuffer, 6, 0x28>);
+	@version(2.0.0+)
+	[5] GetReleasedFinalOutputRecorderBuffer() -> (u32, u64, buffer<nn::audio::AudioInBuffer, 6, 0x28>);
+	[6] ContainsFinalOutputRecorderBuffer(u64) -> b8;
+	@version(2.0.0+)
 	[7] Unknown7(u64) -> u64;
-	[8] Unknown8(u64, buffer<unknown, 0x21, 0>);
-	[9] Unknown9() -> (u32, u64, buffer<unknown, 0x22, 0>);
+	@version(3.0.0+)
+	[8] AppendFinalOutputRecorderBufferAuto(u64, buffer<nn::audio::AudioInBuffer, 0x21, 0x28>);
+	@version(3.0.0+)
+	[9] GetReleasedFinalOutputRecorderBufferAuto() -> (u32, u64, buffer<nn::audio::AudioInBuffer, 0x22, 0x28>);
 }
 
 interface nn::audio::detail::IFinalOutputRecorderManager is audren:u {
-	[0] OpenFinalOutputRecorder(u64, u64, KObject) -> (u128, object<nn::audio::detail::IFinalOutputRecorder>);
+	@version(1.0.0-3.0.0)
+	[0] OpenFinalOutputRecorder(u64, u64, KHandle<copy>) -> (unknown<0x10>, object<nn::audio::detail::IFinalOutputRecorder>);
 }
 
 interface nn::audio::detail::IFinalOutputRecorderManagerForApplet is audrec:a {
-	[0] Unknown0(u64, u64) -> KObject;
-	[1] Unknown1(u64, u64) -> KObject;
+	@version(1.0.0-3.0.0)
+	[0] RequestSuspendFinalOutputRecorders(u64, u64) -> KHandle<copy>;
+	@version(4.0.0+)
+	[0] RequestSuspendFinalOutputRecorders(u64, u64);
+	@version(1.0.0-3.0.0)
+	[1] RequestResumeFinalOutputRecorders(u64, u64) -> KHandle<copy>;
+	@version(4.0.0+)
+	[1] RequestResumeFinalOutputRecorders(u64, u64);
 }
 
 interface nn::audio::detail::IFinalOutputRecorderManagerForDebugger is audrec:d {
-	[0] Unknown0(u64);
-	[1] Unknown1(u64);
+	[0] RequestSuspendForDebug(u64);
+	[1] RequestResumeForDebug(u64);
 }
 
 interface nn::audioctrl::detail::IAudioController is audctl {
-	[0] SetExpectedMasterVolume(u32) -> u32;
-	[1] GetMainAppletExpectedMasterVolume(u32, u32);
-	[2] GetLibraryAppletExpectedMasterVolume() -> u32;
-	[3] ChangeMainAppletMasterVolume() -> u32;
-	[4] SetTransparentVolumeRate();
-	[5] Unknown5(u8, u32);
-	[6] Unknown6();
-	[7] Unknown7();
-	[8] Unknown8() -> u32;
-	[9] Unknown9(u32) -> u32;
-	[10] Unknown10(u32, u32);
-	[11] Unknown11(u32);
-	[12] Unknown12() -> u32;
-	[13] Unknown13(u32) -> u32;
-	[14] Unknown14(u32, u32);
-	[15] Unknown15(u32);
-	[16] Unknown16(u8);
-	[17] Unknown17(u32);
-	[18] Unknown18() -> u32;
-	[19] Unknown19() -> KObject;
-	[20] Unknown20() -> KObject;
-	[21] Unknown21() -> u32;
-	[22] Unknown22();
+	[0] GetTargetVolume(u32) -> u32;
+	[1] SetTargetVolume(u32, u32);
+	[2] GetTargetVolumeMin() -> u32;
+	[3] GetTargetVolumeMax() -> u32;
+	[4] IsTargetMute(u32) -> b8;
+	[5] SetTargetMute(u64);
+	[6] IsTargetConnected(u32) -> b8;
+	[7] SetDefaultTarget(unknown<0x18>);
+	[8] GetDefaultTarget() -> u32;
+	[9] GetAudioOutputMode(u32) -> u32;
+	[10] SetAudioOutputMode(u32, u32);
+	[11] SetForceMutePolicy(u32);
+	[12] GetForceMutePolicy() -> u32;
+	[13] GetOutputModeSetting(u32) -> u32;
+	[14] SetOutputModeSetting(u32, u32);
+	[15] SetOutputTarget(u32);
+	[16] SetInputTargetForceEnabled(u8);
+	@version(3.0.0+)
+	[17] SetHeadphoneOutputLevelMode(u32);
+	@version(3.0.0+)
+	[18] GetHeadphoneOutputLevelMode() -> u32;
+	@version(3.0.0+)
+	[19] AcquireAudioVolumeUpdateEventForPlayReport() -> KHandle<copy>;
+	@version(3.0.0+)
+	[20] AcquireAudioOutputDeviceUpdateEventForPlayReport() -> KHandle<copy>;
+	@version(3.0.0+)
+	[21] GetAudioOutputTargetForPlayReport() -> u32;
+	@version(3.0.0+)
+	[22] NotifyHeadphoneVolumeWarningDisplayedEvent();
+	@version(4.0.0+)
+	[23] SetSystemOutputMasterVolume(u32);
+	@version(4.0.0+)
+	[24] GetSystemOutputMasterVolume() -> u32;
+	@version(4.0.0+)
+	[25] GetAudioVolumeDataForPlayReport() -> unknown<0x7>;
+	@version(4.0.0+)
+	[26] UpdateHeadphoneSettings(unknown<0x1>);
 }

@@ -1,69 +1,92 @@
 type nn::fssrv::sf::SaveStruct = bytes<0x40>;
 type nn::fssrv::sf::SaveCreateStruct = bytes<0x40>;
+type nn::fssrv::sf::IDirectoryEntry = bytes<0x310>;
 type nn::fssrv::sf::Partition = u32;
 
 // --------------------------------------------- FSP-SRV ---------------------------------------------
 
 interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
+	@version(1.0.0)
+	[0] MountContent(nn::ApplicationId tid, u32 flag, buffer<i8, 0x19, 0x301> path) -> object<nn::fssrv::sf::IFileSystem> contentFs;
 	[1] Initialize(u64, pid);
 	[2] OpenDataFileSystemByCurrentProcess() -> object<nn::fssrv::sf::IFileSystem>;
+	@version(2.0.0+)
 	[7] MountContent7(nn::ApplicationId tid, u32 ncaType) -> object<nn::fssrv::sf::IFileSystem>;
-	[8] MountContent(nn::ApplicationId tid, u32 flag, buffer<i8, 0x19, 0x301> path) -> object<nn::fssrv::sf::IFileSystem> contentFs;
+	@version(2.0.0+)
+	[8] MountContent(nn::ApplicationId tid, u32 flag, buffer<bytes<0x301>, 0x19, 0x301> path) -> object<nn::fssrv::sf::IFileSystem> contentFs;
+	@version(3.0.0+)
 	[9] OpenDataFileSystemByApplicationId(nn::ApplicationId tid) -> object<nn::fssrv::sf::IFileSystem> dataFiles;
-	[11] MountBis(nn::fssrv::sf::Partition partitionID, buffer<i8, 0x19, 0x301> path) -> object<nn::fssrv::sf::IFileSystem> Bis;
+	[11] MountBis(nn::fssrv::sf::Partition partitionID, buffer<bytes<0x301>, 0x19, 0x301> path) -> object<nn::fssrv::sf::IFileSystem> Bis;
 	[12] OpenBisPartition(nn::fssrv::sf::Partition partitionID) -> object<nn::fssrv::sf::IStorage> BisPartition;
 	[13] InvalidateBisCache();
-	[17] OpenHostFileSystemImpl(buffer<i8, 0x19, 0x301> path) -> object<nn::fssrv::sf::IFileSystem>;
+	[17] OpenHostFileSystemImpl(buffer<bytes<0x301>, 0x19, 0x301> path) -> object<nn::fssrv::sf::IFileSystem>;
 	[18] MountSdCard() -> object<nn::fssrv::sf::IFileSystem> sdCard;
+	@version(2.0.0+)
 	[19] FormatSdCard();
 	[21] DeleteSaveData(nn::ApplicationId tid);
 	[22] CreateSaveData(nn::fssrv::sf::SaveStruct saveStruct, nn::fssrv::sf::SaveCreateStruct saveCreate, u128 input);
 	[23] CreateSystemSaveData(nn::fssrv::sf::SaveStruct saveStruct, nn::fssrv::sf::SaveCreateStruct saveCreate);
-	[24] RegisterSaveDataAtomicDeletion(buffer<void, 5, 0>);
+	[24] RegisterSaveDataAtomicDeletion(buffer<unknown, 5, 0>);
+	@version(2.0.0+)
 	[25] DeleteSaveDataWithSpaceId(u8, u64);
+	@version(2.0.0+)
 	[26] FormatSdCardDryRun();
+	@version(2.0.0+)
 	[27] IsExFatSupported() -> u8 isSupported;
 	[30] OpenGameCardPartition(nn::fssrv::sf::Partition partitionID, u32) -> object<nn::fssrv::sf::IStorage> gameCardFs;
 	[31] MountGameCardPartition(u32, u32) -> object<nn::fssrv::sf::IFileSystem> gameCardPartitionFs;
+	@version(3.0.0+)
 	[32] ExtendSaveData(u8, u64, u64, u64);
 	[51] MountSaveData(u8 input, nn::fssrv::sf::SaveStruct saveStruct) -> object<nn::fssrv::sf::IFileSystem> saveDataFs;
 	[52] MountSystemSaveData(u8 input, nn::fssrv::sf::SaveStruct saveStruct) -> object<nn::fssrv::sf::IFileSystem> systemSaveDataFs;
+	@version(2.0.0+)
 	[53] MountSaveDataReadOnly(u8 input, nn::fssrv::sf::SaveStruct saveStruct) -> object<nn::fssrv::sf::IFileSystem> saveDataFs;
-	[57] ReadSaveDataFileSystemExtraDataWithSpaceId (u8, u64) -> buffer<void, 6, 0>;
-	[58] ReadSaveDataFileSystemExtraData(u64) -> buffer<void, 6, 0>;
-	[59] WriteSaveDataFileSystemExtraData(u64, u8, buffer<void, 5, 0>);
+	@version(3.0.0+)
+	[57] ReadSaveDataFileSystemExtraDataWithSpaceId (u8, u64) -> buffer<unknown, 6, 0>;
+	[58] ReadSaveDataFileSystemExtraData(u64) -> buffer<unknown, 6, 0>;
+	@version(2.0.0+)
+	[59] WriteSaveDataFileSystemExtraData(u64, u8, buffer<unknown, 5, 0>);
 	[60] OpenSaveDataInfoReader() -> object<nn::fssrv::sf::ISaveDataInfoReader>;
 	[61] OpenSaveDataIterator(u8) -> object<IUnknown>;
 	[80] OpenSaveDataThumbnailFile(u8, bytes<0x40>, u32) -> object<nn::fssrv::sf::IFile> thumbnail;
 	[100] MountImageDirectory(u32) -> object<nn::fssrv::sf::IFileSystem> imageFs;
 	[110] MountContentStorage(u32 contentStorageID) -> object<nn::fssrv::sf::IFileSystem> contentFs;
 	[200] OpenDataStorageByCurrentProcess() -> object<nn::fssrv::sf::IStorage> dataStorage;
+	@version(3.0.0+)
 	[201] OpenDataStorageByApplicationId(nn::ApplicationId tid) -> object<nn::fssrv::sf::IStorage> dataStorage;
 	[202] OpenDataStorageByDataId(nn::ApplicationId tid, u8 storageId) -> object<nn::fssrv::sf::IStorage> dataStorage;
 	[203] OpenRomStorage() -> object<nn::fssrv::sf::IStorage>;
 	[400] OpenDeviceOperator() -> object<nn::fssrv::sf::IDeviceOperator>;
 	[500] OpenSdCardDetectionEventNotifier() -> object<nn::fssrv::sf::IEventNotifier> SdEventNotify;
 	[501] OpenGameCardDetectionEventNotifier() -> object<nn::fssrv::sf::IEventNotifier> GameCardEventNotify;
+	@version(1.0.0-3.0.2)
 	[600] SetCurrentPosixTime(u64 time);
 	[601] QuerySaveDataTotalSize(u64, u64) -> u64 saveDataSize;
-	[602] VerifySaveData(nn::ApplicationId tid) -> buffer<void, 6, 0>;
+	[602] VerifySaveData(nn::ApplicationId tid) -> buffer<unknown, 6, 0>;
 	[603] CorruptSaveDataForDebug(nn::ApplicationId tid);
 	[604] CreatePaddingFile(u64 size);
 	[605] DeleteAllPaddingFiles();
+	@version(2.0.0+)
 	[606] GetRightsId(u64, u8) -> u128 rights;
+	@version(2.0.0+)
 	[607] RegisterExternalKey(u128, u128);
+	@version(2.0.0+)
 	[608] UnregisterExternalKey();
-	[609] GetRightsIdByPath(buffer<i8, 0x19, 0x301> path) -> u128 rights;
-	[610] GetRightsIdByPath2(buffer<i8, 0x19, 0x301> path) -> (u128 rights, u8);
+	@version(2.0.0+)
+	[609] GetRightsIdByPath(buffer<bytes<0x301>, 0x19, 0x301> path) -> u128 rights;
+	@version(3.0.0+)
+	[610] GetRightsIdByPath2(buffer<bytes<0x301>, 0x19, 0x301> path) -> (u128 rights, u8);
+	@version(2.0.0+)
 	[620] SetSdCardEncryptionSeed(u128 seedmaybe);
+	@version(2.0.0+)
 	[800] GetAndClearFileSystemProxyErrorInfo() -> bytes<0x80> errorInfo;
-	[1000] SetBisRootForHost(u32, buffer<i8, 0x19, 0x301> path);
+	[1000] SetBisRootForHost(u32, buffer<bytes<0x301>, 0x19, 0x301> path);
 	[1001] SetSaveDataSize(u64, u64);
-	[1002] SetSaveDataRootPath(buffer<i8, 0x19, 0x301> path);
+	[1002] SetSaveDataRootPath(buffer<bytes<0x301>, 0x19, 0x301> path);
 	[1003] DisableAutoSaveDataCreation();
 	[1004] SetGlobalAccessLogMode(u32 mode);
 	[1005] GetGlobalAccessLogMode() -> u32 logMode;
-	[1006] OutputAccessLogToSdCard(buffer<void, 5, 0> logText);
+	[1006] OutputAccessLogToSdCard(buffer<unknown, 5, 0> logText);
 }
 
 interface nn::fssrv::sf::IStorage {
@@ -75,36 +98,45 @@ interface nn::fssrv::sf::IStorage {
 }
 
 interface nn::fssrv::sf::IFileSystem {
-	[0] CreateFile(u32 mode, u64 size, buffer<i8, 0x19, 0x301> path);
-	[1] DeleteFile(buffer<i8, 0x19, 0x301> path);
-	[2] CreateDirectory(buffer<i8, 0x19, 0x301> path);
-	[3] DeleteDirectory(buffer<i8, 0x19, 0x301> path);
-	[4] DeleteDirectoryRecursively(buffer<i8, 0x19, 0x301> path);
-	[5] RenameFile(buffer<i8, 0x19, 0x301> oldPath, buffer<i8, 0x19, 0x301> newPath);
-	[6] RenameDirectory(buffer<i8, 0x19, 0x301> oldPath, buffer<i8, 0x19, 0x301> newPath);
-	[7] GetEntryType(buffer<i8, 0x19, 0x301> path) -> u32;
-	[8] OpenFile(u32 mode, buffer<i8, 0x19, 0x301> path) -> object<nn::fssrv::sf::IFile> file;
-	[9] OpenDirectory(u32, buffer<i8, 0x19, 0x301> path) -> object<nn::fssrv::sf::IDirectory> directory;
+	[0] CreateFile(u64 mode, u32 size, buffer<bytes<0x301>, 0x19, 0x301> path);
+	[1] DeleteFile(buffer<bytes<0x301>, 0x19, 0x301> path);
+	[2] CreateDirectory(buffer<bytes<0x301>, 0x19, 0x301> path);
+	[3] DeleteDirectory(buffer<bytes<0x301>, 0x19, 0x301> path);
+	[4] DeleteDirectoryRecursively(buffer<bytes<0x301>, 0x19, 0x301> path);
+	[5] RenameFile(buffer<bytes<0x301>, 0x19, 0x301> oldPath, buffer<bytes<0x301>, 0x19, 0x301> newPath);
+	[6] RenameDirectory(buffer<bytes<0x301>, 0x19, 0x301> oldPath, buffer<bytes<0x301>, 0x19, 0x301> newPath);
+	[7] GetEntryType(buffer<bytes<0x301>, 0x19, 0x301> path) -> u32;
+	[8] OpenFile(u32 mode, buffer<bytes<0x301>, 0x19, 0x301> path) -> object<nn::fssrv::sf::IFile> file;
+	[9] OpenDirectory(u32, buffer<bytes<0x301>, 0x19, 0x301> path) -> object<nn::fssrv::sf::IDirectory> directory;
 	[10] Commit();
-	[11] GetFreeSpaceSize(buffer<i8, 0x19, 0x301> path) -> u64 totalFreeSpace;
-	[12] GetTotalSpaceSize(buffer<i8, 0x19, 0x301> path) -> u64 totalSize;
-	[13] CleanDirectoryRecursively(buffer<i8, 0x19, 0x301> path);
-	[14] GetFileTimeStampRaw(buffer<i8, 0x19, 0x301> path) -> bytes<0x20> timestamp;
+	[11] GetFreeSpaceSize(buffer<bytes<0x301>, 0x19, 0x301> path) -> u64 totalFreeSpace;
+	[12] GetTotalSpaceSize(buffer<bytes<0x301>, 0x19, 0x301> path) -> u64 totalSize;
+	@version(3.0.0+)
+	[13] CleanDirectoryRecursively(buffer<bytes<0x301>, 0x19, 0x301> path);
+	@version(3.0.0+)
+	[14] GetFileTimeStampRaw(buffer<bytes<0x301>, 0x19, 0x301> path) -> bytes<0x20> timestamp;
 }
 
 interface nn::fssrv::sf::IDeviceOperator {
 	[0] IsSdCardInserted() -> u8 isSdInserted;
 	[1] GetSdCardSpeedMode() -> u64 sdSpeed;
+	@version(2.0.0+)
 	[2] GetSdCardCid(u64) -> buffer<unknown, 6, 0> cid;
+	@version(2.0.0+)
 	[3] GetSdCardUserAreaSize() -> u64 size;
+	@version(2.0.0+)
 	[4] GetSdCardProtectedAreaSize() -> u64 protectedSize;
+	@version(2.0.0+)
 	[5] GetAndClearSdCardErrorInfo(u64) -> (u128, u64, buffer<unknown, 6, 0>);
 	[100] GetMmcCid(u64) -> buffer<unknown, 6, 0> cid;
 	[101] GetMmcSpeedMode() -> u64 speedMode;
 	[110] EraseMmc(u32);
 	[111] GetMmcPartitionSize(u32) -> u64 paritionSize;
+	@version(2.0.0+)
 	[112] GetMmcPatrolCount() -> u32 patrolCount;
+	@version(2.0.0+)
 	[113] GetAndClearMmcErrorInfo(u64) -> (u128, u64, buffer<unknown, 6, 0>);
+	@version(2.0.0+)
 	[114] GetMmcExtendedCsd(u64) -> buffer<unknown, 6, 0>;
 	[200] IsGameCardInserted() -> u8 isGameInserted;
 	[201] EraseGameCard(u32, u64);
@@ -118,19 +150,26 @@ interface nn::fssrv::sf::IDeviceOperator {
 	[209] WriteToGameCard(u64, u64) -> buffer<unknown, 6, 0>;
 	[210] SetVerifyWriteEnalbleFlag(u8 flag);
 	[211] GetGameCardImageHash(u64, u32) -> buffer<unknown, 6, 0> imageHash;
+	@version(2.0.0+)
 	[212] GetGameCardDeviceIdForProdCard(u64, u64, buffer<unknown, 5, 0>) -> buffer<unknown, 6, 0> errorInfo;
+	@version(2.0.0+)
 	[213] EraseAndWriteParamDirectly(u64, buffer<unknown, 5, 0>);
+	@version(2.0.0+)
 	[214] GetGameCardCid(u64) -> buffer<unknown, 6, 0> cid;
+	@version(2.0.0+)
 	[215] ForceEraseGameCard();
+	@version(2.0.0+)
 	[216] GetGameCardErrorInfo() -> u128 errorInfo;
+	@version(2.1.0+)
 	[217] GetGameCardErrorReportInfo() -> bytes<0x40> errorReportInfo;
+	@version(3.0.1+)
 	[218] GetGameCardDeviceId(u64) -> buffer<unknown, 6, 0> deviceID;
 	[300] SetSpeedEmulationMode(u32 mode);
 	[301] GetSpeedEmulationMode() -> u32 emuMode;
 }
 
 interface nn::fssrv::sf::IDirectory {
-	[0] Read() -> (u64, buffer<unknown, 6, 0>);
+	[0] Read() -> (u64, buffer<nn::fssrv::sf::IDirectoryEntry, 6, 0>);
 	[1] GetEntryCount() -> u64;
 }
 
@@ -143,14 +182,14 @@ interface nn::fssrv::sf::IFile {
 }
 
 // --------------------------------------------- FSP-PR ---------------------------------------------
-interface nn::fssrv::sf::IProgramRegistry {
+interface nn::fssrv::sf::IProgramRegistry is fsp-pr {
 	[0] SetFsPermissions(u64, u64, u8, u64, u64, buffer<unknown, 5, 0>, buffer<unknown, 5, 0>);
 	[1] ClearFsPermissions(u64 pid);
 	[256] SetEnabledProgramVerification(u8 enabled);
 }
 
 // --------------------------------------------- FSP-LDR ---------------------------------------------
-interface nn::fssrv::sf::IFileSystemProxyForLoader {
+interface nn::fssrv::sf::IFileSystemProxyForLoader is fsp-ldr {
 	[0] MountCode(nn::ApplicationId TID, buffer<i8, 0x19, 0x301> contentPath) -> object<nn::fssrv::sf::IFileSystem> contentFs;
 	[1] IsCodeMounted(nn::ApplicationId TID) -> u8 isMounted;
 }

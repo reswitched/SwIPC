@@ -26,15 +26,16 @@ name = /[a-zA-Z_][a-zA-Z0-9_:]*/ ;
 sname = /[a-zA-Z_][a-zA-Z0-9_:\-]*/ ;
 serviceNameList = @:','.{ sname } ;
 template = '<' @:','.{ expression } '>' ;
+arrayLength = '[' length:number ']' ;
 structField = doc:{ comment }* type:type name:name ';' ;
 type =
     | 'struct' [ template ] '{' structFields:{ structField }+ '}'
-    | name:name template:[ template ]
+    | name:name template:[ template ] length:[ arrayLength ]
     ;
 
-typeDef = doc:{ comment }* 'type' name:name '=' type:type ';' ;
+typeDef = doc:{ comment }* decorators:{ decorator }* 'type' name:type '=' type:type ';' ;
 
-interface = doc:{ comment }* 'interface' name:name [ 'is' serviceNames:serviceNameList ] '{' functions:{ funcDef }* '}' ;
+interface = doc:{ comment }* decorators:{ decorator }* 'interface' name:name [ 'is' serviceNames:serviceNameList ] '{' functions:{ funcDef }* '}' ;
 namedTuple = '(' @:','.{ type [ name ] } ')' ;
 namedType = type [ name ] ;
 comment = '#' line:/[^\\n]*/;
@@ -84,7 +85,8 @@ def parse(data):
 		if 'type' not in elem:
 			continue
 		#assert elem['name'] not in types
-		types[elem['name']] = parseType(elem['type'])
+		tdef = {}
+		types[str(elem['name'])] = parseType(elem['type'])
 
 	ifaces = {}
 	services = {}

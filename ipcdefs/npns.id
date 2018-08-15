@@ -1,31 +1,36 @@
 interface nn::npns::INpnsSystem is npns:s {
 	[1] Unknown1();
 	[2] Unknown2(u64);
-	[3] Unknown3();
-	[4] Unknown4();
-	[5] SetInterfaceVersion() -> KObject;
+	[3] Unknown3(u16) -> buffer<unknown, 0x6, unknown>;
+	[4] Unknown4(u16) -> buffer<unknown, 0x6, unknown>;
+	[5] SetInterfaceVersion() -> KHandle<copy>;
 	[6] Unknown6();
-	[7] Unknown7() -> KObject;
-	[11] Unknown11();
-	[12] Unknown12();
-	[13] Unknown13();
-	[21] Unknown21();
-	[22] Unknown22();
-	[23] Unknown23();
-	[24] Unknown24();
-	[25] Unknown25();
-	[31] Unknown31();
-	[32] Unknown32();
+	[7] Unknown7() -> KHandle<copy>;
+	[11] Unknown11(buffer<unknown, 0x9, unknown>);
+	[12] Unknown12(buffer<unknown, 0x9, unknown>);
+	[13] Unknown13(buffer<unknown, 0x9, unknown>) -> unknown<0x1>;
+	[21] Unknown21(unknown<0x10>) -> unknown<0x28>;
+	[22] Unknown22(unknown<0x18>) -> unknown<0x28>;
+	[23] Unknown23(unknown<0x10>);
+	[24] Unknown24(unknown<0x18>);
+	[25] Unknown25(unknown<0x28>) -> unknown<0x1>;
+	[31] Unknown31(unknown<0x10>);
+	@version(2.0.0+)
+	[32] Unknown32(unknown<0x10>);
 	[101] Unknown101();
 	[102] Unknown102();
-	[103] Unknown103() -> u32;
-	[104] Unknown104() -> buffer<unknown, 6, 0>;
-	[105] Unknown105() -> KObject;
-	[111] Unknown111();
+	[103] Unknown103() -> unknown<0x4>;
+	@version(3.0.0+)
+	[104] Unknown104() -> buffer<unknown, 0x6, unknown>;
+	@version(3.0.0+)
+	[105] Unknown105() -> KHandle<copy>;
+	[111] Unknown111() -> buffer<unknown, 0xa, unknown>;
 	[112] Unknown112();
 	[113] Unknown113();
-	[114] Unknown114();
-	[115] Unknown115();
-	[201] Unknown201();
-	[202] Unknown202(u32);
+	[114] Unknown114(buffer<unknown, 0x9, unknown>, buffer<unknown, 0x9, unknown>);
+	[115] Unknown115() -> (buffer<unknown, 0xa, unknown>, buffer<unknown, 0xa, unknown>);
+	@version(3.0.0+)
+	[201] Unknown201(unknown<0x10>);
+	@version(3.0.0+)
+	[202] Unknown202(unknown<0x4>);
 }

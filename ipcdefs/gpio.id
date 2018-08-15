@@ -1,9 +1,12 @@
 interface nn::gpio::IManager is gpio {
-	[0] Unknown0(u32) -> object<IUnknown>;
+	[0] Unknown0(u32) -> object<nn::gpio::IPadSession>;
 	[1] GetPadSession(u32) -> object<nn::gpio::IPadSession>;
-	[2] Unknown2(u32) -> object<IUnknown>;
+	[2] Unknown2(u32) -> object<nn::gpio::IPadSession>;
 	[3] Unknown3(u32) -> u8;
 	[4] Unknown4() -> u128;
 	[5] Unknown5(u8, u32);
+	@version(2.0.0-3.0.0)
 	[6] Unknown6(u8);
+	@version(4.0.0+)
+	[6] Unknown6(u32);
 }
