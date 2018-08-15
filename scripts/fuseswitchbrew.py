@@ -14,7 +14,7 @@ def getFile(fname):
 	return res
 
 auto = os.path.dirname(os.path.realpath(__file__)) + '/../ipcdefs/auto.id'
-switchbrew = os.path.dirname(os.path.realpath(__file__)) + '/../ipcdefs/switchbrew.id'
+switchbrew = os.path.dirname(os.path.realpath(__file__)) + '/../ipcdefs/switchbrew_unfused.id'
 
 autoTypes, autoIfaces, autoServices = getFile(auto)
 switchbrewTypes, switchbrewIfaces, switchbrewServices = getFile(switchbrew)
@@ -43,7 +43,7 @@ for ifaceName, iface in switchbrewIfaces.items():
 		continue
 	autoIface = autoIfaces[ifaceName]
 	for cmd in iface['cmds']:
-		newCmd = {'doc': cmd['doc'], 'cmdId': cmd['cmdId'], 'name': cmd['name'], 'versionAdded': cmd['versionAdded'], 'lastVersion': cmd['lastVersion'], 'inputs': [], 'outputs': []}
+		newCmd = {'doc': cmd['doc'], 'cmdId': cmd['cmdId'], 'name': cmd['name'], 'versionAdded': cmd['versionAdded'], 'lastVersion': cmd['lastVersion'], 'inputs': [], 'outputs': [], 'undocumented': True}
 		autoCmdMaybe = [autoCmd for autoCmd in autoIface['cmds'] if cmd['cmdId'] == autoCmd['cmdId']]
 		if len(autoCmdMaybe) > 0:
 			autoCmd = autoCmdMaybe.pop()
@@ -51,6 +51,7 @@ for ifaceName, iface in switchbrewIfaces.items():
 				newCmd['name'] = autoCmd['name']
 			newCmd['inputs'] = autoCmd['inputs']
 			newCmd['outputs'] = autoCmd['outputs']
+			newCmd['undocumented'] = autoCmd['undocumented']
 			newIFace['cmds'].append(newCmd)
 		else:
 			newIFace['cmds'].append(cmd)
@@ -94,6 +95,8 @@ def printIFace(ifaceName, iface, services):
 				print "\t#%s" % docLine.replace(u'\xa0', ' ')
 		if cmd['versionAdded'] != "1.0.0" or cmd['lastVersion'] is not None:
 			print "\t@version(%s)" % (genVersion(cmd['versionAdded'], cmd['lastVersion']))
+		if cmd['undocumented']:
+			print "\t@undocumented"
 		print "\t[%d] %s(%s)%s;" % (cmd['cmdId'], cmd['name'], genArgs(cmd['inputs']), genArgs(cmd['outputs'], True))
 	print "}"
 
