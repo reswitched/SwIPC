@@ -4142,7 +4142,7 @@ interface nn::nfp::detail::IDebug {
 	[11] Restore(bytes<8,4>);
 	[12] CreateApplicationArea(bytes<8,4>, u32, buffer<unknown,5,variable>);
 	[13] GetTagInfo(bytes<8,4>) -> buffer<unknown,26,88>;
-	[14] GetRegisterInfo(bytes<8,4>) -> buffer<unknown,26,256>;
+	[14] GetRegisterInfo1(bytes<8,4>) -> buffer<unknown,26,256>;
 	[15] GetCommonInfo(bytes<8,4>) -> buffer<unknown,26,64>;
 	[16] GetModelInfo(bytes<8,4>) -> buffer<unknown,26,64>;
 	[17] AttachActivateEvent(bytes<8,4>) -> handle<copy>;
@@ -4155,7 +4155,7 @@ interface nn::nfp::detail::IDebug {
 	[24] RecreateApplicationArea(bytes<8,4>, u32, buffer<unknown,5,variable>);
 	[100] Format(bytes<8,4>);
 	[101] GetAdminInfo(bytes<8,4>) -> buffer<unknown,26,64>;
-	[102] GetRegisterInfo(bytes<8,4>) -> buffer<unknown,26,256>;
+	[102] GetRegisterInfo2(bytes<8,4>) -> buffer<unknown,26,256>;
 	[103] SetRegisterInfo(bytes<8,4>, buffer<unknown,25,256>);
 	[104] DeleteRegisterInfo(bytes<8,4>);
 	[105] DeleteApplicationArea(bytes<8,4>);
@@ -4214,7 +4214,7 @@ interface nn::nfp::detail::ISystem {
 	[10] Flush(bytes<8,4>);
 	[11] Restore(bytes<8,4>);
 	[13] GetTagInfo(bytes<8,4>) -> buffer<unknown,26,88>;
-	[14] GetRegisterInfo(bytes<8,4>) -> buffer<unknown,26,256>;
+	[14] GetRegisterInfo1(bytes<8,4>) -> buffer<unknown,26,256>;
 	[15] GetCommonInfo(bytes<8,4>) -> buffer<unknown,26,64>;
 	[16] GetModelInfo(bytes<8,4>) -> buffer<unknown,26,64>;
 	[17] AttachActivateEvent(bytes<8,4>) -> handle<copy>;
@@ -4225,7 +4225,7 @@ interface nn::nfp::detail::ISystem {
 	[23] AttachAvailabilityChangeEvent() -> handle<copy>;
 	[100] Format(bytes<8,4>);
 	[101] GetAdminInfo(bytes<8,4>) -> buffer<unknown,26,64>;
-	[102] GetRegisterInfo(bytes<8,4>) -> buffer<unknown,26,256>;
+	[102] GetRegisterInfo2(bytes<8,4>) -> buffer<unknown,26,256>;
 	[103] SetRegisterInfo(bytes<8,4>, buffer<unknown,25,256>);
 	[104] DeleteRegisterInfo(bytes<8,4>);
 	[105] DeleteApplicationArea(bytes<8,4>);
