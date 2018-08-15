@@ -91,6 +91,9 @@ class Interface
           puts "  " + command.inspect
           raise "failure"
         end
+        if @latest && @latest.versions.include?(version) then
+          @latest.versions.delete version
+        end
         e = CommandEntry.new(command, [version])
         @versions.push(e)
         @latest = e

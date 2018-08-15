@@ -485,7 +485,7 @@ interface nn::account::baas::IAdministrator {
 
 	[120] GetNintendoAccountId() -> nn::account::NintendoAccountId;
 
-	@version(1.0.0-3.0.0)
+	@version(1.0.0-2.0.0)
 	[130] GetNintendoAccountUserResourceCache() -> (nn::account::NintendoAccountId, buffer<nn::account::nas::NasUserBase, 0x1a, 0x24b>, buffer<data, 0x6>);
 	@version(3.0.0+)
 	[130] GetNintendoAccountUserResourceCache() -> (nn::account::NintendoAccountId, buffer<nn::account::nas::NasUserBase, 0x1a, 0x24f>, buffer<data, 0x6>);
@@ -595,7 +595,7 @@ interface nn::account::baas::IManagerForSystemService {
 
 	[120] GetNintendoAccountId() -> nn::account::NintendoAccountId;
 
-	@version(1.0.0-3.0.0)
+	@version(1.0.0-2.0.0)
 	[130] GetNintendoAccountUserResourceCache() -> (nn::account::NintendoAccountId, buffer<nn::account::nas::NasUserBase, 0x1a, 0x24b>, buffer<data, 0x6>);
 	@version(3.0.0+)
 	[130] GetNintendoAccountUserResourceCache() -> (nn::account::NintendoAccountId, buffer<nn::account::nas::NasUserBase, 0x1a, 0x24f>, buffer<data, 0x6>);
@@ -755,7 +755,7 @@ interface nn::ahid::hdr::ISession {
 interface nn::am::service::IAllSystemAppletProxiesService {
 	[100] OpenSystemAppletProxy(u64, pid, handle<copy>) -> object<nn::am::service::ISystemAppletProxy>;
 
-	@version(1.0.0-3.0.0)
+	@version(1.0.0-2.0.0)
 	[200] OpenLibraryAppletProxy(u64, pid, handle<copy>) -> object<nn::am::service::ILibraryAppletProxy>;
 	@version(3.0.0+)
 	[200] OpenLibraryAppletProxyOld(u64, pid, handle<copy>) -> object<nn::am::service::ILibraryAppletProxy>;
@@ -838,11 +838,11 @@ interface nn::am::service::IApplicationFunctions {
 	@version(3.0.0+)
 	[26] GetSaveDataSize(u8, nn::account::Uid) -> (u64, u64);
 
-	@version(1.0.0-2.0.0)
+	@version(1.0.0)
 	[30] BeginBlockingHomeButton(unknown<0x8>);
 	@version(2.0.0+)
 	[30] BeginBlockingHomeButtonShortAndLongPressed(u64);
-	@version(1.0.0-2.0.0)
+	@version(1.0.0)
 	[31] EndBlockingHomeButton();
 	@version(2.0.0+)
 	[31] EndBlockingHomeButtonShortAndLongPressed();
@@ -1579,7 +1579,7 @@ interface nn::audio::detail::IFinalOutputRecorder {
 }
 
 interface nn::audio::detail::IFinalOutputRecorderManager {
-	@version(1.0.0-3.0.0)
+	@version(1.0.0-2.0.0)
 	[0] Unknown0(u32, u64, handle<copy>) -> (bytes<0x10, 4>, object<nn::audio::detail::IFinalOutputRecorder>);
 	@version(3.0.0+)
 	[0] Unknown0(bytes<0x8, 4>, u64, handle<copy>) -> (bytes<0x10, 4>, object<nn::audio::detail::IFinalOutputRecorder>);
@@ -1668,7 +1668,7 @@ interface nn::bcat::detail::ipc::IBcatService {
 	@version(3.0.0+)
 	[30203] UnblockDeliveryTask(nn::ApplicationId);
 
-	@version(2.0.0-3.0.0)
+	@version(2.0.0)
 	[90100] EnumerateBackgroundDownloadTask() -> (u32, array<nn::bcat::TaskInfo, 0x6>);
 	@version(3.0.0+)
 	[90100] EnumerateBackgroundDeliveryTask() -> (u32, array<nn::bcat::TaskInfo, 0x6>);
@@ -2783,17 +2783,17 @@ interface nn::fssrv::sf::IFileSystemProxy {
 	[603] Unknown603(u64);
 	[604] Unknown604(u64);
 	[605] Unknown605();
-	@version(2.0.0-3.0.0)
+	@version(2.0.0)
 	[606] Unknown606(u8, u64) -> bytes<0x10, 1>;
 	@version(3.0.0+)
 	[606] Unknown606(u8, u64) -> bytes<0x10, 8>;
-	@version(2.0.0-3.0.0)
+	@version(2.0.0)
 	[607] Unknown607(bytes<0x10, 1>, bytes<0x10, 1>);
 	@version(3.0.0+)
 	[607] Unknown607(bytes<0x10, 8>, bytes<0x10, 1>);
 	@version(2.0.0+)
 	[608] Unknown608();
-	@version(2.0.0-3.0.0)
+	@version(2.0.0)
 	[609] Unknown609(buffer<unknown, 0x19, 0x301>) -> bytes<0x10, 1>;
 	@version(3.0.0+)
 	[609] Unknown609(buffer<unknown, 0x19, 0x301>) -> bytes<0x10, 8>;
@@ -3239,7 +3239,7 @@ interface nn::hid::IHidSystemServer {
 	[541] GetPlayReportControllerUsages() -> (u64, array<nn::hid::system::PlayReportControllerUsage, 0xa>);
 	@version(2.0.0+)
 	[542] AcquirePlayReportRegisteredDeviceUpdateEvent() -> handle<copy>;
-	@version(2.0.0-3.0.0)
+	@version(2.0.0)
 	[543] GetPlayReportRegisteredDevices() -> (u64, array<nn::hid::system::PlayReportRegisteredDevice, 0xa>);
 	@version(3.0.0+)
 	[543] GetRegisteredDevices() -> (u64, array<nn::hid::system::RegisteredDevice, 0xa>);
@@ -3368,6 +3368,7 @@ interface nn::irsensor::IIrSensorServer {
 	[309] GetImageTransferProcessorState(nn::irsensor::IrCameraHandle, nn::applet::AppletResourceUserId, pid) -> (nn::irsensor::ImageTransferProcessorState, buffer<data, 0x6>);
 	[310] RunTeraPluginProcessor(nn::irsensor::IrCameraHandle, nn::irsensor::PackedTeraPluginProcessorConfig, nn::applet::AppletResourceUserId, pid);
 	[311] GetNpadIrCameraHandle(u32) -> nn::irsensor::IrCameraHandle;
+	@version(1.0.0-3.0.0)
 	[312] RunDpdProcessor(nn::irsensor::IrCameraHandle, nn::irsensor::PackedDpdProcessorConfig, nn::applet::AppletResourceUserId, pid);
 	@version(4.0.0+)
 	[312] RunPointingProcessor(nn::irsensor::IrCameraHandle, nn::irsensor::PackedPointingProcessorConfig, nn::applet::AppletResourceUserId, pid);
@@ -4190,10 +4191,12 @@ interface nn::nifm::detail::IGeneralService {
 	[8] GetNetworkProfile(nn::util::Uuid) -> buffer<nn::nifm::detail::sf::NetworkProfileData, 0x1a, 0x17c>;
 	[9] SetNetworkProfile(buffer<nn::nifm::detail::sf::NetworkProfileData, 0x19, 0x17c>) -> nn::util::Uuid;
 	[10] RemoveNetworkProfile(nn::util::Uuid);
+	@version(1.0.0-3.0.0)
 	[11] GetScanData() -> (u32, array<nn::nifm::detail::sf::AccessPointData, 0x6>);
 	@version(4.0.0+)
 	[11] GetScanDataOld() -> (u32, array<nn::nifm::detail::sf::AccessPointDataOld, 0x6>);
 	[12] GetCurrentIpAddress() -> nn::nifm::IpV4Address;
+	@version(1.0.0-3.0.0)
 	[13] GetCurrentAccessPoint() -> buffer<nn::nifm::detail::sf::AccessPointData, 0x1a, 0x34>;
 	@version(4.0.0+)
 	[13] GetCurrentAccessPointOld() -> buffer<nn::nifm::detail::sf::AccessPointDataOld, 0x1a, 0x34>;
@@ -4216,7 +4219,7 @@ interface nn::nifm::detail::IGeneralService {
 	[30] SetEthernetCommunicationEnabledForTest(b8);
 	@version(2.0.0+)
 	[31] GetTelemetorySystemEventReadableHandle() -> handle<copy>;
-	@version(2.0.0+)
+	@version(2.0.0-3.0.0)
 	[32] GetTelemetryInfo() -> buffer<nn::nifm::TelemetryInfo, 0x16, 0x20c>;
 	@version(4.0.0+)
 	[32] GetTelemetryInfo() -> buffer<nn::nifm::TelemetryInfo, 0x16, 0x210>;
@@ -4234,7 +4237,7 @@ interface nn::nifm::detail::IGeneralService {
 
 interface nn::nifm::detail::INetworkProfile {
 	[0] Update(buffer<nn::nifm::detail::sf::NetworkProfileData, 0x19, 0x17c>) -> nn::util::Uuid;
-	@version(2.0.0-3.0.0)
+	@version(2.0.0)
 	[1] Persist(nn::util::Uuid) -> nn::util::Uuid;
 	@version(3.0.0+)
 	[1] PersistOld(nn::util::Uuid) -> nn::util::Uuid;
@@ -4271,7 +4274,7 @@ interface nn::nifm::detail::IRequest {
 	[19] GetRequirement() -> nn::nifm::Requirement;
 	[20] GetRevision() -> u32;
 	[21] GetAppletInfo(u32) -> (u32, u32, u32, buffer<data, 0x6>);
-	@version(1.0.0-2.0.0)
+	@version(1.0.0)
 	[22] GetHotspotAuthInfo() -> (unknown<0x4>, buffer<unknown, 0x16, unknown>);
 	@version(2.0.0+)
 	[22] GetAdditionalInfo() -> (u32, buffer<nn::nifm::AdditionalInfo, 0x16, 0x410>);
@@ -4291,7 +4294,7 @@ interface nn::nifm::detail::IScanRequest {
 }
 
 interface nn::nifm::detail::IStaticService {
-	@version(1.0.0-3.0.0)
+	@version(1.0.0-2.0.0)
 	[4] CreateGeneralService() -> object<nn::nifm::detail::IGeneralService>;
 	@version(3.0.0+)
 	[4] CreateGeneralServiceOld() -> object<nn::nifm::detail::IGeneralService>;
