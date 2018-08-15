@@ -354,7 +354,7 @@ async function getServiceStuff(serviceName, services) {
         }, "");
         // And finally, turn it into Github-Flavored Markdown (For the ASCII
         // tables)
-        cmd.doc = await pro(pandoc)(JSON.stringify(jsonCmdDocs), 'json', 'markdown_github');
+        cmd.doc = await pro(pandoc)(JSON.stringify(jsonCmdDocs), 'json', 'gfm');
       }
     }));
   }));
