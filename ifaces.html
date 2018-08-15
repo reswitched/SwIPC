@@ -893,10 +893,22 @@
 							  <code class="signature">[100, 1.0.0-3.0.2] <a href="#nn::account::baas::IFloatingRegistrationRequest(100)">RegisterAsync</a>() -&gt; (<a href="types.html#nn::account::Uid">nn::account::Uid</a>, object&lt;<a href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a>&gt;)</code>
 							
 							</li>
+							<li class="command" value="100" id="nn::account::baas::IFloatingRegistrationRequest(100)">
+							
+							
+							  <code class="signature">[100, 4.0.0+] <a href="#nn::account::baas::IFloatingRegistrationRequest(100)">RegisterUser</a>() -&gt; (<a href="types.html#nn::account::Uid">nn::account::Uid</a>, object&lt;<a href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a>&gt;)</code>
+							
+							</li>
 							<li class="command" value="101" id="nn::account::baas::IFloatingRegistrationRequest(101)">
 							
 							
 							  <code class="signature">[101, 1.0.0-3.0.2] <a href="#nn::account::baas::IFloatingRegistrationRequest(101)">RegisterWithUidAsync</a>(<a href="types.html#nn::account::Uid">nn::account::Uid</a>) -&gt; object&lt;<a href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a>&gt;</code>
+							
+							</li>
+							<li class="command" value="101" id="nn::account::baas::IFloatingRegistrationRequest(101)">
+							
+							
+							  <code class="signature">[101, 4.0.0+] <a href="#nn::account::baas::IFloatingRegistrationRequest(101)">RegisterUserWithUid</a>(<a href="types.html#nn::account::Uid">nn::account::Uid</a>) -&gt; object&lt;<a href="ifaces.html#nn::account::detail::IAsyncContext">nn::account::detail::IAsyncContext</a>&gt;</code>
 							
 							</li>
 							<li class="command" value="102" id="nn::account::baas::IFloatingRegistrationRequest(102)">
@@ -1195,6 +1207,8 @@
 							<li><a href="ifaces.html#nn::account::baas::IAdministrator(222)">nn::account::baas::IAdministrator::SynchronizeProfileAsyncIfSecondsElapsed [222]</a></li>
 							<li><a href="ifaces.html#nn::account::baas::IAdministrator(997)">nn::account::baas::IAdministrator::DebugUnlinkNintendoAccountAsync [997]</a></li>
 							<li><a href="ifaces.html#nn::account::baas::IFloatingRegistrationRequest(100)">nn::account::baas::IFloatingRegistrationRequest::RegisterAsync [100]</a></li>
+							<li><a href="ifaces.html#nn::account::baas::IFloatingRegistrationRequest(100)">nn::account::baas::IFloatingRegistrationRequest::RegisterAsync [100]</a></li>
+							<li><a href="ifaces.html#nn::account::baas::IFloatingRegistrationRequest(101)">nn::account::baas::IFloatingRegistrationRequest::RegisterWithUidAsync [101]</a></li>
 							<li><a href="ifaces.html#nn::account::baas::IFloatingRegistrationRequest(101)">nn::account::baas::IFloatingRegistrationRequest::RegisterWithUidAsync [101]</a></li>
 							<li><a href="ifaces.html#nn::account::baas::IFloatingRegistrationRequest(111)">nn::account::baas::IFloatingRegistrationRequest::EnsureIdTokenCacheAsync [111]</a></li>
 							<li><a href="ifaces.html#nn::account::baas::IManagerForApplication(2)">nn::account::baas::IManagerForApplication::EnsureIdTokenCacheAsync [2]</a></li>
@@ -1928,6 +1942,12 @@
 							
 							
 							  <code class="signature">[200, 1.0.0-2.3.0] <a href="#nn::am::service::IAllSystemAppletProxiesService(200)">OpenLibraryAppletProxy</a>(u64, pid, KObject) -&gt; object&lt;<a href="ifaces.html#nn::am::service::ILibraryAppletProxy">nn::am::service::ILibraryAppletProxy</a>&gt;</code>
+							
+							</li>
+							<li class="command" value="200" id="nn::am::service::IAllSystemAppletProxiesService(200)">
+							
+							
+							  <code class="signature">[200, 3.0.0+] <a href="#nn::am::service::IAllSystemAppletProxiesService(200)">OpenLibraryAppletProxyOld</a>(u64, pid, KObject) -&gt; object&lt;<a href="ifaces.html#nn::am::service::ILibraryAppletProxy">nn::am::service::ILibraryAppletProxy</a>&gt;</code>
 							
 							</li>
 							<li class="command" value="201" id="nn::am::service::IAllSystemAppletProxiesService(201)">
@@ -3206,6 +3226,7 @@
 					<li class="list-group-item">
 						<h3>Returned by:</h3>
 						<ul>
+							<li><a href="ifaces.html#nn::am::service::IAllSystemAppletProxiesService(200)">nn::am::service::IAllSystemAppletProxiesService::OpenLibraryAppletProxy [200]</a></li>
 							<li><a href="ifaces.html#nn::am::service::IAllSystemAppletProxiesService(200)">nn::am::service::IAllSystemAppletProxiesService::OpenLibraryAppletProxy [200]</a></li>
 							<li><a href="ifaces.html#nn::am::service::IAllSystemAppletProxiesService(201)">nn::am::service::IAllSystemAppletProxiesService::OpenLibraryAppletProxy [201]</a></li>
 						</ul>
@@ -9813,7 +9834,7 @@
 							<li class="command" value="216" id="nn::fssrv::sf::IDeviceOperator(216)">
 							
 							
-							  <code class="signature">[216, 2.0.0+] <a href="#nn::fssrv::sf::IDeviceOperator(216)">GetGameCardErrorInfo</a>() -&gt; u128 errorInfo</code>
+							  <code class="signature">[216, 2.0.0+] <a href="#nn::fssrv::sf::IDeviceOperator(216)">GetGameCardErrorInfo2</a>() -&gt; u128 errorInfo</code>
 							
 							</li>
 							<li class="command" value="217" id="nn::fssrv::sf::IDeviceOperator(217)">
@@ -12586,6 +12607,12 @@
 							  <code class="signature">[543, 1.0.0-4.1.0] <a href="#nn::hid::IHidSystemServer(543)">GetRegisteredDevices</a>() -&gt; (i64, array&lt;<a href="types.html#nn::hid::system::RegisteredDevice">nn::hid::system::RegisteredDevice</a>, 0xa&gt;)</code>
 							
 							</li>
+							<li class="command" value="543" id="nn::hid::IHidSystemServer(543)">
+							
+							
+							  <code class="signature">[543, 5.0.0+] <a href="#nn::hid::IHidSystemServer(543)">GetRegisteredDevicesOld</a>() -&gt; (i64, array&lt;<a href="types.html#nn::hid::system::RegisteredDevice">nn::hid::system::RegisteredDevice</a>, 0xa&gt;)</code>
+							
+							</li>
 							<li class="command" value="544" id="nn::hid::IHidSystemServer(544)">
 							
 							
@@ -14261,7 +14288,7 @@
 							<p>NsoInfo has the following layout:</p>
 							<p>| Offset | Size | Description                       |
 							|--------|------|-----------------------------------|
-							| 0x0    | 0x20 | Build ID, from NSO header+0x40. |
+							| 0x0    | 0x20 | “Build ID”, from NSO header+0x40. |
 							| 0x20   | 0x8  | Mapped address for this NSO       |
 							| 0x28   | 0x8  | Mapped size for this NSO          |
 							|        |      |                                   |</p>
@@ -14364,7 +14391,7 @@
 							| 1    | 0x80000012               |
 							| 2    | 0x00000001               |
 							| 0-1  | Pid                      |
-							| 0    | SCFI                   |
+							| 0    | “SCFI”                   |
 							| 1    | 0x00000000               |
 							| 2    | Always 0.                |
 							| 3    | Nro heap address         |
@@ -14390,7 +14417,7 @@
 							| 2    | 0x00000001  |
 							|      |             |
 							| 0-1  | Pid         |
-							| 0    | SFCI      |
+							| 0    | “SFCI”      |
 							| 1    | 0x00000002  |
 							| 2    | Always 0.   |
 							| 3    | Nrr address |
@@ -14414,7 +14441,7 @@
 							| 2    | 0x00000003                  |
 							| 0-1  | Pid                         |
 							| 2    | Process handle (0xFFFF8001) |
-							| 0    | SFCI                      |
+							| 0    | “SFCI”                      |
 							| 1    | 0x00000004                  |
 							| 2    | Always 0.                   |</p>
 							<p><a href="http://switchbrew.org/index.php?title=Category:Services" title="wikilink">Category:Services</a></p>
@@ -15682,10 +15709,10 @@
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::ncm::IContentMetaDatabase(7))"></input>
 							  <label for="showDocs(nn::ncm::IContentMetaDatabase(7))" class="showDocsLabel"></label>
 							  <code class="signature">[7] <a href="#nn::ncm::IContentMetaDatabase(7)">ListApplication</a>()</code>
-							  <div class="docs"><p>Each 24-byte entry (officially ApplicationContentMetaKey) is as follows:</p>
-							<p>``<a href="http://switchbrew.org/index.php?title=NCA#Meta_records" title="wikilink"><code>meta_record</code></a><code>meta_record;</code>
-							<code>u64base_title_id;</code></p>
-							<p>This function takes in a type 6 buffer to write entries to, and a u8 filter [type](http://switchbrew.org/index.php?title=NCM services#Title_Types &quot;wikilink&quot;). If filter is zero, all update records will be copied to to the output buffer (space permitting). Otherwise, only titles with type == filter_type will be copied to the output buffer.</p>
+							  <div class="docs"><p>Each 24-byte entry (officially “ApplicationContentMetaKey”) is as follows:</p>
+							<p><code></code><a href="http://switchbrew.org/index.php?title=NCA#Meta_records" title="wikilink"><code>meta_record</code></a><code>meta_record;</code>
+							<code>u64    base_title_id;</code></p>
+							<p>This function takes in a type 6 buffer to write entries to, and a u8 “filter” [type](http://switchbrew.org/index.php?title=NCM services#Title_Types &quot;wikilink&quot;). If filter is zero, all update records will be copied to to the output buffer (space permitting). Otherwise, only titles with type == filter_type will be copied to the output buffer.</p>
 							<p>This func returns a u32 num_entries_total, and a u32 num_entries_written.</p>
 							</div>
 							</li>
@@ -15734,10 +15761,10 @@
 							<p>On 1.0.0: Initialized the output buffer to all 1s. Then, for each [#NcaID](http://switchbrew.org/index.php?title=NCM services#NcaID &quot;wikilink&quot;) in the input buffer, it checks if that NcaID is present anywhere in the database, and if so writes 0 to the corresponding output byte.</p>
 							<p>In pseudocode, the function basically does the following:</p>
 							<p>for i in range(len(out_buf)):</p>
-							<p><code>out_buf[i]=1</code></p>
+							<p><code>out_buf[i] = 1</code></p>
 							<p>for i, NcaID in NcaIDs:</p>
-							<p><code>ifis_present_in_database(NcaID):</code>
-							<code>out_buf[i]=0</code></p>
+							<p><code>if is_present_in_database(NcaID):</code>
+							<code>out_buf[i] = 0</code></p>
 							</div>
 							</li>
 							<li class="command" value="15" id="nn::ncm::IContentMetaDatabase(15)">
@@ -15879,7 +15906,7 @@
 							  <code class="signature">[13] <a href="#nn::ncm::IContentStorage(13)">ListContentId</a>()</code>
 							  <div class="docs"><p>Takes an output buffer, u32 offset and gets all entries starting at that offset. Returns number of entries read.</p>
 							<p>Each entry is a [#NcaID](http://switchbrew.org/index.php?title=NCM services#NcaID &quot;wikilink&quot;).</p>
-							<p>The total read entries is exactly the same as the number of <hex>.nca directories in the storage FS(or at least under the registered directory?).</p>
+							<p>The total read entries is exactly the same as the number of “<hex>.nca” directories in the storage FS(or at least under the “registered” directory?).</p>
 							</div>
 							</li>
 							<li class="command" value="14" id="nn::ncm::IContentStorage(14)">
@@ -15887,7 +15914,7 @@
 							  <label for="showDocs(nn::ncm::IContentStorage(14))" class="showDocsLabel"></label>
 							  <code class="signature">[14] <a href="#nn::ncm::IContentStorage(14)">GetSize</a>()</code>
 							  <div class="docs"><p>Takes a [#NcaID](http://switchbrew.org/index.php?title=NCM services#NcaID &quot;wikilink&quot;) as input.</p>
-							<p>Returns the total size readable by ReadEntryRaw. This is the same as the size-field in the <a href="http://switchbrew.org/index.php?title=NAX0" title="wikilink">NAX0</a> <NcaID>.nca/00 file.</p>
+							<p>Returns the total size readable by ReadEntryRaw. This is the same as the size-field in the <a href="http://switchbrew.org/index.php?title=NAX0" title="wikilink">NAX0</a> “<NcaID>.nca/00” file.</p>
 							</div>
 							</li>
 							<li class="command" value="15" id="nn::ncm::IContentStorage(15)">
@@ -16492,19 +16519,19 @@
 							<li class="command" value="2" id="nn::nfc::detail::ISystem(2)">
 							
 							
-							  <code class="signature">[2] <a href="#nn::nfc::detail::ISystem(2)">GetState</a>() -&gt; u32</code>
+							  <code class="signature">[2] <a href="#nn::nfc::detail::ISystem(2)">GetStateOld</a>() -&gt; u32</code>
 							
 							</li>
 							<li class="command" value="3" id="nn::nfc::detail::ISystem(3)">
 							
 							
-							  <code class="signature">[3] <a href="#nn::nfc::detail::ISystem(3)">IsNfcEnabled</a>() -&gt; u8</code>
+							  <code class="signature">[3] <a href="#nn::nfc::detail::ISystem(3)">IsNfcEnabledOld</a>() -&gt; u8</code>
 							
 							</li>
 							<li class="command" value="100" id="nn::nfc::detail::ISystem(100)">
 							
 							
-							  <code class="signature">[100] <a href="#nn::nfc::detail::ISystem(100)">SetNfcEnabled</a>(u8)</code>
+							  <code class="signature">[100] <a href="#nn::nfc::detail::ISystem(100)">SetNfcEnabledOld</a>(u8)</code>
 							
 							</li>
 							<li class="command" value="400" id="nn::nfc::detail::ISystem(400)">
@@ -16668,25 +16695,25 @@
 							<li class="command" value="0" id="nn::nfc::detail::IUser(0)">
 							
 							
-							  <code class="signature">[0] <a href="#nn::nfc::detail::IUser(0)">Initialize</a>(u64, u64, pid, buffer&lt;unknown, 5, 0&gt;)</code>
+							  <code class="signature">[0] <a href="#nn::nfc::detail::IUser(0)">InitializeOld</a>(u64, u64, pid, buffer&lt;unknown, 5, 0&gt;)</code>
 							
 							</li>
 							<li class="command" value="1" id="nn::nfc::detail::IUser(1)">
 							
 							
-							  <code class="signature">[1] <a href="#nn::nfc::detail::IUser(1)">Finalize</a>()</code>
+							  <code class="signature">[1] <a href="#nn::nfc::detail::IUser(1)">FinalizeOld</a>()</code>
 							
 							</li>
 							<li class="command" value="2" id="nn::nfc::detail::IUser(2)">
 							
 							
-							  <code class="signature">[2] <a href="#nn::nfc::detail::IUser(2)">GetState</a>() -&gt; u32</code>
+							  <code class="signature">[2] <a href="#nn::nfc::detail::IUser(2)">GetStateOld</a>() -&gt; u32</code>
 							
 							</li>
 							<li class="command" value="3" id="nn::nfc::detail::IUser(3)">
 							
 							
-							  <code class="signature">[3] <a href="#nn::nfc::detail::IUser(3)">IsNfcEnabled</a>() -&gt; u8</code>
+							  <code class="signature">[3] <a href="#nn::nfc::detail::IUser(3)">IsNfcEnabledOld</a>() -&gt; u8</code>
 							
 							</li>
 							<li class="command" value="400" id="nn::nfc::detail::IUser(400)">
@@ -17732,6 +17759,7 @@
 						<h3>Returned by:</h3>
 						<ul>
 							<li><a href="ifaces.html#nn::nifm::detail::IStaticService(4)">nn::nifm::detail::IStaticService::CreateGeneralService [4]</a></li>
+							<li><a href="ifaces.html#nn::nifm::detail::IStaticService(4)">nn::nifm::detail::IStaticService::CreateGeneralService [4]</a></li>
 							<li><a href="ifaces.html#nn::nifm::detail::IStaticService(5)">nn::nifm::detail::IStaticService::CreateGeneralService [5]</a></li>
 						</ul>
 					</li>
@@ -17795,6 +17823,12 @@
 							<li class="command" value="11" id="nn::nifm::detail::IGeneralService(11)">
 							
 							
+							  <code class="signature">[11, 4.0.0+] <a href="#nn::nifm::detail::IGeneralService(11)">GetScanDataOld</a>() -&gt; (i32, array&lt;<a href="types.html#nn::nifm::detail::sf::AccessPointData">nn::nifm::detail::sf::AccessPointData</a>, 6&gt;)</code>
+							
+							</li>
+							<li class="command" value="11" id="nn::nifm::detail::IGeneralService(11)">
+							
+							
 							  <code class="signature">[11, 1.0.0-3.0.2] <a href="#nn::nifm::detail::IGeneralService(11)">GetScanData</a>() -&gt; (i32, array&lt;<a href="types.html#nn::nifm::detail::sf::AccessPointData">nn::nifm::detail::sf::AccessPointData</a>, 6&gt;)</code>
 							
 							</li>
@@ -17808,6 +17842,12 @@
 							
 							
 							  <code class="signature">[13, 1.0.0-3.0.2] <a href="#nn::nifm::detail::IGeneralService(13)">GetCurrentAccessPoint</a>() -&gt; buffer&lt;<a href="types.html#nn::nifm::detail::sf::AccessPointData">nn::nifm::detail::sf::AccessPointData</a>, 0x1a, 0x34&gt;</code>
+							
+							</li>
+							<li class="command" value="13" id="nn::nifm::detail::IGeneralService(13)">
+							
+							
+							  <code class="signature">[13, 4.0.0+] <a href="#nn::nifm::detail::IGeneralService(13)">GetCurrentAccessPointOld</a>() -&gt; buffer&lt;<a href="types.html#nn::nifm::detail::sf::AccessPointData">nn::nifm::detail::sf::AccessPointData</a>, 0x1a, 0x34&gt;</code>
 							
 							</li>
 							<li class="command" value="14" id="nn::nifm::detail::IGeneralService(14)">
@@ -17986,6 +18026,12 @@
 							
 							
 							  <code class="signature">[1, 1.0.0-2.3.0] <a href="#nn::nifm::detail::INetworkProfile(1)">Persist</a>(<a href="types.html#nn::util::Uuid">nn::util::Uuid</a>) -&gt; <a href="types.html#nn::util::Uuid">nn::util::Uuid</a></code>
+							
+							</li>
+							<li class="command" value="1" id="nn::nifm::detail::INetworkProfile(1)">
+							
+							
+							  <code class="signature">[1, 3.0.0+] <a href="#nn::nifm::detail::INetworkProfile(1)">PersistOld</a>(<a href="types.html#nn::util::Uuid">nn::util::Uuid</a>) -&gt; <a href="types.html#nn::util::Uuid">nn::util::Uuid</a></code>
 							
 							</li>
 							<li class="command" value="2" id="nn::nifm::detail::INetworkProfile(2)">
@@ -18240,6 +18286,12 @@
 							
 							
 							  <code class="signature">[4, 1.0.0-2.3.0] <a href="#nn::nifm::detail::IStaticService(4)">CreateGeneralService</a>() -&gt; object&lt;<a href="ifaces.html#nn::nifm::detail::IGeneralService">nn::nifm::detail::IGeneralService</a>&gt;</code>
+							
+							</li>
+							<li class="command" value="4" id="nn::nifm::detail::IStaticService(4)">
+							
+							
+							  <code class="signature">[4, 3.0.0+] <a href="#nn::nifm::detail::IStaticService(4)">CreateGeneralServiceOld</a>() -&gt; object&lt;<a href="ifaces.html#nn::nifm::detail::IGeneralService">nn::nifm::detail::IGeneralService</a>&gt;</code>
 							
 							</li>
 							<li class="command" value="5" id="nn::nifm::detail::IStaticService(5)">
@@ -18652,7 +18704,7 @@
 							<li class="command" value="40" id="nn::nim::detail::INetworkInstallManager(40)">
 							
 							
-							  <code class="signature">[40, 2.0.0+] <a href="#nn::nim::detail::INetworkInstallManager(40)">ListApplyDeltaTask</a>() -&gt; (u32, buffer&lt;unknown, 6, 0&gt;)</code>
+							  <code class="signature">[40, 2.0.0+] <a href="#nn::nim::detail::INetworkInstallManager(40)">ListApplyDeltaTask2</a>() -&gt; (u32, buffer&lt;unknown, 6, 0&gt;)</code>
 							
 							</li>
 							<li class="command" value="41" id="nn::nim::detail::INetworkInstallManager(41)">
@@ -19285,8 +19337,8 @@
 							  <code class="signature">[21] <a href="#nn::ns::detail::IApplicationManagerInterface(21)">GetApplicationContentPath</a>()</code>
 							  <div class="docs"><p>Takes a 0x16-type output buffer, an u8 <a href="http://switchbrew.org/index.php?title=NCA" title="wikilink">type</a>, and an u64 titleID.</p>
 							<p>The input titleID is used with the application-title table like various other cmds, anything not in that table can't be used with this.</p>
-							<p>Returns a string path for the specified type of patch content with this titleID, otherwise returns regular-application paths when update-title not installed. Returns an error when the specified type of content doesn't exist for this title. Starts with @{SdCardContent,UserContent}:// and ends in .nca.</p>
-							<p>For gamecard content, the output path is: @GcSXXXXXXXX:/<NcaId>.nca. NCA-type0 with gamecard returns 0 with an empty output string.</p>
+							<p>Returns a string path for the specified type of patch content with this titleID, otherwise returns regular-application paths when update-title not installed. Returns an error when the specified type of content doesn't exist for this title. Starts with “@{SdCardContent,UserContent}://” and ends in “.nca”.</p>
+							<p>For gamecard content, the output path is: “@GcSXXXXXXXX:/<NcaId>.nca”. NCA-type0 with gamecard returns 0 with an empty output string.</p>
 							<p>The output string is then used by the user-process with <a href="http://switchbrew.org/index.php?title=Filesystem_services" title="wikilink">FS</a> to mount the content.</p>
 							</div>
 							</li>
@@ -19790,8 +19842,8 @@
 							<p>Entry structure:</p>
 							<p>| Offset | Size | Description                                                                |                                            |
 							|--------|------|----------------------------------------------------------------------------|--------------------------------------------|
-							| 0x0    | 0x1  | u8 type. [[Content_Manager_services                                  | Title type]] (String is from web-applet) |
-							| 0x1    | 0x1  | u8 installedStorage / [[Filesystem_services                           | StorageId]] (String is from web-applet)  |
+							| 0x0    | 0x1  | u8 “type”. [[Content_Manager_services                                  | Title type]] (String is from web-applet) |
+							| 0x1    | 0x1  | u8 “installedStorage” / [[Filesystem_services                           | StorageId]] (String is from web-applet)  |
 							| 0x2    | 0x1  | Unknown. Non-zero with output from cmd 605, differs for app/update titles. |                                            |
 							| 0x3    | 0x1  | Padding                                                                    |                                            |
 							| 0x4    | 0x4  | u32 Title-version                                                          |                                            |
@@ -20385,7 +20437,7 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="144" aria-valuemin="0" aria-valuemax="100" style="width: 144%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="166" aria-valuemin="0" aria-valuemax="100" style="width: 166%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
@@ -20400,63 +20452,68 @@
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::ns::detail::IDevelopInterface(0))"></input>
 							  <label for="showDocs(nn::ns::detail::IDevelopInterface(0))" class="showDocsLabel"></label>
 							  <code class="signature">[0] <a href="#nn::ns::detail::IDevelopInterface(0)">LaunchProgram</a>()</code>
-							  <div class="docs"><p>Wrapper for pm:shell <a href="http://switchbrew.org/index.php?title=Process_Manager_services#LaunchProcess" title="wikilink">LaunchProcess</a>.</p>
+							  <div class="docs"><p>Wrapper for “pm:shell” <a href="http://switchbrew.org/index.php?title=Process_Manager_services#LaunchProcess" title="wikilink">LaunchProcess</a>.</p>
 							</div>
 							</li>
 							<li class="command" value="1" id="nn::ns::detail::IDevelopInterface(1)">
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::ns::detail::IDevelopInterface(1))"></input>
 							  <label for="showDocs(nn::ns::detail::IDevelopInterface(1))" class="showDocsLabel"></label>
 							  <code class="signature">[1] <a href="#nn::ns::detail::IDevelopInterface(1)">TerminateProcess</a>()</code>
-							  <div class="docs"><p>Wrapper for pm:shell <a href="http://switchbrew.org/index.php?title=Process_Manager_services#TerminateTitleByPid" title="wikilink">TerminateTitleByPid</a>.</p>
+							  <div class="docs"><p>Wrapper for “pm:shell” <a href="http://switchbrew.org/index.php?title=Process_Manager_services#TerminateTitleByPid" title="wikilink">TerminateTitleByPid</a>.</p>
 							</div>
 							</li>
 							<li class="command" value="2" id="nn::ns::detail::IDevelopInterface(2)">
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::ns::detail::IDevelopInterface(2))"></input>
 							  <label for="showDocs(nn::ns::detail::IDevelopInterface(2))" class="showDocsLabel"></label>
 							  <code class="signature">[2] <a href="#nn::ns::detail::IDevelopInterface(2)">TerminateProgram</a>()</code>
-							  <div class="docs"><p>Wrapper for pm:shell <a href="http://switchbrew.org/index.php?title=Process_Manager_services#TerminateTitleByTitleId" title="wikilink">TerminateTitleByTitleId</a>.</p>
-							</div>
-							</li>
-							<li class="command" value="3" id="nn::ns::detail::IDevelopInterface(3)">
-							  <input type="checkbox" class="showDocs" id="showDocs(nn::ns::detail::IDevelopInterface(3))"></input>
-							  <label for="showDocs(nn::ns::detail::IDevelopInterface(3))" class="showDocsLabel"></label>
-							  <code class="signature">[3] <a href="#nn::ns::detail::IDevelopInterface(3)">GetShellEventHandle</a>()</code>
-							  <div class="docs"><p>Wrapper for pm:shell <a href="http://switchbrew.org/index.php?title=Process_Manager_services#GetProcessEventWaiter" title="wikilink">GetProcessEventWaiter</a>.</p>
+							  <div class="docs"><p>Wrapper for “pm:shell” <a href="http://switchbrew.org/index.php?title=Process_Manager_services#TerminateTitleByTitleId" title="wikilink">TerminateTitleByTitleId</a>.</p>
 							</div>
 							</li>
 							<li class="command" value="4" id="nn::ns::detail::IDevelopInterface(4)">
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::ns::detail::IDevelopInterface(4))"></input>
 							  <label for="showDocs(nn::ns::detail::IDevelopInterface(4))" class="showDocsLabel"></label>
-							  <code class="signature">[4] <a href="#nn::ns::detail::IDevelopInterface(4)">GetShellEventInfo</a>()</code>
-							  <div class="docs"><p>Wrapper for pm:shell <a href="http://switchbrew.org/index.php?title=Process_Manager_services#GetProcessEventType" title="wikilink">GetProcessEventType</a>.</p>
+							  <code class="signature">[4] <a href="#nn::ns::detail::IDevelopInterface(4)">GetShellEventHandle</a>()</code>
+							  <div class="docs"><p>Wrapper for “pm:shell” <a href="http://switchbrew.org/index.php?title=Process_Manager_services#GetProcessEventWaiter" title="wikilink">GetProcessEventWaiter</a>.</p>
 							</div>
 							</li>
 							<li class="command" value="5" id="nn::ns::detail::IDevelopInterface(5)">
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::ns::detail::IDevelopInterface(5))"></input>
 							  <label for="showDocs(nn::ns::detail::IDevelopInterface(5))" class="showDocsLabel"></label>
-							  <code class="signature">[5] <a href="#nn::ns::detail::IDevelopInterface(5)">TerminateApplication</a>()</code>
-							  <div class="docs"><p>Calls pm:shell <a href="http://switchbrew.org/index.php?title=Process_Manager_services#GetCrashingProcessPid" title="wikilink">GetCrashingProcessPid</a> and sends PID to <a href="http://switchbrew.org/index.php?title=Process_Manager_services#TerminateTitleByPid" title="wikilink">TerminateTitleByPid</a>.</p>
+							  <code class="signature">[5] <a href="#nn::ns::detail::IDevelopInterface(5)">GetShellEventInfo</a>()</code>
+							  <div class="docs"><p>Wrapper for “pm:shell” <a href="http://switchbrew.org/index.php?title=Process_Manager_services#GetProcessEventType" title="wikilink">GetProcessEventType</a>.</p>
 							</div>
 							</li>
 							<li class="command" value="6" id="nn::ns::detail::IDevelopInterface(6)">
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::ns::detail::IDevelopInterface(6))"></input>
 							  <label for="showDocs(nn::ns::detail::IDevelopInterface(6))" class="showDocsLabel"></label>
-							  <code class="signature">[6] <a href="#nn::ns::detail::IDevelopInterface(6)">PrepareLaunchProgramFromHost</a>()</code>
-							  <div class="docs"><p>Calls <a href="http://switchbrew.org/index.php?title=NCM_services#IPathResolverForStorage" title="wikilink">IPathResolverForStorage</a> Set...NcaPath functions.</p>
-							<p><a href="http://switchbrew.org/index.php?title=Category:Services" title="wikilink">Category:Services</a></p>
+							  <code class="signature">[6] <a href="#nn::ns::detail::IDevelopInterface(6)">TerminateApplication</a>()</code>
+							  <div class="docs"><p>Calls “pm:shell” <a href="http://switchbrew.org/index.php?title=Process_Manager_services#GetCrashingProcessPid" title="wikilink">GetCrashingProcessPid</a> and sends PID to <a href="http://switchbrew.org/index.php?title=Process_Manager_services#TerminateTitleByPid" title="wikilink">TerminateTitleByPid</a>.</p>
 							</div>
 							</li>
 							<li class="command" value="7" id="nn::ns::detail::IDevelopInterface(7)">
-							
-							
-							  <code class="signature">[7] <a href="#nn::ns::detail::IDevelopInterface(7)">LaunchApplication</a>()</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::ns::detail::IDevelopInterface(7))"></input>
+							  <label for="showDocs(nn::ns::detail::IDevelopInterface(7))" class="showDocsLabel"></label>
+							  <code class="signature">[7] <a href="#nn::ns::detail::IDevelopInterface(7)">PrepareLaunchProgramFromHost</a>()</code>
+							  <div class="docs"><p>Takes a type-0x5 input buffer containing the <a href="http://switchbrew.org/index.php?title=Filesystem_services" title="wikilink">ContentPath</a>, returns an output 0x10-byte struct.</p>
+							<p>Calls <a href="http://switchbrew.org/index.php?title=NCM_services#IPathResolverForStorage" title="wikilink">IPathResolverForStorage</a> Set...NcaPath functions.</p>
+							</div>
 							</li>
 							<li class="command" value="8" id="nn::ns::detail::IDevelopInterface(8)">
-							
-							
-							  <code class="signature">[8] <a href="#nn::ns::detail::IDevelopInterface(8)">LaunchApplicationWithStorageId</a>()</code>
-							
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::ns::detail::IDevelopInterface(8))"></input>
+							  <label for="showDocs(nn::ns::detail::IDevelopInterface(8))" class="showDocsLabel"></label>
+							  <code class="signature">[8] <a href="#nn::ns::detail::IDevelopInterface(8)">LaunchApplication</a>()</code>
+							  <div class="docs"><p>Takes an input u64 titleID, returns an output u64 PID.</p>
+							<p>Launches an application title which is registered with NS.</p>
+							</div>
+							</li>
+							<li class="command" value="9" id="nn::ns::detail::IDevelopInterface(9)">
+							  <input type="checkbox" class="showDocs" id="showDocs(nn::ns::detail::IDevelopInterface(9))"></input>
+							  <label for="showDocs(nn::ns::detail::IDevelopInterface(9))" class="showDocsLabel"></label>
+							  <code class="signature">[9] <a href="#nn::ns::detail::IDevelopInterface(9)">LaunchApplicationWithStorageId</a>()</code>
+							  <div class="docs"><p>Takes 2 input u8s, an u32 <a href="http://switchbrew.org/index.php?title=Process_Manager_services" title="wikilink">launch_flags</a>, and an u64 titleID. Returns an output u64 PID.</p>
+							<p>Launches an application title which is registered with NS.</p>
+							<p><a href="http://switchbrew.org/index.php?title=Category:Services" title="wikilink">Category:Services</a></p>
+							</div>
 							</li>
 						</ol>
 					</li>
@@ -21018,8 +21075,8 @@
 							  <label for="showDocs(nn::nsd::detail::IManager(11))" class="showDocsLabel"></label>
 							  <code class="signature">[11] <a href="#nn::nsd::detail::IManager(11)">GetEnvironmentIdentifier</a>() -&gt; buffer&lt;unknown, 0x16, 8&gt;</code>
 							  <div class="docs"><p>Takes a type-0x16 buffer with size 8. Returns a string.</p>
-							<p>The output string is used by <a href="http://switchbrew.org/index.php?title=NIM_services" title="wikilink">NIM</a> for the eid:%s in the User-Agent strings.</p>
-							<p>This is the lp1 string also used in domains.</p>
+							<p>The output string is used by <a href="http://switchbrew.org/index.php?title=NIM_services" title="wikilink">NIM</a> for the “eid:%s” in the User-Agent strings.</p>
+							<p>This is the “lp1” string also used in domains.</p>
 							</div>
 							</li>
 							<li class="command" value="12" id="nn::nsd::detail::IManager(12)">
@@ -21947,7 +22004,7 @@
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::pctl::detail::ipc::IParentalControlService(1204))"></input>
 							  <label for="showDocs(nn::pctl::detail::ipc::IParentalControlService(1204))" class="showDocsLabel"></label>
 							  <code class="signature">[1204] <a href="#nn::pctl::detail::ipc::IParentalControlService(1204)">GenerateInquiryCode</a>() -&gt; <a href="types.html#nn::pctl::InquiryCode">nn::pctl::InquiryCode</a></code>
-							  <div class="docs"><p>This cmd takes no input, and produces 0x20 bytes of raw output containing snprintf(%02d%08llu, 10, [inquiry_rnd]) on &lt;= <a href="http://switchbrew.org/index.php?title=3.0.0" title="wikilink">3.0.0</a>. This changed on <a href="http://switchbrew.org/index.php?title=3.0.1" title="wikilink">3.0.1</a> to produce 11(...) instead of 10(...).</p>
+							  <div class="docs"><p>This cmd takes no input, and produces 0x20 bytes of raw output containing snprintf(“%02d%08llu”, 10, [inquiry_rnd]) on &lt;= <a href="http://switchbrew.org/index.php?title=3.0.0" title="wikilink">3.0.0</a>. This changed on <a href="http://switchbrew.org/index.php?title=3.0.1" title="wikilink">3.0.1</a> to produce “11(...)” instead of “10(...)”.</p>
 							<p>The random number generation relies on TinyMT.</p>
 							</div>
 							</li>
@@ -21955,8 +22012,8 @@
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::pctl::detail::ipc::IParentalControlService(1205))"></input>
 							  <label for="showDocs(nn::pctl::detail::ipc::IParentalControlService(1205))" class="showDocsLabel"></label>
 							  <code class="signature">[1205] <a href="#nn::pctl::detail::ipc::IParentalControlService(1205)">CheckMasterKey</a>(<a href="types.html#nn::pctl::InquiryCode">nn::pctl::InquiryCode</a>, array&lt;i8, 9&gt;) -&gt; bool</code>
-							  <div class="docs"><p>This cmd takes the 0x20 bytes produced by GenerateInquiryCode, and an 0x20 byte X descriptor containing snprintf(%08llu, master_key), and returns a bool 00 if the master key is not valid, and 01 if it is.</p>
-							<p>Master Keys are validated as follows on &lt;= <a href="http://switchbrew.org/index.php?title=3.0.0" title="wikilink">3.0.0</a>: first, svcSleepThread(1000000000LL) is called to introduce a delay to prevent brute force attacks. Then, strlen(master_key) is called -- if this is not 8, 0 is returned. Next, the inquiry code is regenerated and snprintf(%02d%08llu, 10, generated_inquiry_rnd) is compared to the inquiry data passed in as an argument. If this doesn't match, 0 is returned. Then, hmac-sha256(snprintf(%02d%08llu, 10, generated_inquiry_rnd)) is called using hardcoded keydata, and the master key argument is compared to snprintf(%08llu, (hmac_result &amp; 0xFFFFFFFFFFFF) % 100000000). If this matches, 1 is returned, otherwise 0 is returned.</p>
+							  <div class="docs"><p>This cmd takes the 0x20 bytes produced by GenerateInquiryCode, and an 0x20 byte X descriptor containing snprintf(“%08llu”, master_key), and returns a bool 00 if the master key is not valid, and 01 if it is.</p>
+							<p>Master Keys are validated as follows on &lt;= <a href="http://switchbrew.org/index.php?title=3.0.0" title="wikilink">3.0.0</a>: first, svcSleepThread(1000000000LL) is called to introduce a delay to prevent brute force attacks. Then, strlen(master_key) is called -- if this is not 8, 0 is returned. Next, the inquiry code is regenerated and snprintf(“%02d%08llu”, 10, generated_inquiry_rnd) is compared to the inquiry data passed in as an argument. If this doesn't match, 0 is returned. Then, hmac-sha256(snprintf(“%02d%08llu”, 10, generated_inquiry_rnd)) is called using hardcoded keydata, and the master key argument is compared to snprintf(“%08llu”, (hmac_result &amp; 0xFFFFFFFFFFFF) % 100000000). If this matches, 1 is returned, otherwise 0 is returned.</p>
 							<p>On <a href="http://switchbrew.org/index.php?title=3.0.1" title="wikilink">3.0.1</a> this was changed to use different hardcoded keydata, and to pass 11 as the snprintf argument instead of 10.</p>
 							<p><a href="http://switchbrew.org/index.php?title=Category:Services" title="wikilink">Category:Services</a></p>
 							</div>
@@ -23023,7 +23080,7 @@
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::pm::detail::IShellInterface(5))"></input>
 							  <label for="showDocs(nn::pm::detail::IShellInterface(5))" class="showDocsLabel"></label>
 							  <code class="signature">[5, 1.0.0-4.1.0] <a href="#nn::pm::detail::IShellInterface(5)">FinalizeDeadProcess</a>(u64)</code>
-							  <div class="docs"><p>Takes a pid as input. If the process with pid has the state dead, it unregisters the pid in fsp:pr, sm:m, and ldr:pm.</p>
+							  <div class="docs"><p>Takes a pid as input. If the process with pid has the state “dead”, it unregisters the pid in fsp:pr, sm:m, and ldr:pm.</p>
 							<p>Then it removes the process from PMs internal linked-list of active processes.</p>
 							<p>[5.0.0+] This command was removed.</p>
 							</div>
@@ -23055,16 +23112,16 @@
 							<li class="command" value="6" id="nn::pm::detail::IShellInterface(6)">
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::pm::detail::IShellInterface(6))"></input>
 							  <label for="showDocs(nn::pm::detail::IShellInterface(6))" class="showDocsLabel"></label>
-							  <code class="signature">[6, 1.0.0-4.1.0] <a href="#nn::pm::detail::IShellInterface(6)">ClearProcessNotificationFlag</a>(u64)</code>
-							  <div class="docs"><p>Takes a pid as input. Clears 0x10 from process flags.</p>
-							<p>[5.0.0+] This command was removed.</p>
+							  <code class="signature">[6, 5.0.0+] <a href="#nn::pm::detail::IShellInterface(6)">GetApplicationPid</a>(u64)</code>
+							  <div class="docs"><p>Returns the pid of the application process.</p>
 							</div>
 							</li>
 							<li class="command" value="6" id="nn::pm::detail::IShellInterface(6)">
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::pm::detail::IShellInterface(6))"></input>
 							  <label for="showDocs(nn::pm::detail::IShellInterface(6))" class="showDocsLabel"></label>
-							  <code class="signature">[6, 5.0.0+] <a href="#nn::pm::detail::IShellInterface(6)">GetApplicationPid</a>(u64)</code>
-							  <div class="docs"><p>Returns the pid of the application process.</p>
+							  <code class="signature">[6, 1.0.0-4.1.0] <a href="#nn::pm::detail::IShellInterface(6)">ClearProcessNotificationFlag</a>(u64)</code>
+							  <div class="docs"><p>Takes a pid as input. Clears 0x10 from process flags.</p>
+							<p>[5.0.0+] This command was removed.</p>
 							</div>
 							</li>
 							<li class="command" value="7" id="nn::pm::detail::IShellInterface(7)">
@@ -24291,7 +24348,7 @@
 							  <label for="showDocs(nn::settings::ISystemSettingsServer(3))" class="showDocsLabel"></label>
 							  <code class="signature">[3] <a href="#nn::settings::ISystemSettingsServer(3)">GetFirmwareVersion</a>() -&gt; buffer&lt;<a href="types.html#nn::settings::system::FirmwareVersion">nn::settings::system::FirmwareVersion</a>, 0x1a, 0x100&gt;</code>
 							  <div class="docs"><p>Takes a type-0x1A output buffer. User-processes use hard-coded size 0x100.</p>
-							<p>If needed, reads the content of the <a href="http://switchbrew.org/index.php?title=System_Version_Title" title="wikilink">System_Version_Title</a> /file into state. This is only done once.</p>
+							<p>If needed, reads the content of the <a href="http://switchbrew.org/index.php?title=System_Version_Title" title="wikilink">System_Version_Title</a> “/file” into state. This is only done once.</p>
 							<p>Then the above 0x100-byte data is copied to the output buffer.</p>
 							</div>
 							</li>
@@ -24410,8 +24467,8 @@
 							  <div class="docs"><p>No input, returns an output s32.</p>
 							<p>This is the current Theme set by System Settings.</p>
 							<ul>
-							<li>0: Basic White</li>
-							<li>1: Basic Black</li>
+							<li>0: “Basic White”</li>
+							<li>1: “Basic Black”</li>
 							</ul>
 							</div>
 							</li>
@@ -24549,7 +24606,7 @@
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::settings::ISystemSettingsServer(47))"></input>
 							  <label for="showDocs(nn::settings::ISystemSettingsServer(47))" class="showDocsLabel"></label>
 							  <code class="signature">[47] <a href="#nn::settings::ISystemSettingsServer(47)">GetQuestFlag</a>() -&gt; bool</code>
-							  <div class="docs"><p>Gets a flag determining whether the console is a kiosk unit (codenamed Quest). Used by qlaunch to determine whether to launch Retail Interactive Display Menu.</p>
+							  <div class="docs"><p>Gets a flag determining whether the console is a kiosk unit (codenamed “Quest”). Used by qlaunch to determine whether to launch Retail Interactive Display Menu.</p>
 							</div>
 							</li>
 							<li class="command" value="48" id="nn::settings::ISystemSettingsServer(48)">
@@ -24641,7 +24698,7 @@
 							  <label for="showDocs(nn::settings::ISystemSettingsServer(62))" class="showDocsLabel"></label>
 							  <code class="signature">[62] <a href="#nn::settings::ISystemSettingsServer(62)">GetDebugModeFlag</a>() -&gt; bool</code>
 							  <div class="docs"><p>Returns an output u8.</p>
-							<p>Loads the 1-byte config for &lt;settings_debug, is_debug_mode_enabled&gt;. If that fails, value 0x1 is written to output. This uses the same func as ReadSetting internally.</p>
+							<p>Loads the 1-byte config for &lt;“settings_debug”, “is_debug_mode_enabled”&gt;. If that fails, value 0x1 is written to output. This uses the same func as ReadSetting internally.</p>
 							<p>Returned retval is always 0.</p>
 							</div>
 							</li>
@@ -25107,7 +25164,7 @@
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::settings::ISystemSettingsServer(139))"></input>
 							  <label for="showDocs(nn::settings::ISystemSettingsServer(139))" class="showDocsLabel"></label>
 							  <code class="signature">[139, 4.0.0+] <a href="#nn::settings::ISystemSettingsServer(139)">GetAllowedSslHosts</a>()</code>
-							  <div class="docs"><p>Takes a type-0x6 output buffer, returns an output s32. This buffer contains an array of 0x8-byte nn::settings::system::AllowedSslHost entries.</p>
+							  <div class="docs"><p>Takes a type-0x6 output buffer, returns an output s32. This buffer contains an array of 0x8-byte “nn::settings::system::AllowedSslHost” entries.</p>
 							</div>
 							</li>
 							<li class="command" value="140" id="nn::settings::ISystemSettingsServer(140)">
@@ -25695,7 +25752,7 @@
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::spl::detail::IGeneralInterface(7))"></input>
 							  <label for="showDocs(nn::spl::detail::IGeneralInterface(7))" class="showDocsLabel"></label>
 							  <code class="signature">[7] <a href="#nn::spl::detail::IGeneralInterface(7)">GetRandomBytes</a>()</code>
-							  <div class="docs"><p>Takes a type-6 buffer and fills it with random data from <a href="http://switchbrew.org/index.php?title=SMC#GetRandomBytes" title="wikilink">GetRandomBytes SMC</a>. Same command for spl: and csrng services.</p>
+							  <div class="docs"><p>Takes a type-6 buffer and fills it with random data from <a href="http://switchbrew.org/index.php?title=SMC#GetRandomBytes" title="wikilink">GetRandomBytes SMC</a>. Same command for “spl:” and “csrng” services.</p>
 							</div>
 							</li>
 							<li class="command" value="9" id="nn::spl::detail::IGeneralInterface(9)">
@@ -25912,7 +25969,7 @@
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::spl::detail::IRandomInterface(0))"></input>
 							  <label for="showDocs(nn::spl::detail::IRandomInterface(0))" class="showDocsLabel"></label>
 							  <code class="signature">[0] <a href="#nn::spl::detail::IRandomInterface(0)">GetRandomBytes</a>() -&gt; buffer&lt;unknown, 6, 0&gt;</code>
-							  <div class="docs"><p>Takes a type-6 buffer and fills it with random data from <a href="http://switchbrew.org/index.php?title=SMC#GetRandomBytes" title="wikilink">GetRandomBytes SMC</a>. Same command for spl: and csrng services.</p>
+							  <div class="docs"><p>Takes a type-6 buffer and fills it with random data from <a href="http://switchbrew.org/index.php?title=SMC#GetRandomBytes" title="wikilink">GetRandomBytes SMC</a>. Same command for “spl:” and “csrng” services.</p>
 							</div>
 							</li>
 						</ol>
@@ -27362,7 +27419,7 @@
 							<li>Byte1(bDescriptorType) must match 0x5.</li>
 							<li>Byte2(bEndpointAddress) is only compared with 0x80 to determine whether to use an input or output endpoint, the actual endpoint-number is allocated automatically by checking state. Hence, all input endpoints must use bEndpointAddress==0x80. Up to endpoint-number 0xF can be allocated for each endpoint-direction, for a total of 16 endpoints including control, and 15 for non-control endpoints(<a href="#nn::usb::ds::IDsEndpoint" title="wikilink">#IDsEndpoint</a> sessions for each direction). This matches the Tegra maximum.</li>
 							</ul>
-							<p>From the Tegra datasheet: The maximum packet size supported on any endpoint is 1024 bytes in high-speed mode, for both device and host modes.</p>
+							<p>From the Tegra datasheet: “The maximum packet size supported on any endpoint is 1024 bytes in high-speed mode, for both device and host modes.”</p>
 							</div>
 							</li>
 							<li class="command" value="1" id="nn::usb::ds::IDsInterface(1)">
@@ -27441,7 +27498,7 @@
 							  <label for="showDocs(nn::usb::ds::IDsInterface(11))" class="showDocsLabel"></label>
 							  <code class="signature">[11] <a href="#nn::usb::ds::IDsInterface(11)">StallCtrl</a>()</code>
 							  <div class="docs"><p>No input/output.</p>
-							<p>Calls a function with both control endpoints(0x80 and 0x00) with the same function. From strings: m_pProtocol-&gt;Stall(0x80) m_pProtocol-&gt;Stall(0x00).</p>
+							<p>Calls a function with both control endpoints(0x80 and 0x00) with the same function. From strings: “m_pProtocol-&gt;Stall(0x80)” “m_pProtocol-&gt;Stall(0x00)”.</p>
 							</div>
 							</li>
 							<li class="command" value="12" id="nn::usb::ds::IDsInterface(12)">
@@ -27492,7 +27549,7 @@
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::usb::ds::IDsService(2))"></input>
 							  <label for="showDocs(nn::usb::ds::IDsService(2))" class="showDocsLabel"></label>
 							  <code class="signature">[2] <a href="#nn::usb::ds::IDsService(2)">GetDsInterface</a>()</code>
-							  <div class="docs"><p>Takes 2 type-5 buffers and returns an <a href="#nn::usb::ds::IDsInterface" title="wikilink">#IDsInterface</a>. <a href="http://switchbrew.org/index.php?title=Manu_Services" title="wikilink">Manu</a> sends a 0x09-byte command (e.g.: 0x09, 0x04, 0x04, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0x00) in the first buffer and a string (usb) in the second buffer.</p>
+							  <div class="docs"><p>Takes 2 type-5 buffers and returns an <a href="#nn::usb::ds::IDsInterface" title="wikilink">#IDsInterface</a>. <a href="http://switchbrew.org/index.php?title=Manu_Services" title="wikilink">Manu</a> sends a 0x09-byte command (e.g.: 0x09, 0x04, 0x04, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0x00) in the first buffer and a string (“usb”) in the second buffer.</p>
 							<p>When the strlen output for the second buffer is &gt;=0x40, size 0x40 is used instead for copying the string. This is the interface name, it's not sent over USB.</p>
 							<p>Returns an error when <a href="#nn::usb::ds::IDsService(0)" title="wikilink">#BindDevice</a> wasn't used.</p>
 							<p>Up to 4 interfaces can be used+<a href="#nn::usb::ds::IDsInterface(3)" title="wikilink">enabled</a>.</p>
@@ -28079,7 +28136,7 @@
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::visrv::sf::IApplicationDisplayService(100))"></input>
 							  <label for="showDocs(nn::visrv::sf::IApplicationDisplayService(100))" class="showDocsLabel"></label>
 							  <code class="signature">[100] <a href="#nn::visrv::sf::IApplicationDisplayService(100)">GetRelayService</a>() -&gt; object&lt;<a href="ifaces.html#nns::hosbinder::IHOSBinderDriver">nns::hosbinder::IHOSBinderDriver</a>&gt;</code>
-							  <div class="docs"><p>Returns an <a href="http://switchbrew.org/index.php?title=Nvnflinger_services#dispdrv" title="wikilink">IHOSBinderDriver</a> interface which abstracts nn::visrv::<a href="http://switchbrew.org/index.php?title=service::RelayServiceImpl">service::RelayServiceImpl</a>.</p>
+							  <div class="docs"><p>Returns an <a href="http://switchbrew.org/index.php?title=Nvnflinger_services#dispdrv" title="wikilink">IHOSBinderDriver</a> interface which abstracts “nn::visrv::<a href="http://switchbrew.org/index.php?title=service::RelayServiceImpl">service::RelayServiceImpl</a>”.</p>
 							</div>
 							</li>
 							<li class="command" value="101" id="nn::visrv::sf::IApplicationDisplayService(101)">
@@ -28100,7 +28157,7 @@
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::visrv::sf::IApplicationDisplayService(103))"></input>
 							  <label for="showDocs(nn::visrv::sf::IApplicationDisplayService(103))" class="showDocsLabel"></label>
 							  <code class="signature">[103, 2.0.0+] <a href="#nn::visrv::sf::IApplicationDisplayService(103)">GetIndirectDisplayTransactionService</a>() -&gt; object&lt;<a href="ifaces.html#nns::hosbinder::IHOSBinderDriver">nns::hosbinder::IHOSBinderDriver</a>&gt;</code>
-							  <div class="docs"><p>Returns an <a href="http://switchbrew.org/index.php?title=Nvnflinger_services#dispdrv" title="wikilink">IHOSBinderDriver</a> interface which abstracts nn::visrv::<a href="http://switchbrew.org/index.php?title=service::IndirectDisplayTransactionServiceImpl">service::IndirectDisplayTransactionServiceImpl</a>.</p>
+							  <div class="docs"><p>Returns an <a href="http://switchbrew.org/index.php?title=Nvnflinger_services#dispdrv" title="wikilink">IHOSBinderDriver</a> interface which abstracts “nn::visrv::<a href="http://switchbrew.org/index.php?title=service::IndirectDisplayTransactionServiceImpl">service::IndirectDisplayTransactionServiceImpl</a>”.</p>
 							</div>
 							</li>
 							<li class="command" value="1000" id="nn::visrv::sf::IApplicationDisplayService(1000)">
@@ -28108,7 +28165,7 @@
 							  <label for="showDocs(nn::visrv::sf::IApplicationDisplayService(1000))" class="showDocsLabel"></label>
 							  <code class="signature">[1000] <a href="#nn::visrv::sf::IApplicationDisplayService(1000)">ListDisplays</a>() -&gt; (i64, array&lt;<a href="types.html#nn::vi::DisplayInfo">nn::vi::DisplayInfo</a>, 6&gt;)</code>
 							  <div class="docs"><p>Takes a type-0x6 output buffer containing the array of [#DisplayInfo](http://switchbrew.org/index.php?title=Display services#DisplayInfo &quot;wikilink&quot;) output entries. Returns an output u64: total number of output entries.</p>
-							<p>Normally(?) this only returns the Default display.</p>
+							<p>Normally(?) this only returns the “Default” display.</p>
 							</div>
 							</li>
 							<li class="command" value="1010" id="nn::visrv::sf::IApplicationDisplayService(1010)">
@@ -28116,7 +28173,7 @@
 							  <label for="showDocs(nn::visrv::sf::IApplicationDisplayService(1010))" class="showDocsLabel"></label>
 							  <code class="signature">[1010] <a href="#nn::visrv::sf::IApplicationDisplayService(1010)">OpenDisplay</a>(<a href="types.html#nn::vi::DisplayName">nn::vi::DisplayName</a>) -&gt; u64</code>
 							  <div class="docs"><p>Takes a [#DisplayName](http://switchbrew.org/index.php?title=Display services#DisplayName &quot;wikilink&quot;) as input. Returns an output u64, the DisplayId.</p>
-							<p>To open the default display, input string Default can be used.</p>
+							<p>To open the default display, input string “Default” can be used.</p>
 							</div>
 							</li>
 							<li class="command" value="1011" id="nn::visrv::sf::IApplicationDisplayService(1011)">
@@ -28153,7 +28210,7 @@
 							  <label for="showDocs(nn::visrv::sf::IApplicationDisplayService(2020))" class="showDocsLabel"></label>
 							  <code class="signature">[2020] <a href="#nn::visrv::sf::IApplicationDisplayService(2020)">OpenLayer</a>(<a href="types.html#nn::vi::DisplayName">nn::vi::DisplayName</a>, u64, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid) -&gt; (i64, buffer&lt;unknown, 6, 0&gt;)</code>
 							  <div class="docs"><p>Takes a PID-descriptor, a type-0x6 buffer for the output [#NativeWindow](http://switchbrew.org/index.php?title=Display services#NativeWindow &quot;wikilink&quot;), a [#DisplayName](http://switchbrew.org/index.php?title=Display services#DisplayName &quot;wikilink&quot;)(which was previously used with <a href="#nn::visrv::sf::IApplicationDisplayService(1010)" title="wikilink">#OpenDisplay</a>), an u64 LayerId, and an u64 <a href="http://switchbrew.org/index.php?title=AM_services" title="wikilink">AppletResourceUserId</a>. Returns an output u64 NativeWindow_Size.</p>
-							<p>Official user-processes use a LayerId stored in a global state field(...ExternalLayerId) if non-zero, otherwise:</p>
+							<p>Official user-processes use a LayerId stored in a global state field(“...ExternalLayerId”) if non-zero, otherwise:</p>
 							<ul>
 							<li>When AppletResourceUserId==0, <a href="#nn::visrv::sf::IApplicationDisplayService(2030)" title="wikilink">#CreateStrayLayer</a> is used instead of the OpenLayer cmd.</li>
 							<li>When AppletResourceUserId!=0, <a href="http://switchbrew.org/index.php?title=AM_services#CreateManagedDisplayLayer" title="wikilink">AM_services#CreateManagedDisplayLayer</a> is used and the output from that is used for LayerId with the OpenLayer cmd.</li>
@@ -28186,7 +28243,7 @@
 							  <input type="checkbox" class="showDocs" id="showDocs(nn::visrv::sf::IApplicationDisplayService(2101))"></input>
 							  <label for="showDocs(nn::visrv::sf::IApplicationDisplayService(2101))" class="showDocsLabel"></label>
 							  <code class="signature">[2101] <a href="#nn::visrv::sf::IApplicationDisplayService(2101)">SetLayerScalingMode</a>(u32, u64)</code>
-							  <div class="docs"><p>Takes an input u64(ScalingMode) and u64 (LayerId).</p>
+							  <div class="docs"><p>Takes an input u64(“ScalingMode”) and u64 (“LayerId”).</p>
 							</div>
 							</li>
 							<li class="command" value="2102" id="nn::visrv::sf::IApplicationDisplayService(2102)">
@@ -29879,7 +29936,7 @@
 							  <label for="showDocs(nns::hosbinder::IHOSBinderDriver(0))" class="showDocsLabel"></label>
 							  <code class="signature">[0] <a href="#nns::hosbinder::IHOSBinderDriver(0)">TransactParcel</a>(i32, u32, u32, buffer&lt;unknown, 5, 0&gt;) -&gt; buffer&lt;unknown, 6, 0&gt;</code>
 							  <div class="docs"><p>Takes a s32 (<strong>ID</strong>), an u32 (<strong>code</strong>), a type-0x5 input buffer (<strong>parcel_data</strong>), a type-0x6 output buffer (<strong>parcel_reply</strong>) and an input u32 (<strong>flags</strong>). Each word is placed immediately after the previous word.</p>
-							<p>Analogous to onTransact from android.os.IServiceManager.</p>
+							<p>Analogous to “onTransact” from “android.os.IServiceManager”.</p>
 							</div>
 							</li>
 							<li class="command" value="1" id="nns::hosbinder::IHOSBinderDriver(1)">
@@ -29889,8 +29946,8 @@
 							  <div class="docs"><p>Takes 3 input s32s: <strong>ID</strong>, <strong>addval</strong>, and <strong>type</strong>. Each word immediately follows the previous word. No additional output.</p>
 							<p>| Called by official function          | addval | type |
 							|--------------------------------------|--------|------|
-							| android::BpBinder::onFirstRef      | 1      | 1    |
-							| android::BpBinder::onLastStrongRef | -1     | 1    |
+							| “android::BpBinder::onFirstRef”      | 1      | 1    |
+							| “android::BpBinder::onLastStrongRef” | -1     | 1    |
 							| ?                                    | 1      | 0    |
 							| ?                                    | -1     | 0    |</p>
 							<p>During init, {addval=1, type=0} is used then {addval=1, type=1} is used.</p>
