@@ -233,6 +233,9 @@
 				<li class="list-group-item" id="nn::friends::detail::ipc::SizedNotificationInfo">
 					<a href="#nn::friends::detail::ipc::SizedNotificationInfo">+</a> nn::friends::detail::ipc::SizedNotificationInfo <small class="text-muted">u128</small>
 				</li>
+				<li class="list-group-item" id="nn::fssrv::sf::IDirectoryEntry">
+					<a href="#nn::fssrv::sf::IDirectoryEntry">+</a> nn::fssrv::sf::IDirectoryEntry <small class="text-muted"><ul>	<li class="text-muted">bytes&lt;0x300&gt; path</li>	<li class="text-muted">u32 unk1</li>	<li class="text-muted">u8 directory_entry_type</li>	<li class="text-muted">u64 filesize</li></ul></small>
+				</li>
 				<li class="list-group-item" id="nn::fssrv::sf::Partition">
 					<a href="#nn::fssrv::sf::Partition">+</a> nn::fssrv::sf::Partition <small class="text-muted">u32</small>
 				</li>
@@ -590,6 +593,18 @@
 				<li class="list-group-item" id="nn::settings::system::TvSettings">
 					<a href="#nn::settings::system::TvSettings">+</a> nn::settings::system::TvSettings <small class="text-muted">bytes&lt;0x20&gt;</small>
 				</li>
+				<li class="list-group-item" id="nn::socket::BsdBufferConfig">
+					<a href="#nn::socket::BsdBufferConfig">+</a> nn::socket::BsdBufferConfig <small class="text-muted"><ul>	<li class="text-muted">u32 version</li>	<li class="text-muted">u32 tcp_tx_buf_size</li>	<li class="text-muted">u32 tcp_rx_buf_size</li>	<li class="text-muted">u32 tcp_tx_buf_max_size</li>	<li class="text-muted">u32 tcp_rx_buf_max_size</li>	<li class="text-muted">u32 udp_tx_buf_size</li>	<li class="text-muted">u32 udp_rx_buf_size</li>	<li class="text-muted">u32 sb_efficiency</li></ul></small>
+				</li>
+				<li class="list-group-item" id="nn::socket::fd_set">
+					<a href="#nn::socket::fd_set">+</a> nn::socket::fd_set <small class="text-muted">u128</small>
+				</li>
+				<li class="list-group-item" id="nn::socket::sockaddr_in">
+					<a href="#nn::socket::sockaddr_in">+</a> nn::socket::sockaddr_in <small class="text-muted"><ul>	<li class="text-muted">u8 sin_len</li>	<li class="text-muted">u8 sin_family</li>	<li class="text-muted">u16 sin_port</li>	<li class="text-muted">u32 sin_addr</li>	<li class="text-muted">bytes&lt;8&gt; sin_zero</li></ul></small>
+				</li>
+				<li class="list-group-item" id="nn::socket::timeout">
+					<a href="#nn::socket::timeout">+</a> nn::socket::timeout <small class="text-muted"><ul>	<li class="text-muted">u64 sec</li>	<li class="text-muted">u64 usec</li>	<li class="text-muted">u64 off</li></ul></small>
+				</li>
 				<li class="list-group-item" id="nn::ssl::sf::CertificateFormat">
 					<a href="#nn::ssl::sf::CertificateFormat">+</a> nn::ssl::sf::CertificateFormat <small class="text-muted">u32</small>
 				</li>
@@ -621,7 +636,7 @@
 					<a href="#nn::ssl::sf::VerifyOption">+</a> nn::ssl::sf::VerifyOption <small class="text-muted">u32</small>
 				</li>
 				<li class="list-group-item" id="nn::time::CalendarTime">
-					<a href="#nn::time::CalendarTime">+</a> nn::time::CalendarTime <small class="text-muted">u64</small>
+					<a href="#nn::time::CalendarTime">+</a> nn::time::CalendarTime <small class="text-muted"><ul>	<li class="text-muted">u16 year</li>	<li class="text-muted">u8 month</li>	<li class="text-muted">u8 day</li>	<li class="text-muted">u8 hour</li>	<li class="text-muted">u8 minute</li>	<li class="text-muted">u8 second</li></ul></small>
 				</li>
 				<li class="list-group-item" id="nn::time::LocationName">
 					<a href="#nn::time::LocationName">+</a> nn::time::LocationName <small class="text-muted">bytes&lt;0x24&gt;</small>
@@ -642,7 +657,7 @@
 					<a href="#nn::time::TimeZoneRuleVersion">+</a> nn::time::TimeZoneRuleVersion <small class="text-muted">u128</small>
 				</li>
 				<li class="list-group-item" id="nn::time::sf::CalendarAdditionalInfo">
-					<a href="#nn::time::sf::CalendarAdditionalInfo">+</a> nn::time::sf::CalendarAdditionalInfo <small class="text-muted">bytes&lt;0x18&gt;</small>
+					<a href="#nn::time::sf::CalendarAdditionalInfo">+</a> nn::time::sf::CalendarAdditionalInfo <small class="text-muted"><ul>	<li class="text-muted">u32 tm_wday</li>	<li class="text-muted">i32 tm_yday</li>	<li class="text-muted">bytes&lt;8&gt; tz_name</li>	<li class="text-muted">bool is_daylight_saving_time</li>	<li class="text-muted">i32 utc_offset_seconds</li></ul></small>
 				</li>
 				<li class="list-group-item" id="nn::util::Unorm8x4">
 					<a href="#nn::util::Unorm8x4">+</a> nn::util::Unorm8x4 <small class="text-muted">u32</small>
@@ -664,9 +679,6 @@
 				</li>
 				<li class="list-group-item" id="packed_addrinfo">
 					<a href="#packed_addrinfo">+</a> packed_addrinfo <small class="text-muted">unknown</small>
-				</li>
-				<li class="list-group-item" id="timeout">
-					<a href="#timeout">+</a> timeout <small class="text-muted"><ul>	<li class="text-muted">u64 sec</li>	<li class="text-muted">u64 usec</li>	<li class="text-muted">u64 off</li></ul></small>
 				</li>
 			</ul>
 		</div>
