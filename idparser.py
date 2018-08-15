@@ -148,6 +148,4 @@ def getAll():
 		res = parse('\n'.join(file(fn).read() for fn in fns))
 		with file(dir + 'ipcdefs/cache', 'w') as fp:
 			json.dump(res, fp)
-	# TODO: Check coherence. Especially of cmdId/version range (For each
-	# cmd ID, we need to make sure there is no version overlap !)
 	return res

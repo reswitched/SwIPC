@@ -54,6 +54,7 @@ for ifaceName, iface in switchbrewIfaces.items():
 			newCmd['undocumented'] = autoCmd['undocumented']
 			newIFace['cmds'].append(newCmd)
 		else:
+			cmd['undocumented'] = True
 			newIFace['cmds'].append(cmd)
 
 def genVersion(added, last):
@@ -92,7 +93,7 @@ def printIFace(ifaceName, iface, services):
 		if cmd['doc'] != "":
 			for docLine in cmd['doc'].split("\n"):
 				# kill weird non ascii
-				print "\t#%s" % docLine.replace(u'\xa0', ' ')
+				print "\t#%s" % docLine.encode('utf-8')
 		if cmd['versionAdded'] != "1.0.0" or cmd['lastVersion'] is not None:
 			print "\t@version(%s)" % (genVersion(cmd['versionAdded'], cmd['lastVersion']))
 		if cmd['undocumented']:

@@ -14,6 +14,8 @@ var getFirstTable=require("./table_parser").getFirstTable;
 var toOldNames = require("./toOldNames").transformPacketName;
 */
 
+
+var versionInfo = [ '1.0.0', '2.0.0', '2.1.0', '2.2.0', '2.3.0', '3.0.0', '3.0.1', '3.0.2', '4.0.0', '4.0.1', '4.1.0', '5.0.0', '5.0.1', '5.0.2', '5.1.0']
 var getArticle = pro(wikiTextParser.getArticle.bind(wikiTextParser));
 
 module.exports = {
@@ -166,11 +168,36 @@ async function iter(ret, serviceName, content, services) {
         return lastIndexOf;
     }
 
-    // Recover the version.
-    var idx = regexIndexOf(name, /[\[\(]/);
+    // Recover the version. First, detect a rename.
+    if (cmdName.includes("GetServiceEntryRequirementCache")) {
+      console.error(cmdName);
+    }
+    var associations = [];
+    var idx = name.indexOf("([");
     var version = null;
     if (idx != -1) {
-      var endIdx = regexIndexOf(name.slice(idx), /[\]\)]/)
+      // Rename found. We'll need to create two commands. Nice...
+      var endVersionIdx = name.slice(idx).indexOf("]");
+      var endOldNameIdx = name.slice(idx).indexOf(")");
+      var oldVersion = name.slice(idx + 2, endVersionIdx + idx);
+      var oldName = name.slice(idx + endVersionIdx + 1, idx + endOldNameIdx);
+      name = name.slice(0, idx);
+      associations.push({ name: oldName, version: oldVersion });
+      if (oldVersion.indexOf("-") != -1) {
+        var versionIdx = versionInfo.indexOf(oldVersion.split("-")[1].trim());
+      } else {
+        var versionIdx = versionInfo.indexOf(oldVersion.trim());
+      }
+      if (versionIdx == -1) {
+        console.error("Weird version range for", ifaceName, cmdName);
+      } else {
+        version = versionInfo[versionIdx + 1] + "+";
+      }
+    }
+
+    // Handle deprecations or addition now.
+    if (idx == -1 && (idx = name.indexOf("[")) != -1) {
+      var endIdx = name.slice(idx).indexOf("]");
       if (endIdx != -1) {
         version = name.slice(idx + 1, endIdx + idx);
         // Remove from the name
@@ -179,62 +206,102 @@ async function iter(ret, serviceName, content, services) {
       }
     }
 
-    // Maybe it's in the cmd id
+    // Check for cmdid change.
     var cmdid = cmd['Cmd'];
-    if (version == null) {
-      idx = regexIndexOf(cmdid, /[\[\(]/);
-      if (idx != -1) {
-        endIdx = regexLastIndexOf(cmdid, /[\]\)]/);
-        if (endIdx != -1) {
-          version = cmdid.slice(idx + 1, endIdx + idx).replace("[[", "").replace("]]", "");
-          cmdid = cmdid.slice(endIdx + idx + 1).trim().replace(/\[\(\)]/, "");
+    idx = cmdid.indexOf("([")
+    if (idx != -1) {
+      endVersionIdx = cmdid.slice(idx).indexOf("]");
+      endCmdIdIdx = cmdid.slice(idx).indexOf(")");
+      var oldVersion = cmdid.slice(idx + 2, endVersionIdx + idx)
+      var oldcmdid = cmdid.slice(idx + endVersionIdx + 1, idx + endCmdIdIdx);
+      associations.push({ name: cmdName, version: oldVersion, id: oldcmdid })
+      if (version != null) {
+        console.error("Version changes in both cmdid and name for", ifaceName, cmdName);
+      }
+      if (oldVersion.indexOf("-") != -1) {
+        var versionIdx = versionInfo.indexOf(oldVersion.split("-")[1].trim());
+      } else {
+        var versionIdx = versionInfo.indexOf(oldVersion.trim());
+      }
+      if (versionIdx == -1) {
+        console.error("Weird version range for", ifaceName, cmdName);
+      } else {
+        version = versionInfo[versionIdx + 1] + "+";
+      }
+      cmdid = cmdid.slice(0, idx);
+    }
+
+    // And finally, deprecations again.
+    if (idx == -1 && (idx = cmdid.indexOf("[")) != -1) {
+      var endIdx = cmdid.slice(idx).indexOf("]");
+      if (endIdx != -1) {
+        if (version != null) {
+          console.error("Version changes in both cmdid and name for", ifaceName, cmdName);
         }
+        version = cmdid.slice(idx + 1, endIdx + idx);
+        // Remove from the cmdid
+        cmdid = cmdid.slice(endIdx + idx + 1).trim()
       }
     }
-    cmdName = cmdName.split(" ").find(v => cmdName.trim().length != 0) || cmdName;
-    if (cmdName.endsWith("?"))
-      console.error("Might be wrong function name for", ifaceName, cmdName + "(" + cmdid + ")");
-    cmdName = cmdName.replace("?", "").trim();
 
-    if (idx > 0)
-      console.error("Might be wrong version info for", ifaceName, cmdName + "(" + cmdid + ")");
+    if (cmdid.trim() != "") {
+      associations.push({ name: cmdName, version: version, id: cmdid });
+    }
 
-    // Recover the description if name was a link
-    if (getDesc) {
-      function findRecurse(o, name) {
-        if (Array.isArray(o)) return null;
-        if (typeof o !== 'object') return null;
-        for (var key of Object.keys(o)) {
-          if (key === name) {
-            return o[key];
-          } else {
-            var ret = findRecurse(o[key], name);
-            if (ret !== null)
-              return ret;
+    for (let association of associations) {
+      if (association.id == null)
+        association.id = cmdid
+    }
+
+    for (let association of associations) {
+      handleCommandVersion(association.id.trim(), association.name.trim(), association.version);
+    }
+    function handleCommandVersion(cmdid, cmdName, version) {
+      cmdName = cmdName.split(" ").find(v => cmdName.trim().length != 0) || cmdName;
+      if (cmdName.endsWith("?"))
+        console.error("Might be wrong function name for", ifaceName, cmdName + "(" + cmdid + ")");
+      cmdName = cmdName.replace("?", "").trim();
+
+      if (idx > 0)
+        console.error("Might be wrong version info for", ifaceName, cmdName + "(" + cmdid + ")");
+
+      // Recover the description if name was a link
+      if (getDesc) {
+        function findRecurse(o, name) {
+          if (Array.isArray(o)) return null;
+          if (typeof o !== 'object') return null;
+          for (var key of Object.keys(o)) {
+            if (key === name) {
+              return o[key];
+            } else {
+              var ret = findRecurse(o[key], name);
+              if (ret !== null)
+                return ret;
+            }
           }
+          return null;
         }
-        return null;
+        cmdDocs = findRecurse(services, cmdName);
+        if (cmdDocs != null) {
+          cmdDocs = cmdDocs.content.join("\n");
+        } else
+          console.error("Docs not found", serviceName, cmdName);
       }
-      cmdDocs = findRecurse(services, cmdName);
-      if (cmdDocs != null) {
-        cmdDocs = cmdDocs.content.join("\n");
-      } else
-        console.error("Docs not found", serviceName, cmdName);
-    }
 
-    if (cmdName == "?")
-      cmdName = "";
-    // BSD-specific hack
-    if (cmdName == "RegisterClient (Initialize)")
-      cmdName = "Initialize";
-    // Fsp-Srv specific hack (this is me being lazy)
-    if (cmdName == "GetRightsIdByPath2 (returns extra byte)")
-      cmdName = "GetRightsIdByPath2";
-    cmdList.push({ id: cmdid, name: cmdName, version, doc: cmdDocs });
+      if (cmdName == "?")
+        cmdName = "";
+      // BSD-specific hack
+      if (cmdName == "RegisterClient (Initialize)")
+        cmdName = "Initialize";
+      // Fsp-Srv specific hack (this is me being lazy)
+      if (cmdName == "GetRightsIdByPath2 (returns extra byte)")
+        cmdName = "GetRightsIdByPath2";
+      cmdList.push({ id: cmdid, name: cmdName, version, doc: cmdDocs });
+    }
   }
   if (cmdList.length > 0) {
     if (serviceName.toLowerCase() == serviceName || serviceName.startsWith("applet"))
-      ret['services'][serviceName] = ifaceName;
+      ret['services'][serviceName.replace(/<\/?nowiki>/g, "")] = ifaceName;
     ret['interfaces'][ifaceName] = { cmdList: cmdList };
   }
 }
@@ -287,7 +354,7 @@ async function getServiceStuff(serviceName, services) {
         }, "");
         // And finally, turn it into Github-Flavored Markdown (For the ASCII
         // tables)
-        cmd.doc = await pro(pandoc)(JSON.stringify(jsonCmdDocs), 'json', 'gfm');
+        cmd.doc = await pro(pandoc)(JSON.stringify(jsonCmdDocs), 'json', 'markdown_github');
       }
     }));
   }));

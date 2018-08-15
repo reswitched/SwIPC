@@ -9,6 +9,7 @@ interface nn::account::IAccountServiceForAdministrator is acc:su {
 	[50] IsUserRegistrationRequestPermitted(u64, pid) -> bool;
 	[51] TrySelectUserWithoutInteraction(bool) -> nn::account::Uid;
 	@version(5.0.0+)
+	@undocumented
 	[60] ListOpenContextStoredUsers();
 	[100] GetUserRegistrationNotifier() -> object<nn::account::detail::INotifier>;
 	[101] GetUserStateChangeNotifier() -> object<nn::account::detail::INotifier>;
@@ -16,13 +17,16 @@ interface nn::account::IAccountServiceForAdministrator is acc:su {
 	[103] GetBaasUserAvailabilityChangeNotifier() -> object<nn::account::detail::INotifier>;
 	[104] GetProfileUpdateNotifier() -> object<nn::account::detail::INotifier>;
 	@version(4.0.0+)
+	@undocumented
 	[105] CheckNetworkServiceAvailabilityAsync();
 	[110] StoreSaveDataThumbnail(nn::account::Uid, nn::ApplicationId, buffer<unknown,5,0>);
 	[111] ClearSaveDataThumbnail(nn::account::Uid, nn::ApplicationId);
 	[112] LoadSaveDataThumbnail(nn::account::Uid, nn::ApplicationId) -> (u32, buffer<unknown,6,0>);
+	@undocumented
 	[113] GetSaveDataThumbnailExistence();
 	[190] GetUserLastOpenedApplication(nn::account::Uid) -> (u32, nn::ApplicationId);
 	@version(5.0.0+)
+	@undocumented
 	[191] ActivateOpenContextHolder();
 	[200] BeginUserRegistration() -> nn::account::Uid;
 	[201] CompleteUserRegistration(nn::account::Uid);
@@ -53,16 +57,19 @@ interface nn::account::IAccountServiceForApplication is acc:u0 {
 	[50] IsUserRegistrationRequestPermitted(u64, pid) -> bool;
 	[51] TrySelectUserWithoutInteraction(bool) -> nn::account::Uid;
 	@version(5.0.0+)
+	@undocumented
 	[60] ListOpenContextStoredUsers();
 	[100] InitializeApplicationInfo(u64, pid);
 	[101] GetBaasAccountManagerForApplication(nn::account::Uid) -> object<nn::account::baas::IManagerForApplication>;
 	[102] AuthenticateApplicationAsync() -> object<nn::account::detail::IAsyncContext>;
 	@version(4.0.0+)
+	@undocumented
 	[103] CheckNetworkServiceAvailabilityAsync();
 	[110] StoreSaveDataThumbnail(nn::account::Uid, buffer<unknown,5,0>);
 	[111] ClearSaveDataThumbnail(nn::account::Uid);
 	[120] CreateGuestLoginRequest(u32, KObject) -> object<nn::account::baas::IGuestLoginRequest>;
 	@version(5.0.0+)
+	@undocumented
 	[130] LoadOpenContext();
 }
 
@@ -77,6 +84,7 @@ interface nn::account::IAccountServiceForSystemService is acc:u1 {
 	[50] IsUserRegistrationRequestPermitted(u64, pid) -> bool;
 	[51] TrySelectUserWithoutInteraction(bool) -> nn::account::Uid;
 	@version(5.0.0+)
+	@undocumented
 	[60] ListOpenContextStoredUsers();
 	[100] GetUserRegistrationNotifier() -> object<nn::account::detail::INotifier>;
 	[101] GetUserStateChangeNotifier() -> object<nn::account::detail::INotifier>;
@@ -84,14 +92,17 @@ interface nn::account::IAccountServiceForSystemService is acc:u1 {
 	[103] GetBaasUserAvailabilityChangeNotifier() -> object<nn::account::detail::INotifier>;
 	[104] GetProfileUpdateNotifier() -> object<nn::account::detail::INotifier>;
 	@version(4.0.0+)
+	@undocumented
 	[105] CheckNetworkServiceAvailabilityAsync();
 	[110] StoreSaveDataThumbnail(nn::account::Uid, nn::ApplicationId, buffer<unknown,5,0>);
 	[111] ClearSaveDataThumbnail(nn::account::Uid, nn::ApplicationId);
 	[112] LoadSaveDataThumbnail(nn::account::Uid, nn::ApplicationId) -> (u32, buffer<unknown,6,0>);
 	@version(5.0.0+)
+	@undocumented
 	[113] GetSaveDataThumbnailExistence();
 	[190] GetUserLastOpenedApplication(nn::account::Uid) -> (u32, nn::ApplicationId);
 	@version(5.0.0+)
+	@undocumented
 	[191] ActivateOpenContextHolder();
 	[997] DebugInvalidateTokenCacheForUser(nn::account::Uid);
 	[998] DebugSetUserStateClose(nn::account::Uid);
@@ -113,20 +124,26 @@ interface nn::account::baas::IAdministrator {
 	[3] LoadIdTokenCache() -> (u32, buffer<unknown,6,0>);
 	[100] SetSystemProgramIdentification(u64, pid, buffer<nn::account::SystemProgramIdentification,25,16>);
 	@version(4.0.0+)
+	@undocumented
 	[110] GetServiceEntryRequirementCache();
 	@version(4.0.0+)
+	@undocumented
 	[111] InvalidateServiceEntryRequirementCache();
 	@version(4.0.0+)
+	@undocumented
 	[112] InvalidateTokenCache();
 	[120] GetNintendoAccountId() -> nn::account::NintendoAccountId;
 	[130] GetNintendoAccountUserResourceCache() -> (nn::account::NintendoAccountId, buffer<nn::account::nas::NasUserBase,26,591>, buffer<unknown,6,0>);
 	[131] RefreshNintendoAccountUserResourceCacheAsync() -> object<nn::account::detail::IAsyncContext>;
 	[132] RefreshNintendoAccountUserResourceCacheAsyncIfSecondsElapsed(u32) -> (bool, object<nn::account::detail::IAsyncContext>);
 	@version(5.0.0+)
+	@undocumented
 	[140] GetNetworkServiceLicenseCache();
 	@version(5.0.0+)
+	@undocumented
 	[141] RefreshNetworkServiceLicenseCacheAsync();
 	@version(5.0.0+)
+	@undocumented
 	[142] RefreshNetworkServiceLicenseCacheAsyncIfSecondsElapsed();
 	[150] CreateAuthorizationRequest(u32, KObject, buffer<nn::account::nas::NasClientInfo,25,264>, buffer<nn::account::NintendoAccountAuthorizationRequestParameters,25,512>) -> object<nn::account::nas::IAuthorizationRequest>;
 	[200] IsRegistered() -> bool;
@@ -157,11 +174,17 @@ interface nn::account::baas::IFloatingRegistrationRequest {
 	[21] LoadIdTokenCache() -> (u32, buffer<unknown,6,0>);
 	@version(1.0.0-3.0.2)
 	[100] RegisterAsync() -> (nn::account::Uid, object<nn::account::detail::IAsyncContext>);
+	@version(4.0.0+)
+	[100] RegisterUser() -> (nn::account::Uid, object<nn::account::detail::IAsyncContext>);
 	@version(1.0.0-3.0.2)
 	[101] RegisterWithUidAsync(nn::account::Uid) -> object<nn::account::detail::IAsyncContext>;
 	@version(4.0.0+)
+	[101] RegisterUserWithUid(nn::account::Uid) -> object<nn::account::detail::IAsyncContext>;
+	@version(4.0.0+)
+	@undocumented
 	[102] RegisterNetworkServiceAccountAsync();
 	@version(4.0.0+)
+	@undocumented
 	[103] RegisterNetworkServiceAccountWithUidAsync();
 	[110] SetSystemProgramIdentification(u64, pid, buffer<nn::account::SystemProgramIdentification,25,16>);
 	[111] EnsureIdTokenCacheAsync() -> object<nn::account::detail::IAsyncContext>;
@@ -184,6 +207,7 @@ interface nn::account::baas::IManagerForApplication {
 	[130] GetNintendoAccountUserResourceCacheForApplication() -> (nn::account::NintendoAccountId, buffer<nn::account::nas::NasUserBaseForApplication,26,104>, buffer<unknown,6,0>);
 	[150] CreateAuthorizationRequest(u32, KObject, buffer<nn::account::NintendoAccountAuthorizationRequestParameters,25,512>) -> object<nn::account::nas::IAuthorizationRequest>;
 	@version(5.0.0+)
+	@undocumented
 	[160] StoreOpenContext();
 }
 
@@ -194,20 +218,26 @@ interface nn::account::baas::IManagerForSystemService {
 	[3] LoadIdTokenCache() -> (u32, buffer<unknown,6,0>);
 	[100] SetSystemProgramIdentification(u64, pid, buffer<nn::account::SystemProgramIdentification,25,16>);
 	@version(4.0.0+)
+	@undocumented
 	[110] GetServiceEntryRequirementCache();
 	@version(4.0.0+)
+	@undocumented
 	[111] InvalidateServiceEntryRequirementCache();
 	@version(4.0.0+)
+	@undocumented
 	[112] InvalidateTokenCache();
 	[120] GetNintendoAccountId() -> nn::account::NintendoAccountId;
 	[130] GetNintendoAccountUserResourceCache() -> (nn::account::NintendoAccountId, buffer<nn::account::nas::NasUserBase,26,591>, buffer<unknown,6,0>);
 	[131] RefreshNintendoAccountUserResourceCacheAsync() -> object<nn::account::detail::IAsyncContext>;
 	[132] RefreshNintendoAccountUserResourceCacheAsyncIfSecondsElapsed(u32) -> (bool, object<nn::account::detail::IAsyncContext>);
 	@version(5.0.0+)
+	@undocumented
 	[140] GetNetworkServiceLicenseCache();
 	@version(5.0.0+)
+	@undocumented
 	[141] RefreshNetworkServiceLicenseCacheAsync();
 	@version(5.0.0+)
+	@undocumented
 	[142] RefreshNetworkServiceLicenseCacheAsyncIfSecondsElapsed();
 	[150] CreateAuthorizationRequest(u32, KObject, buffer<nn::account::nas::NasClientInfo,25,264>, buffer<nn::account::NintendoAccountAuthorizationRequestParameters,25,512>) -> object<nn::account::nas::IAuthorizationRequest>;
 }
@@ -335,6 +365,8 @@ interface nn::am::service::IAllSystemAppletProxiesService is appletAE {
 	[100] OpenSystemAppletProxy(u64, pid, KObject) -> object<nn::am::service::ISystemAppletProxy>;
 	@version(1.0.0-2.3.0)
 	[200] OpenLibraryAppletProxy(u64, pid, KObject) -> object<nn::am::service::ILibraryAppletProxy>;
+	@version(3.0.0+)
+	[200] OpenLibraryAppletProxyOld(u64, pid, KObject) -> object<nn::am::service::ILibraryAppletProxy>;
 	# Returns an [\#ILibraryAppletProxy](http://switchbrew.org/index.php?title=AM services#ILibraryAppletProxy "wikilink").
 	# 
 	# Takes a [reserved](http://switchbrew.org/index.php?title=IPC_Marshalling "wikilink") input u64(official user-processes use hard-coded value 0), a PID,a process copy-handle(cur-proc handle alias), and an 0x80-byte type-0x15 input buffer **AppletAttribute**.
@@ -368,6 +400,7 @@ interface nn::aocsrv::detail::IAddOnContentManager is aoc:u {
 	[6] PrepareAddOnContentByApplicationId(i32, nn::ncm::ApplicationId);
 	[7] PrepareAddOnContent(i32, u64, pid);
 	@version(4.0.0+)
+	@undocumented
 	[8] GetAddOnContentListChangedEvent();
 }
 
@@ -392,6 +425,7 @@ interface nn::apm::ISystemManager is apm:sys {
 	[3] GetLastThrottlingState() -> nn::apm::ThrottlingState;
 	[4] ClearLastThrottlingState();
 	@version(5.0.0+)
+	@undocumented
 	[5] LoadAndApplySettings();
 }
 
@@ -465,10 +499,13 @@ interface nn::audio::detail::IAudioIn {
 	@version(3.0.0+)
 	[10] AppendAudioInBufferWithUserEventAuto(u64, KObject, buffer<unknown,33,0>);
 	@version(4.0.0+)
+	@undocumented
 	[11] GetAudioInBufferCount();
 	@version(4.0.0+)
+	@undocumented
 	[12] SetAudioInDeviceGain();
 	@version(4.0.0+)
+	@undocumented
 	[13] GetAudioInDeviceGain();
 }
 
@@ -531,10 +568,13 @@ interface nn::audio::detail::IAudioOut {
 	@version(3.0.0+)
 	[8] GetReleasedAudioOutBufferAuto() -> (u32, buffer<unknown,34,0>);
 	@version(4.0.0+)
+	@undocumented
 	[9] GetAudioOutBufferCount();
 	@version(4.0.0+)
+	@undocumented
 	[10] GetAudioOutPlayedSampleCount();
 	@version(4.0.0+)
+	@undocumented
 	[11] FlushAudioOutBuffers();
 }
 
@@ -561,8 +601,10 @@ interface nn::audio::detail::IAudioOutManagerForApplet is audout:a {
 	[2] GetAudioOutsProcessMasterVolume(u64) -> u32;
 	[3] SetAudioOutsProcessMasterVolume(u32, u64, u64);
 	@version(4.0.0+)
+	@undocumented
 	[4] GetAudioOutsProcessRecordVolume();
 	@version(4.0.0+)
+	@undocumented
 	[5] SetAudioOutsProcessRecordVolume();
 }
 
@@ -611,6 +653,7 @@ interface nn::audio::detail::IAudioRendererManager is audren:u {
 	@version(3.0.0+)
 	[3] OpenAudioRendererAuto(bytes<52>, u64, u64, u64, pid, KObject) -> object<IUnknown>;
 	@version(4.0.0+)
+	@undocumented
 	[4] GetAudioDeviceServiceWithRevisionInfo();
 }
 
@@ -622,8 +665,10 @@ interface nn::audio::detail::IAudioRendererManagerForApplet is audren:a {
 	[4] RegisterAppletResourceUserId(u64);
 	[5] UnregisterAppletResourceUserId(u64);
 	@version(4.0.0+)
+	@undocumented
 	[6] GetAudioRenderersProcessRecordVolume();
 	@version(4.0.0+)
+	@undocumented
 	[7] SetAudioRenderersProcessRecordVolume();
 }
 
@@ -727,23 +772,30 @@ interface nn::audioctrl::detail::IAudioController is audctl {
 	@version(3.0.0+)
 	[22] NotifyHeadphoneVolumeWarningDisplayedEvent();
 	@version(4.0.0+)
+	@undocumented
 	[23] SetSystemOutputMasterVolume();
 	@version(4.0.0+)
+	@undocumented
 	[24] GetSystemOutputMasterVolume();
 	@version(4.0.0+)
+	@undocumented
 	[25] GetAudioVolumeDataForPlayReport();
 	@version(4.0.0+)
+	@undocumented
 	[26] UpdateHeadphoneSettings();
 }
 
 interface nn::bcat::detail::ipc::IBcatService {
 	[10100] RequestSyncDeliveryCache() -> object<nn::bcat::detail::ipc::IDeliveryCacheProgressService>;
 	@version(5.0.0+)
+	@undocumented
 	[10101] RequestSyncDeliveryCacheWithDirectoryName();
 	@version(5.0.0+)
+	@undocumented
 	[10200] CancelSyncDeliveryCacheRequest();
 	[20100] RequestSyncDeliveryCacheWithApplicationId(u32, nn::ApplicationId) -> object<nn::bcat::detail::ipc::IDeliveryCacheProgressService>;
 	@version(5.0.0+)
+	@undocumented
 	[20101] RequestSyncDeliveryCacheWithApplicationIdAndDirectoryName();
 	[30100] SetPassphrase(nn::ApplicationId, array<i8,9>);
 	[30200] RegisterBackgroundDeliveryTask(u32, nn::ApplicationId);
@@ -929,10 +981,13 @@ interface nn::btm::IBtm is btm {
 	@undocumented
 	[18] Unknown18();
 	@version(4.0.0+)
+	@undocumented
 	[19] Unknown19();
 	@version(4.0.0+)
+	@undocumented
 	[20] Unknown20();
 	@version(4.0.0+)
+	@undocumented
 	[21] Unknown21();
 }
 
@@ -1123,8 +1178,10 @@ interface nn::codec::detail::IHardwareOpusDecoder {
 	@version(3.0.0+)
 	[3] Unknown3(buffer<unknown,5,0>);
 	@version(4.0.0+)
+	@undocumented
 	[4] Unknown4();
 	@version(4.0.0+)
+	@undocumented
 	[5] Unknown5();
 }
 
@@ -1210,6 +1267,7 @@ interface nn::erpt::sf::IContext is erpt:c {
 	@version(3.0.0+)
 	[5] Unknown5();
 	@version(5.0.0+)
+	@undocumented
 	[6] Unknown6();
 }
 
@@ -1218,10 +1276,13 @@ interface nn::erpt::sf::IManager {
 	[0] GetReportList();
 	[1] GetEvent() -> KObject;
 	@version(4.0.0+)
+	@undocumented
 	[2] Unknown2();
 	@version(5.0.0+)
+	@undocumented
 	[3] Unknown3();
 	@version(5.0.0+)
+	@undocumented
 	[4] Unknown4();
 }
 
@@ -1275,32 +1336,46 @@ interface nn::es::IETicketService is es {
 	@undocumented
 	[21] SignData();
 	@version(4.0.0+)
+	@undocumented
 	[22] GetCommonTicketAndCertificateSize();
 	@version(4.0.0+)
+	@undocumented
 	[23] GetCommonTicketAndCertificateData();
 	@version(4.0.0+)
+	@undocumented
 	[24] ImportPrepurchaseRecord();
 	@version(4.0.0+)
+	@undocumented
 	[25] DeletePrepurchaseRecord();
 	@version(4.0.0+)
+	@undocumented
 	[26] DeleteAllPrepurchaseRecord();
 	@version(4.0.0+)
+	@undocumented
 	[27] CountPrepurchaseRecord();
 	@version(4.0.0+)
+	@undocumented
 	[28] ListPrepurchaseRecord();
 	@version(4.0.0+)
+	@undocumented
 	[29] ListPrepurchaseRecordInfo();
 	@version(5.0.0+)
+	@undocumented
 	[30] Unknown30();
 	@version(5.0.0+)
+	@undocumented
 	[31] Unknown31();
 	@version(5.0.0+)
+	@undocumented
 	[32] Unknown32();
 	@version(5.0.0+)
+	@undocumented
 	[33] Unknown33();
 	@version(5.0.0+)
+	@undocumented
 	[34] Unknown34();
 	@version(5.0.0+)
+	@undocumented
 	[35] Unknown35();
 }
 
@@ -1345,12 +1420,19 @@ interface nn::eupld::sf::IRequest is eupld:r {
 
 interface nn::fan::detail::IManager is fan {
 	[0] Unknown0(u32) -> object<IUnknown>;
+	@undocumented
 	[1] Unknown1();
+	@undocumented
 	[2] Unknown2();
+	@undocumented
 	[3] Unknown3();
+	@undocumented
 	[4] Unknown4();
+	@undocumented
 	[5] Unknown5();
+	@undocumented
 	[6] Unknown6();
+	@undocumented
 	[7] Unknown7();
 }
 
@@ -1415,10 +1497,13 @@ interface nn::friends::detail::ipc::IFriendService {
 	[20300] GetFriendCandidateList(i32, nn::account::Uid) -> (i32, array<nn::friends::detail::FriendCandidateImpl,6>);
 	[20301] GetNintendoNetworkIdInfo(i32, nn::account::Uid) -> (i32, buffer<nn::friends::NintendoNetworkIdUserInfo,26,56>, array<nn::friends::detail::NintendoNetworkIdFriendImpl,6>);
 	@version(5.0.0+)
+	@undocumented
 	[20302] GetSnsAccountLinkage();
 	@version(5.0.0+)
+	@undocumented
 	[20303] GetSnsAccountProfile();
 	@version(5.0.0+)
+	@undocumented
 	[20304] GetSnsAccountFriendList();
 	[20400] GetBlockedUserList(i32, nn::account::Uid) -> (i32, array<nn::friends::detail::BlockedUserImpl,6>);
 	[20401] SyncBlockedUserList(nn::account::Uid);
@@ -1451,8 +1536,10 @@ interface nn::friends::detail::ipc::IFriendService {
 	[30216] ResendFacedFriendRequest(nn::account::Uid, nn::account::NetworkServiceAccountId);
 	[30217] SendFriendRequestWithNintendoNetworkIdInfo(nn::friends::MiiName, nn::friends::MiiImageUrlParam, nn::friends::MiiName, nn::friends::MiiImageUrlParam, i32, nn::account::Uid, nn::account::NetworkServiceAccountId);
 	@version(5.0.0+)
+	@undocumented
 	[30300] GetSnsAccountLinkPageUrl();
 	@version(5.0.0+)
+	@undocumented
 	[30301] UnlinkSnsAccount();
 	[30400] BlockUser(i32, nn::account::Uid, nn::account::NetworkServiceAccountId);
 	[30401] BlockUserWithApplicationInfo(i32, nn::account::Uid, nn::account::NetworkServiceAccountId, nn::friends::ApplicationInfo, buffer<nn::friends::InAppScreenName,25,72>);
@@ -1477,6 +1564,7 @@ interface nn::friends::detail::ipc::IServiceCreator is friend:v, friend:u, frien
 	[0] CreateFriendService() -> object<nn::friends::detail::ipc::IFriendService>;
 	[1] CreateNotificationService(nn::account::Uid) -> object<nn::friends::detail::ipc::INotificationService>;
 	@version(4.0.0+)
+	@undocumented
 	[2] CreateDaemonSuspendSessionService();
 }
 
@@ -1502,8 +1590,10 @@ interface nn::fssrv::sf::IDeviceOperator {
 	@version(2.0.0+)
 	[114] GetMmcExtendedCsd(u64) -> buffer<unknown,6,0>;
 	@version(4.0.0+)
+	@undocumented
 	[115] SuspendMmcPatrol();
 	@version(4.0.0+)
+	@undocumented
 	[116] ResumeMmcPatrol();
 	[200] IsGameCardInserted() -> u8;
 	[201] EraseGameCard(u32, u64);
@@ -1533,7 +1623,7 @@ interface nn::fssrv::sf::IDeviceOperator {
 	@version(2.0.0+)
 	[215] ForceEraseGameCard();
 	@version(2.0.0+)
-	[216] GetGameCardErrorInfo() -> u128;
+	[216] GetGameCardErrorInfo2() -> u128;
 	@version(2.1.0+)
 	[217] GetGameCardErrorReportInfo() -> bytes<64>;
 	@version(3.0.0+)
@@ -1541,15 +1631,17 @@ interface nn::fssrv::sf::IDeviceOperator {
 	[300] SetSpeedEmulationMode(u32);
 	[301] GetSpeedEmulationMode() -> u32;
 	@version(5.0.0+)
+	@undocumented
 	[400] SuspendSdmmcControl();
 	@version(5.0.0+)
+	@undocumented
 	[401] ResumeSdmmcControl();
 }
 
 interface nn::fssrv::sf::IDirectory {
 	# Takes a type-0x6 output buffer. Returns an output u64(?) for the total number of read entries, this is 0 when no more entries are available.
 	# 
-	# The output buffer contains the read array of [\#DirectoryEntry](http://switchbrew.org/index.php?title=Filesystem services#DirectoryEntry "wikilink"). This doesn't include entries for . and ...
+	# The output buffer contains the read array of [\#DirectoryEntry](http://switchbrew.org/index.php?title=Filesystem services#DirectoryEntry "wikilink"). This doesn't include entries for “.” and “..”.
 	# 
 	[0] Read() -> (u64, buffer<unknown,6,0>);
 	# Returns an u64 for the total number of readable entries.
@@ -1568,6 +1660,7 @@ interface nn::fssrv::sf::IFile {
 	[3] SetSize(u64);
 	[4] GetSize() -> u64;
 	@version(4.0.0+)
+	@undocumented
 	[5] OperateRange();
 }
 
@@ -1608,6 +1701,7 @@ interface nn::fssrv::sf::IFileSystem {
 	@version(3.0.0+)
 	[14] GetFileTimeStampRaw(buffer<unknown,25,769>) -> bytes<32>;
 	@version(4.0.0+)
+	@undocumented
 	[15] QueryEntry();
 }
 
@@ -1617,6 +1711,7 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	# \[2.0.0+\] This function was removed.
 	# 
 	@version(1.0.0)
+	@undocumented
 	[0] OpenFileSystem();
 	# Takes a pid-descriptor.
 	# 
@@ -1626,7 +1721,7 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	# 
 	# Web-applet loads the [\#FileSystemType](http://switchbrew.org/index.php?title=Filesystem services#FileSystemType "wikilink") (which must be **ContentManual**) from u32\_table\[inparam\].
 	# 
-	# Note: web-applet strings refer to both this cmd and [\#OpenFileSystemWithId](#nn::fssrv::sf::IFileSystemProxy(8) "wikilink") as MountContent, but official nn\_sf\_sync symbols use OpenXX names.
+	# Note: web-applet strings refer to both this cmd and [\#OpenFileSystemWithId](#nn::fssrv::sf::IFileSystemProxy(8) "wikilink") as “MountContent”, but official nn\_sf\_sync symbols use “OpenXX” names.
 	# 
 	@version(2.0.0+)
 	[7] OpenFileSystemWithPatch(u32, u64) -> object<IUnknown>;
@@ -1638,7 +1733,7 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	# 
 	# May return errors when attempting to access NCA-paths for an update-title with a gamecard, when the gamecard isn't inserted. May return error 0x7D402 in some cases with update-titles. Non-val2 in32 values with NCA-type1 are unusable, even for normal titles.
 	# 
-	# The official MountApplicationPackage func uses this with in64=0 and [\#FileSystemType](http://switchbrew.org/index.php?title=Filesystem services#FileSystemType "wikilink") **ApplicationPackage**.
+	# The official “MountApplicationPackage” func uses this with in64=0 and [\#FileSystemType](http://switchbrew.org/index.php?title=Filesystem services#FileSystemType "wikilink") **ApplicationPackage**.
 	# 
 	# After the [\#FileSystemType](http://switchbrew.org/index.php?title=Filesystem services#FileSystemType "wikilink") specific permissions are checked, it then gets the func retval for permissions-type 0x25 and func0.
 	# 
@@ -1684,6 +1779,7 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	@version(2.0.0+)
 	[27] IsExFatSupported() -> u8;
 	@version(4.0.0+)
+	@undocumented
 	[28] DeleteSaveDataFileSystemBySaveDataAttribute();
 	# Takes two input u32s (gamecard handle, partition ID), and returns an [\#IStorage](#nn::fssrv::sf::IStorage "wikilink") for the [partition](http://switchbrew.org/index.php?title=Gamecard_Format "wikilink").
 	# 
@@ -1696,8 +1792,10 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	@version(3.0.0+)
 	[32] ExtendSaveDataFileSystem(u8, u64, u64, u64);
 	@version(5.0.0+)
+	@undocumented
 	[33] DeleteCacheStorage();
 	@version(5.0.0+)
+	@undocumented
 	[34] GetCacheStorageSize();
 	# Takes an input u8 [\#SaveDataSpaceId](http://switchbrew.org/index.php?title=Filesystem services#SaveDataSpaceId "wikilink") and a 0x40-byte Save-struct entry. Official user-process code is only known to use value 1 for the u8.
 	# 
@@ -1729,17 +1827,23 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	# 
 	[61] OpenSaveDataInfoReaderBySaveDataSpaceId(u8) -> object<IUnknown>;
 	@version(5.0.0+)
+	@undocumented
 	[62] OpenCacheStorageList();
 	@version(5.0.0+)
+	@undocumented
 	[64] OpenSaveDataInternalStorageFileSystem();
 	@version(5.0.0+)
+	@undocumented
 	[65] UpdateSaveDataMacForDebug();
 	@version(5.0.0+)
+	@undocumented
 	[66] WriteSaveDataFileSystemExtraData2();
 	[80] OpenSaveDataMetaFile(u8, u32, bytes<64>) -> object<IUnknown>;
 	@version(4.0.0+)
+	@undocumented
 	[81] OpenSaveDataTransferManager();
 	@version(5.0.0+)
+	@undocumented
 	[82] OpenSaveDataTransferManagerVersion2();
 	[100] OpenImageDirectoryFileSystem(u32) -> object<IUnknown>;
 	# Takes a [\#ContentStorageId](http://switchbrew.org/index.php?title=Filesystem services#ContentStorageId "wikilink"). Invalid values return 0x2EE202.
@@ -1766,8 +1870,10 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	# 
 	[501] OpenGameCardDetectionEventNotifier() -> object<IUnknown>;
 	@version(5.0.0+)
+	@undocumented
 	[510] OpenSystemDataUpdateEventNotifier();
 	@version(5.0.0+)
+	@undocumented
 	[511] NotifySystemDataUpdateEvent();
 	@version(1.0.0-3.0.2)
 	[600] SetCurrentPosixTime(u64);
@@ -1791,14 +1897,19 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	@version(3.0.0+)
 	[610] GetRightsIdAndKeyGenerationByPath(buffer<unknown,25,769>) -> (u8, u128);
 	@version(4.0.0+)
+	@undocumented
 	[611] SetCurrentPosixTimeWithTimeDifference();
 	@version(4.0.0+)
+	@undocumented
 	[612] GetFreeSpaceSizeForSaveData();
 	@version(4.0.0+)
+	@undocumented
 	[613] VerifySaveDataFileSystemBySaveDataSpaceId();
 	@version(4.0.0+)
+	@undocumented
 	[614] CorruptSaveDataFileSystemBySaveDataSpaceId();
 	@version(5.0.0+)
+	@undocumented
 	[615] QuerySaveDataInternalStorageTotalSize();
 	# Takes in the 0x10 byte SD card encryption seed, and loads it into FS-module state.
 	# 
@@ -1807,20 +1918,28 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	@version(2.0.0+)
 	[620] SetSdCardEncryptionSeed(u128);
 	@version(4.0.0+)
+	@undocumented
 	[630] SetSdCardAccessibility();
 	@version(4.0.0+)
+	@undocumented
 	[631] IsSdCardAccessible();
 	@version(4.0.0+)
+	@undocumented
 	[640] IsSignedSystemPartitionOnSdCardValid();
 	@version(5.0.0+)
+	@undocumented
 	[700] OpenAccessFailureResolver();
 	@version(5.0.0+)
+	@undocumented
 	[701] GetAccessFailureDetectionEvent();
 	@version(5.0.0+)
+	@undocumented
 	[702] IsAccessFailureDetected();
 	@version(5.0.0+)
+	@undocumented
 	[710] ResolveAccessFailure();
 	@version(5.0.0+)
+	@undocumented
 	[720] AbandonAccessFailure();
 	@version(2.0.0+)
 	[800] GetAndClearFileSystemProxyErrorInfo() -> bytes<128>;
@@ -1844,18 +1963,23 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	# 
 	# When bit1 in GlobalAccessLogMode is clear, FS-module will just return 0 for OutputAccessLogToSdCard. However even with that set the log doesn't show up SD, unknown why.
 	# 
-	# The input buffer is written to the $FsAccessLog:/FsAccessLog.txt file, where $FsAccessLog is the SD-card mount-name. It's written to the current end of the file(appended).
+	# The input buffer is written to the “$FsAccessLog:/FsAccessLog.txt” file, where “$FsAccessLog” is the SD-card mount-name. It's written to the current end of the file(appended).
 	# 
 	[1006] OutputAccessLogToSdCard(buffer<unknown,5,0>);
 	@version(4.0.0+)
+	@undocumented
 	[1007] RegisterUpdatePartition();
 	@version(4.0.0+)
+	@undocumented
 	[1008] OpenRegisteredUpdatePartition();
 	@version(4.0.0+)
+	@undocumented
 	[1009] GetAndClearMemoryReportInfo();
 	@version(5.1.0+)
+	@undocumented
 	[1010] Unknown1010();
 	@version(4.0.0+)
+	@undocumented
 	[1100] OverrideSaveDataTransferTokenSignVerificationKey();
 }
 
@@ -1863,6 +1987,7 @@ interface nn::fssrv::sf::IFileSystemProxyForLoader is fsp-ldr {
 	[0] OpenCodeFileSystem(u64, buffer<unknown,25,769>) -> object<IUnknown>;
 	[1] IsArchivedProgram(u64) -> u8;
 	@version(4.0.0+)
+	@undocumented
 	[2] SetCurrentProcess();
 }
 
@@ -1876,6 +2001,7 @@ interface nn::fssrv::sf::IProgramRegistry is fsp-pr {
 	# 
 	[1] UnregisterProgram(u64);
 	@version(4.0.0+)
+	@undocumented
 	[2] SetCurrentProcess();
 	# Seems to sets a global flag to inputval & 1.
 	# 
@@ -1899,6 +2025,7 @@ interface nn::fssrv::sf::IStorage {
 	[3] SetSize(u64);
 	[4] GetSize() -> u64;
 	@version(4.0.0+)
+	@undocumented
 	[5] OperateRange();
 }
 
@@ -1919,10 +2046,13 @@ interface nn::gpio::IManager is gpio {
 	# Same as [\#OpenSession](#nn::gpio::IManager(1) "wikilink") but takes a **DeviceCode** instead of a **GpioPadName**.
 	# 
 	@version(5.0.0+)
+	@undocumented
 	[7] OpenSession2();
 	@version(5.0.0+)
+	@undocumented
 	[8] IsWakeEventActive2();
 	@version(5.0.0+)
+	@undocumented
 	[9] SetWakeEventActiveFlagSetForDebug2();
 }
 
@@ -1944,6 +2074,7 @@ interface nn::gpio::IPadSession {
 	[14] SetDebounceTime(u32);
 	[15] GetDebounceTime() -> u32;
 	@version(4.0.0+)
+	@undocumented
 	[16] SetValueForSleepState();
 }
 
@@ -2008,8 +2139,10 @@ interface nn::hid::IHidDebugServer is hid:dbg {
 	[136] GetShiftGyroscopeCalibrationValue(nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid) -> (f32, f32);
 	[140] DeactivateConsoleSixAxisSensor();
 	@version(5.0.0+)
+	@undocumented
 	[141] GetConsoleSixAxisSensorSamplingFrequency();
 	@version(5.0.0+)
+	@undocumented
 	[142] DeactivateSevenSixAxisSensor();
 	[201] ActivateFirmwareUpdate();
 	[202] DeactivateFirmwareUpdate();
@@ -2021,31 +2154,44 @@ interface nn::hid::IHidDebugServer is hid:dbg {
 	[208] StartFirmwareUpdateForRevert(nn::hid::system::UniquePadId);
 	[209] GetAvailableFirmwareVersionForRevert(nn::hid::system::UniquePadId) -> nn::hid::system::FirmwareVersion;
 	@version(4.0.0+)
+	@undocumented
 	[210] IsFirmwareUpdatingDevice();
 	[221] UpdateControllerColor(nn::util::Unorm8x4, nn::util::Unorm8x4, nn::hid::system::UniquePadId);
 	@version(4.0.0+)
+	@undocumented
 	[222] ConnectUsbPadsAsync();
 	@version(4.0.0+)
+	@undocumented
 	[223] DisconnectUsbPadsAsync();
 	@version(5.0.0+)
+	@undocumented
 	[224] UpdateDesignInfo();
 	@version(5.0.0+)
+	@undocumented
 	[225] GetUniquePadDriverState();
 	@version(5.0.0+)
+	@undocumented
 	[226] GetSixAxisSensorDriverStates();
 	@version(5.0.0+)
+	@undocumented
 	[301] GetAbstractedPadHandles();
 	@version(5.0.0+)
+	@undocumented
 	[302] GetAbstractedPadState();
 	@version(5.0.0+)
+	@undocumented
 	[303] GetAbstractedPadsState();
 	@version(5.0.0+)
+	@undocumented
 	[321] SetAutoPilotVirtualPadState();
 	@version(5.0.0+)
+	@undocumented
 	[322] UnsetAutoPilotVirtualPadState();
 	@version(5.0.0+)
+	@undocumented
 	[323] UnsetAllAutoPilotVirtualPadState();
 	@version(5.0.0+)
+	@undocumented
 	[350] AddRegisteredDevice();
 }
 
@@ -2097,6 +2243,7 @@ interface nn::hid::IHidServer is hid {
 	[107] DisconnectNpad(u32, nn::applet::AppletResourceUserId, pid);
 	[108] GetPlayerLedPattern(u32) -> u64;
 	@version(5.0.0+)
+	@undocumented
 	[109] ActivateNpadWithRevision();
 	[120] SetNpadJoyHoldType(nn::applet::AppletResourceUserId, i64, pid);
 	[121] GetNpadJoyHoldType(nn::applet::AppletResourceUserId, pid) -> i64;
@@ -2122,6 +2269,7 @@ interface nn::hid::IHidServer is hid {
 	[131] IsUnintendedHomeButtonInputProtectionEnabled(u32, nn::applet::AppletResourceUserId, pid) -> bool;
 	[132] EnableUnintendedHomeButtonInputProtection(bool, u32, nn::applet::AppletResourceUserId, pid);
 	@version(5.0.0+)
+	@undocumented
 	[133] SetNpadJoyAssignmentModeSingleWithDestination();
 	# Takes a [\#VibrationDeviceHandle](http://switchbrew.org/index.php?title=HID services#VibrationDeviceHandle "wikilink"). Returns an output [\#VibrationDeviceInfo](http://switchbrew.org/index.php?title=HID services#VibrationDeviceInfo "wikilink").
 	# 
@@ -2149,68 +2297,97 @@ interface nn::hid::IHidServer is hid {
 	# 
 	[206] SendVibrationValues(nn::applet::AppletResourceUserId, array<nn::hid::VibrationDeviceHandle,9>, array<nn::hid::VibrationValue,9>);
 	@version(4.0.0+)
+	@undocumented
 	[207] SendVibrationGcErmCommand();
 	@version(4.0.0+)
+	@undocumented
 	[208] GetActualVibrationGcErmCommand();
 	@version(4.0.0+)
+	@undocumented
 	[209] BeginPermitVibrationSession();
 	@version(4.0.0+)
+	@undocumented
 	[210] EndPermitVibrationSession();
 	[300] ActivateConsoleSixAxisSensor(nn::applet::AppletResourceUserId, pid);
 	[301] StartConsoleSixAxisSensor(nn::hid::ConsoleSixAxisSensorHandle, nn::applet::AppletResourceUserId, pid);
 	[302] StopConsoleSixAxisSensor(nn::hid::ConsoleSixAxisSensorHandle, nn::applet::AppletResourceUserId, pid);
 	@version(5.0.0+)
+	@undocumented
 	[303] ActivateSevenSixAxisSensor();
 	@version(5.0.0+)
+	@undocumented
 	[304] StartSevenSixAxisSensor();
 	@version(5.0.0+)
+	@undocumented
 	[305] StopSevenSixAxisSensor();
 	@version(5.0.0+)
+	@undocumented
 	[306] InitializeSevenSixAxisSensor();
 	@version(5.0.0+)
+	@undocumented
 	[307] FinalizeSevenSixAxisSensor();
 	@version(5.0.0+)
+	@undocumented
 	[308] SetSevenSixAxisSensorFusionStrength();
 	@version(5.0.0+)
+	@undocumented
 	[309] GetSevenSixAxisSensorFusionStrength();
 	[400] IsUsbFullKeyControllerEnabled() -> bool;
 	[401] EnableUsbFullKeyController(bool);
 	[402] IsUsbFullKeyControllerConnected(u32) -> bool;
 	@version(4.0.0+)
+	@undocumented
 	[403] HasBattery();
 	@version(4.0.0+)
+	@undocumented
 	[404] HasLeftRightBattery();
 	@version(4.0.0+)
+	@undocumented
 	[405] GetNpadInterfaceType();
 	@version(4.0.0+)
+	@undocumented
 	[406] GetNpadLeftRightInterfaceType();
 	@version(5.0.0+)
+	@undocumented
 	[500] GetPalmaConnectionHandle();
 	@version(5.0.0+)
+	@undocumented
 	[501] InitializePalma();
 	@version(5.0.0+)
+	@undocumented
 	[502] AcquirePalmaOperationCompleteEvent();
 	@version(5.0.0+)
+	@undocumented
 	[503] GetPalmaOperationInfo();
 	@version(5.0.0+)
+	@undocumented
 	[504] PlayPalmaActivity();
 	@version(5.0.0+)
+	@undocumented
 	[505] SetPalmaFrModeType();
 	@version(5.0.0+)
+	@undocumented
 	[506] ReadPalmaStep();
 	@version(5.0.0+)
+	@undocumented
 	[507] EnablePalmaStep();
 	@version(5.0.0+)
+	@undocumented
 	[508] SuspendPalmaStep();
 	@version(5.0.0+)
+	@undocumented
 	[509] ResetPalmaStep();
 	@version(5.0.0+)
+	@undocumented
 	[510] ReadPalmaApplicationSection();
 	@version(5.0.0+)
+	@undocumented
 	[511] WritePalmaApplicationSection();
 	@version(5.0.0+)
+	@undocumented
 	[512] ReadPalmaUniqueCode();
 	@version(5.0.0+)
+	@undocumented
 	[513] SetPalmaUniqueCodeInvalid();
 	[1000] SetNpadCommunicationMode(nn::applet::AppletResourceUserId, i64, pid);
 	[1001] GetNpadCommunicationMode() -> i64;
@@ -2229,8 +2406,10 @@ interface nn::hid::IHidSystemServer is hid:sys {
 	[212] AcquireNfcActivateEventHandle(u32) -> KObject;
 	[213] ActivateNfc(bool, u32, nn::applet::AppletResourceUserId, pid);
 	@version(4.0.0+)
+	@undocumented
 	[214] GetXcdHandleForNpadWithNfc();
 	@version(4.0.0+)
+	@undocumented
 	[215] IsNfcActivated();
 	[230] AcquireIrSensorEventHandle(u32) -> KObject;
 	[231] ActivateIrSensor(bool, u32, nn::applet::AppletResourceUserId, pid);
@@ -2241,8 +2420,10 @@ interface nn::hid::IHidSystemServer is hid:sys {
 	[306] GetLastActiveNpad() -> u32;
 	[307] GetNpadSystemExtStyle(u32) -> (i64, i64);
 	@version(5.0.0+)
+	@undocumented
 	[308] ApplyNpadSystemCommonPolicyFull();
 	@version(5.0.0+)
+	@undocumented
 	[309] GetNpadFullKeyGripColor();
 	[311] SetNpadPlayerLedBlinkingDevice(u32, nn::hid::system::DeviceType, nn::applet::AppletResourceUserId, pid);
 	[321] GetUniquePadsFromNpad(u32) -> (i64, array<nn::hid::system::UniquePadId,10>);
@@ -2267,11 +2448,14 @@ interface nn::hid::IHidSystemServer is hid:sys {
 	[542] AcquirePlayReportRegisteredDeviceUpdateEvent() -> KObject;
 	@version(1.0.0-4.1.0)
 	[543] GetRegisteredDevices() -> (i64, array<nn::hid::system::RegisteredDevice,10>);
+	@version(5.0.0+)
+	[543] GetRegisteredDevicesOld() -> (i64, array<nn::hid::system::RegisteredDevice,10>);
 	[544] AcquireConnectionTriggerTimeoutEvent() -> KObject;
 	[545] SendConnectionTrigger(nn::bluetooth::Address);
 	[546] AcquireDeviceRegisteredEventForControllerSupport() -> KObject;
 	[547] GetAllowedBluetoothLinksCount() -> i64;
 	@version(5.0.0+)
+	@undocumented
 	[548] GetRegisteredDevices();
 	[700] ActivateUniquePad(nn::applet::AppletResourceUserId, nn::hid::system::UniquePadId, pid);
 	[702] AcquireUniquePadConnectionEventHandle() -> KObject;
@@ -2285,28 +2469,38 @@ interface nn::hid::IHidSystemServer is hid:sys {
 	[805] GetUniquePadBluetoothAddress(nn::hid::system::UniquePadId) -> nn::bluetooth::Address;
 	[806] DisconnectUniquePad(nn::hid::system::UniquePadId);
 	@version(5.0.0+)
+	@undocumented
 	[807] GetUniquePadType();
 	@version(5.0.0+)
+	@undocumented
 	[808] GetUniquePadInterface();
 	@version(5.0.0+)
+	@undocumented
 	[809] GetUniquePadSerialNumber();
 	@version(5.0.0+)
+	@undocumented
 	[810] GetUniquePadControllerNumber();
 	@version(5.0.0+)
+	@undocumented
 	[811] GetSixAxisSensorUserCalibrationStage();
 	[821] StartAnalogStickManualCalibration(nn::hid::system::UniquePadId, i64);
 	[822] RetryCurrentAnalogStickManualCalibrationStage(nn::hid::system::UniquePadId, i64);
 	[823] CancelAnalogStickManualCalibration(nn::hid::system::UniquePadId, i64);
 	[824] ResetAnalogStickManualCalibration(nn::hid::system::UniquePadId, i64);
 	@version(5.0.0+)
+	@undocumented
 	[825] GetAnalogStickState();
 	@version(5.0.0+)
+	@undocumented
 	[826] GetAnalogStickManualCalibrationStage();
 	@version(5.0.0+)
+	@undocumented
 	[827] IsAnalogStickButtonPressed();
 	@version(5.0.0+)
+	@undocumented
 	[828] IsAnalogStickInReleasePosition();
 	@version(5.0.0+)
+	@undocumented
 	[829] IsAnalogStickInCircumference();
 	[850] IsUsbFullKeyControllerEnabled() -> bool;
 	[851] EnableUsbFullKeyController(bool);
@@ -2322,22 +2516,31 @@ interface nn::hid::IHidSystemServer is hid:sys {
 	[1006] AbortFirmwareUpdate();
 	[1007] GetFirmwareUpdateState(nn::hid::system::FirmwareUpdateDeviceHandle) -> nn::hid::system::FirmwareUpdateState;
 	@version(4.0.0+)
+	@undocumented
 	[1008] ActivateAudioControl();
 	@version(4.0.0+)
+	@undocumented
 	[1009] AcquireAudioControlEventHandle();
 	@version(4.0.0+)
+	@undocumented
 	[1010] GetAudioControlStates();
 	@version(4.0.0+)
+	@undocumented
 	[1011] DeactivateAudioControl();
 	@version(5.0.0+)
+	@undocumented
 	[1050] IsSixAxisSensorAccurateUserCalibrationSupported();
 	@version(5.0.0+)
+	@undocumented
 	[1051] StartSixAxisSensorAccurateUserCalibration();
 	@version(5.0.0+)
+	@undocumented
 	[1052] CancelSixAxisSensorAccurateUserCalibration();
 	@version(5.0.0+)
+	@undocumented
 	[1053] GetSixAxisSensorAccurateUserCalibrationState();
 	@version(5.0.0+)
+	@undocumented
 	[1100] GetHidbusSystemServiceObject();
 }
 
@@ -2453,14 +2656,19 @@ interface nn::irsensor::IIrSensorServer is irs {
 	@version(3.0.0+)
 	[314] CheckFirmwareVersion(nn::irsensor::IrCameraHandle, nn::irsensor::PackedMcuVersion, nn::applet::AppletResourceUserId, pid);
 	@version(5.0.0+)
+	@undocumented
 	[315] SetFunctionLevel();
 	@version(5.0.0+)
+	@undocumented
 	[316] RunImageTransferExProcessor();
 	@version(5.0.0+)
+	@undocumented
 	[317] RunIrLedProcessor();
 	@version(5.0.0+)
+	@undocumented
 	[318] StopImageProcessorAsync();
 	@version(5.0.0+)
+	@undocumented
 	[319] ActivateIrsensorWithFunctionLevel();
 }
 
@@ -2634,7 +2842,7 @@ interface nn::ldr::detail::IDebugMonitorInterface is ldr:dmnt {
 	# 
 	# | Offset | Size | Description                       |
 	# |--------|------|-----------------------------------|
-	# | 0x0    | 0x20 | Build ID, from NSO header+0x40. |
+	# | 0x0    | 0x20 | “Build ID”, from NSO header+0x40. |
 	# | 0x20   | 0x8  | Mapped address for this NSO       |
 	# | 0x28   | 0x8  | Mapped size for this NSO          |
 	# |        |      |                                   |
@@ -2679,7 +2887,7 @@ interface nn::ldr::detail::IRoInterface is ldr:ro {
 	# | 1    | 0x80000012               |
 	# | 2    | 0x00000001               |
 	# | 0-1  | Pid                      |
-	# | 0    | SCFI                   |
+	# | 0    | “SCFI”                   |
 	# | 1    | 0x00000000               |
 	# | 2    | Always 0.                |
 	# | 3    | Nro heap address         |
@@ -2696,7 +2904,7 @@ interface nn::ldr::detail::IRoInterface is ldr:ro {
 	# | 2    | 0x00000001  |
 	# |      |             |
 	# | 0-1  | Pid         |
-	# | 0    | SFCI      |
+	# | 0    | “SFCI”      |
 	# | 1    | 0x00000002  |
 	# | 2    | Always 0.   |
 	# | 3    | Nrr address |
@@ -2711,7 +2919,7 @@ interface nn::ldr::detail::IRoInterface is ldr:ro {
 	# | 2    | 0x00000003                  |
 	# | 0-1  | Pid                         |
 	# | 2    | Process handle (0xFFFF8001) |
-	# | 0    | SFCI                      |
+	# | 0    | “SFCI”                      |
 	# | 1    | 0x00000004                  |
 	# | 2    | Always 0.                   |
 	# 
@@ -2806,34 +3014,40 @@ interface nn::lr::ILocationResolver {
 	# Same as [SetProgramNcaPath](http://switchbrew.org/index.php?title=NCM services#SetProgramNcaPath "wikilink"), but inserts a new [entry](http://switchbrew.org/index.php?title=NCM services#Location_List_Entry "wikilink") with **flag** set to 1.
 	# 
 	@version(5.0.0+)
+	@undocumented
 	[10] SetProgramNcaPath2();
 	# Takes no input. Frees all linked-lists' entries that have **flag** set to 1.
 	# 
 	@version(5.0.0+)
+	@undocumented
 	[11] ClearLocationResolver2();
 	# Takes an u64 **TitleID**. Used for [NCA-type1](http://switchbrew.org/index.php?title=NCA_Content_FS#NCA-type1 "wikilink").
 	# 
 	# Removes the [entry](http://switchbrew.org/index.php?title=NCM services#Location_List_Entry "wikilink") that matches the input TitleID.
 	# 
 	@version(5.0.0+)
+	@undocumented
 	[12] DeleteProgramNcaPath();
 	# Takes an u64 **TitleID**. Used for [NCA-type3](http://switchbrew.org/index.php?title=NCA_Content_FS#NCA-type3 "wikilink").
 	# 
 	# Removes the [entry](http://switchbrew.org/index.php?title=NCM services#Location_List_Entry "wikilink") that matches the input TitleID.
 	# 
 	@version(5.0.0+)
+	@undocumented
 	[13] DeleteControlNcaPath();
 	# Takes an u64 **TitleID**. Used for [NCA-type4](http://switchbrew.org/index.php?title=NCA_Content_FS#NCA-type4 "wikilink").
 	# 
 	# Removes the [entry](http://switchbrew.org/index.php?title=NCM services#Location_List_Entry "wikilink") that matches the input TitleID.
 	# 
 	@version(5.0.0+)
+	@undocumented
 	[14] DeleteDocHtmlNcaPath();
 	# Takes an u64 **TitleID**. Used for [NCA-type5](http://switchbrew.org/index.php?title=NCA_Content_FS#NCA-type5 "wikilink").
 	# 
 	# Removes the [entry](http://switchbrew.org/index.php?title=NCM services#Location_List_Entry "wikilink") that matches the input TitleID.
 	# 
 	@version(5.0.0+)
+	@undocumented
 	[15] DeleteInfoHtmlNcaPath();
 }
 
@@ -2943,8 +3157,10 @@ interface nn::mii::detail::IDatabaseService {
 	[20] IsBrokenDatabaseWithClearFlag() -> bool;
 	[21] GetIndex(nn::mii::CharInfo) -> i32;
 	@version(5.0.0+)
+	@undocumented
 	[22] SetInterfaceVersion();
 	@version(5.0.0+)
+	@undocumented
 	[23] Convert();
 }
 
@@ -2991,8 +3207,10 @@ interface nn::ncm::IContentManager is ncm {
 	@undocumented
 	[5] OpenContentMetaDatabase();
 	@version(1.0.0)
+	@undocumented
 	[6] CloseContentStorageForcibly();
 	@version(1.0.0)
+	@undocumented
 	[7] CloseContentMetaDatabaseForcibly();
 	[8] CleanupContentMetaDatabase(u8);
 	@version(2.0.0+)
@@ -3020,12 +3238,12 @@ interface nn::ncm::IContentMetaDatabase {
 	[5] List();
 	@undocumented
 	[6] GetLatestContentMetaKey();
-	# Each 24-byte entry (officially ApplicationContentMetaKey) is as follows:
+	# Each 24-byte entry (officially “ApplicationContentMetaKey”) is as follows:
 	# 
-	# ``[`meta_record`](http://switchbrew.org/index.php?title=NCA#Meta_records "wikilink")`meta_record;`
-	# `u64base_title_id;`
+	# ` `[`meta_record`](http://switchbrew.org/index.php?title=NCA#Meta_records "wikilink")` meta_record;`
+	# ` u64    base_title_id;`
 	# 
-	# This function takes in a type 6 buffer to write entries to, and a u8 filter [type](http://switchbrew.org/index.php?title=NCM services#Title_Types "wikilink"). If filter is zero, all update records will be copied to to the output buffer (space permitting). Otherwise, only titles with type == filter\_type will be copied to the output buffer.
+	# This function takes in a type 6 buffer to write entries to, and a u8 “filter” [type](http://switchbrew.org/index.php?title=NCM services#Title_Types "wikilink"). If filter is zero, all update records will be copied to to the output buffer (space permitting). Otherwise, only titles with type == filter\_type will be copied to the output buffer.
 	# 
 	# This func returns a u32 num\_entries\_total, and a u32 num\_entries\_written.
 	# 
@@ -3052,12 +3270,12 @@ interface nn::ncm::IContentMetaDatabase {
 	# 
 	# for i in range(len(out\_buf)):
 	# 
-	# `out_buf[i]=1`
+	# `   out_buf[i] = 1`
 	# 
 	# for i, NcaID in NcaIDs:
 	# 
-	# `ifis_present_in_database(NcaID):`
-	# `out_buf[i]=0`
+	# `   if is_present_in_database(NcaID):`
+	# `       out_buf[i] = 0`
 	# 
 	@undocumented
 	[14] LookupOrphanContent();
@@ -3072,6 +3290,7 @@ interface nn::ncm::IContentMetaDatabase {
 	@undocumented
 	[19] GetRequiredApplicationVersion();
 	@version(5.0.0+)
+	@undocumented
 	[20] Unknown20();
 }
 
@@ -3106,13 +3325,13 @@ interface nn::ncm::IContentStorage {
 	# 
 	# Each entry is a [\#NcaID](http://switchbrew.org/index.php?title=NCM services#NcaID "wikilink").
 	# 
-	# The total read entries is exactly the same as the number of <hex>.nca directories in the storage FS(or at least under the registered directory?).
+	# The total read entries is exactly the same as the number of “<hex>.nca” directories in the storage FS(or at least under the “registered” directory?).
 	# 
 	@undocumented
 	[13] ListContentId();
 	# Takes a [\#NcaID](http://switchbrew.org/index.php?title=NCM services#NcaID "wikilink") as input.
 	# 
-	# Returns the total size readable by ReadEntryRaw. This is the same as the size-field in the [NAX0](http://switchbrew.org/index.php?title=NAX0 "wikilink") <NcaID>.nca/00 file.
+	# Returns the total size readable by ReadEntryRaw. This is the same as the size-field in the [NAX0](http://switchbrew.org/index.php?title=NAX0 "wikilink") “<NcaID>.nca/00” file.
 	# 
 	@undocumented
 	[14] GetSize();
@@ -3146,8 +3365,10 @@ interface nn::ncm::IContentStorage {
 	@version(3.0.0+)
 	[24] FlushStorage();
 	@version(4.0.0+)
+	@undocumented
 	[25] Unknown25();
 	@version(4.0.0+)
+	@undocumented
 	[26] Unknown26();
 }
 
@@ -3172,46 +3393,65 @@ interface nn::nfc::am::detail::IAmManager is nfc:am {
 interface nn::nfc::detail::ISystem {
 	[0] Initialize(u64, u64, pid, buffer<unknown,5,0>);
 	[1] Finalize();
-	[2] GetState() -> u32;
-	[3] IsNfcEnabled() -> u8;
-	[100] SetNfcEnabled(u8);
+	[2] GetStateOld() -> u32;
+	[3] IsNfcEnabledOld() -> u8;
+	[100] SetNfcEnabledOld(u8);
 	@version(4.0.0+)
+	@undocumented
 	[400] InitializeSystem();
 	@version(4.0.0+)
+	@undocumented
 	[401] FinalizeSystem();
 	@version(4.0.0+)
+	@undocumented
 	[402] GetState();
 	@version(4.0.0+)
+	@undocumented
 	[403] IsNfcEnabled();
 	@version(4.0.0+)
+	@undocumented
 	[404] ListDevices();
 	@version(4.0.0+)
+	@undocumented
 	[405] GetDeviceState();
 	@version(4.0.0+)
+	@undocumented
 	[406] GetNpadId();
 	@version(4.0.0+)
+	@undocumented
 	[407] AttachAvailabilityChangeEvent();
 	@version(4.0.0+)
+	@undocumented
 	[408] StartDetection();
 	@version(4.0.0+)
+	@undocumented
 	[409] StopDetection();
 	@version(4.0.0+)
+	@undocumented
 	[410] GetTagInfo();
 	@version(4.0.0+)
+	@undocumented
 	[411] AttachActivateEvent();
 	@version(4.0.0+)
+	@undocumented
 	[412] AttachDeactivateEvent();
 	@version(4.0.0+)
+	@undocumented
 	[500] SetNfcEnabled();
 	@version(4.0.0+)
+	@undocumented
 	[1000] ReadMifare();
 	@version(4.0.0+)
+	@undocumented
 	[1001] WriteMifare();
 	@version(4.0.0+)
+	@undocumented
 	[1300] SendCommandByPassThrough();
 	@version(4.0.0+)
+	@undocumented
 	[1301] KeepPassThroughSession();
 	@version(4.0.0+)
+	@undocumented
 	[1302] ReleasePassThroughSession();
 }
 
@@ -3220,45 +3460,63 @@ interface nn::nfc::detail::ISystemManager is nfc:sys {
 }
 
 interface nn::nfc::detail::IUser {
-	[0] Initialize(u64, u64, pid, buffer<unknown,5,0>);
-	[1] Finalize();
-	[2] GetState() -> u32;
-	[3] IsNfcEnabled() -> u8;
+	[0] InitializeOld(u64, u64, pid, buffer<unknown,5,0>);
+	[1] FinalizeOld();
+	[2] GetStateOld() -> u32;
+	[3] IsNfcEnabledOld() -> u8;
 	@version(4.0.0+)
+	@undocumented
 	[400] Initialize();
 	@version(4.0.0+)
+	@undocumented
 	[401] Finalize();
 	@version(4.0.0+)
+	@undocumented
 	[402] GetState();
 	@version(4.0.0+)
+	@undocumented
 	[403] IsNfcEnabled();
 	@version(4.0.0+)
+	@undocumented
 	[404] ListDevices();
 	@version(4.0.0+)
+	@undocumented
 	[405] GetDeviceState();
 	@version(4.0.0+)
+	@undocumented
 	[406] GetNpadId();
 	@version(4.0.0+)
+	@undocumented
 	[407] AttachAvailabilityChangeEvent();
 	@version(4.0.0+)
+	@undocumented
 	[408] StartDetection();
 	@version(4.0.0+)
+	@undocumented
 	[409] StopDetection();
 	@version(4.0.0+)
+	@undocumented
 	[410] GetTagInfo();
 	@version(4.0.0+)
+	@undocumented
 	[411] AttachActivateEvent();
 	@version(4.0.0+)
+	@undocumented
 	[412] AttachDeactivateEvent();
 	@version(4.0.0+)
+	@undocumented
 	[1000] ReadMifare();
 	@version(4.0.0+)
+	@undocumented
 	[1001] WriteMifare();
 	@version(4.0.0+)
+	@undocumented
 	[1300] SendCommandByPassThrough();
 	@version(4.0.0+)
+	@undocumented
 	[1301] KeepPassThroughSession();
 	@version(4.0.0+)
+	@undocumented
 	[1302] ReleasePassThroughSession();
 }
 
@@ -3438,11 +3696,15 @@ interface nn::nifm::detail::IGeneralService {
 	[8] GetNetworkProfile(nn::util::Uuid) -> buffer<nn::nifm::detail::sf::NetworkProfileData,26,380>;
 	[9] SetNetworkProfile(buffer<nn::nifm::detail::sf::NetworkProfileData,25,380>) -> nn::util::Uuid;
 	[10] RemoveNetworkProfile(nn::util::Uuid);
+	@version(4.0.0+)
+	[11] GetScanDataOld() -> (i32, array<nn::nifm::detail::sf::AccessPointData,6>);
 	@version(1.0.0-3.0.2)
 	[11] GetScanData() -> (i32, array<nn::nifm::detail::sf::AccessPointData,6>);
 	[12] GetCurrentIpAddress() -> nn::nifm::IpV4Address;
 	@version(1.0.0-3.0.2)
 	[13] GetCurrentAccessPoint() -> buffer<nn::nifm::detail::sf::AccessPointData,26,52>;
+	@version(4.0.0+)
+	[13] GetCurrentAccessPointOld() -> buffer<nn::nifm::detail::sf::AccessPointData,26,52>;
 	[14] CreateTemporaryNetworkProfile(buffer<nn::nifm::detail::sf::NetworkProfileData,25,380>) -> (nn::util::Uuid, object<nn::nifm::detail::INetworkProfile>);
 	[15] GetCurrentIpConfigInfo() -> (nn::nifm::IpAddressSetting, align<1,nn::nifm::DnsSetting>);
 	[16] SetWirelessCommunicationEnabled(bool);
@@ -3467,12 +3729,16 @@ interface nn::nifm::detail::IGeneralService {
 	@version(2.0.0+)
 	[33] ConfirmSystemAvailability();
 	@version(4.0.0+)
+	@undocumented
 	[34] SetBackgroundRequestEnabled();
 	@version(4.0.0+)
+	@undocumented
 	[35] GetScanData();
 	@version(4.0.0+)
+	@undocumented
 	[36] GetCurrentAccessPoint();
 	@version(4.0.0+)
+	@undocumented
 	[37] Shutdown();
 }
 
@@ -3480,6 +3746,8 @@ interface nn::nifm::detail::INetworkProfile {
 	[0] Update(buffer<nn::nifm::detail::sf::NetworkProfileData,25,380>) -> nn::util::Uuid;
 	@version(1.0.0-2.3.0)
 	[1] Persist(nn::util::Uuid) -> nn::util::Uuid;
+	@version(3.0.0+)
+	[1] PersistOld(nn::util::Uuid) -> nn::util::Uuid;
 	@version(3.0.0+)
 	[2] Persist() -> nn::util::Uuid;
 }
@@ -3522,6 +3790,8 @@ interface nn::nifm::detail::IScanRequest {
 interface nn::nifm::detail::IStaticService is nifm:a, nifm:s, nifm:u {
 	@version(1.0.0-2.3.0)
 	[4] CreateGeneralService() -> object<nn::nifm::detail::IGeneralService>;
+	@version(3.0.0+)
+	[4] CreateGeneralServiceOld() -> object<nn::nifm::detail::IGeneralService>;
 	@version(3.0.0+)
 	[5] CreateGeneralService(u64, pid) -> object<nn::nifm::detail::IGeneralService>;
 }
@@ -3619,7 +3889,7 @@ interface nn::nim::detail::INetworkInstallManager is nim {
 	@version(2.0.0+)
 	[39] PrepareShutdown();
 	@version(2.0.0+)
-	[40] ListApplyDeltaTask() -> (u32, buffer<unknown,6,0>);
+	[40] ListApplyDeltaTask2() -> (u32, buffer<unknown,6,0>);
 	@version(2.0.0+)
 	[41] ClearNotEnoughSpaceStateOfApplyDeltaTask(u128);
 	@version(3.0.0+)
@@ -3666,8 +3936,11 @@ interface nn::nim::detail::IShopServiceManager is nim:shp {
 	[302] RequestLinkDevice();
 	@undocumented
 	[303] HasDeviceLink();
+	@undocumented
 	[304] RequestUnlinkDeviceAll();
+	@undocumented
 	[305] RequestCreateVirtualAccount();
+	@undocumented
 	[306] RequestDeviceLinkStatus();
 	@undocumented
 	[400] GetAccountByVirtualAccount();
@@ -3676,6 +3949,7 @@ interface nn::nim::detail::IShopServiceManager is nim:shp {
 	@undocumented
 	[501] RequestDownloadTicket();
 	@version(4.0.0+)
+	@undocumented
 	[502] RequestDownloadTicketForPrepurchasedContents();
 }
 
@@ -3788,9 +4062,9 @@ interface nn::ns::detail::IApplicationManagerInterface is ns:am {
 	# 
 	# The input titleID is used with the application-title table like various other cmds, anything not in that table can't be used with this.
 	# 
-	# Returns a string path for the specified type of patch content with this titleID, otherwise returns regular-application paths when update-title not installed. Returns an error when the specified type of content doesn't exist for this title. Starts with @{SdCardContent,UserContent}:// and ends in .nca.
+	# Returns a string path for the specified type of patch content with this titleID, otherwise returns regular-application paths when update-title not installed. Returns an error when the specified type of content doesn't exist for this title. Starts with “@{SdCardContent,UserContent}://” and ends in “.nca”.
 	# 
-	# For gamecard content, the output path is: @GcSXXXXXXXX:/<NcaId>.nca. NCA-type0 with gamecard returns 0 with an empty output string.
+	# For gamecard content, the output path is: “@GcSXXXXXXXX:/<NcaId>.nca”. NCA-type0 with gamecard returns 0 with an empty output string.
 	# 
 	# The output string is then used by the user-process with [FS](http://switchbrew.org/index.php?title=Filesystem_services "wikilink") to mount the content.
 	# 
@@ -3866,11 +4140,17 @@ interface nn::ns::detail::IApplicationManagerInterface is ns:am {
 	[81] RequestDownloadAddOnContent();
 	@undocumented
 	[82] DownloadApplication();
+	@undocumented
 	[83] CheckApplicationResumeRights();
+	@undocumented
 	[84] GetDynamicCommitEvent();
+	@undocumented
 	[85] RequestUpdateApplication2();
+	@undocumented
 	[86] EnableApplicationCrashReport();
+	@undocumented
 	[87] IsApplicationCrashReportEnabled();
+	@undocumented
 	[90] BoostSystemMemoryResourceLimit();
 	[100] ResetToFactorySettings();
 	[101] ResetToFactorySettingsWithoutUserSaveData();
@@ -3909,6 +4189,7 @@ interface nn::ns::detail::IApplicationManagerInterface is ns:am {
 	[506] IsGameCardInserted() -> u8;
 	[507] EnsureGameCardAccess();
 	[508] GetLastGameCardMountFailureResult();
+	@undocumented
 	[509] ListApplicationIdOnGameCard();
 	[600] CountApplicationContentMeta(u64) -> u32;
 	# Returns 0x10-byte entries using the specified titleID starting at the specified u32 entryindex. Can only return game titles. The second entry if any is the update-title usually. When the input entryindex is &gt;= totalentries, this will return 0 with out\_entrycount=0.
@@ -3917,8 +4198,8 @@ interface nn::ns::detail::IApplicationManagerInterface is ns:am {
 	# 
 	# | Offset | Size | Description                                                                |                                            |
 	# |--------|------|----------------------------------------------------------------------------|--------------------------------------------|
-	# | 0x0    | 0x1  | u8 type. \[\[Content\_Manager\_services                                  | Title type\]\] (String is from web-applet) |
-	# | 0x1    | 0x1  | u8 installedStorage / \[\[Filesystem\_services                           | StorageId\]\] (String is from web-applet)  |
+	# | 0x0    | 0x1  | u8 “type”. \[\[Content\_Manager\_services                                  | Title type\]\] (String is from web-applet) |
+	# | 0x1    | 0x1  | u8 “installedStorage” / \[\[Filesystem\_services                           | StorageId\]\] (String is from web-applet)  |
 	# | 0x2    | 0x1  | Unknown. Non-zero with output from cmd 605, differs for app/update titles. |                                            |
 	# | 0x3    | 0x1  | Padding                                                                    |                                            |
 	# | 0x4    | 0x4  | u32 Title-version                                                          |                                            |
@@ -3967,7 +4248,9 @@ interface nn::ns::detail::IApplicationManagerInterface is ns:am {
 	[1001] CorruptApplicationForDebug();
 	@undocumented
 	[1002] RequestVerifyAddOnContentsRights();
+	@undocumented
 	[1003] RequestVerifyApplication();
+	@undocumented
 	[1004] CorruptContentForDebug();
 	[1200] NeedsUpdateVulnerability() -> u8;
 	[1300] IsAnyApplicationEntityInstalled(u64) -> u8;
@@ -3977,8 +4260,11 @@ interface nn::ns::detail::IApplicationManagerInterface is ns:am {
 	[1303] CleanupAddOnContentsWithNoRights(u64);
 	@undocumented
 	[1304] DeleteApplicationContentEntity();
+	@undocumented
 	[1305] TryDeleteRunningApplicationEntity();
+	@undocumented
 	[1306] TryDeleteRunningApplicationCompletely();
+	@undocumented
 	[1307] TryDeleteRunningApplicationContentEntities();
 	[1400] PrepareShutdown();
 	[1500] FormatSdCard();
@@ -3993,31 +4279,52 @@ interface nn::ns::detail::IApplicationManagerInterface is ns:am {
 	@undocumented
 	[1701] GetApplicationView();
 	[1702] GetApplicationDownloadTaskStatus(u64) -> u8;
+	@undocumented
 	[1703] GetApplicationViewDownloadErrorContext();
 	[1800] IsNotificationSetupCompleted() -> u8;
 	[1801] GetLastNotificationInfoCount() -> u64;
 	[1802] ListLastNotificationInfo() -> (u32, buffer<unknown,6,0>);
 	[1803] ListNotificationTask() -> (u32, buffer<unknown,6,0>);
 	[1900] IsActiveAccount(u32) -> u8;
+	@undocumented
 	[1901] RequestDownloadApplicationPrepurchasedRights();
+	@undocumented
 	[1902] GetApplicationTicketInfo();
+	@undocumented
 	[2000] GetSystemDeliveryInfo();
+	@undocumented
 	[2001] SelectLatestSystemDeliveryInfo();
+	@undocumented
 	[2002] VerifyDeliveryProtocolVersion();
+	@undocumented
 	[2003] GetApplicationDeliveryInfo();
+	@undocumented
 	[2004] HasAllContentsToDeliver();
+	@undocumented
 	[2005] CompareApplicationDeliveryInfo();
+	@undocumented
 	[2006] CanDeliverApplication();
+	@undocumented
 	[2007] ListContentMetaKeyToDeliverApplication();
+	@undocumented
 	[2008] NeedsSystemUpdateToDeliverApplication();
+	@undocumented
 	[2009] EstimateRequiredSize();
+	@undocumented
 	[2010] RequestReceiveApplication();
+	@undocumented
 	[2011] CommitReceiveApplication();
+	@undocumented
 	[2012] GetReceiveApplicationProgress();
+	@undocumented
 	[2013] RequestSendApplication();
+	@undocumented
 	[2014] GetSendApplicationProgress();
+	@undocumented
 	[2015] CompareSystemDeliveryInfo();
+	@undocumented
 	[2016] ListNotCommittedContentMeta();
+	@undocumented
 	[2017] CreateDownloadTask();
 }
 
@@ -4038,38 +4345,49 @@ interface nn::ns::detail::IContentManagementInterface {
 }
 
 interface nn::ns::detail::IDevelopInterface is ns:dev {
-	# Wrapper for pm:shell [LaunchProcess](http://switchbrew.org/index.php?title=Process_Manager_services#LaunchProcess "wikilink").
+	# Wrapper for “pm:shell” [LaunchProcess](http://switchbrew.org/index.php?title=Process_Manager_services#LaunchProcess "wikilink").
 	# 
 	@undocumented
 	[0] LaunchProgram();
-	# Wrapper for pm:shell [TerminateTitleByPid](http://switchbrew.org/index.php?title=Process_Manager_services#TerminateTitleByPid "wikilink").
+	# Wrapper for “pm:shell” [TerminateTitleByPid](http://switchbrew.org/index.php?title=Process_Manager_services#TerminateTitleByPid "wikilink").
 	# 
 	@undocumented
 	[1] TerminateProcess();
-	# Wrapper for pm:shell [TerminateTitleByTitleId](http://switchbrew.org/index.php?title=Process_Manager_services#TerminateTitleByTitleId "wikilink").
+	# Wrapper for “pm:shell” [TerminateTitleByTitleId](http://switchbrew.org/index.php?title=Process_Manager_services#TerminateTitleByTitleId "wikilink").
 	# 
 	@undocumented
 	[2] TerminateProgram();
-	# Wrapper for pm:shell [GetProcessEventWaiter](http://switchbrew.org/index.php?title=Process_Manager_services#GetProcessEventWaiter "wikilink").
-	# 
-	[3] GetShellEventHandle();
-	# Wrapper for pm:shell [GetProcessEventType](http://switchbrew.org/index.php?title=Process_Manager_services#GetProcessEventType "wikilink").
+	# Wrapper for “pm:shell” [GetProcessEventWaiter](http://switchbrew.org/index.php?title=Process_Manager_services#GetProcessEventWaiter "wikilink").
 	# 
 	@undocumented
-	[4] GetShellEventInfo();
-	# Calls pm:shell [GetCrashingProcessPid](http://switchbrew.org/index.php?title=Process_Manager_services#GetCrashingProcessPid "wikilink") and sends PID to [TerminateTitleByPid](http://switchbrew.org/index.php?title=Process_Manager_services#TerminateTitleByPid "wikilink").
+	[4] GetShellEventHandle();
+	# Wrapper for “pm:shell” [GetProcessEventType](http://switchbrew.org/index.php?title=Process_Manager_services#GetProcessEventType "wikilink").
 	# 
 	@undocumented
-	[5] TerminateApplication();
+	[5] GetShellEventInfo();
+	# Calls “pm:shell” [GetCrashingProcessPid](http://switchbrew.org/index.php?title=Process_Manager_services#GetCrashingProcessPid "wikilink") and sends PID to [TerminateTitleByPid](http://switchbrew.org/index.php?title=Process_Manager_services#TerminateTitleByPid "wikilink").
+	# 
+	[6] TerminateApplication();
+	# Takes a type-0x5 input buffer containing the [ContentPath](http://switchbrew.org/index.php?title=Filesystem_services "wikilink"), returns an output 0x10-byte struct.
+	# 
 	# Calls [IPathResolverForStorage](http://switchbrew.org/index.php?title=NCM_services#IPathResolverForStorage "wikilink") Set...NcaPath functions.
+	# 
+	@undocumented
+	[7] PrepareLaunchProgramFromHost();
+	# Takes an input u64 titleID, returns an output u64 PID.
+	# 
+	# Launches an application title which is registered with NS.
+	# 
+	@undocumented
+	[8] LaunchApplication();
+	# Takes 2 input u8s, an u32 [launch\_flags](http://switchbrew.org/index.php?title=Process_Manager_services "wikilink"), and an u64 titleID. Returns an output u64 PID.
+	# 
+	# Launches an application title which is registered with NS.
 	# 
 	# [Category:Services](http://switchbrew.org/index.php?title=Category:Services "wikilink")
 	# 
-	[6] PrepareLaunchProgramFromHost();
 	@undocumented
-	[7] LaunchApplication();
-	@undocumented
-	[8] LaunchApplicationWithStorageId();
+	[9] LaunchApplicationWithStorageId();
 }
 
 interface nn::ns::detail::IDocumentInterface {
@@ -4086,9 +4404,13 @@ interface nn::ns::detail::IDownloadTaskInterface {
 	[704] ListDownloadTaskStatus() -> (u32, buffer<unknown,6,0>);
 	@undocumented
 	[705] RequestDownloadTaskListData();
+	@undocumented
 	[706] TryCommitCurrentApplicationDownloadTask();
+	@undocumented
 	[707] EnableAutoCommit();
+	@undocumented
 	[708] DisableAutoCommit();
+	@undocumented
 	[709] TriggerDynamicCommitEvent();
 }
 
@@ -4099,7 +4421,9 @@ interface nn::ns::detail::IFactoryResetInterface {
 }
 
 interface nn::ns::detail::IServiceGetterInterface is ns:rid, ns:web, ns:ec, ns:am2, ns:rt {
+	@undocumented
 	[7992] GetECommerceInterface();
+	@undocumented
 	[7993] GetApplicationVersionInterface();
 	[7994] GetFactoryResetInterface() -> object<IUnknown>;
 	[7995] GetAccountProxyInterface() -> object<IUnknown>;
@@ -4121,8 +4445,11 @@ interface nn::ns::detail::ISystemUpdateInterface is ns:su {
 	[9] GetSystemUpdateNotificationEventForContentDelivery() -> KObject;
 	[10] NotifySystemUpdateForContentDelivery();
 	[11] PrepareShutdown();
+	@undocumented
 	[16] DestroySystemUpdateTask();
+	@undocumented
 	[17] RequestSendSystemUpdate();
+	@undocumented
 	[18] GetSendSystemUpdateProgress();
 }
 
@@ -4130,8 +4457,10 @@ interface nn::ns::detail::IVulnerabilityManagerInterface is ns:vm {
 	@version(3.0.0+)
 	[1200] NeedsUpdateVulnerability() -> u8;
 	@version(4.0.0+)
+	@undocumented
 	[1201] UpdateSafeSystemVersionForDebug();
 	@version(4.0.0+)
+	@undocumented
 	[1202] GetSafeSystemVersion();
 }
 
@@ -4139,9 +4468,9 @@ interface nn::nsd::detail::IManager is nsd:a, nsd:u {
 	[10] GetSettingName() -> buffer<unknown,22,256>;
 	# Takes a type-0x16 buffer with size 8. Returns a string.
 	# 
-	# The output string is used by [NIM](http://switchbrew.org/index.php?title=NIM_services "wikilink") for the eid:%s in the User-Agent strings.
+	# The output string is used by [NIM](http://switchbrew.org/index.php?title=NIM_services "wikilink") for the “eid:%s” in the User-Agent strings.
 	# 
-	# This is the lp1 string also used in domains.
+	# This is the “lp1” string also used in domains.
 	# 
 	[11] GetEnvironmentIdentifier() -> buffer<unknown,22,8>;
 	[12] GetDeviceId() -> u128;
@@ -4217,22 +4546,31 @@ interface nn::omm::detail::IOperationModeManager is omm {
 	@version(3.0.0+)
 	[14] Unknown14() -> u8;
 	@version(4.0.0+)
+	@undocumented
 	[15] Unknown15();
 	@version(4.0.0+)
+	@undocumented
 	[16] Unknown16();
 	@version(4.0.0+)
+	@undocumented
 	[17] Unknown17();
 	@version(4.0.0+)
+	@undocumented
 	[18] Unknown18();
 	@version(4.0.0+)
+	@undocumented
 	[19] Unknown19();
 	@version(4.0.0+)
+	@undocumented
 	[20] Unknown20();
 	@version(4.0.0+)
+	@undocumented
 	[21] Unknown21();
 	@version(4.0.0+)
+	@undocumented
 	[22] Unknown22();
 	@version(4.0.0+)
+	@undocumented
 	[23] Unknown23();
 }
 
@@ -4294,6 +4632,7 @@ interface nn::pcie::detail::ISession {
 
 interface nn::pctl::detail::ipc::IParentalControlService {
 	@version(4.0.0+)
+	@undocumented
 	[1] Initialize();
 	[1001] CheckFreeCommunicationPermission();
 	[1002] ConfirmLaunchApplicationPermission(bool, nn::ncm::ApplicationId, array<i8,9>);
@@ -4308,10 +4647,13 @@ interface nn::pctl::detail::ipc::IParentalControlService {
 	[1011] RevertRestrictedSystemSettingsEntered();
 	[1012] GetRestrictedFeatures() -> i32;
 	@version(4.0.0+)
+	@undocumented
 	[1013] ConfirmStereoVisionPermission();
 	@version(5.0.0+)
+	@undocumented
 	[1014] ConfirmPlayableApplicationVideoOld();
 	@version(5.0.0+)
+	@undocumented
 	[1015] ConfirmPlayableApplicationVideo();
 	[1031] IsRestrictionEnabled() -> bool;
 	[1032] GetSafetyLevel() -> i32;
@@ -4329,26 +4671,31 @@ interface nn::pctl::detail::ipc::IParentalControlService {
 	[1046] DisableFeaturesForReset();
 	[1047] NotifyApplicationDownloadStarted(nn::ncm::ApplicationId);
 	@version(4.0.0+)
+	@undocumented
 	[1061] ConfirmStereoVisionRestrictionConfigurable();
 	@version(4.0.0+)
+	@undocumented
 	[1062] GetStereoVisionRestriction();
 	@version(4.0.0+)
+	@undocumented
 	[1063] SetStereoVisionRestriction();
 	@version(5.0.0+)
+	@undocumented
 	[1064] ResetConfirmedStereoVisionPermission();
 	@version(5.0.0+)
+	@undocumented
 	[1065] IsStereoVisionPermitted();
 	[1201] UnlockRestrictionTemporarily(array<i8,9>);
 	[1202] UnlockSystemSettingsRestriction(array<i8,9>);
 	[1203] SetPinCode(array<i8,9>);
-	# This cmd takes no input, and produces 0x20 bytes of raw output containing snprintf(%02d%08llu, 10, \[inquiry\_rnd\]) on &lt;= [3.0.0](http://switchbrew.org/index.php?title=3.0.0 "wikilink"). This changed on [3.0.1](http://switchbrew.org/index.php?title=3.0.1 "wikilink") to produce 11(...) instead of 10(...).
+	# This cmd takes no input, and produces 0x20 bytes of raw output containing snprintf(“%02d%08llu”, 10, \[inquiry\_rnd\]) on &lt;= [3.0.0](http://switchbrew.org/index.php?title=3.0.0 "wikilink"). This changed on [3.0.1](http://switchbrew.org/index.php?title=3.0.1 "wikilink") to produce “11(...)” instead of “10(...)”.
 	# 
 	# The random number generation relies on TinyMT.
 	# 
 	[1204] GenerateInquiryCode() -> nn::pctl::InquiryCode;
-	# This cmd takes the 0x20 bytes produced by GenerateInquiryCode, and an 0x20 byte X descriptor containing snprintf(%08llu, master\_key), and returns a bool 00 if the master key is not valid, and 01 if it is.
+	# This cmd takes the 0x20 bytes produced by GenerateInquiryCode, and an 0x20 byte X descriptor containing snprintf(“%08llu”, master\_key), and returns a bool 00 if the master key is not valid, and 01 if it is.
 	# 
-	# Master Keys are validated as follows on &lt;= [3.0.0](http://switchbrew.org/index.php?title=3.0.0 "wikilink"): first, svcSleepThread(1000000000LL) is called to introduce a delay to prevent brute force attacks. Then, strlen(master\_key) is called -- if this is not 8, 0 is returned. Next, the inquiry code is regenerated and snprintf(%02d%08llu, 10, generated\_inquiry\_rnd) is compared to the inquiry data passed in as an argument. If this doesn't match, 0 is returned. Then, hmac-sha256(snprintf(%02d%08llu, 10, generated\_inquiry\_rnd)) is called using hardcoded keydata, and the master key argument is compared to snprintf(%08llu, (hmac\_result & 0xFFFFFFFFFFFF) % 100000000). If this matches, 1 is returned, otherwise 0 is returned.
+	# Master Keys are validated as follows on &lt;= [3.0.0](http://switchbrew.org/index.php?title=3.0.0 "wikilink"): first, svcSleepThread(1000000000LL) is called to introduce a delay to prevent brute force attacks. Then, strlen(master\_key) is called -- if this is not 8, 0 is returned. Next, the inquiry code is regenerated and snprintf(“%02d%08llu”, 10, generated\_inquiry\_rnd) is compared to the inquiry data passed in as an argument. If this doesn't match, 0 is returned. Then, hmac-sha256(snprintf(“%02d%08llu”, 10, generated\_inquiry\_rnd)) is called using hardcoded keydata, and the master key argument is compared to snprintf(“%08llu”, (hmac\_result & 0xFFFFFFFFFFFF) % 100000000). If this matches, 1 is returned, otherwise 0 is returned.
 	# 
 	# On [3.0.1](http://switchbrew.org/index.php?title=3.0.1 "wikilink") this was changed to use different hardcoded keydata, and to pass 11 as the snprintf argument instead of 10.
 	# 
@@ -4358,6 +4705,7 @@ interface nn::pctl::detail::ipc::IParentalControlService {
 	[1206] GetPinCodeLength() -> i32;
 	[1207] GetPinCodeChangedEvent() -> KObject;
 	@version(4.0.0+)
+	@undocumented
 	[1208] GetPinCode();
 	[1403] IsPairingActive() -> bool;
 	[1406] GetSettingsLastUpdated() -> nn::time::PosixTime;
@@ -4373,6 +4721,7 @@ interface nn::pctl::detail::ipc::IParentalControlService {
 	[1456] GetPlayTimerSettings() -> nn::pctl::PlayTimerSettings;
 	[1457] GetPlayTimerEventToRequestSuspension() -> KObject;
 	@version(4.0.0+)
+	@undocumented
 	[1458] IsPlayTimerAlarmDisabled();
 	[1471] NotifyWrongPinCodeInputManyTimes();
 	[1472] CancelNetworkRequest();
@@ -4384,21 +4733,28 @@ interface nn::pctl::detail::ipc::IParentalControlService {
 	[1901] DeleteFromFreeCommunicationApplicationListForDebug(nn::ncm::ApplicationId);
 	[1902] ClearFreeCommunicationApplicationListForDebug();
 	@version(5.0.0+)
+	@undocumented
 	[1903] GetExemptApplicationListCountForDebug();
 	@version(5.0.0+)
+	@undocumented
 	[1904] GetExemptApplicationListForDebug();
 	@version(5.0.0+)
+	@undocumented
 	[1905] UpdateExemptApplicationListForDebug();
 	@version(5.0.0+)
+	@undocumented
 	[1906] AddToExemptApplicationListForDebug();
 	@version(5.0.0+)
+	@undocumented
 	[1907] DeleteFromExemptApplicationListForDebug();
 	@version(5.0.0+)
+	@undocumented
 	[1908] ClearExemptApplicationListForDebug();
 	[1941] DeletePairing();
 	[1951] SetPlayTimerSettingsForDebug(nn::pctl::PlayTimerSettings);
 	[1952] GetPlayTimerSpentTimeForTest() -> nn::TimeSpanType;
 	@version(4.0.0+)
+	@undocumented
 	[1953] SetPlayTimerAlarmDisabledForDebug();
 	[2001] RequestPairingAsync(array<i8,9>) -> (nn::pctl::detail::AsyncData, KObject);
 	[2002] FinishRequestPairing(nn::pctl::detail::AsyncData) -> nn::pctl::detail::PairingInfoBase;
@@ -4416,12 +4772,14 @@ interface nn::pctl::detail::ipc::IParentalControlService {
 	[2014] FinishSynchronizeParentalControlSettings(nn::pctl::detail::AsyncData);
 	[2015] FinishSynchronizeParentalControlSettingsWithLastUpdated(nn::pctl::detail::AsyncData) -> nn::time::PosixTime;
 	@version(5.0.0+)
+	@undocumented
 	[2016] RequestUpdateExemptionListAsync();
 }
 
 interface nn::pctl::detail::ipc::IParentalControlServiceFactory is pctl:s, pctl:r, pctl:a, pctl {
 	[0] CreateService(u64, pid) -> object<nn::pctl::detail::ipc::IParentalControlService>;
 	@version(4.0.0+)
+	@undocumented
 	[1] CreateServiceWithoutInitialize();
 }
 
@@ -4570,7 +4928,7 @@ interface nn::pm::detail::IShellInterface is pm:shell {
 	# Returns 0 if process is not found.
 	# 
 	[4] GetProcessEventType() -> u128;
-	# Takes a pid as input. If the process with pid has the state dead, it unregisters the pid in fsp:pr, sm:m, and ldr:pm.
+	# Takes a pid as input. If the process with pid has the state “dead”, it unregisters the pid in fsp:pr, sm:m, and ldr:pm.
 	# 
 	# Then it removes the process from PMs internal linked-list of active processes.
 	# 
@@ -4599,16 +4957,16 @@ interface nn::pm::detail::IShellInterface is pm:shell {
 	# 
 	@version(5.0.0+)
 	[5] NotifyBootFinished(u64);
+	# Returns the pid of the application process.
+	# 
+	@version(5.0.0+)
+	[6] GetApplicationPid(u64);
 	# Takes a pid as input. Clears 0x10 from process flags.
 	# 
 	# \[5.0.0+\] This command was removed.
 	# 
 	@version(1.0.0-4.1.0)
 	[6] ClearProcessNotificationFlag(u64);
-	# Returns the pid of the application process.
-	# 
-	@version(5.0.0+)
-	[6] GetApplicationPid(u64);
 	# This launches the [boot2](http://switchbrew.org/index.php?title=boot2 "wikilink") title.
 	# 
 	# \[4.0.0+\] When booting from SafeMode Firmware, instead of [boot2](http://switchbrew.org/index.php?title=boot2 "wikilink"), this launches the following titles in order:
@@ -4649,6 +5007,7 @@ interface nn::pm::detail::IShellInterface is pm:shell {
 	# [Category:Services](http://switchbrew.org/index.php?title=Category:Services "wikilink")
 	# 
 	@version(4.0.0-4.1.0)
+	@undocumented
 	[9] BoostSystemMemoryResourceLimit();
 }
 
@@ -4660,16 +5019,20 @@ interface nn::prepo::detail::ipc::IPrepoService is prepo:a, prepo:m, prepo:u, pr
 	[20100] SaveSystemReport(nn::ApplicationId, array<i8,9>, buffer<unknown,5,0>);
 	[20101] SaveSystemReportWithUser(nn::account::Uid, nn::ApplicationId, array<i8,9>, buffer<unknown,5,0>);
 	@version(4.0.0+)
+	@undocumented
 	[20200] SetOperationMode();
 	[30100] ClearStorage();
 	[40100] IsUserAgreementCheckEnabled() -> bool;
 	[40101] SetUserAgreementCheckEnabled(bool);
 	[90100] GetStorageUsage() -> (i64, i64);
 	@version(5.0.0+)
+	@undocumented
 	[90200] GetStatistics();
 	@version(5.0.0+)
+	@undocumented
 	[90201] GetThroughputHistory();
 	@version(5.0.0+)
+	@undocumented
 	[90300] GetLastUploadError();
 }
 
@@ -4819,24 +5182,34 @@ interface nn::settings::IFactorySettingsServer is set:cal {
 	[21] GetEticketDeviceKey() -> buffer<nn::settings::factory::Rsa2048DeviceKey,22,580>;
 	[22] GetSpeakerParameter() -> nn::settings::factory::SpeakerParameter;
 	@version(4.0.0+)
+	@undocumented
 	[23] GetLcdVendorId();
 	@version(5.0.0+)
+	@undocumented
 	[24] GetEciDeviceCertificate2();
 	@version(5.0.0+)
+	@undocumented
 	[25] GetEciDeviceKey2();
 	@version(5.0.0+)
+	@undocumented
 	[26] GetAmiiboKey();
 	@version(5.0.0+)
+	@undocumented
 	[27] GetAmiiboEcqvCertificate();
 	@version(5.0.0+)
+	@undocumented
 	[28] GetAmiiboEcdsaCertificate();
 	@version(5.0.0+)
+	@undocumented
 	[29] GetAmiiboEcqvBlsKey();
 	@version(5.0.0+)
+	@undocumented
 	[30] GetAmiiboEcqvBlsCertificate();
 	@version(5.0.0+)
+	@undocumented
 	[31] GetAmiiboEcqvBlsRootCertificate();
 	@version(5.0.0+)
+	@undocumented
 	[32] GetUnknownId();
 }
 
@@ -4845,14 +5218,19 @@ interface nn::settings::IFirmwareDebugSettingsServer is set:fd {
 	[3] ResetSettingsItemValue(buffer<nn::settings::SettingsName,25,72>, buffer<nn::settings::SettingsItemKey,25,72>);
 	[4] CreateSettingsItemKeyIterator(buffer<nn::settings::SettingsName,25,72>) -> object<nn::settings::ISettingsItemKeyIterator>;
 	@version(4.0.0+)
+	@undocumented
 	[10] ReadSettings();
 	@version(4.0.0+)
+	@undocumented
 	[11] ResetSettings();
 	@version(4.0.0+)
+	@undocumented
 	[20] SetWebInspectorFlag();
 	@version(4.0.0+)
+	@undocumented
 	[21] SetAllowedSslHosts();
 	@version(4.0.0+)
+	@undocumented
 	[22] SetHostFsMountPoint();
 }
 
@@ -4860,16 +5238,21 @@ interface nn::settings::ISettingsServer is set {
 	[0] GetLanguageCode() -> nn::settings::LanguageCode;
 	[1] GetAvailableLanguageCodes() -> (i32, array<nn::settings::LanguageCode,10>);
 	@version(4.0.0+)
+	@undocumented
 	[2] MakeLanguageCode();
 	[3] GetAvailableLanguageCodeCount() -> i32;
 	[4] GetRegionCode() -> i32;
 	@version(4.0.0+)
+	@undocumented
 	[5] GetAvailableLanguageCodes2();
 	@version(4.0.0+)
+	@undocumented
 	[6] GetAvailableLanguageCodeCount2();
 	@version(4.0.0+)
+	@undocumented
 	[7] GetKeyCodeMap();
 	@version(5.0.0+)
+	@undocumented
 	[8] GetQuestFlag();
 }
 
@@ -4879,7 +5262,7 @@ interface nn::settings::ISystemSettingsServer is set:sys {
 	[2] GetNetworkSettings() -> (i32, array<nn::settings::system::NetworkSettings,6>);
 	# Takes a type-0x1A output buffer. User-processes use hard-coded size 0x100.
 	# 
-	# If needed, reads the content of the [System\_Version\_Title](http://switchbrew.org/index.php?title=System_Version_Title "wikilink") /file into state. This is only done once.
+	# If needed, reads the content of the [System\_Version\_Title](http://switchbrew.org/index.php?title=System_Version_Title "wikilink") “/file” into state. This is only done once.
 	# 
 	# Then the above 0x100-byte data is copied to the output buffer.
 	# 
@@ -4887,6 +5270,7 @@ interface nn::settings::ISystemSettingsServer is set:sys {
 	@version(3.0.0+)
 	[4] GetFirmwareVersion2() -> buffer<nn::settings::system::FirmwareVersion,26,256>;
 	@version(5.0.0+)
+	@undocumented
 	[5] GetFirmwareVersionDigest();
 	[7] GetLockScreenFlag() -> bool;
 	[8] SetLockScreenFlag(bool);
@@ -4908,8 +5292,8 @@ interface nn::settings::ISystemSettingsServer is set:sys {
 	# 
 	# This is the current Theme set by System Settings.
 	# 
-	# -   0: Basic White
-	# -   1: Basic Black
+	# -   0: “Basic White”
+	# -   1: “Basic Black”
 	# 
 	[23] GetColorSetId() -> i32;
 	# Takes an input s32, no output.
@@ -4941,7 +5325,7 @@ interface nn::settings::ISystemSettingsServer is set:sys {
 	[44] SetAudioOutputMode(i32, i32);
 	[45] IsForceMuteOnHeadphoneRemoved() -> bool;
 	[46] SetForceMuteOnHeadphoneRemoved(bool);
-	# Gets a flag determining whether the console is a kiosk unit (codenamed Quest). Used by qlaunch to determine whether to launch Retail Interactive Display Menu.
+	# Gets a flag determining whether the console is a kiosk unit (codenamed “Quest”). Used by qlaunch to determine whether to launch Retail Interactive Display Menu.
 	# 
 	[47] GetQuestFlag() -> bool;
 	[48] SetQuestFlag(bool);
@@ -4960,7 +5344,7 @@ interface nn::settings::ISystemSettingsServer is set:sys {
 	[61] SetUserSystemClockAutomaticCorrectionEnabled(bool);
 	# Returns an output u8.
 	# 
-	# Loads the 1-byte config for &lt;settings\_debug, is\_debug\_mode\_enabled&gt;. If that fails, value 0x1 is written to output. This uses the same func as ReadSetting internally.
+	# Loads the 1-byte config for &lt;“settings\_debug”, “is\_debug\_mode\_enabled”&gt;. If that fails, value 0x1 is written to output. This uses the same func as ReadSetting internally.
 	# 
 	# Returned retval is always 0.
 	# 
@@ -5056,62 +5440,90 @@ interface nn::settings::ISystemSettingsServer is set:sys {
 	# Returns 0x01 if [safemode](http://switchbrew.org/index.php?title=Safemode "wikilink") needs to be launched.
 	# 
 	@version(4.0.0+)
+	@undocumented
 	[122] GetServiceDiscoveryControlSettings();
 	@version(4.0.0+)
+	@undocumented
 	[123] SetServiceDiscoveryControlSettings();
 	@version(4.0.0+)
+	@undocumented
 	[124] GetErrorReportSharePermission();
 	@version(4.0.0+)
+	@undocumented
 	[125] SetErrorReportSharePermission();
 	@version(4.0.0+)
+	@undocumented
 	[126] GetAppletLaunchFlags();
 	@version(4.0.0+)
+	@undocumented
 	[127] SetAppletLaunchFlags();
 	@version(4.0.0+)
+	@undocumented
 	[128] GetConsoleSixAxisSensorAccelerationBias();
 	@version(4.0.0+)
+	@undocumented
 	[129] SetConsoleSixAxisSensorAccelerationBias();
 	@version(4.0.0+)
+	@undocumented
 	[130] GetConsoleSixAxisSensorAngularVelocityBias();
 	@version(4.0.0+)
+	@undocumented
 	[131] SetConsoleSixAxisSensorAngularVelocityBias();
 	@version(4.0.0+)
+	@undocumented
 	[132] GetConsoleSixAxisSensorAccelerationGain();
 	@version(4.0.0+)
+	@undocumented
 	[133] SetConsoleSixAxisSensorAccelerationGain();
 	@version(4.0.0+)
+	@undocumented
 	[134] GetConsoleSixAxisSensorAngularVelocityGain();
 	@version(4.0.0+)
+	@undocumented
 	[135] SetConsoleSixAxisSensorAngularVelocityGain();
 	@version(4.0.0+)
+	@undocumented
 	[136] GetKeyboardLayout();
 	@version(4.0.0+)
+	@undocumented
 	[137] SetKeyboardLayout();
 	@version(4.0.0+)
+	@undocumented
 	[138] GetWebInspectorFlag();
-	# Takes a type-0x6 output buffer, returns an output s32. This buffer contains an array of 0x8-byte nn::settings::system::AllowedSslHost entries.
+	# Takes a type-0x6 output buffer, returns an output s32. This buffer contains an array of 0x8-byte “nn::settings::system::AllowedSslHost” entries.
 	# 
 	@version(4.0.0+)
+	@undocumented
 	[139] GetAllowedSslHosts();
 	@version(4.0.0+)
+	@undocumented
 	[140] GetHostFsMountPoint();
 	@version(5.0.0+)
+	@undocumented
 	[141] GetRequiresRunRepairTimeReviser();
 	@version(5.0.0+)
+	@undocumented
 	[142] SetRequiresRunRepairTimeReviser();
 	@version(5.0.0+)
+	@undocumented
 	[143] SetBlePairingSettings();
 	@version(5.0.0+)
+	@undocumented
 	[144] GetBlePairingSettings();
 	@version(5.0.0+)
+	@undocumented
 	[145] GetConsoleSixAxisSensorAngularVelocityTimeBias();
 	@version(5.0.0+)
+	@undocumented
 	[146] SetConsoleSixAxisSensorAngularVelocityTimeBias();
 	@version(5.0.0+)
+	@undocumented
 	[147] GetConsoleSixAxisSensorAngularAcceleration();
 	@version(5.0.0+)
+	@undocumented
 	[148] SetConsoleSixAxisSensorAngularAcceleration();
 	@version(5.0.0+)
+	@undocumented
 	[149] GetRebootlessSystemUpdateVersion();
 }
 
@@ -5140,30 +5552,30 @@ interface nn::sm::detail::IUserInterface is sm: {
 }
 
 interface nn::socket::resolver::IResolver is sfdnsres {
-	# Stubbed, returns 0x7FE03
-	[0] SetDnsAddressPrivate(u32, buffer<unknown,5,0>);
-	# Stubbed, returns 0x7FE03
+	[0] SetDnsAddressesPrivate(u32, buffer<unknown,5,0>);
 	[1] GetDnsAddressPrivate(u32) -> buffer<unknown,6,0>;
 	[2] GetHostByName(u8, u32, u64, pid, buffer<unknown,5,0>) -> (u32, u32, u32, buffer<unknown,6,0>);
 	[3] GetHostByAddr(u32, u32, u32, u64, pid, buffer<unknown,5,0>) -> (u32, u32, u32, buffer<unknown,6,0>);
 	[4] GetHostStringError(u32) -> buffer<unknown,6,0>;
 	[5] GetGaiStringError(u32) -> buffer<unknown,6,0>;
-	# Takes three type 5 buffers (host, port, and hints), and a type 6 buffer (the output addrinfos). Also takes a u8 (padded to 4 bytes so the next raw parameter can align), a u32, and a u64. The u8 is a boolean for whether to enable nsd resolve (1) or not (0). Not sure what the u32 is. It seems to either come from a parameter to `GetAddrInfo` or be zero. The u64 is most likely a placeholder for the server to copy the PID into and should be zero. Both hints and the output buffer contain serialized addrinfo chains. The hints buffer is sized 0x400 bytes long by default, and the output buffer 0x1000 bytes.
+	# Takes three type 5 buffers (host, port, and hints), and a type 6 buffer (the output addrinfos). Also takes a u8 (padded to 4 bytes so the next raw parameter can align), a u32, and a u64. The u8 is a boolean for whether to enable “nsd resolve” (1) or not (0). Not sure what the u32 is. It seems to either come from a parameter to `GetAddrInfo` or be zero. The u64 is most likely a placeholder for the server to copy the PID into and should be zero. Both hints and the output buffer contain serialized addrinfo chains. The hints buffer is sized 0x400 bytes long by default, and the output buffer 0x1000 bytes.
 	# 
 	[6] GetAddrInfo(u8, u32, u64, pid, buffer<unknown,5,0>, buffer<unknown,5,0>, buffer<unknown,5,0>) -> (u32, u32, u32, buffer<unknown,6,0>);
 	[7] GetNameInfo(u32, u32, u64, pid, buffer<unknown,5,0>) -> (u32, u32, buffer<unknown,6,0>, buffer<unknown,6,0>);
 	[8] RequestCancelHandle(u64, pid) -> u32;
 	[9] CancelSocketCall(u32, u64, pid);
+	@undocumented
 	[10] Unknown10();
 	# This function clears `nn::socket::resolver::g_DnsIpServerAddressArray`, setting its length to 0 as well. The array initially contains IPs filled by `bsdconfig`, a privileged service handling DHCP and such.
 	# 
 	# Takes no arguments, doesn't return anything, never fails.
 	# 
+	@undocumented
 	[11] ClearDnsIpServerAddressArray();
 }
 
 interface nn::socket::sf::IClient is bsd:u, bsd:s {
-	[0] Initialize(bytes<32>, u64, u64, pid, KObject) -> u32;
+	[0] RegisterClient(bytes<32>, u64, u64, pid, KObject) -> u32;
 	[1] StartMonitoring(u64, pid);
 	# FreeBSD's `socket` command. `bsd:u` disallows the usage of the `SOCK_SEQPACKET` and `SOCK_RAW` types, with the exception of `(AF_INET, SOCK_RAW, IPPROTO_ICMP)` (IPv4 `ping`), `bsd:s` needs to be used for those.
 	# 
@@ -5196,9 +5608,9 @@ interface nn::socket::sf::IClient is bsd:u, bsd:s {
 	# 
 	# Nintendo use the following definition (hence changing all ioctls using this structure):
 	# 
-	# `structbpf_program{`
-	# `u_intbf_len;`
-	# `structbpf_insnbf_insns[BPF_MAXINSNS];//[512].Thisisapointerintheofficialstructure`
+	# `struct bpf_program {`
+	# `   u_int bf_len;`
+	# `   struct bpf_insn bf_insns[BPF_MAXINSNS]; // [512]. This is a pointer in the official structure`
 	# `};`
 	# 
 	[19] Ioctl(u32, u32, u32, buffer<unknown,33,0>, buffer<unknown,33,0>, buffer<unknown,33,0>, buffer<unknown,33,0>) -> (u32, u32, buffer<unknown,34,0>, buffer<unknown,34,0>, buffer<unknown,34,0>, buffer<unknown,34,0>);
@@ -5293,7 +5705,7 @@ interface nn::spl::detail::IGeneralInterface is spl: {
 	# 
 	@undocumented
 	[5] SetConfig();
-	# Takes a type-6 buffer and fills it with random data from [GetRandomBytes SMC](http://switchbrew.org/index.php?title=SMC#GetRandomBytes "wikilink"). Same command for spl: and csrng services.
+	# Takes a type-6 buffer and fills it with random data from [GetRandomBytes SMC](http://switchbrew.org/index.php?title=SMC#GetRandomBytes "wikilink"). Same command for “spl:” and “csrng” services.
 	# 
 	@undocumented
 	[7] GetRandomBytes();
@@ -5434,21 +5846,27 @@ interface nn::spl::detail::IGeneralInterface is spl: {
 	@undocumented
 	[25] GetSharedData();
 	@version(5.0.0+)
+	@undocumented
 	[26] ImportSslRsaKey();
 	@version(5.0.0+)
+	@undocumented
 	[27] SecureExpModWithSslKey();
 	@version(5.0.0+)
+	@undocumented
 	[28] ImportEsRsaKey();
 	@version(5.0.0+)
+	@undocumented
 	[29] SecureExpModWithEsKey();
 	@version(5.0.0+)
+	@undocumented
 	[30] EncryptManuRsaKeyForImport();
 	@version(5.0.0+)
+	@undocumented
 	[31] GetPackage2Hash();
 }
 
 interface nn::spl::detail::IRandomInterface is csrng {
-	# Takes a type-6 buffer and fills it with random data from [GetRandomBytes SMC](http://switchbrew.org/index.php?title=SMC#GetRandomBytes "wikilink"). Same command for spl: and csrng services.
+	# Takes a type-6 buffer and fills it with random data from [GetRandomBytes SMC](http://switchbrew.org/index.php?title=SMC#GetRandomBytes "wikilink"). Same command for “spl:” and “csrng” services.
 	# 
 	[0] GetRandomBytes() -> buffer<unknown,6,0>;
 }
@@ -5503,6 +5921,7 @@ interface nn::ssl::sf::ISslConnection {
 	[23] GetOption(nn::ssl::sf::OptionType) -> bool;
 	[24] GetVerifyCertErrors() -> (u32, u32, buffer<unknown,6,0>);
 	@version(4.0.0+)
+	@undocumented
 	[25] GetCipherInfo();
 }
 
@@ -5529,6 +5948,7 @@ interface nn::ssl::sf::ISslService is ssl {
 	[4] DebugIoctl(u64, buffer<unknown,5,0>) -> buffer<unknown,6,0>;
 	[5] SetInterfaceVersion(u32);
 	@version(5.0.0+)
+	@undocumented
 	[6] FlushSessionCache();
 }
 
@@ -5551,24 +5971,32 @@ interface nn::timesrv::detail::service::IStaticService is time:s, time:u, time:r
 	[3] GetTimeZoneService() -> object<nn::timesrv::detail::service::ITimeZoneService>;
 	[4] GetStandardLocalSystemClock() -> object<nn::timesrv::detail::service::ISystemClock>;
 	@version(4.0.0+)
+	@undocumented
 	[5] GetEphemeralNetworkSystemClock();
 	@version(4.0.0+)
+	@undocumented
 	[50] SetStandardSteadyClockInternalOffset();
 	[100] IsStandardUserSystemClockAutomaticCorrectionEnabled() -> bool;
 	[101] SetStandardUserSystemClockAutomaticCorrectionEnabled(bool);
 	@version(5.0.0+)
+	@undocumented
 	[102] GetStandardUserSystemClockInitialYear();
 	@version(3.0.0+)
 	[200] IsStandardNetworkSystemClockAccuracySufficient() -> bool;
 	@version(4.0.0+)
+	@undocumented
 	[300] CalculateMonotonicSystemClockBaseTimePoint();
 	@version(4.0.0+)
+	@undocumented
 	[400] GetClockSnapshot();
 	@version(4.0.0+)
+	@undocumented
 	[401] GetClockSnapshotFromSystemClockContext();
 	@version(4.0.0+)
+	@undocumented
 	[500] CalculateStandardUserSystemClockDifferenceByUser();
 	@version(4.0.0+)
+	@undocumented
 	[501] CalculateSpanBetween();
 }
 
@@ -5623,8 +6051,10 @@ interface nn::tma::IHtcManager is htc {
 	@version(3.0.0+)
 	[8] SetUsbDetachedForDebug(u8);
 	@version(4.0.0+)
+	@undocumented
 	[9] GetBridgeSubnetMask();
 	@version(4.0.0+)
+	@undocumented
 	[10] GetBridgeMacAddress();
 }
 
@@ -5778,7 +6208,7 @@ interface nn::usb::ds::IDsInterface {
 	# -   Byte1(bDescriptorType) must match 0x5.
 	# -   Byte2(bEndpointAddress) is only compared with 0x80 to determine whether to use an input or output endpoint, the actual endpoint-number is allocated automatically by checking state. Hence, all input endpoints must use bEndpointAddress==0x80. Up to endpoint-number 0xF can be allocated for each endpoint-direction, for a total of 16 endpoints including control, and 15 for non-control endpoints([\#IDsEndpoint](#nn::usb::ds::IDsEndpoint "wikilink") sessions for each direction). This matches the Tegra maximum.
 	# 
-	# From the Tegra datasheet: The maximum packet size supported on any endpoint is 1024 bytes in high-speed mode, for both device and host modes.
+	# From the Tegra datasheet: “The maximum packet size supported on any endpoint is 1024 bytes in high-speed mode, for both device and host modes.”
 	# 
 	@undocumented
 	[0] GetDsEndpoint();
@@ -5826,11 +6256,12 @@ interface nn::usb::ds::IDsInterface {
 	[10] GetCtrlOutReportData();
 	# No input/output.
 	# 
-	# Calls a function with both control endpoints(0x80 and 0x00) with the same function. From strings: m\_pProtocol-&gt;Stall(0x80) m\_pProtocol-&gt;Stall(0x00).
+	# Calls a function with both control endpoints(0x80 and 0x00) with the same function. From strings: “m\_pProtocol-&gt;Stall(0x80)” “m\_pProtocol-&gt;Stall(0x00)”.
 	# 
 	@undocumented
 	[11] StallCtrl();
 	@version(5.0.0+)
+	@undocumented
 	[12] AppendConfigurationData();
 }
 
@@ -5847,7 +6278,7 @@ interface nn::usb::ds::IDsService is usb:ds {
 	# 
 	@undocumented
 	[1] BindClientProcess();
-	# Takes 2 type-5 buffers and returns an [\#IDsInterface](#nn::usb::ds::IDsInterface "wikilink"). [Manu](http://switchbrew.org/index.php?title=Manu_Services "wikilink") sends a 0x09-byte command (e.g.: 0x09, 0x04, 0x04, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0x00) in the first buffer and a string (usb) in the second buffer.
+	# Takes 2 type-5 buffers and returns an [\#IDsInterface](#nn::usb::ds::IDsInterface "wikilink"). [Manu](http://switchbrew.org/index.php?title=Manu_Services "wikilink") sends a 0x09-byte command (e.g.: 0x09, 0x04, 0x04, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0x00) in the first buffer and a string (“usb”) in the second buffer.
 	# 
 	# When the strlen output for the second buffer is &gt;=0x40, size 0x40 is used instead for copying the string. This is the interface name, it's not sent over USB.
 	# 
@@ -5909,16 +6340,22 @@ interface nn::usb::ds::IDsService is usb:ds {
 	@undocumented
 	[5] ClearDeviceData();
 	@version(5.0.0+)
+	@undocumented
 	[6] AddUsbStringDescriptor();
 	@version(5.0.0+)
+	@undocumented
 	[7] DeleteUsbStringDescriptor();
 	@version(5.0.0+)
+	@undocumented
 	[8] SetUsbDeviceDescriptor();
 	@version(5.0.0+)
+	@undocumented
 	[9] SetBinaryObjectStore();
 	@version(5.0.0+)
+	@undocumented
 	[10] Enable();
 	@version(5.0.0+)
+	@undocumented
 	[11] Disable();
 }
 
@@ -5934,8 +6371,10 @@ interface nn::usb::hs::IClientEpSession {
 	@undocumented
 	[6] Unknown6();
 	@version(4.0.0+)
+	@undocumented
 	[7] Unknown7();
 	@version(4.0.0+)
+	@undocumented
 	[8] Unknown8();
 }
 
@@ -6024,7 +6463,7 @@ interface nn::usb::pm::IPmService is usb:pm {
 }
 
 interface nn::visrv::sf::IApplicationDisplayService {
-	# Returns an [IHOSBinderDriver](http://switchbrew.org/index.php?title=Nvnflinger_services#dispdrv "wikilink") interface which abstracts nn::visrv::[service::RelayServiceImpl](http://switchbrew.org/index.php?title=service::RelayServiceImpl).
+	# Returns an [IHOSBinderDriver](http://switchbrew.org/index.php?title=Nvnflinger_services#dispdrv "wikilink") interface which abstracts “nn::visrv::[service::RelayServiceImpl](http://switchbrew.org/index.php?title=service::RelayServiceImpl)”.
 	# 
 	[100] GetRelayService() -> object<nns::hosbinder::IHOSBinderDriver>;
 	# Returns an [\#ISystemDisplayService](#nn::visrv::sf::ISystemDisplayService "wikilink").
@@ -6033,18 +6472,18 @@ interface nn::visrv::sf::IApplicationDisplayService {
 	# Returns an [\#IManagerDisplayService](#nn::visrv::sf::IManagerDisplayService "wikilink").
 	# 
 	[102] GetManagerDisplayService() -> object<nn::visrv::sf::IManagerDisplayService>;
-	# Returns an [IHOSBinderDriver](http://switchbrew.org/index.php?title=Nvnflinger_services#dispdrv "wikilink") interface which abstracts nn::visrv::[service::IndirectDisplayTransactionServiceImpl](http://switchbrew.org/index.php?title=service::IndirectDisplayTransactionServiceImpl).
+	# Returns an [IHOSBinderDriver](http://switchbrew.org/index.php?title=Nvnflinger_services#dispdrv "wikilink") interface which abstracts “nn::visrv::[service::IndirectDisplayTransactionServiceImpl](http://switchbrew.org/index.php?title=service::IndirectDisplayTransactionServiceImpl)”.
 	# 
 	@version(2.0.0+)
 	[103] GetIndirectDisplayTransactionService() -> object<nns::hosbinder::IHOSBinderDriver>;
 	# Takes a type-0x6 output buffer containing the array of [\#DisplayInfo](http://switchbrew.org/index.php?title=Display services#DisplayInfo "wikilink") output entries. Returns an output u64: total number of output entries.
 	# 
-	# Normally(?) this only returns the Default display.
+	# Normally(?) this only returns the “Default” display.
 	# 
 	[1000] ListDisplays() -> (i64, array<nn::vi::DisplayInfo,6>);
 	# Takes a [\#DisplayName](http://switchbrew.org/index.php?title=Display services#DisplayName "wikilink") as input. Returns an output u64, the DisplayId.
 	# 
-	# To open the default display, input string Default can be used.
+	# To open the default display, input string “Default” can be used.
 	# 
 	[1010] OpenDisplay(nn::vi::DisplayName) -> u64;
 	# Returns an output u64.
@@ -6063,7 +6502,7 @@ interface nn::visrv::sf::IApplicationDisplayService {
 	[1102] GetDisplayResolution(u64) -> (i64, i64);
 	# Takes a PID-descriptor, a type-0x6 buffer for the output [\#NativeWindow](http://switchbrew.org/index.php?title=Display services#NativeWindow "wikilink"), a [\#DisplayName](http://switchbrew.org/index.php?title=Display services#DisplayName "wikilink")(which was previously used with [\#OpenDisplay](#nn::visrv::sf::IApplicationDisplayService(1010) "wikilink")), an u64 LayerId, and an u64 [AppletResourceUserId](http://switchbrew.org/index.php?title=AM_services "wikilink"). Returns an output u64 NativeWindow\_Size.
 	# 
-	# Official user-processes use a LayerId stored in a global state field(...ExternalLayerId) if non-zero, otherwise:
+	# Official user-processes use a LayerId stored in a global state field(“...ExternalLayerId”) if non-zero, otherwise:
 	# 
 	# -   When AppletResourceUserId==0, [\#CreateStrayLayer](#nn::visrv::sf::IApplicationDisplayService(2030) "wikilink") is used instead of the OpenLayer cmd.
 	# -   When AppletResourceUserId!=0, [AM\_services\#CreateManagedDisplayLayer](http://switchbrew.org/index.php?title=AM_services#CreateManagedDisplayLayer "wikilink") is used and the output from that is used for LayerId with the OpenLayer cmd.
@@ -6080,10 +6519,11 @@ interface nn::visrv::sf::IApplicationDisplayService {
 	# Takes an input u64: LayerId from [\#CreateStrayLayer](#nn::visrv::sf::IApplicationDisplayService(2030) "wikilink").
 	# 
 	[2031] DestroyStrayLayer(u64);
-	# Takes an input u64(ScalingMode) and u64 (LayerId).
+	# Takes an input u64(“ScalingMode”) and u64 (“LayerId”).
 	# 
 	[2101] SetLayerScalingMode(u32, u64);
 	@version(5.0.0+)
+	@undocumented
 	[2102] ConvertScalingMode();
 	# Takes a PID-descriptor, an type-0x46 buffer, and four u64s: width(s32), height(s32),
 	# 
@@ -6113,8 +6553,10 @@ interface nn::visrv::sf::IApplicationRootService is vi:u {
 
 interface nn::visrv::sf::IManagerDisplayService {
 	@version(4.0.0+)
+	@undocumented
 	[200] AllocateProcessHeapBlock();
 	@version(4.0.0+)
+	@undocumented
 	[201] FreeProcessHeapBlock();
 	[1102] GetDisplayResolution(u64) -> (i64, i64);
 	[2010] CreateManagedLayer(u32, u64, nn::applet::AppletResourceUserId) -> u64;
@@ -6130,95 +6572,136 @@ interface nn::visrv::sf::IManagerDisplayService {
 	[2302] GetDisplayHotplugEvent(u64) -> KObject;
 	[2402] GetDisplayHotplugState(u64) -> u32;
 	@version(4.0.0+)
+	@undocumented
 	[2501] GetCompositorErrorInfo();
 	@version(4.0.0+)
+	@undocumented
 	[2601] GetDisplayErrorEvent();
 	[4201] SetDisplayAlpha(f32, u64);
 	[4203] SetDisplayLayerStack(u32, u64);
 	[4205] SetDisplayPowerState(u32, u64);
 	@version(4.0.0+)
+	@undocumented
 	[4206] SetDefaultDisplay();
 	[6000] AddToLayerStack(u32, u64);
 	[6001] RemoveFromLayerStack(u32, u64);
 	[6002] SetLayerVisibility(bool, u64);
 	@version(5.0.0+)
+	@undocumented
 	[6003] SetLayerConfig();
 	@version(5.0.0+)
+	@undocumented
 	[6004] AttachLayerPresentationTracer();
 	@version(5.0.0+)
+	@undocumented
 	[6005] DetachLayerPresentationTracer();
 	@version(5.0.0+)
+	@undocumented
 	[6006] StartLayerPresentationRecording();
 	@version(5.0.0+)
+	@undocumented
 	[6007] StopLayerPresentationRecording();
 	@version(5.0.0+)
+	@undocumented
 	[6008] StartLayerPresentationFenceWait();
 	@version(5.0.0+)
+	@undocumented
 	[6009] StopLayerPresentationFenceWait();
 	@version(5.0.0+)
+	@undocumented
 	[6010] GetLayerPresentationAllFencesExpiredEvent();
 	[7000] SetContentVisibility(bool);
 	[8000] SetConductorLayer(bool, u64);
 	[8100] SetIndirectProducerFlipOffset(u64, u64, nn::TimeSpan);
 	@version(4.0.0+)
+	@undocumented
 	[8200] CreateSharedBufferStaticStorage();
 	@version(4.0.0+)
+	@undocumented
 	[8201] CreateSharedBufferTransferMemory();
 	@version(4.0.0+)
+	@undocumented
 	[8202] DestroySharedBuffer();
 	@version(4.0.0+)
+	@undocumented
 	[8203] BindSharedLowLevelLayerToManagedLayer();
 	@version(4.0.0+)
+	@undocumented
 	[8204] BindSharedLowLevelLayerToIndirectLayer();
 	@version(4.0.0+)
+	@undocumented
 	[8207] UnbindSharedLowLevelLayer();
 	@version(4.0.0+)
+	@undocumented
 	[8208] ConnectSharedLowLevelLayerToSharedBuffer();
 	@version(4.0.0+)
+	@undocumented
 	[8209] DisconnectSharedLowLevelLayerFromSharedBuffer();
 	@version(4.0.0+)
+	@undocumented
 	[8210] CreateSharedLayer();
 	@version(4.0.0+)
+	@undocumented
 	[8211] DestroySharedLayer();
 	@version(4.0.0+)
+	@undocumented
 	[8216] AttachSharedLayerToLowLevelLayer();
 	@version(4.0.0+)
+	@undocumented
 	[8217] ForceDetachSharedLayerFromLowLevelLayer();
 	@version(4.0.0+)
+	@undocumented
 	[8218] StartDetachSharedLayerFromLowLevelLayer();
 	@version(4.0.0+)
+	@undocumented
 	[8219] FinishDetachSharedLayerFromLowLevelLayer();
 	@version(4.0.0+)
+	@undocumented
 	[8220] GetSharedLayerDetachReadyEvent();
 	@version(4.0.0+)
+	@undocumented
 	[8221] GetSharedLowLevelLayerSynchronizedEvent();
 	@version(4.0.0+)
+	@undocumented
 	[8222] CheckSharedLowLevelLayerSynchronized();
 	@version(4.0.0+)
+	@undocumented
 	[8223] RegisterSharedBufferImporterAruid();
 	@version(4.0.0+)
+	@undocumented
 	[8224] UnregisterSharedBufferImporterAruid();
 	@version(4.0.0+)
+	@undocumented
 	[8227] CreateSharedBufferProcessHeap();
 	@version(4.0.0+)
+	@undocumented
 	[8228] GetSharedLayerLayerStacks();
 	@version(4.0.0+)
+	@undocumented
 	[8229] SetSharedLayerLayerStacks();
 	@version(4.0.0+)
+	@undocumented
 	[8291] PresentDetachedSharedFrameBufferToLowLevelLayer();
 	@version(4.0.0+)
+	@undocumented
 	[8292] FillDetachedSharedFrameBufferColor();
 	@version(4.0.0+)
+	@undocumented
 	[8293] GetDetachedSharedFrameBufferImage();
 	@version(4.0.0+)
+	@undocumented
 	[8294] SetDetachedSharedFrameBufferImage();
 	@version(4.0.0+)
+	@undocumented
 	[8295] CopyDetachedSharedFrameBufferImage();
 	@version(4.0.0+)
+	@undocumented
 	[8296] SetDetachedSharedFrameBufferSubImage();
 	@version(4.0.0+)
+	@undocumented
 	[8297] GetSharedFrameBufferContentParameter();
 	@version(5.0.0+)
+	@undocumented
 	[8298] ExpandStartupLogoOnSharedFrameBuffer();
 }
 
@@ -6266,24 +6749,34 @@ interface nn::visrv::sf::ISystemDisplayService {
 	[3216] GetDisplayCmuLuma(u64) -> f32;
 	[3217] SetDisplayCmuLuma(f32, u64);
 	@version(4.0.0+)
+	@undocumented
 	[8225] GetSharedBufferMemoryHandleId();
 	@version(4.0.0+)
+	@undocumented
 	[8250] OpenSharedLayer();
 	@version(4.0.0+)
+	@undocumented
 	[8251] CloseSharedLayer();
 	@version(4.0.0+)
+	@undocumented
 	[8252] ConnectSharedLayer();
 	@version(4.0.0+)
+	@undocumented
 	[8253] DisconnectSharedLayer();
 	@version(4.0.0+)
+	@undocumented
 	[8254] AcquireSharedFrameBuffer();
 	@version(4.0.0+)
+	@undocumented
 	[8255] PresentSharedFrameBuffer();
 	@version(4.0.0+)
+	@undocumented
 	[8256] GetSharedFrameBufferAcquirableEvent();
 	@version(4.0.0+)
+	@undocumented
 	[8257] FillSharedFrameBufferColor();
 	@version(5.0.0+)
+	@undocumented
 	[8258] CancelSharedFrameBuffer();
 }
 
@@ -6343,8 +6836,10 @@ interface nn::wlan::detail::IInfraManager is wlan:inf {
 	@undocumented
 	[25] Unknown25();
 	@version(4.0.0+)
+	@undocumented
 	[26] Unknown26();
 	@version(4.0.0+)
+	@undocumented
 	[27] Unknown27();
 }
 
@@ -6429,12 +6924,16 @@ interface nn::wlan::detail::ILocalManager is wlan:lcl {
 	[43] GetRssi() -> u32;
 	[44] Unknown44(u32);
 	@version(4.0.0+)
+	@undocumented
 	[45] Unknown45();
 	@version(4.0.0+)
+	@undocumented
 	[46] Unknown46();
 	@version(4.0.0+)
+	@undocumented
 	[47] Unknown47();
 	@version(4.0.0+)
+	@undocumented
 	[48] Unknown48();
 }
 
@@ -6501,15 +7000,15 @@ interface nn::xcd::detail::ISystemServer is xcd:sys {
 interface nns::hosbinder::IHOSBinderDriver is dispdrv {
 	# Takes a s32 (**ID**), an u32 (**code**), a type-0x5 input buffer (**parcel\_data**), a type-0x6 output buffer (**parcel\_reply**) and an input u32 (**flags**). Each word is placed immediately after the previous word.
 	# 
-	# Analogous to onTransact from android.os.IServiceManager.
+	# Analogous to “onTransact” from “android.os.IServiceManager”.
 	# 
 	[0] TransactParcel(i32, u32, u32, buffer<unknown,5,0>) -> buffer<unknown,6,0>;
 	# Takes 3 input s32s: **ID**, **addval**, and **type**. Each word immediately follows the previous word. No additional output.
 	# 
 	# | Called by official function          | addval | type |
 	# |--------------------------------------|--------|------|
-	# | android::BpBinder::onFirstRef      | 1      | 1    |
-	# | android::BpBinder::onLastStrongRef | -1     | 1    |
+	# | “android::BpBinder::onFirstRef”      | 1      | 1    |
+	# | “android::BpBinder::onLastStrongRef” | -1     | 1    |
 	# | ?                                    | 1      | 0    |
 	# | ?                                    | -1     | 0    |
 	# 
