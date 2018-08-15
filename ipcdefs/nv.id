@@ -2,14 +2,14 @@ interface nns::nvdrv::INvDrvServices is nvdrv:s, nvdrv:t, nvdrv:a, nvdrv {
 	# Takes a type-0x5 input buffer for the device-path. Returns the output
 	# 32bit **fd** and the u32 **error\_code**.
 	# 
-	[0] Open(array<i8, 0x5> path) -> (u32 fd, u32 error_code);
+	[0] Open(buffer<data, 0x5> path) -> (u32 fd, u32 error_code);
 	# Takes a 32bit **fd**, an u32 **ioctl\_cmd**, a type-0x21 input buffer,
 	# and a type-0x22 output buffer. Returns an output u32 (**error\_code**).
 	# 
 	# The addr/size for send/recv buffers are only set when the associated
 	# direction bit is set in the ioctl cmd (addr/size = 0 otherwise).
 	# 
-	[1] Ioctl(u32 fd, u32 rq_id, u32 unk2, u32 unk3) -> u32 error_code;
+	[1] Ioctl(u32 fd, u32 rq_id, buffer<data, 0x21>) -> (u32 error_code, buffer<data, 0x22>);
 	# Takes a 32bit **fd**. Returns an output u32 (**error\_code**).
 	# 
 	[2] Close(u32 fd) -> u32 error_code;
@@ -20,7 +20,7 @@ interface nns::nvdrv::INvDrvServices is nvdrv:s, nvdrv:t, nvdrv:a, nvdrv {
 	# Webkit applet creates the transfer-memory with perm = 0 and size
 	# 0x300000.
 	# 
-	[3] Initialize(u32 transfer_memory_size, KObject<copy, process> current_process, KObject<copy, transfer_memory> transfer_memory) -> u32 error_code;
+	[3] Initialize(u32 transfer_memory_size, handle<copy, process> current_process, handle<copy, transfer_memory> transfer_memory) -> u32 error_code;
 	# Takes two input u32s (**fd** and **event\_id**), with the second word
 	# immediately after the first one. Returns an output u32 (**error\_code**)
 	# and a copy-handle (**event\_handle**).
@@ -42,53 +42,48 @@ interface nns::nvdrv::INvDrvServices is nvdrv:s, nvdrv:t, nvdrv:a, nvdrv {
 	#   - /dev/nvhost-dbg-gpu
 	#       - Ignores event\_id.
 	# 
-	@undocumented
-	[4] QueryEvent();
+	[4] QueryEvent(u32 fd, u32 event_id) -> (u32, handle<copy, event>);
 	# Takes a copy-handle (**transfer\_memory**) and two input u32s (**fd**
 	# and **nvmap\_handle**). Returns an output u32 (**error\_code**).
 	# 
-	@undocumented
-	[5] MapSharedMem();
+	[5] MapSharedMem(u32 fd, u32 nvmap_handle, handle<copy, transfer_memory>) -> u32;
 	# Takes no input. Returns 0x10-bytes and an output u32 (**error\_code**).
 	# 
 	@undocumented
-	[6] GetStatus();
+	[6] GetStatus() -> unknown<0x24>;
 	# Takes an input u64 which must
 	# [match](http://switchbrew.org/index.php?title=IPC_Marshalling "wikilink")
 	# the user-process PID
 	# ([AppletResourceUserId](http://switchbrew.org/index.php?title=AM_services "wikilink")).
 	# Returns an output u32 (**error\_code**).
 	# 
-	@undocumented
-	[7] ForceSetClientPID();
+	[7] ForceSetClientPID(u64 pid) -> u32 error_code;
 	# Takes a PID-descriptor and an u64 which must
 	# [match](http://switchbrew.org/index.php?title=IPC_Marshalling "wikilink")
 	# the user-process PID
 	# ([AppletResourceUserId](http://switchbrew.org/index.php?title=AM_services "wikilink")).
 	# Returns an output u32 (**error\_code**).
 	# 
-	@undocumented
-	[8] SetClientPID();
+	[8] SetClientPID(u64, pid) -> u32 error_code;
 	# No input or output. Does nothing.
 	# 
-	@undocumented
 	[9] DumpGraphicsMemoryInfo();
 	@version(3.0.0+)
 	@undocumented
-	[10] Unknown10();
+	[10] Unknown10(u32, handle<copy>) -> u32;
 	# Takes a type-0x21 buffer, a type-0x22 buffer, a type-0x21 buffer, and
 	# two input u32s. Returns an output u32 (**error\_code**).
 	# 
 	@version(3.0.0+)
 	@undocumented
-	[11] Ioctl2();
+	[11] Ioctl2(u32, u32, buffer<data, 0x21>, buffer<data, 0x21>) -> (u32, buffer<data, 0x22>);
 	# Same input/output as Ioctl2, except cmdhdr\_word1 is 0x100B instead of
 	# 0xC0B.
 	# 
 	@version(3.0.0+)
 	@undocumented
-	[12] Ioctl3();
+	[12] Ioctl3(u32, u32, buffer<data, 0x21>) -> (u32, buffer<data, 0x22>, buffer<data, 0x22>);
 	@version(3.0.0+)
 	@undocumented
-	[13] Unknown13();
+	[13] Unknown13(unknown<0x8>);
 }
