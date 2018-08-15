@@ -90,7 +90,7 @@ interface nn::am::service::IAllSystemAppletProxiesService is appletAE {
 	@version(3.0.0+)
 	[200] OpenLibraryAppletProxyOld(u64, pid, KObject) -> object<nn::am::service::ILibraryAppletProxy>;
 	# Returns an
-	# [\#IApplicationProxy](http://switchbrew.org/index.php?title=AM%20services#IApplicationProxy "wikilink").
+	# [\#ILibraryAppletProxy](http://switchbrew.org/index.php?title=AM%20services#ILibraryAppletProxy "wikilink").
 	# 
 	# Takes a
 	# [reserved](http://switchbrew.org/index.php?title=IPC_Marshalling "wikilink")
@@ -155,25 +155,37 @@ interface nn::apm::ISystemManager is apm:sys {
 }
 
 interface nn::arp::detail::IReader is arp:r {
+	@undocumented
 	[0] ReadHeader0();
+	@undocumented
 	[1] ReadHeader1();
+	@undocumented
 	[2] ReadData0();
+	@undocumented
 	[3] ReadData1();
 }
 
 interface nn::arp::detail::IRegistrar {
 	[0] BindRegistrar(u64);
 	[1] WriteHeader(u128);
+	@undocumented
 	[2] WriteData();
 }
 
 interface nn::arp::detail::IWriter is arp:w {
 	[0] GetIRegistrar() -> object<IUnknown>;
-	[1] SubmitWriter(u64);
+	[1] DeleteProperties(u64);
+}
+
+interface nn::audio::detail::IAudioDebugManager is auddebug {
+	[0] Unknown0(u32, u64, KObject);
+	[1] Unknown1();
+	[2] Unknown2();
+	[3] Unknown3();
 }
 
 interface nn::audio::detail::IAudioIn {
-	# Returns an AudioInState, 0x00=Started 0x01=Stopped (u32)
+	# Returns an u32 **AudioInState** (0x00=Started, 0x01=Stopped).
 	# 
 	[0] GetAudioInState() -> u32;
 	[1] StartAudioIn();
@@ -182,94 +194,144 @@ interface nn::audio::detail::IAudioIn {
 	[4] RegisterBufferEvent() -> KObject;
 	[5] GetReleasedAudioInBuffer() -> (u32, buffer<unknown,6,0>);
 	[6] ContainsAudioInBuffer(u64) -> u8;
+	@version(3.0.0+)
+	[7] AppendAudioInBufferWithUserEvent(u64, KObject, buffer<unknown,5,0>);
+	@version(3.0.0+)
+	[8] AppendAudioInBufferEx(u64, buffer<unknown,33,0>);
+	@version(3.0.0+)
+	[9] GetReleasedAudioInBufferEx() -> (u32, buffer<unknown,34,0>);
+	@version(3.0.0+)
+	[10] AppendAudioInBufferWithUserEventEx(u64, KObject, buffer<unknown,33,0>);
+	@version(4.0.0+)
+	[11] Unknown11();
+	@version(4.0.0+)
+	[12] Unknown12();
+	@version(4.0.0+)
+	[13] Unknown13();
+}
+
+interface nn::audio::detail::IAudioInManagerForApplet is audin:a {
+	[0] RequestSuspendAudioIns(u64, u64) -> KObject;
+	[1] RequestResumeAudioIns(u64, u64) -> KObject;
+	[2] GetAudioInsProcessMasterVolume(u64) -> u32;
+	[3] SetAudioInsProcessMasterVolume(u32, u64, u64);
 }
 
 interface nn::audio::detail::IAudioInManagerForDebugger is audin:d {
 	[0] ListAudioIns(u64);
 	[1] OpenAudioIn(u64);
+	@version(3.0.0+)
+	[2] ListAudioInsEx();
+	@version(3.0.0+)
+	[3] OpenAudioInEx();
+	@version(3.0.0+)
+	[4] ListAudioInsExAndProbe();
 }
 
 interface nn::audio::detail::IAudioOut {
-	# Returns an AudioOutState, 0x00=Started 0x01=Stopped (u32)
+	# Returns an u32 **AudioOutState** (0x00=Started, 0x01=Stopped).
 	# 
 	[0] GetAudioOutState() -> u32;
-	[1] StartAudioOut();
-	[2] StopAudioOut();
-	# Takes a u64 (not sure what this is, might act as some sort of identifier
-	# for the audio buffer? official applications seem to use the address of
-	# the audio buffer struct for this) and a buffer. The format of said
-	# buffer is as follows:
+	# Starts audio playback using data from appended buffers.
 	# 
-	# | Offset | Size | Description                         |
-	# | ------ | ---- | ----------------------------------- |
-	# | 0x00   | 8    | Pointer to the sample data pointer. |
-	# | 0x08   | 8    | Pointer to sample data.             |
-	# | 0x10   | 8    | Capacity of sample buffer           |
-	# | 0x18   | 8    | Size of data in sample buffer       |
-	# | 0x20   | 8    | Unknown. Zero works.                |
+	[1] StartAudioOut();
+	# Stops audio playback. This waits for audio playback to finish before
+	# returning.
+	# 
+	[2] StopAudioOut();
+	# Takes a type-5 input buffer for sample data and a u64 which acts as a
+	# tag for the supplied buffer (official apps use the buffer's address).
+	# 
+	# The format of the input buffer is as
+	# follows:
+	# 
+	# | Offset | Size | Description                                           |
+	# | ------ | ---- | ----------------------------------------------------- |
+	# | 0x00   | 8    | Pointer to next buffer (unused)                       |
+	# | 0x08   | 8    | Pointer to sample buffer                              |
+	# | 0x10   | 8    | Capacity of sample buffer                             |
+	# | 0x18   | 8    | Size of data in the sample buffer                     |
+	# | 0x20   | 8    | Offset of data in the sample buffer (unused/ignored?) |
 	# 
 	[3] AppendAudioOutBuffer(u64, buffer<unknown,5,0>);
-	# Returns an event handle that is signalled when a buffer is released
+	# Returns an event handle that is signalled when a buffer is released.
 	# 
 	[4] RegisterBufferEvent() -> KObject;
-	# Takes a buffer, which it will fill with the identifiers passed from
+	# Takes a type-6 output buffer which will be filled with the identifiers
+	# from
 	# [\#AppendAudioOutBuffer](#nn::audio::detail::IAudioOut\(3\) "wikilink")
-	# of audio buffers that have been released. Will return a u32 (may
-	# indicate how many buffers were released?)
+	# of audio buffers that have been released. Returns an u32
+	# **ReleasedBuffersCount**.
 	# 
 	[5] GetReleasedAudioOutBuffer() -> (u32, buffer<unknown,6,0>);
-	# Takes a u64 (pointer to audio buffer?). Returns a bool. (u8) (0, if it
-	# doesn't contain the buffer)
+	# Takes an u64 **tag** for the desired buffer. Returns 1 if the buffer was
+	# appended and not yet released.
 	# 
 	[6] ContainsAudioOutBuffer(u64) -> u8;
-	# Takes a u64 (not sure what this is, might act as some sort of identifier
-	# for the audio buffer? official applications seem to use the address of
-	# the audio buffer struct for this) and a buffer. The format of said
-	# buffer is as follows:
-	# 
-	# | Offset | Size | Description                         |
-	# | ------ | ---- | ----------------------------------- |
-	# | 0x00   | 8    | Pointer to the sample data pointer. |
-	# | 0x08   | 8    | Pointer to sample data.             |
-	# | 0x10   | 8    | Capacity of sample buffer           |
-	# | 0x18   | 8    | Size of data in sample buffer       |
-	# | 0x20   | 8    | Unknown. Zero works.                |
-	# 
-	[7] AppendAudioOutBuffer(u64, buffer<unknown,33,0>);
-	# Takes a buffer, which it will fill with the identifiers passed from
+	# Same as
 	# [\#AppendAudioOutBuffer](#nn::audio::detail::IAudioOut\(3\) "wikilink")
-	# of audio buffers that have been released. Will return a u32 (may
-	# indicate how many buffers were released?)
+	# but takes a type-0x21 buffer instead.
 	# 
-	[8] GetReleasedAudioOutBuffer() -> (u32, buffer<unknown,34,0>);
+	@version(3.0.0+)
+	[7] AppendAudioOutBufferEx(u64, buffer<unknown,33,0>);
+	# Same as
+	# [\#GetReleasedAudioOutBuffer](#nn::audio::detail::IAudioOut\(5\) "wikilink")
+	# but takes a type-0x22 buffer instead.
+	# 
+	@version(3.0.0+)
+	[8] GetReleasedAudioOutBufferEx() -> (u32, buffer<unknown,34,0>);
+	@version(4.0.0+)
+	[9] Unknown9();
+	@version(4.0.0+)
+	[10] Unknown10();
+	@version(4.0.0+)
+	[11] Unknown11();
 }
 
 interface nn::audio::detail::IAudioOutManager is audout:u {
+	# Takes a type-6 output buffer. Populates the output buffer with the
+	# available audio output devices' names and returns an u32 with the number
+	# of device names written.
+	# 
 	[0] ListAudioOuts() -> (u32, buffer<unknown,6,0>);
-	# Takes two u64s (an interface ID and a PID placeholder?), a PID, a
-	# process handle, and the name of the interface you want to connect to.
-	# Returns an [\#IAudioOut](#nn::audio::detail::IAudioOut "wikilink")
-	# object and four u32s: the sample rate, channel count, [PCM
+	# Takes a type-5 input buffer (**DeviceNameIn**), a type-6 output buffer
+	# (**DeviceNameOut**), two u32s **SampleRate** (must be 48000) and
+	# **ChannelCount** (only the higher u16 is used), one u64 **ClientPID**, a
+	# PID and a copy-handle. Returns an
+	# [\#IAudioOut](#nn::audio::detail::IAudioOut "wikilink") object and four
+	# u32s: the sample rate, channel count, [PCM
 	# format](http://switchbrew.org/index.php?title=Audio%20services#PCM_format "wikilink"),
-	# and an unknown field.
+	# and the initial AudioOutState.
 	# 
 	[1] OpenAudioOut(u64, u64, pid, KObject, buffer<unknown,5,0>) -> (u128, object<IUnknown>, buffer<unknown,6,0>);
+	# Same as
+	# [\#ListAudioOuts](#nn::audio::detail::IAudioOutManager\(0\) "wikilink"),
+	# but takes a type-0x22 output buffer instead.
+	# 
+	@version(3.0.0+)
+	[2] ListAudioOutsEx() -> (u32, buffer<unknown,34,0>);
+	# Same as
+	# [\#OpenAudioOut](#nn::audio::detail::IAudioOutManager\(1\) "wikilink"),
+	# but takes a type-0x21 input buffer instead.
+	# 
+	@version(3.0.0+)
+	[3] OpenAudioOutEx(u64, u64, pid, KObject, buffer<unknown,33,0>) -> (u128, object<IUnknown>, buffer<unknown,34,0>);
 }
 
 interface nn::audio::detail::IAudioOutManagerForApplet is audout:a {
-	[0] RequestSuspend(u64, u64) -> KObject;
-	[1] RequestResume(u64, u64) -> KObject;
+	[0] RequestSuspendAudioOuts(u64, u64) -> KObject;
+	[1] RequestResumeAudioOuts(u64, u64) -> KObject;
+	[2] GetAudioOutsProcessMasterVolume(u64) -> u32;
+	[3] SetAudioOutsProcessMasterVolume(u32, u64, u64);
 }
 
 interface nn::audio::detail::IAudioOutManagerForDebugger is audout:d {
-	# Takes an
+	# Takes an u64
 	# [AppletResourceUserId](http://switchbrew.org/index.php?title=AM_services#AppletResourceUserId "wikilink").
-	# (u64)
 	# 
 	[0] RequestSuspendForDebug(u64);
-	# Takes an
+	# Takes an u64
 	# [AppletResourceUserId](http://switchbrew.org/index.php?title=AM_services#AppletResourceUserId "wikilink").
-	# (u64)
 	# 
 	[1] RequestResumeForDebug(u64);
 }
@@ -297,33 +359,70 @@ interface nn::audio::detail::IAudioRenderer {
 	# Returns the upper limit of the rendering time in percent. (u32)
 	# 
 	[9] GetAudioRendererRenderingTimeLimit() -> u32;
+	@version(3.0.0+)
+	[10] RequestUpdateAudioRendererEx(buffer<unknown,33,0>) -> (buffer<unknown,34,0>, buffer<unknown,34,0>);
+	@version(3.0.0+)
+	[11] Unknown11();
 }
 
 interface nn::audio::detail::IAudioRendererManager is audren:u {
 	[0] OpenAudioRenderer(bytes<52>, u64, u64, pid, KObject, KObject) -> object<IUnknown>;
 	[1] GetAudioRendererWorkBufferSize(bytes<52>) -> u64;
-	[2] GetAudioRenderersProcessMasterVolume(u64) -> object<IUnknown>;
-	[3] SetAudioRenderersProcessMasterVolume(bytes<52>, u64, u64, u64, pid, KObject) -> object<IUnknown>;
+	[2] Unknown2(u64) -> object<IUnknown>;
+	@version(3.0.0+)
+	[3] Unknown3(bytes<52>, u64, u64, u64, pid, KObject) -> object<IUnknown>;
+	@version(4.0.0+)
+	[4] Unknown4();
+}
+
+interface nn::audio::detail::IAudioRendererManagerForApplet is audren:a {
+	[0] RequestSuspendAudioRenderers(u64, u64) -> KObject;
+	[1] RequestResumeAudioRenderers(u64, u64) -> KObject;
+	[2] GetAudioRenderersProcessMasterVolume(u64) -> u32;
+	[3] SetAudioRenderersProcessMasterVolume(u32, u64, u64);
+	[4] RegisterAppletResourceUserId(u64);
+	[5] UnregisterAppletResourceUserId(u64);
 }
 
 interface nn::audio::detail::ICodecController is codecctl {
-	[0] InitializeCodecController();
-	[1] FinalizeCodecController();
-	[2] SleepCodecController();
-	[3] WakeCodecController();
-	# Takes a Volume
-	# (uint32)
+	# Takes no input.
 	# 
-	# [Category:Services](http://switchbrew.org/index.php?title=Category:Services "wikilink")
+	[0] InitializeCodecController();
+	# Takes no input.
+	# 
+	[1] FinalizeCodecController();
+	# Takes no input.
+	# 
+	[2] SleepCodecController();
+	# Takes no input.
+	# 
+	[3] WakeCodecController();
+	# Takes an u32 **Volume**.
 	# 
 	[4] SetCodecVolume();
+	# Returns an u32 **VolumeMax**.
+	# 
 	[5] GetCodecVolumeMax();
+	# Returns an u32 **VolumeMin**.
+	# 
 	[6] GetCodecVolumeMin();
+	# Takes an u32 **Target**.
+	# 
 	[7] SetCodecActiveTarget();
-	[8] Unknown();
+	# Returns an u32 **Target**.
+	# 
+	[8] GetCodecActiveTarget();
+	# Returns an event handle.
+	# 
 	[9] BindCodecHeadphoneMicJackInterrupt();
+	# Returns a bool.
+	# 
 	[10] IsCodecHeadphoneMicJackInserted();
+	# Takes no input.
+	# 
 	[11] ClearCodecHeadphoneMicJackInterrupt();
+	# Returns a bool.
+	# 
 	[12] IsCodecDeviceRequested();
 }
 
@@ -335,10 +434,63 @@ interface nn::audio::detail::IFinalOutputRecorder {
 	[4] RegisterBufferEvent() -> KObject;
 	[5] GetReleasedFinalOutputRecorderBuffer() -> (u32, u64, buffer<unknown,6,0>);
 	[6] ContainsFinalOutputRecorderBuffer(u64) -> u8;
+	[7] Unknown7(u64) -> u64;
+	@version(3.0.0+)
+	[8] AppendFinalOutputRecorderBufferEx(u64, buffer<unknown,33,0>);
+	@version(3.0.0+)
+	[9] GetReleasedFinalOutputRecorderBufferEx() -> (u32, u64, buffer<unknown,34,0>);
 }
 
 interface nn::audio::detail::IFinalOutputRecorderManager is audrec:u {
 	[0] OpenFinalOutputRecorder(u64, u64, KObject) -> (u128, object<IUnknown>);
+}
+
+interface nn::audio::detail::IFinalOutputRecorderManagerForApplet is audrec:a {
+	[0] RequestSuspendFinalOutputRecorders(u64, u64) -> KObject;
+	[1] RequestResumeFinalOutputRecorders(u64, u64) -> KObject;
+}
+
+interface nn::audioctrl::detail::IAudioController is audctl {
+	[0] GetTargetVolume(u32) -> u32;
+	[1] SetTargetVolume(u32, u32);
+	[2] GetTargetVolumeMin() -> u32;
+	[3] GetTargetVolumeMax() -> u32;
+	@undocumented
+	[4] IsTargetMute();
+	[5] SetTargetMute(u8, u32);
+	@undocumented
+	[6] IsTargetConnected();
+	@undocumented
+	[7] SetDefaultTarget();
+	[8] GetDefaultTarget() -> u32;
+	[9] GetAudioOutputMode(u32) -> u32;
+	[10] SetAudioOutputMode(u32, u32);
+	[11] SetForceMutePolicy(u32);
+	[12] GetForceMutePolicy() -> u32;
+	[13] GetOutputModeSetting(u32) -> u32;
+	[14] SetOutputModeSetting(u32, u32);
+	[15] SetOutputTarget(u32);
+	[16] SetInputTargetForceEnabled(u8);
+	@version(3.0.0+)
+	[17] SetHeadphoneOutputLevelMode(u32);
+	@version(3.0.0+)
+	[18] GetHeadphoneOutputLevelMode() -> u32;
+	@version(3.0.0+)
+	[19] AcquireAudioVolumeUpdateEventForPlayReport() -> KObject;
+	@version(3.0.0+)
+	[20] AcquireAudioOutputDeviceUpdateEventForPlayReport() -> KObject;
+	@version(3.0.0+)
+	[21] GetAudioOutputTargetForPlayReport() -> u32;
+	@version(3.0.0+)
+	[22] NotifyHeadphoneVolumeWarningDisplayedEvent();
+	@version(4.0.0+)
+	[23] SetSystemOutputMasterVolume();
+	@version(4.0.0+)
+	[24] GetSystemOutputMasterVolume();
+	@version(4.0.0+)
+	[25] GetAudioVolumeDataForPlayReport();
+	@version(4.0.0+)
+	[26] UpdateHeadphoneSettings();
 }
 
 interface nn::bluetooth::IBluetoothDriver is btdrv {
@@ -347,41 +499,60 @@ interface nn::bluetooth::IBluetoothDriver is btdrv {
 	[2] Enable();
 	[3] Disable();
 	[4] CleanupAndShutdown();
+	@undocumented
 	[5] GetAdapterProperties();
+	@undocumented
 	[6] GetAdapterProperty();
+	@undocumented
 	[7] SetAdapterProperty();
 	[8] StartDiscovery();
 	[9] CancelDiscovery();
+	@undocumented
 	[10] CreateBond();
 	[11] RemoveBond(bytes<6>);
 	[12] CancelBond(bytes<6>);
+	@undocumented
 	[13] PinReply();
+	@undocumented
 	[14] SspReply();
 	[15] Unknown15() -> (u32, buffer<unknown,10,0>);
+	@undocumented
 	[16] InitInterfaces();
 	[17] HidHostInterface_Connect(bytes<6>);
 	[18] HidHostInterface_Disconnect(bytes<6>);
+	@undocumented
 	[19] HidHostInterface_SendData();
+	@undocumented
 	[20] HidHostInterface_SendData2();
+	@undocumented
 	[21] HidHostInterface_SetReport();
+	@undocumented
 	[22] HidHostInterface_GetReport();
 	[23] HidHostInterface_WakeController(bytes<6>);
+	@undocumented
 	[24] HidHostInterface_AddPairedDevice();
+	@undocumented
 	[25] HidHostInterface_GetPairedDevice();
 	[26] HidHostInterface_CleanupAndShutdown();
 	[27] Unknown27() -> (u32, buffer<unknown,10,0>);
+	@undocumented
 	[28] ExtInterface_SetTSI();
+	@undocumented
 	[29] ExtInterface_SetBurstMode();
+	@undocumented
 	[30] ExtInterface_SetZeroRetran();
 	[31] ExtInterface_SetMcMode(u8);
 	[32] ExtInterface_StartLlrMode();
 	[33] ExtInterface_ExitLlrMode();
 	[34] ExtInterface_SetRadio(u8);
+	@undocumented
 	[35] ExtInterface_SetVisibility();
 	[36] Unknown36() -> KObject;
 	[37] Unknown37() -> (u32, buffer<unknown,10,0>);
+	@undocumented
 	[38] HidHostInterface_GetLatestPlr();
 	[39] ExtInterface_GetPendingConnections();
+	@undocumented
 	[40] HidHostInterface_GetChannelMap();
 	[41] SetIsBluetoothBoostEnabled(u8);
 	[42] GetIsBluetoothBoostEnabled() -> u8;
@@ -400,6 +571,7 @@ interface nn::bpc::IBoardPowerControlManager is bpc {
 	[7] GetPowerEvent(u32) -> KObject;
 	[8] Unknown8(u64) -> u32;
 	[9] Unknown9(u32);
+	@undocumented
 	[10] Unknown10();
 }
 
@@ -408,6 +580,117 @@ interface nn::bpc::IRtcManager is bpc:r {
 	[1] SetExternalRtcValue(u64);
 	[2] ReadExternalRtcResetFlag() -> u8;
 	[3] ClearExternalRtcResetFlag();
+}
+
+interface nn::btm::IBtm is btm {
+	[0] Unknown0() -> u32;
+	@undocumented
+	[1] Unknown1();
+	@undocumented
+	[2] Unknown2();
+	@undocumented
+	[3] Unknown3();
+	@undocumented
+	[4] Unknown4();
+	@undocumented
+	[5] Unknown5();
+	[6] Unknown6(u32);
+	[7] Unknown7(u32);
+	@undocumented
+	[8] Unknown8();
+	@undocumented
+	[9] Unknown9();
+	@undocumented
+	[10] Unknown10();
+	[11] Unknown11(bytes<6>);
+	[12] Unknown12(bytes<6>);
+	[13] Unknown13(bytes<6>);
+	[14] Unknown14();
+	[15] Unknown15();
+	[16] Unknown16(bytes<6>);
+	@undocumented
+	[17] Unknown17();
+	@undocumented
+	[18] Unknown18();
+}
+
+interface nn::btm::IBtmDebug is btm:dbg {
+	@undocumented
+	[0] Unknown0();
+	@undocumented
+	[1] Unknown1();
+	@undocumented
+	[2] Unknown2();
+	@undocumented
+	[3] Unknown3();
+	@undocumented
+	[4] Unknown4();
+	@undocumented
+	[5] Unknown5();
+	@undocumented
+	[6] Unknown6();
+	@undocumented
+	[7] Unknown7();
+	@undocumented
+	[8] Unknown8();
+}
+
+interface nn::btm::IBtmSystem is btm:sys {
+	[0] GetCoreImpl() -> object<IUnknown>;
+}
+
+interface nn::btm::IBtmSystemCore {
+	[0] StartGamepadPairingImpl();
+	[1] CancelGamepadPairingImpl();
+	[2] ClearGamepadPairingDatabaseImpl();
+	[3] GetPairedGamepadCountImpl() -> u8;
+	[4] EnableRadioImpl();
+	[5] DisableRadioImpl();
+	[6] GetRadioOnOffImpl() -> u8;
+	@undocumented
+	[7] AcquireRadioEventImpl();
+	@undocumented
+	[8] AcquireGamepadPairingEventImpl();
+	[9] IsGamepadPairingStartedImpl() -> u8;
+}
+
+interface nn::codec::detail::IHardwareOpusDecoder {
+	# Takes a type-5 input buffer (**OpusDataIn**) and a type-6 output buffer
+	# (**PcmDataOut**). Decodes the Opus source data to PCM and returns two
+	# u32s **DecodedSampleCount** and **DecodedDataSize**.
+	# 
+	[0] DecodeInterleaved(buffer<unknown,5,0>) -> (u32, u32, buffer<unknown,6,0>);
+	# Takes a type-5 input buffer (**DecoderContextIn**). Sends the unknown
+	# context data to the hardware decoder.
+	# 
+	[1] SetContext(buffer<unknown,5,0>);
+	@version(3.0.0+)
+	[2] DecodeInterleavedEx(buffer<unknown,5,0>) -> (u32, u32, buffer<unknown,6,0>);
+	@version(3.0.0+)
+	[3] SetContextEx(buffer<unknown,5,0>);
+	@version(4.0.0+)
+	[4] Unknown4();
+	@version(4.0.0+)
+	[5] Unknown5();
+}
+
+interface nn::codec::detail::IHardwareOpusDecoderManager is hwopus {
+	# Takes two u32s **SampleRate** and **ChannelCount** packed as an u64, an
+	# u32 **WorkBufferSize** and a TransferMemory handle for **WorkBuffer**.
+	# Returns an
+	# [\#IHardwareOpusDecoder](#nn::codec::detail::IHardwareOpusDecoder "wikilink")
+	# object. The TransferMemory is created by the user-process with
+	# permissions=0.
+	# 
+	[0] Initialize(u64, u32, KObject) -> object<IUnknown>;
+	# Takes two u32s **SampleRate** and **ChannelCount** packed as an u64.
+	# Returns the required size for the decoder's work buffer.
+	# 
+	[1] GetWorkBufferSize(u64) -> u32;
+	@version(3.0.0+)
+	[2] InitializeEx(u32, KObject, buffer<unknown,25,272>) -> object<IUnknown>;
+	@version(3.0.0+)
+	[3] GetWorkBufferSizeEx(buffer<unknown,25,272>) -> u32;
 }
 
 interface nn::fan::detail::IManager is fan {
@@ -421,16 +704,23 @@ interface nn::fan::detail::IManager is fan {
 	[7] Unknown7();
 }
 
+interface nn::fatalsrv::IPrivateService is fatal:p {
+	[0] GetFatalEvent() -> KObject;
+}
+
 interface nn::fatalsrv::IService is fatal:u {
-	[0] Unknown0();
-	[1] Unknown1();
+	@undocumented
+	[0] ThrowFatal();
+	@undocumented
+	[1] ThrowFatalWithPolicy();
 	# Takes an input u64 errorcode and an unknown u64(TID maybe?). It also
 	# takes a type-0x15 error buffer and a pid-descriptor. The error buffer
 	# contains a stack trace. The stack trace address count is stored at
 	# errorbuffer+0x240 and the addresses are stored at errorbuffer+0x130+i\*8
 	# where i = 0-\>address count
 	# 
-	[2] TransitionToFatalError();
+	@undocumented
+	[2] ThrowFatalWithCpuContext();
 }
 
 interface nn::fssrv::sf::IDeviceOperator {
@@ -577,38 +867,11 @@ interface nn::fssrv::sf::IFileSystem {
 }
 
 interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
-	# Takes a type-0x19 input buffer, an in32, and an input title-id.
-	# 
-	# The in32 must be 5 if the NCA type is 0 (control).
-	# 
-	# The in32 must be 2..7.
-	# 
-	# The input buffer is the output string path from nsam
-	# [GetContentNcaPath](http://switchbrew.org/index.php?title=NS_Services#GetContentNcaPath "wikilink").
-	# 
-	# Returns an [\#IFileSystem](#nn::fssrv::sf::IFileSystem "wikilink").
-	# 
-	# May return errors when attempting to access NCA-paths for an
-	# update-title with a gamecard, when the gamecard isn't inserted. May
-	# return error 0x7D402 in some cases with update-titles. Non-val2 in32
-	# values with NCA-type1 are unusable, even for normal titles.
-	# 
-	# The official "MountApplicationPackage" func uses this with in64=0 and
-	# in32=7.
-	# 
-	# After the in32-specific permissions are checked, it then gets the func
-	# retval for permissions-type 0x25 and func0.
-	# 
-	# When in32=5, it uses in64=0xffffffffffffffff internally, otherwise it
-	# checks if in64 is set to 0xffffffffffffffff then throws an error if so.
-	# When the in64 used internally is not 0xffffffffffffffff, it's compared
-	# with the NCA titleID, then an error is thrown on mismatch.
-	# 
 	@version(1.0.0)
 	[0] MountContent();
 	# Takes a pid-descriptor.
 	# 
-	[1] Initialize(u64, pid);
+	[1] SetCurrentProcess(u64, pid);
 	[2] OpenDataFileSystemByCurrentProcess() -> object<IUnknown>;
 	# Takes an input u32 (same as
 	# [\#MountContent](#nn::fssrv::sf::IFileSystemProxy\(0\) "wikilink")) and
@@ -618,10 +881,11 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	# Returns an [\#IFileSystem](#nn::fssrv::sf::IFileSystem "wikilink").
 	# 
 	# Note: web-applet strings refer to both this cmd and the below
-	# "MountContent" as "MountContent".
+	# "MountContent" as "MountContent", but official nn\_sf\_sync symbols use
+	# "OpenXX" names.
 	# 
 	@version(2.0.0+)
-	[7] MountContent7(u32, u64) -> object<IUnknown>;
+	[7] OpenFileSystemWithPatch(u32, u64) -> object<IUnknown>;
 	# Takes a type-0x19 input buffer, an in32, and an input title-id.
 	# 
 	# The in32 must be 5 if the NCA type is 0 (control).
@@ -650,7 +914,7 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	# with the NCA titleID, then an error is thrown on mismatch.
 	# 
 	@version(2.0.0+)
-	[8] MountContent(u32, u64, buffer<unknown,25,769>) -> object<IUnknown>;
+	[8] OpenFileSystemWithId(u32, u64, buffer<unknown,25,769>) -> object<IUnknown>;
 	@version(3.0.0+)
 	[9] OpenDataFileSystemByApplicationId(u64) -> object<IUnknown>;
 	# Takes a type-0x19 input buffer string and a u32 Bis partitionID(see
@@ -660,25 +924,24 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	# 
 	# Only partitionIDs for FAT partitions are usable with this, otherwise
 	# error 0x2EE202 is returned. Seems to be about the same as
-	# [\#OpenBisPartition](#nn::fssrv::sf::IFileSystemProxy\(12\) "wikilink")
+	# [\#OpenBisStorage](#nn::fssrv::sf::IFileSystemProxy\(12\) "wikilink")
 	# except this mounts the partition filesystem instead of allowing direct
 	# access to the partition sectors.
 	# 
-	[11] MountBis(u32, buffer<unknown,25,769>) -> object<IUnknown>;
+	[11] OpenBisFileSystem(u32, buffer<unknown,25,769>) -> object<IUnknown>;
 	# Takes a u32 partition ID, returns 0x2EE202 for partitions which do not
 	# exist, 0x320002 for partitions which cannot be opened and a valid
-	# [\#IStorage](#nn::fssrv::sf::IFileSystemProxy\(203\) "wikilink") handle
-	# otherwise.
+	# [\#IStorage](#nn::fssrv::sf::IStorage "wikilink") handle otherwise.
 	# 
-	[12] OpenBisPartition(u32) -> object<IUnknown>;
+	[12] OpenBisStorage(u32) -> object<IUnknown>;
 	[13] InvalidateBisCache();
-	[17] OpenHostFileSystemImpl(buffer<unknown,25,769>) -> object<IUnknown>;
-	[18] MountSdCard() -> object<IUnknown>;
+	[17] OpenHostFileSystem(buffer<unknown,25,769>) -> object<IUnknown>;
+	[18] OpenSdCardFileSystem() -> object<IUnknown>;
 	@version(2.0.0+)
-	[19] FormatSdCard();
+	[19] FormatSdCardFileSystem();
 	# Takes an input u64.
 	# 
-	[21] DeleteSaveData(u64);
+	[21] DeleteSaveDataFileSystem(u64);
 	# Takes a 0x40-byte Save-struct entry, a 0x40-byte SaveCreate-struct
 	# entry, and a 0x10-byte input struct.
 	# 
@@ -689,7 +952,7 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	# 
 	# Creates regular savedata.
 	# 
-	[22] CreateSaveData(bytes<64>, bytes<64>, u128);
+	[22] CreateSaveDataFileSystem(bytes<64>, bytes<64>, u128);
 	# Takes a 0x40-byte Save-struct entry and a 0x40-byte SaveCreate-struct
 	# entry.
 	# 
@@ -697,21 +960,21 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	# [NAND](http://switchbrew.org/index.php?title=Flash_Filesystem "wikilink")
 	# partition.
 	# 
-	[23] CreateSystemSaveData(bytes<64>, bytes<64>);
-	[24] RegisterSaveDataAtomicDeletion(buffer<unknown,5,0>);
+	[23] CreateSaveDataFileSystemBySystemSaveDataId(bytes<64>, bytes<64>);
+	[24] RegisterSaveDataFileSystemAtomicDeletion(buffer<unknown,5,0>);
 	@version(2.0.0+)
-	[25] DeleteSaveDataWithSpaceId(u8, u64);
+	[25] DeleteSaveDataFileSystemBySaveDataSpaceId(u8, u64);
 	@version(2.0.0+)
 	[26] FormatSdCardDryRun();
 	@version(2.0.0+)
 	[27] IsExFatSupported() -> u8;
 	@version(4.0.0+)
-	[28] DeleteSystemSaveData();
-	# Takes an input u32 (partition ID), and returns an
-	# [\#IStorage](#nn::fssrv::sf::IFileSystemProxy\(203\) "wikilink") for the
+	[28] DeleteSaveDataFileSystemBySaveDataAttribute();
+	# Takes two input u32s (gamecard handle, partition ID), and returns an
+	# [\#IStorage](#nn::fssrv::sf::IStorage "wikilink") for the
 	# [partition](http://switchbrew.org/index.php?title=Gamecard_Format "wikilink").
 	# 
-	[30] OpenGameCardPartition(u32, u32) -> object<IUnknown>;
+	[30] OpenGameCardStorage(u32, u32) -> object<IUnknown>;
 	# Takes two input u32s, with the second u32 located at +4 in rawdata after
 	# the first u32.
 	# 
@@ -720,9 +983,13 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	# Mounts a gamecard
 	# [partition](http://switchbrew.org/index.php?title=Gamecard_Partition "wikilink").
 	# 
-	[31] MountGameCardPartition(u32, u32) -> object<IUnknown>;
+	[31] OpenGameCardFileSystem(u32, u32) -> object<IUnknown>;
 	@version(3.0.0+)
-	[32] ExtendSaveData(u8, u64, u64, u64);
+	[32] ExtendSaveDataFileSystem(u8, u64, u64, u64);
+	@version(5.0.0+)
+	[33] Unknown33();
+	@version(5.0.0+)
+	[34] Unknown34();
 	# Takes an input u8 and a 0x40-byte Save-struct entry. Official
 	# user-process code is only known to use value 1 for the u8.
 	# 
@@ -734,7 +1001,7 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	# Only one process can mount a given savedata at any given time (this
 	# includes systemsavedata).
 	# 
-	[51] MountSaveData(u8, bytes<64>) -> object<IUnknown>;
+	[51] OpenSaveDataFileSystem(u8, bytes<64>) -> object<IUnknown>;
 	# Takes an input u8 and a 0x40-byte Save-struct entry. Web-applet only
 	# uses value0 for the input u8.
 	# 
@@ -744,20 +1011,30 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	# [NAND](http://switchbrew.org/index.php?title=Flash_Filesystem "wikilink")
 	# partition.
 	# 
-	[52] MountSystemSaveData(u8, bytes<64>) -> object<IUnknown>;
+	[52] OpenSaveDataFileSystemBySystemSaveDataId(u8, bytes<64>) -> object<IUnknown>;
 	@version(2.0.0+)
-	[53] MountSaveDataReadOnly(u8, bytes<64>) -> object<IUnknown>;
+	[53] OpenReadOnlySaveDataFileSystem(u8, bytes<64>) -> object<IUnknown>;
 	@version(3.0.0+)
-	[57] ReadSaveDataFileSystemExtraDataWithSpaceId(u8, u64) -> buffer<unknown,6,0>;
+	[57] ReadSaveDataFileSystemExtraDataBySaveDataSpaceId(u8, u64) -> buffer<unknown,6,0>;
 	[58] ReadSaveDataFileSystemExtraData(u64) -> buffer<unknown,6,0>;
 	@version(2.0.0+)
 	[59] WriteSaveDataFileSystemExtraData(u8, u64, buffer<unknown,5,0>);
 	[60] OpenSaveDataInfoReader() -> object<IUnknown>;
-	[61] OpenSaveDataIterator(u8) -> object<IUnknown>;
-	[80] OpenSaveDataThumbnailFile(u8, u32, bytes<64>) -> object<IUnknown>;
+	[61] OpenSaveDataInfoReaderBySaveDataSpaceId(u8) -> object<IUnknown>;
+	@version(5.0.0+)
+	[62] Unknown62();
+	@version(5.0.0+)
+	[64] Unknown64();
+	@version(5.0.0+)
+	[65] Unknown65();
+	@version(5.0.0+)
+	[66] Unknown66();
+	[80] OpenSaveDataMetaFile(u8, u32, bytes<64>) -> object<IUnknown>;
 	@version(4.0.0+)
 	[81] OpenSaveDataTransferManager();
-	[100] MountImageDirectory(u32) -> object<IUnknown>;
+	@version(5.0.0+)
+	[82] Unknown82();
+	[100] OpenImageDirectoryFileSystem(u32) -> object<IUnknown>;
 	# Takes a
 	# [\#ContentStorageId](http://switchbrew.org/index.php?title=Filesystem%20services#ContentStorageId "wikilink").
 	# Invalid values return 0x2EE202.
@@ -767,36 +1044,21 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	# by
 	# [Content\_Manager\_services\#ReadEntryRaw](http://switchbrew.org/index.php?title=Content_Manager_services#ReadEntryRaw "wikilink").
 	# 
-	[110] MountContentStorage(u32) -> object<IUnknown>;
+	[110] OpenContentStorageFileSystem(u32) -> object<IUnknown>;
 	[200] OpenDataStorageByCurrentProcess() -> object<IUnknown>;
 	@version(3.0.0+)
-	[201] OpenDataStorageByApplicationId(u64) -> object<IUnknown>;
+	[201] OpenDataStorageByProgramId(u64) -> object<IUnknown>;
 	# Takes a
 	# [\#StorageId](http://switchbrew.org/index.php?title=Filesystem%20services#StorageId "wikilink")
 	# and a TitleID.
 	# 
 	# Returns a [domain object
 	# ID](http://switchbrew.org/index.php?title=IPC_Marshalling#Domain_message "wikilink")
-	# implementing the
-	# [\#IStorage](#nn::fssrv::sf::IFileSystemProxy\(203\) "wikilink")
+	# implementing the [\#IStorage](#nn::fssrv::sf::IStorage "wikilink")
 	# interface for data archives.
 	# 
 	[202] OpenDataStorageByDataId(u8, u64) -> object<IUnknown>;
-	# This is "nn::fssrv::sf::IStorage".
-	# 
-	# This is the interface for a raw device, usually a block
-	# device.
-	# 
-	# | Cmd | Name                    | Arguments                                      |
-	# | --- | ----------------------- | ---------------------------------------------- |
-	# | 0   | Read                    | Takes a type-0x46 buffer, an offset and length |
-	# | 1   | Write                   | Takes a type-0x45 buffer, an offset and length |
-	# | 2   | Flush                   | None                                           |
-	# | 3   | SetSize                 | Takes a size                                   |
-	# | 4   | GetSize                 | None                                           |
-	# | 5   | \[4.0.0+\] OperateRange |                                                |
-	# 
-	[203] IStorage() -> object<IUnknown>;
+	[203] OpenPatchDataStorageByCurrentProcess() -> object<IUnknown>;
 	# This command returns a session to a port implementing the
 	# [\#IDeviceOperator](#nn::fssrv::sf::IDeviceOperator "wikilink")
 	# interface.
@@ -810,6 +1072,10 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	# [\#IEventNotifier](#nn::fssrv::sf::IEventNotifier "wikilink") interface.
 	# 
 	[501] OpenGameCardDetectionEventNotifier() -> object<IUnknown>;
+	@version(5.0.0+)
+	[510] OpenSystemDataUpdateEventNotifier();
+	@version(5.0.0+)
+	[511] NotifySystemDataUpdateEvent();
 	@version(1.0.0-3.0.2)
 	[600] SetCurrentPosixTime(u64);
 	[601] QuerySaveDataTotalSize(u64, u64) -> u64;
@@ -819,8 +1085,8 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	# [error](http://switchbrew.org/index.php?title=Error_codes "wikilink") is
 	# returned(0xE02).
 	# 
-	[602] VerifySaveData(u64) -> buffer<unknown,6,0>;
-	[603] CorruptSaveDataForDebug(u64);
+	[602] VerifySaveDataFileSystem(u64) -> buffer<unknown,6,0>;
+	[603] CorruptSaveDataFileSystem(u64);
 	[604] CreatePaddingFile(u64);
 	[605] DeleteAllPaddingFiles();
 	@version(2.0.0+)
@@ -828,27 +1094,33 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	@version(2.0.0+)
 	[607] RegisterExternalKey(u128, u128);
 	@version(2.0.0+)
-	[608] UnregisterExternalKey();
+	[608] UnregisterAllExternalKey();
 	@version(2.0.0+)
 	[609] GetRightsIdByPath(buffer<unknown,25,769>) -> u128;
 	@version(3.0.0+)
-	[610] GetRightsIdByPath2(buffer<unknown,25,769>) -> (u8, u128);
+	[610] GetRightsIdAndKeyGenerationByPath(buffer<unknown,25,769>) -> (u8, u128);
 	@version(4.0.0+)
-	[611] SetCurrentPosixTime();
+	[611] SetCurrentPosixTimeWithTimeDifference();
 	@version(4.0.0+)
-	[612] GetFreeSpaceSize();
+	[612] GetFreeSpaceSizeForSaveData();
 	@version(4.0.0+)
-	[613] Unknown613();
+	[613] VerifySaveDataFileSystemBySaveDataSpaceId();
 	@version(4.0.0+)
-	[614] Unknown614();
-	# Takes 0x10-bytes of input.
-	# 
-	# Appears to be used to load the seed into FS-module state, since
-	# FS-module itself doesn't seem to have file-reading code to handle this
-	# itself.
+	[614] CorruptSaveDataFileSystemBySaveDataSpaceId();
+	@version(5.0.0+)
+	[615] Unknown615();
+	# Takes in the 0x10 byte SD card encryption seed, and loads it into
+	# FS-module
+	# state.
 	# 
 	# [NS](http://switchbrew.org/index.php?title=NS_Services "wikilink")-module
-	# uses this with data read from a file.
+	# reads the 0x10 bytes from SdCard:/Nintendo/Contents/private, and
+	# compares them to the first 0x10 bytes of the ns\_appman:/private (in
+	# [system
+	# savedata](http://switchbrew.org/index.php?title=Flash_Filesystem#System_Savegames "wikilink")
+	# 0x8000000000000043). If they match, NS calls this command using bytes
+	# 0x10-0x20 from ns\_appman:/private. The rest of this file (0x1F0 bytes
+	# total) is (usually/always?) all-zero.
 	# 
 	@version(2.0.0+)
 	[620] SetSdCardEncryptionSeed(u128);
@@ -858,6 +1130,16 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	[631] IsSdCardAccessible();
 	@version(4.0.0+)
 	[640] IsSignedSystemPartitionOnSdCardValid();
+	@version(5.0.0+)
+	[700] Unknown700();
+	@version(5.0.0+)
+	[701] Unknown701();
+	@version(5.0.0+)
+	[702] Unknown702();
+	@version(5.0.0+)
+	[710] Unknown710();
+	@version(5.0.0+)
+	[720] Unknown720();
 	@version(2.0.0+)
 	[800] GetAndClearFileSystemProxyErrorInfo() -> bytes<128>;
 	[1000] SetBisRootForHost(u32, buffer<unknown,25,769>);
@@ -893,18 +1175,18 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	@version(4.0.0+)
 	[1007] RegisterUpdatePartition();
 	@version(4.0.0+)
-	[1008] MountRegisteredUpdatePartition();
+	[1008] OpenRegisteredUpdatePartition();
 	@version(4.0.0+)
-	[1009] Unknown1009();
+	[1009] GetAndClearMemoryReportInfo();
 	@version(4.0.0+)
 	[1100] OverrideSaveDataTransferTokenSignVerificationKey();
 }
 
 interface nn::fssrv::sf::IFileSystemProxyForLoader is fsp-ldr {
-	[0] MountCode(u64, buffer<unknown,25,769>) -> object<IUnknown>;
-	[1] IsCodeMounted(u64) -> u8;
+	[0] OpenCodeFileSystem(u64, buffer<unknown,25,769>) -> object<IUnknown>;
+	[1] IsArchivedProgram(u64) -> u8;
 	@version(4.0.0+)
-	[2] Initialize();
+	[2] SetCurrentProcess();
 }
 
 interface nn::fssrv::sf::IProgramRegistry is fsp-pr {
@@ -917,22 +1199,22 @@ interface nn::fssrv::sf::IProgramRegistry is fsp-pr {
 	# Final FS permissions are stored as (ACI0\_perms & ACID\_perms). Will
 	# panic(svcBreak) when buffer sizes from ipc-rawdata are invalid.
 	# 
-	[0] SetFsPermissions(u8, u64, u64, u64, u64, buffer<unknown,5,0>, buffer<unknown,5,0>);
+	[0] RegisterProgram(u8, u64, u64, u64, u64, buffer<unknown,5,0>, buffer<unknown,5,0>);
 	# Takes a pid. Removes registered FS permissions for that PID.
 	# 
-	[1] ClearFsPermissions(u64);
+	[1] UnregisterProgram(u64);
 	@version(4.0.0+)
-	[2] Initialize();
+	[2] SetCurrentProcess();
 	# Seems to sets a global flag to inputval & 1.
 	# 
 	# When the flag is zero, it will set ret=0 instead of ret={error} when
-	# verifying a RSA signature fails. This RSA signature seems to be the
-	# signature in the
-	# [NPDM](http://switchbrew.org/index.php?title=NPDM "wikilink") ACID. It
-	# then skips verifying what seems to be the second signature in the [NCA
-	# header](http://switchbrew.org/index.php?title=NCA_Format "wikilink").
-	# Note that if verifying the NPDM(?) signature is successful, and
-	# verifying that second signature fails, it will throw an error and abort.
+	# verifying the fixed-key
+	# [NPDM](http://switchbrew.org/index.php?title=NPDM "wikilink") ACID
+	# signature fails. This also skips verifying the [NCA
+	# Header](http://switchbrew.org/index.php?title=NCA_Format "wikilink")
+	# signature using the ACID key. Note that if verifying the fixed-key ACID
+	# signature is successful, and verifying the ACID-key NCA header signature
+	# fails, it will throw an error and abort.
 	# 
 	[256] SetEnabledProgramVerification(u8);
 }
@@ -961,82 +1243,85 @@ interface nn::gpio::IManager is gpio {
 	# [\#IPadSession](#nn::gpio::IPadSession "wikilink")
 	# session.
 	# 
-	# | GpioPadName | GpioPadDescriptor | Tegra (port, pin) | Usage                          | Direction | Used by                                                                                                                                                                |
-	# | ----------- | ----------------- | ----------------- | ------------------------------ | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-	# | 1           | 0xCC              | Z, 4              |                                | Out       | [Audio services](http://switchbrew.org/index.php?title=Audio_services "wikilink"), [Fatal services](http://switchbrew.org/index.php?title=Fatal_services "wikilink")   |
-	# | 2           | 0x24              | E, 4              | SDCard Power                   | Out       | [Filesystem services](http://switchbrew.org/index.php?title=Filesystem_services "wikilink")                                                                            |
-	# | 3           | 0x3C              | H, 4              |                                | Out       | [Bluetooth services](http://switchbrew.org/index.php?title=Bluetooth_services "wikilink")                                                                              |
-	# | 4           | 0xDA              | BB, 2             |                                |           |                                                                                                                                                                        |
-	# | 5           | 0xDB              | BB, 3             | GcAsic Power?                  | Out       | [Filesystem services](http://switchbrew.org/index.php?title=Filesystem_services "wikilink")                                                                            |
-	# | 6           | 0xDC              | BB, 4             |                                | In        | [Audio services](http://switchbrew.org/index.php?title=Audio_services "wikilink")                                                                                      |
-	# | 7           | 0x25              | E, 5              |                                |           |                                                                                                                                                                        |
-	# | 8           | 0x90              | S, 0              |                                | In        | [HID services](http://switchbrew.org/index.php?title=HID_services "wikilink")                                                                                          |
-	# | 9           | 0x91              | S, 1              |                                |           |                                                                                                                                                                        |
-	# | 0xA         | 0x96              | S, 6              | Power supply monitor related.  | Out       | [PTM services](http://switchbrew.org/index.php?title=PTM_services "wikilink")                                                                                          |
-	# | 0xB         | 0x97              | S, 7              |                                |           |                                                                                                                                                                        |
-	# | 0xD         | 6                 | A, 6              | Battery event monitor related. | Out       | [PTM services](http://switchbrew.org/index.php?title=PTM_services "wikilink")                                                                                          |
-	# | 0xE         | 0x78              | P, 0              |                                |           |                                                                                                                                                                        |
-	# | 0xF         | 0x93              | S, 3              | GcAsic Irq?                    | In        | [Filesystem services](http://switchbrew.org/index.php?title=Filesystem_services "wikilink")                                                                            |
-	# | 0x10        | 0x7D              | P, 5              |                                |           |                                                                                                                                                                        |
-	# | 0x11        | 0x7C              | P, 4              |                                |           |                                                                                                                                                                        |
-	# | 0x12        | 0x7B              | P, 3              |                                |           |                                                                                                                                                                        |
-	# | 0x13        | 0x7A              | P, 2              |                                |           |                                                                                                                                                                        |
-	# | 0x14        | 0xBC              | X, 4              |                                |           |                                                                                                                                                                        |
-	# | 0x15        | 0xAE              | V, 6              |                                | In        | [Audio services](http://switchbrew.org/index.php?title=Audio_services "wikilink")                                                                                      |
-	# | 0x17        | 0xB9              | X, 1              |                                | In        | [HID services](http://switchbrew.org/index.php?title=HID_services "wikilink")                                                                                          |
-	# | 0x18        | 0xBD              | X, 5              |                                | Out       | [HID services](http://switchbrew.org/index.php?title=HID_services "wikilink")                                                                                          |
-	# | 0x19        | 0xBE              | X, 6              | Volume Up                      | In        | [Boot2](http://switchbrew.org/index.php?title=Boot2 "wikilink"), [Audio services](http://switchbrew.org/index.php?title=Audio_services "wikilink")                     |
-	# | 0x1A        | 0xBF              | X, 7              | Volume Down                    | In        | [Boot2](http://switchbrew.org/index.php?title=Boot2 "wikilink"), [Audio services](http://switchbrew.org/index.php?title=Audio_services "wikilink")                     |
-	# | 0x1B        | 0xC0              | Y, 0              | Power supply monitor related.  | In        | [PTM services](http://switchbrew.org/index.php?title=PTM_services "wikilink")                                                                                          |
-	# | 0x1C        | 0xC1              | Y, 1              |                                |           |                                                                                                                                                                        |
-	# | 0x1D        | 0xA9              | V, 1              | .. Backlight?                  | Out       | [NV services](http://switchbrew.org/index.php?title=NV_services "wikilink"), [Backlight services](http://switchbrew.org/index.php?title=Backlight_services "wikilink") |
-	# | 0x1E        | 0xAA              | V, 2              |                                | Out       | [NV services](http://switchbrew.org/index.php?title=NV_services "wikilink")                                                                                            |
-	# | 0x1F        | 0x55              | K, 5              | Charger watchdog related.      | Out       | [PTM services](http://switchbrew.org/index.php?title=PTM_services "wikilink"), [USB services](http://switchbrew.org/index.php?title=USB_services "wikilink")           |
-	# | 0x20        | 0xAD              | V, 5              |                                | Out       | [USB services](http://switchbrew.org/index.php?title=USB_services "wikilink")                                                                                          |
-	# | 0x21        | 0xC8              | Z, 0              | Power supply monitor related.  | In        | [PTM services](http://switchbrew.org/index.php?title=PTM_services "wikilink")                                                                                          |
-	# | 0x22        | 0xCA              | Z, 2              |                                |           |                                                                                                                                                                        |
-	# | 0x23        | 0xCB              | Z, 3              |                                |           |                                                                                                                                                                        |
-	# | 0x24        | 0x4F              | J, 7              |                                | Out       | [HID services](http://switchbrew.org/index.php?title=HID_services "wikilink")                                                                                          |
-	# | 0x25        | 0x50              | K, 0              |                                |           |                                                                                                                                                                        |
-	# | 0x26        | 0x51              | K, 1              |                                |           |                                                                                                                                                                        |
-	# | 0x27        | 0x52              | K, 2              |                                |           |                                                                                                                                                                        |
-	# | 0x28        | 0x54              | K, 4              |                                | In        | [USB services](http://switchbrew.org/index.php?title=USB_services "wikilink")                                                                                          |
-	# | 0x29        | 0x56              | K, 6              |                                |           |                                                                                                                                                                        |
-	# | 0x2A        | 0x57              | K, 7              |                                |           |                                                                                                                                                                        |
-	# | 0x2B        | 0x53              | K, 3              |                                |           |                                                                                                                                                                        |
-	# | 0x2C        | 0xE3              | CC, 3             |                                |           |                                                                                                                                                                        |
-	# | 0x2D        | 0x38              | H, 0              |                                |           |                                                                                                                                                                        |
-	# | 0x2E        | 0x39              | H, 1              |                                | Out       | [Wlan services](http://switchbrew.org/index.php?title=Wlan_services "wikilink"), [PCIe services](http://switchbrew.org/index.php?title=PCIe_services "wikilink")       |
-	# | 0x2F        | 0x3B              | H, 3              |                                | Out       | [Bluetooth services](http://switchbrew.org/index.php?title=Bluetooth_services "wikilink")                                                                              |
-	# | 0x30        | 0x3D              | H, 5              |                                |           |                                                                                                                                                                        |
-	# | 0x31        | 0x3F              | H, 7              |                                |           |                                                                                                                                                                        |
-	# | 0x32        | 0x40              | I, 0              |                                | Out       | [NV services](http://switchbrew.org/index.php?title=NV_services "wikilink")                                                                                            |
-	# | 0x33        | 0x41              | I, 1              |                                | Out       | [NV services](http://switchbrew.org/index.php?title=NV_services "wikilink")                                                                                            |
-	# | 0x34        | 0x3E              | H, 6              |                                |           |                                                                                                                                                                        |
-	# | 0x35        | 0xE2              | CC, 2             |                                |           |                                                                                                                                                                        |
-	# | 0x36        | 0xE4              | CC, 4             | Battery event monitor related. | Out       | [PTM services](http://switchbrew.org/index.php?title=PTM_services "wikilink")                                                                                          |
-	# | 0x37        | 0x3A              | H, 2              |                                |           |                                                                                                                                                                        |
-	# | 0x38        | 0xC9              | Z, 1              | SDCard Card Detect             | In        | [Filesystem services](http://switchbrew.org/index.php?title=Filesystem_services "wikilink")                                                                            |
-	# | 0x39        | 0x4D              | J, 5              | Charger watchdog related.      | Out       | [PTM services](http://switchbrew.org/index.php?title=PTM_services "wikilink"), [USB services](http://switchbrew.org/index.php?title=USB_services "wikilink")           |
-	# | 0x3A        | 0x58              | L, 0              | Charger watchdog related.      | Out       | [PTM services](http://switchbrew.org/index.php?title=PTM_services "wikilink"), [USB services](http://switchbrew.org/index.php?title=USB_services "wikilink")           |
-	# | 0x3B        | 0x3E              | H, 6              |                                |           |                                                                                                                                                                        |
-	# | 0x3C        | 0x26              | E, 6              |                                |           |                                                                                                                                                                        |
-	# | 0x3D        | \-1               |                   |                                |           |                                                                                                                                                                        |
-	# | 0x3E        | 0x33              | G, 3              |                                |           |                                                                                                                                                                        |
-	# | 0x3F        | 0x1C              | D, 4              |                                |           |                                                                                                                                                                        |
-	# | 0x40        | 0xD9              | BB, 1             |                                |           |                                                                                                                                                                        |
-	# | 0x41        | 0x0C              | B, 4              |                                |           |                                                                                                                                                                        |
-	# | 0x42        | 0x0D              | B, 5              |                                |           |                                                                                                                                                                        |
-	# | 0x43        | 0x21              | E, 1              |                                | Out       | [USB services](http://switchbrew.org/index.php?title=USB_services "wikilink")                                                                                          |
-	# | 0x44        | 0x27              | E, 7              |                                |           |                                                                                                                                                                        |
-	# | 0x45        | 0x92              | S, 2              |                                |           |                                                                                                                                                                        |
-	# | 0x46        | 0x95              | S, 5              | USB root port 3 power          | Out       | [USB services](http://switchbrew.org/index.php?title=USB_services "wikilink")                                                                                          |
-	# | 0x47        | 0x98              | T, 0              | USB root port 4 power          | Out       | [USB services](http://switchbrew.org/index.php?title=USB_services "wikilink")                                                                                          |
-	# | 0x48        | 0x10              | C, 0              |                                |           |                                                                                                                                                                        |
-	# | 0x49        | 0x11              | C, 1              | USB root port 2 power          | Out       | [NV services](http://switchbrew.org/index.php?title=NV_services "wikilink"), [USB services](http://switchbrew.org/index.php?title=USB_services "wikilink")             |
-	# | 0x4A        | 0x12              | C, 2              |                                | Out       | [NV services](http://switchbrew.org/index.php?title=NV_services "wikilink")                                                                                            |
-	# | 0x4B        | 0x42              | I, 2              |                                |           |                                                                                                                                                                        |
-	# | 0x4C        | 0xE6              | CC, 6             |                                |           |                                                                                                                                                                        |
+	# | GpioPadName | GpioPadDescriptor | Tegra (port, pin) | Usage                                              | Direction | Used by                                                                                                                                                                |
+	# | ----------- | ----------------- | ----------------- | -------------------------------------------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+	# | 0x01        | 0xCC              | Z, 4              |                                                    | Out       | [Audio services](http://switchbrew.org/index.php?title=Audio_services "wikilink"), [Fatal services](http://switchbrew.org/index.php?title=Fatal_services "wikilink")   |
+	# | 0x02        | 0x24              | E, 4              | SDCard Power                                       | Out       | [Filesystem services](http://switchbrew.org/index.php?title=Filesystem_services "wikilink")                                                                            |
+	# | 0x03        | 0x3C              | H, 4              | BT reset                                           | Out       | [Bluetooth services](http://switchbrew.org/index.php?title=Bluetooth_services "wikilink")                                                                              |
+	# | 0x04        | 0xDA              | BB, 2             |                                                    |           |                                                                                                                                                                        |
+	# | 0x05        | 0xDB              | BB, 3             | GcAsic Power                                       | Out       | [Filesystem services](http://switchbrew.org/index.php?title=Filesystem_services "wikilink")                                                                            |
+	# | 0x06        | 0xDC              | BB, 4             |                                                    | In        | [Audio services](http://switchbrew.org/index.php?title=Audio_services "wikilink")                                                                                      |
+	# | 0x07        | 0x25              | E, 5              |                                                    |           |                                                                                                                                                                        |
+	# | 0x08        | 0x90              | S, 0              | DebugPadDriver                                     | In        | [HID services](http://switchbrew.org/index.php?title=HID_services "wikilink")                                                                                          |
+	# | 0x09        | 0x91              | S, 1              |                                                    |           |                                                                                                                                                                        |
+	# | 0x0A        | 0x96              | S, 6              | bq24192 Charge Enable                              | Out       | [PTM services](http://switchbrew.org/index.php?title=PTM_services "wikilink")                                                                                          |
+	# | 0x0B        | 0x97              | S, 7              |                                                    |           |                                                                                                                                                                        |
+	# | 0x0C        | 0x26              | E, 6              | joycon(L) NwcpDriver0.GpioMonitorTask0 (insertion) | In        | [HID services](http://switchbrew.org/index.php?title=HID_services "wikilink")                                                                                          |
+	# | 0x0D        | 0x05              | A, 5              | Fan enable (normal)                                | Out       | [PTM services](http://switchbrew.org/index.php?title=PTM_services "wikilink")                                                                                          |
+	# | 0x0E        | 0x78              | P, 0              |                                                    |           |                                                                                                                                                                        |
+	# | 0x0F        | 0x93              | S, 3              | GcAsic irq                                         | In        | [Filesystem services](http://switchbrew.org/index.php?title=Filesystem_services "wikilink")                                                                            |
+	# | 0x10        | 0x7D              | P, 5              |                                                    |           |                                                                                                                                                                        |
+	# | 0x11        | 0x7C              | P, 4              |                                                    |           |                                                                                                                                                                        |
+	# | 0x12        | 0x7B              | P, 3              |                                                    |           |                                                                                                                                                                        |
+	# | 0x13        | 0x7A              | P, 2              |                                                    |           |                                                                                                                                                                        |
+	# | 0x14        | 0xBC              | X, 4              |                                                    |           |                                                                                                                                                                        |
+	# | 0x15        | 0xAE              | V, 6              |                                                    | In        | [Audio services](http://switchbrew.org/index.php?title=Audio_services "wikilink")                                                                                      |
+	# | 0x16        | 0xBA              | X, 2              |                                                    |           |                                                                                                                                                                        |
+	# | 0x17        | 0xB9              | X, 1              | Touchscreen irq (unused - polled instead)          | In        | [HID services](http://switchbrew.org/index.php?title=HID_services "wikilink")                                                                                          |
+	# | 0x18        | 0xBD              | X, 5              |                                                    |           |                                                                                                                                                                        |
+	# | 0x19        | 0xBE              | X, 6              | Volume Up                                          | In        | [Boot2](http://switchbrew.org/index.php?title=Boot2 "wikilink"), [Audio services](http://switchbrew.org/index.php?title=Audio_services "wikilink")                     |
+	# | 0x1A        | 0xBF              | X, 7              | Volume Down                                        | In        | [Boot2](http://switchbrew.org/index.php?title=Boot2 "wikilink"), [Audio services](http://switchbrew.org/index.php?title=Audio_services "wikilink")                     |
+	# | 0x1B        | 0xC0              | Y, 0              | max17050 irq                                       | In        | [PTM services](http://switchbrew.org/index.php?title=PTM_services "wikilink")                                                                                          |
+	# | 0x1C        | 0xC1              | Y, 1              |                                                    |           |                                                                                                                                                                        |
+	# | 0x1D        | 0xA9              | V, 1              | Backlight                                          | Out       | [NV services](http://switchbrew.org/index.php?title=NV_services "wikilink"), [Backlight services](http://switchbrew.org/index.php?title=Backlight_services "wikilink") |
+	# | 0x1E        | 0xAA              | V, 2              | Backlight                                          | Out       | [NV services](http://switchbrew.org/index.php?title=NV_services "wikilink")                                                                                            |
+	# | 0x1F        | 0x55              | K, 5              | bq24192 OTG charge select                          | Out       | [PTM services](http://switchbrew.org/index.php?title=PTM_services "wikilink"), [USB services](http://switchbrew.org/index.php?title=USB_services "wikilink")           |
+	# | 0x20        | 0xAD              | V, 5              | PD related                                         | Out       | [USB services](http://switchbrew.org/index.php?title=USB_services "wikilink")                                                                                          |
+	# | 0x21        | 0xC8              | Z, 0              | bq24192 irq                                        | In        | [PTM services](http://switchbrew.org/index.php?title=PTM_services "wikilink")                                                                                          |
+	# | 0x22        | 0xCA              | Z, 2              |                                                    |           |                                                                                                                                                                        |
+	# | 0x23        | 0xCB              | Z, 3              |                                                    |           |                                                                                                                                                                        |
+	# | 0x24        | 0x4F              | J, 7              | Touchscreen power                                  | Out       | [HID services](http://switchbrew.org/index.php?title=HID_services "wikilink")                                                                                          |
+	# | 0x25        | 0x50              | K, 0              |                                                    |           |                                                                                                                                                                        |
+	# | 0x26        | 0x51              | K, 1              |                                                    |           |                                                                                                                                                                        |
+	# | 0x27        | 0x52              | K, 2              |                                                    |           |                                                                                                                                                                        |
+	# | 0x28        | 0x54              | K, 4              | bm92t36 irq                                        | In        | [USB services](http://switchbrew.org/index.php?title=USB_services "wikilink")                                                                                          |
+	# | 0x29        | 0x56              | K, 6              |                                                    |           |                                                                                                                                                                        |
+	# | 0x2A        | 0x57              | K, 7              |                                                    |           |                                                                                                                                                                        |
+	# | 0x2B        | 0x53              | K, 3              | joycon(R) NwcpDriver1.NwcpCharger                  | Out       | [HID services](http://switchbrew.org/index.php?title=HID_services "wikilink")                                                                                          |
+	# | 0x2C        | 0xE3              | CC, 3             | joycon(L) NwcpDriver0.NwcpCharger                  | Out       | [HID services](http://switchbrew.org/index.php?title=HID_services "wikilink")                                                                                          |
+	# | 0x2D        | 0x38              | H, 0              |                                                    |           |                                                                                                                                                                        |
+	# | 0x2E        | 0x39              | H, 1              |                                                    | Out       | [Wlan services](http://switchbrew.org/index.php?title=Wlan_services "wikilink"), [PCIe services](http://switchbrew.org/index.php?title=PCIe_services "wikilink")       |
+	# | 0x2F        | 0x3B              | H, 3              | BT wake                                            | Out       | [Bluetooth services](http://switchbrew.org/index.php?title=Bluetooth_services "wikilink")                                                                              |
+	# | 0x30        | 0x3D              | H, 5              |                                                    |           |                                                                                                                                                                        |
+	# | 0x31        | 0x3F              | H, 7              |                                                    |           |                                                                                                                                                                        |
+	# | 0x32        | 0x40              | I, 0              | Backlight                                          | Out       | [NV services](http://switchbrew.org/index.php?title=NV_services "wikilink")                                                                                            |
+	# | 0x33        | 0x41              | I, 1              | Backlight                                          | Out       | [NV services](http://switchbrew.org/index.php?title=NV_services "wikilink")                                                                                            |
+	# | 0x34        | 0x3E              | H, 6              | joycon(R) NwcpDriver1.GpioMonitorTask0 (insertion) | In        | [HID services](http://switchbrew.org/index.php?title=HID_services "wikilink")                                                                                          |
+	# | 0x35        | 0xE2              | CC, 2             |                                                    |           |                                                                                                                                                                        |
+	# | 0x36        | 0xE4              | CC, 4             | Fan enable (high power)                            | Out       | [PTM services](http://switchbrew.org/index.php?title=PTM_services "wikilink")                                                                                          |
+	# | 0x37        | 0x3A              | H, 2              |                                                    |           |                                                                                                                                                                        |
+	# | 0x38        | 0xC9              | Z, 1              | SDCard Card Detect                                 | In        | [Filesystem services](http://switchbrew.org/index.php?title=Filesystem_services "wikilink")                                                                            |
+	# | 0x39        | 0x4D              | J, 5              | bq24192 OTG charge select                          | Out       | [PTM services](http://switchbrew.org/index.php?title=PTM_services "wikilink"), [USB services](http://switchbrew.org/index.php?title=USB_services "wikilink")           |
+	# | 0x3A        | 0x58              | L, 0              | bq24192 OTG charge select                          | Out       | [PTM services](http://switchbrew.org/index.php?title=PTM_services "wikilink"), [USB services](http://switchbrew.org/index.php?title=USB_services "wikilink")           |
+	# | 0x3B        | 0x3E              | H, 6              |                                                    |           |                                                                                                                                                                        |
+	# | 0x3C        | 0x26              | E, 6              |                                                    |           |                                                                                                                                                                        |
+	# | 0x3D        | \-1               |                   |                                                    |           |                                                                                                                                                                        |
+	# | 0x3E        | 0x33              | G, 3              | joycon(R) NwcpDriver1.GpioMonitorTask1             | In        | [HID services](http://switchbrew.org/index.php?title=HID_services "wikilink")                                                                                          |
+	# | 0x3F        | 0x1C              | D, 4              | joycon(L) NwcpDriver0.GpioMonitorTask1             | In        | [HID services](http://switchbrew.org/index.php?title=HID_services "wikilink")                                                                                          |
+	# | 0x40        | 0xD9              | BB, 1             |                                                    |           |                                                                                                                                                                        |
+	# | 0x41        | 0x0C              | B, 4              |                                                    |           |                                                                                                                                                                        |
+	# | 0x42        | 0x0D              | B, 5              |                                                    |           |                                                                                                                                                                        |
+	# | 0x43        | 0x21              | E, 1              | USB power                                          | Out       | [USB services](http://switchbrew.org/index.php?title=USB_services "wikilink")                                                                                          |
+	# | 0x44        | 0x27              | E, 7              |                                                    |           |                                                                                                                                                                        |
+	# | 0x45        | 0x92              | S, 2              |                                                    |           |                                                                                                                                                                        |
+	# | 0x46        | 0x95              | S, 5              | USB root port 4 power                              | Out       | [USB services](http://switchbrew.org/index.php?title=USB_services "wikilink")                                                                                          |
+	# | 0x47        | 0x98              | T, 0              | USB root port 3 power                              | Out       | [USB services](http://switchbrew.org/index.php?title=USB_services "wikilink")                                                                                          |
+	# | 0x48        | 0x10              | C, 0              | HdmiHotplug                                        | Out       | [NV services](http://switchbrew.org/index.php?title=NV_services "wikilink")                                                                                            |
+	# | 0x49        | 0x11              | C, 1              | USB root port 2 power                              | Out       | [USB services](http://switchbrew.org/index.php?title=USB_services "wikilink")                                                                                          |
+	# | 0x4A        | 0x12              | C, 2              | HdmiHotplug                                        | Out       | [NV services](http://switchbrew.org/index.php?title=NV_services "wikilink")                                                                                            |
+	# | 0x4B        | 0x42              | I, 2              |                                                    |           |                                                                                                                                                                        |
+	# | 0x4C        | 0xE6              | CC, 6             |                                                    |           |                                                                                                                                                                        |
+	# | \--         | 0xE1              | CC, 1             | HdmiHotplug                                        | In        | [NV services](http://switchbrew.org/index.php?title=NV_services "wikilink")                                                                                            |
 	# 
 	[1] OpenSession(u32) -> object<IUnknown>;
 	# Same as [\#OpenSession](#nn::gpio::IManager\(1\) "wikilink") but panics
@@ -1066,6 +1351,19 @@ interface nn::gpio::IPadSession {
 	[13] GetDebounceEnabled() -> u8;
 	[14] SetDebounceTime(u32);
 	[15] GetDebounceTime() -> u32;
+}
+
+interface nn::grcsrv::IGrcService is grc:c {
+	[1] GetContinuousRecorder();
+	[2] GetGameMovieTrimmer();
+}
+
+interface nn::hid::IActiveVibrationDeviceList {
+	# Takes an input
+	# [\#VibrationDeviceHandle](http://switchbrew.org/index.php?title=HID%20services#VibrationDeviceHandle "wikilink").
+	# No output.
+	# 
+	[0] ActivateVibrationDevice(nn::hid::VibrationDeviceHandle);
 }
 
 interface nn::hid::IHidDebugServer is hid:dbg {
@@ -1165,9 +1463,25 @@ interface nn::hid::IHidServer is hid {
 	[108] GetPlayerLedPattern(u32) -> u64;
 	[120] SetNpadJoyHoldType(nn::applet::AppletResourceUserId, i64, pid);
 	[121] GetNpadJoyHoldType(nn::applet::AppletResourceUserId, pid) -> i64;
+	# Takes a PID-descriptor, an u32, and an
+	# [AppletResourceUserId](http://switchbrew.org/index.php?title=AM_services "wikilink").
+	# No output.
+	# 
 	[122] SetNpadJoyAssignmentModeSingleByDefault(u32, nn::applet::AppletResourceUserId, pid);
+	# Takes a PID-descriptor, an u32,
+	# [AppletResourceUserId](http://switchbrew.org/index.php?title=AM_services "wikilink"),
+	# and s64 **NpadJoyDeviceType**. No output.
+	# 
 	[123] SetNpadJoyAssignmentModeSingle(u32, nn::applet::AppletResourceUserId, i64, pid);
+	# Takes a PID-descriptor, an u32, and an
+	# [AppletResourceUserId](http://switchbrew.org/index.php?title=AM_services "wikilink").
+	# No output.
+	# 
 	[124] SetNpadJoyAssignmentModeDual(u32, nn::applet::AppletResourceUserId, pid);
+	# Takes a PID-descriptor, two u32s, and an
+	# [AppletResourceUserId](http://switchbrew.org/index.php?title=AM_services "wikilink").
+	# No output.
+	# 
 	[125] MergeSingleJoyAsDualJoy(u32, u32, nn::applet::AppletResourceUserId, pid);
 	[126] StartLrAssignmentMode(nn::applet::AppletResourceUserId, pid);
 	[127] StopLrAssignmentMode(nn::applet::AppletResourceUserId, pid);
@@ -1181,20 +1495,51 @@ interface nn::hid::IHidServer is hid {
 	[130] SwapNpadAssignment(u32, u32, nn::applet::AppletResourceUserId, pid);
 	[131] IsUnintendedHomeButtonInputProtectionEnabled(u32, nn::applet::AppletResourceUserId, pid) -> bool;
 	[132] EnableUnintendedHomeButtonInputProtection(bool, u32, nn::applet::AppletResourceUserId, pid);
+	# Takes a
+	# [\#VibrationDeviceHandle](http://switchbrew.org/index.php?title=HID%20services#VibrationDeviceHandle "wikilink").
+	# Returns an output
+	# [\#VibrationDeviceInfo](http://switchbrew.org/index.php?title=HID%20services#VibrationDeviceInfo "wikilink").
+	# 
 	[200] GetVibrationDeviceInfo(nn::hid::VibrationDeviceHandle) -> nn::hid::VibrationDeviceInfoForIpc;
-	# Takes a PID-descriptor, an u32 VibrationDeviceHandle, 0x10-byte
-	# VibrationValue immediately after that, and an u64
+	# Takes a PID-descriptor, a
+	# [\#VibrationDeviceHandle](http://switchbrew.org/index.php?title=HID%20services#VibrationDeviceHandle "wikilink"),
+	# a
+	# [\#VibrationValue](http://switchbrew.org/index.php?title=HID%20services#VibrationValue "wikilink")
+	# immediately after that, and an u64
 	# [AppletResourceUserId](http://switchbrew.org/index.php?title=AM_services "wikilink").
+	# No output.
 	# 
 	[201] SendVibrationValue(nn::hid::VibrationDeviceHandle, align<4,nn::hid::VibrationValue>, nn::applet::AppletResourceUserId, pid);
-	# Takes a PID-descriptor, an u32 VibrationDeviceHandle, and an u64
+	# Takes a PID-descriptor, a
+	# [\#VibrationDeviceHandle](http://switchbrew.org/index.php?title=HID%20services#VibrationDeviceHandle "wikilink"),
+	# and an u64
 	# [AppletResourceUserId](http://switchbrew.org/index.php?title=AM_services "wikilink").
-	# Returns the 0x10-byte VibrationValue.
+	# Returns an output
+	# [\#VibrationValue](http://switchbrew.org/index.php?title=HID%20services#VibrationValue "wikilink").
 	# 
 	[202] GetActualVibrationValue(nn::hid::VibrationDeviceHandle, nn::applet::AppletResourceUserId, pid) -> nn::hid::VibrationValue;
+	# No input. Returns an
+	# [\#IActiveVibrationDeviceList](#nn::hid::IActiveVibrationDeviceList "wikilink").
+	# 
 	[203] CreateActiveVibrationDeviceList() -> object<nn::hid::IActiveVibrationDeviceList>;
+	# Takes an input u8 bool. No output.
+	# 
+	# This affects the config displayed by System Settings.
+	# 
 	[204] PermitVibration(bool);
+	# No input. Returns an output u8 bool.
+	# 
 	[205] IsVibrationPermitted() -> bool;
+	# Takes an u64
+	# [AppletResourceUserId](http://switchbrew.org/index.php?title=AM_services "wikilink"),
+	# and two type-0x9 input buffers containing an array of:
+	# [\#VibrationDeviceHandle](http://switchbrew.org/index.php?title=HID%20services#VibrationDeviceHandle "wikilink")
+	# for first buffer, and
+	# [\#VibrationValue](http://switchbrew.org/index.php?title=HID%20services#VibrationValue "wikilink")
+	# for the second buffer.
+	# 
+	# Official sw uses the same entry-count for each array.
+	# 
 	[206] SendVibrationValues(nn::applet::AppletResourceUserId, array<nn::hid::VibrationDeviceHandle,9>, array<nn::hid::VibrationValue,9>);
 	[300] ActivateConsoleSixAxisSensor(nn::applet::AppletResourceUserId, pid);
 	[301] StartConsoleSixAxisSensor(nn::hid::ConsoleSixAxisSensorHandle, nn::applet::AppletResourceUserId, pid);
@@ -1282,6 +1627,16 @@ interface nn::hid::IHidSystemServer is hid:sys {
 	[1007] GetFirmwareUpdateState(nn::hid::system::FirmwareUpdateDeviceHandle) -> nn::hid::system::FirmwareUpdateState;
 }
 
+interface nn::htc::tenv::IService {
+	[0] Unknown0(bytes<64>) -> (u64, buffer<unknown,6,0>);
+	[1] Unknown1(bytes<64>) -> u64;
+	[2] Unknown2(u64);
+}
+
+interface nn::htc::tenv::IServiceManager is htc:tenv {
+	[0] OpenService(u64, pid) -> object<IUnknown>;
+}
+
 interface nn::i2c::IManager is i2c:pcv, i2c {
 	[0] OpenSessionForDev(u16, u32, u32, u32) -> object<IUnknown>;
 	[1] OpenSession(u32) -> object<IUnknown>;
@@ -1296,6 +1651,16 @@ interface nn::i2c::ISession {
 	[3] Send();
 	[4] Receive();
 	[5] ExecuteCommandList();
+}
+
+interface nn::idle::detail::IPolicyManagerSystem is idle:sys {
+	[0] GetAutoPowerDownEvent() -> KObject;
+	[1] Unknown1();
+	[2] Unknown2();
+	@undocumented
+	[3] Unknown3();
+	[4] Unknown4();
+	[5] Unknown5();
 }
 
 interface nn::irsensor::IIrSensorServer is irs {
@@ -1457,56 +1822,95 @@ interface nn::lbl::detail::ILblController is lbl {
 }
 
 interface nn::ldn::detail::IMonitorService {
-	[0] GetNifmStatus() -> u32;
-	[1] Unknown1() -> buffer<unknown,26,1152>;
-	[2] Unknown2() -> (u32, u32);
-	[3] Unknown3() -> u16;
-	[4] Unknown4() -> bytes<32>;
-	[5] Unknown5() -> bytes<32>;
-	[100] StartMonitor();
-	[101] StopMonitor();
+	[0] GetStateForMonitor() -> u32;
+	[1] GetNetworkInfoForMonitor() -> buffer<unknown,26,1152>;
+	[2] GetIpv4AddressForMonitor() -> (u32, u32);
+	[3] GetDisconnectReasonForMonitor() -> u16;
+	[4] GetSecurityParameterForMonitor() -> bytes<32>;
+	[5] GetNetworkConfigForMonitor() -> bytes<32>;
+	[100] InitializeMonitor();
+	[101] FinalizeMonitor();
 }
 
 interface nn::ldn::detail::IMonitorServiceCreator is ldn:m {
-	[0] GetMonitorService() -> object<IUnknown>;
+	# Returns an
+	# [\#IMonitorService](#nn::ldn::detail::IMonitorService "wikilink").
+	# 
+	[0] CreateMonitorService() -> object<IUnknown>;
 }
 
 interface nn::ldn::detail::ISystemLocalCommunicationService {
-	[0] Unknown0() -> u32;
+	[0] GetState() -> u32;
 	[1] GetNetworkInfo() -> buffer<unknown,26,1152>;
-	[2] Unknown2() -> (u32, u32);
-	[3] Unknown3() -> u16;
-	[4] Unknown4() -> bytes<32>;
-	[5] Unknown5() -> bytes<32>;
-	[100] GetUnkWaitEvent() -> KObject;
-	[101] Unknown101() -> (buffer<unknown,26,1152>, buffer<unknown,10,0>);
-	[102] Unknown102(u16, bytes<96>) -> (u16, buffer<unknown,34,0>);
-	[103] Unknown103(u16, bytes<96>) -> (u16, buffer<unknown,34,0>);
+	[2] GetIpv4Address() -> (u32, u32);
+	[3] GetDisconnectReason() -> u16;
+	[4] GetSecurityParameter() -> bytes<32>;
+	[5] GetNetworkConfig() -> bytes<32>;
+	[100] AttachStateChangeEvent() -> KObject;
+	[101] GetNetworkInfoLatestUpdate() -> (buffer<unknown,26,1152>, buffer<unknown,10,0>);
+	[102] Scan(u16, bytes<96>) -> (u16, buffer<unknown,34,0>);
+	[103] ScanPrivate(u16, bytes<96>) -> (u16, buffer<unknown,34,0>);
 	[200] OpenAccessPoint();
 	[201] CloseAccessPoint();
-	[202] Unknown202(bytes<68>, align<1,bytes<48>>, bytes<32>);
-	[203] Unknown203(bytes<68>, align<1,bytes<32>>, align<1,bytes<48>>, bytes<32>, buffer<unknown,9,0>);
+	[202] CreateNetwork(bytes<68>, align<1,bytes<48>>, bytes<32>);
+	[203] CreateNetworkPrivate(bytes<68>, align<1,bytes<32>>, align<1,bytes<48>>, bytes<32>, buffer<unknown,9,0>);
 	[204] DestroyNetwork();
-	[205] Unknown205(u32);
-	[206] Unknown206(buffer<unknown,33,0>);
-	[207] Unknown207(u8);
-	[208] Unknown208(bytes<6>);
-	[209] Unknown209();
+	[205] Reject(u32);
+	[206] SetAdvertiseData(buffer<unknown,33,0>);
+	[207] SetStationAcceptPolicy(u8);
+	[208] AddAcceptFilterEntry(bytes<6>);
+	[209] ClearAcceptFilter();
 	[300] OpenStation();
 	[301] CloseStation();
-	[302] Unknown302(bytes<68>, align<1,bytes<48>>, u32, u32, buffer<unknown,25,1152>);
-	[303] Unknown303(bytes<68>, align<1,bytes<32>>, align<1,bytes<48>>, u32, u32, bytes<32>);
+	[302] Connect(bytes<68>, align<1,bytes<48>>, u32, u32, buffer<unknown,25,1152>);
+	[303] ConnectPrivate(bytes<68>, align<1,bytes<32>>, align<1,bytes<48>>, u32, u32, bytes<32>);
 	[304] Disconnect();
 	[400] InitializeSystem(u64, pid);
-	[401] TerminateSystem();
+	[401] FinalizeSystem();
 }
 
 interface nn::ldn::detail::ISystemServiceCreator is ldn:s {
-	[0] GetSystemLocalCommunicationService() -> object<IUnknown>;
+	# Returns an
+	# [\#ISystemLocalCommunicationService](#nn::ldn::detail::ISystemLocalCommunicationService "wikilink").
+	# 
+	[0] CreateSystemLocalCommunicationService() -> object<IUnknown>;
+}
+
+interface nn::ldn::detail::IUserLocalCommunicationService {
+	[0] GetState() -> u32;
+	[1] GetNetworkInfo() -> buffer<unknown,26,1152>;
+	[2] GetIpv4Address() -> (u32, u32);
+	[3] GetDisconnectReason() -> u16;
+	[4] GetSecurityParameter() -> bytes<32>;
+	[5] GetNetworkConfig() -> bytes<32>;
+	[100] AttachStateChangeEvent() -> KObject;
+	[101] GetNetworkInfoLatestUpdate() -> (buffer<unknown,26,1152>, buffer<unknown,10,0>);
+	[102] Scan(u16, bytes<96>) -> (u16, buffer<unknown,34,0>);
+	[103] ScanPrivate(u16, bytes<96>) -> (u16, buffer<unknown,34,0>);
+	[200] OpenAccessPoint();
+	[201] CloseAccessPoint();
+	[202] CreateNetwork(bytes<68>, align<1,bytes<48>>, bytes<32>);
+	[203] CreateNetworkPrivate(bytes<68>, align<1,bytes<32>>, align<1,bytes<48>>, bytes<32>, buffer<unknown,9,0>);
+	[204] DestroyNetwork();
+	[205] Reject(u32);
+	[206] SetAdvertiseData(buffer<unknown,33,0>);
+	[207] SetStationAcceptPolicy(u8);
+	[208] AddAcceptFilterEntry(bytes<6>);
+	[209] ClearAcceptFilter();
+	[300] OpenStation();
+	[301] CloseStation();
+	[302] Connect(bytes<68>, align<1,bytes<48>>, u32, u32, buffer<unknown,25,1152>);
+	[303] ConnectPrivate(bytes<68>, align<1,bytes<32>>, align<1,bytes<48>>, u32, u32, bytes<32>);
+	[304] Disconnect();
+	[400] Initialize(u64, pid);
+	[401] Finalize();
 }
 
 interface nn::ldn::detail::IUserServiceCreator is ldn:u {
-	[0] GetUserLocalCommunicationService() -> object<IUnknown>;
+	# Returns an
+	# [\#IUserLocalCommunicationService](#nn::ldn::detail::IUserLocalCommunicationService "wikilink").
+	# 
+	[0] CreateUserLocalCommunicationService() -> object<IUnknown>;
 }
 
 interface nn::ldr::detail::IDebugMonitorInterface is ldr:dmnt {
@@ -1528,7 +1932,7 @@ interface nn::ldr::detail::IProcessManagerInterface is ldr:pm {
 	# | 0x2      | 0x1      | ApplicationType, see \[\[Process Manager services |
 	# | 0x3      | 0x1      | Padding                                           |
 	# | 0x4      | 0x4      | MainThreadStackSize. Arg3 to svcStartProcess      |
-	# | 0x8      | 0x8      | Title id                                          |
+	# | 0x8      | 0x8      | TitleIdRange\_Min                                 |
 	# | 0x10     | 0x4      | ACID \[\[NPDM\#Service Access Control             |
 	# | 0x14     | 0x4      | ACI0 \[\[NPDM\#Service Access Control             |
 	# | 0x18     | 0x4      | ACID \[\[NPDM\#FS Access Control                  |
@@ -1604,6 +2008,7 @@ interface nn::ldr::detail::IShellInterface is ldr:shel {
 	# arguments. Loaded processes are kept in a queue waiting for PM to launch
 	# them. The maximum number of waiting processes in this list is 10.
 	# 
+	@undocumented
 	[0] AddProcessToLaunchQueue();
 	# Clears the loaded processes waiting queue.
 	# 
@@ -1611,25 +2016,36 @@ interface nn::ldr::detail::IShellInterface is ldr:shel {
 }
 
 interface nn::lr::IAddOnContentLocationResolver {
+	@undocumented
 	[0] GetAddOnContentNcaPath();
 	[1] RegisterAddOnContent(u8, u64);
 	[2] ClearAddOnContentLocationResolver();
 }
 
 interface nn::lr::ILocationResolver {
+	@undocumented
 	[0] GetProgramNcaPath();
+	@undocumented
 	[1] SetProgramNcaPath();
+	@undocumented
 	[2] GetUserControlNcaPath();
+	@undocumented
 	[3] GetDocHtmlNcaPath();
+	@undocumented
 	[4] GetControlNcaPath();
+	@undocumented
 	[5] SetControlNcaPath();
+	@undocumented
 	[6] SetDocHtmlNcaPath();
+	@undocumented
 	[7] GetInfoHtmlNcaPath();
+	@undocumented
 	[8] SetInfoHtmlNcaPath();
 	[9] ClearLocationResolver();
 }
 
 interface nn::lr::ILocationResolverManager is lr {
+	@undocumented
 	[0] GetLocationResolver();
 	[1] GetRegisteredLocationResolver() -> object<IUnknown>;
 	[2] CheckStorage(u8);
@@ -1637,14 +2053,76 @@ interface nn::lr::ILocationResolverManager is lr {
 }
 
 interface nn::lr::IRegisteredLocationResolver {
+	@undocumented
 	[0] GetPatchType0NcaPath();
-	[1] SetPatchType0NcaPath();
-	[2] RegisterPatchTitle0(u64);
-	[3] SetPatchTitle0NcaPath();
+	@undocumented
+	[1] RegisterPatchType0FallbackPath();
+	[2] UnregisterPatchType0FallbackPath(u64);
+	@undocumented
+	[3] SetPatchType0NcaPath();
+	@version(2.0.0+)
+	@undocumented
 	[4] GetPatchType1NcaPath();
-	[5] SetPatchType1NcaPath();
-	[6] RegisterPatchTitle1(u64);
-	[7] SetPatchTitle1NcaPath();
+	@version(2.0.0+)
+	@undocumented
+	[5] RegisterPatchType1FallbackPath();
+	@version(2.0.0+)
+	[6] UnregisterPatchType1FallbackPath(u64);
+	@version(2.0.0+)
+	@undocumented
+	[7] SetPatchType1NcaPath();
+}
+
+interface nn::migration::user::IAsyncContext {
+	[0] GetSystemEvent();
+	[1] Cancel();
+	[2] HasDone();
+	[3] GetResult();
+}
+
+interface nn::migration::user::IClient {
+	[0] GetClientProfile();
+	[10] CreateLoginSession();
+	[11] GetNetworkServiceAccountId();
+	[12] GetUserNickname();
+	[13] GetUserProfileImage();
+	[100] PrepareAsync();
+	[101] GetConnectionRequirement();
+	[200] ScanServersAsync();
+	[201] ListServers();
+	[210] ConnectByServerIdAsync();
+	[300] GetStorageShortfall();
+	[301] GetTotalTransferInfo();
+	[302] GetImmigrantUid();
+	[310] GetCurrentTransferInfo();
+	[311] GetCurrentRelatedApplications();
+	[320] TransferNextAsync();
+	[350] SuspendAsync();
+	[400] CompleteAsync();
+	[500] Abort();
+	[999] DebugSynchronizeStateInFinalizationAsync();
+}
+
+interface nn::migration::user::IServer {
+	[0] GetUid();
+	[1] GetServerProfile();
+	[100] PrepareAsync();
+	[101] GetConnectionRequirement();
+	[200] WaitConnectionAsync();
+	[201] GetClientProfile();
+	[202] AcceptConnectionAsync();
+	[203] DeclineConnectionAsync();
+	[300] ProcessTransferAsync();
+	[400] CompleteAsync();
+	[500] Abort();
+}
+
+interface nn::migration::user::IService is mig:usr {
+	[10] TryGetLastMigrationInfo();
+	[100] CreateServer();
+	[101] ResumeServer();
+	[200] CreateClient();
+	[201] ResumeClient();
 }
 
 interface nn::mii::detail::IStaticService is mii:e, mii:u {
@@ -1656,6 +2134,7 @@ interface nn::mmnv::IRequest is mm:u {
 	[1] Unknown1(u32);
 	[2] Unknown2(u32, u32, u32);
 	[3] Unknown3(u32) -> u32;
+	@undocumented
 	[4] module_init_clk();
 	[5] module_deinit_clk(u32);
 	[6] module_set_clk_rate(u32, u32, u32);
@@ -1663,100 +2142,117 @@ interface nn::mmnv::IRequest is mm:u {
 }
 
 interface nn::ncm::IContentManager is ncm {
-	[0] Unknown0(u8);
-	[1] Unknown1(u8);
-	[2] Unknown2(u8);
-	[3] Unknown3(u8);
+	[0] CreatePlaceholderAndRegisteredDirectoriesForMediaId(u8);
+	[1] CreateSaveDataDirectoryForMediaId(u8);
+	[2] GetExistsPlaceholderAndRegisteredDirectoriesForMediaId(u8);
+	[3] GetExistsSaveDataDirectoryForMediaId(u8);
+	@undocumented
 	[4] GetIContentStorage();
+	@undocumented
 	[5] GetIContentMetaDatabase();
-	[8] Unknown8(u8);
-	[9] InitializeStorageForMediaId(u8);
-	[10] UninitializeStorageForMediaId(u8);
-	[11] InitializeDatabaseForMediaId(u8);
-	[12] UninitializeDatabaseForMediaId(u8);
+	@version(1.0.0)
+	[6] CloseContentStorageForcibly();
+	@version(1.0.0)
+	[7] CloseContentMetaDatabaseForcibly();
+	[8] DeleteSaveDataForMediaId(u8);
+	@version(2.0.0+)
+	[9] OpenIContentStorage(u8);
+	@version(2.0.0+)
+	[10] CloseIContentStorage(u8);
+	@version(2.0.0+)
+	[11] OpenIContentMetaDatabase(u8);
+	@version(2.0.0+)
+	[12] CloseIContentMetaDatabase(u8);
 }
 
 interface nn::ncm::IContentMetaDatabase {
-	[0] InsertContentEntry();
-	[1] Unknown1();
-	[2] Unknown2();
-	[3] UpdateContentEntry();
-	[4] Unknown4();
-	[5] Iterate();
-	# Takes a u64 title-id as input, returns same title-id together with info
-	# struct.
+	@undocumented
+	[0] InsertEntryContentRecords();
+	@undocumented
+	[1] ReadEntryContentRecords();
+	@undocumented
+	[2] RemoveEntryContentRecords();
+	@undocumented
+	[3] GetEntryContentNcaId();
+	@undocumented
+	[4] ReadEntryContentRecordEntries();
+	@undocumented
+	[5] List();
+	@undocumented
+	[6] GetMetaRecord();
+	# Each 24-byte entry (officially "ApplicationContentMetaKey") is as
+	# follows:
 	# 
-	# `struct title_info {`  
-	# `  u32  version;`  
-	# `  u8   type;`  
-	# `  u8   pad[3];`  
-	# `};`
+	# ` `[`meta_record`](http://switchbrew.org/index.php?title=NCA#Meta_records "wikilink")` meta_record;`  
+	# ` u64    base_title_id;`
 	# 
-	[6] GetTitleIdInfo();
-	# Each 24-byte entries is as follows:
+	# This function takes in a type 6 buffer to write entries to, and a u8
+	# "filter"
+	# [type](http://switchbrew.org/index.php?title=NCM%20services#Title_Types "wikilink").
+	# If filter is zero, all update records will be copied to to the output
+	# buffer (space permitting). Otherwise, only titles with type ==
+	# filter\_type will be copied to the output buffer.
 	# 
-	# ` u64    title_id_update;`  
-	# ` struct title_info info;`  
-	# ` u64    title_id;`
+	# This func returns a u32 num\_entries\_written, and a u32
+	# num\_entries\_total.
 	# 
-	[7] GetTitleList();
-	[8] Unknown8();
-	[9] Unknown9();
-	[10] Unknown10();
-	[11] Unknown11();
-	[12] Unknown12();
-	[13] Unknown13();
-	[14] Unknown14();
-	[15] EndIteration();
-	[16] Unknown16();
-	# Takes a type-6 output buffer, each entry being 0x10-byte bytes, a u32
-	# entryoffset and a 0x10-sized entry. Returns a u32 for
-	# total\_read\_entries.
-	# 
-	# The input entry is the output entry from
-	# [\#GetTitleIdInfo](#nn::ncm::IContentMetaDatabase\(6\) "wikilink")
-	# starting at the TID. The output 0x10-bytes entries are the same as the
-	# output from
-	# [\#GetTitleIdInfo](#nn::ncm::IContentMetaDatabase\(6\) "wikilink")
-	# starting at the TID. However, "pad\[0\]" is used for something else it
-	# seems?(0 for everything except for TID
-	# [010000000000081B](http://switchbrew.org/index.php?title=Title_list "wikilink"),
-	# where it's 1)
-	# 
-	# See
-	# [NCA\#Meta\_records](http://switchbrew.org/index.php?title=NCA#Meta_records "wikilink").
-	# 
-	# This reads the titlelist stored in the specified title, normally a title
-	# with title-type 3, which is sysupdate-title 0100000000000816. Returns 0
-	# with total\_read\_entries=0 when used with other title(s).
-	# 
-	[17] GetUpdateTitleList();
-	[18] Unknown18();
-	[19] Unknown19();
+	@undocumented
+	[7] ListApplication();
+	@undocumented
+	[8] IsEntryPresent();
+	@undocumented
+	[9] AreEntriesPresent();
+	@undocumented
+	[10] GetEntryContentRecordsSize();
+	@undocumented
+	[11] GetEntryUnknownRecordSize();
+	@undocumented
+	[12] GetEntryUpdateTitleId();
+	[13] CloseMetaDatabase();
+	@undocumented
+	[14] CheckNcaIDsPresent();
+	[15] SaveMetaDatabase();
+	@undocumented
+	[16] CheckEntryHasNcaId();
+	@undocumented
+	[17] ReadEntryMetaRecords();
+	@undocumented
+	[18] GetEntryUnknown6();
+	@undocumented
+	[19] GetAddOnContentEntryUnknownRecordSize();
 }
 
 interface nn::ncm::IContentStorage {
-	# Returns an entry of 16 completely random-looking bytes. It is not
-	# possible to read this entry.
+	# Generates a random
+	# [\#NcaID](http://switchbrew.org/index.php?title=NCM%20services#NcaID "wikilink")
+	# for use as a placeholder.
 	# 
-	# Changes on reboot?
+	# Calls nn::util::GenerateUuid(), which internally calls
+	# nn::os::GenerateRandomBytes(16);
 	# 
-	[0] GetRootEntry() -> u128;
-	[1] Unknown1();
-	[2] Unknown2(u128);
-	[3] Unknown3();
-	[4] Unknown4();
-	[5] Unknown5();
-	[6] DeleteContent(u128);
-	[7] IsNcaEntryValid();
-	[8] MakeNcaRegisteredPath();
-	[9] MakeNcaPlaceholderPath();
-	[10] Unknown10();
-	[11] Unknown11() -> (u32, buffer<unknown,6,0>);
+	[0] GeneratePlaceHolderId() -> u128;
+	@undocumented
+	[1] CreatePlaceholderEntryAndRegisteredDirectoryEntry();
+	[2] DeletePlaceholderEntry(u128);
+	@undocumented
+	[3] DoesPlaceholderEntryExist();
+	@undocumented
+	[4] WritePlaceholderEntry();
+	@undocumented
+	[5] MovePlaceholderToRegistered();
+	[6] DeleteRegisteredEntry(u128);
+	@undocumented
+	[7] DoesRegisteredEntryExist();
+	@undocumented
+	[8] GetPath();
+	@undocumented
+	[9] GetPlaceholderPath();
+	[10] CleanPlaceholderDirectory();
+	[11] GetNumberOfPlacholderEntries() -> (u32, buffer<unknown,6,0>);
 	# Writes the total number of entries which can be read by GetEntries, to
 	# cmdreply <SFCO_offset>+0x10.
 	# 
-	[12] GetNumberOfEntries() -> u32;
+	[12] GetNumberOfRegisteredEntries() -> u32;
 	# Takes an output buffer, u32 offset and gets all entries starting at that
 	# offset. Returns number of entries read.
 	# 
@@ -1767,7 +2263,8 @@ interface nn::ncm::IContentStorage {
 	# directories in the storage FS(or at least under the "registered"
 	# directory?).
 	# 
-	[13] GetEntries();
+	@undocumented
+	[13] GetRegisteredEntries();
 	# Takes a
 	# [\#NcaID](http://switchbrew.org/index.php?title=NCM%20services#NcaID "wikilink")
 	# as input.
@@ -1777,63 +2274,31 @@ interface nn::ncm::IContentStorage {
 	# [NAX0](http://switchbrew.org/index.php?title=NAX0 "wikilink")
 	# "<NcaID>.nca/00" file.
 	# 
-	[14] GetEntrySize();
-	[15] Unknown15();
-	[16] Unknown16();
-	[17] Unknown17();
+	@undocumented
+	[14] GetRegisteredEntrySize();
+	[15] CloseAndFlushStorage();
+	@undocumented
+	[16] CreatePlaceholderEntryRegisteredEntryAndRegisteredDirectoryEntry();
+	@undocumented
+	[17] SetPlaceholderEntrySize();
 	# Takes an output buffer, a
 	# [\#NcaID](http://switchbrew.org/index.php?title=NCM%20services#NcaID "wikilink")
 	# as input, and a u64 file offset.
 	# 
-	# Returns encrypted looking data from the content in the
-	# [NAX0](http://switchbrew.org/index.php?title=NAX0 "wikilink"). Doesn't
-	# match the encrypted raw data in the
-	# [NAX0](http://switchbrew.org/index.php?title=NAX0 "wikilink")
-	# "<NcaID>.nca/00" file. Seems to be at least one crypto layer below the
-	# initial NAX0 layer, since the data doesn't change after NAX0 recreation.
+	# Reads plaintext NCA file contents from the Registered path for the
+	# NcaID.
 	# 
-	# Manually modifying the content in the NAX0(starting at offset 0x4000)
-	# results in different output data being returned by this cmd. Changing
-	# any data within the first 0x10-bytes results in the entire 0x10-byte
-	# block changing. Likewise for offset 0x4010 size 0x1, entire 0x10-byte
-	# block at 0x4010 changes. Changing the first 0x20-bytes at 0x4000 to
-	# zeros has the same combined changed output, as when offset 0x4000 size
-	# 0x10 and offset 0x4010 size 0x10 were changed to zeros separately.
-	# Output BlockA and BlockB are completely different, where the raw NAX0
-	# data for those blocks are all-zero.
-	# 
-	# Overwriting the entire raw NAX0 content with zeros results in output
-	# data which doesn't seem to have any duplicate blocks/data. When changing
-	# the previously mentioned raw content for the first 8 blocks to
-	# last-block-byte = 1\<\<i, where i is 0-7, none of the changed output
-	# blocks match any output blocks from the previously mentioned
-	# output(all-zero raw content).
-	# 
-	# This implies that that an AES mode is being used which isn't CTR, where
-	# changing data in one block doesn't affect other blocks.
-	# 
-	# See GetEntrySize for the total size readable with this.
-	# 
-	[18] ReadEntryRaw();
-	[19] Unknown19();
-	# Takes a
-	# [\#NcaID](http://switchbrew.org/index.php?title=NCM%20services#NcaID "wikilink")
-	# and returns the following 0x10-sized entry.
-	# 
-	# With some NcaIDs this may return 0 with an all-zero output entry. This
-	# seems to be the case for most/all (?) NandSystem NcaIds? This seems to
-	# be only usable with NcaIds which have
-	# [type](http://switchbrew.org/index.php?title=NCA "wikilink") 1 or 4.
-	# 
-	# | Offset | Size | Description            |
-	# | ------ | ---- | ---------------------- |
-	# | 0x0    | 0x8  | Big-endian titleID     |
-	# | 0x8    | 0x8  | Unknown. Usually zero? |
-	# 
-	[20] GetNcaTitleInfo();
-	[21] Unknown21();
+	@undocumented
+	[18] ReadRegisteredEntryRaw();
+	@undocumented
+	[19] GetPlaceholderEntryRightsID();
+	@undocumented
+	[20] GetRegisteredEntryRightsID();
+	@undocumented
+	[21] WriteRegisteredPathForDebug();
 	[22] GetFreeSpace() -> u64;
 	[23] GetTotalSpace() -> u64;
+	[24] FlushStorage();
 }
 
 interface nn::nim::detail::INetworkInstallManager is nim {
@@ -1841,18 +2306,306 @@ interface nn::nim::detail::INetworkInstallManager is nim {
 	[2] Unknown2() -> (u32, buffer<unknown,6,0>);
 }
 
+interface nn::nim::detail::IShopServiceManager is nim:shp {
+	@undocumented
+	[0] RequestDeviceAuthenticationToken();
+	@undocumented
+	[1] RequestCachedDeviceAuthenticationToken();
+	@undocumented
+	[100] RequestRegisterDeviceAccount();
+	@undocumented
+	[101] RequestUnregisterDeviceAccount();
+	@undocumented
+	[102] RequestDeviceAccountStatus();
+	[103] GetDeviceAccountInfo() -> bytes<32>;
+	@undocumented
+	[104] RequestDeviceRegistrationInfo();
+	@undocumented
+	[105] RequestTransferDeviceAccount();
+	@undocumented
+	[106] RequestSyncRegistration();
+	[107] IsOwnDeviceId(u64) -> u8;
+	@undocumented
+	[200] RequestRegisterNotificationToken();
+	@undocumented
+	[300] RequestUnlinkDevice();
+	@undocumented
+	[301] RequestUnlinkDeviceIntegrated();
+	@undocumented
+	[302] RequestLinkDevice();
+	@undocumented
+	[303] HasDeviceLink();
+	[304] RequestUnlinkDeviceAll();
+	[305] RequestCreateVirtualAccount();
+	[306] RequestDeviceLinkStatus();
+	@undocumented
+	[400] GetAccountByVirtualAccount();
+	@undocumented
+	[500] RequestSyncTicket();
+	@undocumented
+	[501] RequestDownloadTicket();
+	[502] RequestDownloadTicketForPrepurchasedContents();
+}
+
+interface nn::ns::detail::IAccountProxyInterface {
+	@undocumented
+	[0] CreateUserAccount();
+}
+
+interface nn::ns::detail::IApplicationManagerInterface {
+	@undocumented
+	[0] ListApplicationRecord();
+	[1] GenerateApplicationRecordCount() -> u64;
+	[2] GetApplicationRecordUpdateSystemEvent() -> KObject;
+	@undocumented
+	[3] GetApplicationViewDeprecated();
+	[4] DeleteApplicationEntity(u64);
+	[5] DeleteApplicationCompletely(u64);
+	[6] IsAnyApplicationEntityRedundant() -> u8;
+	[7] DeleteRedundantApplicationEntity();
+	@undocumented
+	[8] IsApplicationEntityMovable();
+	[9] MoveApplicationEntity(u8, u64);
+	@undocumented
+	[11] CalculateApplicationOccupiedSize();
+	@undocumented
+	[16] PushApplicationRecord();
+	@undocumented
+	[17] ListApplicationRecordContentMeta();
+	[19] LaunchApplication(u64) -> u64;
+	@undocumented
+	[21] GetApplicationContentPath();
+	[22] TerminateApplication(u64);
+	[23] ResolveApplicationContentPath(u8, u64);
+	@undocumented
+	[26] BeginInstallApplication();
+	[27] DeleteApplicationRecord(u64);
+	@undocumented
+	[30] RequestApplicationUpdateInfo();
+	[32] CancelApplicationDownload(u64);
+	[33] ResumeApplicationDownload(u64);
+	[35] UpdateVersionList(buffer<unknown,5,0>);
+	[36] PushLaunchVersion(u32, u64);
+	[37] ListRequiredVersion() -> (u32, buffer<unknown,6,0>);
+	[38] CheckApplicationLaunchVersion(u64);
+	[39] CheckApplicationLaunchRights(u64);
+	@undocumented
+	[40] GetApplicationLogoData();
+	@undocumented
+	[41] CalculateApplicationDownloadRequiredSize();
+	[42] CleanupSdCard();
+	[43] CheckSdCardMountStatus();
+	[44] GetSdCardMountStatusChangedEvent() -> KObject;
+	[45] GetGameCardAttachmentEvent() -> KObject;
+	[46] GetGameCardAttachmentInfo() -> u128;
+	@undocumented
+	[47] GetTotalSpaceSize();
+	@undocumented
+	[48] GetFreeSpaceSize();
+	[49] GetSdCardRemovedEvent() -> KObject;
+	[52] GetGameCardUpdateDetectionEvent() -> KObject;
+	[53] DisableApplicationAutoDelete(u64);
+	[54] EnableApplicationAutoDelete(u64);
+	[55] GetApplicationDesiredLanguage(u32) -> u8;
+	[56] SetApplicationTerminateResult(u32, u64);
+	[57] ClearApplicationTerminateResult(u64);
+	[58] GetLastSdCardMountUnexpectedResult();
+	@undocumented
+	[59] ConvertApplicationLanguageToLanguageCode();
+	@undocumented
+	[60] ConvertLanguageCodeToApplicationLanguage();
+	[61] GetBackgroundDownloadStressTaskInfo() -> u128;
+	[62] GetGameCardStopper() -> object<IUnknown>;
+	[63] IsSystemProgramInstalled(u64) -> u8;
+	[64] StartApplyDeltaTask(u64);
+	[65] GetRequestServerStopper() -> object<IUnknown>;
+	[66] GetBackgroundApplyDeltaStressTaskInfo() -> u128;
+	[67] CancelApplicationApplyDelta(u64);
+	[68] ResumeApplicationApplyDelta(u64);
+	@undocumented
+	[69] CalculateApplicationApplyDeltaRequiredSize();
+	[70] ResumeAll();
+	@undocumented
+	[71] GetStorageSize();
+	@undocumented
+	[80] RequestDownloadApplication();
+	@undocumented
+	[81] RequestDownloadAddOnContent();
+	@undocumented
+	[82] DownloadApplication();
+	[83] CheckApplicationResumeRights();
+	[84] GetDynamicCommitEvent();
+	[85] RequestUpdateApplication2();
+	[86] EnableApplicationCrashReport();
+	[87] IsApplicationCrashReportEnabled();
+	[90] BoostSystemMemoryResourceLimit();
+	[100] ResetToFactorySettings();
+	[101] ResetToFactorySettingsWithoutUserSaveData();
+	[102] ResetToFactorySettingsForRefurbishment();
+	@undocumented
+	[200] CalculateUserSaveDataStatistics();
+	@undocumented
+	[201] DeleteUserSaveDataAll();
+	@undocumented
+	[210] DeleteUserSystemSaveData();
+	@undocumented
+	[220] UnregisterNetworkServiceAccount();
+	[300] GetApplicationShellEvent() -> KObject;
+	[301] PopApplicationShellEventInfo() -> (u32, buffer<unknown,6,0>);
+	[302] LaunchLibraryApplet(u64) -> u64;
+	[303] TerminateLibraryApplet(u64);
+	[304] LaunchSystemApplet() -> u64;
+	[305] TerminateSystemApplet(u64);
+	[306] LaunchOverlayApplet() -> u64;
+	[307] TerminateOverlayApplet(u64);
+	@undocumented
+	[400] GetApplicationControlData();
+	[401] InvalidateAllApplicationControlCache();
+	@undocumented
+	[402] RequestDownloadApplicationControlData();
+	[403] GetMaxApplicationControlCacheCount() -> u32;
+	[404] InvalidateApplicationControlCache(u64);
+	[405] ListApplicationControlCacheEntryInfo() -> (u32, buffer<unknown,6,0>);
+	@undocumented
+	[502] RequestCheckGameCardRegistration();
+	@undocumented
+	[503] RequestGameCardRegistrationGoldPoint();
+	@undocumented
+	[504] RequestRegisterGameCard();
+	[505] GetGameCardMountFailureEvent() -> KObject;
+	[506] IsGameCardInserted() -> u8;
+	[507] EnsureGameCardAccess();
+	[508] GetLastGameCardMountFailureResult();
+	[509] ListApplicationIdOnGameCard();
+	[600] CountApplicationContentMeta(u64) -> u32;
+	@undocumented
+	[601] ListApplicationContentMetaStatus();
+	@undocumented
+	[602] ListAvailableAddOnContent();
+	@undocumented
+	[603] GetOwnedApplicationContentMetaStatus();
+	[604] RegisterContentsExternalKey(u64, u64);
+	@undocumented
+	[605] ListApplicationContentMetaStatusWithRightsCheck();
+	@undocumented
+	[606] GetContentMetaStorage();
+	[700] PushDownloadTaskList(buffer<unknown,5,0>);
+	[701] ClearTaskStatusList();
+	[702] RequestDownloadTaskList();
+	@undocumented
+	[703] RequestEnsureDownloadTask();
+	[704] ListDownloadTaskStatus() -> (u32, buffer<unknown,6,0>);
+	@undocumented
+	[705] RequestDownloadTaskListData();
+	[800] RequestVersionList();
+	[801] ListVersionList() -> (u32, buffer<unknown,6,0>);
+	@undocumented
+	[802] RequestVersionListData();
+	@undocumented
+	[900] GetApplicationRecord();
+	@undocumented
+	[901] GetApplicationRecordProperty();
+	[902] EnableApplicationAutoUpdate(u64);
+	[903] DisableApplicationAutoUpdate(u64);
+	[904] TouchApplication(u64);
+	[905] RequestApplicationUpdate(u32, u64);
+	@undocumented
+	[906] IsApplicationUpdateRequested();
+	[907] WithdrawApplicationUpdateRequest(u64);
+	@undocumented
+	[908] ListApplicationRecordInstalledContentMeta();
+	[909] WithdrawCleanupAddOnContentsWithNoRightsRecommendation(u64);
+	@undocumented
+	[1000] RequestVerifyApplicationDeprecated();
+	@undocumented
+	[1001] CorruptApplicationForDebug();
+	@undocumented
+	[1002] RequestVerifyAddOnContentsRights();
+	[1003] RequestVerifyApplication();
+	[1004] CorruptContentForDebug();
+	[1200] NeedsUpdateVulnerability() -> u8;
+	[1300] IsAnyApplicationEntityInstalled(u64) -> u8;
+	@undocumented
+	[1301] DeleteApplicationContentEntities();
+	[1302] CleanupUnrecordedApplicationEntity(u64);
+	[1303] CleanupAddOnContentsWithNoRights(u64);
+	@undocumented
+	[1304] DeleteApplicationContentEntity();
+	[1305] TryDeleteRunningApplicationEntity();
+	[1306] TryDeleteRunningApplicationCompletely();
+	[1307] TryDeleteRunningApplicationContentEntities();
+	[1400] PrepareShutdown();
+	[1500] FormatSdCard();
+	[1501] NeedsSystemUpdateToFormatSdCard() -> u8;
+	[1502] GetLastSdCardFormatUnexpectedResult();
+	[1504] InsertSdCard();
+	[1505] RemoveSdCard();
+	[1600] GetSystemSeedForPseudoDeviceId() -> bytes<32>;
+	[1601] ResetSystemSeedForPseudoDeviceId();
+	@undocumented
+	[1700] ListApplicationDownloadingContentMeta();
+	@undocumented
+	[1701] GetApplicationView();
+	[1702] GetApplicationDownloadTaskStatus(u64) -> u8;
+	[1703] GetApplicationViewDownloadErrorContext();
+	[1800] IsNotificationSetupCompleted() -> u8;
+	[1801] GetLastNotificationInfoCount() -> u64;
+	[1802] ListLastNotificationInfo() -> (u32, buffer<unknown,6,0>);
+	[1803] ListNotificationTask() -> (u32, buffer<unknown,6,0>);
+	[1900] IsActiveAccount(u32) -> u8;
+	[1901] RequestDownloadApplicationPrepurchasedRights();
+	[1902] GetApplicationTicketInfo();
+	[2000] GetSystemDeliveryInfo();
+	[2001] SelectLatestSystemDeliveryInfo();
+	[2002] VerifyDeliveryProtocolVersion();
+	[2003] GetApplicationDeliveryInfo();
+	[2004] HasAllContentsToDeliver();
+	[2005] CompareApplicationDeliveryInfo();
+	[2006] CanDeliverApplication();
+	[2007] ListContentMetaKeyToDeliverApplication();
+	[2008] NeedsSystemUpdateToDeliverApplication();
+	[2009] EstimateRequiredSize();
+	[2010] RequestReceiveApplication();
+	[2011] CommitReceiveApplication();
+	[2012] GetReceiveApplicationProgress();
+	[2013] RequestSendApplication();
+	[2014] GetSendApplicationProgress();
+	[2015] CompareSystemDeliveryInfo();
+	[2016] ListNotCommittedContentMeta();
+	[2017] CreateDownloadTask();
+}
+
+interface nn::ns::detail::IContentManagementInterface {
+	@undocumented
+	[11] CalculateApplicationOccupiedSize();
+	[43] CheckSdCardMountStatus();
+	@undocumented
+	[47] GetTotalSpaceSize();
+	@undocumented
+	[48] GetFreeSpaceSize();
+	[600] CountApplicationContentMeta(u64) -> u32;
+	@undocumented
+	[601] ListApplicationContentMetaStatus();
+	@undocumented
+	[605] ListApplicationContentMetaStatusWithRightsCheck();
+	[607] IsAnyApplicationRunning() -> u8;
+}
+
 interface nn::ns::detail::IDevelopInterface is ns:dev {
 	# Wrapper for "pm:shell"
 	# [LaunchProcess](http://switchbrew.org/index.php?title=Process_Manager_services#LaunchProcess "wikilink").
 	# 
+	@undocumented
 	[0] LaunchTitle();
 	# Wrapper for "pm:shell"
 	# [TerminateTitleByPid](http://switchbrew.org/index.php?title=Process_Manager_services#TerminateTitleByPid "wikilink").
 	# 
+	@undocumented
 	[1] TerminateTitleByPid();
 	# Wrapper for "pm:shell"
 	# [TerminateTitleByTitleId](http://switchbrew.org/index.php?title=Process_Manager_services#TerminateTitleByTitleId "wikilink").
 	# 
+	@undocumented
 	[2] TerminateTitleByTitleId();
 	# Wrapper for "pm:shell"
 	# [GetProcessEventWaiter](http://switchbrew.org/index.php?title=Process_Manager_services#GetProcessEventWaiter "wikilink").
@@ -1861,12 +2614,14 @@ interface nn::ns::detail::IDevelopInterface is ns:dev {
 	# Wrapper for "pm:shell"
 	# [GetProcessEventType](http://switchbrew.org/index.php?title=Process_Manager_services#GetProcessEventType "wikilink").
 	# 
+	@undocumented
 	[4] GetNsDevEventType();
 	# Calls "pm:shell"
 	# [GetCrashingProcessPid](http://switchbrew.org/index.php?title=Process_Manager_services#GetCrashingProcessPid "wikilink")
 	# and sends PID to
 	# [TerminateTitleByPid](http://switchbrew.org/index.php?title=Process_Manager_services#TerminateTitleByPid "wikilink").
 	# 
+	@undocumented
 	[5] TerminateCrashingTitle();
 	# Calls
 	# [IPathResolverForStorage](http://switchbrew.org/index.php?title=NCM_services#IPathResolverForStorage "wikilink")
@@ -1876,24 +2631,82 @@ interface nn::ns::detail::IDevelopInterface is ns:dev {
 	# [Category:Services](http://switchbrew.org/index.php?title=Category:Services "wikilink")
 	# 
 	[6] InstallTitle();
+	@undocumented
 	[7] SetEventState6();
+	@undocumented
 	[8] SetEventState();
 }
 
+interface nn::ns::detail::IDocumentInterface {
+	@undocumented
+	[21] GetApplicationContentPath();
+	[23] ResolveApplicationContentPath(u8, u64);
+}
+
+interface nn::ns::detail::IDownloadTaskInterface {
+	[701] ClearTaskStatusList();
+	[702] RequestDownloadTaskList();
+	@undocumented
+	[703] RequestEnsureDownloadTask();
+	[704] ListDownloadTaskStatus() -> (u32, buffer<unknown,6,0>);
+	@undocumented
+	[705] RequestDownloadTaskListData();
+	[706] TryCommitCurrentApplicationDownloadTask();
+	[707] EnableAutoCommit();
+	[708] DisableAutoCommit();
+	[709] TriggerDynamicCommitEvent();
+}
+
+interface nn::ns::detail::IFactoryResetInterface {
+	[100] ResetToFactorySettings();
+	[101] ResetToFactorySettingsWithoutUserSaveData();
+	[102] ResetToFactorySettingsForRefurbishment();
+}
+
+interface nn::ns::detail::IServiceGetterInterface is ns:rid, ns:web, ns:ec, ns:am2, ns:rt {
+	[7992] GetECommerceInterface();
+	[7993] GetApplicationVersionInterface();
+	[7994] GetFactoryResetInterface() -> object<IUnknown>;
+	[7995] GetAccountProxyInterface() -> object<IUnknown>;
+	[7996] GetApplicationManagerInterface() -> object<IUnknown>;
+	[7997] GetDownloadTaskInterface() -> object<IUnknown>;
+	[7998] GetContentManagementInterface() -> object<IUnknown>;
+	[7999] GetDocumentInterface() -> object<IUnknown>;
+}
+
 interface nn::ns::detail::ISystemUpdateInterface is ns:su {
-	[0] Unknown0() -> u8;
-	[1] GetISystemUpdateControl() -> object<IUnknown>;
-	[2] Unknown2();
-	[3] Unknown3();
-	[4] Unknown4();
-	[5] Unknown5();
-	[6] Unknown6();
-	[9] GetNsSuWaitEvent() -> KObject;
-	[10] Unknown10();
+	[0] GetBackgroundNetworkUpdateState() -> u8;
+	[1] OpenSystemUpdateControl() -> object<IUnknown>;
+	[2] NotifyExFatDriverRequired();
+	[3] ClearExFatDriverStatusForDebug();
+	[4] RequestBackgroundNetworkUpdate();
+	@undocumented
+	[5] NotifyBackgroundNetworkUpdate();
+	[6] NotifyExFatDriverDownloadedForDebug();
+	[9] GetSystemUpdateNotificationEventForContentDelivery() -> KObject;
+	[10] NotifySystemUpdateForContentDelivery();
+	[11] PrepareShutdown();
+	[16] DestroySystemUpdateTask();
+	[17] RequestSendSystemUpdate();
+	[18] GetSendSystemUpdateProgress();
+}
+
+interface nn::ns::detail::IVulnerabilityManagerInterface is ns:vm {
+	[1200] NeedsUpdateVulnerability() -> u8;
+	[1201] UpdateSafeSystemVersionForDebug();
+	[1202] GetSafeSystemVersion();
 }
 
 interface nn::nsd::detail::IManager is nsd:a, nsd:u {
 	[10] GetSettingName() -> buffer<unknown,22,256>;
+	# Takes a type-0x16 buffer with size 8. Returns a string.
+	# 
+	# The output string is used by
+	# [NIM](http://switchbrew.org/index.php?title=NIM_services "wikilink") for
+	# the "eid:%s" in the User-Agent strings.
+	# 
+	# This is the "lp1" string also used in domains.
+	# 
 	[11] GetEnvironmentIdentifier() -> buffer<unknown,22,8>;
 	[12] GetDeviceId() -> u128;
 	[13] DeleteSettings(u32);
@@ -1924,7 +2737,10 @@ interface nn::nsd::detail::IManager is nsd:a, nsd:u {
 	[61] WriteSaveDataToFsForTest(buffer<unknown,21,76784>);
 	# Requires the `nsd!test_mode` setting to be equal to 1.
 	# 
-	# Deletes the system save data for bsdsockets.
+	# Deletes the system save data for
+	# bsdsockets.
+	# 
+	# [Category:Services](http://switchbrew.org/index.php?title=Category:Services "wikilink")
 	# 
 	[62] DeleteSaveDataOfFsForTest();
 }
@@ -1934,45 +2750,66 @@ interface nn::omm::detail::IOperationModeManager is omm {
 	[1] GetOperationModeChangeEvent() -> KObject;
 	[2] EnableAudioVisual();
 	[3] DisableAudioVisual();
+	@undocumented
 	[4] EnterSleepAndWait();
 	[5] GetCradleStatus() -> u8;
 	[6] FadeInDisplay();
 	[7] FadeOutDisplay();
 	@version(2.0.0+)
+	@undocumented
 	[8] Unknown8();
 	@version(2.0.0+)
 	[9] Unknown9();
 }
 
 interface nn::pcie::detail::IManager is pcie {
+	@undocumented
 	[0] GetISession();
 	# Takes a type-6 buffer.
 	# 
 	# Returns a list of connected PCIe endpoint devices.
 	# 
+	@undocumented
 	[1] ListEndpoints();
 }
 
 interface nn::pcie::detail::ISession {
+	@undocumented
 	[0] Unknown0();
+	@undocumented
 	[1] Unknown1();
 	[2] Unknown2(u32);
+	@undocumented
 	[3] Unknown3();
+	@undocumented
 	[4] Unknown4();
+	@undocumented
 	[5] Unknown5();
+	@undocumented
 	[6] Unknown6();
+	@undocumented
 	[7] Unknown7();
+	@undocumented
 	[8] Unknown8();
+	@undocumented
 	[9] Unknown9();
+	@undocumented
 	[10] Unknown10();
+	@undocumented
 	[11] Unknown11();
+	@undocumented
 	[12] Unknown12();
+	@undocumented
 	[13] Unknown13();
+	@undocumented
 	[14] Unknown14();
+	@undocumented
 	[15] Unknown15();
 	[16] Unknown16(u8, u32);
+	@undocumented
 	[17] Unknown17();
 	[18] Unknown18(u32);
+	@undocumented
 	[19] Unknown19();
 	[20] Unknown20(u8, u32);
 }
@@ -2129,7 +2966,7 @@ interface nn::pcv::detail::IPcvService is pcv {
 interface nn::pl::detail::ISharedFontManager is pl:u {
 	# Takes a
 	# [\#SharedFontType](http://switchbrew.org/index.php?title=Shared%20Database%20services#SharedFontType "wikilink")
-	# (uint32)
+	# (uint32), no output.
 	# 
 	[0] RequestLoad(u32);
 	# Takes a
@@ -2141,7 +2978,7 @@ interface nn::pl::detail::ISharedFontManager is pl:u {
 	[1] GetLoadState(u32) -> u32;
 	# Takes a
 	# [\#SharedFontType](http://switchbrew.org/index.php?title=Shared%20Database%20services#SharedFontType "wikilink")
-	# (uint32), returns the Font Size (uint32)
+	# (uint32), returns the Font Size (uint32).
 	# 
 	[2] GetSize(u32) -> u32;
 	# Takes a
@@ -2149,7 +2986,19 @@ interface nn::pl::detail::ISharedFontManager is pl:u {
 	# (uint32), returns the offset (uint32) to the Font Address.
 	# 
 	[3] GetSharedMemoryAddressOffset(u32) -> u32;
+	# No input, returns an output SharedMemory handle.
+	# 
+	# User-processes map this SharedMemory with size=0x1100000 and
+	# permissions=R--.
+	# 
+	# Font data is TTF, located at the offset returned by
+	# [\#GetSharedMemoryAddressOffset](#nn::pl::detail::ISharedFontManager\(3\) "wikilink").
+	# 
 	[4] GetSharedMemoryNativeHandle() -> KObject;
+	# Takes an input u64
+	# [LanguageCode](http://switchbrew.org/index.php?title=Settings_services#LanguageCode "wikilink")
+	# and 3 type-0x6 output buffers, returns an output u8 and u32.
+	# 
 	[5] GetSharedFontInOrderOfPriority(u64) -> (u8, u32, buffer<unknown,6,0>, buffer<unknown,6,0>, buffer<unknown,6,0>);
 }
 
@@ -2216,6 +3065,7 @@ interface nn::pm::detail::IShellInterface is pm:shell {
 	# 
 	# Returns the u64 title PID.
 	# 
+	@undocumented
 	[0] LaunchProcess();
 	[1] TerminateProcessByPid(u64);
 	[2] TerminateProcessByTitleId(u64);
@@ -2260,11 +3110,14 @@ interface nn::psc::sf::IPmControl is psc:c {
 	[3] Unknown3() -> u32;
 	[4] Unknown4();
 	[5] Unknown5();
+	@undocumented
 	[6] Unknown6();
 }
 
 interface nn::psc::sf::IPmModule {
+	@undocumented
 	[0] Initialize();
+	@undocumented
 	[1] GetRequest();
 	[2] Acknowledge();
 	[3] Unknown3();
@@ -2275,24 +3128,25 @@ interface nn::psc::sf::IPmService is psc:m {
 }
 
 interface nn::psm::IPsmServer is psm {
-	[0] Unknown0() -> u32;
-	[1] Unknown1() -> u32;
-	[2] Unknown2();
-	[3] Unknown3();
-	[4] Unknown4() -> u8;
-	[5] Unknown5();
-	[6] Unknown6();
+	[0] GetBatteryChargePercentage() -> u32;
+	[1] GetChargerType() -> u32;
+	[2] EnableBatteryCharging();
+	[3] DisableBatteryCharging();
+	[4] IsBatteryChargingEnabled() -> u8;
+	[5] AcquireControllerPowerSupply();
+	[6] ReleaseControllerPowerSupply();
 	[7] OpenSession() -> object<IUnknown>;
-	[8] Unknown8();
-	[9] Unknown9();
-	[10] Unknown10();
-	[11] Unknown11();
+	[8] EnableEnoughPowerChargeEmulation();
+	[9] DisableEnoughPowerChargeEmulation();
+	[10] EnableFastBatteryCharging();
+	[11] DisableFastBatteryCharging();
 	[12] GetBatteryVoltageState() -> u32;
 	[13] GetRawBatteryChargePercentage() -> u64;
-	[14] Unknown14() -> u8;
-	[15] Unknown15() -> u64;
-	[16] Unknown16() -> KObject;
-	[17] Unknown17();
+	[14] IsEnoughPowerSupplied() -> u8;
+	[15] GetBatteryAgePercentage() -> u64;
+	[16] GetBatteryChargeInfoEvent() -> KObject;
+	@undocumented
+	[17] GetBatteryChargeInfoFields();
 }
 
 interface nn::psm::IPsmSession {
@@ -2395,6 +3249,24 @@ interface nn::settings::IFactorySettingsServer is set:cal {
 	[22] GetSpeakerParameter() -> nn::settings::factory::SpeakerParameter;
 	@version(4.0.0+)
 	[23] GetLcdVendorId();
+	@version(5.0.0+)
+	[24] GetUnknownKey1();
+	@version(5.0.0+)
+	[25] GetUnknownKey0();
+	@version(5.0.0+)
+	[26] GetAmiiboKey();
+	@version(5.0.0+)
+	[27] GetAmiiboECQVCertificate();
+	@version(5.0.0+)
+	[28] GetAmiiboECDSACertificate();
+	@version(5.0.0+)
+	[29] GetAmiiboECQVBLSKey();
+	@version(5.0.0+)
+	[30] GetAmiiboECQVBLSCertificate();
+	@version(5.0.0+)
+	[31] GetAmiiboECQVBLSRootCertificate();
+	@version(5.0.0+)
+	[32] GetUnknownId();
 }
 
 interface nn::settings::IFirmwareDebugSettingsServer is set:fd {
@@ -2426,6 +3298,8 @@ interface nn::settings::ISettingsServer is set {
 	[6] GetAvailableLanguageCodeCount2();
 	@version(4.0.0+)
 	[7] GetKeyCodeMap();
+	@version(5.0.0+)
+	[8] GetQuestFlag2();
 }
 
 interface nn::settings::ISystemSettingsServer is set:sys {
@@ -2460,7 +3334,16 @@ interface nn::settings::ISystemSettingsServer is set:sys {
 	[20] SetAudioVolume(nn::settings::system::AudioVolume, i32);
 	[21] GetEulaVersions() -> (i32, array<nn::settings::system::EulaVersion,6>);
 	[22] SetEulaVersions(array<nn::settings::system::EulaVersion,5>);
+	# No input, returns an output s32.
+	# 
+	# This is the current Theme set by System Settings.
+	# 
+	#   - 0: "Basic White"
+	#   - 1: "Basic Black"
+	# 
 	[23] GetColorSetId() -> i32;
+	# Takes an input s32, no output.
+	# 
 	[24] SetColorSetId(i32);
 	[25] GetConsoleInformationUploadFlag() -> bool;
 	[26] SetConsoleInformationUploadFlag(bool);
@@ -2607,10 +3490,7 @@ interface nn::settings::ISystemSettingsServer is set:sys {
 	[121] SetPushNotificationActivityModeOnSleep(i32);
 	# Returns 0x01 if
 	# [safemode](http://switchbrew.org/index.php?title=Safemode "wikilink")
-	# needs to be
-	# launched.
-	# 
-	# [Category:Services](http://switchbrew.org/index.php?title=Category:Services "wikilink")
+	# needs to be launched.
 	# 
 	@version(4.0.0+)
 	[122] GetServiceDiscoveryControlSettings();
@@ -2646,10 +3526,32 @@ interface nn::settings::ISystemSettingsServer is set:sys {
 	[137] SetKeyboardLayout();
 	@version(4.0.0+)
 	[138] GetWebInspectorFlag();
+	# Takes a type-0x6 output buffer, returns an output s32. This buffer
+	# contains an array of 0x8-byte "nn::settings::system::AllowedSslHost"
+	# entries.
+	# 
 	@version(4.0.0+)
 	[139] GetAllowedSslHosts();
 	@version(4.0.0+)
 	[140] GetHostFsMountPoint();
+	@version(5.0.0+)
+	[141] Unknown141();
+	@version(5.0.0+)
+	[142] Unknown142();
+	@version(5.0.0+)
+	[143] Unknown143();
+	@version(5.0.0+)
+	[144] Unknown144();
+	@version(5.0.0+)
+	[145] Unknown145();
+	@version(5.0.0+)
+	[146] Unknown146();
+	@version(5.0.0+)
+	[147] Unknown147();
+	@version(5.0.0+)
+	[148] Unknown148();
+	@version(5.0.0+)
+	[149] Unknown149();
 }
 
 interface nn::sm::detail::IManagerInterface is sm:m {
@@ -2681,8 +3583,8 @@ interface nn::sm::detail::IUserInterface is sm: {
 }
 
 interface nn::socket::resolver::IResolver is sfdnsres {
-	[0] SetDnsAddressesPrivate(u32, buffer<unknown,5,0>);
-	[1] GetDnsAddressPrivate(u32) -> buffer<unknown,6,0>;
+	[0] Unknown0(u32, buffer<unknown,5,0>);
+	[1] Unknown1(u32) -> buffer<unknown,6,0>;
 	[2] GetHostByName(u8, u32, u64, pid, buffer<unknown,5,0>) -> (u32, u32, u32, buffer<unknown,6,0>);
 	[3] GetHostByAddr(u32, u32, u32, u64, pid, buffer<unknown,5,0>) -> (u32, u32, u32, buffer<unknown,6,0>);
 	[4] GetHostStringError(u32) -> buffer<unknown,6,0>;
@@ -2702,11 +3604,17 @@ interface nn::socket::resolver::IResolver is sfdnsres {
 	[8] RequestCancelHandle(u64, pid) -> u32;
 	[9] CancelSocketCall(u32, u64, pid);
 	[10] Unknown10();
-	[11] Unknown11();
+	# This function clears `nn::socket::resolver::g_DnsIpServerAddressArray`,
+	# setting its length to 0 as well. The array initially contains IPs filled
+	# by `bsdconfig`, a privileged service handling DHCP and such.
+	# 
+	# Takes no arguments, doesn't return anything, never fails.
+	# 
+	[11] ClearDnsIpServerAddressArray();
 }
 
 interface nn::socket::sf::IClient is bsd:u, bsd:s {
-	[0] RegisterClient(bytes<32>, u64, u64, pid, KObject) -> u32;
+	[0] Unknown0(bytes<32>, u64, u64, pid, KObject) -> u32;
 	[1] StartMonitoring(u64, pid);
 	# FreeBSD's `socket` command. `bsd:u` disallows the usage of the
 	# `SOCK_SEQPACKET` and `SOCK_RAW` types, with the exception of `(AF_INET,
@@ -2727,10 +3635,9 @@ interface nn::socket::sf::IClient is bsd:u, bsd:s {
 	[4] Open(u32, buffer<unknown,33,0>) -> (u32, u32);
 	[5] Select(u32, bytes<24>, buffer<unknown,33,0>, buffer<unknown,33,0>, buffer<unknown,33,0>) -> (u32, u32, buffer<unknown,34,0>, buffer<unknown,34,0>, buffer<unknown,34,0>);
 	[6] Poll(u32, u32, buffer<unknown,33,0>) -> (u32, u32, buffer<unknown,34,0>);
-	# This command is exclusive to `bsd:s` (FIXME: test whether this is
-	# actually the case).
-	# 
-	# FreeBSD's `sysctl` command, restricted to `CTL_NET` (?).
+	# FreeBSD's `sysctl` command. Privileged operations are reserved for
+	# `bsd:s`. `CTL_NET`, `CTL_VM`, `CTL_KERN` and `CTL_DEBUG` commands are
+	# implemented (?).
 	# 
 	[7] Sysctl(buffer<unknown,33,0>, buffer<unknown,33,0>) -> (u32, u32, u32, buffer<unknown,34,0>);
 	[8] Recv(u32, u32) -> (u32, u32, buffer<unknown,34,0>);
@@ -2744,11 +3651,21 @@ interface nn::socket::sf::IClient is bsd:u, bsd:s {
 	[16] GetSockName(u32) -> (u32, u32, u32, buffer<unknown,34,0>);
 	[17] GetSockOpt(u32, u32, u32) -> (u32, u32, u32, buffer<unknown,34,0>);
 	[18] Listen(u32, u32) -> (u32, u32);
-	# FreeBSD's `ioctl` function. The following ioctls are implemented, refer
-	# to FreeBSD's headers for more details: SIOCATMARK, BIOCGBLEN,
-	# BIOCIMMEDIATE, BIOCSETIF, SIOCGETSGCNT, SIOCGIFMETRIC, SIOCSIFMETRIC
-	# SIOCDIFADDR, SIOCGIFINDEX, SIOCGIFADDR, SIOCGIFCONF, SIOCGIFNETMASK,
-	# SIOCGIFMTU, SIOCSIFMTU, SIOCGIFMEDIA, SIOCSIFLLADDR and SIOCGIFXMEDIA.
+	# FreeBSD's `ioctl` function. The following ioctls are whitelisted, refer
+	# to FreeBSD's headers for more details: SIOCATMARK, BIOCGBLEN, BIOCSETF
+	# BIOCIMMEDIATE, BIOCSETIF, BIOCVERSION, FIONSPACE, FIONWRITE, FIONREAD,
+	# SIOCGETSGCNT, SIOCGIFMETRIC, SIOCSIFMETRIC, SIOCDIFADDR, SIOCGIFINDEX,
+	# SIOCGIFADDR, SIOCGIFCONF, SIOCGIFNETMASK, SIOCAIFADDR, SIOCGIFMTU,
+	# SIOCSIFMTU, SIOCGIFMEDIA, SIOCSIFLLADDR and SIOCGIFXMEDIA.
+	# 
+	# Nintendo use the following definition (hence changing all ioctls using
+	# this
+	# structure):
+	# 
+	# `struct bpf_program {`  
+	# `   u_int bf_len;`  
+	# `   struct bpf_insn bf_insns[BPF_MAXINSNS]; // [512]. This is a pointer in the official structure`  
+	# `};`
 	# 
 	[19] Ioctl(u32, u32, u32, buffer<unknown,33,0>, buffer<unknown,33,0>, buffer<unknown,33,0>, buffer<unknown,33,0>) -> (u32, u32, buffer<unknown,34,0>, buffer<unknown,34,0>, buffer<unknown,34,0>, buffer<unknown,34,0>);
 	# FreeBSD's `fcntl`, limited to `F_GETFL` and `F_SETFL` with `O_NONBLOCK`.
@@ -2760,6 +3677,9 @@ interface nn::socket::sf::IClient is bsd:u, bsd:s {
 	[24] Write(u32, buffer<unknown,33,0>) -> (u32, u32);
 	[25] Read(u32) -> (u32, u32, buffer<unknown,34,0>);
 	[26] Close(u32) -> (u32, u32);
+	# Takes a socket file descriptor and an unused u64. Duplicates the socket
+	# (FreeBSD's `dup`). Reserved to `bsd:s`.
+	# 
 	[27] DuplicateSocket(u32, u64) -> (u32, u32);
 	[28] GetResourceStatistics(u64, pid) -> (u32, u32, buffer<unknown,34,0>);
 	@version(3.0.0+)
@@ -2769,63 +3689,28 @@ interface nn::socket::sf::IClient is bsd:u, bsd:s {
 }
 
 interface nn::spl::detail::IGeneralInterface is spl: {
-	# Takes a u32 (**ConfigItem**), and returns a u64 (**ConfigVal**).
+	# Takes a u32 (**ConfigItem**), and returns one or more u64s
+	# (**ConfigVal**).
 	# 
-	# | ConfigItem | Name                                                  |
-	# | ---------- | ----------------------------------------------------- |
-	# | 1          | DisableProgramVerification                            |
-	# | 2          | MemoryConfiguration                                   |
-	# | 3          | SecurityEngineIRQNumber                               |
-	# | 4          | Returns 0x02?                                         |
-	# | 5          | HardwareType (0=Icosa (nx-abca2), 1=Copper (nx-abcb)) |
-	# | 6          | IsRetail                                              |
-	# | 7          | IsRecoveryBoot                                        |
-	# | 8          | DeviceId (byte7 clear)                                |
-	# | 9          | BootReason                                            |
-	# | 10         | MemoryArrange                                         |
-	# | 11         | IsDebugMode                                           |
-	# | 12         | KernelMemoryConfiguration                             |
-	# | 13         | BatteryProfile                                        |
-	# 
-	# [PM](http://switchbrew.org/index.php?title=Process_Manager_services "wikilink")
-	# checks id1 and if non-zero, calls fsp-pr
-	# SetEnabledProgramVerification(false).
-	# 
-	# [PCV](http://switchbrew.org/index.php?title=PCV_services "wikilink")
-	# configures memory profiles based on
-	# id2.
-	# 
-	# | Platform     | Version                                 | Revision | id2    |
-	# | ------------ | --------------------------------------- | -------- | ------ |
-	# | "jetson-tx1" | "11\_40800\_01\_V9.8.3\_V1.6"           | N/A      | N/A    |
-	# | "nx-abcb"    | "10\_40800\_NoCfgVersion\_V9.8.4\_V1.6" | 0        | 0      |
-	# | "nx-abca2"   | "10\_40800\_NoCfgVersion\_V9.8.7\_V1.6" | 0        | 0 or 3 |
-	# | "nx-abca2"   | "10\_40800\_NoCfgVersion\_V9.8.7\_V1.6" | 1        | 4      |
-	# | "nx-abca2"   | "10\_40800\_NoCfgVersion\_V9.8.7\_V1.6" | 2        | 1      |
-	# | "nx-abca2"   | "10\_40800\_NoCfgVersion\_V9.8.7\_V1.6" | 3        | 2      |
-	# |  |
-	# 
-	# SPL uses id3 for setting up the security engine IRQ.
-	# 
-	# [NIM](http://switchbrew.org/index.php?title=NIM_services "wikilink")
-	# checks that id8 output must match the
-	# [set:cal](http://switchbrew.org/index.php?title=Settings_services "wikilink")
-	# DeviceId with byte7 cleared, otherwise panic.
-	# 
-	# \[3.0.0+\]
-	# [RO](http://switchbrew.org/index.php?title=Loader_services "wikilink")
-	# checks id11, if set then skipping NRR rsa signatures is allowed.
-	# 
-	# Kernel uses id11 to determine behavior of svcBreak positive arguments.
-	# It will break instead of just force-exiting the process which is what
-	# happens on retail. \[2.0.0+\] This is also used with certain debug
-	# [SVCs](http://switchbrew.org/index.php?title=SVC "wikilink").
-	# 
-	# Kernel reads id12 when setting up memory-related code. If bit0 is set,
-	# it will memset various allocated memory-regions with 0x58, 0x59, 0x5A
-	# ('X', 'Y', 'Z') instead of zero. This allows Nintendo devs to find
-	# uninitialized memory bugs. If bit17-16 is 0b01, the kernel assumes 6GB
-	# of DRAM instead of 4GB.
+	# | ConfigItem | Name                                                                                                                       |
+	# | ---------- | -------------------------------------------------------------------------------------------------------------------------- |
+	# | 1          | [\#DisableProgramVerification](http://switchbrew.org/index.php?title=SPL%20services#DisableProgramVerification "wikilink") |
+	# | 2          | [\#DramId](http://switchbrew.org/index.php?title=SPL%20services#DramId "wikilink")                                         |
+	# | 3          | [\#SecurityEngineIrqNumber](http://switchbrew.org/index.php?title=SPL%20services#SecurityEngineIrqNumber "wikilink")       |
+	# | 4          | [\#Version](http://switchbrew.org/index.php?title=SPL%20services#Version "wikilink")                                       |
+	# | 5          | [\#HardwareType](http://switchbrew.org/index.php?title=SPL%20services#HardwareType "wikilink")                             |
+	# | 6          | [\#IsRetail](http://switchbrew.org/index.php?title=SPL%20services#IsRetail "wikilink")                                     |
+	# | 7          | [\#IsRecoveryBoot](http://switchbrew.org/index.php?title=SPL%20services#IsRecoveryBoot "wikilink")                         |
+	# | 8          | [\#DeviceId](http://switchbrew.org/index.php?title=SPL%20services#DeviceId "wikilink")                                     |
+	# | 9          | \[1.0.0-4.0.0\] [\#BootReason](http://switchbrew.org/index.php?title=SPL%20services#BootReason "wikilink")                 |
+	# | 10         | [\#MemoryArrange](http://switchbrew.org/index.php?title=SPL%20services#MemoryArrange "wikilink")                           |
+	# | 11         | [\#IsDebugMode](http://switchbrew.org/index.php?title=SPL%20services#IsDebugMode "wikilink")                               |
+	# | 12         | [\#KernelMemoryConfiguration](http://switchbrew.org/index.php?title=SPL%20services#KernelMemoryConfiguration "wikilink")   |
+	# | 13         | [\#BatteryProfile](http://switchbrew.org/index.php?title=SPL%20services#BatteryProfile "wikilink")                         |
+	# | 14         | \[4.0.0+\] [\#Unknown0](http://switchbrew.org/index.php?title=SPL%20services#Unknown0 "wikilink")                          |
+	# | 15         | \[5.0.0+\] [\#NewHardwareType](http://switchbrew.org/index.php?title=SPL%20services#NewHardwareType "wikilink")            |
+	# | 16         | \[5.0.0+\] [\#NewKeyGeneration](http://switchbrew.org/index.php?title=SPL%20services#NewKeyGeneration "wikilink")          |
+	# | 17         | \[5.0.0+\] [\#Package2Hash](http://switchbrew.org/index.php?title=SPL%20services#Package2Hash "wikilink")                  |
 	# 
 	[0] GetConfig(u32) -> u64;
 	# Takes one type-10 (C descriptor) buffer (**data\_out\_buf**) and 3
@@ -2834,6 +3719,7 @@ interface nn::spl::detail::IGeneralInterface is spl: {
 	# 
 	# Performs asymmetric crypto with user supplied modulus and exponent.
 	# 
+	@undocumented
 	[1] UserExpMod();
 	# Takes a 16-byte EKS (**Encryption Key Source**) and two words
 	# (**KeyGeneration** and **option**) as input. **KeyGeneration** ranges
@@ -2842,6 +3728,7 @@ interface nn::spl::detail::IGeneralInterface is spl: {
 	# Returns a scrambled sealed KEK (**Key Encryption Key** used as
 	# **key\_x**).
 	# 
+	@undocumented
 	[2] GenerateAesKek();
 	# Takes a u32 (**keyslot**) and two 16-byte keys (**key\_x** and
 	# **key\_y**).
@@ -2853,6 +3740,7 @@ interface nn::spl::detail::IGeneralInterface is spl: {
 	# the current spl session, otherwise errors with 0xD21A. Previously engine
 	# was hardcoded to 0.
 	# 
+	@undocumented
 	[3] LoadAesKey();
 	# Takes a 16-byte KEK (**key\_x**) and a 16-byte encrypted key
 	# (**enc\_key**).
@@ -2864,6 +3752,7 @@ interface nn::spl::detail::IGeneralInterface is spl: {
 	# an engine to be used and returns 0xD01A if they're all busy. When the
 	# command is done, the engine is released.
 	# 
+	@undocumented
 	[4] GenerateAesKey();
 	# Takes a u32 (**ConfigItem**) and a u64 (**ConfigVal**).
 	# 
@@ -2873,10 +3762,12 @@ interface nn::spl::detail::IGeneralInterface is spl: {
 	# 
 	# Any other **ConfigItem**, besides 13, can't be set.
 	# 
+	@undocumented
 	[5] SetConfig();
 	# Takes a type-6 buffer and fills it with random data. Same command for
 	# "spl:" and "csrng" services.
 	# 
+	@undocumented
 	[7] GetRandomBytes();
 	# Takes one type-9 (X descriptor) buffer (**enc\_privk\_in\_buf**), a
 	# 16-byte KEK (**key\_x**), a 16-byte key (**key\_y**) and a u32
@@ -2885,20 +3776,19 @@ interface nn::spl::detail::IGeneralInterface is spl: {
 	# Decrypts **enc\_privk\_in\_buf** with a key generated from **key\_x**
 	# and **key\_y** and imports it for later usage.
 	# 
-	[9] DecryptImportPrivkForRsaOaep();
-	# Takes one type-10 (C descriptor) buffer (**data\_out\_buf**) and 3
-	# type-9 (X descriptor) buffers (**data\_in\_buf**, **mod\_in\_buf** and
-	# **label\_hash\_in\_buf**).
+	@undocumented
+	[9] LoadSecureExpModKey();
+	# Takes 3 type-9 (X descriptor) buffers (**data\_in\_buf**,
+	# **mod\_in\_buf** and **param0\_in\_buf**).
 	# 
-	# Decrypts **data\_in\_buf** into **data\_out\_buf** using the private key
-	# imported with
-	# [\#DecryptImportPrivkForRsaOaep](#nn::spl::detail::IGeneralInterface\(9\) "wikilink")
-	# and the supplied **mod\_in\_buf**. Afterwards, verifies RSA-OAEP
-	# encoding using **label\_hash\_in\_buf**.
+	# Decrypts **data\_in\_buf** using the private key imported with
+	# [\#LoadSecureExpModKey](#nn::spl::detail::IGeneralInterface\(9\) "wikilink")
+	# and the supplied **mod\_in\_buf** and **param0\_in\_buf**.
 	# 
-	# Returns an u32 (**dec\_data\_size**).
+	# Generates and returns a 16-byte sealed titlekey.
 	# 
-	[10] DecryptRsaOaep();
+	@undocumented
+	[10] SecureExpMod();
 	# No input params.
 	# 
 	# Uses [\#GetConfig](#nn::spl::detail::IGeneralInterface\(0\) "wikilink")
@@ -2914,6 +3804,7 @@ interface nn::spl::detail::IGeneralInterface is spl: {
 	# 
 	# Returns a scrambled key (**key\_a**).
 	# 
+	@undocumented
 	[12] GenerateSpecificAesKey();
 	# Takes one type-10 (C descriptor) buffer (**dec\_privk\_out\_buf**), one
 	# type-9 (X descriptor) buffer (**enc\_privk\_in\_buf**), a 16-byte KEK
@@ -2927,6 +3818,7 @@ interface nn::spl::detail::IGeneralInterface is spl: {
 	# [SSL](http://switchbrew.org/index.php?title=SSL_services "wikilink")-sysmodule
 	# for TLS client-privk.
 	# 
+	@undocumented
 	[13] DecryptPrivk();
 	# Takes a 16-byte encrypted key (**enc\_key**) and two words
 	# (**KeyGeneration** and **option**) as input. **KeyGeneration** ranges
@@ -2938,6 +3830,7 @@ interface nn::spl::detail::IGeneralInterface is spl: {
 	# \[2.0.0+\] Introduced same engine allocation code as for
 	# [\#GenerateAesKey](#nn::spl::detail::IGeneralInterface\(4\) "wikilink").
 	# 
+	@undocumented
 	[14] DecryptAesKey();
 	# Takes a type-0x46 (B descriptor) buffer (**data\_out\_buf**), a u32
 	# (**keyslot**), a type-0x45 (A descriptor) buffer (**data\_in\_buf**) and
@@ -2948,6 +3841,7 @@ interface nn::spl::detail::IGeneralInterface is spl: {
 	# 
 	# \[2.0.0+\] Verifies the engine is locked by current session.
 	# 
+	@undocumented
 	[15] DecryptAesCtr();
 	# Takes one type-9 (X descriptor) buffer (**data\_in\_buf**) and a u32
 	# (**type?**).
@@ -2956,6 +3850,7 @@ interface nn::spl::detail::IGeneralInterface is spl: {
 	# 
 	# \[2.0.0+\] Verifies the engine is locked by current session.
 	# 
+	@undocumented
 	[16] ComputeCmac();
 	# Takes one type-9 (X descriptor) buffer (**enc\_privk\_in\_buf**), a
 	# 16-byte KEK (**key\_x**), a 16-byte key (**key\_y**) and a u32
@@ -2964,29 +3859,36 @@ interface nn::spl::detail::IGeneralInterface is spl: {
 	# Decrypts **enc\_privk\_in\_buf** with a key generated from **key\_x**
 	# and **key\_y** and imports it for later usage.
 	# 
-	[17] DecryptImportPrivkForExpMod1();
-	# Takes 3 type-9 (X descriptor) buffers (**data\_in\_buf**,
-	# **mod\_in\_buf** and **param0\_in\_buf**).
+	@undocumented
+	[17] LoadRsaOaepKey();
+	# Takes one type-10 (C descriptor) buffer (**data\_out\_buf**) and 3
+	# type-9 (X descriptor) buffers (**data\_in\_buf**, **mod\_in\_buf** and
+	# **label\_hash\_in\_buf**).
 	# 
-	# Decrypts **data\_in\_buf** using the private key imported with
-	# [\#DecryptImportPrivkForExpMod1](#nn::spl::detail::IGeneralInterface\(17\) "wikilink")
-	# and the supplied **mod\_in\_buf** and **param0\_in\_buf**.
+	# Decrypts **data\_in\_buf** into **data\_out\_buf** using the private key
+	# imported with
+	# [\#UnwrapRsaOaepWrappedTitleKey](#nn::spl::detail::IGeneralInterface\(18\) "wikilink")
+	# and the supplied **mod\_in\_buf**. Afterwards, verifies RSA-OAEP
+	# encoding using **label\_hash\_in\_buf**.
 	# 
-	# Generates and returns a 16-byte sealed titlekey.
+	# Returns an u32 (**dec\_data\_size**).
 	# 
-	[18] UnwrapRsaWrappedTitleKey();
+	@undocumented
+	[18] UnwrapRsaOaepWrappedTitleKey();
 	# Takes a u32 (**keyslot**) and a 16-byte sealed titlekey.
 	# 
 	# Sets the specified **keyslot** with the titlekey.
 	# 
 	# \[2.0.0+\] Verifies the engine is locked by current session.
 	# 
+	@undocumented
 	[19] LoadTitleKey();
 	# Takes a 16-byte EKS (**Encryption Key Source**).
 	# 
 	# Returns a sealed titlekey.
 	# 
 	@version(2.0.0+)
+	@undocumented
 	[20] UnwrapAesWrappedTitleKey();
 	# Returns the id of the engine that was locked, or 0xD01A if all engines
 	# are busy. You need to lock an engine before using AES functions.
@@ -3002,6 +3904,23 @@ interface nn::spl::detail::IGeneralInterface is spl: {
 	# 
 	@version(2.0.0+)
 	[23] GetSplWaitEvent() -> KObject;
+	# Sets a static dword in spl .bss to the user input u32.
+	# 
+	# \[4.0.0+\] returns 0xD41A if a value has been previously set without
+	# being [gotten](#nn::spl::detail::IGeneralInterface\(25\) "wikilink").
+	# 
+	@version(3.0.0+)
+	@undocumented
+	[24] SetSharedData();
+	# Returns the static dword in spl .bss that can be set via
+	# [\#SetSharedData](#nn::spl::detail::IGeneralInterface\(24\) "wikilink").
+	# 
+	# \[4.0.0+\] returns 0xD61A if a value has not previously been set, and
+	# unsets the value after getting it.
+	# 
+	@version(3.0.0+)
+	@undocumented
+	[25] GetSharedData();
 }
 
 interface nn::spl::detail::IRandomInterface is csrng {
@@ -3016,12 +3935,15 @@ interface nn::spsm::detail::IPowerStateInterface is spsm {
 	[1] SleepSystemAndWaitAwake() -> KObject;
 	[2] Unknown2() -> u32;
 	[3] Unknown3(u8);
-	[4] Unknown4() -> KObject;
+	[4] GetNotificationMessageEventHandle() -> KObject;
 	[5] Unknown5() -> u32;
+	@undocumented
 	[6] Unknown6();
 	[7] Unknown7();
-	[8] Unknown8() -> buffer<unknown,6,0>;
-	[9] Unknown9(u64);
+	[8] AnalyzePerformanceLogForLastSleepWakeSequence() -> buffer<unknown,6,0>;
+	[9] ChangeHomeButtonLongPressingTime(u64);
+	[10] Unknown10();
+	[11] Unknown11(u64);
 }
 
 interface nn::tc::IManager is tc {
@@ -3047,32 +3969,87 @@ interface nn::timesrv::detail::service::IStaticService is time:s, time:u, time:r
 	[200] IsStandardNetworkSystemClockAccuracySufficient() -> bool;
 }
 
+interface nn::tma::IHtcManager is htc {
+	[0] GetEnvironmentVariable(buffer<unknown,5,0>) -> (u32, buffer<unknown,6,0>);
+	[1] GetEnvironmentVariableLength(buffer<unknown,5,0>) -> u32;
+	[2] BindHostConnectionEvent() -> KObject;
+	[3] BindHostDisconnectionEvent() -> KObject;
+	[4] BindHostConnectionEventForSystem() -> KObject;
+	[5] BindHostDisconnectionEventForSystem() -> KObject;
+}
+
+interface nn::tma::IHtcsManager is htcs {
+	[0] Unknown0() -> (u32, u32);
+	[1] Unknown1(u32) -> (u32, u32);
+	[2] Unknown2(bytes<66>, u32) -> (u32, u32);
+	[3] Unknown3(bytes<66>, u32) -> (u32, u32);
+	[4] Unknown4(u32, u32) -> (u32, u32);
+	[5] Unknown5(u32) -> (bytes<66>, u32, u32);
+	[6] Unknown6(u32, u32) -> (u32, u64, buffer<unknown,6,0>);
+	[7] Unknown7(u32, u32, buffer<unknown,5,0>) -> (u32, u64);
+	[8] Unknown8(u32, u32) -> (u32, u32);
+	[9] Unknown9(u32, u32, u32) -> (u32, u32);
+	[10] GetPeerNameAny() -> bytes<32>;
+	[11] GetDefaultHostName() -> bytes<32>;
+	[12] Unknown12() -> (u32, object<IUnknown>);
+	[13] CreateSocket(u8) -> (u32, object<IUnknown>);
+	[100] RegisterProcessId(u64, pid);
+	[101] MonitorManager(u64, pid);
+}
+
+interface nn::tma::ISocket {
+	[0] Close() -> (u32, u32);
+	[1] Connect(bytes<66>) -> (u32, u32);
+	[2] Bind(bytes<66>) -> (u32, u32);
+	[3] Listen(u32) -> (u32, u32);
+	[4] Accept() -> (bytes<66>, u32, object<IUnknown>);
+	[5] Recv(u32) -> (u32, u64, buffer<unknown,34,0>);
+	[6] Send(u32, buffer<unknown,33,0>) -> (u32, u64);
+	[7] Shutdown(u32) -> (u32, u32);
+	[8] Fcntl(u32, u32) -> (u32, u32);
+}
+
 interface nn::ts::server::IMeasurementServer is ts {
+	@undocumented
 	[0] Unknown0();
+	@undocumented
 	[1] Unknown1();
+	@undocumented
 	[2] Unknown2();
+	@undocumented
 	[3] Unknown3();
 }
 
 interface nn::uart::IManager is uart {
 	[0] DoesUartExist(u32) -> u8;
 	[1] DoesUartExistForTest(u32) -> u8;
+	@undocumented
 	[2] SetUartBaudrate();
+	@undocumented
 	[3] SetUartBaudrateForTest();
+	@undocumented
 	[4] IsSomethingUartValid();
+	@undocumented
 	[5] IsSomethingUartValidForTest();
 	[6] GetSession() -> object<IUnknown>;
+	@undocumented
 	[7] IsSomethingUartValid2();
+	@undocumented
 	[8] IsSomethingUartValid2ForTest();
 }
 
 interface nn::uart::IPortSession {
-	[0] Unknown0();
-	[1] Unknown1();
+	@undocumented
+	[0] OpenSession();
+	@undocumented
+	[1] OpenSessionForTest();
 	[2] Unknown2() -> u64;
+	@undocumented
 	[3] Unknown3();
 	[4] Unknown4() -> u64;
+	@undocumented
 	[5] Unknown5();
+	@undocumented
 	[6] Unknown6();
 	[7] Unknown7(u32) -> u8;
 }
@@ -3103,13 +4080,16 @@ interface nn::usb::ds::IDsEndpoint {
 	# cmd(s) will only return data from new packets, not the remainder of the
 	# earlier packet(s).
 	# 
+	@undocumented
 	[0] PostBufferAsync();
+	@undocumented
 	[1] Unknown1();
 	# No input. Returns an output event handle for polling the completion of
 	# [\#PostBufferAsync](#nn::usb::ds::IDsEndpoint\(0\) "wikilink"), even
 	# when it finished via
 	# [\#Stall](#nn::usb::ds::IDsEndpoint\(4\) "wikilink").
 	# 
+	@undocumented
 	[2] GetCompletionEvent();
 	# No input. Returns 0x84 bytes of report data from the endpoint. Seems to
 	# be eventually loaded from state, since this doesn't trigger any USB bus
@@ -3132,6 +4112,7 @@ interface nn::usb::ds::IDsEndpoint {
 	# | 0xC    | 0x4  | u32 urb status, converted to error-codes. 0x3 = success, 0x4 = 0x828c, 0x5 = 0x748c. All other values are invalid. |
 	# |  |
 	# 
+	@undocumented
 	[3] GetReportData();
 	# No input/output.
 	# 
@@ -3142,7 +4123,9 @@ interface nn::usb::ds::IDsEndpoint {
 	# Stops in-progress data-transfer done by
 	# [\#PostBufferAsync](#nn::usb::ds::IDsEndpoint\(0\) "wikilink").
 	# 
+	@undocumented
 	[4] Stall();
+	@undocumented
 	[5] Unknown5();
 }
 
@@ -3188,11 +4171,14 @@ interface nn::usb::ds::IDsInterface {
 	# endpoint is 1024 bytes in high-speed mode, for both device and host
 	# modes."
 	# 
+	@undocumented
 	[0] GetDsEndpoint();
 	# Returns an event handle. Unknown what triggers signalling, not signalled
 	# during interface-enable / device\<\>host USB-comms init.
 	# 
+	@undocumented
 	[1] GetSetupEvent();
+	@undocumented
 	[2] Unknown2();
 	# Takes no arguments. Enables the current interface.
 	# 
@@ -3203,41 +4189,49 @@ interface nn::usb::ds::IDsInterface {
 	# 
 	# Once enabled, the device/interface can then actually be used over USB.
 	# 
+	@undocumented
 	[3] EnableInterface();
 	# Takes no arguments. Disables the current interface.
 	# 
+	@undocumented
 	[4] DisableInterface();
 	# Same as
 	# [\#PostBufferAsync](#nn::usb::ds::IDsEndpoint\(0\) "wikilink")(with same
 	# input/output), except this uses control input endpoint 0x80.
 	# 
+	@undocumented
 	[5] CtrlInPostBufferAsync();
 	# Same as
 	# [\#PostBufferAsync](#nn::usb::ds::IDsEndpoint\(0\) "wikilink")(with same
 	# input/output), except this uses control output endpoint 0x00.
 	# 
+	@undocumented
 	[6] CtrlOutPostBufferAsync();
 	# Returns an event handle for polling the completion of input control
 	# commands. Same as
 	# [\#GetCompletionEvent](#nn::usb::ds::IDsEndpoint\(2\) "wikilink"),
 	# except this uses control input endpoint 0x80.
 	# 
+	@undocumented
 	[7] GetCtrlInCompletionEvent();
 	# Same as
 	# [\#GetReportData](#nn::usb::ds::IDsEndpoint\(3\) "wikilink")(with same
 	# input/output), except this uses control input endpoint 0x80.
 	# 
+	@undocumented
 	[8] GetCtrlInReportData();
 	# Returns an event handle for polling the completion of output control
 	# commands. Same as
 	# [\#GetCompletionEvent](#nn::usb::ds::IDsEndpoint\(2\) "wikilink"),
 	# except this uses control output endpoint 0x00.
 	# 
+	@undocumented
 	[9] GetCtrlOutCompletionEvent();
 	# Same as
 	# [\#GetReportData](#nn::usb::ds::IDsEndpoint\(3\) "wikilink")(with same
 	# input/output), except this uses control output endpoint 0x00.
 	# 
+	@undocumented
 	[10] GetCtrlOutReportData();
 	# No input/output.
 	# 
@@ -3245,6 +4239,7 @@ interface nn::usb::ds::IDsInterface {
 	# same function. From strings: "m\_pProtocol-\>Stall(0x80)"
 	# "m\_pProtocol-\>Stall(0x00)".
 	# 
+	@undocumented
 	[11] StallCtrl();
 }
 
@@ -3261,9 +4256,11 @@ interface nn::usb::ds::IDsService is usb:ds {
 	# Returns a not-found error when complexId isn't 0x02, for values 0x0-0x4
 	# at least.
 	# 
+	@undocumented
 	[0] BindDevice();
 	# Takes 1 copy-handle for the current process (0xFFFF8001).
 	# 
+	@undocumented
 	[1] BindClientProcess();
 	# Takes 2 type-5 buffers and returns an
 	# [\#IDsInterface](#nn::usb::ds::IDsInterface "wikilink").
@@ -3299,6 +4296,7 @@ interface nn::usb::ds::IDsService is usb:ds {
 	# 
 	# Only the first 0x9-bytes are used.
 	# 
+	@undocumented
 	[2] GetDsInterface();
 	# Returns an event handle for when the state returned by
 	# [\#GetState](#nn::usb::ds::IDsService\(4\) "wikilink") changes.
@@ -3307,6 +4305,7 @@ interface nn::usb::ds::IDsService is usb:ds {
 	# or interface enabled/disabled while the USB cable was connected which
 	# then caused USB-comms state to change.
 	# 
+	@undocumented
 	[3] GetStateChangeEvent();
 	# No input. Returns an output u32. Returns an error when
 	# [\#BindDevice](#nn::usb::ds::IDsService\(0\) "wikilink") wasn't used.
@@ -3319,6 +4318,7 @@ interface nn::usb::ds::IDsService is usb:ds {
 	#   - 4: {Initialization}, previous state is 3.
 	#   - 5: Initialization done, data-transfer is now available.
 	# 
+	@undocumented
 	[4] GetState();
 	# Takes a type-5 buffer with 0x66 bytes of USB descriptor data (see
 	# [manu](http://switchbrew.org/index.php?title=Manu_Services#manu "wikilink")).
@@ -3336,6 +4336,7 @@ interface nn::usb::ds::IDsService is usb:ds {
 	# all-zero, for padding to size 0x20.
 	# 
 	@version(2.0.0+)
+	@undocumented
 	[5] SetVidPidBcd();
 }
 
@@ -3344,13 +4345,17 @@ interface nn::usb::pd::detail::IPdCradleManager is usb:pd:c {
 }
 
 interface nn::usb::pd::detail::IPdCradleSession {
-	[0] Unknown0(u32, u32);
-	[1] Unknown1(u32) -> u32;
-	[2] Unknown2();
-	[3] Unknown3();
-	[4] Unknown4();
-	[5] Unknown5();
-	[6] Unknown6();
+	[0] VdmUserWrite(u32, u32);
+	[1] VdmUserRead(u32) -> u32;
+	[2] Vdm20Init();
+	@undocumented
+	[3] GetFwType();
+	@undocumented
+	[4] GetFwRevision();
+	@undocumented
+	[5] GetManufacturerId();
+	@undocumented
+	[6] GetDeviceId();
 }
 
 interface nn::visrv::sf::IApplicationDisplayService {
@@ -3617,12 +4622,15 @@ interface nns::hosbinder::IHOSBinderDriver is dispdrv {
 interface nns::nvdrv::INvDrvDebugFSServices is nvdrvdbg {
 	# Takes process handle. Returns an fd.
 	# 
+	@undocumented
 	[0] OpenLog();
 	# Takes fd and closes it.
 	# 
+	@undocumented
 	[1] CloseLog();
 	# Takes fd and reads log into a type-6 buffer.
 	# 
+	@undocumented
 	[2] ReadLog();
 }
 
@@ -3630,6 +4638,7 @@ interface nns::nvdrv::INvDrvServices is nvdrv:s, nvdrv:t, nvdrv:a, nvdrv {
 	# Takes a type-0x5 input buffer for the device-path. Returns the output
 	# 32bit **fd** and the u32 **error\_code**.
 	# 
+	@undocumented
 	[0] Open();
 	# Takes a 32bit **fd**, an u32 **ioctl\_cmd**, a type-0x21 input buffer,
 	# and a type-0x22 output buffer. Returns an output u32 (**error\_code**).
@@ -3637,9 +4646,11 @@ interface nns::nvdrv::INvDrvServices is nvdrv:s, nvdrv:t, nvdrv:a, nvdrv {
 	# The addr/size for send/recv buffers are only set when the associated
 	# direction bit is set in the ioctl cmd (addr/size = 0 otherwise).
 	# 
+	@undocumented
 	[1] Ioctl();
 	# Takes a 32bit **fd**. Returns an output u32 (**error\_code**).
 	# 
+	@undocumented
 	[2] Close();
 	# Takes two copy-handles (**current\_process** and **transfer\_memory**)
 	# and an input u32 (**transfer\_memory\_size**). Returns an output u32
@@ -3648,18 +4659,39 @@ interface nns::nvdrv::INvDrvServices is nvdrv:s, nvdrv:t, nvdrv:a, nvdrv {
 	# Webkit applet creates the transfer-memory with perm = 0 and size
 	# 0x300000.
 	# 
+	@undocumented
 	[3] Initialize();
 	# Takes two input u32s (**fd** and **event\_id**), with the second word
 	# immediately after the first one. Returns an output u32 (**error\_code**)
 	# and a copy-handle (**event\_handle**).
 	# 
+	# QueryEvent is only supported on (and implemented differently on):
+	# 
+	#   - /dev/nvhost-gpu
+	#       - 1: SmException\_BptIntReport
+	#       - 2: SmException\_BptPauseReport
+	#       - 3: ErrorNotifierEvent
+	#   - /dev/nvhost-ctrl: Used to get events for SyncPts.
+	#       - If bit31-28 is 1, then lower 16-bits contain event\_slot,
+	#         bit27-16 contain syncpt\_number.
+	#       - If bit31-28 is 0, then lower 4-bits contain event\_slot, bit31-4
+	#         contains syncpt\_number.
+	#   - /dev/nvhost-ctrl-gpu
+	#       - 1: Returns error\_event\_handle.
+	#       - 2: Returns unknown event.
+	#   - /dev/nvhost-dbg-gpu
+	#       - Ignores event\_id.
+	# 
+	@undocumented
 	[4] QueryEvent();
 	# Takes a copy-handle (**transfer\_memory**) and two input u32s (**fd**
 	# and **nvmap\_handle**). Returns an output u32 (**error\_code**).
 	# 
+	@undocumented
 	[5] MapSharedMem();
 	# Takes no input. Returns 0x10-bytes and an output u32 (**error\_code**).
 	# 
+	@undocumented
 	[6] GetStatus();
 	# Takes an input u64 which must
 	# [match](http://switchbrew.org/index.php?title=IPC_Marshalling "wikilink")
@@ -3667,6 +4699,7 @@ interface nns::nvdrv::INvDrvServices is nvdrv:s, nvdrv:t, nvdrv:a, nvdrv {
 	# ([AppletResourceUserId](http://switchbrew.org/index.php?title=AM_services "wikilink")).
 	# Returns an output u32 (**error\_code**).
 	# 
+	@undocumented
 	[7] ForceSetClientPID();
 	# Takes a PID-descriptor and an u64 which must
 	# [match](http://switchbrew.org/index.php?title=IPC_Marshalling "wikilink")
@@ -3674,23 +4707,57 @@ interface nns::nvdrv::INvDrvServices is nvdrv:s, nvdrv:t, nvdrv:a, nvdrv {
 	# ([AppletResourceUserId](http://switchbrew.org/index.php?title=AM_services "wikilink")).
 	# Returns an output u32 (**error\_code**).
 	# 
+	@undocumented
 	[8] SetClientPID();
 	# No input or output. Does nothing.
 	# 
+	@undocumented
 	[9] DumpGraphicsMemoryInfo();
 	@version(3.0.0+)
+	@undocumented
 	[10] Unknown10();
 	# Takes a type-0x21 buffer, a type-0x22 buffer, a type-0x21 buffer, and
 	# two input u32s. Returns an output u32 (**error\_code**).
 	# 
 	@version(3.0.0+)
+	@undocumented
 	[11] Ioctl2();
 	# Same input/output as Ioctl2, except cmdhdr\_word1 is 0x100B instead of
 	# 0xC0B.
 	# 
 	@version(3.0.0+)
+	@undocumented
 	[12] Ioctl3();
 	@version(3.0.0+)
+	@undocumented
 	[13] Unknown13();
+}
+
+interface nv::gemcontrol::INvGemControl is nvgem:c {
+	@undocumented
+	[0] Unknown0();
+	@undocumented
+	[1] Unknown1();
+	@undocumented
+	[2] Unknown2();
+	@undocumented
+	[3] Unknown3();
+	@undocumented
+	[4] Unknown4();
+	@undocumented
+	[5] Unknown5();
+	@undocumented
+	[6] Unknown6();
+	@undocumented
+	[7] Unknown7();
+}
+
+interface nv::gemcoredump::INvGemCoreDump is nvgem:cd {
+	@undocumented
+	[0] Unknown0();
+	@undocumented
+	[1] Unknown1();
+	@undocumented
+	[2] Unknown2();
 }
 
