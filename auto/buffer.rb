@@ -4,24 +4,21 @@ module SwIPC
   class Buffer
     include Mergeable
     
-    def initialize(data_type, transfer_type, size, is_array=nil)
+    def initialize(data_type, transfer_type, size)
       @data_type = data_type
       @transfer_type = transfer_type
       @size = size
-      @is_array = is_array
     end
 
     attr_reader :data_type
     attr_reader :transfer_type
     attr_reader :size
-    attr_reader :is_array
 
     def mergeable_properties
       {
         :@data_type => :nillable_mergeable,
         :@transfer_type => :exact,
         :@size => :nillable,
-        :@is_array => :nillable
       }
     end
 

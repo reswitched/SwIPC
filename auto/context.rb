@@ -30,6 +30,14 @@ module SwIPC
     end
     
     def get_or_infer_type(name)
+      name.match(/^(.*)\[([0-9xa-fA-F]*)\]$/) do |m|
+        size = m[2]
+        if size != "" then
+          raise "TODO: implement fixed-size arrays"
+        end
+        base = get_or_infer_type(m[1])
+        return DynamicArrayType.new(base)
+      end
       if !@types[name] then
         @types[name] = InferredType.new(name)
       end

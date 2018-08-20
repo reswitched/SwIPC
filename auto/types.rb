@@ -35,6 +35,61 @@ module SwIPC
     end
   end
 
+  class DynamicArrayType < Type
+    def initialize(type)
+      @base = type
+    end
+
+    def should_emit?
+      false
+    end
+
+    def can_merge?(other)
+      return @base.can_merge?(other.base)
+    end
+
+    def merge!(other)
+      @base.merge!(other)
+    end
+
+    def versions
+      @base.versions
+    end
+
+    def size_on(version)
+      nil
+    end
+
+    def size_on_all(versions)
+      nil
+    end
+
+    def alignment_on(version)
+      @base.alignment_on(version)
+    end
+
+    def alignment_on_all(versions)
+      @base.alignment_on_all(versions)
+    end
+
+    def assert_size_on(version, size)
+      if size != nil then
+        raise "can't assert size of dynamically sized array"
+      end
+      @base.assert_size_on(version, size)
+    end
+
+    def assert_alignment_on(version, size)
+      @base.assert_alignment_on(version, size)
+    end
+
+    def name
+      @base.name + "[]"
+    end
+    
+    attr_reader :base
+  end
+  
   class BuiltinType < Type
     def initialize(name, size, prefix)
       @name = name
@@ -82,51 +137,6 @@ module SwIPC
       if alignment && alignment != @size then
         raise "builtin type #{name} of alignment #{@size.inspect} is not aligned to #{alignment.inspect}"
       end
-    end
-
-    def should_emit?
-      false
-    end
-  end
-
-  class DataType < Type
-    def initialize()
-    end
-
-    def name
-      "data"
-    end
-
-    def is_builtin?
-      true
-    end
-
-    def versions
-      ALL_VERSIONS
-    end
-    
-    def size_on(version)
-      nil
-    end
-
-    def size_on_all(versions)
-      nil
-    end
-
-    def alignment_on(version)
-      nil
-    end
-
-    def alignment_on_all(versions)
-      nil
-    end
-    
-    def assert_size_on(version, size)
-      raise "can't assert sizeof(data)" if size != nil
-    end
-
-    def assert_alignment_on(version, alignment)
-      raise "can't assert alignmentof(data)" if alignment != nil
     end
 
     def should_emit?

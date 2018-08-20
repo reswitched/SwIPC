@@ -139,29 +139,26 @@ def add_args_to_command(cmd, data, has_args, has_info, version)
         tx_type = SwIPC::parse_int(info.inside[1])
         size = SwIPC::parse_int(info.inside[2])
         data_type = nil
-        is_array = false
         
         if type then
           case type.before
           when "Out"
             data_type = type.inside[0].to_s
           when "InArray"
-            data_type = type.inside[0].to_s
-            is_array = true
+            data_type = type.inside[0].to_s + "[]"
           when "OutArray"
-            data_type = type.inside[0].to_s
-            is_array = true
+            data_type = type.inside[0].to_s + "[]"
           when "InBuffer"
-            data_type = "data"
+            data_type = "bytes"
           when "OutBuffer"
-            data_type = "data"
+            data_type = "bytes"
           else
             data_type = type.to_s
           end
           data_type = cmd.context.get_or_infer_type(data_type)
           data_type.assert_size_on(version, size == 0 ? nil : size)
         end
-        cmd.buffers[index] = SwIPC::Buffer.new(data_type, tx_type, size, is_array)
+        cmd.buffers[index] = SwIPC::Buffer.new(data_type, tx_type, size)
       when "InRaw" # <size, alignment, position>
         size = SwIPC::parse_int(info.inside[0])
         alignment = SwIPC::parse_int(info.inside[1])
