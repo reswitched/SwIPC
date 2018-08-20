@@ -10,7 +10,6 @@ module SwIPC
       add_builtin_int_type("long", 8)
       add_builtin_type("float", 4, "f")
       add_builtin_type("bool", 1, "b")
-      @types["data"] = DataType.new()
       @types["bytes"] = BytesType.new(true)
       @types["unknown"] = BytesType.new(false)
       # struct
