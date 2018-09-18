@@ -81,6 +81,15 @@ def parseType(type):
 	else:
 		return [name]
 
+def repack(x):
+	if isinstance(x, list):
+		if len(x) > 1:
+			return '%s<%s>' % (x[0], ", ".join(map(repack, x[1:])))
+		else:
+			return str(x[0])
+	else:
+		return str(x)
+
 def parse(data):
 	ast = tatsu.parse(grammar, data, semantics=Semantics(), eol_comments_re=r'\/\/.*?$')
 
@@ -90,7 +99,7 @@ def parse(data):
 			continue
 		#assert elem['name'] not in types
 		tdef = {}
-		types[str(elem['name'])] = parseType(elem['type'])
+		types[repack(parseType(elem['name']))] = parseType(elem['type'])
 
 	ifaces = {}
 	services = {}

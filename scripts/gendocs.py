@@ -42,10 +42,21 @@ class Indentable(object):
 		self.fp.flush()
 
 def emitInt(x):
+	if x == ['unknown']:
+		return 'unknown'
 	return '0x%x' % x if x > 9 else str(x)
 
 def S(x):
 	return x.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+
+def repack(x):
+	if isinstance(x, list):
+		if len(x) > 1:
+			return '%s<%s>' % (x[0], ", ".join(map(repack, x[1:])))
+		else:
+			return str(x[0])
+	else:
+		return str(x)
 
 def format(elems, output=False):
 	if output and len(elems) > 1:
@@ -78,8 +89,12 @@ def format(elems, output=False):
 			ret = 'handle&lt;%s, %s&gt;' % (elem[1][0], elem[2][0])
 		elif elem[0] == 'align':
 			ret = 'align&lt;%s, %s&gt;' % (emitInt(elem[1]), sub((None, elem[2])))
-		elif elem[0] == 'bytes':
-			ret = S('bytes<%s>' % emitInt(elem[1]))
+		elif elem[0] == 'bytes' and len(elem) == 3:
+			ret = 'bytes&lt;%s, %s&gt;' % (emitInt(elem[1]), emitInt(elem[2]))
+		elif elem[0] == 'bytes' and len(elem) == 2:
+			ret = 'bytes&lt;%s&gt;' % emitInt(elem[1])
+		elif elem[0] == 'bytes' and len(elem) == 1:
+			ret = 'bytes'
 		elif elem[0] == 'unknown':
 			if len(elem) == 1:
 				ret = 'unknown'
@@ -95,9 +110,12 @@ def format(elems, output=False):
 			for field in elem[1]:
 				ret += '\t<li class="text-muted">%s = %d</li>' % (field[0], field[1])
 			ret += '</ul>'
-		elif elem[0] in types:
-			ret = '<a href="types.html#%s">%s</a>' % (S(elem[0]), S(elem[0]))
+		elif repack(elem) in types:
+			ret = '<a href="types.html#%s">%s</a>' % (S(repack(elem)), S(repack(elem)))
 		else:
+			if len(elem) != 1:
+				print elem
+				print repack(elem)
 			assert len(elem) == 1
 			ret = S(elem[0])
 
