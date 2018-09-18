@@ -56,8 +56,7 @@ for ifaceName, iface in switchbrewIfaces.items():
 			newCmd['undocumented'] = autoCmd['undocumented']
 			newIFace['cmds'].append(newCmd)
 		else:
-			cmd['undocumented'] = True
-			newIFace['cmds'].append(cmd)
+			newIFace['cmds'].append(newCmd)
 
 def genVersion(added, last):
 	if added == last:

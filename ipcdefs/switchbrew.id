@@ -10,7 +10,7 @@ interface nn::account::IAccountServiceForAdministrator is acc:su {
 	[51] TrySelectUserWithoutInteraction(b8) -> nn::account::Uid;
 	@version(5.0.0+)
 	@undocumented
-	[60] ListOpenContextStoredUsers();
+	[60] ListOpenContextStoredUsers(unknown) -> unknown;
 	[100] GetUserRegistrationNotifier() -> object<nn::account::detail::INotifier>;
 	[101] GetUserStateChangeNotifier() -> object<nn::account::detail::INotifier>;
 	[102] GetBaasAccountManagerForSystemService(nn::account::Uid) -> object<nn::account::baas::IManagerForSystemService>;
@@ -22,11 +22,11 @@ interface nn::account::IAccountServiceForAdministrator is acc:su {
 	[111] ClearSaveDataThumbnail(nn::account::Uid, nn::ApplicationId);
 	[112] LoadSaveDataThumbnail(nn::account::Uid, nn::ApplicationId) -> (u32, buffer<bytes,6>);
 	@undocumented
-	[113] GetSaveDataThumbnailExistence();
+	[113] GetSaveDataThumbnailExistence(unknown) -> unknown;
 	[190] GetUserLastOpenedApplication(nn::account::Uid) -> (u32, nn::ApplicationId);
 	@version(5.0.0+)
 	@undocumented
-	[191] ActivateOpenContextHolder();
+	[191] ActivateOpenContextHolder(unknown) -> unknown;
 	[200] BeginUserRegistration() -> nn::account::Uid;
 	[201] CompleteUserRegistration(nn::account::Uid);
 	[202] CancelUserRegistration(nn::account::Uid);
@@ -57,7 +57,7 @@ interface nn::account::IAccountServiceForApplication is acc:u0 {
 	[51] TrySelectUserWithoutInteraction(b8) -> nn::account::Uid;
 	@version(5.0.0+)
 	@undocumented
-	[60] ListOpenContextStoredUsers();
+	[60] ListOpenContextStoredUsers(unknown) -> unknown;
 	[100] InitializeApplicationInfo(u64, pid);
 	[101] GetBaasAccountManagerForApplication(nn::account::Uid) -> object<nn::account::baas::IManagerForApplication>;
 	[102] AuthenticateApplicationAsync() -> object<nn::account::detail::IAsyncContext>;
@@ -68,7 +68,7 @@ interface nn::account::IAccountServiceForApplication is acc:u0 {
 	[120] CreateGuestLoginRequest(u32, handle<copy>) -> object<nn::account::baas::IGuestLoginRequest>;
 	@version(5.0.0+)
 	@undocumented
-	[130] LoadOpenContext();
+	[130] LoadOpenContext(unknown) -> unknown;
 }
 
 interface nn::account::IAccountServiceForSystemService is acc:u1 {
@@ -83,7 +83,7 @@ interface nn::account::IAccountServiceForSystemService is acc:u1 {
 	[51] TrySelectUserWithoutInteraction(b8) -> nn::account::Uid;
 	@version(5.0.0+)
 	@undocumented
-	[60] ListOpenContextStoredUsers();
+	[60] ListOpenContextStoredUsers(unknown) -> unknown;
 	[100] GetUserRegistrationNotifier() -> object<nn::account::detail::INotifier>;
 	[101] GetUserStateChangeNotifier() -> object<nn::account::detail::INotifier>;
 	[102] GetBaasAccountManagerForSystemService(nn::account::Uid) -> object<nn::account::baas::IManagerForSystemService>;
@@ -96,11 +96,11 @@ interface nn::account::IAccountServiceForSystemService is acc:u1 {
 	[112] LoadSaveDataThumbnail(nn::account::Uid, nn::ApplicationId) -> (u32, buffer<bytes,6>);
 	@version(5.0.0+)
 	@undocumented
-	[113] GetSaveDataThumbnailExistence();
+	[113] GetSaveDataThumbnailExistence(unknown) -> unknown;
 	[190] GetUserLastOpenedApplication(nn::account::Uid) -> (u32, nn::ApplicationId);
 	@version(5.0.0+)
 	@undocumented
-	[191] ActivateOpenContextHolder();
+	[191] ActivateOpenContextHolder(unknown) -> unknown;
 	[997] DebugInvalidateTokenCacheForUser(nn::account::Uid);
 	[998] DebugSetUserStateClose(nn::account::Uid);
 	[999] DebugSetUserStateOpen(nn::account::Uid);
@@ -132,13 +132,13 @@ interface nn::account::baas::IAdministrator {
 	[132] RefreshNintendoAccountUserResourceCacheAsyncIfSecondsElapsed(u32) -> (b8, object<nn::account::detail::IAsyncContext>);
 	@version(5.0.0+)
 	@undocumented
-	[140] GetNetworkServiceLicenseCache();
+	[140] GetNetworkServiceLicenseCache(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[141] RefreshNetworkServiceLicenseCacheAsync();
+	[141] RefreshNetworkServiceLicenseCacheAsync(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[142] RefreshNetworkServiceLicenseCacheAsyncIfSecondsElapsed();
+	[142] RefreshNetworkServiceLicenseCacheAsyncIfSecondsElapsed(unknown) -> unknown;
 	[150] CreateAuthorizationRequest(u32, handle<copy>, buffer<nn::account::nas::NasClientInfo,0x19>, buffer<nn::account::NintendoAccountAuthorizationRequestParameters,0x19>) -> object<nn::account::nas::IAuthorizationRequest>;
 	[200] IsRegistered() -> b8;
 	[201] RegisterAsync() -> object<nn::account::detail::IAsyncContext>;
@@ -200,7 +200,7 @@ interface nn::account::baas::IManagerForApplication {
 	[150] CreateAuthorizationRequest(u32, handle<copy>, buffer<nn::account::NintendoAccountAuthorizationRequestParameters,0x19>) -> object<nn::account::nas::IAuthorizationRequest>;
 	@version(5.0.0+)
 	@undocumented
-	[160] StoreOpenContext();
+	[160] StoreOpenContext(unknown) -> unknown;
 }
 
 interface nn::account::baas::IManagerForSystemService {
@@ -221,13 +221,13 @@ interface nn::account::baas::IManagerForSystemService {
 	[132] RefreshNintendoAccountUserResourceCacheAsyncIfSecondsElapsed(u32) -> (b8, object<nn::account::detail::IAsyncContext>);
 	@version(5.0.0+)
 	@undocumented
-	[140] GetNetworkServiceLicenseCache();
+	[140] GetNetworkServiceLicenseCache(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[141] RefreshNetworkServiceLicenseCacheAsync();
+	[141] RefreshNetworkServiceLicenseCacheAsync(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[142] RefreshNetworkServiceLicenseCacheAsyncIfSecondsElapsed();
+	[142] RefreshNetworkServiceLicenseCacheAsyncIfSecondsElapsed(unknown) -> unknown;
 	[150] CreateAuthorizationRequest(u32, handle<copy>, buffer<nn::account::nas::NasClientInfo,0x19>, buffer<nn::account::NintendoAccountAuthorizationRequestParameters,0x19>) -> object<nn::account::nas::IAuthorizationRequest>;
 }
 
@@ -447,7 +447,7 @@ interface nn::apm::ISystemManager is apm:sys {
 	[4] ClearLastThrottlingState();
 	@version(5.0.0+)
 	@undocumented
-	[5] LoadAndApplySettings();
+	[5] LoadAndApplySettings(unknown) -> unknown;
 }
 
 interface nn::arp::detail::IReader is arp:r {
@@ -850,14 +850,14 @@ interface nn::bcat::detail::ipc::IBcatService {
 	[10100] RequestSyncDeliveryCache() -> object<nn::bcat::detail::ipc::IDeliveryCacheProgressService>;
 	@version(5.0.0+)
 	@undocumented
-	[10101] RequestSyncDeliveryCacheWithDirectoryName();
+	[10101] RequestSyncDeliveryCacheWithDirectoryName(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[10200] CancelSyncDeliveryCacheRequest();
+	[10200] CancelSyncDeliveryCacheRequest(unknown) -> unknown;
 	[20100] RequestSyncDeliveryCacheWithApplicationId(u32, nn::ApplicationId) -> object<nn::bcat::detail::ipc::IDeliveryCacheProgressService>;
 	@version(5.0.0+)
 	@undocumented
-	[20101] RequestSyncDeliveryCacheWithApplicationIdAndDirectoryName();
+	[20101] RequestSyncDeliveryCacheWithApplicationIdAndDirectoryName(unknown) -> unknown;
 	[30100] SetPassphrase(nn::ApplicationId, buffer<u8,9>);
 	[30200] RegisterBackgroundDeliveryTask(u32, nn::ApplicationId);
 	[30201] UnregisterBackgroundDeliveryTask(nn::ApplicationId);
@@ -1423,7 +1423,7 @@ interface nn::erpt::sf::IContext is erpt:c {
 	[5] Unknown5();
 	@version(5.0.0+)
 	@undocumented
-	[6] Unknown6();
+	[6] Unknown6(unknown) -> unknown;
 }
 
 interface nn::erpt::sf::IManager {
@@ -1436,10 +1436,10 @@ interface nn::erpt::sf::IManager {
 	[2] Unknown2();
 	@version(5.0.0+)
 	@undocumented
-	[3] Unknown3();
+	[3] Unknown3(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[4] Unknown4();
+	[4] Unknown4(unknown) -> unknown;
 }
 
 interface nn::erpt::sf::IReport {
@@ -1479,6 +1479,7 @@ interface nn::es::IETicketService is es {
 	[6] DeleteAllPersonalizedTicket();
 	@undocumented
 	[7] DeleteAllPersonalizedTicketEx(buffer<unknown,5>);
+	@version(2.0.0-5.1.0)
 	@undocumented
 	[8] GetTitleKey(unknown<0x14>) -> buffer<unknown,0x16>;
 	@undocumented
@@ -1493,10 +1494,12 @@ interface nn::es::IETicketService is es {
 	[13] ListMissingPersonalizedTicket(buffer<unknown,5>) -> (unknown<4>, buffer<unknown,6>);
 	@undocumented
 	[14] GetCommonTicketSize(unknown<0x10>) -> unknown<8>;
+	@version(2.0.0-5.1.0)
 	@undocumented
 	[15] GetPersonalizedTicketSize(unknown<0x10>) -> unknown<8>;
 	@undocumented
 	[16] GetCommonTicketData(unknown<0x10>) -> (unknown<8>, buffer<unknown,6>);
+	@version(2.0.0-5.1.0)
 	@undocumented
 	[17] GetPersonalizedTicketData(unknown<0x10>) -> (unknown<8>, buffer<unknown,6>);
 	@undocumented
@@ -1534,22 +1537,115 @@ interface nn::es::IETicketService is es {
 	[29] ListPrepurchaseRecordInfo(unknown<0x10>) -> (unknown<4>, buffer<unknown,6>);
 	@version(5.0.0+)
 	@undocumented
-	[30] Unknown30();
+	[30] Unknown30(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[31] Unknown31();
+	[31] Unknown31(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[32] Unknown32();
+	[32] Unknown32(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[33] Unknown33();
+	[33] Unknown33(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[34] Unknown34();
+	[34] Unknown34(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[35] Unknown35();
+	[35] Unknown35(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[36] Unknown36(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[501] Unknown501(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[502] Unknown502(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[503] GetTitleKey(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[504] Unknown504(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[508] Unknown508(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[509] Unknown509(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[510] Unknown510(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[1001] Unknown1001(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[1002] Unknown1002(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[1003] Unknown1003(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[1004] Unknown1004(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[1005] Unknown1005(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[1006] Unknown1006(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[1007] Unknown1007(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[1009] Unknown1009(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[1010] Unknown1010(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[1011] Unknown1011(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[1012] Unknown1012(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[1013] Unknown1013(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[1014] Unknown1014(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[1015] Unknown1015(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[1016] Unknown1016(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[1501] Unknown1501(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[1502] Unknown1502(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[1503] Unknown1503(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[1504] Unknown1504(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[1505] Unknown1505(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[2000] Unknown2000(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[2501] Unknown2501(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[2502] Unknown2502(unknown) -> unknown;
 }
 
 interface nn::eth::sf::IEthInterface is ethc:c {
@@ -1610,19 +1706,19 @@ interface nn::fan::detail::IManager is fan {
 	@undocumented
 	[0] Unknown0(unknown<4>) -> object<nn::fan::detail::IController>;
 	@undocumented
-	[1] Unknown1();
+	[1] Unknown1(unknown) -> unknown;
 	@undocumented
-	[2] Unknown2();
+	[2] Unknown2(unknown) -> unknown;
 	@undocumented
-	[3] Unknown3();
+	[3] Unknown3(unknown) -> unknown;
 	@undocumented
-	[4] Unknown4();
+	[4] Unknown4(unknown) -> unknown;
 	@undocumented
-	[5] Unknown5();
+	[5] Unknown5(unknown) -> unknown;
 	@undocumented
-	[6] Unknown6();
+	[6] Unknown6(unknown) -> unknown;
 	@undocumented
-	[7] Unknown7();
+	[7] Unknown7(unknown) -> unknown;
 }
 
 interface nn::fatalsrv::IPrivateService is fatal:p {
@@ -1692,13 +1788,13 @@ interface nn::friends::detail::ipc::IFriendService {
 	[20301] GetNintendoNetworkIdInfo(u32, nn::account::Uid) -> (u32, buffer<nn::friends::NintendoNetworkIdUserInfo,0x1a>, buffer<nn::friends::detail::NintendoNetworkIdFriendImpl,6>);
 	@version(5.0.0+)
 	@undocumented
-	[20302] GetSnsAccountLinkage();
+	[20302] GetSnsAccountLinkage(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[20303] GetSnsAccountProfile();
+	[20303] GetSnsAccountProfile(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[20304] GetSnsAccountFriendList();
+	[20304] GetSnsAccountFriendList(unknown) -> unknown;
 	[20400] GetBlockedUserList(u32, nn::account::Uid) -> (u32, buffer<nn::friends::detail::BlockedUserImpl,6>);
 	[20401] SyncBlockedUserList(nn::account::Uid);
 	[20500] GetProfileExtraList(nn::account::Uid, buffer<nn::account::NetworkServiceAccountId,9>) -> buffer<nn::friends::detail::ProfileExtraImpl,6>;
@@ -1731,10 +1827,10 @@ interface nn::friends::detail::ipc::IFriendService {
 	[30217] SendFriendRequestWithNintendoNetworkIdInfo(nn::friends::MiiName, nn::friends::MiiImageUrlParam, nn::friends::MiiName, nn::friends::MiiImageUrlParam, u32, nn::account::Uid, nn::account::NetworkServiceAccountId);
 	@version(5.0.0+)
 	@undocumented
-	[30300] GetSnsAccountLinkPageUrl();
+	[30300] GetSnsAccountLinkPageUrl(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[30301] UnlinkSnsAccount();
+	[30301] UnlinkSnsAccount(unknown) -> unknown;
 	[30400] BlockUser(u32, nn::account::Uid, nn::account::NetworkServiceAccountId);
 	[30401] BlockUserWithApplicationInfo(u32, nn::account::Uid, nn::account::NetworkServiceAccountId, nn::friends::ApplicationInfo, buffer<nn::friends::InAppScreenName,0x19>);
 	[30402] UnblockUser(nn::account::Uid, nn::account::NetworkServiceAccountId);
@@ -1832,10 +1928,10 @@ interface nn::fssrv::sf::IDeviceOperator {
 	[301] GetSpeedEmulationMode() -> u32;
 	@version(5.0.0+)
 	@undocumented
-	[400] SuspendSdmmcControl();
+	[400] SuspendSdmmcControl(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[401] ResumeSdmmcControl();
+	[401] ResumeSdmmcControl(unknown) -> unknown;
 }
 
 interface nn::fssrv::sf::IDirectory {
@@ -1923,9 +2019,9 @@ interface nn::fssrv::sf::IFileSystem {
 }
 
 interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
-	# Takes an input
+	# Takes a type-0x19 input buffer (ContentPath) and a
 	# [\#FileSystemType](http://switchbrew.org/index.php?title=Filesystem%20services#FileSystemType "wikilink")
-	# and an u64 title-id. Returns an
+	# as parameters. Returns an
 	# [\#IFileSystem](#nn::fssrv::sf::IFileSystem "wikilink").
 	# 
 	# \[2.0.0+\] This function was removed.
@@ -2057,10 +2153,10 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	[32] ExtendSaveDataFileSystem(u8, u64, u64, u64);
 	@version(5.0.0+)
 	@undocumented
-	[33] DeleteCacheStorage();
+	[33] DeleteCacheStorage(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[34] GetCacheStorageSize();
+	[34] GetCacheStorageSize(unknown) -> unknown;
 	# Takes an input u8
 	# [\#SaveDataSpaceId](http://switchbrew.org/index.php?title=Filesystem%20services#SaveDataSpaceId "wikilink")
 	# and a 0x40-byte Save-struct entry. Official user-process code is only
@@ -2107,22 +2203,22 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	[61] OpenSaveDataInfoReaderBySaveDataSpaceId(u8) -> object<nn::fssrv::sf::ISaveDataInfoReader>;
 	@version(5.0.0+)
 	@undocumented
-	[62] OpenCacheStorageList();
+	[62] OpenCacheStorageList(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[64] OpenSaveDataInternalStorageFileSystem();
+	[64] OpenSaveDataInternalStorageFileSystem(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[65] UpdateSaveDataMacForDebug();
+	[65] UpdateSaveDataMacForDebug(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[66] WriteSaveDataFileSystemExtraData2();
+	[66] WriteSaveDataFileSystemExtraData2(unknown) -> unknown;
 	[80] OpenSaveDataMetaFile(u8, u32, bytes<0x40,8>) -> object<nn::fssrv::sf::IFile>;
 	@version(4.0.0+)
 	[81] OpenSaveDataTransferManager() -> object<nn::fssrv::sf::ISaveDataTransferManager>;
 	@version(5.0.0+)
 	@undocumented
-	[82] OpenSaveDataTransferManagerVersion2();
+	[82] OpenSaveDataTransferManagerVersion2(unknown) -> unknown;
 	[100] OpenImageDirectoryFileSystem(u32) -> object<nn::fssrv::sf::IFileSystem>;
 	# Takes a
 	# [\#ContentStorageId](http://switchbrew.org/index.php?title=Filesystem%20services#ContentStorageId "wikilink").
@@ -2163,10 +2259,10 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	[501] OpenGameCardDetectionEventNotifier() -> object<nn::fssrv::sf::IEventNotifier>;
 	@version(5.0.0+)
 	@undocumented
-	[510] OpenSystemDataUpdateEventNotifier();
+	[510] OpenSystemDataUpdateEventNotifier(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[511] NotifySystemDataUpdateEvent();
+	[511] NotifySystemDataUpdateEvent(unknown) -> unknown;
 	@version(1.0.0-3.0.2)
 	[600] SetCurrentPosixTime(u64);
 	[601] QuerySaveDataTotalSize(u64, u64) -> u64;
@@ -2200,7 +2296,7 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	[614] CorruptSaveDataFileSystemBySaveDataSpaceId(u8, u64);
 	@version(5.0.0+)
 	@undocumented
-	[615] QuerySaveDataInternalStorageTotalSize();
+	[615] QuerySaveDataInternalStorageTotalSize(unknown) -> unknown;
 	# Takes in the 0x10 byte SD card encryption seed, and loads it into
 	# FS-module
 	# state.
@@ -2224,19 +2320,19 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	[640] IsSignedSystemPartitionOnSdCardValid() -> u8;
 	@version(5.0.0+)
 	@undocumented
-	[700] OpenAccessFailureResolver();
+	[700] OpenAccessFailureResolver(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[701] GetAccessFailureDetectionEvent();
+	[701] GetAccessFailureDetectionEvent(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[702] IsAccessFailureDetected();
+	[702] IsAccessFailureDetected(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[710] ResolveAccessFailure();
+	[710] ResolveAccessFailure(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[720] AbandonAccessFailure();
+	[720] AbandonAccessFailure(unknown) -> unknown;
 	@version(2.0.0+)
 	[800] GetAndClearFileSystemProxyErrorInfo() -> bytes<0x80,4>;
 	[1000] SetBisRootForHost(u32, buffer<unknown<0x301>,0x19>);
@@ -2277,7 +2373,7 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	[1009] GetAndClearMemoryReportInfo() -> bytes<0x80,8>;
 	@version(5.1.0+)
 	@undocumented
-	[1010] Unknown1010();
+	[1010] Unknown1010(unknown) -> unknown;
 	@version(4.0.0+)
 	[1100] OverrideSaveDataTransferTokenSignVerificationKey(buffer<unknown,5>);
 }
@@ -2371,13 +2467,13 @@ interface nn::gpio::IManager is gpio {
 	# 
 	@version(5.0.0+)
 	@undocumented
-	[7] OpenSession2();
+	[7] OpenSession2(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[8] IsWakeEventActive2();
+	[8] IsWakeEventActive2(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[9] SetWakeEventActiveFlagSetForDebug2();
+	[9] SetWakeEventActiveFlagSetForDebug2(unknown) -> unknown;
 }
 
 interface nn::gpio::IPadSession {
@@ -2473,10 +2569,10 @@ interface nn::hid::IHidDebugServer is hid:dbg {
 	[140] DeactivateConsoleSixAxisSensor();
 	@version(5.0.0+)
 	@undocumented
-	[141] GetConsoleSixAxisSensorSamplingFrequency();
+	[141] GetConsoleSixAxisSensorSamplingFrequency(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[142] DeactivateSevenSixAxisSensor();
+	[142] DeactivateSevenSixAxisSensor(unknown) -> unknown;
 	[201] ActivateFirmwareUpdate();
 	[202] DeactivateFirmwareUpdate();
 	[203] StartFirmwareUpdate(nn::hid::system::UniquePadId);
@@ -2495,34 +2591,34 @@ interface nn::hid::IHidDebugServer is hid:dbg {
 	[223] DisconnectUsbPadsAsync();
 	@version(5.0.0+)
 	@undocumented
-	[224] UpdateDesignInfo();
+	[224] UpdateDesignInfo(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[225] GetUniquePadDriverState();
+	[225] GetUniquePadDriverState(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[226] GetSixAxisSensorDriverStates();
+	[226] GetSixAxisSensorDriverStates(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[301] GetAbstractedPadHandles();
+	[301] GetAbstractedPadHandles(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[302] GetAbstractedPadState();
+	[302] GetAbstractedPadState(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[303] GetAbstractedPadsState();
+	[303] GetAbstractedPadsState(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[321] SetAutoPilotVirtualPadState();
+	[321] SetAutoPilotVirtualPadState(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[322] UnsetAutoPilotVirtualPadState();
+	[322] UnsetAutoPilotVirtualPadState(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[323] UnsetAllAutoPilotVirtualPadState();
+	[323] UnsetAllAutoPilotVirtualPadState(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[350] AddRegisteredDevice();
+	[350] AddRegisteredDevice(unknown) -> unknown;
 }
 
 interface nn::hid::IHidServer is hid {
@@ -2577,7 +2673,7 @@ interface nn::hid::IHidServer is hid {
 	[108] GetPlayerLedPattern(u32) -> u64;
 	@version(5.0.0+)
 	@undocumented
-	[109] ActivateNpadWithRevision();
+	[109] ActivateNpadWithRevision(unknown) -> unknown;
 	[120] SetNpadJoyHoldType(nn::applet::AppletResourceUserId, u64, pid);
 	[121] GetNpadJoyHoldType(nn::applet::AppletResourceUserId, pid) -> u64;
 	# Takes a PID-descriptor, an u32, and an
@@ -2614,7 +2710,7 @@ interface nn::hid::IHidServer is hid {
 	[132] EnableUnintendedHomeButtonInputProtection(b8, u32, nn::applet::AppletResourceUserId, pid);
 	@version(5.0.0+)
 	@undocumented
-	[133] SetNpadJoyAssignmentModeSingleWithDestination();
+	[133] SetNpadJoyAssignmentModeSingleWithDestination(unknown) -> unknown;
 	# Takes a
 	# [\#VibrationDeviceHandle](http://switchbrew.org/index.php?title=HID%20services#VibrationDeviceHandle "wikilink").
 	# Returns an output
@@ -2674,25 +2770,25 @@ interface nn::hid::IHidServer is hid {
 	[302] StopConsoleSixAxisSensor(nn::hid::ConsoleSixAxisSensorHandle, nn::applet::AppletResourceUserId, pid);
 	@version(5.0.0+)
 	@undocumented
-	[303] ActivateSevenSixAxisSensor();
+	[303] ActivateSevenSixAxisSensor(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[304] StartSevenSixAxisSensor();
+	[304] StartSevenSixAxisSensor(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[305] StopSevenSixAxisSensor();
+	[305] StopSevenSixAxisSensor(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[306] InitializeSevenSixAxisSensor();
+	[306] InitializeSevenSixAxisSensor(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[307] FinalizeSevenSixAxisSensor();
+	[307] FinalizeSevenSixAxisSensor(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[308] SetSevenSixAxisSensorFusionStrength();
+	[308] SetSevenSixAxisSensorFusionStrength(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[309] GetSevenSixAxisSensorFusionStrength();
+	[309] GetSevenSixAxisSensorFusionStrength(unknown) -> unknown;
 	[400] IsUsbFullKeyControllerEnabled() -> b8;
 	[401] EnableUsbFullKeyController(b8);
 	[402] IsUsbFullKeyControllerConnected(u32) -> b8;
@@ -2706,46 +2802,52 @@ interface nn::hid::IHidServer is hid {
 	[406] GetNpadLeftRightInterfaceType(u32) -> (u8, u8);
 	@version(5.0.0+)
 	@undocumented
-	[500] GetPalmaConnectionHandle();
+	[500] GetPalmaConnectionHandle(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[501] InitializePalma();
+	[501] InitializePalma(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[502] AcquirePalmaOperationCompleteEvent();
+	[502] AcquirePalmaOperationCompleteEvent(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[503] GetPalmaOperationInfo();
+	[503] GetPalmaOperationInfo(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[504] PlayPalmaActivity();
+	[504] PlayPalmaActivity(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[505] SetPalmaFrModeType();
+	[505] SetPalmaFrModeType(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[506] ReadPalmaStep();
+	[506] ReadPalmaStep(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[507] EnablePalmaStep();
+	[507] EnablePalmaStep(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[508] SuspendPalmaStep();
+	[508] SuspendPalmaStep(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[509] ResetPalmaStep();
+	[509] ResetPalmaStep(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[510] ReadPalmaApplicationSection();
+	[510] ReadPalmaApplicationSection(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[511] WritePalmaApplicationSection();
+	[511] WritePalmaApplicationSection(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[512] ReadPalmaUniqueCode();
+	[512] ReadPalmaUniqueCode(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[513] SetPalmaUniqueCodeInvalid();
+	[513] SetPalmaUniqueCodeInvalid(unknown) -> unknown;
+	@version(5.1.0+)
+	@undocumented
+	[520] Unknown520(unknown) -> unknown;
+	@version(5.1.0+)
+	@undocumented
+	[521] Unknown521(unknown) -> unknown;
 	[1000] SetNpadCommunicationMode(nn::applet::AppletResourceUserId, u64, pid);
 	[1001] GetNpadCommunicationMode() -> u64;
 }
@@ -2776,10 +2878,10 @@ interface nn::hid::IHidSystemServer is hid:sys {
 	[307] GetNpadSystemExtStyle(u32) -> (u64, u64);
 	@version(5.0.0+)
 	@undocumented
-	[308] ApplyNpadSystemCommonPolicyFull();
+	[308] ApplyNpadSystemCommonPolicyFull(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[309] GetNpadFullKeyGripColor();
+	[309] GetNpadFullKeyGripColor(unknown) -> unknown;
 	[311] SetNpadPlayerLedBlinkingDevice(u32, nn::util::BitFlagSet<0x20,nn::hid::system::DeviceType>, nn::applet::AppletResourceUserId, pid);
 	[321] GetUniquePadsFromNpad(u32) -> (u64, buffer<nn::hid::system::UniquePadId,0xa>);
 	[322] GetIrSensorState(u32, nn::applet::AppletResourceUserId, pid) -> u64;
@@ -2811,7 +2913,7 @@ interface nn::hid::IHidSystemServer is hid:sys {
 	[547] GetAllowedBluetoothLinksCount() -> u64;
 	@version(5.0.0+)
 	@undocumented
-	[548] GetRegisteredDevices();
+	[548] GetRegisteredDevices(unknown) -> unknown;
 	[700] ActivateUniquePad(nn::applet::AppletResourceUserId, nn::hid::system::UniquePadId, pid);
 	[702] AcquireUniquePadConnectionEventHandle() -> handle<copy>;
 	[703] GetUniquePadIds() -> (u64, buffer<nn::hid::system::UniquePadId,0xa>);
@@ -2825,38 +2927,38 @@ interface nn::hid::IHidSystemServer is hid:sys {
 	[806] DisconnectUniquePad(nn::hid::system::UniquePadId);
 	@version(5.0.0+)
 	@undocumented
-	[807] GetUniquePadType();
+	[807] GetUniquePadType(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[808] GetUniquePadInterface();
+	[808] GetUniquePadInterface(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[809] GetUniquePadSerialNumber();
+	[809] GetUniquePadSerialNumber(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[810] GetUniquePadControllerNumber();
+	[810] GetUniquePadControllerNumber(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[811] GetSixAxisSensorUserCalibrationStage();
+	[811] GetSixAxisSensorUserCalibrationStage(unknown) -> unknown;
 	[821] StartAnalogStickManualCalibration(nn::hid::system::UniquePadId, u64);
 	[822] RetryCurrentAnalogStickManualCalibrationStage(nn::hid::system::UniquePadId, u64);
 	[823] CancelAnalogStickManualCalibration(nn::hid::system::UniquePadId, u64);
 	[824] ResetAnalogStickManualCalibration(nn::hid::system::UniquePadId, u64);
 	@version(5.0.0+)
 	@undocumented
-	[825] GetAnalogStickState();
+	[825] GetAnalogStickState(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[826] GetAnalogStickManualCalibrationStage();
+	[826] GetAnalogStickManualCalibrationStage(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[827] IsAnalogStickButtonPressed();
+	[827] IsAnalogStickButtonPressed(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[828] IsAnalogStickInReleasePosition();
+	[828] IsAnalogStickInReleasePosition(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[829] IsAnalogStickInCircumference();
+	[829] IsAnalogStickInCircumference(unknown) -> unknown;
 	[850] IsUsbFullKeyControllerEnabled() -> b8;
 	[851] EnableUsbFullKeyController(b8);
 	[852] IsUsbConnected(nn::hid::system::UniquePadId) -> b8;
@@ -2880,19 +2982,19 @@ interface nn::hid::IHidSystemServer is hid:sys {
 	[1011] DeactivateAudioControl();
 	@version(5.0.0+)
 	@undocumented
-	[1050] IsSixAxisSensorAccurateUserCalibrationSupported();
+	[1050] IsSixAxisSensorAccurateUserCalibrationSupported(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[1051] StartSixAxisSensorAccurateUserCalibration();
+	[1051] StartSixAxisSensorAccurateUserCalibration(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[1052] CancelSixAxisSensorAccurateUserCalibration();
+	[1052] CancelSixAxisSensorAccurateUserCalibration(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[1053] GetSixAxisSensorAccurateUserCalibrationState();
+	[1053] GetSixAxisSensorAccurateUserCalibrationState(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[1100] GetHidbusSystemServiceObject();
+	[1100] GetHidbusSystemServiceObject(unknown) -> unknown;
 }
 
 interface nn::hid::IHidTemporaryServer is hid:tmp {
@@ -3522,13 +3624,13 @@ interface nn::lr::ILocationResolver {
 	# 
 	@version(5.0.0+)
 	@undocumented
-	[10] SetProgramNcaPath2();
+	[10] SetProgramNcaPath2(unknown) -> unknown;
 	# Takes no input. Frees all linked-lists' entries that have **flag** set
 	# to 1.
 	# 
 	@version(5.0.0+)
 	@undocumented
-	[11] ClearLocationResolver2();
+	[11] ClearLocationResolver2(unknown) -> unknown;
 	# Takes an u64 **TitleID**. Used for
 	# [NCA-type1](http://switchbrew.org/index.php?title=NCA_Content_FS#NCA-type1 "wikilink").
 	# 
@@ -3538,7 +3640,7 @@ interface nn::lr::ILocationResolver {
 	# 
 	@version(5.0.0+)
 	@undocumented
-	[12] DeleteProgramNcaPath();
+	[12] DeleteProgramNcaPath(unknown) -> unknown;
 	# Takes an u64 **TitleID**. Used for
 	# [NCA-type3](http://switchbrew.org/index.php?title=NCA_Content_FS#NCA-type3 "wikilink").
 	# 
@@ -3548,7 +3650,7 @@ interface nn::lr::ILocationResolver {
 	# 
 	@version(5.0.0+)
 	@undocumented
-	[13] DeleteControlNcaPath();
+	[13] DeleteControlNcaPath(unknown) -> unknown;
 	# Takes an u64 **TitleID**. Used for
 	# [NCA-type4](http://switchbrew.org/index.php?title=NCA_Content_FS#NCA-type4 "wikilink").
 	# 
@@ -3558,7 +3660,7 @@ interface nn::lr::ILocationResolver {
 	# 
 	@version(5.0.0+)
 	@undocumented
-	[14] DeleteDocHtmlNcaPath();
+	[14] DeleteDocHtmlNcaPath(unknown) -> unknown;
 	# Takes an u64 **TitleID**. Used for
 	# [NCA-type5](http://switchbrew.org/index.php?title=NCA_Content_FS#NCA-type5 "wikilink").
 	# 
@@ -3568,7 +3670,7 @@ interface nn::lr::ILocationResolver {
 	# 
 	@version(5.0.0+)
 	@undocumented
-	[15] DeleteInfoHtmlNcaPath();
+	[15] DeleteInfoHtmlNcaPath(unknown) -> unknown;
 }
 
 interface nn::lr::ILocationResolverManager is lr {
@@ -3719,10 +3821,10 @@ interface nn::mii::detail::IDatabaseService {
 	[21] GetIndex(nn::mii::CharInfo) -> u32;
 	@version(5.0.0+)
 	@undocumented
-	[22] SetInterfaceVersion();
+	[22] SetInterfaceVersion(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[23] Convert();
+	[23] Convert(unknown) -> unknown;
 }
 
 interface nn::mii::detail::IImageDatabaseService is miiimg {
@@ -3874,7 +3976,7 @@ interface nn::ncm::IContentMetaDatabase {
 	[19] GetRequiredApplicationVersion(unknown<0x10>) -> unknown<4>;
 	@version(5.0.0+)
 	@undocumented
-	[20] Unknown20();
+	[20] Unknown20(unknown) -> unknown;
 }
 
 interface nn::ncm::IContentStorage {
@@ -4647,7 +4749,7 @@ interface nn::ns::detail::IAccountProxyInterface {
 }
 
 interface nn::ns::detail::IApplicationManagerInterface is ns:am {
-	# Takes a type-6 output buffer and an u64.
+	# Takes a type-6 output buffer and an u32 entry\_offset.
 	# 
 	# Returns an array of title-info entries using the specified offset and
 	# size. No input titleID is passed to this.
@@ -4682,6 +4784,7 @@ interface nn::ns::detail::IApplicationManagerInterface is ns:am {
 	# 
 	# Launches an application title which is registered with NS.
 	# 
+	@version(1.0.0-5.1.0)
 	@undocumented
 	[19] LaunchApplication(unknown<8>) -> unknown<8>;
 	# Takes a 0x16-type output buffer, an u8
@@ -4825,6 +4928,30 @@ interface nn::ns::detail::IApplicationManagerInterface is ns:am {
 	[87] IsApplicationCrashReportEnabled() -> unknown<1>;
 	@undocumented
 	[90] BoostSystemMemoryResourceLimit(unknown<8>);
+	@version(5.0.0+)
+	@undocumented
+	[91] Unknown91(unknown) -> unknown;
+	@version(5.0.0+)
+	@undocumented
+	[92] Unknown92(unknown) -> unknown;
+	@version(5.0.0+)
+	@undocumented
+	[93] Unknown93(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[94] LaunchApplication2(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[95] Unknown95(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[96] Unknown96(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[97] Unknown97(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[98] Unknown98(unknown) -> unknown;
 	@undocumented
 	[100] ResetToFactorySettings();
 	@undocumented
@@ -4837,8 +4964,14 @@ interface nn::ns::detail::IApplicationManagerInterface is ns:am {
 	[201] DeleteUserSaveDataAll(unknown<0x10>) -> object<nn::ns::detail::IProgressMonitorForDeleteUserSaveDataAll>;
 	@undocumented
 	[210] DeleteUserSystemSaveData(unknown<0x18>);
+	@version(6.0.0+)
+	@undocumented
+	[211] Unknown211(unknown) -> unknown;
 	@undocumented
 	[220] UnregisterNetworkServiceAccount(unknown<0x10>);
+	@version(6.0.0+)
+	@undocumented
+	[221] Unknown221(unknown) -> unknown;
 	@undocumented
 	[300] GetApplicationShellEvent() -> handle<copy>;
 	@undocumented
@@ -4867,6 +5000,9 @@ interface nn::ns::detail::IApplicationManagerInterface is ns:am {
 	[404] InvalidateApplicationControlCache(unknown<8>);
 	@undocumented
 	[405] ListApplicationControlCacheEntryInfo() -> (unknown<4>, buffer<unknown,6>);
+	@version(6.0.0+)
+	@undocumented
+	[406] Unknown406(unknown) -> unknown;
 	@undocumented
 	[502] RequestCheckGameCardRegistration(unknown<8>) -> (handle<copy>, object<nn::ns::detail::IAsyncResult>);
 	@undocumented
@@ -4882,7 +5018,7 @@ interface nn::ns::detail::IApplicationManagerInterface is ns:am {
 	@undocumented
 	[508] GetLastGameCardMountFailureResult();
 	@undocumented
-	[509] ListApplicationIdOnGameCard();
+	[509] ListApplicationIdOnGameCard(unknown) -> unknown;
 	@undocumented
 	[600] CountApplicationContentMeta(unknown<8>) -> unknown<4>;
 	# Returns 0x10-byte entries using the specified titleID starting at the
@@ -4904,6 +5040,7 @@ interface nn::ns::detail::IApplicationManagerInterface is ns:am {
 	# 
 	@undocumented
 	[601] ListApplicationContentMetaStatus(unknown<0x10>) -> (unknown<4>, buffer<unknown,6>);
+	@version(2.0.0-5.1.0)
 	@undocumented
 	[602] ListAvailableAddOnContent(unknown<0x10>) -> (unknown<4>, buffer<unknown,6>);
 	@undocumented
@@ -4914,6 +5051,9 @@ interface nn::ns::detail::IApplicationManagerInterface is ns:am {
 	[605] ListApplicationContentMetaStatusWithRightsCheck(unknown<0x10>) -> (unknown<4>, buffer<unknown,6>);
 	@undocumented
 	[606] GetContentMetaStorage(unknown<0x10>) -> unknown<1>;
+	@version(6.0.0+)
+	@undocumented
+	[607] Unknown607(unknown) -> unknown;
 	@undocumented
 	[700] PushDownloadTaskList(buffer<unknown,5>);
 	@undocumented
@@ -4952,6 +5092,15 @@ interface nn::ns::detail::IApplicationManagerInterface is ns:am {
 	[908] ListApplicationRecordInstalledContentMeta(unknown<0x10>) -> (unknown<4>, buffer<unknown,6>);
 	@undocumented
 	[909] WithdrawCleanupAddOnContentsWithNoRightsRecommendation(unknown<8>);
+	@version(6.0.0+)
+	@undocumented
+	[910] Unknown910(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[911] Unknown911(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[912] Unknown912(unknown) -> unknown;
 	@undocumented
 	[1000] RequestVerifyApplicationDeprecated(unknown<0x10>, handle<copy>) -> (handle<copy>, object<nn::ns::detail::IProgressAsyncResult>);
 	@undocumented
@@ -4959,9 +5108,9 @@ interface nn::ns::detail::IApplicationManagerInterface is ns:am {
 	@undocumented
 	[1002] RequestVerifyAddOnContentsRights(unknown<8>) -> (handle<copy>, object<nn::ns::detail::IProgressAsyncResult>);
 	@undocumented
-	[1003] RequestVerifyApplication();
+	[1003] RequestVerifyApplication(unknown) -> unknown;
 	@undocumented
-	[1004] CorruptContentForDebug();
+	[1004] CorruptContentForDebug(unknown) -> unknown;
 	@undocumented
 	[1200] NeedsUpdateVulnerability() -> unknown<1>;
 	@undocumented
@@ -4974,12 +5123,12 @@ interface nn::ns::detail::IApplicationManagerInterface is ns:am {
 	[1303] CleanupAddOnContentsWithNoRights(unknown<8>);
 	@undocumented
 	[1304] DeleteApplicationContentEntity(unknown<0x10>);
+	@version(6.0.0+)
 	@undocumented
-	[1305] TryDeleteRunningApplicationEntity();
+	[1308] Unknown1308(unknown) -> unknown;
+	@version(6.0.0+)
 	@undocumented
-	[1306] TryDeleteRunningApplicationCompletely();
-	@undocumented
-	[1307] TryDeleteRunningApplicationContentEntities();
+	[1309] Unknown1309(unknown) -> unknown;
 	@undocumented
 	[1400] PrepareShutdown();
 	@undocumented
@@ -5017,7 +5166,7 @@ interface nn::ns::detail::IApplicationManagerInterface is ns:am {
 	@undocumented
 	[1901] RequestDownloadApplicationPrepurchasedRights(unknown<8>) -> (handle<copy>, object<nn::ns::detail::IAsyncResult>);
 	@undocumented
-	[1902] GetApplicationTicketInfo();
+	[1902] GetApplicationTicketInfo(unknown) -> unknown;
 	@undocumented
 	[2000] GetSystemDeliveryInfo() -> buffer<unknown,0x16>;
 	@undocumented
@@ -5054,6 +5203,72 @@ interface nn::ns::detail::IApplicationManagerInterface is ns:am {
 	[2016] ListNotCommittedContentMeta(unknown<0x10>) -> (unknown<4>, buffer<unknown,6>);
 	@undocumented
 	[2017] CreateDownloadTask(unknown<8>, buffer<unknown,5>);
+	@version(6.0.0+)
+	@undocumented
+	[2018] Unknown2018(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[2050] Unknown2050(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[2100] Unknown2100(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[2101] Unknown2101(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[2150] Unknown2150(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[2151] Unknown2151(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[2152] Unknown2152(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[2153] Unknown2153(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[2154] Unknown2154(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[2160] Unknown2160(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[2161] Unknown2161(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[2170] Unknown2170(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[2171] Unknown2171(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[2180] Unknown2180(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[2181] Unknown2181(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[2182] Unknown2182(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[2190] Unknown2190(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[2199] Unknown2199(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[2200] Unknown2200(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[2201] Unknown2201(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[2250] Unknown2250(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[2300] Unknown2300(unknown) -> unknown;
 }
 
 interface nn::ns::detail::IContentManagementInterface {
@@ -5444,10 +5659,10 @@ interface nn::pctl::detail::ipc::IParentalControlService {
 	[1013] ConfirmStereoVisionPermission();
 	@version(5.0.0+)
 	@undocumented
-	[1014] ConfirmPlayableApplicationVideoOld();
+	[1014] ConfirmPlayableApplicationVideoOld(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[1015] ConfirmPlayableApplicationVideo();
+	[1015] ConfirmPlayableApplicationVideo(unknown) -> unknown;
 	[1031] IsRestrictionEnabled() -> b8;
 	[1032] GetSafetyLevel() -> u32;
 	[1033] SetSafetyLevel(u32);
@@ -5471,10 +5686,10 @@ interface nn::pctl::detail::ipc::IParentalControlService {
 	[1063] SetStereoVisionRestriction(b8);
 	@version(5.0.0+)
 	@undocumented
-	[1064] ResetConfirmedStereoVisionPermission();
+	[1064] ResetConfirmedStereoVisionPermission(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[1065] IsStereoVisionPermitted();
+	[1065] IsStereoVisionPermitted(unknown) -> unknown;
 	[1201] UnlockRestrictionTemporarily(buffer<u8,9>);
 	[1202] UnlockSystemSettingsRestriction(buffer<u8,9>);
 	[1203] SetPinCode(buffer<u8,9>);
@@ -5543,22 +5758,22 @@ interface nn::pctl::detail::ipc::IParentalControlService {
 	[1902] ClearFreeCommunicationApplicationListForDebug();
 	@version(5.0.0+)
 	@undocumented
-	[1903] GetExemptApplicationListCountForDebug();
+	[1903] GetExemptApplicationListCountForDebug(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[1904] GetExemptApplicationListForDebug();
+	[1904] GetExemptApplicationListForDebug(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[1905] UpdateExemptApplicationListForDebug();
+	[1905] UpdateExemptApplicationListForDebug(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[1906] AddToExemptApplicationListForDebug();
+	[1906] AddToExemptApplicationListForDebug(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[1907] DeleteFromExemptApplicationListForDebug();
+	[1907] DeleteFromExemptApplicationListForDebug(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[1908] ClearExemptApplicationListForDebug();
+	[1908] ClearExemptApplicationListForDebug(unknown) -> unknown;
 	[1941] DeletePairing();
 	[1951] SetPlayTimerSettingsForDebug(nn::pctl::PlayTimerSettings);
 	[1952] GetPlayTimerSpentTimeForTest() -> nn::TimeSpanType;
@@ -5581,7 +5796,7 @@ interface nn::pctl::detail::ipc::IParentalControlService {
 	[2015] FinishSynchronizeParentalControlSettingsWithLastUpdated(nn::pctl::detail::AsyncData) -> nn::time::PosixTime;
 	@version(5.0.0+)
 	@undocumented
-	[2016] RequestUpdateExemptionListAsync();
+	[2016] RequestUpdateExemptionListAsync(unknown) -> unknown;
 }
 
 interface nn::pctl::detail::ipc::IParentalControlServiceFactory is pctl:s, pctl:r, pctl:a, pctl {
@@ -5705,6 +5920,7 @@ interface nn::pm::detail::IDebugMonitorInterface is pm:dmnt {
 	# is probably useless because function is somewhat nopped on non-dev
 	# builds anyway.
 	# 
+	@version(1.0.0-4.1.0)
 	@undocumented
 	[0] IsDebugMode(unknown<8>) -> (unknown<4>, buffer<unknown,6>);
 	# Returns an array of pids of all processes that have mask 4 set in
@@ -5714,6 +5930,28 @@ interface nn::pm::detail::IDebugMonitorInterface is pm:dmnt {
 	# is probably useless because function is somewhat nopped on non-dev
 	# builds anyway.
 	# 
+	@version(5.0.0+)
+	@undocumented
+	[0] GetDebugProcesses(unknown<8>) -> (unknown<4>, buffer<unknown,6>);
+	# Takes a pid. Last process event must be ProcessEvent\_Created or
+	# ProcessEvent\_DebugAttached.
+	# 
+	# Then it uses svcStartProcess(process\_handle, u8, u8, u32) with args
+	# coming from ldr:pm GetProgramInfo.
+	# 
+	# After that, it sets last process state to ProcessEvent\_DebugDetached.
+	# 
+	@version(5.0.0+)
+	@undocumented
+	[1] StartDebugProcess() -> (unknown<4>, buffer<unknown,6>);
+	# Returns an array of pids of all processes that have mask 4 set in
+	# process flags.
+	# 
+	# \[2.0.0+\] Additional check on input that can return 0xC0F. The meaning
+	# is probably useless because function is somewhat nopped on non-dev
+	# builds anyway.
+	# 
+	@version(1.0.0-4.1.0)
 	@undocumented
 	[1] GetDebugProcesses() -> (unknown<4>, buffer<unknown,6>);
 	# Takes a pid. Last process event must be ProcessEvent\_Created or
@@ -5724,10 +5962,17 @@ interface nn::pm::detail::IDebugMonitorInterface is pm:dmnt {
 	# 
 	# After that, it sets last process state to ProcessEvent\_DebugDetached.
 	# 
+	@version(1.0.0-4.1.0)
 	@undocumented
 	[2] StartDebugProcess(unknown<8>);
 	# Takes a title-id and returns the pid.
 	# 
+	@version(5.0.0+)
+	@undocumented
+	[2] GetTitlePid(unknown<8>);
+	# Takes a title-id and returns the pid.
+	# 
+	@version(1.0.0-4.1.0)
 	@undocumented
 	[3] GetTitlePid(unknown<8>) -> unknown<8>;
 	# Takes a title-id of the program to debug. Sets this to a global field.
@@ -5737,18 +5982,51 @@ interface nn::pm::detail::IDebugMonitorInterface is pm:dmnt {
 	# Returns an event handle that is signaled when the requested title is
 	# about to be launched.
 	# 
+	@version(5.0.0+)
+	@undocumented
+	[3] EnableDebugForTitleId(unknown<8>) -> unknown<8>;
+	# Takes a title-id of the program to debug. Sets this to a global field.
+	# 
+	# Next time it gets launched it will be handled differently.
+	# 
+	# Returns an event handle that is signaled when the requested title is
+	# about to be launched.
+	# 
+	@version(1.0.0-4.1.0)
 	@undocumented
 	[4] EnableDebugForTitleId(unknown<8>) -> handle<copy>;
 	# Returns the pid of the application process.
 	# 
+	@version(5.0.0+)
+	@undocumented
+	[4] GetApplicationPid(unknown<8>) -> handle<copy>;
+	# Returns the pid of the application process.
+	# 
+	@version(1.0.0-4.1.0)
 	@undocumented
 	[5] GetApplicationPid() -> unknown<8>;
 	# Does \*not\* take a specific title-id as input.
 	# 
 	# Returns an event handle that is triggered for application titles.
 	# 
+	@version(5.0.0+)
+	@undocumented
+	[5] EnableDebugForApplication() -> unknown<8>;
+	# Does \*not\* take a specific title-id as input.
+	# 
+	# Returns an event handle that is triggered for application titles.
+	# 
+	@version(1.0.0-4.1.0)
 	@undocumented
 	[6] EnableDebugForApplication() -> handle<copy>;
+	# Takes in a u32 of bitflags.
+	# 
+	# Disables debugging/clears the globally specified tid if bit 0 is set,
+	# disables debugging/clears the next application if bit 1 is set.
+	# 
+	@version(6.0.0+)
+	@undocumented
+	[6] DisableDebug() -> handle<copy>;
 }
 
 interface nn::pm::detail::IInformationInterface is pm:info {
@@ -5911,13 +6189,13 @@ interface nn::prepo::detail::ipc::IPrepoService is prepo:a, prepo:m, prepo:u, pr
 	[90100] GetStorageUsage() -> (u64, u64);
 	@version(5.0.0+)
 	@undocumented
-	[90200] GetStatistics();
+	[90200] GetStatistics(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[90201] GetThroughputHistory();
+	[90201] GetThroughputHistory(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[90300] GetLastUploadError();
+	[90300] GetLastUploadError(unknown) -> unknown;
 }
 
 interface nn::profiler::IProfiler is banana {
@@ -6121,31 +6399,34 @@ interface nn::settings::IFactorySettingsServer is set:cal {
 	[23] GetLcdVendorId() -> u32;
 	@version(5.0.0+)
 	@undocumented
-	[24] GetEciDeviceCertificate2();
+	[24] GetEciDeviceCertificate2(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[25] GetEciDeviceKey2();
+	[25] GetEciDeviceKey2(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[26] GetAmiiboKey();
+	[26] GetAmiiboKey(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[27] GetAmiiboEcqvCertificate();
+	[27] GetAmiiboEcqvCertificate(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[28] GetAmiiboEcdsaCertificate();
+	[28] GetAmiiboEcdsaCertificate(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[29] GetAmiiboEcqvBlsKey();
+	[29] GetAmiiboEcqvBlsKey(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[30] GetAmiiboEcqvBlsCertificate();
+	[30] GetAmiiboEcqvBlsCertificate(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[31] GetAmiiboEcqvBlsRootCertificate();
+	[31] GetAmiiboEcqvBlsRootCertificate(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[32] GetUnknownId();
+	[32] GetUnknownId(unknown) -> unknown;
+	@version(6.0.0+)
+	@undocumented
+	[33] GetUnknownId2(unknown) -> unknown;
 }
 
 interface nn::settings::IFirmwareDebugSettingsServer is set:fd {
@@ -6179,7 +6460,7 @@ interface nn::settings::ISettingsServer is set {
 	[7] GetKeyCodeMap() -> buffer<nn::kpr::KeyCodeMap,0x16>;
 	@version(5.0.0+)
 	@undocumented
-	[8] GetQuestFlag();
+	[8] GetQuestFlag(unknown) -> unknown;
 }
 
 interface nn::settings::ISystemSettingsServer is set:sys {
@@ -6200,7 +6481,7 @@ interface nn::settings::ISystemSettingsServer is set:sys {
 	[4] GetFirmwareVersion2() -> buffer<nn::settings::system::FirmwareVersion,0x1a>;
 	@version(5.0.0+)
 	@undocumented
-	[5] GetFirmwareVersionDigest();
+	[5] GetFirmwareVersionDigest(unknown) -> unknown;
 	[7] GetLockScreenFlag() -> b8;
 	[8] SetLockScreenFlag(b8);
 	[9] GetBacklightSettings() -> nn::settings::system::BacklightSettings;
@@ -6423,31 +6704,31 @@ interface nn::settings::ISystemSettingsServer is set:sys {
 	[140] GetHostFsMountPoint() -> buffer<nn::settings::system::HostFsMountPoint,0x16>;
 	@version(5.0.0+)
 	@undocumented
-	[141] GetRequiresRunRepairTimeReviser();
+	[141] GetRequiresRunRepairTimeReviser(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[142] SetRequiresRunRepairTimeReviser();
+	[142] SetRequiresRunRepairTimeReviser(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[143] SetBlePairingSettings();
+	[143] SetBlePairingSettings(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[144] GetBlePairingSettings();
+	[144] GetBlePairingSettings(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[145] GetConsoleSixAxisSensorAngularVelocityTimeBias();
+	[145] GetConsoleSixAxisSensorAngularVelocityTimeBias(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[146] SetConsoleSixAxisSensorAngularVelocityTimeBias();
+	[146] SetConsoleSixAxisSensorAngularVelocityTimeBias(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[147] GetConsoleSixAxisSensorAngularAcceleration();
+	[147] GetConsoleSixAxisSensorAngularAcceleration(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[148] SetConsoleSixAxisSensorAngularAcceleration();
+	[148] SetConsoleSixAxisSensorAngularAcceleration(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[149] GetRebootlessSystemUpdateVersion();
+	[149] GetRebootlessSystemUpdateVersion(unknown) -> unknown;
 }
 
 interface nn::sm::detail::IManagerInterface is sm:m {
@@ -6500,7 +6781,7 @@ interface nn::socket::resolver::IResolver is sfdnsres {
 	[8] RequestCancelHandle(u64, pid) -> u32;
 	[9] CancelSocketCall(u32, u64, pid);
 	@undocumented
-	[10] Unknown10();
+	[10] Unknown10(unknown) -> unknown;
 	# This function clears `nn::socket::resolver::g_DnsIpServerAddressArray`,
 	# setting its length to 0 as well. The array initially contains IPs filled
 	# by `bsdconfig`, a privileged service handling DHCP and such.
@@ -6508,7 +6789,7 @@ interface nn::socket::resolver::IResolver is sfdnsres {
 	# Takes no arguments, doesn't return anything, never fails.
 	# 
 	@undocumented
-	[11] ClearDnsIpServerAddressArray();
+	[11] ClearDnsIpServerAddressArray(unknown) -> unknown;
 }
 
 interface nn::socket::sf::IClient is bsd:u, bsd:s {
@@ -6592,26 +6873,6 @@ interface nn::spl::detail::IGeneralInterface is spl:, spl:mig, spl:fs, spl:ssl, 
 	# 
 	# Takes a u32 (**ConfigItem**), and returns one or more u64s
 	# (**ConfigVal**).
-	# 
-	# | ConfigItem | Name                                                                                                                       |
-	# | ---------- | -------------------------------------------------------------------------------------------------------------------------- |
-	# | 1          | [\#DisableProgramVerification](http://switchbrew.org/index.php?title=SPL%20services#DisableProgramVerification "wikilink") |
-	# | 2          | [\#DramId](http://switchbrew.org/index.php?title=SPL%20services#DramId "wikilink")                                         |
-	# | 3          | [\#SecurityEngineIrqNumber](http://switchbrew.org/index.php?title=SPL%20services#SecurityEngineIrqNumber "wikilink")       |
-	# | 4          | [\#Version](http://switchbrew.org/index.php?title=SPL%20services#Version "wikilink")                                       |
-	# | 5          | [\#HardwareType](http://switchbrew.org/index.php?title=SPL%20services#HardwareType "wikilink")                             |
-	# | 6          | [\#IsRetail](http://switchbrew.org/index.php?title=SPL%20services#IsRetail "wikilink")                                     |
-	# | 7          | [\#IsRecoveryBoot](http://switchbrew.org/index.php?title=SPL%20services#IsRecoveryBoot "wikilink")                         |
-	# | 8          | [\#DeviceId](http://switchbrew.org/index.php?title=SPL%20services#DeviceId "wikilink")                                     |
-	# | 9          | \[1.0.0-4.0.0\] [\#BootReason](http://switchbrew.org/index.php?title=SPL%20services#BootReason "wikilink")                 |
-	# | 10         | [\#MemoryArrange](http://switchbrew.org/index.php?title=SPL%20services#MemoryArrange "wikilink")                           |
-	# | 11         | [\#IsDebugMode](http://switchbrew.org/index.php?title=SPL%20services#IsDebugMode "wikilink")                               |
-	# | 12         | [\#KernelMemoryConfiguration](http://switchbrew.org/index.php?title=SPL%20services#KernelMemoryConfiguration "wikilink")   |
-	# | 13         | [\#IsChargerHiZModeEnabled](http://switchbrew.org/index.php?title=SPL%20services#IsChargerHiZModeEnabled "wikilink")       |
-	# | 14         | \[4.0.0+\] [\#IsKiosk](http://switchbrew.org/index.php?title=SPL%20services#IsKiosk "wikilink")                            |
-	# | 15         | \[5.0.0+\] [\#NewHardwareType](http://switchbrew.org/index.php?title=SPL%20services#NewHardwareType "wikilink")            |
-	# | 16         | \[5.0.0+\] [\#NewKeyGeneration](http://switchbrew.org/index.php?title=SPL%20services#NewKeyGeneration "wikilink")          |
-	# | 17         | \[5.0.0+\] [\#Package2Hash](http://switchbrew.org/index.php?title=SPL%20services#Package2Hash "wikilink")                  |
 	# 
 	@undocumented
 	[0] GetConfig(unknown<4>) -> unknown<8>;
@@ -6883,22 +7144,22 @@ interface nn::spl::detail::IGeneralInterface is spl:, spl:mig, spl:fs, spl:ssl, 
 	[25] GetSharedData() -> unknown<4>;
 	@version(5.0.0+)
 	@undocumented
-	[26] ImportSslRsaKey();
+	[26] ImportSslRsaKey(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[27] SecureExpModWithSslKey();
+	[27] SecureExpModWithSslKey(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[28] ImportEsRsaKey();
+	[28] ImportEsRsaKey(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[29] SecureExpModWithEsKey();
+	[29] SecureExpModWithEsKey(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[30] EncryptManuRsaKeyForImport();
+	[30] EncryptManuRsaKeyForImport(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[31] GetPackage2Hash();
+	[31] GetPackage2Hash(unknown) -> unknown;
 }
 
 interface nn::spl::detail::IRandomInterface is csrng {
@@ -6997,7 +7258,7 @@ interface nn::ssl::sf::ISslService is ssl {
 	[5] SetInterfaceVersion(u32);
 	@version(5.0.0+)
 	@undocumented
-	[6] FlushSessionCache();
+	[6] FlushSessionCache(unknown) -> unknown;
 }
 
 interface nn::tc::IManager is tc {
@@ -7035,7 +7296,7 @@ interface nn::timesrv::detail::service::IStaticService is time:u, time:a, time:s
 	[101] SetStandardUserSystemClockAutomaticCorrectionEnabled(b8);
 	@version(5.0.0+)
 	@undocumented
-	[102] GetStandardUserSystemClockInitialYear();
+	[102] GetStandardUserSystemClockInitialYear(unknown) -> unknown;
 	@version(3.0.0+)
 	[200] IsStandardNetworkSystemClockAccuracySufficient() -> b8;
 	@version(4.0.0+)
@@ -7206,7 +7467,7 @@ interface nn::usb::ds::IDsEndpoint {
 	# When sending data where size is larger than wMaxPacketSize, it will
 	# automatically send multiple USB packets where last packet size =
 	# {remaining size}. Every {wMaxPacketSize}-bytes is a different packet.
-	# This only occurs in some cases. When **size** is ~0x1000000(exact size
+	# This only occurs in some cases. When **size** is \~0x1000000(exact size
 	# unknown), Switch-side silently hangs, while host-side will timeout(no
 	# traffic on USB bus indicating failure).
 	# 
@@ -7378,7 +7639,7 @@ interface nn::usb::ds::IDsInterface {
 	[11] StallCtrl();
 	@version(5.0.0+)
 	@undocumented
-	[12] AppendConfigurationData();
+	[12] AppendConfigurationData(unknown) -> unknown;
 }
 
 interface nn::usb::ds::IDsService is usb:ds {
@@ -7481,22 +7742,22 @@ interface nn::usb::ds::IDsService is usb:ds {
 	[5] ClearDeviceData(buffer<unknown,5>);
 	@version(5.0.0+)
 	@undocumented
-	[6] AddUsbStringDescriptor();
+	[6] AddUsbStringDescriptor(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[7] DeleteUsbStringDescriptor();
+	[7] DeleteUsbStringDescriptor(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[8] SetUsbDeviceDescriptor();
+	[8] SetUsbDeviceDescriptor(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[9] SetBinaryObjectStore();
+	[9] SetBinaryObjectStore(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[10] Enable();
+	[10] Enable(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[11] Disable();
+	[11] Disable(unknown) -> unknown;
 }
 
 interface nn::usb::hs::IClientEpSession {
@@ -7725,7 +7986,7 @@ interface nn::visrv::sf::IApplicationDisplayService {
 	[2101] SetLayerScalingMode(u32, u64);
 	@version(5.0.0+)
 	@undocumented
-	[2102] ConvertScalingMode();
+	[2102] ConvertScalingMode(unknown) -> unknown;
 	# Takes a PID-descriptor, an type-0x46 buffer, and four u64s: width(s32),
 	# height(s32), \<output from
 	# [AM](http://switchbrew.org/index.php?title=AM_services "wikilink")
@@ -7797,28 +8058,28 @@ interface nn::visrv::sf::IManagerDisplayService {
 	[6002] SetLayerVisibility(b8, u64);
 	@version(5.0.0+)
 	@undocumented
-	[6003] SetLayerConfig();
+	[6003] SetLayerConfig(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[6004] AttachLayerPresentationTracer();
+	[6004] AttachLayerPresentationTracer(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[6005] DetachLayerPresentationTracer();
+	[6005] DetachLayerPresentationTracer(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[6006] StartLayerPresentationRecording();
+	[6006] StartLayerPresentationRecording(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[6007] StopLayerPresentationRecording();
+	[6007] StopLayerPresentationRecording(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[6008] StartLayerPresentationFenceWait();
+	[6008] StartLayerPresentationFenceWait(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[6009] StopLayerPresentationFenceWait();
+	[6009] StopLayerPresentationFenceWait(unknown) -> unknown;
 	@version(5.0.0+)
 	@undocumented
-	[6010] GetLayerPresentationAllFencesExpiredEvent();
+	[6010] GetLayerPresentationAllFencesExpiredEvent(unknown) -> unknown;
 	[7000] SetContentVisibility(b8);
 	[8000] SetConductorLayer(b8, u64);
 	[8100] SetIndirectProducerFlipOffset(u64, u64, nn::TimeSpan);
@@ -7882,7 +8143,7 @@ interface nn::visrv::sf::IManagerDisplayService {
 	[8297] GetSharedFrameBufferContentParameter(nn::vi::fbshare::SharedBufferHandle, u64) -> (u32, nn::vi::CropRegion, u32, u32, u32);
 	@version(5.0.0+)
 	@undocumented
-	[8298] ExpandStartupLogoOnSharedFrameBuffer();
+	[8298] ExpandStartupLogoOnSharedFrameBuffer(unknown) -> unknown;
 }
 
 interface nn::visrv::sf::IManagerRootService is vi:m {
@@ -7955,7 +8216,7 @@ interface nn::visrv::sf::ISystemDisplayService {
 	[8257] FillSharedFrameBufferColor(u32, u32, u32, u32, nn::vi::fbshare::SharedLayerHandle, u64);
 	@version(5.0.0+)
 	@undocumented
-	[8258] CancelSharedFrameBuffer();
+	[8258] CancelSharedFrameBuffer(unknown) -> unknown;
 }
 
 interface nn::visrv::sf::ISystemRootService is vi:s {
