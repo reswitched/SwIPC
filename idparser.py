@@ -26,7 +26,7 @@ name = /[a-zA-Z_][a-zA-Z0-9_:]*/ ;
 sname = /[a-zA-Z_][a-zA-Z0-9_:\-]*/ ;
 serviceNameList = @:','.{ sname } ;
 template = '<' @:','.{ expression } '>' ;
-arrayLength = '[' length:number ']' ;
+arrayLength = '[' [ length:number ] ']' ;
 structField = doc:{ comment }* type:type name:name ';' ;
 enumField = doc:{ comment }* name:name '=' value:number ';' ;
 type =
