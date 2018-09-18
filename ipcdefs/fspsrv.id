@@ -585,7 +585,8 @@ interface nn::fssrv::sf::ISaveDataInfoReader {
 	[0] ReadSaveDataInfo() -> (u64, buffer<unknown,6>);
 }
 
-// --------------------------------------------- FSP-PR ---------------------------------------------interface nn::fssrv::sf::IProgramRegistry is fsp-pr {
+// --------------------------------------------- FSP-PR ---------------------------------------------
+interface nn::fssrv::sf::IProgramRegistry is fsp-pr {
 	# Takes a storageID, a pid, a titleID, a 0x1C type-A buffer for the [ FS
 	# Access
 	# Header](http://switchbrew.org/index.php?title=NPDM#FS_Access_Header "wikilink"),
