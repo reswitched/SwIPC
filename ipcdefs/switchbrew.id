@@ -4257,7 +4257,7 @@ interface nn::nfp::detail::IDebug {
 	[24] RecreateApplicationArea(bytes<8,4>, u32, buffer<unknown,5>);
 	[100] Format(bytes<8,4>);
 	[101] GetAdminInfo(bytes<8,4>) -> buffer<unknown<0x40>,0x1a>;
-	[102] GetRegisterInfo(bytes<8,4>) -> buffer<unknown<0x100>,0x1a>;
+	[102] GetRegisterInfo2(bytes<8,4>) -> buffer<unknown<0x100>,0x1a>;
 	[103] SetRegisterInfo(bytes<8,4>, buffer<unknown<0x100>,0x19>);
 	[104] DeleteRegisterInfo(bytes<8,4>);
 	[105] DeleteApplicationArea(bytes<8,4>);
@@ -4327,7 +4327,7 @@ interface nn::nfp::detail::ISystem {
 	[23] AttachAvailabilityChangeEvent() -> handle<copy>;
 	[100] Format(bytes<8,4>);
 	[101] GetAdminInfo(bytes<8,4>) -> buffer<unknown<0x40>,0x1a>;
-	[102] GetRegisterInfo(bytes<8,4>) -> buffer<unknown<0x100>,0x1a>;
+	[102] GetRegisterInfo2(bytes<8,4>) -> buffer<unknown<0x100>,0x1a>;
 	[103] SetRegisterInfo(bytes<8,4>, buffer<unknown<0x100>,0x19>);
 	[104] DeleteRegisterInfo(bytes<8,4>);
 	[105] DeleteApplicationArea(bytes<8,4>);
