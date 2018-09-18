@@ -665,6 +665,30 @@
 				<li class="list-group-item" id="nn::time::sf::CalendarAdditionalInfo">
 					<a href="#nn::time::sf::CalendarAdditionalInfo">+</a> nn::time::sf::CalendarAdditionalInfo <small class="text-muted"><ul>	<li class="text-muted">u32 tm_wday</li>	<li class="text-muted">i32 tm_yday</li>	<li class="text-muted">bytes&lt;8&gt; tz_name</li>	<li class="text-muted">bool is_daylight_saving_time</li>	<li class="text-muted">i32 utc_offset_seconds</li></ul></small>
 				</li>
+				<li class="list-group-item" id="nn::usb::usb_bos_descriptor">
+					<a href="#nn::usb::usb_bos_descriptor">+</a> nn::usb::usb_bos_descriptor <small class="text-muted"><ul>	<li class="text-muted">u8 bLength</li>	<li class="text-muted">u8 bDescriptorType</li>	<li class="text-muted">u16 wTotalLength</li>	<li class="text-muted">u8 bNumDeviceCaps</li>	<li class="text-muted">array&lt;<a href="types.html#nn::usb::usb_bos_dev_capability_descriptor">nn::usb::usb_bos_dev_capability_descriptor</a>, 0&gt; dev_capability</li></ul></small>
+				</li>
+				<li class="list-group-item" id="nn::usb::usb_bos_dev_capability_descriptor">
+					<a href="#nn::usb::usb_bos_dev_capability_descriptor">+</a> nn::usb::usb_bos_dev_capability_descriptor <small class="text-muted"><ul>	<li class="text-muted">u8 bLength</li>	<li class="text-muted">u8 bDescriptorType</li>	<li class="text-muted">u8 bDevCapabilityType</li>	<li class="text-muted">array&lt;u8, 0&gt; dev_capability_data</li></ul></small>
+				</li>
+				<li class="list-group-item" id="nn::usb::usb_descriptor_data">
+					<a href="#nn::usb::usb_descriptor_data">+</a> nn::usb::usb_descriptor_data <small class="text-muted"><ul>	<li class="text-muted">u16 idVendor</li>	<li class="text-muted">u16 idProduct</li>	<li class="text-muted">u16 bcdDevice</li>	<li class="text-muted">bytes&lt;0x20&gt; manufacturer</li>	<li class="text-muted">bytes&lt;0x20&gt; product</li>	<li class="text-muted">bytes&lt;0x20&gt; serialNumber</li></ul></small>
+				</li>
+				<li class="list-group-item" id="nn::usb::usb_device_descriptor">
+					<a href="#nn::usb::usb_device_descriptor">+</a> nn::usb::usb_device_descriptor <small class="text-muted"><ul>	<li class="text-muted">u8 bLength</li>	<li class="text-muted">u8 bDescriptorType</li>	<li class="text-muted">u16 bcdUSB</li>	<li class="text-muted">u8 bDeviceClass</li>	<li class="text-muted">u8 bDeviceSubClass</li>	<li class="text-muted">u8 bDeviceProtocol</li>	<li class="text-muted">u8 bMaxPacketSize0</li>	<li class="text-muted">u16 idVendor</li>	<li class="text-muted">u16 idProduct</li>	<li class="text-muted">u16 bcdDevice</li>	<li class="text-muted">u8 iManufacturer</li>	<li class="text-muted">u8 iProduct</li>	<li class="text-muted">u8 iSerialNumber</li>	<li class="text-muted">u8 bNumConfigurations</li></ul></small>
+				</li>
+				<li class="list-group-item" id="nn::usb::usb_device_speed">
+					<a href="#nn::usb::usb_device_speed">+</a> nn::usb::usb_device_speed <small class="text-muted"><span>&lt;size = u32&gt;</span><ul>	<li class="text-muted">Unknown = 0</li>	<li class="text-muted">Low = 1</li>	<li class="text-muted">Full = 2</li>	<li class="text-muted">High = 3</li>	<li class="text-muted">SuperSpeed = 4</li></ul></small>
+				</li>
+				<li class="list-group-item" id="nn::usb::usb_endpoint_descriptor">
+					<a href="#nn::usb::usb_endpoint_descriptor">+</a> nn::usb::usb_endpoint_descriptor <small class="text-muted"><ul>	<li class="text-muted">u8 bLength</li>	<li class="text-muted">u8 bDescriptorType</li>	<li class="text-muted">u8 bEndpointAddress</li>	<li class="text-muted">u8 bmAttributes</li>	<li class="text-muted">u16 wMaxPacketSize</li>	<li class="text-muted">u8 bInterval</li></ul></small>
+				</li>
+				<li class="list-group-item" id="nn::usb::usb_interface_descriptor">
+					<a href="#nn::usb::usb_interface_descriptor">+</a> nn::usb::usb_interface_descriptor <small class="text-muted"><ul>	<li class="text-muted">u8 bLength</li>	<li class="text-muted">u8 bDescriptorType</li>	<li class="text-muted">u8 bInterfaceNumber</li>	<li class="text-muted">u8 bAlternateSetting</li>	<li class="text-muted">u8 bNumEndpoints</li>	<li class="text-muted">u8 bInterfaceClass</li>	<li class="text-muted">u8 bInterfaceSubClass</li>	<li class="text-muted">u8 bInterfaceProtocol</li>	<li class="text-muted">u8 iInterface</li></ul></small>
+				</li>
+				<li class="list-group-item" id="nn::usb::usb_report_entry">
+					<a href="#nn::usb::usb_report_entry">+</a> nn::usb::usb_report_entry <small class="text-muted"><ul>	<li class="text-muted">u32 urbId</li>	<li class="text-muted">u32 requestedSize</li>	<li class="text-muted">u32 transferredSize</li>	<li class="text-muted">u32 urbStatus</li></ul></small>
+				</li>
 				<li class="list-group-item" id="nn::util::Unorm8x4">
 					<a href="#nn::util::Unorm8x4">+</a> nn::util::Unorm8x4 <small class="text-muted">u32</small>
 				</li>
