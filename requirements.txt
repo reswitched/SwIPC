@@ -1,2 +1,2 @@
-tatsu
-commonmark
+tatsu ~= 4.2.6
+commonmark ~= 0.8.1

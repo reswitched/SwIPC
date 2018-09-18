@@ -10,16 +10,16 @@ type nn::usb::usb_interface_descriptor = struct {
 	u8 iInterface;
 };
 
-type nn::usb::usb_descriptor_data = struct {
+type nn::usb::usb_descriptor_data = struct<0x66> {
 	u16 idVendor;
 	u16 idProduct;
 	u16 bcdDevice;
-	u8[0x20] manufacturer;
-	u8[0x20] product;
-	u8[0x20] serialNumber;
+	bytes<0x20> manufacturer;
+	bytes<0x20> product;
+	bytes<0x20> serialNumber;
 };
 
-type nn::usb::usb_endpoint_descriptor = struct {
+type nn::usb::usb_endpoint_descriptor = struct<7> {
 	u8 bLength;
 	u8 bDescriptorType;
 	u8 bEndpointAddress;
@@ -33,6 +33,46 @@ type nn::usb::usb_report_entry = struct {
 	u32 requestedSize;
 	u32 transferredSize;
 	u32 urbStatus;
+};
+
+type nn::usb::usb_device_descriptor = struct<12> {
+	u8 bLength;
+	u8 bDescriptorType;
+	u16 bcdUSB;
+	u8 bDeviceClass;
+	u8 bDeviceSubClass;
+	u8 bDeviceProtocol;
+	u8 bMaxPacketSize0;
+	u16 idVendor;
+	u16 idProduct;
+	u16 bcdDevice;
+	u8 iManufacturer;
+	u8 iProduct;
+	u8 iSerialNumber;
+	u8 bNumConfigurations;
+};
+
+type nn::usb::usb_bos_dev_capability_descriptor = struct {
+	u8 bLength;
+	u8 bDescriptorType;
+	u8 bDevCapabilityType;
+	array<u8, 0x0> dev_capability_data;
+};
+
+type nn::usb::usb_bos_descriptor = struct {
+	u8 bLength;
+	u8 bDescriptorType;
+	u16 wTotalLength;
+	u8 bNumDeviceCaps;
+	array<nn::usb::usb_bos_dev_capability_descriptor, 0x0> dev_capability;
+};
+
+type nn::usb::usb_device_speed = enum<u32> {
+	Unknown = 0;
+	Low = 1;
+	Full = 2;
+	High = 3;
+	SuperSpeed = 4;
 };
 
 # Used for Switch<>PC USB comms, aka Switch-as-device. This seems to only be
@@ -51,6 +91,7 @@ interface nn::usb::ds::IDsService is usb:ds {
 	# until [#EnableInterface](#nn::usb::ds::IDsInterface(3)) is used.
 	[0] BindDevice(u32 complexId);
 	[1] BindClientProcess(handle<copy, process>);
+
 	# Manu sends a 0x09-byte command (e.g.: `09 04 04 00 00 FF FF FF 00`) in
 	# the first buffer and a string ("usb") in the second buffer.
 	#
@@ -62,7 +103,12 @@ interface nn::usb::ds::IDsService is usb:ds {
 	# used.
 	#
 	# Up to 4 interfaces can be used+enabled.
+	@version(1.0.0-4.0.0)
 	[2] GetDsInterface(buffer<nn::usb::usb_interface_descriptor, 5, 9> interface_descriptor, buffer<bytes, 5>) -> (u8, object<nn::usb::ds::IDsInterface>);
+
+	@version(5.0.0+)
+	[2] RegisterInterface(u8 address) -> object<nn::usb::ds::IDsInterface>;
+
 	# Returns an event handle for when the state returned by
 	# [#GetChange](#nn::usb::ds::IDsService(4)) changes. Signalled when
 	# Switch<->host USB comms change between started/stopped. USB cable
@@ -80,8 +126,23 @@ interface nn::usb::ds::IDsService is usb:ds {
 	# - 4: {Initialization}, previous state is 3
 	# - 5: Initialization done, data-transfer is now available.
 	[4] GetState() -> u32;
-	@version(2.0.0+)
-	[5] SetVidPidBcd(buffer<nn::usb::usb_descriptor_data, 5, 0x66> descriptor);
+	@version(2.0.0-4.0.0)
+	[5] SetVidPidBcd(buffer<nn::usb::usb_descriptor_data, 5> descriptor);
+
+	@version(5.0.0+)
+	[5] ClearDeviceData();
+	@version(5.0.0+)
+	[6] AddUsbStringDescriptor(buffer<bytes<0x82>, 5> string_descriptor) -> u8 index;
+	@version(5.0.0+)
+	[7] DeleteUsbStringDescriptor(u8 index);
+	@version(5.0.0+)
+	[8] SetUsbDeviceDescriptor(nn::usb::usb_device_speed speed_mode, buffer<nn::usb::usb_device_descriptor, 5> descriptor);
+	@version(5.0.0+)
+	[9] SetBinaryObjectStore(buffer<nn::usb::usb_bos_descriptor, 5, 0>);
+	@version(5.0.0+)
+	[10] Enable();
+	@version(5.0.0+)
+	[11] Disable();
 }
 
 interface nn::usb::ds::IDsInterface {
@@ -114,11 +175,14 @@ interface nn::usb::ds::IDsInterface {
 	# From the Tegra datasheet: "The maximum packet size supported on any
 	# endpoint is 1024 bytes in high-speed mode, for both device and host
 	# modes."
-	[0] GetDsEndpoint(buffer<nn::usb::usb_endpoint_descriptor, 5, 7>) -> (u8, object<nn::usb::ds::IDsEndpoint>);
+	@version(1.0.0-4.0.0)
+	[0] GetDsEndpoint(buffer<nn::usb::usb_endpoint_descriptor, 5>) -> (u8, object<nn::usb::ds::IDsEndpoint>);
+	@version(5.0.0+)
+	[0] RegisterEndpoint(u8 address) -> object<nn::usb::ds::IDsEndpoint>;
 	# Returns an event handle. Unknown what triggers signalling, not
 	# signalled during interface-enable / device<>host USB-comms init.
 	[1] GetSetupEvent() -> handle<copy, event>;
-	[2] Unknown2(buffer<unknown, 0x6, unknown>);
+	[2] GetSetupPacket() -> buffer<unknown, 0x6>;
 	# Enables the current interface.
 	#
 	# Only one interface can be enabled at a time per bInterfaceNumber. When
@@ -154,6 +218,9 @@ interface nn::usb::ds::IDsInterface {
 	# same function. From strings: "m_pProtocol->Stall(0x80)"
 	# "m_pProtocol->Stall(0x00)"
 	[11] StallCtrl();
+	
+	@version(5.0.0+)
+	[12] AppendConfigurationData(u8 interface_number, nn::usb::usb_device_speed speed_mode, buffer<unknown, 5> descriptor);
 }
 
 interface nn::usb::ds::IDsEndpoint {
@@ -181,7 +248,7 @@ interface nn::usb::ds::IDsEndpoint {
 	# cmd(s) will only return data from new packets, not the remainder of the
 	# earlier packet(s).
 	[0] PostBufferAsync(u32 size, u64 buffer) -> u32 urbId;
-	[1] Unknown1();
+	[1] Cancel();
 	# Returns an event handle for polling the completion of
 	# [#PostBufferAsync](#nn::usb::ds::IDsEndpoint(0)), even when it finished via
 	# [#Stall](#nn::usb::ds::IDsEndpoint(4)).
@@ -196,5 +263,6 @@ interface nn::usb::ds::IDsEndpoint {
 	# Stops in-progress data-transfer done by
 	# [#PostBufferAsync](nn::usb::ds::IDsEndpoint(0)).
 	[4] Stall();
-	[5] Unknown5(u8);
+	# zlt likely stands for zero-length termination
+	[5] SetZlt(bool);
 }
