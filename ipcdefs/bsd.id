@@ -5,6 +5,11 @@ type nn::socket::timeout = struct {
 };
 type nn::socket::fd_set = bytes<0x10>;
 type nn::socket::ResourceStatistics = unknown;
+type nn::socket::sockaddr = struct {
+	u8 sa_len;
+	u8 sa_family;
+	bytes addr;
+};
 type nn::socket::sockaddr_in = struct<16> {
 	u8 sin_len;
 	u8 sin_family;
@@ -38,12 +43,12 @@ type nn::socket::BsdBufferConfig = struct {
 };
 
 interface nn::socket::sf::IClient is bsd:u, bsd:s {
-	[0] Initialize(nn::socket::BsdBufferConfig config, u64 pid, u64 transferMemorySize, handle<copy, transfer_memory>, pid) -> u32 bsd_errno;
-	[1] StartMonitoring(u64, pid);
+	[0] RegisterClient(nn::socket::BsdBufferConfig config, u64 pid, u64 transferMemorySize, handle<copy, transfer_memory>, pid) -> u32 bsd_errno;
+	[1] StartMonitoring(u64 pid, pid);
 	# Create an endpoint for communication
 	[2] Socket(u32 domain, u32 type, u32 protocol) -> (i32 ret, u32 bsd_errno);
 	[3] SocketExempt(u32, u32, u32) -> (i32 ret, u32 bsd_errno);
-	[4] Open(u32, buffer<data, 0x21>) -> (i32 ret, u32 bsd_errno);
+	[4] Open(u32, buffer<bytes, 0x21>) -> (i32 ret, u32 bsd_errno);
 
 	# Synchronous I/O multiplexing
 	#
@@ -82,35 +87,35 @@ interface nn::socket::sf::IClient is bsd:u, bsd:s {
 	#				being ready to write.
 	# - `errorfds_in`	Specifies the file descriptors to be checked for
 	#				error conditions pending.
-	[5] Select(u32 nfds, nn::socket::timeout timeout, buffer<nn::socket::fd_set, 0x21, 0x10> readfds_in, buffer<nn::socket::fd_set, 0x21, 0x10> writefds_in, buffer<nn::socket::fd_set, 0x21, 0x10> errorfds_in) -> (i32 ret, u32 bsd_errno, buffer<nn::socket::fd_set, 0x22, 0x10> readfds_out, buffer<nn::socket::fd_set, 0x22, 0x10> writefds_out, buffer<nn::socket::fd_set, 0x22, 0x10> errorfds_out);
-	[6] Poll(u32, u32, buffer<data, 0x21, variable>) -> (i32 ret, u32 bsd_errno, buffer<data, 0x22, variable>);
-	[7] Sysctl(buffer<data, 0x21, variable>, buffer<data, 0x21, variable>) -> (i32 ret, u32 bsd_errno, u32, buffer<data, 0x22, variable>);
-	[8] Recv(u32 socket, u32 flags) -> (i32 ret, u32 bsd_errno, buffer<data, 0x22, variable> message);
-	[9] RecvFrom(u32 sock, u32 flags) -> (i32 ret, u32 bsd_errno, u32 addrlen, buffer<data, 0x22, variable> message, buffer<nn::socket::sockaddr, 0x22, variable>);
-	[10] Send(u32 socket, u32 flags, buffer<data, 0x21, variable>) -> (i32 ret, u32 bsd_errno);
-	[11] SendTo(u32 socket, u32 flags, buffer<data, 0x21, variable>, buffer<nn::socket::sockaddr, 0x21, variable>) -> (i32 ret, u32 bsd_errno);
-	[12] Accept(u32 socket) -> (i32 ret, u32 bsd_errno, u32 addrlen, buffer<nn::socket::sockaddr, 0x22, variable> addr);
-	[13] Bind(u32 socket, buffer<nn::socket::sockaddr, 0x21, variable>) -> (i32 ret, u32 bsd_errno);
-	[14] Connect(u32 socket, buffer<nn::socket::sockaddr, 0x21, variable>) -> (i32 ret, u32 bsd_errno);
-	[15] GetPeerName(u32 socket) -> (i32 ret, u32 bsd_errno, u32 addrlen, buffer<nn::socket::sockaddr, 0x22, variable> addr);
-	[16] GetSockName(u32 socket) -> (i32 ret, u32 bsd_errno, u32 addrlen, buffer<nn::socket::sockaddr, 0x22, variable> addr);
-	[17] GetSockOpt(u32, u32, u32) -> (i32 ret, u32 bsd_errno, u32, buffer<data, 0x22, variable>);
+	[5] Select(u32 nfds, nn::socket::timeout timeout, buffer<nn::socket::fd_set, 0x21> readfds_in, buffer<nn::socket::fd_set, 0x21> writefds_in, buffer<nn::socket::fd_set, 0x21> errorfds_in) -> (i32 ret, u32 bsd_errno, buffer<nn::socket::fd_set, 0x22> readfds_out, buffer<nn::socket::fd_set, 0x22> writefds_out, buffer<nn::socket::fd_set, 0x22> errorfds_out);
+	[6] Poll(u32, u32, buffer<bytes, 0x21>) -> (i32 ret, u32 bsd_errno, buffer<bytes, 0x22>);
+	[7] Sysctl(buffer<bytes, 0x21>, buffer<bytes, 0x21>) -> (i32 ret, u32 bsd_errno, u32, buffer<bytes, 0x22>);
+	[8] Recv(u32 socket, u32 flags) -> (i32 ret, u32 bsd_errno, buffer<bytes, 0x22> message);
+	[9] RecvFrom(u32 sock, u32 flags) -> (i32 ret, u32 bsd_errno, u32 addrlen, buffer<bytes, 0x22> message, buffer<nn::socket::sockaddr, 0x22>);
+	[10] Send(u32 socket, u32 flags, buffer<bytes, 0x21>) -> (i32 ret, u32 bsd_errno);
+	[11] SendTo(u32 socket, u32 flags, buffer<bytes, 0x21>, buffer<nn::socket::sockaddr, 0x21>) -> (i32 ret, u32 bsd_errno);
+	[12] Accept(u32 socket) -> (i32 ret, u32 bsd_errno, u32 addrlen, buffer<nn::socket::sockaddr, 0x22> addr);
+	[13] Bind(u32 socket, buffer<nn::socket::sockaddr, 0x21>) -> (i32 ret, u32 bsd_errno);
+	[14] Connect(u32 socket, buffer<nn::socket::sockaddr, 0x21>) -> (i32 ret, u32 bsd_errno);
+	[15] GetPeerName(u32 socket) -> (i32 ret, u32 bsd_errno, u32 addrlen, buffer<nn::socket::sockaddr, 0x22> addr);
+	[16] GetSockName(u32 socket) -> (i32 ret, u32 bsd_errno, u32 addrlen, buffer<nn::socket::sockaddr, 0x22> addr);
+	[17] GetSockOpt(u32, u32, u32) -> (i32 ret, u32 bsd_errno, u32, buffer<bytes, 0x22>);
 	[18] Listen(u32 socket, u32 backlog) -> (i32 ret, u32 bsd_errno);
-	[19] Ioctl(u32, u32, u32, buffer<data, 0x21, variable>, buffer<data, 0x21, variable>, buffer<data, 0x21, variable>, buffer<data, 0x21, variable>) -> (i32 ret, u32 bsd_errno, buffer<data, 0x22, variable>, buffer<data, 0x22, variable>, buffer<data, 0x22, variable>, buffer<data, 0x22, variable>);
+	[19] Ioctl(u32, u32, u32, buffer<bytes, 0x21>, buffer<bytes, 0x21>, buffer<bytes, 0x21>, buffer<bytes, 0x21>) -> (i32 ret, u32 bsd_errno, buffer<bytes, 0x22>, buffer<bytes, 0x22>, buffer<bytes, 0x22>, buffer<bytes, 0x22>);
 	[20] Fcntl(u32, u32, u32) -> (i32 ret, u32 bsd_errno);
-	[21] SetSockOpt(u32 socket, u32 level, u32 option_name, buffer<data, 0x21, variable>) -> (i32 ret, u32 bsd_errno);
+	[21] SetSockOpt(u32 socket, u32 level, u32 option_name, buffer<bytes, 0x21>) -> (i32 ret, u32 bsd_errno);
 	[22] Shutdown(u32 socket, u32 how) -> (i32 ret, u32 bsd_errno);
 	[23] ShutdownAllSockets(u32 how) -> (i32 ret, u32 bsd_errno);
-	[24] Write(u32 socket, buffer<data, 0x21, variable> message) -> (i32 ret, u32 bsd_errno);
+	[24] Write(u32 socket, buffer<bytes, 0x21> message) -> (i32 ret, u32 bsd_errno);
 	[25] Read(u32 socket) -> (i32 ret, u32 bsd_errno, buffer<i8, 0x22, 0> message);
 	[26] Close(u32 socket) -> (i32 ret, u32 bsd_errno);
 	[27] DuplicateSocket(u32, u64) -> (i32 ret, u32 bsd_errno);
 	@version(1.0.0-3.0.0)
-	[28] GetResourceStatistics(u64, pid) -> (i32 ret, u32 bsd_errno, buffer<nn::socket::ResourceStatistics, 0x22, unknown>);
+	[28] GetResourceStatistics(u64, pid) -> (i32 ret, u32 bsd_errno, buffer<nn::socket::ResourceStatistics, 0x22>);
 	@version(4.0.0+)
-	[28] GetResourceStatistics(u32, u32, u64, pid) -> (i32 ret, u32 bsd_errno, buffer<nn::socket::ResourceStatistics, 0x22, unknown>);
+	[28] GetResourceStatistics(u32, u32, u64, pid) -> (i32 ret, u32 bsd_errno, buffer<nn::socket::ResourceStatistics, 0x22>);
 	@version(3.0.0+)
-	[29] RecvMMsg(u32, u32, u32, u128) -> (i32 ret, u32 bsd_errno, buffer<data, 0x22, variable>);
+	[29] RecvMMsg(u32, u32, u32, u128) -> (i32 ret, u32 bsd_errno, buffer<bytes, 0x22>);
 	@version(3.0.0+)
-	[30] SendMMsg(u32, u32, u32, buffer<data, 0x21, variable>, buffer<data, 0x21, variable>) -> (i32 ret, u32 bsd_errno);
+	[30] SendMMsg(u32, u32, u32, buffer<bytes, 0x21>, buffer<bytes, 0x21>) -> (i32 ret, u32 bsd_errno);
 }

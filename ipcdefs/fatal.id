@@ -1,5 +1,7 @@
 interface nn::fatalsrv::IService is fatal:u {
-	[0] Unknown0(u64, u64, pid);
-	[1] Unknown1(u64, u64, pid);
-	[2] TransitionToFatalError(u64 errorCode, u64, buffer<unknown, 0x15, 0x110> errorBuf, pid);
+	@undocumented
+	[0] ThrowFatal(u64, u64, pid);
+	@undocumented
+	[1] ThrowFatalWithPolicy(u64, u64, pid);
+	[2] ThrowFatalWithCpuContext(u64 errorCode, u64, buffer<unknown, 0x15, 0x110> errorBuf, pid);
 }

@@ -2,14 +2,14 @@ interface nns::nvdrv::INvDrvServices is nvdrv:s, nvdrv:t, nvdrv:a, nvdrv {
 	# Takes a type-0x5 input buffer for the device-path. Returns the output
 	# 32bit **fd** and the u32 **error\_code**.
 	# 
-	[0] Open(buffer<data, 0x5> path) -> (u32 fd, u32 error_code);
+	[0] Open(buffer<bytes, 0x5> path) -> (u32 fd, u32 error_code);
 	# Takes a 32bit **fd**, an u32 **ioctl\_cmd**, a type-0x21 input buffer,
 	# and a type-0x22 output buffer. Returns an output u32 (**error\_code**).
 	# 
 	# The addr/size for send/recv buffers are only set when the associated
 	# direction bit is set in the ioctl cmd (addr/size = 0 otherwise).
 	# 
-	[1] Ioctl(u32 fd, u32 rq_id, buffer<data, 0x21>) -> (u32 error_code, buffer<data, 0x22>);
+	[1] Ioctl(u32 fd, u32 rq_id, buffer<bytes, 0x21>) -> (u32 error_code, buffer<bytes, 0x22>);
 	# Takes a 32bit **fd**. Returns an output u32 (**error\_code**).
 	# 
 	[2] Close(u32 fd) -> u32 error_code;
@@ -76,13 +76,13 @@ interface nns::nvdrv::INvDrvServices is nvdrv:s, nvdrv:t, nvdrv:a, nvdrv {
 	# 
 	@version(3.0.0+)
 	@undocumented
-	[11] Ioctl2(u32, u32, buffer<data, 0x21>, buffer<data, 0x21>) -> (u32, buffer<data, 0x22>);
+	[11] Ioctl2(u32, u32, buffer<bytes, 0x21>, buffer<bytes, 0x21>) -> (u32, buffer<bytes, 0x22>);
 	# Same input/output as Ioctl2, except cmdhdr\_word1 is 0x100B instead of
 	# 0xC0B.
 	# 
 	@version(3.0.0+)
 	@undocumented
-	[12] Ioctl3(u32, u32, buffer<data, 0x21>) -> (u32, buffer<data, 0x22>, buffer<data, 0x22>);
+	[12] Ioctl3(u32, u32, buffer<bytes, 0x21>) -> (u32, buffer<bytes, 0x22>, buffer<bytes, 0x22>);
 	@version(3.0.0+)
 	@undocumented
 	[13] Unknown13(unknown<0x8>);

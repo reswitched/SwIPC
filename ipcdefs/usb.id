@@ -62,7 +62,7 @@ interface nn::usb::ds::IDsService is usb:ds {
 	# used.
 	#
 	# Up to 4 interfaces can be used+enabled.
-	[2] GetDsInterface(buffer<nn::usb::usb_interface_descriptor, 5, 9> interface_descriptor, buffer<data, 5>) -> (u8, object<nn::usb::ds::IDsInterface>);
+	[2] GetDsInterface(buffer<nn::usb::usb_interface_descriptor, 5, 9> interface_descriptor, buffer<bytes, 5>) -> (u8, object<nn::usb::ds::IDsInterface>);
 	# Returns an event handle for when the state returned by
 	# [#GetChange](#nn::usb::ds::IDsService(4)) changes. Signalled when
 	# Switch<->host USB comms change between started/stopped. USB cable

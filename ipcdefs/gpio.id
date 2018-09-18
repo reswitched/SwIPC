@@ -3,7 +3,7 @@ interface nn::gpio::IManager is gpio {
 	[1] GetPadSession(u32) -> object<nn::gpio::IPadSession>;
 	[2] Unknown2(u32) -> object<nn::gpio::IPadSession>;
 	[3] Unknown3(u32) -> u8;
-	[4] Unknown4() -> u128;
+	[4] Unknown4() -> bytes<0x10, 8>;
 	[5] Unknown5(u8, u32);
 	@version(2.0.0-3.0.0)
 	[6] Unknown6(u8);
