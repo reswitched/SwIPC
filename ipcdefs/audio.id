@@ -1,4 +1,4 @@
-type nn::audio::detail::AudioRendererParameterInternal = struct {
+type nn::audio::detail::AudioRendererParameterInternal = struct<0x34> {
         s32 SampleRate;
         s32 SampleCount;
         s32 Unknown8;
@@ -14,14 +14,14 @@ type nn::audio::detail::AudioRendererParameterInternal = struct {
         s32 Revision;
 };
 
-type nn::audio::detail::AudioRendererUpdateDataHeader = struct {
+type nn::audio::detail::AudioRendererUpdateDataHeader = struct<0x40> {
         s32 Revision;
         s32 BehaviorSize;
         s32 MemoryPoolSize;
         s32 VoiceSize;
         s32 VoiceResourceSize;
         s32 EffectSize;
-        s32 MixeSize;
+        s32 MixSize;
         s32 SinkSize;
         s32 PerformanceManagerSize;
         s32 Unknown24;
@@ -137,7 +137,7 @@ interface nn::audio::detail::IAudioRenderer {
 	[8] SetAudioRendererRenderingTimeLimit(u32);
 	[9] GetAudioRendererRenderingTimeLimit() -> u32;
 	# guessed to be the same as RequestUpdateAudioRenderer, just with different buffer types
-	[10] RequestUpdateAudioRendererAuto(nn::audio::detail::AudioRendererUpdateDataHeader, 0x21, 0>) -> (buffer<nn::audio::detail::AudioRendererUpdateDataHeader, 0x22, 0>, buffer<nn::audio::detail::AudioRendererUpdateDataHeader, 0x22, 0>);
+	[10] RequestUpdateAudioRendererAuto(buffer<nn::audio::detail::AudioRendererUpdateDataHeader, 0x21, 0>) -> (buffer<nn::audio::detail::AudioRendererUpdateDataHeader, 0x22, 0>, buffer<nn::audio::detail::AudioRendererUpdateDataHeader, 0x22, 0>);
 	[11] ExecuteAudioRendererRendering();
 }
 
