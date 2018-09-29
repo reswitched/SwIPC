@@ -142,11 +142,11 @@ interface nn::audio::detail::IAudioRenderer {
 }
 
 interface nn::audio::detail::IAudioRendererManager is audrec:u {
-	[0] OpenAudioRenderer(nn::audio::detail::AudioRendererParameterInternal, u64, nn::applet::AppletResourceUserId, pid, KObject, KObject) -> object<nn::audio::detail::IAudioRenderer>
-	[1] GetWorkBufferSize(nn::audio::detail::AudioRendererParameterInternal) -> u64
-	[2] GetAudioDeviceService(nn::applet::AppletResourceUserId) -> object<nn::audio::detail::IAudioDevice>
-	[3] OpenAudioRendererForManualExecution(nn::audio::detail::AudioRendererParameterInternal, u64, u64, nn::applet::AppletResourceUserId, pid KObject) -> object<nn::audio::detail::IAudioRenderer>
-	[4] GetAudioDeviceServiceWithRevisionInfo(nn::applet::AppletResourceUserId, u32) -> object<nn::audio::detail::IAudioDevice>
+	[0] OpenAudioRenderer(nn::audio::detail::AudioRendererParameterInternal, u64, nn::applet::AppletResourceUserId, pid, KObject, KObject) -> object<nn::audio::detail::IAudioRenderer>;
+	[1] GetWorkBufferSize(nn::audio::detail::AudioRendererParameterInternal) -> u64;
+	[2] GetAudioDeviceService(nn::applet::AppletResourceUserId) -> object<nn::audio::detail::IAudioDevice>;
+	[3] OpenAudioRendererForManualExecution(nn::audio::detail::AudioRendererParameterInternal, u64, u64, nn::applet::AppletResourceUserId, pid KObject) -> object<nn::audio::detail::IAudioRenderer>;
+	[4] GetAudioDeviceServiceWithRevisionInfo(nn::applet::AppletResourceUserId, u32) -> object<nn::audio::detail::IAudioDevice>;
 }
 
 interface nn::audio::detail::IAudioRendererManagerForApplet is audren:a {
