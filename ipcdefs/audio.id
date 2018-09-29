@@ -12,7 +12,7 @@ type nn::audio::detail::AudioRendererParameterInternal = struct {
         s32 SplitterDestinationDataCount;
         s32 Unknown2C;
         s32 Revision;
-}
+};
 
 type nn::audio::detail::AudioRendererUpdateDataHeader = struct {
         s32 Revision;
@@ -31,7 +31,7 @@ type nn::audio::detail::AudioRendererUpdateDataHeader = struct {
         s32 Unknown34;
         s32 Unknown38;
         s32 TotalSize;
-}
+};
 
 interface nn::audio::detail::IAudioDebugManager {
 	[0] Unknown0(u32, u64, KObject);
