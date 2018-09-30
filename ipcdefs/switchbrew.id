@@ -1161,11 +1161,16 @@ interface nn::btm::IBtmSystemCore {
 }
 
 interface nn::capsrv::sf::IAlbumAccessorApplicationSession {
-	[2001] OpenAlbumMovieReadStream();
-	[2002] CloseAlbumMovieReadStream();
-	[2003] GetAlbumMovieReadStreamMovieDataSize();
-	[2004] ReadMovieDataFromAlbumMovieReadStream();
-	[2005] GetAlbumMovieReadStreamBrokenReason();
+	@undocumented
+	[2001] OpenAlbumMovieReadStream(unknown) -> unknown;
+	@undocumented
+	[2002] CloseAlbumMovieReadStream(unknown) -> unknown;
+	@undocumented
+	[2003] GetAlbumMovieReadStreamMovieDataSize(unknown) -> unknown;
+	@undocumented
+	[2004] ReadMovieDataFromAlbumMovieReadStream(unknown) -> unknown;
+	@undocumented
+	[2005] GetAlbumMovieReadStreamBrokenReason(unknown) -> unknown;
 }
 
 interface nn::capsrv::sf::IAlbumAccessorService is caps:a {
@@ -1224,12 +1229,18 @@ interface nn::capsrv::sf::IAlbumAccessorService is caps:a {
 }
 
 interface nn::capsrv::sf::IAlbumApplicationService is caps:u {
-	[102] GetAlbumFileListByAruid();
-	[103] DeleteAlbumFileByAruid();
-	[104] GetAlbumFileSizeByAruid();
-	[110] LoadAlbumScreenShotImageByAruid();
-	[120] LoadAlbumScreenShotThumbnailImageByAruid();
-	[60002] OpenAccessorSessionForApplication();
+	@undocumented
+	[102] GetAlbumFileListByAruid(unknown) -> unknown;
+	@undocumented
+	[103] DeleteAlbumFileByAruid(unknown) -> unknown;
+	@undocumented
+	[104] GetAlbumFileSizeByAruid(unknown) -> unknown;
+	@undocumented
+	[110] LoadAlbumScreenShotImageByAruid(unknown) -> unknown;
+	@undocumented
+	[120] LoadAlbumScreenShotThumbnailImageByAruid(unknown) -> unknown;
+	@undocumented
+	[60002] OpenAccessorSessionForApplication(unknown) -> unknown;
 }
 
 interface nn::capsrv::sf::IAlbumControlService is caps:c {
@@ -1351,57 +1362,108 @@ interface nn::codec::detail::IHardwareOpusDecoderManager is hwopus {
 }
 
 interface nn::dmnt::IInterface is dmnt:- {
-	[0] BreakDebugProcess();
-	[1] TerminateDebugProcess();
-	[2] CloseHandle();
-	[3] LoadImage();
-	[4] GetProcessId();
-	[5] GetProcessHandle();
-	[6] WaitSynchronization();
-	[7] GetDebugEvent();
-	[8] GetProcessModuleInfo();
-	[9] GetProcessList();
-	[10] GetThreadList();
-	[11] GetDebugThreadContext();
-	[12] ContinueDebugEvent();
-	[13] ReadDebugProcessMemory();
-	[14] WriteDebugProcessMemory();
-	[15] SetDebugThreadContext();
-	[16] GetDebugThreadParam();
-	[17] InitializeThreadInfo();
-	[18] SetHardwareBreakPoint();
-	[19] QueryDebugProcessMemory();
-	[20] GetProcessMemoryDetails();
-	[21] AttachByProgramId();
-	[22] AttachOnLaunch();
-	[23] GetDebugMonitorProcessId();
-	[25] GetJitDebugProcessList();
-	[26] CreateCoreDump();
-	[27] GetAllDebugThreadInfo();
-	[29] TargetIO_FileOpen();
-	[30] TargetIO_FileClose();
-	[31] TargetIO_FileRead();
-	[32] TargetIO_FileWrite();
-	[33] TargetIO_FileSetAttributes();
-	[34] TargetIO_FileGetInformation();
-	[35] TargetIO_FileSetTime();
-	[36] TargetIO_FileSetSize();
-	[37] TargetIO_FileDelete();
-	[38] TargetIO_FileMove();
-	[39] TargetIO_DirectoryCreate();
-	[40] TargetIO_DirectoryDelete();
-	[41] TargetIO_DirectoryRename();
-	[42] TargetIO_DirectoryGetCount();
-	[43] TargetIO_DirectoryOpen();
-	[44] TargetIO_DirectoryGetNext();
-	[45] TargetIO_DirectoryClose();
-	[46] TargetIO_GetFreeSpace();
-	[47] TargetIO_GetVolumeInformation();
-	[48] InitiateCoreDump();
-	[49] ContinueCoreDump();
-	[50] AddTTYToCoreDump();
-	[51] AddImageToCoreDump();
-	[52] CloseCoreDump();
+	@undocumented
+	[0] BreakDebugProcess(unknown) -> unknown;
+	@undocumented
+	[1] TerminateDebugProcess(unknown) -> unknown;
+	@undocumented
+	[2] CloseHandle(unknown) -> unknown;
+	@undocumented
+	[3] LoadImage(unknown) -> unknown;
+	@undocumented
+	[4] GetProcessId(unknown) -> unknown;
+	@undocumented
+	[5] GetProcessHandle(unknown) -> unknown;
+	@undocumented
+	[6] WaitSynchronization(unknown) -> unknown;
+	@undocumented
+	[7] GetDebugEvent(unknown) -> unknown;
+	@undocumented
+	[8] GetProcessModuleInfo(unknown) -> unknown;
+	@undocumented
+	[9] GetProcessList(unknown) -> unknown;
+	@undocumented
+	[10] GetThreadList(unknown) -> unknown;
+	@undocumented
+	[11] GetDebugThreadContext(unknown) -> unknown;
+	@undocumented
+	[12] ContinueDebugEvent(unknown) -> unknown;
+	@undocumented
+	[13] ReadDebugProcessMemory(unknown) -> unknown;
+	@undocumented
+	[14] WriteDebugProcessMemory(unknown) -> unknown;
+	@undocumented
+	[15] SetDebugThreadContext(unknown) -> unknown;
+	@undocumented
+	[16] GetDebugThreadParam(unknown) -> unknown;
+	@undocumented
+	[17] InitializeThreadInfo(unknown) -> unknown;
+	@undocumented
+	[18] SetHardwareBreakPoint(unknown) -> unknown;
+	@undocumented
+	[19] QueryDebugProcessMemory(unknown) -> unknown;
+	@undocumented
+	[20] GetProcessMemoryDetails(unknown) -> unknown;
+	@undocumented
+	[21] AttachByProgramId(unknown) -> unknown;
+	@undocumented
+	[22] AttachOnLaunch(unknown) -> unknown;
+	@undocumented
+	[23] GetDebugMonitorProcessId(unknown) -> unknown;
+	@undocumented
+	[25] GetJitDebugProcessList(unknown) -> unknown;
+	@undocumented
+	[26] CreateCoreDump(unknown) -> unknown;
+	@undocumented
+	[27] GetAllDebugThreadInfo(unknown) -> unknown;
+	@undocumented
+	[29] TargetIO_FileOpen(unknown) -> unknown;
+	@undocumented
+	[30] TargetIO_FileClose(unknown) -> unknown;
+	@undocumented
+	[31] TargetIO_FileRead(unknown) -> unknown;
+	@undocumented
+	[32] TargetIO_FileWrite(unknown) -> unknown;
+	@undocumented
+	[33] TargetIO_FileSetAttributes(unknown) -> unknown;
+	@undocumented
+	[34] TargetIO_FileGetInformation(unknown) -> unknown;
+	@undocumented
+	[35] TargetIO_FileSetTime(unknown) -> unknown;
+	@undocumented
+	[36] TargetIO_FileSetSize(unknown) -> unknown;
+	@undocumented
+	[37] TargetIO_FileDelete(unknown) -> unknown;
+	@undocumented
+	[38] TargetIO_FileMove(unknown) -> unknown;
+	@undocumented
+	[39] TargetIO_DirectoryCreate(unknown) -> unknown;
+	@undocumented
+	[40] TargetIO_DirectoryDelete(unknown) -> unknown;
+	@undocumented
+	[41] TargetIO_DirectoryRename(unknown) -> unknown;
+	@undocumented
+	[42] TargetIO_DirectoryGetCount(unknown) -> unknown;
+	@undocumented
+	[43] TargetIO_DirectoryOpen(unknown) -> unknown;
+	@undocumented
+	[44] TargetIO_DirectoryGetNext(unknown) -> unknown;
+	@undocumented
+	[45] TargetIO_DirectoryClose(unknown) -> unknown;
+	@undocumented
+	[46] TargetIO_GetFreeSpace(unknown) -> unknown;
+	@undocumented
+	[47] TargetIO_GetVolumeInformation(unknown) -> unknown;
+	@undocumented
+	[48] InitiateCoreDump(unknown) -> unknown;
+	@undocumented
+	[49] ContinueCoreDump(unknown) -> unknown;
+	@undocumented
+	[50] AddTTYToCoreDump(unknown) -> unknown;
+	@undocumented
+	[51] AddImageToCoreDump(unknown) -> unknown;
+	@undocumented
+	[52] CloseCoreDump(unknown) -> unknown;
 }
 
 interface nn::erpt::sf::IContext is erpt:c {
@@ -3002,19 +3064,32 @@ interface nn::hid::IHidTemporaryServer is hid:tmp {
 }
 
 interface nn::hidbus::IHidbusServer is hidbus {
-	[1] GetBusHandle();
-	[2] IsExternalDeviceConnected();
-	[3] Initialize();
-	[4] Finalize();
-	[5] EnableExternalDevice();
-	[6] GetExternalDeviceId();
-	[7] SendCommandAsync();
-	[8] GetSendCommandAsynceResult();
-	[9] SetEventForSendCommandAsycResult();
-	[10] GetSharedMemoryHandle();
-	[11] EnableJoyPollingReceiveMode();
-	[12] DisableJoyPollingReceiveMode();
-	[13] GetPollingData();
+	@undocumented
+	[1] GetBusHandle(unknown) -> unknown;
+	@undocumented
+	[2] IsExternalDeviceConnected(unknown) -> unknown;
+	@undocumented
+	[3] Initialize(unknown) -> unknown;
+	@undocumented
+	[4] Finalize(unknown) -> unknown;
+	@undocumented
+	[5] EnableExternalDevice(unknown) -> unknown;
+	@undocumented
+	[6] GetExternalDeviceId(unknown) -> unknown;
+	@undocumented
+	[7] SendCommandAsync(unknown) -> unknown;
+	@undocumented
+	[8] GetSendCommandAsynceResult(unknown) -> unknown;
+	@undocumented
+	[9] SetEventForSendCommandAsycResult(unknown) -> unknown;
+	@undocumented
+	[10] GetSharedMemoryHandle(unknown) -> unknown;
+	@undocumented
+	[11] EnableJoyPollingReceiveMode(unknown) -> unknown;
+	@undocumented
+	[12] DisableJoyPollingReceiveMode(unknown) -> unknown;
+	@undocumented
+	[13] GetPollingData(unknown) -> unknown;
 }
 
 interface nn::htc::tenv::IService {
@@ -3201,14 +3276,19 @@ interface nn::irsensor::IIrSensorSystemServer is irs:sys {
 }
 
 interface nn::jitsrv::IJitEnvironment {
-	[0] Control();
-	[1] GenerateCode();
-	[1000] LoadPlugin();
-	[1001] GetCodeAddress();
+	@undocumented
+	[0] Control(unknown) -> unknown;
+	@undocumented
+	[1] GenerateCode(unknown) -> unknown;
+	@undocumented
+	[1000] LoadPlugin(unknown) -> unknown;
+	@undocumented
+	[1001] GetCodeAddress(unknown) -> unknown;
 }
 
 interface nn::jitsrv::IJitService is jit:u {
-	[0] CreateJitEnvironment();
+	@undocumented
+	[0] CreateJitEnvironment(unknown) -> unknown;
 }
 
 interface nn::lbl::detail::ILblController is lbl {
@@ -3517,9 +3597,12 @@ interface nn::ldr::detail::IShellInterface is ldr:shel {
 }
 
 interface nn::lm::ILogGetter is lm:get {
-	[0] StartLogging();
-	[1] StopLogging();
-	[2] GetLog();
+	@undocumented
+	[0] StartLogging(unknown) -> unknown;
+	@undocumented
+	[1] StopLogging(unknown) -> unknown;
+	@undocumented
+	[2] GetLog(unknown) -> unknown;
 }
 
 interface nn::lm::ILogService is lm {
@@ -3709,10 +3792,14 @@ interface nn::lr::IRegisteredLocationResolver {
 }
 
 interface nn::migration::user::IAsyncContext {
-	[0] GetSystemEvent();
-	[1] Cancel();
-	[2] HasDone();
-	[3] GetResult();
+	@undocumented
+	[0] GetSystemEvent(unknown) -> unknown;
+	@undocumented
+	[1] Cancel(unknown) -> unknown;
+	@undocumented
+	[2] HasDone(unknown) -> unknown;
+	@undocumented
+	[3] GetResult(unknown) -> unknown;
 }
 
 interface nn::migration::user::IClient {
@@ -3828,20 +3915,34 @@ interface nn::mii::detail::IDatabaseService {
 }
 
 interface nn::mii::detail::IImageDatabaseService is miiimg {
-	[0] Initialize();
-	[10] Reload();
-	[11] GetCount();
-	[12] IsEmpty();
-	[13] IsFull();
-	[14] GetAttribute();
-	[15] LoadImage();
-	[16] AddOrUpdateImage();
-	[17] DeleteImages();
-	[100] DeleteFile();
-	[101] DestroyFile();
-	[102] ImportFile();
-	[103] ExportFile();
-	[104] ForceInitialize();
+	@undocumented
+	[0] Initialize(unknown) -> unknown;
+	@undocumented
+	[10] Reload(unknown) -> unknown;
+	@undocumented
+	[11] GetCount(unknown) -> unknown;
+	@undocumented
+	[12] IsEmpty(unknown) -> unknown;
+	@undocumented
+	[13] IsFull(unknown) -> unknown;
+	@undocumented
+	[14] GetAttribute(unknown) -> unknown;
+	@undocumented
+	[15] LoadImage(unknown) -> unknown;
+	@undocumented
+	[16] AddOrUpdateImage(unknown) -> unknown;
+	@undocumented
+	[17] DeleteImages(unknown) -> unknown;
+	@undocumented
+	[100] DeleteFile(unknown) -> unknown;
+	@undocumented
+	[101] DestroyFile(unknown) -> unknown;
+	@undocumented
+	[102] ImportFile(unknown) -> unknown;
+	@undocumented
+	[103] ExportFile(unknown) -> unknown;
+	@undocumented
+	[104] ForceInitialize(unknown) -> unknown;
 }
 
 interface nn::mii::detail::IStaticService is mii:u, mii:e {
@@ -4257,7 +4358,7 @@ interface nn::nfp::detail::IDebug {
 	[24] RecreateApplicationArea(bytes<8,4>, u32, buffer<unknown,5>);
 	[100] Format(bytes<8,4>);
 	[101] GetAdminInfo(bytes<8,4>) -> buffer<unknown<0x40>,0x1a>;
-	[102] GetRegisterInfo2(bytes<8,4>) -> buffer<unknown<0x100>,0x1a>;
+	[102] GetRegisterInfo(bytes<8,4>) -> buffer<unknown<0x100>,0x1a>;
 	[103] SetRegisterInfo(bytes<8,4>, buffer<unknown<0x100>,0x19>);
 	[104] DeleteRegisterInfo(bytes<8,4>);
 	[105] DeleteApplicationArea(bytes<8,4>);
@@ -4327,7 +4428,7 @@ interface nn::nfp::detail::ISystem {
 	[23] AttachAvailabilityChangeEvent() -> handle<copy>;
 	[100] Format(bytes<8,4>);
 	[101] GetAdminInfo(bytes<8,4>) -> buffer<unknown<0x40>,0x1a>;
-	[102] GetRegisterInfo2(bytes<8,4>) -> buffer<unknown<0x100>,0x1a>;
+	[102] GetRegisterInfo(bytes<8,4>) -> buffer<unknown<0x100>,0x1a>;
 	[103] SetRegisterInfo(bytes<8,4>, buffer<unknown<0x100>,0x19>);
 	[104] DeleteRegisterInfo(bytes<8,4>);
 	[105] DeleteApplicationArea(bytes<8,4>);
@@ -6199,9 +6300,12 @@ interface nn::prepo::detail::ipc::IPrepoService is prepo:u, prepo:s, prepo:m, pr
 }
 
 interface nn::profiler::IProfiler is banana {
-	[0] GetSystemEvent();
-	[1] StartSignalingEvent();
-	[2] StopSignalingEvent();
+	@undocumented
+	[0] GetSystemEvent(unknown) -> unknown;
+	@undocumented
+	[1] StartSignalingEvent(unknown) -> unknown;
+	@undocumented
+	[2] StopSignalingEvent(unknown) -> unknown;
 }
 
 interface nn::psc::sf::IPmControl is psc:c {
@@ -7199,9 +7303,12 @@ interface nn::spsm::detail::IPowerStateInterface is spsm {
 }
 
 interface nn::srepo::detail::ipc::ISrepoService is srepo:u, srepo:a {
-	[0] Unknown0();
-	[1] Unknown1();
-	[2] Unknown2();
+	@undocumented
+	[0] Unknown0(unknown) -> unknown;
+	@undocumented
+	[1] Unknown1(unknown) -> unknown;
+	@undocumented
+	[2] Unknown2(unknown) -> unknown;
 }
 
 interface nn::ssl::sf::ISslConnection {
@@ -8500,7 +8607,8 @@ interface nns::hosbinder::IHOSBinderDriver is dispdrv {
 	# 
 	# Analogous to "onTransact" from "android.os.IServiceManager".
 	# 
-	[0] TransactParcel();
+	@undocumented
+	[0] TransactParcel(unknown) -> unknown;
 	# Takes 3 input s32s: **ID**, **addval**, and **type**. Each word
 	# immediately follows the previous word. No additional output.
 	# 
@@ -8513,11 +8621,13 @@ interface nns::hosbinder::IHOSBinderDriver is dispdrv {
 	# 
 	# During init, {addval=1, type=0} is used then {addval=1, type=1} is used.
 	# 
-	[1] AdjustRefcount();
+	@undocumented
+	[1] AdjustRefcount(unknown) -> unknown;
 	# Takes an input s32 (**ID**) and u32, with the latter immediately
 	# following the previous word. Returns an output event handle.
 	# 
-	[2] GetNativeHandle();
+	@undocumented
+	[2] GetNativeHandle(unknown) -> unknown;
 	# Takes a s32 (**ID**), an u32 (**code**), a type-0x21 input buffer
 	# (**parcel\_data**), a type-0x22 output buffer (**parcel\_reply**) and an
 	# input u32 (**flags**). Each word is placed immediately after the
@@ -8527,7 +8637,8 @@ interface nns::hosbinder::IHOSBinderDriver is dispdrv {
 	# [Category:Services](http://switchbrew.org/index.php?title=Category:Services "wikilink")
 	# 
 	@version(3.0.0+)
-	[3] TransactParcelAuto();
+	@undocumented
+	[3] TransactParcelAuto(unknown) -> unknown;
 }
 
 interface nns::nvdrv::INvDrvDebugFSServices is nvdrvdbg {

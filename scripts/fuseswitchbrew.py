@@ -38,13 +38,10 @@ fusedIFaces = {}
 
 for ifaceName, iface in switchbrewIfaces.items():
 	newIFace = fusedIFaces[ifaceName] = {"cmds": [], "doc": ""}
-	if autoIfaces.get(ifaceName) is None:
-		fusedIFaces[ifaceName] = iface
-		continue
-	autoIface = autoIfaces[ifaceName]
+	autoIface = autoIfaces.get(ifaceName)
 	for cmd in iface['cmds']:
 		newCmd = {'doc': cmd['doc'], 'cmdId': cmd['cmdId'], 'name': cmd['name'], 'versionAdded': cmd['versionAdded'], 'lastVersion': cmd['lastVersion'], 'inputs': 'unknown', 'outputs': 'unknown', 'undocumented': True}
-		autoCmdMaybe = [autoCmd for autoCmd in autoIface['cmds'] if cmd['cmdId'] == autoCmd['cmdId']]
+		autoCmdMaybe = ([autoCmd for autoCmd in autoIface['cmds'] if cmd['cmdId'] == autoCmd['cmdId']]) if autoIface != None else []
 		if len(autoCmdMaybe) > 0:
 			autoCmd = autoCmdMaybe.pop()
 			if newCmd['name'].startswith("Unknown"):
