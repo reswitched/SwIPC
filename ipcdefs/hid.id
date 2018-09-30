@@ -218,7 +218,7 @@ interface nn::hid::IHidServer is hid {
 	[524] Unknown524(bytes<0x10>);
 	@version(5.1.0+)
 	@undocumented
-	[525] Unknown524(u8);
+	[525] Unknown525(u8);
 	
 	[1000] SetNpadCommunicationMode(nn::applet::AppletResourceUserId, i64, pid);
 	[1001] GetNpadCommunicationMode() -> i64;
