@@ -345,7 +345,7 @@ interface JpegDecoder {
 	[3001] Unknown3001(unknown<0x28>, buffer<unknown, 0x5>) -> buffer<unknown, 0x46>;
 }
 
-interface nn::account::IAccountServiceForAdministrator {
+interface nn::account::IAccountServiceForAdministrator is acc:su {
 	[0] GetUserCount() -> u32;
 	[1] GetUserExistence(nn::account::Uid) -> b8;
 	[2] ListAllUsers() -> buffer<nn::account::Uid[], 0xa>;
@@ -405,7 +405,7 @@ interface nn::account::IAccountServiceForAdministrator {
 	[999] DebugSetUserStateOpen(nn::account::Uid);
 }
 
-interface nn::account::IAccountServiceForApplication {
+interface nn::account::IAccountServiceForApplication is acc:u0 {
 	[0] GetUserCount() -> u32;
 	[1] GetUserExistence(nn::account::Uid) -> b8;
 	[2] ListAllUsers() -> buffer<nn::account::Uid[], 0xa>;
@@ -430,7 +430,7 @@ interface nn::account::IAccountServiceForApplication {
 	[120] CreateGuestLoginRequest(u32, handle<copy>) -> object<nn::account::baas::IGuestLoginRequest>;
 }
 
-interface nn::account::IAccountServiceForSystemService {
+interface nn::account::IAccountServiceForSystemService is acc:u1 {
 	[0] GetUserCount() -> u32;
 	[1] GetUserExistence(nn::account::Uid) -> b8;
 	[2] ListAllUsers() -> buffer<nn::account::Uid[], 0xa>;
@@ -464,7 +464,7 @@ interface nn::account::IAccountServiceForSystemService {
 	[999] DebugSetUserStateOpen(nn::account::Uid);
 }
 
-interface nn::account::IBaasAccessTokenAccessor {
+interface nn::account::IBaasAccessTokenAccessor is acc:aa {
 	[0] EnsureCacheAsync(nn::account::Uid) -> object<nn::account::detail::IAsyncContext>;
 	[1] LoadCache(nn::account::Uid) -> (u32, buffer<bytes, 0x6>);
 	[2] GetDeviceAccountId(nn::account::Uid) -> u64;
@@ -750,7 +750,7 @@ interface nn::ahid::IReadSession {
 	[0] Unknown0(unknown<0x8>) -> (unknown<0x4>, buffer<unknown, 0x6>);
 }
 
-interface nn::ahid::IServerSession {
+interface nn::ahid::IServerSession is ahid:cd {
 	@undocumented
 	[0] Unknown0(unknown<0x4>);
 	@undocumented
@@ -770,7 +770,7 @@ interface nn::ahid::IWriteSession {
 	[0] Unknown0(buffer<unknown, 0x5>) -> unknown<0x4>;
 }
 
-interface nn::ahid::hdr::ISession {
+interface nn::ahid::hdr::ISession is ahid:hdr {
 	@undocumented
 	[0] Unknown0() -> unknown<0x4>;
 	@undocumented
@@ -783,7 +783,7 @@ interface nn::ahid::hdr::ISession {
 	[4] Unknown4(unknown<0x4>);
 }
 
-interface nn::am::service::IAllSystemAppletProxiesService {
+interface nn::am::service::IAllSystemAppletProxiesService is appletAE {
 	[100] OpenSystemAppletProxy(u64, pid, handle<copy>) -> object<nn::am::service::ISystemAppletProxy>;
 
 	@version(1.0.0-2.0.0)
@@ -926,7 +926,7 @@ interface nn::am::service::IApplicationProxy {
 	[1000] GetDebugFunctions() -> object<nn::am::service::IDebugFunctions>;
 }
 
-interface nn::am::service::IApplicationProxyService {
+interface nn::am::service::IApplicationProxyService is appletOE {
 	[0] OpenApplicationProxy(u64, pid, handle<copy>) -> object<nn::am::service::IApplicationProxy>;
 }
 
@@ -1326,7 +1326,7 @@ interface nn::am::service::IWindowController {
 	[12] RejectToChangeIntoBackground();
 }
 
-interface nn::aocsrv::detail::IAddOnContentManager {
+interface nn::aocsrv::detail::IAddOnContentManager is aoc:u {
 	[0] CountAddOnContentByApplicationId(nn::ncm::ApplicationId) -> u32;
 	[1] ListAddOnContentByApplicationId(u32, u32, nn::ncm::ApplicationId) -> (u32, buffer<u32[], 0x6>);
 	[2] CountAddOnContent(u64, pid) -> u32;
@@ -1348,12 +1348,12 @@ interface nn::apm::IDebugManager {
 	[2] ClearLastThrottlingState();
 }
 
-interface nn::apm::IManager {
+interface nn::apm::IManager is apm {
 	[0] OpenSession() -> object<nn::apm::ISession>;
 	[1] GetPerformanceMode() -> nn::apm::PerformanceMode;
 }
 
-interface nn::apm::IManagerPrivileged {
+interface nn::apm::IManagerPrivileged is apm:p {
 	[0] OpenSession() -> object<nn::apm::ISession>;
 }
 
@@ -1362,7 +1362,7 @@ interface nn::apm::ISession {
 	[1] GetPerformanceConfiguration(nn::apm::PerformanceMode) -> nn::apm::PerformanceConfiguration;
 }
 
-interface nn::apm::ISystemManager {
+interface nn::apm::ISystemManager is apm:sys {
 	[0] RequestPerformanceMode(nn::apm::PerformanceMode);
 	[1] GetPerformanceEvent(nn::apm::EventTarget) -> handle<copy>;
 	@version(2.0.0+)
@@ -1373,7 +1373,7 @@ interface nn::apm::ISystemManager {
 	[4] ClearLastThrottlingState();
 }
 
-interface nn::arp::detail::IReader {
+interface nn::arp::detail::IReader is arp:r {
 	@undocumented
 	[0] Unknown0(unknown<0x8>) -> unknown<0x10>;
 	@undocumented
@@ -1393,14 +1393,14 @@ interface nn::arp::detail::IRegistrar {
 	[2] Unknown2(buffer<unknown, 0x15>);
 }
 
-interface nn::arp::detail::IWriter {
+interface nn::arp::detail::IWriter is arp:w {
 	@undocumented
 	[0] Unknown0() -> object<nn::arp::detail::IRegistrar>;
 	@undocumented
 	[1] Unknown1(unknown<0x8>);
 }
 
-interface nn::audio::detail::IAudioDebugManager {
+interface nn::audio::detail::IAudioDebugManager is auddebug {
 	[0] Unknown0(u32, u64, handle<copy>);
 	[1] Unknown1();
 	[2] Unknown2();
@@ -1453,7 +1453,7 @@ interface nn::audio::detail::IAudioIn {
 	[13] Unknown13() -> u32;
 }
 
-interface nn::audio::detail::IAudioInManager {
+interface nn::audio::detail::IAudioInManager is audin:u {
 	[0] Unknown0() -> (u32, buffer<unknown, 0x6>);
 	[1] Unknown1(bytes<0x8, 4>, u64, pid, handle<copy>, buffer<unknown, 0x5>) -> (bytes<0x10, 4>, buffer<unknown, 0x6>, object<nn::audio::detail::IAudioIn>);
 	@version(3.0.0+)
@@ -1464,7 +1464,7 @@ interface nn::audio::detail::IAudioInManager {
 	[4] Unknown4() -> (u32, buffer<unknown, 0x22>);
 }
 
-interface nn::audio::detail::IAudioInManagerForApplet {
+interface nn::audio::detail::IAudioInManagerForApplet is audin:a {
 	@version(1.0.0-3.0.0)
 	[0] Unknown0(u64, u64) -> handle<copy>;
 	@version(4.0.0+)
@@ -1502,7 +1502,7 @@ interface nn::audio::detail::IAudioOut {
 	[11] Unknown11() -> u8;
 }
 
-interface nn::audio::detail::IAudioOutManager {
+interface nn::audio::detail::IAudioOutManager is audout:u {
 	[0] Unknown0() -> (u32, buffer<unknown, 0x6>);
 	[1] Unknown1(bytes<0x8, 4>, u64, pid, handle<copy>, buffer<unknown, 0x5>) -> (bytes<0x10, 4>, buffer<unknown, 0x6>, object<nn::audio::detail::IAudioOut>);
 	@version(3.0.0+)
@@ -1511,7 +1511,7 @@ interface nn::audio::detail::IAudioOutManager {
 	[3] Unknown3(bytes<0x8, 4>, u64, pid, handle<copy>, buffer<unknown, 0x21>) -> (bytes<0x10, 4>, buffer<unknown, 0x22>, object<nn::audio::detail::IAudioOut>);
 }
 
-interface nn::audio::detail::IAudioOutManagerForApplet {
+interface nn::audio::detail::IAudioOutManagerForApplet is audout:a {
 	@version(1.0.0-3.0.0)
 	[0] Unknown0(u64, u64) -> handle<copy>;
 	@version(4.0.0+)
@@ -1528,7 +1528,7 @@ interface nn::audio::detail::IAudioOutManagerForApplet {
 	[5] Unknown5(u32, u64, u64);
 }
 
-interface nn::audio::detail::IAudioOutManagerForDebugger {
+interface nn::audio::detail::IAudioOutManagerForDebugger is audin:d, audout:d, audren:d, audrec:d {
 	[0] Unknown0(u64);
 	[1] Unknown1(u64);
 }
@@ -1550,7 +1550,7 @@ interface nn::audio::detail::IAudioRenderer {
 	[11] Unknown11();
 }
 
-interface nn::audio::detail::IAudioRendererManager {
+interface nn::audio::detail::IAudioRendererManager is audren:u {
 	[0] Unknown0(bytes<0x34, 4>, u64, u64, pid, handle<copy>, handle<copy>) -> object<nn::audio::detail::IAudioRenderer>;
 	[1] Unknown1(bytes<0x34, 4>) -> u64;
 	[2] Unknown2(u64) -> object<nn::audio::detail::IAudioDevice>;
@@ -1560,7 +1560,7 @@ interface nn::audio::detail::IAudioRendererManager {
 	[4] Unknown4(u32, u64) -> object<nn::audio::detail::IAudioDevice>;
 }
 
-interface nn::audio::detail::IAudioRendererManagerForApplet {
+interface nn::audio::detail::IAudioRendererManagerForApplet is audren:a {
 	@version(1.0.0-3.0.0)
 	[0] Unknown0(u64, u64) -> handle<copy>;
 	@version(4.0.0+)
@@ -1585,7 +1585,7 @@ interface nn::audio::detail::IAudioRendererManagerForDebugger {
 }
 
 @version(1.0.0-2.0.0)
-interface nn::audio::detail::ICodecController {
+interface nn::audio::detail::ICodecController is codecctl {
 	[0] Unknown0();
 	[1] Unknown1();
 	[2] Unknown2();
@@ -1620,14 +1620,14 @@ interface nn::audio::detail::IFinalOutputRecorder {
 	[9] Unknown9() -> (u32, u64, buffer<unknown, 0x22>);
 }
 
-interface nn::audio::detail::IFinalOutputRecorderManager {
+interface nn::audio::detail::IFinalOutputRecorderManager is audrec:u {
 	@version(1.0.0-2.0.0)
 	[0] Unknown0(u32, u64, handle<copy>) -> (bytes<0x10, 4>, object<nn::audio::detail::IFinalOutputRecorder>);
 	@version(3.0.0+)
 	[0] Unknown0(bytes<0x8, 4>, u64, handle<copy>) -> (bytes<0x10, 4>, object<nn::audio::detail::IFinalOutputRecorder>);
 }
 
-interface nn::audio::detail::IFinalOutputRecorderManagerForApplet {
+interface nn::audio::detail::IFinalOutputRecorderManagerForApplet is audrec:a {
 	@version(1.0.0-3.0.0)
 	[0] Unknown0(u64, u64) -> handle<copy>;
 	@version(4.0.0+)
@@ -1643,7 +1643,7 @@ interface nn::audio::detail::IFinalOutputRecorderManagerForDebugger {
 	[1] Unknown1(u64);
 }
 
-interface nn::audioctrl::detail::IAudioController {
+interface nn::audioctrl::detail::IAudioController is audctl {
 	@undocumented
 	[0] Unknown0(unknown<0x4>) -> unknown<0x4>;
 	@undocumented
@@ -1783,7 +1783,7 @@ interface nn::bcat::detail::ipc::IDeliveryCacheStorageService {
 }
 
 @version(2.0.0+)
-interface nn::bcat::detail::ipc::IServiceCreator {
+interface nn::bcat::detail::ipc::IServiceCreator is bcat:a, bcat:u, bcat:m, bcat:s {
 	[0] CreateBcatService(u64, pid) -> object<nn::bcat::detail::ipc::IBcatService>;
 	[1] CreateDeliveryCacheStorageService(u64, pid) -> object<nn::bcat::detail::ipc::IDeliveryCacheStorageService>;
 	[2] CreateDeliveryCacheStorageServiceWithApplicationId(nn::ApplicationId) -> object<nn::bcat::detail::ipc::IDeliveryCacheStorageService>;
@@ -1846,7 +1846,7 @@ interface nn::bgtc::ITaskService {
 	[103] Unknown103() -> unknown<0x1>;
 }
 
-interface nn::bluetooth::IBluetoothDriver {
+interface nn::bluetooth::IBluetoothDriver is btdrv {
 	@undocumented
 	[0] Unknown0();
 	@undocumented
@@ -2092,7 +2092,7 @@ interface nn::bluetooth::IBluetoothDriver {
 	[83] Unknown83(unknown<0x2c>, buffer<unknown, 0x9>);
 }
 
-interface nn::bpc::IBoardPowerControlManager {
+interface nn::bpc::IBoardPowerControlManager is bpc {
 	@undocumented
 	[0] Unknown0();
 	@undocumented
@@ -2142,7 +2142,7 @@ interface nn::bpc::IPowerButtonManager {
 	[1] Unknown1(unknown<0x4>) -> handle<copy>;
 }
 
-interface nn::bpc::IRtcManager {
+interface nn::bpc::IRtcManager is bpc:r {
 	@undocumented
 	[0] Unknown0() -> unknown<0x8>;
 	@undocumented
@@ -2167,7 +2167,7 @@ interface nn::bpc::IWakeupConfigManager {
 	[2] Unknown2() -> unknown<0x10>;
 }
 
-interface nn::bsdsocket::cfg::ServerInterface {
+interface nn::bsdsocket::cfg::ServerInterface is bsdcfg {
 	@version(1.0.0-2.0.0)
 	@undocumented
 	[0] Unknown0(unknown<0x28>, buffer<unknown, 0x5>);
@@ -2204,7 +2204,7 @@ interface nn::bsdsocket::cfg::ServerInterface {
 	[12] Unknown12();
 }
 
-interface nn::btm::IBtm {
+interface nn::btm::IBtm is btm {
 	@undocumented
 	[0] Unknown0() -> unknown<0x4>;
 	@undocumented
@@ -2266,7 +2266,7 @@ interface nn::btm::IBtm {
 	[21] Unknown21(unknown<0x1>);
 }
 
-interface nn::btm::IBtmDebug {
+interface nn::btm::IBtmDebug is btm:dbg {
 	@version(1.0.0-2.0.0)
 	@undocumented
 	[0] Unknown0() -> handle<copy>;
@@ -2291,7 +2291,7 @@ interface nn::btm::IBtmDebug {
 	[8] Unknown8(unknown<0x6>);
 }
 
-interface nn::btm::IBtmSystem {
+interface nn::btm::IBtmSystem is btm:sys {
 	@undocumented
 	[0] Unknown0() -> object<nn::btm::IBtmSystemCore>;
 }
@@ -2322,7 +2322,7 @@ interface nn::btm::IBtmSystemCore {
 	[9] Unknown9() -> unknown<0x1>;
 }
 
-interface nn::capsrv::sf::IAlbumAccessorService {
+interface nn::capsrv::sf::IAlbumAccessorService is caps:a {
 	@undocumented
 	[0] Unknown0(unknown<0x1>) -> unknown<0x8>;
 	@undocumented
@@ -2444,7 +2444,7 @@ interface nn::capsrv::sf::IAlbumAccessorSession {
 }
 
 @version(2.0.0+)
-interface nn::capsrv::sf::IAlbumControlService {
+interface nn::capsrv::sf::IAlbumControlService is caps:c {
 	@undocumented
 	[2001] Unknown2001(unknown<0x1>);
 	@undocumented
@@ -2560,14 +2560,14 @@ interface nn::capsrv::sf::ICaptureControllerService {
 }
 
 @version(3.0.0+)
-interface nn::capsrv::sf::IScreenShotApplicationService {
+interface nn::capsrv::sf::IScreenShotApplicationService is caps:su {
 	[201] SaveScreenShot(u32, u32, nn::applet::AppletResourceUserId, pid, buffer<bytes, 0x45>) -> nn::capsrv::ApplicationAlbumEntry;
 
 	[203] SaveScreenShotEx0(nn::capsrv::detail::ScreenShotAttributeEx0, u32, nn::applet::AppletResourceUserId, pid, buffer<bytes, 0x45>) -> nn::capsrv::ApplicationAlbumEntry;
 }
 
 @version(2.0.0+)
-interface nn::capsrv::sf::IScreenShotControlService {
+interface nn::capsrv::sf::IScreenShotControlService is caps:sc {
 	@undocumented
 	[1] Unknown1(unknown<0x28>) -> buffer<unknown, 0x46>;
 	@undocumented
@@ -2609,7 +2609,7 @@ interface nn::capsrv::sf::IScreenShotControlService {
 }
 
 @version(2.0.0+)
-interface nn::capsrv::sf::IScreenShotService {
+interface nn::capsrv::sf::IScreenShotService is caps:ss {
 	@undocumented
 	[201] Unknown201(unknown<0x10>, pid, buffer<unknown, 0x45>) -> unknown<0x20>;
 	@undocumented
@@ -2626,7 +2626,7 @@ interface nn::capsrv::sf::IScreenShotService {
 	[206] Unknown206(unknown<0x78>, buffer<unknown, 0x15>, buffer<unknown, 0x45>, buffer<unknown, 0x45>) -> unknown<0x20>;
 }
 
-interface nn::cec::ICecManager {
+interface nn::cec::ICecManager is cec-mgr {
 	@undocumented
 	[0] Unknown0() -> (unknown<0x8>, handle<copy>);
 	@undocumented
@@ -2661,7 +2661,7 @@ interface nn::codec::detail::IHardwareOpusDecoder {
 	[5] Unknown5(buffer<unknown, 0x5>) -> (u32, u32, u64, buffer<unknown, 0x46>);
 }
 
-interface nn::codec::detail::IHardwareOpusDecoderManager {
+interface nn::codec::detail::IHardwareOpusDecoderManager is hwopus {
 	[0] Unknown0(bytes<0x8, 4>, u32, handle<copy>) -> object<nn::codec::detail::IHardwareOpusDecoder>;
 	[1] Unknown1(bytes<0x8, 4>) -> u32;
 	@version(3.0.0+)
@@ -2670,7 +2670,7 @@ interface nn::codec::detail::IHardwareOpusDecoderManager {
 	[3] Unknown3(buffer<unknown<0x110>, 0x19>) -> u32;
 }
 
-interface nn::erpt::sf::IContext {
+interface nn::erpt::sf::IContext is erpt:c {
 	@undocumented
 	[0] Unknown0(buffer<unknown, 0x5>, buffer<unknown, 0x5>);
 	@undocumented
@@ -2714,14 +2714,14 @@ interface nn::erpt::sf::IReport {
 	[5] Unknown5() -> unknown<0x8>;
 }
 
-interface nn::erpt::sf::ISession {
+interface nn::erpt::sf::ISession is erpt:r {
 	@undocumented
 	[0] Unknown0() -> object<nn::erpt::sf::IReport>;
 	@undocumented
 	[1] Unknown1() -> object<nn::erpt::sf::IManager>;
 }
 
-interface nn::es::IETicketService {
+interface nn::es::IETicketService is es {
 	@undocumented
 	[1] Unknown1(buffer<unknown, 0x5>, buffer<unknown, 0x5>);
 	@undocumented
@@ -2827,7 +2827,7 @@ interface nn::es::IETicketService {
 	[29] Unknown29(unknown<0x10>) -> (unknown<0x4>, buffer<unknown, 0x6>);
 }
 
-interface nn::eth::sf::IEthInterface {
+interface nn::eth::sf::IEthInterface is ethc:c {
 	@undocumented
 	[0] Unknown0(buffer<unknown, 0x5>) -> handle<copy>;
 	@undocumented
@@ -2842,7 +2842,7 @@ interface nn::eth::sf::IEthInterface {
 	[5] Unknown5() -> unknown<0xc>;
 }
 
-interface nn::eth::sf::IEthInterfaceGroup {
+interface nn::eth::sf::IEthInterfaceGroup is ethc:i {
 	@undocumented
 	[0] Unknown0() -> handle<copy>;
 	@undocumented
@@ -2855,7 +2855,7 @@ interface nn::eth::sf::IEthInterfaceGroup {
 	[4] Unknown4() -> unknown<0x4>;
 }
 
-interface nn::eupld::sf::IControl {
+interface nn::eupld::sf::IControl is eupld:c {
 	@undocumented
 	[0] Unknown0(buffer<unknown, 0x5>);
 	@undocumented
@@ -2866,7 +2866,7 @@ interface nn::eupld::sf::IControl {
 	[3] Unknown3(unknown<0x8>);
 }
 
-interface nn::eupld::sf::IRequest {
+interface nn::eupld::sf::IRequest is eupld:r {
 	@undocumented
 	[0] Unknown0() -> handle<copy>;
 	@undocumented
@@ -2900,17 +2900,17 @@ interface nn::fan::detail::IController {
 	[7] Unknown7() -> unknown<0x4>;
 }
 
-interface nn::fan::detail::IManager {
+interface nn::fan::detail::IManager is fan {
 	@undocumented
 	[0] Unknown0(unknown<0x4>) -> object<nn::fan::detail::IController>;
 }
 
-interface nn::fatalsrv::IPrivateService {
+interface nn::fatalsrv::IPrivateService is fatal:p {
 	@undocumented
 	[0] Unknown0() -> handle<copy>;
 }
 
-interface nn::fatalsrv::IService {
+interface nn::fatalsrv::IService is fatal:u {
 	@undocumented
 	[0] Unknown0(unknown<0x10>, pid);
 	@undocumented
@@ -2919,7 +2919,7 @@ interface nn::fatalsrv::IService {
 	[2] Unknown2(unknown<0x10>, pid, buffer<unknown, 0x15>);
 }
 
-interface nn::fgm::sf::IDebugger {
+interface nn::fgm::sf::IDebugger is fgm:dbg {
 	[0] Initialize(u64, handle<copy>) -> handle<copy>;
 	[1] Read() -> (u32, u32, u32, buffer<bytes, 0x6>);
 	[2] Cancel();
@@ -2932,7 +2932,7 @@ interface nn::fgm::sf::IRequest {
 	[3] Cancel();
 }
 
-interface nn::fgm::sf::ISession {
+interface nn::fgm::sf::ISession is fgm, fgm:0, fgm:9 {
 	[0] Initialize() -> object<nn::fgm::sf::IRequest>;
 }
 
@@ -3065,7 +3065,7 @@ interface nn::friends::detail::ipc::INotificationService {
 }
 
 @version(2.0.0+)
-interface nn::friends::detail::ipc::IServiceCreator {
+interface nn::friends::detail::ipc::IServiceCreator is friend:u, friend:v, friend:m, friend:s, friend:a {
 	[0] CreateFriendService() -> object<nn::friends::detail::ipc::IFriendService>;
 	[1] CreateNotificationService(nn::account::Uid) -> object<nn::friends::detail::ipc::INotificationService>;
 	@version(4.0.0+)
@@ -3172,7 +3172,7 @@ interface nn::fssrv::sf::IFileSystem {
 	[15] Unknown15(u32, buffer<unknown<0x301>, 0x19>, buffer<unknown, 0x45>) -> buffer<unknown, 0x46>;
 }
 
-interface nn::fssrv::sf::IFileSystemProxy {
+interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	@version(1.0.0)
 	[0] Unknown0(unknown<0x4>, buffer<unknown, 0x19>) -> object<nn::fssrv::sf::IFileSystem>;
 	[1] Unknown1(u64, pid);
@@ -3308,7 +3308,7 @@ interface nn::fssrv::sf::IFileSystemProxy {
 	[1100] Unknown1100(buffer<unknown, 0x5>);
 }
 
-interface nn::fssrv::sf::IFileSystemProxyForLoader {
+interface nn::fssrv::sf::IFileSystemProxyForLoader is fsp-ldr {
 	@version(1.0.0)
 	[0] Unknown0(buffer<unknown, 0x19>) -> object<nn::fssrv::sf::IFileSystem>;
 	@version(2.0.0+)
@@ -3318,7 +3318,7 @@ interface nn::fssrv::sf::IFileSystemProxyForLoader {
 	[2] Unknown2(u64, pid);
 }
 
-interface nn::fssrv::sf::IProgramRegistry {
+interface nn::fssrv::sf::IProgramRegistry is fsp-pr {
 	[0] Unknown0(u8, u64, u64, u64, u64, buffer<unknown, 0x5>, buffer<unknown, 0x5>);
 	[1] Unknown1(u64);
 	@version(4.0.0+)
@@ -3370,7 +3370,7 @@ interface nn::fssrv::sf::IStorage {
 	[5] Unknown5(u32, u64, u64) -> bytes<0x40, 4>;
 }
 
-interface nn::gpio::IManager {
+interface nn::gpio::IManager is gpio {
 	[0] Unknown0(u32) -> object<nn::gpio::IPadSession>;
 	[1] Unknown1(u32) -> object<nn::gpio::IPadSession>;
 	[2] Unknown2(u32) -> object<nn::gpio::IPadSession>;
@@ -3432,7 +3432,7 @@ interface nn::grcsrv::IGameMovieTrimmer {
 }
 
 @version(4.0.0+)
-interface nn::grcsrv::IGrcService {
+interface nn::grcsrv::IGrcService is grc:c {
 	@undocumented
 	[1] Unknown1(unknown<0x28>, handle<copy>) -> object<nn::grcsrv::IContinuousRecorder>;
 	@undocumented
@@ -3447,7 +3447,7 @@ interface nn::hid::IAppletResource {
 	[0] GetSharedMemoryHandle() -> handle<copy>;
 }
 
-interface nn::hid::IHidDebugServer {
+interface nn::hid::IHidDebugServer is hid:dbg {
 	[0] DeactivateDebugPad();
 	[1] SetDebugPadAutoPilotState(nn::hid::debug::DebugPadAutoPilotState);
 	[2] UnsetDebugPadAutoPilotState();
@@ -3533,7 +3533,7 @@ interface nn::hid::IHidDebugServer {
 	[223] DisconnectUsbPadsAsync();
 }
 
-interface nn::hid::IHidServer {
+interface nn::hid::IHidServer is hid {
 	[0] CreateAppletResource(nn::applet::AppletResourceUserId, pid) -> object<nn::hid::IAppletResource>;
 	[1] ActivateDebugPad(nn::applet::AppletResourceUserId, pid);
 
@@ -3646,7 +3646,7 @@ interface nn::hid::IHidServer {
 	[1001] GetNpadCommunicationMode() -> u64;
 }
 
-interface nn::hid::IHidSystemServer {
+interface nn::hid::IHidSystemServer is hid:sys {
 	[31] SendKeyboardLockKeyEvent(nn::util::BitFlagSet<32, nn::hid::system::KeyboardLockKeyEvent>);
 
 	[101] AcquireHomeButtonEventHandle(nn::applet::AppletResourceUserId, pid) -> handle<copy>;
@@ -3787,7 +3787,7 @@ interface nn::hid::IHidSystemServer {
 }
 
 @version(3.0.0+)
-interface nn::hid::IHidTemporaryServer {
+interface nn::hid::IHidTemporaryServer is hid:tmp {
 	[0] GetConsoleSixAxisSensorCalibrationValues(nn::hid::ConsoleSixAxisSensorHandle, nn::applet::AppletResourceUserId, pid) -> nn::hid::tmp::ConsoleSixAxisSensorCalibrationValues;
 }
 
@@ -3797,11 +3797,11 @@ interface nn::htc::tenv::IService {
 	[2] Unknown2(u64);
 }
 
-interface nn::htc::tenv::IServiceManager {
+interface nn::htc::tenv::IServiceManager is htc:tenv {
 	[0] Unknown0(u64, pid) -> object<unknown>;
 }
 
-interface nn::i2c::IManager {
+interface nn::i2c::IManager is i2c, i2c:pcv {
 	[0] Unknown0(u16, u32, u32, u32) -> object<nn::i2c::ISession>;
 	[1] Unknown1(u32) -> object<nn::i2c::ISession>;
 	[2] Unknown2(u32) -> u8;
@@ -3818,7 +3818,7 @@ interface nn::i2c::ISession {
 	[12] Unknown12(buffer<unknown, 0x9>) -> buffer<unknown, 0x22>;
 }
 
-interface nn::idle::detail::IPolicyManagerSystem {
+interface nn::idle::detail::IPolicyManagerSystem is idle:sys {
 	@undocumented
 	[0] Unknown0() -> handle<copy>;
 	@version(1.0.0-3.0.0)
@@ -3840,7 +3840,7 @@ interface nn::idle::detail::IPolicyManagerSystem {
 	[5] Unknown5();
 }
 
-interface nn::irsensor::IIrSensorServer {
+interface nn::irsensor::IIrSensorServer is irs {
 	[302] ActivateIrsensor(nn::applet::AppletResourceUserId, pid);
 	[303] DeactivateIrsensor(nn::applet::AppletResourceUserId, pid);
 	[304] GetIrsensorSharedMemoryHandle(nn::applet::AppletResourceUserId, pid) -> handle<copy>;
@@ -3871,14 +3871,14 @@ interface nn::irsensor::IIrSensorServer {
 	[319] ActivateIrsensorWithFunctionLevel(nn::irsensor::PackedFunctionLevel, nn::applet::AppletResourceUserId, pid);
 }
 
-interface nn::irsensor::IIrSensorSystemServer {
+interface nn::irsensor::IIrSensorSystemServer is irs:sys {
 	[500] SetAppletResourceUserId(nn::applet::AppletResourceUserId);
 	[501] RegisterAppletResourceUserId(b8, nn::applet::AppletResourceUserId);
 	[502] UnregisterAppletResourceUserId(nn::applet::AppletResourceUserId);
 	[503] EnableAppletToGetInput(b8, nn::applet::AppletResourceUserId);
 }
 
-interface nn::lbl::detail::ILblController {
+interface nn::lbl::detail::ILblController is lbl {
 	@undocumented
 	[0] Unknown0();
 	@undocumented
@@ -3957,7 +3957,7 @@ interface nn::ldn::detail::IMonitorService {
 	[101] Unknown101();
 }
 
-interface nn::ldn::detail::IMonitorServiceCreator {
+interface nn::ldn::detail::IMonitorServiceCreator is ldn:m {
 	[0] Unknown0() -> object<nn::ldn::detail::IMonitorService>;
 }
 
@@ -3997,7 +3997,7 @@ interface nn::ldn::detail::ISystemLocalCommunicationService {
 	[402] Unknown402(u32);
 }
 
-interface nn::ldn::detail::ISystemServiceCreator {
+interface nn::ldn::detail::ISystemServiceCreator is ldn:s {
 	[0] Unknown0() -> object<nn::ldn::detail::ISystemLocalCommunicationService>;
 }
 
@@ -4035,11 +4035,11 @@ interface nn::ldn::detail::IUserLocalCommunicationService {
 	[401] Unknown401();
 }
 
-interface nn::ldn::detail::IUserServiceCreator {
+interface nn::ldn::detail::IUserServiceCreator is ldn:u {
 	[0] Unknown0() -> object<nn::ldn::detail::IUserLocalCommunicationService>;
 }
 
-interface nn::ldr::detail::IDebugMonitorInterface {
+interface nn::ldr::detail::IDebugMonitorInterface is ldr:dmnt {
 	@undocumented
 	[0] Unknown0(unknown<0x10>, buffer<unknown, 0x9>);
 	@undocumented
@@ -4048,7 +4048,7 @@ interface nn::ldr::detail::IDebugMonitorInterface {
 	[2] Unknown2(unknown<0x8>) -> (unknown<0x4>, buffer<unknown, 0xa>);
 }
 
-interface nn::ldr::detail::IProcessManagerInterface {
+interface nn::ldr::detail::IProcessManagerInterface is ldr:pm {
 	@undocumented
 	[0] Unknown0(unknown<0x10>, handle<copy>) -> handle<move>;
 	@undocumented
@@ -4060,7 +4060,7 @@ interface nn::ldr::detail::IProcessManagerInterface {
 }
 
 @version(1.0.0-2.0.0)
-interface nn::ldr::detail::IRoInterface {
+interface nn::ldr::detail::IRoInterface is ldr:ro {
 	[0] Unknown0(u64, u64, u64, u64, u64, pid) -> u64;
 	[1] Unknown1(u64, u64, pid);
 	[2] Unknown2(u64, u64, u64, pid);
@@ -4068,14 +4068,14 @@ interface nn::ldr::detail::IRoInterface {
 	[4] Unknown4(u64, pid, handle<copy>);
 }
 
-interface nn::ldr::detail::IShellInterface {
+interface nn::ldr::detail::IShellInterface is ldr:shel {
 	@undocumented
 	[0] Unknown0(unknown<0x10>, buffer<unknown, 0x9>);
 	@undocumented
 	[1] Unknown1();
 }
 
-interface nn::lm::ILogService {
+interface nn::lm::ILogService is lm {
 	[0] Unknown0(u64, pid) -> object<nn::lm::ILogger>;
 }
 
@@ -4118,7 +4118,7 @@ interface nn::lr::ILocationResolver {
 	[9] Unknown9();
 }
 
-interface nn::lr::ILocationResolverManager {
+interface nn::lr::ILocationResolverManager is lr {
 	@undocumented
 	[0] Unknown0(unknown<0x1>) -> object<nn::lr::ILocationResolver>;
 	@undocumented
@@ -4252,7 +4252,7 @@ interface nn::migration::user::IServer {
 }
 
 @version(4.0.0+)
-interface nn::migration::user::IService {
+interface nn::migration::user::IService is mig:usr {
 	@undocumented
 	[10] Unknown10() -> unknown<0xc>;
 
@@ -4292,11 +4292,11 @@ interface nn::mii::detail::IDatabaseService {
 	[21] GetIndex(nn::mii::CharInfo) -> u32;
 }
 
-interface nn::mii::detail::IStaticService {
+interface nn::mii::detail::IStaticService is mii:u, mii:e {
 	[0] GetDatabaseService(u32) -> object<nn::mii::detail::IDatabaseService>;
 }
 
-interface nn::mmnv::IRequest {
+interface nn::mmnv::IRequest is mm:u {
 	[0] Unknown0(u32, u32, u32);
 	[1] Unknown1(u32);
 	[2] Unknown2(u32, u32, u32);
@@ -4311,7 +4311,7 @@ interface nn::mmnv::IRequest {
 	[7] Unknown7(u32) -> u32;
 }
 
-interface nn::ncm::IContentManager {
+interface nn::ncm::IContentManager is ncm {
 	@undocumented
 	[0] Unknown0(unknown<0x1>);
 	@undocumented
@@ -4550,7 +4550,7 @@ interface nn::news::detail::ipc::IOverwriteEventHolder {
 }
 
 @version(2.0.0+)
-interface nn::news::detail::ipc::IServiceCreator {
+interface nn::news::detail::ipc::IServiceCreator is news:a, news:c, news:m, news:p, news:v {
 	@undocumented
 	[0] Unknown0() -> object<nn::news::detail::ipc::INewsService>;
 	@undocumented
@@ -4572,7 +4572,7 @@ interface nn::nfc::am::detail::IAm {
 	[2] Unknown2(unknown<0x8>);
 }
 
-interface nn::nfc::am::detail::IAmManager {
+interface nn::nfc::am::detail::IAmManager is nfc:am {
 	@undocumented
 	[0] Unknown0() -> object<nn::nfc::am::detail::IAm>;
 }
@@ -4628,7 +4628,7 @@ interface nn::nfc::detail::ISystem {
 	[1302] Unknown1302(bytes<0x8, 4>);
 }
 
-interface nn::nfc::detail::ISystemManager {
+interface nn::nfc::detail::ISystemManager is nfc:sys {
 	[0] Unknown0() -> object<nn::nfc::detail::ISystem>;
 }
 
@@ -4678,7 +4678,7 @@ interface nn::nfc::detail::IUser {
 	[1302] Unknown1302(bytes<0x8, 4>);
 }
 
-interface nn::nfc::detail::IUserManager {
+interface nn::nfc::detail::IUserManager is nfc:user {
 	@version(1.0.0-3.0.0)
 	[0] Unknown0() -> object<nn::nfc::detail::IUser>;
 	@version(4.0.0+)
@@ -4703,7 +4703,7 @@ interface nn::nfc::mifare::detail::IUser {
 	[13] Unknown13() -> handle<copy>;
 }
 
-interface nn::nfc::mifare::detail::IUserManager {
+interface nn::nfc::mifare::detail::IUserManager is nfc:mf:u {
 	@version(1.0.0-3.0.0)
 	[0] Unknown0() -> object<nn::nfc::mifare::detail::IUser>;
 	@version(4.0.0+)
@@ -4789,7 +4789,7 @@ interface nn::nfp::detail::IDebug {
 	[314] Unknown314() -> handle<copy>;
 }
 
-interface nn::nfp::detail::IDebugManager {
+interface nn::nfp::detail::IDebugManager is nfp:dbg {
 	[0] Unknown0() -> object<nn::nfp::detail::IDebug>;
 }
 
@@ -4827,7 +4827,7 @@ interface nn::nfp::detail::ISystem {
 	[106] Unknown106(bytes<0x8, 4>) -> u8;
 }
 
-interface nn::nfp::detail::ISystemManager {
+interface nn::nfp::detail::ISystemManager is nfp:sys {
 	[0] Unknown0() -> object<nn::nfp::detail::ISystem>;
 }
 
@@ -4861,7 +4861,7 @@ interface nn::nfp::detail::IUser {
 	[24] Unknown24(bytes<0x8, 4>, u32, buffer<unknown, 0x5>);
 }
 
-interface nn::nfp::detail::IUserManager {
+interface nn::nfp::detail::IUserManager is nfp:user {
 	[0] Unknown0() -> object<nn::nfp::detail::IUser>;
 }
 
@@ -4978,7 +4978,7 @@ interface nn::nifm::detail::IScanRequest {
 	[3] GetSystemEventReadableHandle() -> handle<copy>;
 }
 
-interface nn::nifm::detail::IStaticService {
+interface nn::nifm::detail::IStaticService is nifm:u, nifm:a, nifm:s {
 	@version(1.0.0-2.0.0)
 	[4] CreateGeneralService() -> object<nn::nifm::detail::IGeneralService>;
 	@version(3.0.0+)
@@ -5039,7 +5039,7 @@ interface nn::nim::detail::IAsyncValue {
 	[3] Unknown3() -> buffer<unknown, 0x16>;
 }
 
-interface nn::nim::detail::INetworkInstallManager {
+interface nn::nim::detail::INetworkInstallManager is nim {
 	@undocumented
 	[0] Unknown0(unknown<0x18>) -> unknown<0x10>;
 	@undocumented
@@ -5299,7 +5299,7 @@ interface nn::nim::detail::INetworkInstallManager {
 }
 
 @version(2.0.0+)
-interface nn::nim::detail::IShopServiceManager {
+interface nn::nim::detail::IShopServiceManager is nim:shp {
 	@undocumented
 	[0] Unknown0() -> (handle<copy>, object<nn::nim::detail::IAsyncValue>);
 	@version(3.0.0+)
@@ -5358,7 +5358,7 @@ interface nn::nim::detail::IShopServiceManager {
 	[502] Unknown502(unknown<0x10>) -> (handle<copy>, object<nn::nim::detail::IAsyncValue>);
 }
 
-interface nn::npns::INpnsSystem {
+interface nn::npns::INpnsSystem is npns:s {
 	@undocumented
 	[1] Unknown1();
 	@undocumented
@@ -5430,7 +5430,7 @@ interface nn::npns::INpnsSystem {
 	[202] Unknown202(unknown<0x4>);
 }
 
-interface nn::npns::INpnsUser {
+interface nn::npns::INpnsUser is npns:u {
 	@undocumented
 	[1] Unknown1();
 	@undocumented
@@ -5474,7 +5474,7 @@ interface nn::ns::detail::IAccountProxyInterface {
 	[0] Unknown0(unknown<0x21>, buffer<unknown, 0x5>);
 }
 
-interface nn::ns::detail::IApplicationManagerInterface {
+interface nn::ns::detail::IApplicationManagerInterface is ns:am {
 	@undocumented
 	[0] Unknown0(unknown<0x4>) -> (unknown<0x4>, buffer<unknown, 0x6>);
 	@undocumented
@@ -6030,7 +6030,7 @@ interface nn::ns::detail::IContentManagementInterface {
 	[607] Unknown607() -> unknown<0x1>;
 }
 
-interface nn::ns::detail::IDevelopInterface {
+interface nn::ns::detail::IDevelopInterface is ns:dev {
 	@undocumented
 	[0] Unknown0(unknown<0x18>) -> unknown<0x8>;
 	@undocumented
@@ -6139,7 +6139,7 @@ interface nn::ns::detail::IRequestServerStopper {
 }
 
 @version(3.0.0+)
-interface nn::ns::detail::IServiceGetterInterface {
+interface nn::ns::detail::IServiceGetterInterface is ns:am2, ns:ec, ns:rid, ns:rt, ns:web {
 	@version(4.0.0+)
 	@undocumented
 	[7992] Unknown7992() -> object<nn::ns::detail::IECommerceInterface>;
@@ -6215,7 +6215,7 @@ interface nn::ns::detail::ISystemUpdateControl {
 	[21] Unknown21();
 }
 
-interface nn::ns::detail::ISystemUpdateInterface {
+interface nn::ns::detail::ISystemUpdateInterface is ns:su {
 	@undocumented
 	[0] Unknown0() -> unknown<0x1>;
 	@undocumented
@@ -6269,7 +6269,7 @@ interface nn::ns::detail::ISystemUpdateInterface {
 }
 
 @version(3.0.0+)
-interface nn::ns::detail::IVulnerabilityManagerInterface {
+interface nn::ns::detail::IVulnerabilityManagerInterface is ns:vm {
 	@undocumented
 	[1200] Unknown1200() -> unknown<0x1>;
 	@version(4.0.0+)
@@ -6280,7 +6280,7 @@ interface nn::ns::detail::IVulnerabilityManagerInterface {
 	[1202] Unknown1202() -> unknown<0x10>;
 }
 
-interface nn::nsd::detail::IManager {
+interface nn::nsd::detail::IManager is nsd:u, nsd:a {
 	[10] Unknown10() -> buffer<unknown<0x100>, 0x16>;
 	[11] Unknown11() -> buffer<unknown<0x8>, 0x16>;
 	[12] Unknown12() -> bytes<0x10, 1>;
@@ -6319,7 +6319,7 @@ interface nn::ntc::detail::service::IEnsureNetworkClockAvailabilityService {
 	[5] Unknown5() -> u64;
 }
 
-interface nn::ntc::detail::service::IStaticService {
+interface nn::ntc::detail::service::IStaticService is ntc {
 	[0] Unknown0(u32, u32) -> object<nn::ntc::detail::service::IEnsureNetworkClockAvailabilityService>;
 
 	@version(3.0.0+)
@@ -6328,7 +6328,7 @@ interface nn::ntc::detail::service::IStaticService {
 	[101] Unknown101();
 }
 
-interface nn::omm::detail::IOperationModeManager {
+interface nn::omm::detail::IOperationModeManager is omm {
 	@undocumented
 	[0] Unknown0() -> unknown<0x1>;
 	@undocumented
@@ -6429,7 +6429,7 @@ interface nn::ovln::ISenderService {
 	[0] Unknown0(unknown<0x18>) -> object<nn::ovln::ISender>;
 }
 
-interface nn::pcie::detail::IManager {
+interface nn::pcie::detail::IManager is pcie {
 	@undocumented
 	[0] Unknown0(unknown<0x18>, handle<copy>) -> (handle<copy>, object<nn::pcie::detail::ISession>);
 	@undocumented
@@ -6627,22 +6627,22 @@ interface nn::pctl::detail::ipc::IParentalControlService {
 	[2015] FinishSynchronizeParentalControlSettingsWithLastUpdated(nn::pctl::detail::AsyncData) -> nn::time::PosixTime;
 }
 
-interface nn::pctl::detail::ipc::IParentalControlServiceFactory {
+interface nn::pctl::detail::ipc::IParentalControlServiceFactory is pctl, pctl:a, pctl:s, pctl:r {
 	[0] CreateService(u64, pid) -> object<nn::pctl::detail::ipc::IParentalControlService>;
 	@version(4.0.0+)
 	[1] CreateServiceWithoutInitialize(u64, pid) -> object<nn::pctl::detail::ipc::IParentalControlService>;
 }
 
 @version(2.0.0+)
-interface nn::pcv::IArbitrationManager {
+interface nn::pcv::IArbitrationManager is pcv:arb {
 	[0] ReleaseControl(u32);
 }
 
-interface nn::pcv::IImmediateManager {
+interface nn::pcv::IImmediateManager is pcv:imm {
 	[0] SetClockRate(u32, u32);
 }
 
-interface nn::pcv::detail::IPcvService {
+interface nn::pcv::detail::IPcvService is pcv {
 	[0] SetPowerEnabled(b8, u32);
 	[1] SetClockEnabled(b8, u32);
 	[2] SetClockRate(u32, u32);
@@ -6734,7 +6734,7 @@ interface nn::pdm::detail::IQueryService {
 	[12] Unknown12(unknown<0x10>) -> unknown<0xc>;
 }
 
-interface nn::pinmux::IManager {
+interface nn::pinmux::IManager is pinmux {
 	@undocumented
 	[0] Unknown0(unknown<0x4>) -> object<nn::pinmux::ISession>;
 }
@@ -6748,7 +6748,7 @@ interface nn::pinmux::ISession {
 	[2] Unknown2(unknown<0x4>);
 }
 
-interface nn::pl::detail::ISharedFontManager {
+interface nn::pl::detail::ISharedFontManager is pl:u {
 	[0] Unknown0(u32);
 	[1] Unknown1(u32) -> u32;
 	[2] Unknown2(u32) -> u32;
@@ -6759,7 +6759,7 @@ interface nn::pl::detail::ISharedFontManager {
 	[6] Unknown6(bytes<0x8, 1>) -> (u8, u32, buffer<unknown, 0x6>, buffer<unknown, 0x6>, buffer<unknown, 0x6>);
 }
 
-interface nn::pm::detail::IBootModeInterface {
+interface nn::pm::detail::IBootModeInterface is pm:bm {
 	@undocumented
 	[0] Unknown0() -> unknown<0x4>;
 	@undocumented
@@ -6783,12 +6783,12 @@ interface nn::pm::detail::IDebugMonitorInterface {
 	[6] Unknown6() -> handle<copy>;
 }
 
-interface nn::pm::detail::IInformationInterface {
+interface nn::pm::detail::IInformationInterface is pm:info {
 	@undocumented
 	[0] Unknown0(unknown<0x8>) -> unknown<0x8>;
 }
 
-interface nn::pm::detail::IShellInterface {
+interface nn::pm::detail::IShellInterface is pm:shell {
 	@undocumented
 	[0] Unknown0(unknown<0x18>) -> unknown<0x8>;
 	@undocumented
@@ -6812,7 +6812,7 @@ interface nn::pm::detail::IShellInterface {
 	[9] Unknown9(unknown<0x8>);
 }
 
-interface nn::prepo::detail::ipc::IPrepoService {
+interface nn::prepo::detail::ipc::IPrepoService is prepo:u, prepo:s, prepo:m, prepo:a {
 	[10100] SaveReport(u64, pid, buffer<u8[], 0x9>, buffer<bytes, 0x5>);
 	[10101] SaveReportWithUser(nn::account::Uid, u64, pid, buffer<u8[], 0x9>, buffer<bytes, 0x5>);
 
@@ -6846,7 +6846,7 @@ interface nn::prepo::detail::ipc::IPrepoService {
 	[90102] Unknown90102() -> unknown<0x10>;
 }
 
-interface nn::psc::sf::IPmControl {
+interface nn::psc::sf::IPmControl is psc:c {
 	@undocumented
 	[0] Unknown0() -> handle<copy>;
 	@undocumented
@@ -6874,12 +6874,12 @@ interface nn::psc::sf::IPmModule {
 	[3] Unknown3();
 }
 
-interface nn::psc::sf::IPmService {
+interface nn::psc::sf::IPmService is psc:m {
 	@undocumented
 	[0] Unknown0() -> object<nn::psc::sf::IPmModule>;
 }
 
-interface nn::psm::IPsmServer {
+interface nn::psm::IPsmServer is psm {
 	@undocumented
 	[0] Unknown0() -> unknown<0x4>;
 	@undocumented
@@ -6945,7 +6945,7 @@ interface nn::pwm::IChannelSession {
 	[5] Unknown5() -> u8;
 }
 
-interface nn::pwm::IManager {
+interface nn::pwm::IManager is pwm {
 	[0] Unknown0(u32) -> object<nn::pwm::IChannelSession>;
 	[1] Unknown1(u32) -> object<nn::pwm::IChannelSession>;
 }
@@ -6966,7 +6966,7 @@ interface nn::ro::detail::IRoInterface {
 }
 
 @version(3.0.0+)
-interface nn::sasbus::IManager {
+interface nn::sasbus::IManager is sasbus {
 	@undocumented
 	[0] Unknown0(unknown<0x4>) -> object<nn::sasbus::ISession>;
 }
@@ -6983,7 +6983,7 @@ interface nn::sasbus::ISession {
 	[3] Unknown3();
 }
 
-interface nn::settings::IFactorySettingsServer {
+interface nn::settings::IFactorySettingsServer is set:cal {
 	[0] GetBluetoothBdAddress() -> nn::settings::factory::BdAddress;
 	[1] GetConfigurationId1() -> nn::settings::factory::ConfigurationId1;
 	[2] GetAccelerometerOffset() -> nn::settings::factory::AccelerometerOffset;
@@ -7011,7 +7011,7 @@ interface nn::settings::IFactorySettingsServer {
 	[23] GetLcdVendorId() -> u32;
 }
 
-interface nn::settings::IFirmwareDebugSettingsServer {
+interface nn::settings::IFirmwareDebugSettingsServer is set:fd {
 	[2] SetSettingsItemValue(buffer<nn::settings::SettingsName, 0x19>, buffer<nn::settings::SettingsItemKey, 0x19>, buffer<bytes, 0x5>);
 	[3] ResetSettingsItemValue(buffer<nn::settings::SettingsName, 0x19>, buffer<nn::settings::SettingsItemKey, 0x19>);
 	[4] CreateSettingsItemKeyIterator(buffer<nn::settings::SettingsName, 0x19>) -> object<nn::settings::ISettingsItemKeyIterator>;
@@ -7035,7 +7035,7 @@ interface nn::settings::ISettingsItemKeyIterator {
 	[2] GetKey() -> (u64, buffer<bytes, 0x6>);
 }
 
-interface nn::settings::ISettingsServer {
+interface nn::settings::ISettingsServer is set {
 	[0] GetLanguageCode() -> nn::settings::LanguageCode;
 	[1] GetAvailableLanguageCodes() -> (u32, buffer<nn::settings::LanguageCode[], 0xa>);
 	@version(4.0.0+)
@@ -7050,7 +7050,7 @@ interface nn::settings::ISettingsServer {
 	[7] GetKeyCodeMap() -> buffer<nn::kpr::KeyCodeMap, 0x16>;
 }
 
-interface nn::settings::ISystemSettingsServer {
+interface nn::settings::ISystemSettingsServer is set:sys {
 	[0] SetLanguageCode(nn::settings::LanguageCode);
 	[1] SetNetworkSettings(buffer<nn::settings::system::NetworkSettings[], 0x5>);
 	[2] GetNetworkSettings() -> (u32, buffer<nn::settings::system::NetworkSettings[], 0x6>);
@@ -7265,7 +7265,7 @@ interface nn::sm::detail::IUserInterface {
 	[3] Unknown3(bytes<0x8, 1>);
 }
 
-interface nn::socket::resolver::IResolver {
+interface nn::socket::resolver::IResolver is sfdnsres {
 	[0] Unknown0(u32, buffer<unknown, 0x5>);
 	[1] Unknown1(u32) -> buffer<unknown, 0x6>;
 	[2] Unknown2(u8, u32, u64, pid, buffer<unknown, 0x5>) -> (u32, u32, u32, buffer<unknown, 0x6>);
@@ -7278,7 +7278,7 @@ interface nn::socket::resolver::IResolver {
 	[9] Unknown9(u32, u64, pid);
 }
 
-interface nn::socket::sf::IClient {
+interface nn::socket::sf::IClient is bsd:u, bsd:s {
 	[0] Unknown0(bytes<0x20, 4>, u64, u64, pid, handle<copy>) -> u32;
 	[1] Unknown1(u64, pid);
 	[2] Unknown2(u32, u32, u32) -> (u32, u32);
@@ -7454,7 +7454,7 @@ interface nn::spl::detail::IFsInterface {
 	[25] Unknown25() -> unknown<0x4>;
 }
 
-interface nn::spl::detail::IGeneralInterface {
+interface nn::spl::detail::IGeneralInterface is spl:, spl:mig, spl:fs, spl:ssl, spl:es, spl:manu {
 	@undocumented
 	[0] Unknown0(unknown<0x4>) -> unknown<0x8>;
 	@undocumented
@@ -7535,7 +7535,7 @@ interface nn::spl::detail::IGeneralInterface {
 	[25] Unknown25() -> unknown<0x4>;
 }
 
-interface nn::spl::detail::IRandomInterface {
+interface nn::spl::detail::IRandomInterface is csrng {
 	[0] Unknown0() -> buffer<unknown, 0x6>;
 }
 
@@ -7581,7 +7581,7 @@ interface nn::spl::detail::ISslInterface {
 	[25] Unknown25() -> unknown<0x4>;
 }
 
-interface nn::spsm::detail::IPowerStateInterface {
+interface nn::spsm::detail::IPowerStateInterface is spsm {
 	@undocumented
 	[0] Unknown0() -> unknown<0x4>;
 	@undocumented
@@ -7664,7 +7664,7 @@ interface nn::ssl::sf::ISslContext {
 	[11] RemoveCrl(u64);
 }
 
-interface nn::ssl::sf::ISslService {
+interface nn::ssl::sf::ISslService is ssl {
 	[0] CreateContext(nn::ssl::sf::SslVersion, u64, pid) -> object<nn::ssl::sf::ISslContext>;
 	[1] GetContextCount() -> u32;
 	@version(2.0.0)
@@ -7679,7 +7679,7 @@ interface nn::ssl::sf::ISslService {
 	[5] SetInterfaceVersion(u32);
 }
 
-interface nn::tc::IManager {
+interface nn::tc::IManager is tc {
 	@undocumented
 	[0] Unknown0(unknown<0x4>);
 	@undocumented
@@ -7700,7 +7700,7 @@ interface nn::tc::IManager {
 	[8] Unknown8() -> unknown<0x1>;
 }
 
-interface nn::timesrv::detail::service::IStaticService {
+interface nn::timesrv::detail::service::IStaticService is time:u, time:a, time:s {
 	[0] GetStandardUserSystemClock() -> object<nn::timesrv::detail::service::ISystemClock>;
 	[1] GetStandardNetworkSystemClock() -> object<nn::timesrv::detail::service::ISystemClock>;
 	[2] GetStandardSteadyClock() -> object<nn::timesrv::detail::service::ISteadyClock>;
@@ -7774,7 +7774,7 @@ interface nn::timesrv::detail::service::ITimeZoneService {
 	[202] ToPosixTimeWithMyRule(nn::time::CalendarTime) -> (u32, buffer<nn::time::PosixTime[], 0xa>);
 }
 
-interface nn::tma::IHtcManager {
+interface nn::tma::IHtcManager is htc {
 	[0] Unknown0(buffer<unknown, 0x5>) -> (u32, buffer<unknown, 0x6>);
 	[1] Unknown1(buffer<unknown, 0x5>) -> u32;
 	[2] Unknown2() -> handle<copy>;
@@ -7796,7 +7796,7 @@ interface nn::tma::IHtcManager {
 	[10] Unknown10() -> buffer<unknown, 0x6>;
 }
 
-interface nn::tma::IHtcsManager {
+interface nn::tma::IHtcsManager is htcs {
 	[0] Unknown0() -> (u32, u32);
 	[1] Unknown1(u32) -> (u32, u32);
 	[2] Unknown2(bytes<0x42, 2>, u32) -> (u32, u32);
@@ -7844,7 +7844,7 @@ interface nn::tma::ISocket {
 	[16] Unknown16(u32) -> (u32, u64);
 }
 
-interface nn::ts::server::IMeasurementServer {
+interface nn::ts::server::IMeasurementServer is ts {
 	@undocumented
 	[0] Unknown0(unknown<0x1>) -> unknown<0x8>;
 	@undocumented
@@ -7855,7 +7855,7 @@ interface nn::ts::server::IMeasurementServer {
 	[3] Unknown3(unknown<0x1>) -> unknown<0x4>;
 }
 
-interface nn::uart::IManager {
+interface nn::uart::IManager is uart {
 	@undocumented
 	[0] Unknown0(unknown<0x4>) -> unknown<0x1>;
 	@undocumented
@@ -7937,7 +7937,7 @@ interface nn::usb::ds::IDsInterface {
 	[11] Unknown11();
 }
 
-interface nn::usb::ds::IDsService {
+interface nn::usb::ds::IDsService is usb:ds {
 	@undocumented
 	[0] Unknown0(unknown<0x4>);
 	@undocumented
@@ -8037,7 +8037,7 @@ interface nn::usb::hs::IClientIfSession {
 	[9] Unknown9(unknown<0x14>) -> (unknown<0x7>, object<nn::usb::hs::IClientEpSession>);
 }
 
-interface nn::usb::hs::IClientRootSession {
+interface nn::usb::hs::IClientRootSession is usb:hs {
 	@version(1.0.0)
 	@undocumented
 	[0] Unknown0(unknown<0x10>) -> (unknown<0x4>, buffer<unknown, 0x6>);
@@ -8090,7 +8090,7 @@ interface nn::usb::hs::IClientRootSession {
 	[8] Unknown8(unknown<0x4>);
 }
 
-interface nn::usb::pd::detail::IPdCradleManager {
+interface nn::usb::pd::detail::IPdCradleManager is usb:pd:c {
 	@undocumented
 	[0] Unknown0() -> object<nn::usb::pd::detail::IPdCradleSession>;
 }
@@ -8122,7 +8122,7 @@ interface nn::usb::pd::detail::IPdCradleSession {
 	[8] Unknown8() -> unknown<0x1>;
 }
 
-interface nn::usb::pd::detail::IPdManager {
+interface nn::usb::pd::detail::IPdManager is usb:pd {
 	@undocumented
 	[0] Unknown0() -> object<nn::usb::pd::detail::IPdSession>;
 }
@@ -8162,7 +8162,7 @@ interface nn::usb::pd::detail::IPdSession {
 	[6] Unknown6(unknown<0x1>);
 }
 
-interface nn::usb::pm::IPmService {
+interface nn::usb::pm::IPmService is usb:pm {
 	@undocumented
 	[0] Unknown0() -> handle<copy>;
 	@undocumented
@@ -8215,7 +8215,7 @@ interface nn::visrv::sf::IApplicationDisplayService {
 	[5203] GetDisplayVsyncEventForDebug(u64) -> handle<copy>;
 }
 
-interface nn::visrv::sf::IApplicationRootService {
+interface nn::visrv::sf::IApplicationRootService is vi:u {
 	[0] GetDisplayService(u32) -> object<nn::visrv::sf::IApplicationDisplayService>;
 }
 
@@ -8340,7 +8340,7 @@ interface nn::visrv::sf::IManagerDisplayService {
 	[8297] GetSharedFrameBufferContentParameter(nn::vi::fbshare::SharedBufferHandle, u64) -> (u32, nn::vi::CropRegion, u32, u32, u32);
 }
 
-interface nn::visrv::sf::IManagerRootService {
+interface nn::visrv::sf::IManagerRootService is vi:m {
 	[2] GetDisplayService(u32) -> object<nn::visrv::sf::IApplicationDisplayService>;
 	[3] GetDisplayServiceWithProxyNameExchange(nn::vi::ProxyName, u32) -> object<nn::visrv::sf::IApplicationDisplayService>;
 }
@@ -8415,13 +8415,13 @@ interface nn::visrv::sf::ISystemDisplayService {
 	[8257] FillSharedFrameBufferColor(u32, u32, u32, u32, nn::vi::fbshare::SharedLayerHandle, u64);
 }
 
-interface nn::visrv::sf::ISystemRootService {
+interface nn::visrv::sf::ISystemRootService is vi:s {
 	[1] GetDisplayService(u32) -> object<nn::visrv::sf::IApplicationDisplayService>;
 
 	[3] GetDisplayServiceWithProxyNameExchange(nn::vi::ProxyName, u32) -> object<nn::visrv::sf::IApplicationDisplayService>;
 }
 
-interface nn::wlan::detail::IInfraManager {
+interface nn::wlan::detail::IInfraManager is wlan:inf {
 	@undocumented
 	[0] Unknown0();
 	@undocumented
@@ -8494,17 +8494,17 @@ interface nn::wlan::detail::IInfraManager {
 	[27] Unknown27();
 }
 
-interface nn::wlan::detail::ILocalGetActionFrame {
+interface nn::wlan::detail::ILocalGetActionFrame is wlan:lga {
 	@undocumented
 	[0] Unknown0(unknown<0x4>) -> (unknown<0xc>, buffer<unknown, 0x6>);
 }
 
-interface nn::wlan::detail::ILocalGetFrame {
+interface nn::wlan::detail::ILocalGetFrame is wlan:lg {
 	@undocumented
 	[0] Unknown0(unknown<0x4>) -> (unknown<0x4>, buffer<unknown, 0x6>);
 }
 
-interface nn::wlan::detail::ILocalManager {
+interface nn::wlan::detail::ILocalManager is wlan:lcl {
 	@undocumented
 	[0] Unknown0();
 	@undocumented
@@ -8621,12 +8621,12 @@ interface nn::wlan::detail::ILocalManager {
 	[48] Unknown48();
 }
 
-interface nn::wlan::detail::ISocketGetFrame {
+interface nn::wlan::detail::ISocketGetFrame is wlan:sg {
 	@undocumented
 	[0] Unknown0(unknown<0x4>) -> (unknown<0x4>, buffer<unknown, 0x6>);
 }
 
-interface nn::wlan::detail::ISocketManager {
+interface nn::wlan::detail::ISocketManager is wlan:soc {
 	@undocumented
 	[0] Unknown0(buffer<unknown, 0x5>);
 	@undocumented
@@ -8653,7 +8653,7 @@ interface nn::wlan::detail::ISocketManager {
 	[11] Unknown11();
 }
 
-interface nn::xcd::detail::ISystemServer {
+interface nn::xcd::detail::ISystemServer is xcd:sys {
 	@undocumented
 	[0] Unknown0(unknown<0x8>) -> unknown<0x1>;
 	@undocumented
@@ -8696,7 +8696,7 @@ interface nn::xcd::detail::ISystemServer {
 	[102] Unknown102() -> unknown<0x8>;
 }
 
-interface nns::nvdrv::INvDrvDebugFSServices {
+interface nns::nvdrv::INvDrvDebugFSServices is nvdrvdbg {
 	@undocumented
 	[0] Unknown0(handle<copy>) -> unknown<0x4>;
 	@undocumented
@@ -8709,7 +8709,7 @@ interface nns::nvdrv::INvDrvDebugFSServices {
 	[4] Unknown4(unknown<0x4>, buffer<unknown, 0x5>, buffer<unknown, 0x5>) -> unknown<0x4>;
 }
 
-interface nns::nvdrv::INvDrvServices {
+interface nns::nvdrv::INvDrvServices is nvdrv:a, nvdrv:s, nvdrv:t, nvdrv {
 	[0] Unknown0(buffer<unknown, 0x5>) -> unknown<0x8>;
 	[1] Unknown1(unknown<0x8>, buffer<unknown, 0x21>) -> (unknown<0x4>, buffer<unknown, 0x22>);
 	[2] Unknown2(unknown<0x4>) -> unknown<0x4>;
@@ -8735,7 +8735,7 @@ interface nv::MemoryProfiler::IMemoryProfiler {
 	[1] Unknown1(unknown) -> unknown;
 }
 
-interface nv::gemcontrol::INvGemControl {
+interface nv::gemcontrol::INvGemControl is nvgem:c {
 	@undocumented
 	[0] Unknown0() -> unknown<0x4>;
 	@undocumented
@@ -8755,7 +8755,7 @@ interface nv::gemcontrol::INvGemControl {
 	[7] Unknown7() -> unknown<0x10>;
 }
 
-interface nv::gemcoredump::INvGemCoreDump {
+interface nv::gemcoredump::INvGemCoreDump is nvgem:cd {
 	@undocumented
 	[0] Unknown0() -> unknown<0x4>;
 	@undocumented

@@ -24,6 +24,10 @@ module SwIPC
       return @interfaces[name]
     end
 
+    def get_interface(name)
+      return @interfaces[name]
+    end
+    
     def get_type(name)
       @types[name]
     end

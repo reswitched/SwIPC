@@ -1,7 +1,15 @@
 class Interface
-  def initialize(name, registration=nil)
+  class Registration
+    def initialize(versions, name)
+      @versions = versions
+      @name = name
+    end
+    attr_reader :versions, :name
+  end
+  
+  def initialize(name)
     @name = name
-    @registration = registration
+    @registrations = []
     @versions = []
     @commands = Hash.new
   end
@@ -15,6 +23,10 @@ class Interface
     @versions.uniq!
   end
 
+  def add_registration(versions, name)
+    @registrations.push(Registration.new(versions, name))
+  end
+  
   def append_command(version, command)
     if !@commands[command.id] then
       @commands[command.id] = CommandGroup.new(self)
@@ -40,7 +52,12 @@ class Interface
     if SwIPC::Decorators::Version.needed?(@versions, SwIPC::ALL_VERSIONS) then
       out<<= SwIPC::Decorators::Version.new(@versions, SwIPC::ALL_VERSIONS).to_swipc + "\n"
     end
-    out<<= "interface #{name} {\n"
+    registrations = @registrations.map do |r| r.name end.uniq
+    if registrations.length > 0 then
+      out<<= "interface #{name} is #{registrations.join(", ")} {\n"
+    else
+      out<<= "interface #{name} {\n"
+    end
 
     next_id = nil
     @commands.keys.sort.each do |id|

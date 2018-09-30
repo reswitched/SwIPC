@@ -275,6 +275,23 @@ def parseClientData(version, path, desc)
   return context
 end
 
+def applyRegistration(context, data)
+  data.each_pair do |service, infos|
+    infos.each do |info|
+      if info["interface"] == nil then
+        #puts "missing interface assignment for #{service}"
+        next
+      end
+      intf = context.get_interface(info["interface"])
+      if !intf then
+        #puts "missing interface #{info["interface"]}"
+        next
+      end
+      intf.add_registration(SwIPC::ALL_VERSIONS, service)
+    end
+  end
+end
+
 contexts = [
   parseServerData("1.0.0", "auto/newdata/server/data1.json"),
   parseClientData("1.0.0", "auto/newdata/client/data1.json", "0.16.29-from-flog"),
@@ -283,12 +300,14 @@ contexts = [
   parseServerData("3.0.0", "auto/newdata/server/data3.json"),
   parseClientData("3.0.0", "auto/newdata/client/data3.json", "3.5.1-from-Odyssey-nnSdk-3_5_1-Release"),
   parseServerData("4.0.0", "auto/newdata/server/data4.json"),
-  parseClientData("4.0.0", "auto/newdata/client/data4.json", "4.4.0-from-Hulu")
+  parseClientData("4.0.0", "auto/newdata/client/data4.json", "4.4.0-from-Hulu"),
 ]
 
 master_context = contexts.reduce do |memo, obj|
   memo ? memo.merge!(obj) : obj
 end
+
+applyRegistration(master_context, JSON.parse(File.read("auto/newdata/registration.json")))
 
 master_context.types.sort_by do |t|
   [t.versions.min, t.versions.max, t.name.to_s]

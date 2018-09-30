@@ -650,7 +650,7 @@ interface nn::audio::detail::IAudioOutManagerForApplet is audout:a {
 	[5] SetAudioOutsProcessRecordVolume(u32, u64, u64);
 }
 
-interface nn::audio::detail::IAudioOutManagerForDebugger is audout:d, audin:d, audrec:d, audren:d {
+interface nn::audio::detail::IAudioOutManagerForDebugger is audin:d, audout:d, audren:d, audrec:d {
 	# Takes an u64
 	# [AppletResourceUserId](http://switchbrew.org/index.php?title=AM_services#AppletResourceUserId "wikilink").
 	# 
@@ -893,7 +893,7 @@ interface nn::bcat::detail::ipc::IDeliveryCacheStorageService {
 	[10] EnumerateDeliveryCacheDirectory() -> (u32, buffer<nn::bcat::DirectoryName,6>);
 }
 
-interface nn::bcat::detail::ipc::IServiceCreator is bcat:a, bcat:m, bcat:u, bcat:s {
+interface nn::bcat::detail::ipc::IServiceCreator is bcat:a, bcat:u, bcat:m, bcat:s {
 	[0] CreateBcatService(u64, pid) -> object<nn::bcat::detail::ipc::IBcatService>;
 	[1] CreateDeliveryCacheStorageService(u64, pid) -> object<nn::bcat::detail::ipc::IDeliveryCacheStorageService>;
 	[2] CreateDeliveryCacheStorageServiceWithApplicationId(nn::ApplicationId) -> object<nn::bcat::detail::ipc::IDeliveryCacheStorageService>;
@@ -4467,7 +4467,7 @@ interface nn::nifm::detail::IScanRequest {
 	[3] GetSystemEventReadableHandle() -> handle<copy>;
 }
 
-interface nn::nifm::detail::IStaticService is nifm:a, nifm:s, nifm:u {
+interface nn::nifm::detail::IStaticService is nifm:u, nifm:a, nifm:s {
 	@version(1.0.0-2.3.0)
 	[4] CreateGeneralService() -> object<nn::nifm::detail::IGeneralService>;
 	@version(3.0.0+)
@@ -5799,7 +5799,7 @@ interface nn::pctl::detail::ipc::IParentalControlService {
 	[2016] RequestUpdateExemptionListAsync(unknown) -> unknown;
 }
 
-interface nn::pctl::detail::ipc::IParentalControlServiceFactory is pctl:s, pctl:r, pctl:a, pctl {
+interface nn::pctl::detail::ipc::IParentalControlServiceFactory is pctl, pctl:a, pctl:s, pctl:r {
 	[0] CreateService(u64, pid) -> object<nn::pctl::detail::ipc::IParentalControlService>;
 	@version(4.0.0+)
 	[1] CreateServiceWithoutInitialize(u64, pid) -> object<nn::pctl::detail::ipc::IParentalControlService>;
@@ -6174,7 +6174,7 @@ interface nn::pm::detail::IShellInterface is pm:shell {
 	[9] BoostSystemMemoryResourceLimit(unknown<8>);
 }
 
-interface nn::prepo::detail::ipc::IPrepoService is prepo:a, prepo:m, prepo:u, prepo:s {
+interface nn::prepo::detail::ipc::IPrepoService is prepo:u, prepo:s, prepo:m, prepo:a {
 	[10100] SaveReport(u64, pid, buffer<u8,9>, buffer<bytes,5>);
 	[10101] SaveReportWithUser(nn::account::Uid, u64, pid, buffer<u8,9>, buffer<bytes,5>);
 	[10200] RequestImmediateTransmission();
@@ -8549,7 +8549,7 @@ interface nns::nvdrv::INvDrvDebugFSServices is nvdrvdbg {
 	[4] Unknown4(unknown<4>, buffer<unknown,5>, buffer<unknown,5>) -> unknown<4>;
 }
 
-interface nns::nvdrv::INvDrvServices is nvdrv, nvdrv:a, nvdrv:s, nvdrv:t {
+interface nns::nvdrv::INvDrvServices is nvdrv:a, nvdrv:s, nvdrv:t, nvdrv {
 	# Takes a type-0x5 input buffer for the device-path. Returns the output
 	# 32bit **fd** and the u32 **error\_code**.
 	# 

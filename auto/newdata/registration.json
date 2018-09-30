@@ -1,0 +1,1830 @@
+{
+    "acc:u0": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::account::IAccountServiceForApplication"
+        }
+    ],
+    "acc:u1": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::account::IAccountServiceForSystemService"
+        }
+    ],
+    "acc:aa": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::account::IBaasAccessTokenAccessor"
+        }
+    ],
+    "acc:su": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::account::IAccountServiceForAdministrator"
+        }
+    ],
+    "dauth:0": [
+        {
+            "versionAdded": "5.0.0",
+            "versionRemoved": null,
+            "interface": "nn::dauth::detail::IService"
+        }
+    ],
+    "ahid:cd": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::ahid::IServerSession"
+        }
+    ],
+    "ahid:hdr": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::ahid::hdr::ISession"
+        }
+    ],
+    "hid": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::hid::IHidServer"
+        }
+    ],
+    "hid:dbg": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::hid::IHidDebugServer"
+        }
+    ],
+    "hid:sys": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::hid::IHidSystemServer"
+        }
+    ],
+    "irs": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::irsensor::IIrSensorServer"
+        }
+    ],
+    "irs:sys": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::irsensor::IIrSensorSystemServer"
+        }
+    ],
+    "xcd:sys": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::xcd::detail::ISystemServer"
+        }
+    ],
+    "hid:tmp": [
+        {
+            "versionAdded": "4.0.0",
+            "versionRemoved": null,
+            "interface": "nn::hid::IHidTemporaryServer"
+        }
+    ],
+    "hidbus": [
+        {
+            "versionAdded": "5.0.0",
+            "versionRemoved": null,
+            "interface": "nn::hidbus::IHidbusServer"
+        }
+    ],
+    "appletAE": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::am::service::IAllSystemAppletProxiesService"
+        }
+    ],
+    "appletOE": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::am::service::IApplicationProxyService"
+        }
+    ],
+    "idle:sys": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::idle::detail::IPolicyManagerSystem"
+        }
+    ],
+    "omm": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::omm::detail::IOperationModeManager"
+        }
+    ],
+    "spsm": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::spsm::detail::IPowerStateInterface"
+        }
+    ],
+    "tcap": [
+        {
+            "versionAdded": "5.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "caps:su": [
+        {
+            "versionAdded": "4.0.0",
+            "versionRemoved": "5.1.0",
+            "interface": "nn::capsrv::sf::IScreenShotApplicationService"
+        },
+        {
+            "versionAdded": "6.0.0",
+            "versionRemoved": null,
+            "interface": "nn::capsrv::sf::IScreenShotApplicationService"
+        }
+    ],
+    "aoc:u": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": "2.3.0",
+            "interface": "nn::aocsrv::detail::IAddOnContentManager"
+        },
+        {
+            "versionAdded": "3.0.0",
+            "versionRemoved": null,
+            "interface": "nn::aocsrv::detail::IAddOnContentManager"
+        }
+    ],
+    "mii:u": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": "2.3.0",
+            "interface": "nn::mii::detail::IStaticService"
+        },
+        {
+            "versionAdded": "3.0.0",
+            "versionRemoved": null,
+            "interface": "nn::mii::detail::IStaticService"
+        }
+    ],
+    "mii:e": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": "2.3.0",
+            "interface": "nn::mii::detail::IStaticService"
+        },
+        {
+            "versionAdded": "3.0.0",
+            "versionRemoved": null,
+            "interface": "nn::mii::detail::IStaticService"
+        }
+    ],
+    "ns:am": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": "2.3.0",
+            "interface": "nn::ns::detail::IApplicationManagerInterface"
+        }
+    ],
+    "ns:su": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": "2.3.0",
+            "interface": "nn::ns::detail::ISystemUpdateInterface"
+        },
+        {
+            "versionAdded": "3.0.0",
+            "versionRemoved": null,
+            "interface": "nn::ns::detail::ISystemUpdateInterface"
+        }
+    ],
+    "ns:dev": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": "2.3.0",
+            "interface": "nn::ns::detail::IDevelopInterface"
+        },
+        {
+            "versionAdded": "3.0.0",
+            "versionRemoved": null,
+            "interface": "nn::ns::detail::IDevelopInterface"
+        }
+    ],
+    "pl:u": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": "2.3.0",
+            "interface": "nn::pl::detail::ISharedFontManager"
+        },
+        {
+            "versionAdded": "3.0.0",
+            "versionRemoved": null,
+            "interface": "nn::pl::detail::ISharedFontManager"
+        }
+    ],
+    "ovln:rcv": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": "2.3.0",
+            "interface": null
+        },
+        {
+            "versionAdded": "3.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "ovln:snd": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": "2.3.0",
+            "interface": null
+        },
+        {
+            "versionAdded": "3.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "pdm:ntfy": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": "2.3.0",
+            "interface": null
+        },
+        {
+            "versionAdded": "3.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "pdm:qry": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": "2.3.0",
+            "interface": null
+        },
+        {
+            "versionAdded": "3.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": "2.3.0",
+            "interface": null
+        },
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "ns:am2": [
+        {
+            "versionAdded": "3.0.0",
+            "versionRemoved": null,
+            "interface": "nn::ns::detail::IServiceGetterInterface"
+        }
+    ],
+    "ns:ec": [
+        {
+            "versionAdded": "3.0.0",
+            "versionRemoved": null,
+            "interface": "nn::ns::detail::IServiceGetterInterface"
+        }
+    ],
+    "ns:rid": [
+        {
+            "versionAdded": "3.0.0",
+            "versionRemoved": null,
+            "interface": "nn::ns::detail::IServiceGetterInterface"
+        }
+    ],
+    "ns:rt": [
+        {
+            "versionAdded": "3.0.0",
+            "versionRemoved": null,
+            "interface": "nn::ns::detail::IServiceGetterInterface"
+        }
+    ],
+    "ns:vm": [
+        {
+            "versionAdded": "3.0.0",
+            "versionRemoved": null,
+            "interface": "nn::ns::detail::IVulnerabilityManagerInterface"
+        }
+    ],
+    "ns:web": [
+        {
+            "versionAdded": "3.0.0",
+            "versionRemoved": null,
+            "interface": "nn::ns::detail::IServiceGetterInterface"
+        }
+    ],
+    "apm": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::apm::IManager"
+        }
+    ],
+    "apm:p": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::apm::IManagerPrivileged"
+        }
+    ],
+    "apm:dbg": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "apm:sys": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::apm::ISystemManager"
+        }
+    ],
+    "fgm": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::fgm::sf::ISession"
+        }
+    ],
+    "fgm:0": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::fgm::sf::ISession"
+        }
+    ],
+    "fgm:9": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::fgm::sf::ISession"
+        }
+    ],
+    "fgm:dbg": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::fgm::sf::IDebugger"
+        }
+    ],
+    "arp:r": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::arp::detail::IReader"
+        }
+    ],
+    "arp:w": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::arp::detail::IWriter"
+        }
+    ],
+    "bgtc:t": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "bgtc:sc": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "audin:a": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::audio::detail::IAudioInManagerForApplet"
+        }
+    ],
+    "audin:d": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::audio::detail::IAudioOutManagerForDebugger"
+        }
+    ],
+    "audin:u": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::audio::detail::IAudioInManager"
+        }
+    ],
+    "audout:a": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::audio::detail::IAudioOutManagerForApplet"
+        }
+    ],
+    "audout:d": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::audio::detail::IAudioOutManagerForDebugger"
+        }
+    ],
+    "audout:u": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::audio::detail::IAudioOutManager"
+        }
+    ],
+    "audren:a": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::audio::detail::IAudioRendererManagerForApplet"
+        }
+    ],
+    "audren:d": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::audio::detail::IAudioOutManagerForDebugger"
+        }
+    ],
+    "audren:u": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::audio::detail::IAudioRendererManager"
+        }
+    ],
+    "audrec:a": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::audio::detail::IFinalOutputRecorderManagerForApplet"
+        }
+    ],
+    "audrec:d": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::audio::detail::IAudioOutManagerForDebugger"
+        }
+    ],
+    "audrec:u": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::audio::detail::IFinalOutputRecorderManager"
+        }
+    ],
+    "audctl": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::audioctrl::detail::IAudioController"
+        }
+    ],
+    "codecctl": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::audio::detail::ICodecController"
+        }
+    ],
+    "hwopus": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::codec::detail::IHardwareOpusDecoderManager"
+        }
+    ],
+    "auddebug": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::audio::detail::IAudioDebugManager"
+        }
+    ],
+    "auddev": [
+        {
+            "versionAdded": "6.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "banana": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::profiler::IProfiler"
+        }
+    ],
+    "bcat:a": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::bcat::detail::ipc::IServiceCreator"
+        }
+    ],
+    "bcat:u": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::bcat::detail::ipc::IServiceCreator"
+        }
+    ],
+    "bcat:m": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::bcat::detail::ipc::IServiceCreator"
+        }
+    ],
+    "bcat:s": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::bcat::detail::ipc::IServiceCreator"
+        }
+    ],
+    "news:a": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::news::detail::ipc::IServiceCreator"
+        }
+    ],
+    "news:c": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::news::detail::ipc::IServiceCreator"
+        }
+    ],
+    "news:m": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::news::detail::ipc::IServiceCreator"
+        }
+    ],
+    "news:p": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::news::detail::ipc::IServiceCreator"
+        }
+    ],
+    "news:v": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::news::detail::ipc::IServiceCreator"
+        }
+    ],
+    "prepo:u": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::prepo::detail::ipc::IPrepoService"
+        }
+    ],
+    "prepo:s": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::prepo::detail::ipc::IPrepoService"
+        }
+    ],
+    "prepo:m": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::prepo::detail::ipc::IPrepoService"
+        }
+    ],
+    "prepo:a": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::prepo::detail::ipc::IPrepoService"
+        }
+    ],
+    "bpc:c": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": "2.0.0",
+            "interface": null
+        }
+    ],
+    "bpc:b": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": "2.0.0",
+            "interface": null
+        }
+    ],
+    "bpc:r": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": "2.0.0",
+            "interface": "nn::bpc::IRtcManager"
+        },
+        {
+            "versionAdded": "2.0.0",
+            "versionRemoved": null,
+            "interface": "nn::bpc::IRtcManager"
+        }
+    ],
+    "bpc:w": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": "2.0.0",
+            "interface": null
+        }
+    ],
+    "pcv": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": "2.0.0",
+            "interface": "nn::pcv::detail::IPcvService"
+        },
+        {
+            "versionAdded": "2.0.0",
+            "versionRemoved": null,
+            "interface": "nn::pcv::detail::IPcvService"
+        }
+    ],
+    "pcv:arb": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": "2.0.0",
+            "interface": "nn::pcv::IArbitrationManager"
+        },
+        {
+            "versionAdded": "2.0.0",
+            "versionRemoved": null,
+            "interface": "nn::pcv::IArbitrationManager"
+        }
+    ],
+    "pcv:imm": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": "2.0.0",
+            "interface": "nn::pcv::IImmediateManager"
+        },
+        {
+            "versionAdded": "2.0.0",
+            "versionRemoved": null,
+            "interface": "nn::pcv::IImmediateManager"
+        }
+    ],
+    "time:u": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": "2.0.0",
+            "interface": "nn::timesrv::detail::service::IStaticService"
+        },
+        {
+            "versionAdded": "2.0.0",
+            "versionRemoved": null,
+            "interface": "nn::timesrv::detail::service::IStaticService"
+        }
+    ],
+    "time:a": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": "2.0.0",
+            "interface": "nn::timesrv::detail::service::IStaticService"
+        },
+        {
+            "versionAdded": "2.0.0",
+            "versionRemoved": null,
+            "interface": "nn::timesrv::detail::service::IStaticService"
+        }
+    ],
+    "time:s": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": "2.0.0",
+            "interface": "nn::timesrv::detail::service::IStaticService"
+        },
+        {
+            "versionAdded": "2.0.0",
+            "versionRemoved": null,
+            "interface": "nn::timesrv::detail::service::IStaticService"
+        }
+    ],
+    "bpc": [
+        {
+            "versionAdded": "2.0.0",
+            "versionRemoved": null,
+            "interface": "nn::bpc::IBoardPowerControlManager"
+        }
+    ],
+    "bsd:u": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::socket::sf::IClient"
+        }
+    ],
+    "bsd:s": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::socket::sf::IClient"
+        }
+    ],
+    "bsdcfg": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::bsdsocket::cfg::ServerInterface"
+        }
+    ],
+    "ethc:c": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::eth::sf::IEthInterface"
+        }
+    ],
+    "ethc:i": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::eth::sf::IEthInterfaceGroup"
+        }
+    ],
+    "nsd:u": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::nsd::detail::IManager"
+        }
+    ],
+    "nsd:a": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::nsd::detail::IManager"
+        }
+    ],
+    "sfdnsres": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::socket::resolver::IResolver"
+        }
+    ],
+    "btdrv": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::bluetooth::IBluetoothDriver"
+        }
+    ],
+    "bt": [
+        {
+            "versionAdded": "5.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "btm": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::btm::IBtm"
+        }
+    ],
+    "btm:dbg": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::btm::IBtmDebug"
+        }
+    ],
+    "btm:sys": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::btm::IBtmSystem"
+        }
+    ],
+    "btm:u": [
+        {
+            "versionAdded": "5.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "caps:a": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::capsrv::sf::IAlbumAccessorService"
+        }
+    ],
+    "caps:c": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::capsrv::sf::IAlbumControlService"
+        }
+    ],
+    "mm:u": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": "2.0.0",
+            "interface": "nn::mmnv::IRequest"
+        },
+        {
+            "versionAdded": "2.0.0",
+            "versionRemoved": null,
+            "interface": "nn::mmnv::IRequest"
+        }
+    ],
+    "caps:u": [
+        {
+            "versionAdded": "5.0.0",
+            "versionRemoved": null,
+            "interface": "nn::capsrv::sf::IAlbumApplicationService"
+        }
+    ],
+    "caps:sc": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::capsrv::sf::IScreenShotControlService"
+        }
+    ],
+    "caps:ss": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::capsrv::sf::IScreenShotService"
+        }
+    ],
+    "vi:m": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::visrv::sf::IManagerRootService"
+        }
+    ],
+    "vi:s": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::visrv::sf::ISystemRootService"
+        }
+    ],
+    "vi:u": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::visrv::sf::IApplicationRootService"
+        }
+    ],
+    "cec-mgr": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::cec::ICecManager"
+        }
+    ],
+    "dispdrv": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nns::hosbinder::IHOSBinderDriver"
+        }
+    ],
+    "dmnt:-": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::dmnt::IInterface"
+        }
+    ],
+    "erpt:c": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::erpt::sf::IContext"
+        }
+    ],
+    "erpt:r": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::erpt::sf::ISession"
+        }
+    ],
+    "eupld:c": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::eupld::sf::IControl"
+        }
+    ],
+    "eupld:r": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::eupld::sf::IRequest"
+        }
+    ],
+    "es": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::es::IETicketService"
+        }
+    ],
+    "fan": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::fan::detail::IManager"
+        }
+    ],
+    "psm": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::psm::IPsmServer"
+        }
+    ],
+    "tc": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::tc::IManager"
+        }
+    ],
+    "ts": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::ts::server::IMeasurementServer"
+        }
+    ],
+    "pcm": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "fatal:u": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::fatalsrv::IService"
+        }
+    ],
+    "fatal:p": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::fatalsrv::IPrivateService"
+        }
+    ],
+    "friend:u": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::friends::detail::ipc::IServiceCreator"
+        }
+    ],
+    "friend:v": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::friends::detail::ipc::IServiceCreator"
+        }
+    ],
+    "friend:m": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::friends::detail::ipc::IServiceCreator"
+        }
+    ],
+    "friend:s": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::friends::detail::ipc::IServiceCreator"
+        }
+    ],
+    "friend:a": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::friends::detail::ipc::IServiceCreator"
+        }
+    ],
+    "nd:app": [
+        {
+            "versionAdded": "5.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "nd:sys": [
+        {
+            "versionAdded": "5.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "fsp-srv": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::fssrv::sf::IFileSystemProxy"
+        }
+    ],
+    "fsp-ldr": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::fssrv::sf::IFileSystemProxyForLoader"
+        }
+    ],
+    "fsp-pr": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::fssrv::sf::IProgramRegistry"
+        }
+    ],
+    "gpio": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::gpio::IManager"
+        }
+    ],
+    "i2c": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::i2c::IManager"
+        }
+    ],
+    "i2c:pcv": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::i2c::IManager"
+        }
+    ],
+    "pinmux": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::pinmux::IManager"
+        }
+    ],
+    "pwm": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::pwm::IManager"
+        }
+    ],
+    "uart": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::uart::IManager"
+        }
+    ],
+    "sasbus": [
+        {
+            "versionAdded": "3.0.0",
+            "versionRemoved": null,
+            "interface": "nn::sasbus::IManager"
+        }
+    ],
+    "htc": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::tma::IHtcManager"
+        }
+    ],
+    "htcs": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::tma::IHtcsManager"
+        }
+    ],
+    "htc:tenv": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::htc::tenv::IServiceManager"
+        }
+    ],
+    "file_io": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "gds": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "tma_log": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "tmagent": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "jit:u": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::jitsrv::IJitService"
+        }
+    ],
+    "lbl": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::lbl::detail::ILblController"
+        }
+    ],
+    "ldn:m": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::ldn::detail::IMonitorServiceCreator"
+        }
+    ],
+    "ldn:s": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::ldn::detail::ISystemServiceCreator"
+        }
+    ],
+    "ldn:u": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::ldn::detail::IUserServiceCreator"
+        }
+    ],
+    "ndd": [
+        {
+            "versionAdded": "5.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "ldr:pm": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::ldr::detail::IProcessManagerInterface"
+        },
+        {
+            "versionAdded": "3.0.0",
+            "versionRemoved": null,
+            "interface": "nn::ldr::detail::IProcessManagerInterface"
+        }
+    ],
+    "ldr:ro": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::ldr::detail::IRoInterface"
+        },
+        {
+            "versionAdded": "3.0.0",
+            "versionRemoved": null,
+            "interface": "nn::ldr::detail::IRoInterface"
+        }
+    ],
+    "ldr:shel": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::ldr::detail::IShellInterface"
+        },
+        {
+            "versionAdded": "3.0.0",
+            "versionRemoved": null,
+            "interface": "nn::ldr::detail::IShellInterface"
+        }
+    ],
+    "ldr:dmnt": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::ldr::detail::IDebugMonitorInterface"
+        },
+        {
+            "versionAdded": "3.0.0",
+            "versionRemoved": null,
+            "interface": "nn::ldr::detail::IDebugMonitorInterface"
+        }
+    ],
+    "lm": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::lm::ILogService"
+        }
+    ],
+    "lm:get": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::lm::ILogGetter"
+        }
+    ],
+    "manu": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "lr": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::lr::ILocationResolverManager"
+        }
+    ],
+    "ncm": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::ncm::IContentManager"
+        }
+    ],
+    "ncm:v": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "nfc:am": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::nfc::am::detail::IAmManager"
+        }
+    ],
+    "nfc:mf:u": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::nfc::mifare::detail::IUserManager"
+        }
+    ],
+    "nfc:user": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::nfc::detail::IUserManager"
+        }
+    ],
+    "nfc:sys": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::nfc::detail::ISystemManager"
+        }
+    ],
+    "nfp:user": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::nfp::detail::IUserManager"
+        }
+    ],
+    "nfp:dbg": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::nfp::detail::IDebugManager"
+        }
+    ],
+    "nfp:sys": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::nfp::detail::ISystemManager"
+        }
+    ],
+    "nifm:u": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::nifm::detail::IStaticService"
+        }
+    ],
+    "nifm:a": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::nifm::detail::IStaticService"
+        }
+    ],
+    "nifm:s": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::nifm::detail::IStaticService"
+        }
+    ],
+    "nim": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::nim::detail::INetworkInstallManager"
+        }
+    ],
+    "nim:shp": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::nim::detail::IShopServiceManager"
+        }
+    ],
+    "ntc": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::ntc::detail::service::IStaticService"
+        }
+    ],
+    "nim:eca": [
+        {
+            "versionAdded": "5.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "npns:u": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::npns::INpnsUser"
+        }
+    ],
+    "npns:s": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::npns::INpnsSystem"
+        }
+    ],
+    "nvdrv:a": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nns::nvdrv::INvDrvServices"
+        }
+    ],
+    "nvdrv:s": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nns::nvdrv::INvDrvServices"
+        }
+    ],
+    "nvdrv:t": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nns::nvdrv::INvDrvServices"
+        }
+    ],
+    "nvdrv": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nns::nvdrv::INvDrvServices"
+        }
+    ],
+    "nvdrvdbg": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nns::nvdrv::INvDrvDebugFSServices"
+        }
+    ],
+    "nvgem:c": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nv::gemcontrol::INvGemControl"
+        }
+    ],
+    "nvgem:cd": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nv::gemcoredump::INvGemCoreDump"
+        }
+    ],
+    "nvmemp": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "pcie": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::pcie::detail::IManager"
+        }
+    ],
+    "pcie:log": [
+        {
+            "versionAdded": "6.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "pctl": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::pctl::detail::ipc::IParentalControlServiceFactory"
+        }
+    ],
+    "pctl:a": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::pctl::detail::ipc::IParentalControlServiceFactory"
+        }
+    ],
+    "pctl:s": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::pctl::detail::ipc::IParentalControlServiceFactory"
+        }
+    ],
+    "pctl:r": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::pctl::detail::ipc::IParentalControlServiceFactory"
+        }
+    ],
+    "pm:bm": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::pm::detail::IBootModeInterface"
+        }
+    ],
+    "pm:info": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::pm::detail::IInformationInterface"
+        }
+    ],
+    "pm:shell": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::pm::detail::IShellInterface"
+        }
+    ],
+    "psc:c": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::psc::sf::IPmControl"
+        }
+    ],
+    "psc:m": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::psc::sf::IPmService"
+        }
+    ],
+    "srepo:u": [
+        {
+            "versionAdded": "5.0.0",
+            "versionRemoved": null,
+            "interface": "nn::srepo::detail::ipc::ISrepoService"
+        }
+    ],
+    "srepo:a": [
+        {
+            "versionAdded": "5.0.0",
+            "versionRemoved": null,
+            "interface": "nn::srepo::detail::ipc::ISrepoService"
+        }
+    ],
+    "ro:dmnt": [
+        {
+            "versionAdded": "3.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "set": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::settings::ISettingsServer"
+        }
+    ],
+    "set:fd": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::settings::IFirmwareDebugSettingsServer"
+        }
+    ],
+    "set:cal": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::settings::IFactorySettingsServer"
+        }
+    ],
+    "set:sys": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::settings::ISystemSettingsServer"
+        }
+    ],
+    "miiimg": [
+        {
+            "versionAdded": "5.0.0",
+            "versionRemoved": null,
+            "interface": "nn::mii::detail::IImageDatabaseService"
+        }
+    ],
+    "avm": [
+        {
+            "versionAdded": "6.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "ssl": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::ssl::sf::ISslService"
+        }
+    ],
+    "csrng": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::spl::detail::IRandomInterface"
+        }
+    ],
+    "spl:": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::spl::detail::IGeneralInterface"
+        }
+    ],
+    "spl:mig": [
+        {
+            "versionAdded": "4.0.0",
+            "versionRemoved": null,
+            "interface": "nn::spl::detail::IGeneralInterface"
+        }
+    ],
+    "spl:fs": [
+        {
+            "versionAdded": "4.0.0",
+            "versionRemoved": null,
+            "interface": "nn::spl::detail::IGeneralInterface"
+        }
+    ],
+    "spl:ssl": [
+        {
+            "versionAdded": "4.0.0",
+            "versionRemoved": null,
+            "interface": "nn::spl::detail::IGeneralInterface"
+        }
+    ],
+    "spl:es": [
+        {
+            "versionAdded": "4.0.0",
+            "versionRemoved": null,
+            "interface": "nn::spl::detail::IGeneralInterface"
+        }
+    ],
+    "spl:manu": [
+        {
+            "versionAdded": "5.0.0",
+            "versionRemoved": null,
+            "interface": "nn::spl::detail::IGeneralInterface"
+        }
+    ],
+    "sf-uds": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "tspm": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "usb:ds": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::usb::ds::IDsService"
+        }
+    ],
+    "usb:hs": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::usb::hs::IClientRootSession"
+        }
+    ],
+    "usb:pd": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::usb::pd::detail::IPdManager"
+        }
+    ],
+    "usb:pd:c": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::usb::pd::detail::IPdCradleManager"
+        }
+    ],
+    "usb:pd:m": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "usb:pm": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::usb::pm::IPmService"
+        }
+    ],
+    "wlan:inf": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::wlan::detail::IInfraManager"
+        }
+    ],
+    "wlan:lcl": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::wlan::detail::ILocalManager"
+        }
+    ],
+    "wlan:lg": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::wlan::detail::ILocalGetFrame"
+        }
+    ],
+    "wlan:lga": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::wlan::detail::ILocalGetActionFrame"
+        }
+    ],
+    "wlan:sg": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::wlan::detail::ISocketGetFrame"
+        }
+    ],
+    "wlan:soc": [
+        {
+            "versionAdded": "1.0.0",
+            "versionRemoved": null,
+            "interface": "nn::wlan::detail::ISocketManager"
+        }
+    ],
+    "wlan:dtc": [
+        {
+            "versionAdded": "6.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "grc:c": [
+        {
+            "versionAdded": "4.0.0",
+            "versionRemoved": null,
+            "interface": "nn::grcsrv::IGrcService"
+        }
+    ],
+    "grc:d": [
+        {
+            "versionAdded": "6.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "mig:usr": [
+        {
+            "versionAdded": "4.0.0",
+            "versionRemoved": null,
+            "interface": "nn::migration::user::IService"
+        }
+    ],
+    "caps:dc": [
+        {
+            "versionAdded": "4.0.0",
+            "versionRemoved": null,
+            "interface": null
+        }
+    ],
+    "olsc:s": [
+        {
+            "versionAdded": "6.0.0",
+            "versionRemoved": null,
+            "interface": "nn::olsc::srv::IOlscServiceForSystemService"
+        }
+    ]
+}
