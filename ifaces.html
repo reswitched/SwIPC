@@ -11838,8 +11838,8 @@
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div></div>
-						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100" style="width: 12%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="97" aria-valuemin="0" aria-valuemax="100" style="width: 97%"></div></div>
+						<div class="progress" style="width: 100px"><div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="11" aria-valuemin="0" aria-valuemax="100" style="width: 11%"></div></div>
 					</li>
 					<li class="list-group-item">
 						<h3>Provides:</h3>
@@ -11879,6 +11879,12 @@
 							
 							
 							  <code class="signature">[31] <a href="#nn::hid::IHidServer(31)">ActivateKeyboard</a>(<a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid)</code>
+							
+							</li>
+							<li class="command" value="32" id="nn::hid::IHidServer(32)">
+							
+							
+							  <code class="signature">[32, 6.0.0+] <a href="#nn::hid::IHidServer(32)">Unknown32</a>(u64, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid)</code>
 							
 							</li>
 							<li class="command" value="40" id="nn::hid::IHidServer(40)">
@@ -12061,6 +12067,12 @@
 							  <code class="signature">[82] <a href="#nn::hid::IHidServer(82)">IsSixAxisSensorAtRest</a>(<a href="types.html#nn::hid::SixAxisSensorHandle">nn::hid::SixAxisSensorHandle</a>, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid) -&gt; bool</code>
 							
 							</li>
+							<li class="command" value="83" id="nn::hid::IHidServer(83)">
+							
+							
+							  <code class="signature">[83, 6.0.0+] <a href="#nn::hid::IHidServer(83)">Unknown83</a>(u64, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid) -&gt; bool</code>
+							
+							</li>
 							<li class="command" value="91" id="nn::hid::IHidServer(91)">
 							
 							
@@ -12115,10 +12127,10 @@
 							  <code class="signature">[108] <a href="#nn::hid::IHidServer(108)">GetPlayerLedPattern</a>(u32) -&gt; u64</code>
 							
 							</li>
-							<li class="command" value="109" id="nn::hid::IHidServer(109)">
+							<li class="command" value="108" id="nn::hid::IHidServer(108)">
 							
 							
-							  <code class="signature">[109, 5.0.0+] <a href="#nn::hid::IHidServer(109)">ActivateNpadWithRevision</a>()</code>
+							  <code class="signature">[108, 5.0.0+] <a href="#nn::hid::IHidServer(108)">ActivateNpadWithRevision</a>(u32, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid)</code>
 							
 							</li>
 							<li class="command" value="120" id="nn::hid::IHidServer(120)">
@@ -12207,7 +12219,7 @@
 							<li class="command" value="133" id="nn::hid::IHidServer(133)">
 							
 							
-							  <code class="signature">[133, 5.0.0+] <a href="#nn::hid::IHidServer(133)">SetNpadJoyAssignmentModeSingleWithDestination</a>()</code>
+							  <code class="signature">[133, 5.0.0+] <a href="#nn::hid::IHidServer(133)">SetNpadJoyAssignmentModeSingleWithDestination</a>(u32, u64, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid) -&gt; (bool, u32)</code>
 							
 							</li>
 							<li class="command" value="200" id="nn::hid::IHidServer(200)">
@@ -12264,19 +12276,19 @@
 							<li class="command" value="207" id="nn::hid::IHidServer(207)">
 							
 							
-							  <code class="signature">[207, 4.0.0+] <a href="#nn::hid::IHidServer(207)">SendVibrationGcErmCommand</a>()</code>
+							  <code class="signature">[207, 4.0.0+] <a href="#nn::hid::IHidServer(207)">SendVibrationGcErmCommand</a>(<a href="types.html#nn::hid::VibrationDeviceHandle">nn::hid::VibrationDeviceHandle</a>, <a href="types.html#nn::hid::VibrationGcErmCommand">nn::hid::VibrationGcErmCommand</a>, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid)</code>
 							
 							</li>
 							<li class="command" value="208" id="nn::hid::IHidServer(208)">
 							
 							
-							  <code class="signature">[208, 4.0.0+] <a href="#nn::hid::IHidServer(208)">GetActualVibrationGcErmCommand</a>()</code>
+							  <code class="signature">[208, 4.0.0+] <a href="#nn::hid::IHidServer(208)">GetActualVibrationGcErmCommand</a>(<a href="types.html#nn::hid::VibrationDeviceHandle">nn::hid::VibrationDeviceHandle</a>, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid) -&gt; <a href="types.html#nn::hid::VibrationGcErmCommand">nn::hid::VibrationGcErmCommand</a></code>
 							
 							</li>
 							<li class="command" value="209" id="nn::hid::IHidServer(209)">
 							
 							
-							  <code class="signature">[209, 4.0.0+] <a href="#nn::hid::IHidServer(209)">BeginPermitVibrationSession</a>()</code>
+							  <code class="signature">[209, 4.0.0+] <a href="#nn::hid::IHidServer(209)">BeginPermitVibrationSession</a>(<a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>)</code>
 							
 							</li>
 							<li class="command" value="210" id="nn::hid::IHidServer(210)">
@@ -12306,43 +12318,49 @@
 							<li class="command" value="303" id="nn::hid::IHidServer(303)">
 							
 							
-							  <code class="signature">[303, 5.0.0+] <a href="#nn::hid::IHidServer(303)">ActivateSevenSixAxisSensor</a>()</code>
+							  <code class="signature">[303, 5.0.0+] <a href="#nn::hid::IHidServer(303)">ActivateSevenSixAxisSensor</a>(<a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid)</code>
 							
 							</li>
 							<li class="command" value="304" id="nn::hid::IHidServer(304)">
 							
 							
-							  <code class="signature">[304, 5.0.0+] <a href="#nn::hid::IHidServer(304)">StartSevenSixAxisSensor</a>()</code>
+							  <code class="signature">[304, 5.0.0+] <a href="#nn::hid::IHidServer(304)">StartSevenSixAxisSensor</a>(<a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid)</code>
 							
 							</li>
 							<li class="command" value="305" id="nn::hid::IHidServer(305)">
 							
 							
-							  <code class="signature">[305, 5.0.0+] <a href="#nn::hid::IHidServer(305)">StopSevenSixAxisSensor</a>()</code>
+							  <code class="signature">[305, 5.0.0+] <a href="#nn::hid::IHidServer(305)">StopSevenSixAxisSensor</a>(<a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid)</code>
 							
 							</li>
 							<li class="command" value="306" id="nn::hid::IHidServer(306)">
 							
 							
-							  <code class="signature">[306, 5.0.0+] <a href="#nn::hid::IHidServer(306)">InitializeSevenSixAxisSensor</a>()</code>
+							  <code class="signature">[306, 5.0.0+] <a href="#nn::hid::IHidServer(306)">InitializeSevenSixAxisSensor</a>(u32, u64, u32, u64, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid)</code>
 							
 							</li>
 							<li class="command" value="307" id="nn::hid::IHidServer(307)">
 							
 							
-							  <code class="signature">[307, 5.0.0+] <a href="#nn::hid::IHidServer(307)">FinalizeSevenSixAxisSensor</a>()</code>
+							  <code class="signature">[307, 5.0.0+] <a href="#nn::hid::IHidServer(307)">FinalizeSevenSixAxisSensor</a>(<a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid)</code>
 							
 							</li>
 							<li class="command" value="308" id="nn::hid::IHidServer(308)">
 							
 							
-							  <code class="signature">[308, 5.0.0+] <a href="#nn::hid::IHidServer(308)">SetSevenSixAxisSensorFusionStrength</a>()</code>
+							  <code class="signature">[308, 5.0.0+] <a href="#nn::hid::IHidServer(308)">SetSevenSixAxisSensorFusionStrength</a>(f32, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid)</code>
 							
 							</li>
 							<li class="command" value="309" id="nn::hid::IHidServer(309)">
 							
 							
-							  <code class="signature">[309, 5.0.0+] <a href="#nn::hid::IHidServer(309)">GetSevenSixAxisSensorFusionStrength</a>()</code>
+							  <code class="signature">[309, 5.0.0+] <a href="#nn::hid::IHidServer(309)">GetSevenSixAxisSensorFusionStrength</a>(<a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid) -&gt; f32</code>
+							
+							</li>
+							<li class="command" value="310" id="nn::hid::IHidServer(310)">
+							
+							
+							  <code class="signature">[310, 6.0.0+] <a href="#nn::hid::IHidServer(310)">Unknown310</a>(<a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid)</code>
 							
 							</li>
 							<li class="command" value="400" id="nn::hid::IHidServer(400)">
@@ -12366,109 +12384,181 @@
 							<li class="command" value="403" id="nn::hid::IHidServer(403)">
 							
 							
-							  <code class="signature">[403, 4.0.0+] <a href="#nn::hid::IHidServer(403)">HasBattery</a>()</code>
+							  <code class="signature">[403, 4.0.0+] <a href="#nn::hid::IHidServer(403)">HasBattery</a>(u32) -&gt; bool</code>
 							
 							</li>
 							<li class="command" value="404" id="nn::hid::IHidServer(404)">
 							
 							
-							  <code class="signature">[404, 4.0.0+] <a href="#nn::hid::IHidServer(404)">HasLeftRightBattery</a>()</code>
+							  <code class="signature">[404, 4.0.0+] <a href="#nn::hid::IHidServer(404)">HasLeftRightBattery</a>(u32) -&gt; (bool, bool)</code>
 							
 							</li>
 							<li class="command" value="405" id="nn::hid::IHidServer(405)">
 							
 							
-							  <code class="signature">[405, 4.0.0+] <a href="#nn::hid::IHidServer(405)">GetNpadInterfaceType</a>()</code>
+							  <code class="signature">[405, 4.0.0+] <a href="#nn::hid::IHidServer(405)">GetNpadInterfaceType</a>(u32) -&gt; u8</code>
 							
 							</li>
 							<li class="command" value="406" id="nn::hid::IHidServer(406)">
 							
 							
-							  <code class="signature">[406, 4.0.0+] <a href="#nn::hid::IHidServer(406)">GetNpadLeftRightInterfaceType</a>()</code>
+							  <code class="signature">[406, 4.0.0+] <a href="#nn::hid::IHidServer(406)">GetNpadLeftRightInterfaceType</a>(u32) -&gt; (u8, u8)</code>
 							
 							</li>
 							<li class="command" value="500" id="nn::hid::IHidServer(500)">
 							
 							
-							  <code class="signature">[500, 5.0.0+] <a href="#nn::hid::IHidServer(500)">GetPalmaConnectionHandle</a>()</code>
+							  <code class="signature">[500, 5.0.0+] <a href="#nn::hid::IHidServer(500)">GetPalmaConnectionHandle</a>(u32, <a href="types.html#nn::applet::AppletResourceUserId">nn::applet::AppletResourceUserId</a>, pid) -&gt; <a href="types.html#nn::hid::PalmaConnectionHandle">nn::hid::PalmaConnectionHandle</a></code>
 							
 							</li>
 							<li class="command" value="501" id="nn::hid::IHidServer(501)">
 							
 							
-							  <code class="signature">[501, 5.0.0+] <a href="#nn::hid::IHidServer(501)">InitializePalma</a>()</code>
+							  <code class="signature">[501, 5.0.0+] <a href="#nn::hid::IHidServer(501)">InitializePalma</a>(<a href="types.html#nn::hid::PalmaConnectionHandle">nn::hid::PalmaConnectionHandle</a>)</code>
 							
 							</li>
 							<li class="command" value="502" id="nn::hid::IHidServer(502)">
 							
 							
-							  <code class="signature">[502, 5.0.0+] <a href="#nn::hid::IHidServer(502)">AcquirePalmaOperationCompleteEvent</a>()</code>
+							  <code class="signature">[502, 5.0.0+] <a href="#nn::hid::IHidServer(502)">AcquirePalmaOperationCompleteEvent</a>(<a href="types.html#nn::hid::PalmaConnectionHandle">nn::hid::PalmaConnectionHandle</a>) -&gt; KObject</code>
 							
 							</li>
 							<li class="command" value="503" id="nn::hid::IHidServer(503)">
 							
 							
-							  <code class="signature">[503, 5.0.0+] <a href="#nn::hid::IHidServer(503)">GetPalmaOperationInfo</a>()</code>
+							  <code class="signature">[503, 5.0.0+] <a href="#nn::hid::IHidServer(503)">GetPalmaOperationInfo</a>(<a href="types.html#nn::hid::PalmaConnectionHandle">nn::hid::PalmaConnectionHandle</a>) -&gt; (u64, buffer&lt;unknown, 6, 0&gt;)</code>
 							
 							</li>
 							<li class="command" value="504" id="nn::hid::IHidServer(504)">
 							
 							
-							  <code class="signature">[504, 5.0.0+] <a href="#nn::hid::IHidServer(504)">PlayPalmaActivity</a>()</code>
+							  <code class="signature">[504, 5.0.0+] <a href="#nn::hid::IHidServer(504)">PlayPalmaActivity</a>(u64, <a href="types.html#nn::hid::PalmaConnectionHandle">nn::hid::PalmaConnectionHandle</a>)</code>
 							
 							</li>
 							<li class="command" value="505" id="nn::hid::IHidServer(505)">
 							
 							
-							  <code class="signature">[505, 5.0.0+] <a href="#nn::hid::IHidServer(505)">SetPalmaFrModeType</a>()</code>
+							  <code class="signature">[505, 5.0.0+] <a href="#nn::hid::IHidServer(505)">SetPalmaFrModeType</a>(u64, <a href="types.html#nn::hid::PalmaConnectionHandle">nn::hid::PalmaConnectionHandle</a>)</code>
 							
 							</li>
 							<li class="command" value="506" id="nn::hid::IHidServer(506)">
 							
 							
-							  <code class="signature">[506, 5.0.0+] <a href="#nn::hid::IHidServer(506)">ReadPalmaStep</a>()</code>
+							  <code class="signature">[506, 5.0.0+] <a href="#nn::hid::IHidServer(506)">ReadPalmaStep</a>(<a href="types.html#nn::hid::PalmaConnectionHandle">nn::hid::PalmaConnectionHandle</a>)</code>
 							
 							</li>
 							<li class="command" value="507" id="nn::hid::IHidServer(507)">
 							
 							
-							  <code class="signature">[507, 5.0.0+] <a href="#nn::hid::IHidServer(507)">EnablePalmaStep</a>()</code>
+							  <code class="signature">[507, 5.0.0+] <a href="#nn::hid::IHidServer(507)">EnablePalmaStep</a>(bool, <a href="types.html#nn::hid::PalmaConnectionHandle">nn::hid::PalmaConnectionHandle</a>)</code>
 							
 							</li>
 							<li class="command" value="508" id="nn::hid::IHidServer(508)">
 							
 							
-							  <code class="signature">[508, 5.0.0+] <a href="#nn::hid::IHidServer(508)">SuspendPalmaStep</a>()</code>
+							  <code class="signature">[508, 5.0.0+] <a href="#nn::hid::IHidServer(508)">ResetPalmaStep</a>(<a href="types.html#nn::hid::PalmaConnectionHandle">nn::hid::PalmaConnectionHandle</a>)</code>
 							
 							</li>
 							<li class="command" value="509" id="nn::hid::IHidServer(509)">
 							
 							
-							  <code class="signature">[509, 5.0.0+] <a href="#nn::hid::IHidServer(509)">ResetPalmaStep</a>()</code>
+							  <code class="signature">[509, 5.0.0+] <a href="#nn::hid::IHidServer(509)">ReadPalmaApplicationSection</a>(u64, u64, <a href="types.html#nn::hid::PalmaConnectionHandle">nn::hid::PalmaConnectionHandle</a>)</code>
 							
 							</li>
 							<li class="command" value="510" id="nn::hid::IHidServer(510)">
 							
 							
-							  <code class="signature">[510, 5.0.0+] <a href="#nn::hid::IHidServer(510)">ReadPalmaApplicationSection</a>()</code>
+							  <code class="signature">[510, 5.0.0+] <a href="#nn::hid::IHidServer(510)">WritePalmaApplicationSection</a>(u64, u64, buffer&lt;nn::hid::PalmaApplicationSectionAccessBuffer, 0x19, 0&gt;, <a href="types.html#nn::hid::PalmaConnectionHandle">nn::hid::PalmaConnectionHandle</a>)</code>
 							
 							</li>
 							<li class="command" value="511" id="nn::hid::IHidServer(511)">
 							
 							
-							  <code class="signature">[511, 5.0.0+] <a href="#nn::hid::IHidServer(511)">WritePalmaApplicationSection</a>()</code>
+							  <code class="signature">[511, 5.0.0+] <a href="#nn::hid::IHidServer(511)">ReadPalmaUniqueCode</a>(<a href="types.html#nn::hid::PalmaConnectionHandle">nn::hid::PalmaConnectionHandle</a>)</code>
 							
 							</li>
 							<li class="command" value="512" id="nn::hid::IHidServer(512)">
 							
 							
-							  <code class="signature">[512, 5.0.0+] <a href="#nn::hid::IHidServer(512)">ReadPalmaUniqueCode</a>()</code>
+							  <code class="signature">[512, 5.0.0+] <a href="#nn::hid::IHidServer(512)">SetPalmaUniqueCodeInvalid</a>(<a href="types.html#nn::hid::PalmaConnectionHandle">nn::hid::PalmaConnectionHandle</a>)</code>
 							
 							</li>
 							<li class="command" value="513" id="nn::hid::IHidServer(513)">
 							
 							
-							  <code class="signature">[513, 5.0.0+] <a href="#nn::hid::IHidServer(513)">SetPalmaUniqueCodeInvalid</a>()</code>
+							  <code class="signature">[513, 5.0.0+] <a href="#nn::hid::IHidServer(513)">WritePalmaActivityEntry</a>(u64, u64, u64, u64, <a href="types.html#nn::hid::PalmaConnectionHandle">nn::hid::PalmaConnectionHandle</a>)</code>
+							
+							</li>
+							<li class="command" value="514" id="nn::hid::IHidServer(514)">
+							
+							
+							  <code class="signature">[514, 5.0.0+] <a href="#nn::hid::IHidServer(514)">WritePalmaRgbLedPatternEntry</a>(u64, buffer&lt;unknown, 5, 0&gt;, <a href="types.html#nn::hid::PalmaConnectionHandle">nn::hid::PalmaConnectionHandle</a>)</code>
+							
+							</li>
+							<li class="command" value="515" id="nn::hid::IHidServer(515)">
+							
+							
+							  <code class="signature">[515, 5.0.0+] <a href="#nn::hid::IHidServer(515)">WritePalmaWaveEntry</a>(u64, u64, KObject, u64, u64, <a href="types.html#nn::hid::PalmaConnectionHandle">nn::hid::PalmaConnectionHandle</a>)</code>
+							
+							</li>
+							<li class="command" value="516" id="nn::hid::IHidServer(516)">
+							
+							
+							  <code class="signature">[516, 5.0.0+] <a href="#nn::hid::IHidServer(516)">SetPalmaDataBaseIdentificationVersion</a>(u32, <a href="types.html#nn::hid::PalmaConnectionHandle">nn::hid::PalmaConnectionHandle</a>, int)</code>
+							
+							</li>
+							<li class="command" value="517" id="nn::hid::IHidServer(517)">
+							
+							
+							  <code class="signature">[517, 5.0.0+] <a href="#nn::hid::IHidServer(517)">GetPalmaDataBaseIdentificationVersion</a>(<a href="types.html#nn::hid::PalmaConnectionHandle">nn::hid::PalmaConnectionHandle</a>)</code>
+							
+							</li>
+							<li class="command" value="518" id="nn::hid::IHidServer(518)">
+							
+							
+							  <code class="signature">[518, 5.0.0+] <a href="#nn::hid::IHidServer(518)">SuspendPalmaFeature</a>(<a href="types.html#nn::hid::PalmaConnectionHandle">nn::hid::PalmaConnectionHandle</a>, <a href="types.html#nn::hid::PalmaFeature">nn::hid::PalmaFeature</a>)</code>
+							
+							</li>
+							<li class="command" value="519" id="nn::hid::IHidServer(519)">
+							
+							
+							  <code class="signature">[519, 5.1.0+] <a href="#nn::hid::IHidServer(519)">Unknown519</a>(bytes&lt;8&gt;)</code>
+							
+							</li>
+							<li class="command" value="520" id="nn::hid::IHidServer(520)">
+							
+							
+							  <code class="signature">[520, 5.1.0+] <a href="#nn::hid::IHidServer(520)">Unknown520</a>(bytes&lt;0x10&gt;)</code>
+							
+							</li>
+							<li class="command" value="521" id="nn::hid::IHidServer(521)">
+							
+							
+							  <code class="signature">[521, 5.1.0+] <a href="#nn::hid::IHidServer(521)">Unknown521</a>(bytes&lt;0x10&gt;)</code>
+							
+							</li>
+							<li class="command" value="522" id="nn::hid::IHidServer(522)">
+							
+							
+							  <code class="signature">[522, 5.1.0+] <a href="#nn::hid::IHidServer(522)">Unknown522</a>(bytes&lt;0x10&gt;, pid)</code>
+							
+							</li>
+							<li class="command" value="523" id="nn::hid::IHidServer(523)">
+							
+							
+							  <code class="signature">[523, 5.1.0+] <a href="#nn::hid::IHidServer(523)">Unknown523</a>(bytes&lt;0x10&gt;, pid)</code>
+							
+							</li>
+							<li class="command" value="524" id="nn::hid::IHidServer(524)">
+							
+							
+							  <code class="signature">[524, 5.1.0+] <a href="#nn::hid::IHidServer(524)">Unknown524</a>(bytes&lt;0x10&gt;)</code>
+							
+							</li>
+							<li class="command" value="525" id="nn::hid::IHidServer(525)">
+							
+							
+							  <code class="signature">[525, 5.1.0+] <a href="#nn::hid::IHidServer(525)">Unknown525</a>(u8)</code>
 							
 							</li>
 							<li class="command" value="1000" id="nn::hid::IHidServer(1000)">
