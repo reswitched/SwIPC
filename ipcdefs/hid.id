@@ -190,19 +190,19 @@ interface nn::hid::IHidServer is hid {
 	[518] SuspendPalmaFeature(nn::hid::PalmaConnectionHandle, nn::hid::PalmaFeature);
 	
 	@version(5.1.0+)
-	[519] Unknown519(bytes<0x8>);
+	[519] GetPalmaOperationResult(nn::hid::PalmaConnectionHandle);
 	@version(5.1.0+)
-	[520] Unknown520(bytes<0x10>);
+	[520] ReadPalmaPlayLog(nn::hid::PalmaConnectionHandle, u16);
 	@version(5.1.0+)
-	[521] Unknown521(bytes<0x10>);
+	[521] ResetPalmaPlayLog(nn::hid::PalmaConnectionHandle, u16);
 	@version(5.1.0+)
-	[522] Unknown522(bytes<0x10>, pid);
+	[522] SetIsPalmaAllConnectable(nn::applet::AppletResourceUserId, bool, pid);
 	@version(5.1.0+)
-	[523] Unknown523(bytes<0x10>, pid);
+	[523] SetIsPalmaPairedConnectable(nn::applet::AppletResourceUserId, bool, pid);
 	@version(5.1.0+)
-	[524] Unknown524(bytes<0x10>);
+	[524] PairPalma(nn::hid::PalmaConnectionHandle);
 	@version(5.1.0+)
-	[525] Unknown525(u8);
+	[525] SetPalmaBoostMode(bool);
 	
 	[1000] SetNpadCommunicationMode(nn::applet::AppletResourceUserId, i64, pid);
 	[1001] GetNpadCommunicationMode() -> i64;
