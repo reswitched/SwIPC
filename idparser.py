@@ -26,17 +26,18 @@ name = /[a-zA-Z_][a-zA-Z0-9_:]*/ ;
 sname = /[a-zA-Z_][a-zA-Z0-9_:\-]*/ ;
 serviceNameList = @:','.{ sname } ;
 template = '<' @:','.{ expression } '>' ;
+arrayLength = '[' [ length:number ] ']' ;
 structField = doc:{ comment }* type:type name:name ';' ;
 enumField = doc:{ comment }* name:name '=' value:number ';' ;
 type =
     | 'struct' template:[ template ] '{' structFields:{ structField }+ '}'
     | 'enum' template:template '{' enumFields:{ enumField }+ '}'
-    | name:name template:[ template ]
+    | name:name template:[ template ] length:[ arrayLength ]
     ;
 
-typeDef = doc:{ comment }* 'type' name:name '=' type:type ';' ;
+typeDef = doc:{ comment }* decorators:{ decorator }* 'type' name:type '=' type:type ';' ;
 
-interface = doc:{ comment }* 'interface' name:name [ 'is' serviceNames:serviceNameList ] '{' functions:{ funcDef }* '}' ;
+interface = doc:{ comment }* decorators:{ decorator }* 'interface' name:name [ 'is' serviceNames:serviceNameList ] '{' functions:{ funcDef }* '}' ;
 namedTuple = '(' @:','.{ type [ name ] } ')' ;
 namedType = type [ name ] ;
 comment = '#' line:/[^\\n]*/;
@@ -80,6 +81,15 @@ def parseType(type):
 	else:
 		return [name]
 
+def repack(x):
+	if isinstance(x, list):
+		if len(x) > 1:
+			return '%s<%s>' % (x[0], ", ".join(map(repack, x[1:])))
+		else:
+			return str(x[0])
+	else:
+		return str(x)
+
 def parse(data):
 	ast = tatsu.parse(grammar, data, semantics=Semantics(), eol_comments_re=r'\/\/.*?$')
 
@@ -88,7 +98,8 @@ def parse(data):
 		if 'type' not in elem:
 			continue
 		#assert elem['name'] not in types
-		types[elem['name']] = parseType(elem['type'])
+		tdef = {}
+		types[repack(parseType(elem['name']))] = parseType(elem['type'])
 
 	ifaces = {}
 	services = {}

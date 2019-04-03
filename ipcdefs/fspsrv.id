@@ -1,5 +1,5 @@
-type nn::fssrv::sf::SaveStruct = bytes<0x40>;
-type nn::fssrv::sf::SaveCreateStruct = bytes<0x40>;
+type nn::fssrv::sf::SaveStruct = bytes<0x40, 8>;
+type nn::fssrv::sf::SaveCreateStruct = bytes<0x40, 8>;
 type nn::fssrv::sf::IDirectoryEntry = struct {
 	bytes<0x300> path;
 	u32 unk1;
@@ -22,7 +22,6 @@ type nn::fssrv::sf::Partition = enum<u32> {
 	SystemProperEncryption = 30;
 	User = 31;
 };
-
 type nn::fssrv::sf::DirectoryEntryType = enum<u8> {
 	Directory = 0;
 	File = 1;
@@ -39,224 +38,326 @@ type nn::fssrv::sf::FileSystemType = enum<u32> {
 	ApplicationPackage = 7;
 };
 
-// --------------------------------------------- FSP-SRV ---------------------------------------------
-
 interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
-	# Takes an input [\#FileSystemType](http://switchbrew.org/index.php?title=Filesystem services#FileSystemType "wikilink") and an u64 title-id. Returns an [\#IFileSystem](#nn::fssrv::sf::IFileSystem "wikilink").
+	# Takes an input
+	# [\#FileSystemType](http://switchbrew.org/index.php?title=Filesystem%20services#FileSystemType "wikilink")
+	# and an u64 title-id. Returns an
+	# [\#IFileSystem](#nn::fssrv::sf::IFileSystem "wikilink").
 	# 
 	# \[2.0.0+\] This function was removed.
 	# 
 	@version(1.0.0)
-	[0] OpenFileSystem(nn::fssrv::sf::FileSystemType filesystem_type, nn::ApplicationId tid, buffer<bytes<0x301>, 0x19, 0x301> path) -> object<nn::fssrv::sf::IFileSystem> contentFs;
+	[0] OpenFileSystem(nn::fssrv::sf::FileSystemType filesystem_type, buffer<bytes<0x301>, 0x19, 0x301>) -> object<nn::fssrv::sf::IFileSystem>;
 	# Takes a pid-descriptor.
 	# 
-	[1] Initialize(u64, pid);
+	[1] SetCurrentProcess(u64, pid);
 	[2] OpenDataFileSystemByCurrentProcess() -> object<nn::fssrv::sf::IFileSystem>;
-	# Takes an input [\#FileSystemType](http://switchbrew.org/index.php?title=Filesystem services#FileSystemType "wikilink") and an u64 title-id. Returns an [\#IFileSystem](#nn::fssrv::sf::IFileSystem "wikilink").
+	# Takes an input
+	# [\#FileSystemType](http://switchbrew.org/index.php?title=Filesystem%20services#FileSystemType "wikilink")
+	# and an u64 title-id. Returns an
+	# [\#IFileSystem](#nn::fssrv::sf::IFileSystem "wikilink").
 	# 
-	# Web-applet loads the [\#FileSystemType](http://switchbrew.org/index.php?title=Filesystem services#FileSystemType "wikilink") (which must be **ContentManual**) from u32\_table\[inparam\].
+	# Web-applet loads the
+	# [\#FileSystemType](http://switchbrew.org/index.php?title=Filesystem%20services#FileSystemType "wikilink")
+	# (which must be **ContentManual**) from u32\_table\[inparam\].
 	# 
-	# Note: web-applet strings refer to both this cmd and [\#OpenFileSystemWithId](#nn::fssrv::sf::IFileSystemProxy(8) "wikilink") as MountContent, but official nn\_sf\_sync symbols use OpenXX names.
-	# 
-	@version(2.0.0+)
-	[7] OpenFileSystemWithPatch(nn::fssrv::sf::FileSystemType filesystem_type, nn::ApplicationId tid) -> object<nn::fssrv::sf::IFileSystem>;
-	# Takes a type-0x19 input buffer, an [\#FileSystemType](http://switchbrew.org/index.php?title=Filesystem services#FileSystemType "wikilink") and an u64 title-id. Returns an [\#IFileSystem](#nn::fssrv::sf::IFileSystem "wikilink").
-	# 
-	# The [\#IFileSystem](#nn::fssrv::sf::IFileSystem "wikilink") must be **ContentMeta** if the NCA type is 0 (control).
-	# 
-	# The input buffer is the output string path from [GetApplicationContentPath](http://switchbrew.org/index.php?title=NS_Services#GetApplicationContentPath "wikilink").
-	# 
-	# May return errors when attempting to access NCA-paths for an update-title with a gamecard, when the gamecard isn't inserted. May return error 0x7D402 in some cases with update-titles. Non-val2 in32 values with NCA-type1 are unusable, even for normal titles.
-	# 
-	# The official MountApplicationPackage func uses this with in64=0 and [\#FileSystemType](http://switchbrew.org/index.php?title=Filesystem services#FileSystemType "wikilink") **ApplicationPackage**.
-	# 
-	# After the [\#FileSystemType](http://switchbrew.org/index.php?title=Filesystem services#FileSystemType "wikilink") specific permissions are checked, it then gets the func retval for permissions-type 0x25 and func0.
-	# 
-	# When [\#FileSystemType](http://switchbrew.org/index.php?title=Filesystem services#FileSystemType "wikilink") is **ContentMeta**, it uses in64=0xffffffffffffffff internally, otherwise it checks if in64 is set to 0xffffffffffffffff then throws an error if so. When the in64 used internally is not 0xffffffffffffffff, it's compared with the NCA titleID, then an error is thrown on mismatch.
+	# Note: web-applet strings refer to both this cmd and
+	# [\#OpenFileSystemWithId](#nn::fssrv::sf::IFileSystemProxy\(8\) "wikilink")
+	# as "MountContent", but official nn\_sf\_sync symbols use "OpenXX" names.
 	# 
 	@version(2.0.0+)
-	[8] OpenFileSystemWithId(nn::fssrv::sf::FileSystemType filesystem_type, nn::ApplicationId tid, buffer<bytes<0x301>, 0x19, 0x301> path) -> object<nn::fssrv::sf::IFileSystem> contentFs;
+	[7] OpenFileSystemWithPatch(nn::fssrv::sf::FileSystemType filesystem_type, nn:ApplicationId id) -> object<nn::fssrv::sf::IFileSystem>;
+	# Takes a type-0x19 input buffer, an
+	# [\#FileSystemType](http://switchbrew.org/index.php?title=Filesystem%20services#FileSystemType "wikilink")
+	# and an u64 title-id. Returns an
+	# [\#IFileSystem](#nn::fssrv::sf::IFileSystem "wikilink").
+	# 
+	# The [\#IFileSystem](#nn::fssrv::sf::IFileSystem "wikilink") must be
+	# **ContentMeta** if the NCA type is 0 (control).
+	# 
+	# The input buffer is the output string path from
+	# [GetApplicationContentPath](http://switchbrew.org/index.php?title=NS_Services#GetApplicationContentPath "wikilink").
+	# 
+	# May return errors when attempting to access NCA-paths for an
+	# update-title with a gamecard, when the gamecard isn't inserted. May
+	# return error 0x7D402 in some cases with update-titles. Non-val2 in32
+	# values with NCA-type1 are unusable, even for normal titles.
+	# 
+	# The official "MountApplicationPackage" func uses this with in64=0 and
+	# [\#FileSystemType](http://switchbrew.org/index.php?title=Filesystem%20services#FileSystemType "wikilink")
+	# **ApplicationPackage**.
+	# 
+	# After the
+	# [\#FileSystemType](http://switchbrew.org/index.php?title=Filesystem%20services#FileSystemType "wikilink")
+	# specific permissions are checked, it then gets the func retval for
+	# permissions-type 0x25 and func0.
+	# 
+	# When
+	# [\#FileSystemType](http://switchbrew.org/index.php?title=Filesystem%20services#FileSystemType "wikilink")
+	# is **ContentMeta**, it uses in64=0xffffffffffffffff internally,
+	# otherwise it checks if in64 is set to 0xffffffffffffffff then throws an
+	# error if so. When the in64 used internally is not 0xffffffffffffffff,
+	# it's compared with the NCA titleID, then an error is thrown on mismatch.
+	# 
+	@version(2.0.0+)
+	[8] OpenFileSystemWithId(nn::fssrv::sf::FileSystemType filesystem_type, nn::ApplicationId tid, buffer<bytes<0x301>,0x19,0x301>) -> object<nn::fssrv::sf::IFileSystem> contentFs;
 	@version(3.0.0+)
-	[9] OpenDataFileSystemByApplicationId(nn::ApplicationId tid) -> object<nn::fssrv::sf::IFileSystem> dataFiles;
-	# Takes a type-0x19 input buffer string and a u32 [Bis partitionID](http://switchbrew.org/index.php?title=Flash_Filesystem "wikilink"). Official user-process code sets instr\[0\] = 0 normally. Returns an [\#IFileSystem](#nn::fssrv::sf::IFileSystem "wikilink").
+	[9] OpenDataFileSystemByApplicationId(nn::ApplicationId u64) -> object<nn::fssrv::sf::IFileSystem>;
+	# Takes a type-0x19 input buffer string and a u32 [Bis
+	# partitionID](http://switchbrew.org/index.php?title=Flash_Filesystem "wikilink").
+	# Official user-process code sets instr\[0\] = 0 normally. Returns an
+	# [\#IFileSystem](#nn::fssrv::sf::IFileSystem "wikilink").
 	# 
-	# Only partitionIDs for FAT partitions are usable with this, otherwise error 0x2EE202 is returned. Seems to be about the same as [\#OpenBisStorage](#nn::fssrv::sf::IFileSystemProxy(12) "wikilink") except this mounts the partition filesystem instead of allowing direct access to the partition sectors.
+	# Only partitionIDs for FAT partitions are usable with this, otherwise
+	# error 0x2EE202 is returned. Seems to be about the same as
+	# [\#OpenBisStorage](#nn::fssrv::sf::IFileSystemProxy\(12\) "wikilink")
+	# except this mounts the partition filesystem instead of allowing direct
+	# access to the partition sectors.
 	# 
-	[11] OpenBisFileSystem(nn::fssrv::sf::Partition partitionID, buffer<bytes<0x301>, 0x19, 0x301>) -> object<nn::fssrv::sf::IFileSystem> Bis;
-	# Takes a u32 partition ID, returns 0x2EE202 for partitions which do not exist, 0x320002 for partitions which cannot be opened and a valid [\#IStorage](#nn::fssrv::sf::IStorage "wikilink") handle otherwise.
+	[11] OpenBisFileSystem(nn::fssrv::sf::Partition partitionId, buffer<bytes<0x301>,0x19,0x301>) -> object<nn::fssrv::sf::IFileSystem> bis;
+	# Takes a u32 partition ID, returns 0x2EE202 for partitions which do not
+	# exist, 0x320002 for partitions which cannot be opened and a valid
+	# [\#IStorage](#nn::fssrv::sf::IStorage "wikilink") handle otherwise.
 	# 
-	[12] OpenBisStorage(nn::fssrv::sf::Partition partitionID) -> object<nn::fssrv::sf::IStorage> BisPartition;
+	[12] OpenBisStorage(nn::fs::sf::Partition partitionId) -> object<nn::fssrv::sf::IStorage> bisPartition;
 	[13] InvalidateBisCache();
-	[17] OpenHostFileSystem(buffer<bytes<0x301>, 0x19, 0x301> path) -> object<nn::fssrv::sf::IFileSystem>;
+	[17] OpenHostFileSystem(buffer<bytes<0x301>,0x19,0x301>) -> object<nn::fssrv::sf::IFileSystem>;
 	[18] OpenSdCardFileSystem() -> object<nn::fssrv::sf::IFileSystem>;
 	@version(2.0.0+)
 	[19] FormatSdCardFileSystem();
 	# Takes an input u64.
 	# 
 	[21] DeleteSaveDataFileSystem(nn::ApplicationId tid);
-	# Takes a 0x40-byte Save-struct entry, a 0x40-byte SaveCreate-struct entry, and a 0x10-byte input struct.
+	# Takes a 0x40-byte Save-struct entry, a 0x40-byte SaveCreate-struct
+	# entry, and a 0x10-byte input struct.
 	# 
-	# Only the first 0x5-bytes in the 0x10-byte struct are initialized: all-zero when automatically creating savedata during savecommon mount by official user-processes. In the dedicated save-creation code in official user-processes: +0 u32 = 0x40060, +4 u8 = 1.
+	# Only the first 0x5-bytes in the 0x10-byte struct are initialized:
+	# all-zero when automatically creating savedata during savecommon mount by
+	# official user-processes. In the dedicated save-creation code in official
+	# user-processes: +0 u32 = 0x40060, +4 u8 = 1.
 	# 
 	# Creates regular savedata.
 	# 
-	[22] CreateSaveDataFileSystem(nn::fssrv::sf::SaveStruct saveStruct, nn::fssrv::sf::SaveCreateStruct saveCreate, u128 input);
-	# Takes a 0x40-byte Save-struct entry and a 0x40-byte SaveCreate-struct entry.
+	[22] CreateSaveDataFileSystem(nn::fssrv::sf::SaveStruct save_struct, nn::fssrv::sf::SaveCreateStruct ave_create_struct, bytes<0x10,4>);
+	# Takes a 0x40-byte Save-struct entry and a 0x40-byte SaveCreate-struct
+	# entry.
 	# 
-	# Creates savedata in the SYSTEM [NAND](http://switchbrew.org/index.php?title=Flash_Filesystem "wikilink") partition.
+	# Creates savedata in the SYSTEM
+	# [NAND](http://switchbrew.org/index.php?title=Flash_Filesystem "wikilink")
+	# partition.
 	# 
-	[23] CreateSaveDataFileSystemBySystemSaveDataId(nn::fssrv::sf::SaveStruct saveStruct, nn::fssrv::sf::SaveCreateStruct saveCreate);
-	[24] RegisterSaveDataFileSystemAtomicDeletion(buffer<unknown, 5, 0>);
+	[23] CreateSaveDataFileSystemBySystemSaveDataId(nn::fssrv::sf::SaveStruct, nn::fssrv::sf::SaveCreateStruct);
+	[24] RegisterSaveDataFileSystemAtomicDeletion(buffer<unknown,5>);
 	@version(2.0.0+)
 	[25] DeleteSaveDataFileSystemBySaveDataSpaceId(u8, u64);
 	@version(2.0.0+)
 	[26] FormatSdCardDryRun();
 	@version(2.0.0+)
-	[27] IsExFatSupported() -> u8 isSupported;
+	[27] IsExFatSupported() -> b8;
 	@version(4.0.0+)
-	[28] DeleteSaveDataFileSystemBySaveDataAttribute();
-	# Takes two input u32s (gamecard handle, partition ID), and returns an [\#IStorage](#nn::fssrv::sf::IStorage "wikilink") for the [partition](http://switchbrew.org/index.php?title=Gamecard_Format "wikilink").
+	[28] DeleteSaveDataFileSystemBySaveDataAttribute(u8, bytes<0x40,8>);
+	# Takes two input u32s (gamecard handle, partition ID), and returns an
+	# [\#IStorage](#nn::fssrv::sf::IStorage "wikilink") for the
+	# [partition](http://switchbrew.org/index.php?title=Gamecard_Format "wikilink").
 	# 
-	[30] OpenGameCardStorage(nn::fssrv::sf::Partition partitionID, u32) -> object<nn::fssrv::sf::IStorage> gameCardFs;
-	# Takes two input u32s, with the second u32 located at +4 in rawdata after the first u32. Returns an [\#IFileSystem](#nn::fssrv::sf::IFileSystem "wikilink").
+	[30] OpenGameCardStorage(u32, u32) -> object<nn::fssrv::sf::IStorage>;
+	# Takes two input u32s, with the second u32 located at +4 in rawdata after
+	# the first u32. Returns an
+	# [\#IFileSystem](#nn::fssrv::sf::IFileSystem "wikilink").
 	# 
-	# Mounts a [gamecard partition](http://switchbrew.org/index.php?title=Gamecard_Partition "wikilink").
+	# Mounts a [gamecard
+	# partition](http://switchbrew.org/index.php?title=Gamecard_Partition "wikilink").
 	# 
-	[31] OpenGameCardFileSystem(u32, u32) -> object<nn::fssrv::sf::IFileSystem> gameCardPartitionFs;
+	[31] OpenGameCardFileSystem(u32, u32) -> object<nn::fssrv::sf::IFileSystem>;
 	@version(3.0.0+)
 	[32] ExtendSaveDataFileSystem(u8, u64, u64, u64);
 	@version(5.0.0+)
-	[33] DeleteCacheStorage();
+	@undocumented
+	[33] DeleteCacheStorage(unknown) -> unknown;
 	@version(5.0.0+)
-	[34] GetCacheStorageSize();
-	# Takes an input u8 [\#SaveDataSpaceId](http://switchbrew.org/index.php?title=Filesystem services#SaveDataSpaceId "wikilink") and a 0x40-byte Save-struct entry. Official user-process code is only known to use value 1 for the u8.
+	@undocumented
+	[34] GetCacheStorageSize(unknown) -> unknown;
+	# Takes an input u8
+	# [\#SaveDataSpaceId](http://switchbrew.org/index.php?title=Filesystem%20services#SaveDataSpaceId "wikilink")
+	# and a 0x40-byte Save-struct entry. Official user-process code is only
+	# known to use value 1 for the u8.
 	# 
 	# Returns an [\#IFileSystem](#nn::fssrv::sf::IFileSystem "wikilink").
 	# 
-	# Permissions aren't checked until the specified save is successfully found.
+	# Permissions aren't checked until the specified save is successfully
+	# found.
 	# 
-	# Only one process (specifically only one [\#IFileSystem](#nn::fssrv::sf::IFileSystem "wikilink") session) can mount a given savedata at any given time (this includes SystemSaveData).
+	# Only one process (specifically only one
+	# [\#IFileSystem](#nn::fssrv::sf::IFileSystem "wikilink") session) can
+	# mount a given savedata at any given time (this includes SystemSaveData).
 	# 
-	[51] OpenSaveDataFileSystem(u8 save_data_space_id, nn::fssrv::sf::SaveStruct saveStruct) -> object<nn::fssrv::sf::IFileSystem> saveDataFs;
-	# Takes an input u8 [\#SaveDataSpaceId](http://switchbrew.org/index.php?title=Filesystem services#SaveDataSpaceId "wikilink") and a 0x40-byte Save-struct entry. Web-applet only uses value0 for the input u8.
+	[51] OpenSaveDataFileSystem(u8 save_data_space_id, nn::fssrv::sf::SaveStruct save_struct) -> object<nn::fssrv::sf::IFileSystem>;
+	# Takes an input u8
+	# [\#SaveDataSpaceId](http://switchbrew.org/index.php?title=Filesystem%20services#SaveDataSpaceId "wikilink")
+	# and a 0x40-byte Save-struct entry. Web-applet only uses value0 for the
+	# input u8.
 	# 
 	# Returns an [\#IFileSystem](#nn::fssrv::sf::IFileSystem "wikilink").
 	# 
-	# Mounts savedata in the SYSTEM [NAND](http://switchbrew.org/index.php?title=Flash_Filesystem "wikilink") partition.
+	# Mounts savedata in the SYSTEM
+	# [NAND](http://switchbrew.org/index.php?title=Flash_Filesystem "wikilink")
+	# partition.
 	# 
-	[52] OpenSaveDataFileSystemBySystemSaveDataId(u8 save_data_space_id, nn::fssrv::sf::SaveStruct saveStruct) -> object<nn::fssrv::sf::IFileSystem> systemSaveDataFs;
+	[52] OpenSaveDataFileSystemBySystemSaveDataId(u8 save_data_space_id, nn::fssrv::sf::SaveStruct save_struct) -> object<nn::fssrv::sf::IFileSystem>;
 	@version(2.0.0+)
-	[53] OpenReadOnlySaveDataFileSystem(u8 save_data_space_id, nn::fssrv::sf::SaveStruct saveStruct) -> object<nn::fssrv::sf::IFileSystem> saveDataFs;
+	[53] OpenReadOnlySaveDataFileSystem(u8 save_data_space_id, nn::fssrv::sf::SaveStruct save_struct) -> object<nn::fssrv::sf::IFileSystem>;
 	@version(3.0.0+)
-	[57] ReadSaveDataFileSystemExtraDataBySaveDataSpaceId(u8, u64) -> buffer<unknown, 6, 0>;
-	[58] ReadSaveDataFileSystemExtraData(u64) -> buffer<unknown, 6, 0>;
+	[57] ReadSaveDataFileSystemExtraDataBySaveDataSpaceId(u8, u64) -> buffer<unknown,6>;
+	[58] ReadSaveDataFileSystemExtraData(u64) -> buffer<unknown,6>;
 	@version(2.0.0+)
-	[59] WriteSaveDataFileSystemExtraData(u8, u64, buffer<unknown, 5, 0>);
-	# No input, returns an output [\#ISaveDataInfoReader](#nn::fssrv::sf::ISaveDataInfoReader "wikilink").
+	[59] WriteSaveDataFileSystemExtraData(u8, u64, buffer<unknown,5>);
+	# No input, returns an output
+	# [\#ISaveDataInfoReader](#nn::fssrv::sf::ISaveDataInfoReader "wikilink").
 	# 
 	[60] OpenSaveDataInfoReader() -> object<nn::fssrv::sf::ISaveDataInfoReader>;
-	# Takes an input u8 [\#SaveDataSpaceId](http://switchbrew.org/index.php?title=Filesystem services#SaveDataSpaceId "wikilink"), returns an output [\#ISaveDataInfoReader](#nn::fssrv::sf::ISaveDataInfoReader "wikilink").
+	# Takes an input u8
+	# [\#SaveDataSpaceId](http://switchbrew.org/index.php?title=Filesystem%20services#SaveDataSpaceId "wikilink"),
+	# returns an output
+	# [\#ISaveDataInfoReader](#nn::fssrv::sf::ISaveDataInfoReader "wikilink").
 	# 
 	[61] OpenSaveDataInfoReaderBySaveDataSpaceId(u8) -> object<nn::fssrv::sf::ISaveDataInfoReader>;
 	@version(5.0.0+)
-	[62] OpenCacheStorageList();
+	@undocumented
+	[62] OpenCacheStorageList(unknown) -> unknown;
 	@version(5.0.0+)
-	[64] OpenSaveDataInternalStorageFileSystem();
+	@undocumented
+	[64] OpenSaveDataInternalStorageFileSystem(unknown) -> unknown;
 	@version(5.0.0+)
-	[65] UpdateSaveDataMacForDebug();
+	@undocumented
+	[65] UpdateSaveDataMacForDebug(unknown) -> unknown;
 	@version(5.0.0+)
-	[66] WriteSaveDataFileSystemExtraData2();
-	[80] OpenSaveDataMetaFile(u8, u32, bytes<64>) -> object<nn::fssrv::sf::IFileSystem> imageFs;
+	@undocumented
+	[66] WriteSaveDataFileSystemExtraData2(unknown) -> unknown;
+	[80] OpenSaveDataMetaFile(u8, u32, bytes<0x40,8>) -> object<nn::fssrv::sf::IFile>;
 	@version(4.0.0+)
-	[81] OpenSaveDataTransferManager();
+	[81] OpenSaveDataTransferManager() -> object<nn::fssrv::sf::ISaveDataTransferManager>;
 	@version(5.0.0+)
-	[82] OpenSaveDataTransferManagerVersion2();
-	[100] OpenImageDirectoryFileSystem(u32) -> object<nn::fssrv::sf::IFileSystem> imageFs;
-	# Takes a [\#ContentStorageId](http://switchbrew.org/index.php?title=Filesystem services#ContentStorageId "wikilink"). Invalid values return 0x2EE202.
+	@undocumented
+	[82] OpenSaveDataTransferManagerVersion2(unknown) -> unknown;
+	[100] OpenImageDirectoryFileSystem(u32) -> object<nn::fssrv::sf::IFileSystem>;
+	# Takes a
+	# [\#ContentStorageId](http://switchbrew.org/index.php?title=Filesystem%20services#ContentStorageId "wikilink").
+	# Invalid values return 0x2EE202.
 	# 
-	# Returns an [\#IFileSystem](#nn::fssrv::sf::IFileSystem "wikilink") with NCA files. The read data from these files is identical to the data read by [Content\_Manager\_services\#ReadEntryRaw](http://switchbrew.org/index.php?title=Content_Manager_services#ReadEntryRaw "wikilink").
+	# Returns an [\#IFileSystem](#nn::fssrv::sf::IFileSystem "wikilink") with
+	# NCA files. The read data from these files is identical to the data read
+	# by
+	# [Content\_Manager\_services\#ReadEntryRaw](http://switchbrew.org/index.php?title=Content_Manager_services#ReadEntryRaw "wikilink").
 	# 
-	[110] OpenContentStorageFileSystem(u32 contentStorageID) -> object<nn::fssrv::sf::IFileSystem> contentFs;
-	[200] OpenDataStorageByCurrentProcess() -> object<nn::fssrv::sf::IStorage> dataStorage;
+	[110] OpenContentStorageFileSystem(u32 content_storage_id) -> object<nn::fssrv::sf::IFileSystem> content_fs;
+	[200] OpenDataStorageByCurrentProcess() -> object<nn::fssrv::sf::IStorage> data_storage;
 	@version(3.0.0+)
-	[201] OpenDataStorageByProgramId(nn::ApplicationId tid) -> object<nn::fssrv::sf::IStorage> dataStorage;
-	# Takes a [\#StorageId](http://switchbrew.org/index.php?title=Filesystem services#StorageId "wikilink") and a TitleID.
+	[201] OpenDataStorageByProgramId(nn::ApplicationId tid) -> object<nn::fssrv::sf::IStorage> data_storage;
+	# Takes a
+	# [\#StorageId](http://switchbrew.org/index.php?title=Filesystem%20services#StorageId "wikilink")
+	# and a TitleID.
 	# 
-	# Returns a [domain object ID](http://switchbrew.org/index.php?title=IPC_Marshalling#Domain_message "wikilink") implementing the [\#IStorage](#nn::fssrv::sf::IStorage "wikilink") interface for data archives.
+	# Returns a [domain object
+	# ID](http://switchbrew.org/index.php?title=IPC_Marshalling#Domain_message "wikilink")
+	# implementing the [\#IStorage](#nn::fssrv::sf::IStorage "wikilink")
+	# interface for data archives.
 	# 
-	[202] OpenDataStorageByDataId(u8 storageId, nn::ApplicationId tid) -> object<nn::fssrv::sf::IStorage> dataStorage;
+	[202] OpenDataStorageByDataId(u8 storage_id, nn::ApplicationId tid) -> object<nn::fssrv::sf::IStorage> data_storage;
 	[203] OpenPatchDataStorageByCurrentProcess() -> object<nn::fssrv::sf::IStorage>;
-	# This command returns a session to a port implementing the [\#IDeviceOperator](#nn::fssrv::sf::IDeviceOperator "wikilink") interface.
+	# This command returns a session to a port implementing the
+	# [\#IDeviceOperator](#nn::fssrv::sf::IDeviceOperator "wikilink")
+	# interface.
 	# 
 	[400] OpenDeviceOperator() -> object<nn::fssrv::sf::IDeviceOperator>;
-	# This command returns a session to a port implementing the [\#IEventNotifier](#nn::fssrv::sf::IEventNotifier "wikilink") interface.
+	# This command returns a session to a port implementing the
+	# [\#IEventNotifier](#nn::fssrv::sf::IEventNotifier "wikilink") interface.
 	# 
-	[500] OpenSdCardDetectionEventNotifier() -> object<nn::fssrv::sf::IEventNotifier> SdEventNotify;
-	# This command returns a session to a port implementing the [\#IEventNotifier](#nn::fssrv::sf::IEventNotifier "wikilink") interface.
+	[500] OpenSdCardDetectionEventNotifier() -> object<nn::fssrv::sf::IEventNotifier> sd_event_notify;
+	# This command returns a session to a port implementing the
+	# [\#IEventNotifier](#nn::fssrv::sf::IEventNotifier "wikilink") interface.
 	# 
-	[501] OpenGameCardDetectionEventNotifier() -> object<nn::fssrv::sf::IEventNotifier> GameCardEventNotify;
+	[501] OpenGameCardDetectionEventNotifier() -> object<nn::fssrv::sf::IEventNotifier> game_card_event_notify;
 	@version(5.0.0+)
-	[510] OpenSystemDataUpdateEventNotifier();
+	@undocumented
+	[510] OpenSystemDataUpdateEventNotifier(unknown) -> unknown;
 	@version(5.0.0+)
-	[511] NotifySystemDataUpdateEvent();
+	@undocumented
+	[511] NotifySystemDataUpdateEvent(unknown) -> unknown;
 	@version(1.0.0-3.0.2)
 	[600] SetCurrentPosixTime(u64 time);
-	[601] QuerySaveDataTotalSize(u64, u64) -> u64 saveDataSize;
+	[601] QuerySaveDataTotalSize(u64, u64) -> u64 save_data_size;
 	# Takes an unknown input u64 and a type-0x6 output buffer.
 	# 
-	# The input u64 high-byte must be non-zero, otherwise an [error](http://switchbrew.org/index.php?title=Error_codes "wikilink") is returned(0xE02).
+	# The input u64 high-byte must be non-zero, otherwise an
+	# [error](http://switchbrew.org/index.php?title=Error_codes "wikilink") is
+	# returned(0xE02).
 	# 
-	[602] VerifySaveDataFileSystem(nn::ApplicationId tid) -> buffer<unknown, 6, 0>;
+	[602] VerifySaveDataFileSystem(u64) -> buffer<unknown,6>;
 	[603] CorruptSaveDataFileSystem(u64);
 	[604] CreatePaddingFile(u64);
 	[605] DeleteAllPaddingFiles();
 	@version(2.0.0+)
-	[606] GetRightsId(u8, u64) -> u128 rights;
+	[606] GetRightsId(u8, u64) -> bytes<0x10,8> rights;
 	@version(2.0.0+)
-	[607] RegisterExternalKey(u128, u128);
+	[607] RegisterExternalKey(bytes<0x10,8>, bytes<0x10,1>);
 	@version(2.0.0+)
 	[608] UnregisterAllExternalKey();
 	@version(2.0.0+)
-	[609] GetRightsIdByPath(buffer<bytes<0x301>, 0x19, 0x301> path) -> u128 rights;
+	[609] GetRightsIdByPath(buffer<bytes<0x301>,0x19,0x301>) -> bytes<0x10,8> rights;
 	@version(3.0.0+)
-	[610] GetRightsIdAndKeyGenerationByPath(buffer<bytes<0x301>, 0x19, 0x301> path) -> (u8, u128 rights);
+	[610] GetRightsIdAndKeyGenerationByPath(buffer<bytes<0x301>,0x19,0x301>) -> (u8, bytes<0x10,8> rights);
 	@version(4.0.0+)
-	[611] SetCurrentPosixTimeWithTimeDifference();
+	[611] SetCurrentPosixTimeWithTimeDifference(u32, u64);
 	@version(4.0.0+)
-	[612] GetFreeSpaceSizeForSaveData();
+	[612] GetFreeSpaceSizeForSaveData(u8) -> u64;
 	@version(4.0.0+)
-	[613] VerifySaveDataFileSystemBySaveDataSpaceId();
+	[613] VerifySaveDataFileSystemBySaveDataSpaceId(u8, u64) -> buffer<unknown,6>;
 	@version(4.0.0+)
-	[614] CorruptSaveDataFileSystemBySaveDataSpaceId();
+	[614] CorruptSaveDataFileSystemBySaveDataSpaceId(u8, u64);
 	@version(5.0.0+)
-	[615] QuerySaveDataInternalStorageTotalSize();
-	# Takes in the 0x10 byte SD card encryption seed, and loads it into FS-module state.
+	@undocumented
+	[615] QuerySaveDataInternalStorageTotalSize(unknown) -> unknown;
+	# Takes in the 0x10 byte SD card encryption seed, and loads it into
+	# FS-module
+	# state.
 	# 
-	# [NS](http://switchbrew.org/index.php?title=NS_Services "wikilink")-module reads the 0x10 bytes from SdCard:/Nintendo/Contents/private, and compares them to the first 0x10 bytes of the ns\_appman:/private (in [system savedata](http://switchbrew.org/index.php?title=Flash_Filesystem#System_Savegames "wikilink") 0x8000000000000043). If they match, NS calls this command using bytes 0x10-0x20 from ns\_appman:/private. The rest of this file (0x1F0 bytes total) is (usually/always?) all-zero.
+	# [NS](http://switchbrew.org/index.php?title=NS_Services "wikilink")-module
+	# reads the 0x10 bytes from SdCard:/Nintendo/Contents/private, and
+	# compares them to the first 0x10 bytes of the ns\_appman:/private (in
+	# [system
+	# savedata](http://switchbrew.org/index.php?title=Flash_Filesystem#System_Savegames "wikilink")
+	# 0x8000000000000043). If they match, NS calls this command using bytes
+	# 0x10-0x20 from ns\_appman:/private. The rest of this file (0x1F0 bytes
+	# total) is (usually/always?) all-zero.
 	# 
 	@version(2.0.0+)
-	[620] SetSdCardEncryptionSeed(u128 seed);
+	[620] SetSdCardEncryptionSeed(bytes<0x10,1>);
 	@version(4.0.0+)
-	[630] SetSdCardAccessibility();
+	[630] SetSdCardAccessibility(u8);
 	@version(4.0.0+)
-	[631] IsSdCardAccessible();
+	[631] IsSdCardAccessible() -> u8;
 	@version(4.0.0+)
-	[640] IsSignedSystemPartitionOnSdCardValid();
+	[640] IsSignedSystemPartitionOnSdCardValid() -> u8;
 	@version(5.0.0+)
-	[700] OpenAccessFailureResolver();
+	@undocumented
+	[700] OpenAccessFailureResolver(unknown) -> unknown;
 	@version(5.0.0+)
-	[701] GetAccessFailureDetectionEvent();
+	@undocumented
+	[701] GetAccessFailureDetectionEvent(unknown) -> unknown;
 	@version(5.0.0+)
-	[702] IsAccessFailureDetected();
+	@undocumented
+	[702] IsAccessFailureDetected(unknown) -> unknown;
 	@version(5.0.0+)
-	[710] ResolveAccessFailure();
+	@undocumented
+	[710] ResolveAccessFailure(unknown) -> unknown;
 	@version(5.0.0+)
-	[720] AbandonAccessFailure();
+	@undocumented
+	[720] AbandonAccessFailure(unknown) -> unknown;
 	@version(2.0.0+)
-	[800] GetAndClearFileSystemProxyErrorInfo() -> bytes<0x80> errorInfo;
-	[1000] SetBisRootForHost(u32, buffer<bytes<0x301>, 0x19, 0x301> path);
+	[800] GetAndClearFileSystemProxyErrorInfo() -> bytes<0x80,4> error_info;
+	[1000] SetBisRootForHost(u32, buffer<bytes<0x301>,0x19,0x301>);
 	[1001] SetSaveDataSize(u64, u64);
-	[1002] SetSaveDataRootPath(buffer<bytes<0x301>, 0x19, 0x301> path);
+	[1002] SetSaveDataRootPath(buffer<bytes<0x301>,0x19,0x301>);
 	[1003] DisableAutoSaveDataCreation();
 	# Takes an input u32.
 	# 
@@ -265,38 +366,46 @@ interface nn::fssrv::sf::IFileSystemProxy is fsp-srv {
 	# 
 	# GlobalAccessLogMode is normally 0.
 	# 
-	[1005] GetGlobalAccessLogMode() -> u32 logMode;
+	[1005] GetGlobalAccessLogMode() -> u32 mode;
 	# Takes a type-0x5 input buffer.
 	# 
-	# The input buffer is the string to output to the log. User-processes normally include a newline at the end.
+	# The input buffer is the string to output to the log. User-processes
+	# normally include a newline at the end.
 	# 
-	# User-processes only use this when the value previously loaded from [\#GetGlobalAccessLogMode](#nn::fssrv::sf::IFileSystemProxy(1005) "wikilink") has bit1 set.
+	# User-processes only use this when the value previously loaded from
+	# [\#GetGlobalAccessLogMode](#nn::fssrv::sf::IFileSystemProxy\(1005\) "wikilink")
+	# has bit1 set.
 	# 
-	# When bit1 in GlobalAccessLogMode is clear, FS-module will just return 0 for OutputAccessLogToSdCard. However even with that set the log doesn't show up SD, unknown why.
+	# When bit1 in GlobalAccessLogMode is clear, FS-module will just return 0
+	# for OutputAccessLogToSdCard. However even with that set the log doesn't
+	# show up SD, unknown why.
 	# 
-	# The input buffer is written to the $FsAccessLog:/FsAccessLog.txt file, where $FsAccessLog is the SD-card mount-name. It's written to the current end of the file(appended).
+	# The input buffer is written to the "$FsAccessLog:/FsAccessLog.txt" file,
+	# where "$FsAccessLog" is the SD-card mount-name. It's written to the
+	# current end of the file(appended).
 	# 
-	[1006] OutputAccessLogToSdCard(buffer<unknown, 5, 0> logText);
+	[1006] OutputAccessLogToSdCard(buffer<bytes, 5> log_text);
 	@version(4.0.0+)
 	[1007] RegisterUpdatePartition();
 	@version(4.0.0+)
-	[1008] OpenRegisteredUpdatePartition();
+	[1008] OpenRegisteredUpdatePartition() -> object<nn::fssrv::sf::IFileSystem>;
 	@version(4.0.0+)
-	[1009] GetAndClearMemoryReportInfo();
+	[1009] GetAndClearMemoryReportInfo() -> bytes<0x80,8>;
 	@version(5.1.0+)
-	[1010] Unknown1010();
+	@undocumented
+	[1010] Unknown1010(unknown) -> unknown;
 	@version(4.0.0+)
-	[1100] OverrideSaveDataTransferTokenSignVerificationKey();
+	[1100] OverrideSaveDataTransferTokenSignVerificationKey(buffer<unknown,5>);
 }
 
 interface nn::fssrv::sf::IStorage {
-	[0] Read(u64 offset, u64 length) -> buffer<u8, 0x46, 0> buffer;
-	[1] Write(u64 offset, u64 length, buffer<u8, 0x45, 0> data);
+	[0] Read(u64 offset, u64 length) -> buffer<bytes, 0x46> data;
+	[1] Write(u64 offset, u64 length, buffer<bytes, 0x45> data);
 	[2] Flush();
 	[3] SetSize(u64 size);
 	[4] GetSize() -> u64 size;
 	@version(4.0.0+)
-	[5] OperateRange();
+	[5] OperateRange(u32, u64, u64) -> bytes<0x40,4>;
 }
 
 interface nn::fssrv::sf::IFileSystem {
@@ -305,163 +414,213 @@ interface nn::fssrv::sf::IFileSystem {
 	[2] CreateDirectory(buffer<bytes<0x301>, 0x19, 0x301> path);
 	[3] DeleteDirectory(buffer<bytes<0x301>, 0x19, 0x301> path);
 	[4] DeleteDirectoryRecursively(buffer<bytes<0x301>, 0x19, 0x301> path);
-	[5] RenameFile(buffer<bytes<0x301>, 0x19, 0x301> oldPath, buffer<bytes<0x301>, 0x19, 0x301> newPath);
-	[6] RenameDirectory(buffer<bytes<0x301>, 0x19, 0x301> oldPath, buffer<bytes<0x301>, 0x19, 0x301> newPath);
-	# Takes a type-0x9 input buffer for the path and returns [\#DirectoryEntryType](http://switchbrew.org/index.php?title=Filesystem services#DirectoryEntryType "wikilink") as an output u32.
+	[5] RenameFile(buffer<bytes<0x301>, 0x19, 0x301> old_path, buffer<bytes<0x301>, 0x19, 0x301> new_path);
+	[6] RenameDirectory(buffer<bytes<0x301>, 0x19, 0x301> old_path, buffer<bytes<0x301>, 0x19, 0x301> new_path);
+	# Takes a type-0x9 input buffer for the path and returns
+	# [\#DirectoryEntryType](http://switchbrew.org/index.php?title=Filesystem%20services#DirectoryEntryType "wikilink")
+	# as an output u32.
 	# 
 	[7] GetEntryType(buffer<bytes<0x301>, 0x19, 0x301> path) -> nn::fssrv::sf::DirectoryEntryType;
-	# Takes a type-0x19 input buffer for the path, and an u32 **mode**. **mode** controls how the file is opened, based on which bits are set:
+	# Takes a type-0x19 input buffer for the path, and an u32 **mode**.
+	# **mode** controls how the file is opened, based on which bits are set:
 	# 
-	# -   When bit 0 is set, the file is Readable: you can use the Read operation.
-	# -   When bit 1 is set, the file is Writable: you can use the Write operation.
-	# -   When bit 2 is set, the file is Appendable: unless this bit is set, you will not be able to write beyond the end of a file (such writes will result in an error 0x307202)
+	#   - When bit 0 is set, the file is Readable: you can use the Read
+	#     operation.
+	#   - When bit 1 is set, the file is Writable: you can use the Write
+	#     operation.
+	#   - When bit 2 is set, the file is Appendable: unless this bit is set,
+	#     you will not be able to write beyond the end of a file (such writes
+	#     will result in an error 0x307202)
 	# 
 	[8] OpenFile(u32 mode, buffer<bytes<0x301>, 0x19, 0x301> path) -> object<nn::fssrv::sf::IFile> file;
-	# Takes a type-0x9 input buffer for the path and an u64 **filter\_flags**. **filter\_flags** controls what type of entries are read by the [\#IDirectory](#nn::fssrv::sf::IDirectory "wikilink"): bitmask 0x1 = directories, bitmask 0x2 = files.
+	# Takes a type-0x9 input buffer for the path and an u64 **filter\_flags**.
+	# **filter\_flags** controls what type of entries are read by the
+	# [\#IDirectory](#nn::fssrv::sf::IDirectory "wikilink"): bitmask 0x1 =
+	# directories, bitmask 0x2 = files.
 	# 
 	[9] OpenDirectory(u32 filter_flags, buffer<bytes<0x301>, 0x19, 0x301> path) -> object<nn::fssrv::sf::IDirectory> directory;
-	# Like [3DS](http://switchbrew.org/index.php?title=https://3dbrew.org/wiki/FS:ControlArchive), this has to be used after writing to savedata for the changes to take affect.
+	# Like
+	# [3DS](http://switchbrew.org/index.php?title=https://3dbrew.org/wiki/FS:ControlArchive),
+	# this has to be used after writing to savedata for the changes to take
+	# affect.
 	# 
 	[10] Commit();
-	# Takes a type-0x9 input buffer for the path and returns an output byte-size u64 for the total free space with this FS.
+	# Takes a type-0x9 input buffer for the path and returns an output
+	# byte-size u64 for the total free space with this FS.
 	# 
-	[11] GetFreeSpaceSize(buffer<bytes<0x301>, 0x19, 0x301> path) -> u64 totalFreeSpace;
-	# Takes a type-0x9 input buffer for the path and returns an output byte-size u64 for the total space available with this FS(free+used).
+	[11] GetFreeSpaceSize(buffer<bytes<0x301>, 0x19, 0x301> path) -> u64 total_free_space;
+	# Takes a type-0x9 input buffer for the path and returns an output
+	# byte-size u64 for the total space available with this FS(free+used).
 	# 
-	[12] GetTotalSpaceSize(buffer<bytes<0x301>, 0x19, 0x301> path) -> u64 totalSize;
-	# Takes a type-0x9 input buffer for the path and clears the contents of the directory specified in the path.
+	[12] GetTotalSpaceSize(buffer<bytes<0x301>, 0x19, 0x301> path) -> u64 total_size;
+	# Takes a type-0x9 input buffer for the path and clears the contents of
+	# the directory specified in the path.
 	# 
 	@version(3.0.0+)
 	[13] CleanDirectoryRecursively(buffer<bytes<0x301>, 0x19, 0x301> path);
 	@version(3.0.0+)
-	[14] GetFileTimeStampRaw(buffer<bytes<0x301>, 0x19, 0x301> path) -> bytes<0x20> timestamp;
+	[14] GetFileTimeStampRaw(buffer<bytes<0x301>, 0x19, 0x301> path) -> bytes<0x20,8> timestamp;
 	@version(4.0.0+)
-	[15] QueryEntry();
+	[15] QueryEntry(u32, buffer<bytes<0x301>, 0x19, 0x301> path, buffer<unknown,0x45>) -> buffer<unknown,0x46>;
 }
 
 interface nn::fssrv::sf::IDeviceOperator {
-	[0] IsSdCardInserted() -> u8 isSdInserted;
-	[1] GetSdCardSpeedMode() -> u64 sdSpeed;
+	[0] IsSdCardInserted() -> b8 is_inserted;
+	[1] GetSdCardSpeedMode() -> u64 speed_mode;
 	@version(2.0.0+)
-	[2] GetSdCardCid(u64) -> buffer<unknown, 6, 0> cid;
+	[2] GetSdCardCid(u64) -> buffer<unknown,6> cid;
 	@version(2.0.0+)
 	[3] GetSdCardUserAreaSize() -> u64 size;
 	@version(2.0.0+)
-	[4] GetSdCardProtectedAreaSize() -> u64 protectedSize;
+	[4] GetSdCardProtectedAreaSize() -> u64 protected_size;
 	@version(2.0.0+)
-	[5] GetAndClearSdCardErrorInfo(u64) -> (u128, u64, buffer<unknown, 6, 0>);
-	[100] GetMmcCid(u64) -> buffer<unknown, 6, 0> cid;
-	[101] GetMmcSpeedMode() -> u64 speedMode;
+	[5] GetAndClearSdCardErrorInfo(u64) -> (bytes<0x10,4>, u64, buffer<unknown,6>);
+	[100] GetMmcCid(u64) -> buffer<unknown,6> cid;
+	[101] GetMmcSpeedMode() -> u64 speed_mode;
 	[110] EraseMmc(u32);
-	[111] GetMmcPartitionSize(u32) -> u64 partitionSize;
+	[111] GetMmcPartitionSize(u32) -> u64 partition_size;
 	@version(2.0.0+)
-	[112] GetMmcPatrolCount() -> u32 patrolCount;
+	[112] GetMmcPatrolCount() -> u32 patrol_count;
 	@version(2.0.0+)
-	[113] GetAndClearMmcErrorInfo(u64) -> (u128, u64, buffer<unknown, 6, 0>);
+	[113] GetAndClearMmcErrorInfo(u64) -> (bytes<0x10,4>, u64, buffer<unknown,6>);
 	@version(2.0.0+)
-	[114] GetMmcExtendedCsd(u64) -> buffer<unknown, 6, 0>;
+	[114] GetMmcExtendedCsd(u64) -> buffer<unknown,6>;
 	@version(4.0.0+)
 	[115] SuspendMmcPatrol();
 	@version(4.0.0+)
 	[116] ResumeMmcPatrol();
-	[200] IsGameCardInserted() -> u8 isGameInserted;
+	[200] IsGameCardInserted() -> b8 is_inserted;
 	[201] EraseGameCard(u32, u64);
-	[202] GetGameCardHandle() -> u32 gamecardHandle;
+	[202] GetGameCardHandle() -> u32 gamecard_handle;
 	# Returns a titleID and the title-version for it.
 	# 
-	# -   Output u32 with ARMS-gamecard: title-version v131162. This is the title-version for [2.1.0](http://switchbrew.org/index.php?title=2.1.0 "wikilink"), which is the sysupdate included with this gamecard. Launch-day gamecards return title-version v450.
-	# -   Output u64 with ARMS-gamecard: titleID 0100000000000816.
+	#   - Output u32 with ARMS-gamecard: title-version v131162. This is the
+	#     title-version for
+	#     [2.1.0](http://switchbrew.org/index.php?title=2.1.0 "wikilink"),
+	#     which is the sysupdate included with this gamecard. Launch-day
+	#     gamecards return title-version v450.
+	#   - Output u64 with ARMS-gamecard: titleID 0100000000000816.
 	# 
-	# [NS](http://switchbrew.org/index.php?title=NS_Services "wikilink") appears to only use this with [Content\_Manager\_services\#GetTitleIdInfo](http://switchbrew.org/index.php?title=Content_Manager_services#GetTitleIdInfo "wikilink") and [Content\_Manager\_services\#GetUpdateTitleList](http://switchbrew.org/index.php?title=Content_Manager_services#GetUpdateTitleList "wikilink") with storageid=nandsys, for checking whether a sysupdate is required.
+	# [NS](http://switchbrew.org/index.php?title=NS_Services "wikilink")
+	# appears to only use this with
+	# [Content\_Manager\_services\#GetTitleIdInfo](http://switchbrew.org/index.php?title=Content_Manager_services#GetTitleIdInfo "wikilink")
+	# and
+	# [Content\_Manager\_services\#GetUpdateTitleList](http://switchbrew.org/index.php?title=Content_Manager_services#GetUpdateTitleList "wikilink")
+	# with storageid=nandsys, for checking whether a sysupdate is required.
 	# 
 	[203] GetGameCardUpdatePartitionInfo(u32) -> (u32 version, nn::ApplicationId tid);
 	[204] FinalizeGameCardDriver();
-	[205] GetGameCardAttribute(u32) -> u8 attribute;
-	[206] GetGameCardDeviceCertificate(u32, u64) -> buffer<unknown, 6, 0> certificate;
-	[207] GetGameCardAsicInfo(u64, u64, buffer<unknown, 5, 0>) -> buffer<unknown, 6, 0>;
-	[208] GetGameCardIdSet(u64) -> buffer<unknown, 6, 0>;
-	[209] WriteToGameCard(u64, u64) -> buffer<unknown, 6, 0>;
+	[205] GetGameCardAttribute(u32) -> u8;
+	[206] GetGameCardDeviceCertificate(u32, u64) -> buffer<unknown,6> certificate;
+	[207] GetGameCardAsicInfo(u64, u64, buffer<unknown,5>) -> buffer<unknown,6>;
+	[208] GetGameCardIdSet(u64) -> buffer<unknown,6>;
+	[209] WriteToGameCard(u64, u64) -> buffer<unknown,6>;
 	[210] SetVerifyWriteEnalbleFlag(u8 flag);
-	[211] GetGameCardImageHash(u32, u64) -> buffer<unknown, 6, 0> imageHash;
+	[211] GetGameCardImageHash(u32, u64) -> buffer<unknown,6> image_hash;
 	@version(2.0.0+)
-	[212] GetGameCardErrorInfo(u64, u64, buffer<unknown, 5, 0>) -> buffer<unknown, 6, 0> errorInfo;
+	[212] GetGameCardErrorInfo(u64, u64, buffer<unknown,5>) -> buffer<unknown,6> error_info;
 	@version(2.0.0+)
-	[213] EraseAndWriteParamDirectly(u64, buffer<unknown, 5, 0>);
+	[213] EraseAndWriteParamDirectly(u64, buffer<unknown,5>);
 	@version(2.0.0+)
-	[214] ReadParamDirectly(u64) -> buffer<unknown, 6, 0>;
+	[214] ReadParamDirectly(u64) -> buffer<unknown,6>;
 	@version(2.0.0+)
 	[215] ForceEraseGameCard();
 	@version(2.0.0+)
-	[216] GetGameCardErrorInfo2() -> u128 errorInfo;
+	[216] GetGameCardErrorInfo2() -> bytes<0x10,2> error_info;
 	@version(2.1.0+)
-	[217] GetGameCardErrorReportInfo() -> bytes<0x40> errorReportInfo;
+	[217] GetGameCardErrorReportInfo() -> bytes<0x40,4> error_report_info;
 	@version(3.0.0+)
-	[218] GetGameCardDeviceId(u64) -> buffer<unknown, 6, 0> deviceID;
-	[300] SetSpeedEmulationMode(u32 mode);
-	[301] GetSpeedEmulationMode() -> u32 emuMode;
+	[218] GetGameCardDeviceId(u64) -> buffer<unknown,6> device_id;
+	[300] SetSpeedEmulationMode(u32 emu_mode);
+	[301] GetSpeedEmulationMode() -> u32 emu_mode;
 	@version(5.0.0+)
-	[400] SuspendSdmmcControl();
+	@undocumented
+	[400] SuspendSdmmcControl(unknown) -> unknown;
 	@version(5.0.0+)
-	[401] ResumeSdmmcControl();
+	@undocumented
+	[401] ResumeSdmmcControl(unknown) -> unknown;
 }
 
 interface nn::fssrv::sf::IDirectory {
-	# Takes a type-0x6 output buffer. Returns an output u64(?) for the total number of read entries, this is 0 when no more entries are available.
+	# Takes a type-0x6 output buffer. Returns an output u64(?) for the total
+	# number of read entries, this is 0 when no more entries are available.
 	# 
-	# The output buffer contains the read array of [\#DirectoryEntry](http://switchbrew.org/index.php?title=Filesystem services#DirectoryEntry "wikilink"). This doesn't include entries for . and ...
+	# The output buffer contains the read array of
+	# [\#DirectoryEntry](http://switchbrew.org/index.php?title=Filesystem%20services#DirectoryEntry "wikilink").
+	# This doesn't include entries for "." and "..".
 	# 
-	[0] Read() -> (u64 count, buffer<nn::fssrv::sf::IDirectoryEntry, 6, 0> entries);
+	[0] Read() -> (u64, buffer<unknown,6>);
 	# Returns an u64 for the total number of readable entries.
 	# 
 	[1] GetEntryCount() -> u64;
 }
 
 interface nn::fssrv::sf::IFile {
-	[0] Read(u32, u64 offset, u64 size) -> (u64 out_size, buffer<u8, 0x46, 0> out_buf);
-	[1] Write(u32, u64 offset, u64 size, buffer<u8, 0x45, 0>);
+	[0] Read(u32, u64 offset, u64 size) -> (u64 out_size, buffer<bytes, 0x46> out_buf);
+	[1] Write(u32, u64 offset, u64 size, buffer<bytes, 0x45> in_buf);
 	[2] Flush();
 	[3] SetSize(u64 size);
-	[4] GetSize() -> u64 fileSize;
+	[4] GetSize() -> u64 size;
 	@version(4.0.0+)
-	[5] OperateRange();
+	[5] OperateRange(u32, u64, u64) -> bytes<0x40,4>;
 }
 
 interface nn::fssrv::sf::IEventNotifier {
-	[0] GetEventHandle() -> KObject;
+	[0] GetEventHandle() -> handle<copy, event>;
 }
 
 interface nn::fssrv::sf::ISaveDataInfoReader {
-	# Takes a type-0x6 output buffer. Returns an output u64 for total output entries. This buffer contains an array of [\#SaveDataInfo](http://switchbrew.org/index.php?title=Filesystem services#SaveDataInfo "wikilink").
+	# Takes a type-0x6 output buffer. Returns an output u64 for total output
+	# entries. This buffer contains an array of
+	# [\#SaveDataInfo](http://switchbrew.org/index.php?title=Filesystem%20services#SaveDataInfo "wikilink").
 	# 
-	# This is used to get [\#SaveDataInfo](http://switchbrew.org/index.php?title=Filesystem services#SaveDataInfo "wikilink") for all savedata on the system (or all savedata for the current [\#SaveDataSpaceId](http://switchbrew.org/index.php?title=Filesystem services#SaveDataSpaceId "wikilink")). When used multiple times, it will resume reading where it left off, until no more entries are available (in that case the out u64 is value 0).
+	# This is used to get
+	# [\#SaveDataInfo](http://switchbrew.org/index.php?title=Filesystem%20services#SaveDataInfo "wikilink")
+	# for all savedata on the system (or all savedata for the current
+	# [\#SaveDataSpaceId](http://switchbrew.org/index.php?title=Filesystem%20services#SaveDataSpaceId "wikilink")).
+	# When used multiple times, it will resume reading where it left off,
+	# until no more entries are available (in that case the out u64 is value
+	# 0).
 	# 
-	[0] ReadSaveDataInfo() -> (u64, buffer<unknown,6,0>);
+	[0] ReadSaveDataInfo() -> (u64, buffer<unknown,6>);
 }
-
 
 // --------------------------------------------- FSP-PR ---------------------------------------------
 interface nn::fssrv::sf::IProgramRegistry is fsp-pr {
-	# Takes a storageID, a pid, a titleID, a 0x1C type-A buffer for the [ FS Access Header](http://switchbrew.org/index.php?title=NPDM#FS_Access_Header "wikilink"), and a 0x2C type-A buffer for the [ FS Access Control](http://switchbrew.org/index.php?title=NPDM#FS_Access_Control "wikilink")
+	# Takes a storageID, a pid, a titleID, a 0x1C type-A buffer for the [ FS
+	# Access
+	# Header](http://switchbrew.org/index.php?title=NPDM#FS_Access_Header "wikilink"),
+	# and a 0x2C type-A buffer for the [ FS Access
+	# Control](http://switchbrew.org/index.php?title=NPDM#FS_Access_Control "wikilink")
 	# 
-	# Final FS permissions are stored as (ACI0\_perms & ACID\_perms). Will panic(svcBreak) when buffer sizes from ipc-rawdata are invalid.
+	# Final FS permissions are stored as (ACI0\_perms & ACID\_perms). Will
+	# panic(svcBreak) when buffer sizes from ipc-rawdata are invalid.
 	# 
-	[0] RegisterProgram(u8, u64, u64, u64, u64, buffer<unknown,5,0>, buffer<unknown,5,0>);
+	[0] RegisterProgram(u8, u64, u64, u64, u64, buffer<unknown,5>, buffer<unknown,5>);
 	# Takes a pid. Removes registered FS permissions for that PID.
 	# 
 	[1] UnregisterProgram(u64);
 	@version(4.0.0+)
-	[2] SetCurrentProcess();
+	[2] SetCurrentProcess(u64, pid);
 	# Seems to sets a global flag to inputval & 1.
 	# 
-	# When the flag is zero, it will set ret=0 instead of ret={error} when verifying the fixed-key [NPDM](http://switchbrew.org/index.php?title=NPDM "wikilink") ACID signature fails. This also skips verifying the [NCA Header](http://switchbrew.org/index.php?title=NCA_Format "wikilink") signature using the ACID key. Note that if verifying the fixed-key ACID signature is successful, and verifying the ACID-key NCA header signature fails, it will throw an error and abort.
+	# When the flag is zero, it will set ret=0 instead of ret={error} when
+	# verifying the fixed-key
+	# [NPDM](http://switchbrew.org/index.php?title=NPDM "wikilink") ACID
+	# signature fails. This also skips verifying the [NCA
+	# Header](http://switchbrew.org/index.php?title=NCA_Format "wikilink")
+	# signature using the ACID key. Note that if verifying the fixed-key ACID
+	# signature is successful, and verifying the ACID-key NCA header signature
+	# fails, it will throw an error and abort.
 	# 
 	[256] SetEnabledProgramVerification(u8);
 }
 
+
 // --------------------------------------------- FSP-LDR ---------------------------------------------
 interface nn::fssrv::sf::IFileSystemProxyForLoader is fsp-ldr {
-	[0] OpenCodeFileSystem(nn::ApplicationId tid, buffer<bytes<0x301>, 0x19, 0x301> contentPath) -> object<nn::fssrv::sf::IFileSystem> contentFs;
+	[0] OpenCodeFileSystem(nn::Applicationid Tid, buffer<bytes<0x301>, 0x19, 0x301> content_path) -> object<nn::fssrv::sf::IFileSystem> content_fs;
 	[1] IsArchivedProgram(u64) -> u8;
 	@version(4.0.0+)
-	[2] SetCurrentProcess();
+	[2] SetCurrentProcess(u64, pid);
 }

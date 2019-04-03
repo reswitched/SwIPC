@@ -10,7 +10,7 @@ type nn::usb::usb_interface_descriptor = struct {
 	u8 iInterface;
 };
 
-type nn::usb::usb_descriptor_data = struct {
+type nn::usb::usb_descriptor_data = struct<0x66> {
 	u16 idVendor;
 	u16 idProduct;
 	u16 bcdDevice;
@@ -19,7 +19,7 @@ type nn::usb::usb_descriptor_data = struct {
 	bytes<0x20> serialNumber;
 };
 
-type nn::usb::usb_endpoint_descriptor = struct {
+type nn::usb::usb_endpoint_descriptor = struct<7> {
 	u8 bLength;
 	u8 bDescriptorType;
 	u8 bEndpointAddress;
@@ -35,7 +35,7 @@ type nn::usb::usb_report_entry = struct {
 	u32 urbStatus;
 };
 
-type nn::usb::usb_device_descriptor = struct {
+type nn::usb::usb_device_descriptor = struct<12> {
 	u8 bLength;
 	u8 bDescriptorType;
 	u16 bcdUSB;
@@ -90,7 +90,7 @@ interface nn::usb::ds::IDsService is usb:ds {
 	# this command is used, the USB device will not be listed with `lsusb`
 	# until [#EnableInterface](#nn::usb::ds::IDsInterface(3)) is used.
 	[0] BindDevice(u32 complexId);
-	[1] BindClientProcess(KObject<copy, process>);
+	[1] BindClientProcess(handle<copy, process>);
 
 	# Manu sends a 0x09-byte command (e.g.: `09 04 04 00 00 FF FF FF 00`) in
 	# the first buffer and a string ("usb") in the second buffer.
@@ -104,7 +104,7 @@ interface nn::usb::ds::IDsService is usb:ds {
 	#
 	# Up to 4 interfaces can be used+enabled.
 	@version(1.0.0-4.0.0)
-	[2] GetDsInterface(buffer<nn::usb::usb_interface_descriptor, 5, 9> interface_descriptor, buffer<u8, 5, 0>) -> (u8, object<nn::usb::ds::IDsInterface>);
+	[2] GetDsInterface(buffer<nn::usb::usb_interface_descriptor, 5, 9> interface_descriptor, buffer<bytes, 5>) -> (u8, object<nn::usb::ds::IDsInterface>);
 
 	@version(5.0.0+)
 	[2] RegisterInterface(u8 address) -> object<nn::usb::ds::IDsInterface>;
@@ -115,7 +115,7 @@ interface nn::usb::ds::IDsService is usb:ds {
 	# connected/disconnected while at least 1 interface was enabled, or
 	# interface enabled/disabled while the USB cable was connected which
 	# then caused USB-comms state to change.
-	[3] GetStateChangeEvent() -> KObject;
+	[3] GetStateChangeEvent() -> handle<copy, event>;
 	# Returns an error when [#BindDevice](#nn::usb::ds::IDsService(0)) wasn't
 	# used.
 	#
@@ -127,16 +127,16 @@ interface nn::usb::ds::IDsService is usb:ds {
 	# - 5: Initialization done, data-transfer is now available.
 	[4] GetState() -> u32;
 	@version(2.0.0-4.0.0)
-	[5] SetVidPidBcd(buffer<nn::usb::usb_descriptor_data, 5, 0x66> descriptor);
+	[5] SetVidPidBcd(buffer<nn::usb::usb_descriptor_data, 5> descriptor);
 
 	@version(5.0.0+)
 	[5] ClearDeviceData();
 	@version(5.0.0+)
-	[6] AddUsbStringDescriptor(buffer<bytes<0x82>, 5, 0x82> string_descriptor) -> u8 index;
+	[6] AddUsbStringDescriptor(buffer<bytes<0x82>, 5> string_descriptor) -> u8 index;
 	@version(5.0.0+)
 	[7] DeleteUsbStringDescriptor(u8 index);
 	@version(5.0.0+)
-	[8] SetUsbDeviceDescriptor(nn::usb::usb_device_speed speed_mode, buffer<nn::usb::usb_device_descriptor, 5, 0x12> descriptor);
+	[8] SetUsbDeviceDescriptor(nn::usb::usb_device_speed speed_mode, buffer<nn::usb::usb_device_descriptor, 5> descriptor);
 	@version(5.0.0+)
 	[9] SetBinaryObjectStore(buffer<nn::usb::usb_bos_descriptor, 5, 0>);
 	@version(5.0.0+)
@@ -176,13 +176,13 @@ interface nn::usb::ds::IDsInterface {
 	# endpoint is 1024 bytes in high-speed mode, for both device and host
 	# modes."
 	@version(1.0.0-4.0.0)
-	[0] GetDsEndpoint(buffer<nn::usb::usb_endpoint_descriptor, 5, 7>) -> (u8, object<nn::usb::ds::IDsEndpoint>);
+	[0] GetDsEndpoint(buffer<nn::usb::usb_endpoint_descriptor, 5>) -> (u8, object<nn::usb::ds::IDsEndpoint>);
 	@version(5.0.0+)
 	[0] RegisterEndpoint(u8 address) -> object<nn::usb::ds::IDsEndpoint>;
 	# Returns an event handle. Unknown what triggers signalling, not
 	# signalled during interface-enable / device<>host USB-comms init.
-	[1] GetSetupEvent() -> KObject;
-	[2] GetSetupPacket() -> buffer<unknown, 0x6, 0>;
+	[1] GetSetupEvent() -> handle<copy, event>;
+	[2] GetSetupPacket() -> buffer<unknown, 0x6>;
 	# Enables the current interface.
 	#
 	# Only one interface can be enabled at a time per bInterfaceNumber. When
@@ -203,24 +203,24 @@ interface nn::usb::ds::IDsInterface {
 	# Returns an event handle for polling the completion of input control
 	# commands. Same as [#GetCompletionEvent](#nn::usb::ds::IDsEndpoint(2)),
 	# except this uses control input endpoint 0x80.
-	[7] GetCtrlInCompletionEvent() -> KObject;
+	[7] GetCtrlInCompletionEvent() -> handle<copy, event>;
 	# Same as [#GetReportData](#nn::usb::ds::IDsEndpoint(3)), except this
 	# uses control input endpoint 0x80.
-	[8] GetCtrlInReportData() -> (nn::usb::usb_report_entry<0x8> entries, u32 report_count);
+	[8] GetCtrlInReportData() -> (nn::usb::usb_report_entry[8] entries, u32 report_count);
 	# Returns an event handle for polling the completion of input control
 	# commands. Same as [#GetCompletionEvent](#nn::usb::ds::IDsEndpoint(2)),
 	# except this uses control output endpoint 0x00.
-	[9] GetCtrlOutCompletionEvent() -> KObject;
+	[9] GetCtrlOutCompletionEvent() -> handle<copy, event>;
 	# Same as [#GetReportData](#nn::usb::ds::IDsEndpoint(3)), except this
 	# uses control output endpoint 0x00.
-	[10] GetCtrlOutReportData() -> (nn::usb::usb_report_entry<0x8> entries, u32 report_count);
+	[10] GetCtrlOutReportData() -> (nn::usb::usb_report_entry[8] entries, u32 report_count);
 	# Calls a function with both control endpoints (0x80 and 0x00) with the
 	# same function. From strings: "m_pProtocol->Stall(0x80)"
 	# "m_pProtocol->Stall(0x00)"
 	[11] StallCtrl();
 	
 	@version(5.0.0+)
-	[12] AppendConfigurationData(u8 interface_number, nn::usb::usb_device_speed  speed_mode, buffer<unknown, 5, 0> descriptor);
+	[12] AppendConfigurationData(u8 interface_number, nn::usb::usb_device_speed speed_mode, buffer<unknown, 5> descriptor);
 }
 
 interface nn::usb::ds::IDsEndpoint {
@@ -252,11 +252,11 @@ interface nn::usb::ds::IDsEndpoint {
 	# Returns an event handle for polling the completion of
 	# [#PostBufferAsync](#nn::usb::ds::IDsEndpoint(0)), even when it finished via
 	# [#Stall](#nn::usb::ds::IDsEndpoint(4)).
-	[2] GetCompletionEvent() -> KObject;
+	[2] GetCompletionEvent() -> handle<copy, event>;
 	# Returns report data from the endpoint. Seems to be eventually loaded from
 	# state, since this  doesn't trigger any USB bus activity. All-zero before
 	# [#PostBufferAsync](#nn::usb::ds::IDsEndpoint(0)) was used at least once.
-	[3] GetReportData() -> (nn::usb::usb_report_entry<0x8> entries, u32 report_count);
+	[3] GetReportData() -> (nn::usb::usb_report_entry[8] entries, u32 report_count);
 	# Calls the same function used by [#StallCtrl](nn::usb::ds::IDsInterface(11)),
 	# except this uses the endpoint associated with the current session.
 	#

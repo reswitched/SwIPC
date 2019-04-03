@@ -1,4 +1,4 @@
-import sys, os, json
+import sys, os, json, numbers
 sys.path.append('.')
 from idparser import parse
 
@@ -38,24 +38,22 @@ fusedIFaces = {}
 
 for ifaceName, iface in switchbrewIfaces.items():
 	newIFace = fusedIFaces[ifaceName] = {"cmds": [], "doc": ""}
-	if autoIfaces.get(ifaceName) is None:
-		fusedIFaces[ifaceName] = iface
-		continue
-	autoIface = autoIfaces[ifaceName]
+	autoIface = autoIfaces.get(ifaceName)
 	for cmd in iface['cmds']:
-		newCmd = {'doc': cmd['doc'], 'cmdId': cmd['cmdId'], 'name': cmd['name'], 'versionAdded': cmd['versionAdded'], 'lastVersion': cmd['lastVersion'], 'inputs': [], 'outputs': [], 'undocumented': True}
-		autoCmdMaybe = [autoCmd for autoCmd in autoIface['cmds'] if cmd['cmdId'] == autoCmd['cmdId']]
+		newCmd = {'doc': cmd['doc'], 'cmdId': cmd['cmdId'], 'name': cmd['name'], 'versionAdded': cmd['versionAdded'], 'lastVersion': cmd['lastVersion'], 'inputs': 'unknown', 'outputs': 'unknown', 'undocumented': True}
+		autoCmdMaybe = ([autoCmd for autoCmd in autoIface['cmds'] if cmd['cmdId'] == autoCmd['cmdId']]) if autoIface != None else []
 		if len(autoCmdMaybe) > 0:
 			autoCmd = autoCmdMaybe.pop()
 			if newCmd['name'].startswith("Unknown"):
 				newCmd['name'] = autoCmd['name']
+			elif (not autoCmd['name'].startswith("Unknown")) and (newCmd['name'] != autoCmd['name']):
+				sys.stderr.write('warning: %s != %s\n' % (newCmd['name'], autoCmd['name']))
 			newCmd['inputs'] = autoCmd['inputs']
 			newCmd['outputs'] = autoCmd['outputs']
 			newCmd['undocumented'] = autoCmd['undocumented']
 			newIFace['cmds'].append(newCmd)
 		else:
-			cmd['undocumented'] = True
-			newIFace['cmds'].append(cmd)
+			newIFace['cmds'].append(newCmd)
 
 def genVersion(added, last):
 	if added == last:
@@ -65,7 +63,22 @@ def genVersion(added, last):
 	else:
 		return added + "+"
 
+def fmt(x):
+	if isinstance(x, numbers.Number):
+		if x >= 10:
+			return '0x%x' % x
+		else:
+			return str(x)
+	else:
+		return str(x)
+        
 def genArgs(elems, output=False):
+#	sys.stderr.write(str(elems) + '\n')
+	if elems == 'unknown':
+		if output:
+			return ' -> unknown'
+		else:
+			return 'unknown'
 	if output and len(elems) > 1:
 		return ' -> (%s)' % genArgs(elems)
 
@@ -73,7 +86,7 @@ def genArgs(elems, output=False):
 		name, elem = elem
 		ret = elem[0]
 		if len(elem) > 1:
-			ret = ret + "<" + ",".join(map(lambda x: sub((None, x)) if type(x) is list else str(x), elem[1:])) + ">"
+			ret = ret + "<" + ",".join(map(lambda x: sub((None, x)) if type(x) is list else fmt(x), elem[1:])) + ">"
 		if name is not None:
 			return ret + " " + name
 		else:
