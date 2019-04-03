@@ -1,0 +1,209 @@
+type nn::hid::PalmaConnectionHandle = u64;
+type nn::hid::PalmaFeature = u64;
+type nn::hid::VibrationGcErmCommand = u64;
+
+interface nn::hid::IHidServer is hid {
+	# Takes a PID and an u64 [AppletResourceUserId](http://switchbrew.org/index.php?title=AM_services "wikilink"). Returns an [\#IAppletResource](http://switchbrew.org/index.php?title=HID services#IAppletResource "wikilink").
+	#
+	[0] CreateAppletResource(nn::applet::AppletResourceUserId, pid) -> object<nn::hid::IAppletResource>;
+	[1] ActivateDebugPad(nn::applet::AppletResourceUserId, pid);
+	[11] ActivateTouchScreen(nn::applet::AppletResourceUserId, pid);
+	[21] ActivateMouse(nn::applet::AppletResourceUserId, pid);
+	[31] ActivateKeyboard(nn::applet::AppletResourceUserId, pid);
+	@version(6.0.0+)
+	[32] Unknown32(u64, nn::applet::AppletResourceUserId, pid);
+	[40] AcquireXpadIdEventHandle(u64) -> KObject;
+	[41] ReleaseXpadIdEventHandle(u64);
+	[51] ActivateXpad(nn::hid::BasicXpadId, nn::applet::AppletResourceUserId, pid);
+	[55] GetXpadIds() -> (i64, array<nn::hid::BasicXpadId, 0xa>);
+	[56] ActivateJoyXpad(nn::hid::JoyXpadId);
+	[58] GetJoyXpadLifoHandle(nn::hid::JoyXpadId) -> KObject;
+	[59] GetJoyXpadIds() -> (i64, array<nn::hid::JoyXpadId, 0xa>);
+	
+	[60] ActivateSixAxisSensor(nn::hid::BasicXpadId);
+	[61] DeactivateSixAxisSensor(nn::hid::BasicXpadId);
+	[62] GetSixAxisSensorLifoHandle(nn::hid::BasicXpadId) -> KObject;
+	[63] ActivateJoySixAxisSensor(nn::hid::JoyXpadId);
+	[64] DeactivateJoySixAxisSensor(nn::hid::JoyXpadId);
+	[65] GetJoySixAxisSensorLifoHandle(nn::hid::JoyXpadId) -> KObject;
+	[66] StartSixAxisSensor(nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid);
+	[67] StopSixAxisSensor(nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid);
+	[68] IsSixAxisSensorFusionEnabled(nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid) -> bool;
+	[69] EnableSixAxisSensorFusion(bool, nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid);
+	[70] SetSixAxisSensorFusionParameters(nn::hid::SixAxisSensorHandle, f32, f32, nn::applet::AppletResourceUserId, pid);
+	[71] GetSixAxisSensorFusionParameters(nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid) -> (f32, f32);
+	[72] ResetSixAxisSensorFusionParameters(nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid);
+	[73] SetAccelerometerParameters(nn::hid::SixAxisSensorHandle, f32, f32, nn::applet::AppletResourceUserId, pid);
+	[74] GetAccelerometerParameters(nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid) -> (f32, f32);
+	[75] ResetAccelerometerParameters(nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid);
+	[76] SetAccelerometerPlayMode(nn::hid::SixAxisSensorHandle, u32, nn::applet::AppletResourceUserId, pid);
+	[77] GetAccelerometerPlayMode(nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid) -> u32;
+	[78] ResetAccelerometerPlayMode(nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid);
+	[79] SetGyroscopeZeroDriftMode(nn::hid::SixAxisSensorHandle, u32, nn::applet::AppletResourceUserId, pid);
+	[80] GetGyroscopeZeroDriftMode(nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid) -> u32;
+	[81] ResetGyroscopeZeroDriftMode(nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid);
+	[82] IsSixAxisSensorAtRest(nn::hid::SixAxisSensorHandle, nn::applet::AppletResourceUserId, pid) -> bool;
+	@version(6.0.0+)
+	[83] Unknown83(u64, nn::applet::AppletResourceUserId, pid) -> bool;
+	[91] ActivateGesture(i32, nn::applet::AppletResourceUserId, pid);
+	
+	[100] SetSupportedNpadStyleSet(nn::hid::NpadStyleTag, nn::applet::AppletResourceUserId, pid);
+	[101] GetSupportedNpadStyleSet(nn::applet::AppletResourceUserId, pid) -> nn::hid::NpadStyleTag;
+	[102] SetSupportedNpadIdType(nn::applet::AppletResourceUserId, pid, array<u32, 9>);
+	[103] ActivateNpad(nn::applet::AppletResourceUserId, pid);
+	[104] DeactivateNpad(nn::applet::AppletResourceUserId, pid);
+	[106] AcquireNpadStyleSetUpdateEventHandle(u32, nn::applet::AppletResourceUserId, u64, pid) -> KObject;
+	[107] DisconnectNpad(u32, nn::applet::AppletResourceUserId, pid);
+	[108] GetPlayerLedPattern(u32) -> u64;
+	@version(5.0.0+)
+	[108] ActivateNpadWithRevision(u32, nn::applet::AppletResourceUserId, pid);
+	[120] SetNpadJoyHoldType(nn::applet::AppletResourceUserId, i64, pid);
+	[121] GetNpadJoyHoldType(nn::applet::AppletResourceUserId, pid) -> i64;
+	# Takes a PID-descriptor, an u32, and an [AppletResourceUserId](http://switchbrew.org/index.php?title=AM_services "wikilink"). No output.
+	#
+	[122] SetNpadJoyAssignmentModeSingleByDefault(u32, nn::applet::AppletResourceUserId, pid);
+	# Takes a PID-descriptor, an u32, [AppletResourceUserId](http://switchbrew.org/index.php?title=AM_services "wikilink"), and s64 **NpadJoyDeviceType**. No output.
+	#
+	[123] SetNpadJoyAssignmentModeSingle(u32, nn::applet::AppletResourceUserId, i64, pid);
+	# Takes a PID-descriptor, an u32, and an [AppletResourceUserId](http://switchbrew.org/index.php?title=AM_services "wikilink"). No output.
+	#
+	[124] SetNpadJoyAssignmentModeDual(u32, nn::applet::AppletResourceUserId, pid);
+	# Takes a PID-descriptor, two u32s, and an [AppletResourceUserId](http://switchbrew.org/index.php?title=AM_services "wikilink"). No output.
+	#
+	[125] MergeSingleJoyAsDualJoy(u32, u32, nn::applet::AppletResourceUserId, pid);
+	[126] StartLrAssignmentMode(nn::applet::AppletResourceUserId, pid);
+	[127] StopLrAssignmentMode(nn::applet::AppletResourceUserId, pid);
+	[128] SetNpadHandheldActivationMode(nn::applet::AppletResourceUserId, i64, pid);
+	# Takes a PID and an u64 [AppletResourceUserId](http://switchbrew.org/index.php?title=AM_services "wikilink"). Returns an output u64. Official user-processes panic if the output u64 is not 0-2.
+	#
+	[129] GetNpadHandheldActivationMode(nn::applet::AppletResourceUserId, pid) -> i64;
+	[130] SwapNpadAssignment(u32, u32, nn::applet::AppletResourceUserId, pid);
+	[131] IsUnintendedHomeButtonInputProtectionEnabled(u32, nn::applet::AppletResourceUserId, pid) -> bool;
+	[132] EnableUnintendedHomeButtonInputProtection(bool, u32, nn::applet::AppletResourceUserId, pid);
+	@version(5.0.0+)
+	[133] SetNpadJoyAssignmentModeSingleWithDestination(u32, u64, nn::applet::AppletResourceUserId, pid) -> (bool, u32);
+	
+	# Takes a [\#VibrationDeviceHandle](http://switchbrew.org/index.php?title=HID services#VibrationDeviceHandle "wikilink"). Returns an output [\#VibrationDeviceInfo](http://switchbrew.org/index.php?title=HID services#VibrationDeviceInfo "wikilink").
+	#
+	[200] GetVibrationDeviceInfo(nn::hid::VibrationDeviceHandle) -> nn::hid::VibrationDeviceInfoForIpc;
+	# Takes a PID-descriptor, a [\#VibrationDeviceHandle](http://switchbrew.org/index.php?title=HID services#VibrationDeviceHandle "wikilink"), a [\#VibrationValue](http://switchbrew.org/index.php?title=HID services#VibrationValue "wikilink") immediately after that, and an u64 [AppletResourceUserId](http://switchbrew.org/index.php?title=AM_services "wikilink"). No output.
+	#
+	[201] SendVibrationValue(nn::hid::VibrationDeviceHandle, align<4, nn::hid::VibrationValue>, nn::applet::AppletResourceUserId, pid);
+	# Takes a PID-descriptor, a [\#VibrationDeviceHandle](http://switchbrew.org/index.php?title=HID services#VibrationDeviceHandle "wikilink"), and an u64 [AppletResourceUserId](http://switchbrew.org/index.php?title=AM_services "wikilink"). Returns an output [\#VibrationValue](http://switchbrew.org/index.php?title=HID services#VibrationValue "wikilink").
+	#
+	[202] GetActualVibrationValue(nn::hid::VibrationDeviceHandle, nn::applet::AppletResourceUserId, pid) -> nn::hid::VibrationValue;
+	# No input. Returns an [\#IActiveVibrationDeviceList](#nn::hid::IActiveVibrationDeviceList "wikilink").
+	#
+	[203] CreateActiveVibrationDeviceList() -> object<nn::hid::IActiveVibrationDeviceList>;
+	# Takes an input u8 bool. No output.
+	# 
+	# This affects the config displayed by System Settings.
+	#
+	[204] PermitVibration(bool);
+	# No input. Returns an output u8 bool.
+	#
+	[205] IsVibrationPermitted() -> bool;
+	# Takes an u64 [AppletResourceUserId](http://switchbrew.org/index.php?title=AM_services "wikilink"), and two type-0x9 input buffers containing an array of: [\#VibrationDeviceHandle](http://switchbrew.org/index.php?title=HID services#VibrationDeviceHandle "wikilink") for first buffer, and [\#VibrationValue](http://switchbrew.org/index.php?title=HID services#VibrationValue "wikilink") for the second buffer.
+	# 
+	# Official sw uses the same entry-count for each array.
+	#
+	[206] SendVibrationValues(nn::applet::AppletResourceUserId, array<nn::hid::VibrationDeviceHandle, 9>, array<nn::hid::VibrationValue, 9>);
+	@version(4.0.0+)
+	[207] SendVibrationGcErmCommand(nn::hid::VibrationDeviceHandle, nn::hid::VibrationGcErmCommand, nn::applet::AppletResourceUserId, pid);
+	@version(4.0.0+)
+	[208] GetActualVibrationGcErmCommand(nn::hid::VibrationDeviceHandle, nn::applet::AppletResourceUserId, pid) -> nn::hid::VibrationGcErmCommand;
+	@version(4.0.0+)
+	[209] BeginPermitVibrationSession(nn::applet::AppletResourceUserId);
+	@version(4.0.0+)
+	[210] EndPermitVibrationSession();
+	
+	[300] ActivateConsoleSixAxisSensor(nn::applet::AppletResourceUserId, pid);
+	[301] StartConsoleSixAxisSensor(nn::hid::ConsoleSixAxisSensorHandle, nn::applet::AppletResourceUserId, pid);
+	[302] StopConsoleSixAxisSensor(nn::hid::ConsoleSixAxisSensorHandle, nn::applet::AppletResourceUserId, pid);
+	
+	@version(5.0.0+)
+	[303] ActivateSevenSixAxisSensor(nn::applet::AppletResourceUserId, pid);
+	@version(5.0.0+)
+	[304] StartSevenSixAxisSensor(nn::applet::AppletResourceUserId, pid);
+	@version(5.0.0+)
+	[305] StopSevenSixAxisSensor(nn::applet::AppletResourceUserId, pid);
+	@version(5.0.0+)
+	[306] InitializeSevenSixAxisSensor(u32, u64, u32, u64, nn::applet::AppletResourceUserId, pid);
+	@version(5.0.0+)
+	[307] FinalizeSevenSixAxisSensor(nn::applet::AppletResourceUserId, pid);
+	@version(5.0.0+)
+	[308] SetSevenSixAxisSensorFusionStrength(f32, nn::applet::AppletResourceUserId, pid);
+	@version(5.0.0+)
+	[309] GetSevenSixAxisSensorFusionStrength(nn::applet::AppletResourceUserId, pid) -> f32;
+	@version(6.0.0+)
+	[310] Unknown310(nn::applet::AppletResourceUserId, pid);
+	
+	[400] IsUsbFullKeyControllerEnabled() -> bool;
+	[401] EnableUsbFullKeyController(bool);
+	[402] IsUsbFullKeyControllerConnected(u32) -> bool;
+	@version(4.0.0+)
+	[403] HasBattery(u32) -> bool;
+	@version(4.0.0+)
+	[404] HasLeftRightBattery(u32) -> (bool, bool);
+	@version(4.0.0+)
+	[405] GetNpadInterfaceType(u32) -> u8;
+	@version(4.0.0+)
+	[406] GetNpadLeftRightInterfaceType(u32) -> (u8, u8);
+	
+	@version(5.0.0+)
+	[500] GetPalmaConnectionHandle(u32, nn::applet::AppletResourceUserId, pid) -> nn::hid::PalmaConnectionHandle;
+	@version(5.0.0+)
+	[501] InitializePalma(nn::hid::PalmaConnectionHandle);
+	@version(5.0.0+)
+	[502] AcquirePalmaOperationCompleteEvent(nn::hid::PalmaConnectionHandle) -> KObject;
+	@version(5.0.0+)
+	[503] GetPalmaOperationInfo(nn::hid::PalmaConnectionHandle) -> (u64, buffer<unknown, 6, 0>);
+	@version(5.0.0+)
+	[504] PlayPalmaActivity(u64, nn::hid::PalmaConnectionHandle);
+	@version(5.0.0+)
+	[505] SetPalmaFrModeType(u64, nn::hid::PalmaConnectionHandle);
+	@version(5.0.0+)
+	[506] ReadPalmaStep(nn::hid::PalmaConnectionHandle);
+	@version(5.0.0+)
+	[507] EnablePalmaStep(bool, nn::hid::PalmaConnectionHandle);
+	@version(5.0.0+)
+	[508] ResetPalmaStep(nn::hid::PalmaConnectionHandle);
+	@version(5.0.0+)
+	[509] ReadPalmaApplicationSection(u64, u64, nn::hid::PalmaConnectionHandle);
+	@version(5.0.0+)
+	[510] WritePalmaApplicationSection(u64, u64, buffer<nn::hid::PalmaApplicationSectionAccessBuffer, 0x19, 0>, nn::hid::PalmaConnectionHandle);
+	@version(5.0.0+)
+	[511] ReadPalmaUniqueCode(nn::hid::PalmaConnectionHandle);
+	@version(5.0.0+)
+	[512] SetPalmaUniqueCodeInvalid(nn::hid::PalmaConnectionHandle);
+	@version(5.0.0+)
+	[513] WritePalmaActivityEntry(u64, u64, u64, u64, nn::hid::PalmaConnectionHandle);
+	@version(5.0.0+)
+	[514] WritePalmaRgbLedPatternEntry(u64, buffer<unknown, 5, 0>, nn::hid::PalmaConnectionHandle);
+	@version(5.0.0+)
+	[515] WritePalmaWaveEntry(u64, u64, KObject, u64, u64, nn::hid::PalmaConnectionHandle);
+	@version(5.0.0+)
+	[516] SetPalmaDataBaseIdentificationVersion(u32, nn::hid::PalmaConnectionHandle, int);
+	@version(5.0.0+)
+	[517] GetPalmaDataBaseIdentificationVersion(nn::hid::PalmaConnectionHandle);
+	@version(5.0.0+)
+	[518] SuspendPalmaFeature(nn::hid::PalmaConnectionHandle, nn::hid::PalmaFeature);
+	
+	@version(5.1.0+)
+	[519] GetPalmaOperationResult(nn::hid::PalmaConnectionHandle);
+	@version(5.1.0+)
+	[520] ReadPalmaPlayLog(nn::hid::PalmaConnectionHandle, u16);
+	@version(5.1.0+)
+	[521] ResetPalmaPlayLog(nn::hid::PalmaConnectionHandle, u16);
+	@version(5.1.0+)
+	[522] SetIsPalmaAllConnectable(nn::applet::AppletResourceUserId, bool, pid);
+	@version(5.1.0+)
+	[523] SetIsPalmaPairedConnectable(nn::applet::AppletResourceUserId, bool, pid);
+	@version(5.1.0+)
+	[524] PairPalma(nn::hid::PalmaConnectionHandle);
+	@version(5.1.0+)
+	[525] SetPalmaBoostMode(bool);
+	
+	[1000] SetNpadCommunicationMode(nn::applet::AppletResourceUserId, i64, pid);
+	[1001] GetNpadCommunicationMode() -> i64;
+}
